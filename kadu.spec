@@ -27,7 +27,7 @@ BuildRequires:	kdelibs-devel >= 3.0
 BuildRequires:	libtool
 BuildRequires:	readline-devel
 BuildRequires:	openssl-devel >= 0.9.7
-Requires:	libgadu >= 3:1.0
+Requires:	libgadu >= 3:1.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %{?_with_icondir:%define _pixmapsdir %{_datadir}/icons}	
