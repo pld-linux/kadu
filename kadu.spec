@@ -1,11 +1,11 @@
 #
 %bcond_without	xmms	# without xmms player support module
 %bcond_without	arts	# without arts sound server support
-%bcond_without  esd	# without ESD sound server support
+%bcond_without	esd	# without ESD sound server support
 %bcond_without	nas	# without Network Audio System support
 %bcond_without	echo	# without Echo sample module
 #%%bcond_without	speech	# without Speech synthesis support
-#%%bcond_without WM	# without WindowMaker docking module
+#%%bcond_without	WM	# without WindowMaker docking module
 
 %define		_libgadu_ver	4:1.4-2
 %define		_xmms_mod_ver	1.9
