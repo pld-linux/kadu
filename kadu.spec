@@ -178,7 +178,6 @@ Summary:	TCL scripting support and KaduPro extensions
 Summary(pl):	Obs³uga skryptów TCL i rozszerzeñ KaduPRo
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
-Requires:	tcl
 Requires:	tk
 
 %description module-tcl_scripting
