@@ -1,13 +1,14 @@
-%define		_snapshot	20020827
+%define		_snapshot	20020830
 Summary:	An Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.1
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Communications
 #Source0:	http://kadu.net/%{name}-%{version}.tar.gz
 Source0:	http://kadu.net/%{name}-%{_snapshot}.tar.gz
+Source1:	kadu.desktop
 URL:		http://kadu.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -38,14 +39,16 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 :> ./k_install; chmod 755 k_install
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 %configure
-%{__make}
+#%{__make}
+make || make 
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications
+install -d {$RPM_BUILD_ROOT%{_bindir},$RPM_BUILD_ROOT%{_applnkdir}/Network/Communications}
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
-install kadu/kadu.desktop $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications
+#%{__make} install DESTDIR=$RPM_BUILD_ROOT
+install kadu/kadu $RPM_BUILD_ROOT%{_bindir}
+install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -60,4 +63,4 @@ and should be placed in .gg/images folder inside user's home directory."
 %attr(755,root,root) %{_bindir}/*
 %{_applnkdir}/Network/Communications/*.desktop
 #%{_pixmapsdir}/*/*/apps/*.png
-%{_datadir}/apps/%{name}
+#%{_datadir}/apps/%{name}
