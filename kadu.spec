@@ -60,16 +60,15 @@ chmod +w aclocal.m4 configure
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}/hicolor/{16x16,32x32,48x48}/apps}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	kde_appsdir=%{_applnkdir}
 	
 
-install -d $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 
-install -d $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/{16x16,32x32,48x48}/apps
 install kadu/hi16-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/16x16/apps/kadu.png
 install kadu/hi32-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/32x32/apps/kadu.png
 install kadu/hi48-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/apps/kadu.png
