@@ -4,24 +4,24 @@
 %bcond_without	weather	# without weather check module support
 
 %define		_libgadu_ver	4:1.4-2
-%define		_xmms_mod_ver	1.19
+%define		_xmms_mod_ver	1.20
 %define		_spellchecker_mod_ver	0.11
 %define		_weather_ver	1.46
-%define		snapshot	20040906
+%define		snapshot	20040911
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.4.0
-Release:	0.%{snapshot}.1
+Release:	0.%{snapshot}.2
 License:	GPL
 Group:		Applications/Communications
 # Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
 Source0:	http://kadu.net/download/snapshots/kadu-%{snapshot}.tar.bz2
-# Source0-md5:	018ab814e95c00abc58b7c39ea19cf63
+# Source0-md5:	6781a83da9f59d15f463ae5b6bfe6df2
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
-# Source2-md5:	5513d94b1f2f41b1e5f0dbf785dc8a15
+# Source2-md5:	fb88a8f479b4295fb396ad35c8ba0035
 Source3:	http://scripts.one.pl/spellchecker/devel/%{version}/spellchecker-%{_spellchecker_mod_ver}.tar.gz
 # Source3-md5:	a721c8f4b51f447ba287e918aee926bc
 Source4:	http://republika.pl/buysk/weather/%{name}-weather-%{_weather_ver}.tar.bz2
@@ -107,7 +107,9 @@ rm -rf $RPM_BUILD_ROOT%{_includedir}
 
 mv -f $RPM_BUILD_ROOT%{_datadir}/%{name}/modules $RPM_BUILD_ROOT%{_libdir}/%{name}
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
-mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/{weather,config_wizard} $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/{weather,config_wizard,xmms} $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+
+rm -rf `find $RPM_BUILD_ROOT -name CVS`
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -118,6 +120,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %{_desktopdir}/kadu.desktop
 %{_pixmapsdir}/kadu.png
+%{?with_xmms: %{_datadir}/%{name}/modules/data/xmms/xmms.png}
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/AUTHORS
 %{_datadir}/%{name}/ChangeLog
