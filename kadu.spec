@@ -20,11 +20,6 @@ URL:		http://kadu.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
-%if %{?_with_icondir:1}0
-BuildRequires:	kdelibs-devel >= 8:3.2-0.030613.1
-%else
-BuildRequires:	kdelibs-devel >= 3.0
-%endif
 BuildRequires:	libtool
 BuildRequires:	readline-devel
 BuildRequires:	openssl-devel >= 0.9.7
