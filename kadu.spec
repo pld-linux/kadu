@@ -2,13 +2,12 @@ Summary:	An Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.3
-Release:	0.pre3.1
+Release:	0.pre4.1
 License:	GPL
 Group:		Applications/Communications
 #Source0:	http://kadu.net/%{name}-%{version}.tar.gz
-Source0:	http://kadu.net/%{name}-%{version}-pre3.tar.gz
+Source0:	http://kadu.net/%{name}-%{version}-pre4.tar.gz
 Source1:	%{name}.desktop
-Patch0:		%{name}-make.patch
 URL:		http://kadu.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -32,7 +31,6 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 
 %prep
 %setup -q -n %{name}
-%patch0 -p1
 
 %build
 :> ./k_install; chmod 755 k_install
@@ -46,6 +44,7 @@ cd lib
 %{__make} all CC=%{__cc} CXX=%{__cxx}
 cd ../..
 %{__make}
+
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -75,3 +74,4 @@ and should be placed in .gg/images folder inside user's home directory."
 %{_datadir}/apps/%{name}/msg.wav
 %{_datadir}/apps/%{name}/themes
 %{_datadir}/apps/%{name}/doc
+%{_datadir}/man/*/man1/*.gz
