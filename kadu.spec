@@ -23,7 +23,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	libtool
 BuildRequires:	readline-devel
 BuildRequires:	openssl-devel >= 0.9.7
-BuildRequires:  libgadu-devel >= 3:1.1
+BuildRequires:	libgadu-devel >= 3:1.1
 Requires:	libgadu >= 3:1.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
