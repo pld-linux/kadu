@@ -22,11 +22,11 @@ Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
 # Source0-md5:	d461c4b19670920e2ba1425d12e23f6b
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/stable/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
-# Source2-md5	12ca8a6f0fcb61c87602ab7fc869483d
+# Source2-md5:	12ca8a6f0fcb61c87602ab7fc869483d
 Source3:	http://scripts.one.pl/amarok/stable/%{version}/amarok-%{_amarok_mod_ver}.tar.gz
-# Source3-md5	2ad7832cf02422a84bdd675a507a47d0
+# Source3-md5:	2ad7832cf02422a84bdd675a507a47d0
 Source4:	http://scripts.one.pl/spellchecker/stable/%{version}/spellchecker-0.9.tar.gz
-# Source4-md5	b699879a56b679690a57e653dbc9d64d
+# Source4-md5:	b699879a56b679690a57e653dbc9d64d
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
 BuildRequires:	autoconf
