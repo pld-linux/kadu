@@ -1,13 +1,11 @@
-# KDE Config File  
 [Desktop Entry]
-Type=Application
+Name=Kadu
+Comment=Gadu-Gadu client
+Comment[pl]=Klient Gadu-Gadu
 Exec=kadu -caption "%c" %i %m  
 Icon=kadu.png
 MiniIcon=kadu.png
-DocPath=kadu/index.html
-Comment=Klient Gadu-Gadu kadu
-Comment[de]=kadu Gadu-Gadu client
 Terminal=0
-Name=Kadu
-Name[de]=Kadu
-Categories=Qt;Network;X-Communication
+Type=Application
+DocPath=kadu/index.html
+Categories=Qt;Network;InstantMessaging
