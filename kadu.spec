@@ -128,7 +128,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files 
 %defattr(644,root,root,755)
-%doc ChangeLog README TODO HISTORY THANKS AUTHORS
+%doc ChangeLog README TODO HISTORY
 %attr(755,root,root) %{_bindir}/*
 %{_desktopdir}/kadu.desktop
 %{_pixmapsdir}/kadu*.png
@@ -143,6 +143,10 @@ rm -rf $RPM_BUILD_ROOT
 # XXX: binaries cannot reside in /usr/share!!!
 %attr(755,root,root) %{_modules_dir}/*.so
 %dir %{_modules_dir}/translations
+%{_datadir}/%{name}/AUTHORS
+%{_datadir}/%{name}/ChangeLog
+%{_datadir}/%{name}/COPYING
+%{_datadir}/%{name}/THANKS
 %{_datadir}/%{name}/modules/data/config_wizard/joi/*
 %{_datadir}/%{name}/modules/data/config_wizard/ronk2/*
 %lang(de) %{_modules_dir}/translations/*_de.qm
