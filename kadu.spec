@@ -20,6 +20,8 @@ BuildRequires:	kdelibs-devel >= 3.0
 BuildRequires:	libtool
 BuildRequires:	readline-devel
 BuildRequires:	openssl-devel >= 0.9.6j
+BuildRequires:	qt-devel
+BuildRequires:	libpng-devel
 Requires:	libgadu >= 3:1.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
