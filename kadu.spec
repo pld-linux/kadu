@@ -19,6 +19,7 @@ BuildRequires:	libtool
 BuildRequires:	qt-devel >= 3.0.5
 BuildRequires:	readline-devel
 BuildRequires:	openssl-devel >= 0.9.7
+Requires:	libgadu >= 20030208
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -35,12 +36,11 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 %setup -q -n %{name}
 
 %build
-:> ./k_install; chmod 755 k_install
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
 %configure
-%{__make} all CC=%{__cc} CXX=%{__cxx}
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
