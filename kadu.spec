@@ -3,7 +3,7 @@
 
 %define		_libgadu_ver	4:1.4-2
 %define		_xmms_mod_ver	1.8
-%define		snapshot	20040630
+%define		snapshot	20040702
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
@@ -14,7 +14,7 @@ License:	GPL
 Group:		Applications/Communications
 # Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
 Source0:       http://kadu.net/download/snapshots/kadu-%{snapshot}.tar.bz2
-# Source0-md5:	51f503c6925a7f1e8453abd24ff51e32
+# Source0-md5:	18caa9340acc3233fd6b6011a116eb3f
 Source1:	%{name}.desktop
 # Source2:	http://scripts.one.pl/xmms/stable/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
 Source2:	http://scripts.one.pl/xmms/stable/0.3.8/xmms-%{_xmms_mod_ver}.tar.gz
