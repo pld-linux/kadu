@@ -1,14 +1,14 @@
-%define		_snapshot	20021020
 Summary:	An Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.3
-Release:	0.%{_snapshot}
+Release:	0.pre1.1
 License:	GPL
 Group:		Applications/Communications
 #Source0:	http://kadu.net/%{name}-%{version}.tar.gz
-Source0:	http://kadu.net/%{name}-%{_snapshot}.tar.gz
-Source1:	kadu.desktop
+Source0:	http://kadu.net/%{name}-%{version}-pre1.tar.gz
+Source1:	%{name}.desktop
+Patch0:		%{name}-make.patch
 URL:		http://kadu.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -34,13 +34,16 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 
 %prep
 %setup -q -n %{name}
+%patch0 -p1
 
 %build
 :> ./k_install; chmod 755 k_install
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
 %configure
-cd libgadu/lib
+cd libgadu
+%configure
+cd lib
 %{__make} all CC=%{__cc} CXX=%{__cxx}
 cd ../..
 %{__make}
@@ -71,4 +74,5 @@ and should be placed in .gg/images folder inside user's home directory."
 %{_applnkdir}/Network/Communications/*.desktop
 %{_pixmapsdir}/*/*/apps/*.png
 %{_datadir}/apps/%{name}/msg.wav
-%{_datadir}/apps/%{name}/images/*
+%{_datadir}/apps/%{name}/themes
+%{_datadir}/apps/%{name}/doc
