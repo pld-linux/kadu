@@ -74,18 +74,3 @@ diff -urN kadu.org/acinclude.m4 kadu/acinclude.m4
 +  fi
 +])
 +
-diff -urN kadu.org/configure.ac kadu/configure.ac
---- kadu.org/configure.ac	2003-11-06 01:12:02.000000000 +0100
-+++ kadu/configure.ac	2003-11-06 01:14:06.000000000 +0100
-@@ -324,9 +324,8 @@
- fi
- if test "$enable_voice" = "yes"; then
- 	AC_DEFINE(VOICE_ENABLED,1,[Define if voice talk support is enabled])
--	GSM_LIBS="-L../libgsm/lib -lgsm"
--	GSM_INCLUDES="-I../libgsm/inc"
--	MY_SUBDIRS="$MY_SUBDIRS libgsm"
-+	GSM_LIBS="-lgsm"
-+	GSM_INCLUDES=""
- fi
- AM_CONDITIONAL(VOICE,[test "$enable_voice" = "yes"])
- AC_SUBST(GSM_LIBS)
