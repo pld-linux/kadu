@@ -19,8 +19,6 @@ BuildRequires:	qt-devel >= 3.0.5
 BuildRequires:	readline-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_prefix		/usr/X11R6
-%define		_mandir		%{_prefix}/man
 
 %description
 Kadu is client of Gadu-Gadu protocol. It's an IM for Linux and UN*X.
