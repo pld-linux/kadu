@@ -5,7 +5,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.7
-Release:	1	
+Release:	2	
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -19,9 +19,13 @@ BuildRequires:	gettext-devel
 BuildRequires:	libgadu-devel >= %{_libgadu_ver}
 BuildRequires:	libgsm-devel
 BuildRequires:	libtool
-BuildRequires:	openssl-devel >= 0.9.7c
+BuildRequires:	openssl-devel >= 0.9.6m
 BuildRequires:	qt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_prefix		/usr/X11R6
+%define		_mandir		%{_prefix}/man
+%define		_desktopdir	%{_applnkdir}/Network/Communications
 
 %description
 Kadu is client of Gadu-Gadu protocol. It's an IM for Linux and UN*X.
@@ -46,17 +50,16 @@ chmod u+w aclocal.m4 configure
 %configure \
 	--enable-voice \
 	--enable-dist-info=PLD \
-	--with-existing-libgadu
+	--with-existing-libgadu=/usr
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 
