@@ -1,0 +1,72 @@
+diff -urN kadu-0.1.6b.org/Makefile.am kadu-0.1.6b/Makefile.am
+--- kadu-0.1.6b.org/Makefile.am	Sat Sep 29 16:56:11 2001
++++ kadu-0.1.6b/Makefile.am	Sat Sep 29 16:57:13 2001
+@@ -2,7 +2,7 @@
+ 
+ SUBDIRS = kadu po 
+ 
+-EXTRA_DIST = kadu.kdevprj AUTHORS COPYING ChangeLog INSTALL README TODO kadu.lsm 
++EXTRA_DIST = kadu.kdevprj AUTHORS COPYING ChangeLog INSTALL README TODO kadu.lsm admin
+ 
+ ####### kdevelop will overwrite this part!!! (end)############
+ # not a GNU package. You can remove this line, if 
+@@ -24,8 +24,6 @@
+ 	$(MAKE) -f admin/Makefile.common package-messages
+ 	$(MAKE) -C po merge
+ 
+-EXTRA_DIST = admin 
+-
+ dist-hook:
+ 	cd $(top_distdir) && perl admin/am_edit -padmin
+ 	cd $(top_distdir) && $(MAKE) -f admin/Makefile.common subdirs
+diff -urN kadu-0.1.6b.org/acinclude.m4 kadu-0.1.6b/acinclude.m4
+--- kadu-0.1.6b.org/acinclude.m4	Sat Sep 29 16:56:11 2001
++++ kadu-0.1.6b/acinclude.m4	Sat Sep 29 16:56:33 2001
+@@ -2480,47 +2480,6 @@
+ # Ulrich Drepper <drepper@cygnus.com>, 1995.
+ 
+ # serial 1
+-
+-AC_DEFUN(AM_LC_MESSAGES,
+-  [if test $ac_cv_header_locale_h = yes; then
+-    AC_CACHE_CHECK([for LC_MESSAGES], am_cv_val_LC_MESSAGES,
+-      [AC_TRY_LINK([#include <locale.h>], [return LC_MESSAGES],
+-       am_cv_val_LC_MESSAGES=yes, am_cv_val_LC_MESSAGES=no)])
+-    if test $am_cv_val_LC_MESSAGES = yes; then
+-      AC_DEFINE(HAVE_LC_MESSAGES, 1, [Define if your locale.h file contains LC_MESSAGES])
+-    fi
+-  fi])
+-
+-dnl From Jim Meyering.
+-dnl FIXME: migrate into libit.
+-
+-AC_DEFUN(AM_FUNC_OBSTACK,
+-[AC_CACHE_CHECK([for obstacks], am_cv_func_obstack,
+- [AC_TRY_LINK([#include "obstack.h"],
+-	      [struct obstack *mem;obstack_free(mem,(char *) 0)],
+-	      am_cv_func_obstack=yes,
+-	      am_cv_func_obstack=no)])
+- if test $am_cv_func_obstack = yes; then
+-   AC_DEFINE(HAVE_OBSTACK)
+- else
+-   LIBOBJS="$LIBOBJS obstack.o"
+- fi
+-])
+-
+-dnl From Jim Meyering.  Use this if you use the GNU error.[ch].
+-dnl FIXME: Migrate into libit
+-
+-AC_DEFUN(AM_FUNC_ERROR_AT_LINE,
+-[AC_CACHE_CHECK([for error_at_line], am_cv_lib_error_at_line,
+- [AC_TRY_LINK([],[error_at_line(0, 0, "", 0, "");],
+-              am_cv_lib_error_at_line=yes,
+-	      am_cv_lib_error_at_line=no)])
+- if test $am_cv_lib_error_at_line = no; then
+-   LIBOBJS="$LIBOBJS error.o"
+- fi
+- AC_SUBST(LIBOBJS)dnl
+-])
+-
+ # Macro to add for using GNU gettext.
+ # Ulrich Drepper <drepper@cygnus.com>, 1995.
+ 
