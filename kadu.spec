@@ -1,6 +1,4 @@
 #
-# TODO: move arch-dependent modules out of /usr/share!!!
-#
 # Conditional build:
 %bcond_without	xmms		# without xmms player support module
 %bcond_without	arts		# without arts sound server support
@@ -11,14 +9,14 @@
 %bcond_without	spellchecker	# without spellchecker (Aspell support)
 
 %define		_libgadu_ver	4:1.4-2
-%define		_xmms_mod_ver	1.11
 %define		_amarok_mod_ver	1.5
+%define		_xmms_mod_ver	1.11
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.9
-Release:	2.3
+Release:	3
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
