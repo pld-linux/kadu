@@ -73,6 +73,10 @@ gzip -9nf ChangeLog INSTALL README TODO
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post
+echo "Additional image files can be downloaded from http://cpi.pl/Kadu/images.tgz
+nd should be  laced in .gg/images folder inside user's home directory."
+
 %files
 %defattr(644,root,root,755)
 %doc *.gz
