@@ -9,6 +9,7 @@ Release:	0.%{_pre}.2
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://kadu.net/releases/%{name}-%{version}-%{_pre}.tar.gz
+# Source0-md5: 0f4f1c91c105a3c712c711637594b357
 Source1:	%{name}.desktop
 Patch0:		%{name}-no-reconnect-after-disconnect.patch
 URL:		http://kadu.net/
