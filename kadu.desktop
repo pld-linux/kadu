@@ -8,6 +8,6 @@ MiniIcon=kadu.png
 Terminal=false
 Type=Application
 DocPath=kadu/index.html
-Categories=Qt;Network;InstantMessaging
+Categories=Qt;Network;InstantMessaging;
 Encoding=UTF-8
 # vi: encoding=utf-8
