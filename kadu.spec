@@ -56,12 +56,12 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	xmms
 
 %description module-xmms
-TODO
-Module to enlabe (to make possible ?)... 
+Module which allows to show in status description informations about
+currently played song in xmms.
 
 %description module-xmms -l pl
 Modu³ umo¿liwiajacy w opisie statusu pokazywanie informacji o
-odgrywanym utowrze z odtwarzacza xmms.
+odgrywanym utworze z odtwarzacza xmms.
 
 %prep
 %setup -q -n %{name}
