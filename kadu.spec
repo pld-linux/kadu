@@ -19,7 +19,7 @@ BuildRequires:	kdelibs-devel >= 3.0
 BuildRequires:	libtool
 BuildRequires:	qt-devel >= 3.0.5
 BuildRequires:	readline-devel
-BuildREquires:	openssl-devel
+BuildRequires:	openssl-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
