@@ -11,7 +11,7 @@ Group:		Applications/Communications
 Source0:	http://kadu.net/releases/%{name}-%{version}-%{_pre}.tar.gz
 # Source0-md5:	036224e2b72749ba5fae72520dd52bf3
 Source1:	%{name}.desktop
-Patch0:	%{name}-ac_am.patch
+Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -57,13 +57,12 @@ kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT{%{_applnkdir}/Network/Communications,%{_pixmapsdir}/hicolor/{16x16/apps,32x32/apps,48x48/apps}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	kde_appsdir=%{_applnkdir}
 
-install -d $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications
-install -d $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/{16x16/apps,32x32/apps,48x48/apps}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications
 install kadu/hi16-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/16x16/apps/kadu.png
 install kadu/hi32-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/32x32/apps/kadu.png
