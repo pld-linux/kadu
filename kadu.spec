@@ -15,12 +15,12 @@ BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
-BuildRequires:	kdelibs-devel >= 2.2.0
+BuildRequires:	kdelibs-devel >= 3.0
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
-BuildRequires:	qt-devel >= 2.1.1
+BuildRequires:	qt-devel >= 3.0.3
 BuildRequires:	zlib-devel
 BuildRequires:	readline-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
