@@ -14,7 +14,7 @@ Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.4.0
 Release:	0.%{snapshot}.1
-License:	GPL
+License:	GPL v2
 Group:		Applications/Communications
 # Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
 Source0:	http://kadu.net/download/snapshots/%{name}-%{snapshot}.tar.bz2
@@ -47,13 +47,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Kadu is client of Gadu-Gadu protocol. It's an IM for Linux and UN*X.
-It's written for KDE.
+It's written with use of QT libraries.
 
 %description -l pl
 Kadu jest klientem protoko³u Gadu-Gadu. Inaczej mówi±c, jest
 komunikatorem dla Linuksa (oraz, przy niewielkim wysi³ku, innych
-systemów UN*Xowych). Napisano go w oparciu o bibliotekê Qt i KDE,
-przeznaczony jest wiêc dla tego ¶rodowiska.
+systemów UN*Xowych). Napisano go w oparciu o bibliotekê QT.
 
 %prep
 %setup -q -n %{name}
@@ -129,17 +128,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files 
 %defattr(644,root,root,755)
-%doc ChangeLog README TODO HISTORY
+%doc ChangeLog README TODO HISTORY THANKS AUTHORS
 %attr(755,root,root) %{_bindir}/*
 %{_desktopdir}/kadu.desktop
-%{_pixmapsdir}/kadu.png
+%{_pixmapsdir}/kadu*.png
 %{?with_xmms: %{_datadir}/%{name}/modules/data/xmms/xmms.png}
 %{?with_spellchecker: %{_datadir}/%{name}/modules/data/spellchecker/config.png}
 %dir %{_datadir}/%{name}
-%{_datadir}/%{name}/AUTHORS
-%{_datadir}/%{name}/ChangeLog
-%{_datadir}/%{name}/COPYING
-%{_datadir}/%{name}/THANKS
 %{_datadir}/%{name}/themes
 %dir %{_modules_dir}
 %{?with_weather: %dir %{_datadir}/%{name}/modules/data/weather}
