@@ -171,6 +171,7 @@ tar xzf %{SOURCE3} -C modules
 tar xzf %{SOURCE4} -C modules
 %endif
 
+%{__perl} -pi -e 's@/lib@/%{_lib}@g' kadu/modules.cpp
 %{__perl} -pi -e 's@/lib@/%{_lib}@g' modules/x11_docking/spec
 
 %build
