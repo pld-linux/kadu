@@ -75,7 +75,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 echo "Additional image files can be downloaded from http://cpi.pl/Kadu/images.tgz
-nd should be  laced in .gg/images folder inside user's home directory."
+and should be placed in .gg/images folder inside user's home directory."
 
 %files
 %defattr(644,root,root,755)
