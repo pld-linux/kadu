@@ -60,7 +60,7 @@ tar xzf %{SOURCE3333C modules
 %{__perl} -pi -e 's@/lib@/%{_lib}@g' modules/x11_docking/spec
 
 %build
-if %{with xmms}
+%if %{with xmms}
 sed -i -e 's/module_xmms=n/module_xmms=m/' .config
 %endif
 %if %{with spellchecker}
