@@ -1,9 +1,9 @@
-%define		_snapshot	20020906
+%define		_snapshot	20020909
 Summary:	An Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.1
-Release:	4
+Release:	5
 License:	GPL
 Group:		Applications/Communications
 #Source0:	http://kadu.net/%{name}-%{version}.tar.gz
@@ -46,8 +46,8 @@ kde_icondir="%{_pixmapsdir}"; export kde_icondir
 rm -rf $RPM_BUILD_ROOT
 install -d {$RPM_BUILD_ROOT%{_bindir},$RPM_BUILD_ROOT%{_applnkdir}/Network/Communications}
 
-#%{__make} install DESTDIR=$RPM_BUILD_ROOT
-install kadu/kadu $RPM_BUILD_ROOT%{_bindir}
+%{__make} install DESTDIR=$RPM_BUILD_ROOT
+#install kadu/kadu $RPM_BUILD_ROOT%{_bindir}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications
 
 %clean
@@ -63,4 +63,5 @@ and should be placed in .gg/images folder inside user's home directory."
 %attr(755,root,root) %{_bindir}/*
 %{_applnkdir}/Network/Communications/*.desktop
 #%{_pixmapsdir}/*/*/apps/*.png
-#%{_datadir}/apps/%{name}
+%{_datadir}/apps/%{name}/msg.wav
+%{_datadir}/apps/%{name}/images/*
