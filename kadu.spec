@@ -1,4 +1,4 @@
-
+  
 %define	_pre	pre1
 
 Summary:	An Gadu-Gadu client for online messaging
