@@ -52,7 +52,6 @@ BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	sed >= 4.0
 %{?with_xmms:BuildRequires:	xmms-devel}
 %{?with_tcl_scripting:BuildRequires:	tk-devel >= 8.4}
-%{?with_tcl_scripting:BuildRequires:	tcl-devel >= 8.4}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -183,14 +182,14 @@ Requires:	tcl
 Requires:	tk
 
 %description module-tcl_scripting
-KaduPro jest dodatkiem do Kadu wykorzystuj±cym modu³ TCL. Poszerza on
-mo¿liwo¶ci Kadu o przydatne na codzieñ funkcje, których implementacja
-w samym Kadu mog³a by byæ dosyæ skomplikowana, lub te¿ czasoch³onna.
-
-%description module-tcl_scripting -l pl
 KaduPro is an add-on to Kadu, which uses a TCL module. If extends Kadu
 functionality by usefull,common daily functions, which implementation
 in Kadu might be enough complicated or time-consuming.
+
+%description module-tcl_scripting -l pl
+KaduPro jest dodatkiem do Kadu wykorzystuj±cym modu³ TCL. Poszerza on
+mo¿liwo¶ci Kadu o przydatne na codzieñ funkcje, których implementacja
+w samym Kadu mog³a by byæ dosyæ skomplikowana, lub te¿ czasoch³onna.
 
 %prep
 %setup -q -n %{name}
