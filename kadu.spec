@@ -5,21 +5,6 @@ Version:	0.2.0
 Release:	1
 License:	GPL
 Group:		Applications/Communications
-Group(cs):	Aplikace/Komunikace
-Group(da):	Programmer/Kommunikation
-Group(de):	Applikationen/Kommunikation
-Group(es):	Aplicaciones/Comunicaciones
-Group(fr):	Applications/Transmissions
-Group(is):	Forrit/Samskipti
-Group(it):	Applicazioni/Comunicazioni
-Group(ja):	╔╒╔в╔Й╔╠║╪╔╥╔Г╔С/дл©╝
-Group(no):	Applikasjoner/Kommunikasjon
-Group(pl):	Aplikacje/Komunikacja
-Group(pt):	AplicaГУes/ComunicaГУes
-Group(ru):	Приложения/Коммуникации
-Group(sl):	Programi/Komunikacije
-Group(sv):	TillДmpningar/Kommunikation
-Group(uk):	Прикладн╕ Програми/Комун╕кац╕╖
 URL:		http://cpi.pl/Kadu/
 Source0:	http://cpi.pl/Kadu/%{name}-%{version}.tar.gz
 BuildRequires:	XFree86-devel
