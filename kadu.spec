@@ -17,7 +17,7 @@ Release:	0.%{snapshot}.1
 License:	GPL
 Group:		Applications/Communications
 # Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
-Source0:	http://kadu.net/download/snapshots/kadu-%{snapshot}.tar.bz2
+Source0:	http://kadu.net/download/snapshots/%{name}-%{snapshot}.tar.bz2
 # Source0-md5:	1a963d2d046728435dcc6958f87aafdb
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
@@ -106,7 +106,7 @@ install kadu/hi48-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/kadu.png
 rm -rf $RPM_BUILD_ROOT%{_includedir}
 
 mv -f $RPM_BUILD_ROOT%{_datadir}/%{name}/modules $RPM_BUILD_ROOT%{_libdir}/%{name}
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/config_wizard $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 
 %if %{with xmms}
