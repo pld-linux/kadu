@@ -1,5 +1,11 @@
 #
-%bcond_without	xmms	# with xmms player support module
+%bcond_without	xmms	# without xmms player support module
+%bcond_without	arts	# without arts sound server support
+%bcond_without  esd	# without ESD sound server support
+%bcond_without	nas	# without Network Audio System support
+%bcond_without	echo	# without Echo sample module
+#%%bcond_without	speech	# without Speech synthesis support
+#%%bcond_without WM	# without WindowMaker docking module
 
 %define		_libgadu_ver	4:1.4-2
 %define		_xmms_mod_ver	1.9
@@ -8,7 +14,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.9
-Release:	1.1
+Release:	1.2
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -26,7 +32,10 @@ BuildRequires:	libgsm-devel
 BuildRequires:	libtool
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	qt-devel
-%{?with_xmms:BuildRequires:     xmms-devel}
+%{?with_arts:BuildRequires:	arts-devel}
+%{?with_esd:BuildRequires:	esound-devel}
+%{?with_nas:BuildRequires:	nas-devel}
+%{?with_xmms:BuildRequires:	xmms-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -47,7 +56,8 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	xmms
 
 %description module-xmms
-Module to enlabe (to make possible ?)... TODO
+TODO
+Module to enlabe (to make possible ?)... 
 
 %description module-xmms -l pl
 Modu³ umo¿liwiajacy w opisie statusu pokazywanie informacji o
@@ -64,6 +74,25 @@ tar xzf %{SOURCE2} -C modules
 %if %{with xmms}
 sed -i -e 's/module_xmms=n/module_xmms=m/' .config
 %endif
+%if %{with arts}
+sed -i -e 's/module_arts_sound=n/module_arts_sound=m/' .config
+%endif
+%if %{with esd}
+sed -i -e 's/module_esd_sound=n/module_esd_sound=m/' .config
+%endif
+%if %{with nas}
+sed -i -e 's/module_nas_sound=n/module_nas_sound=m/' .config
+%endif
+%if %{with echo}
+sed -i -e 's/module_echo=n/module_echo=m/' .config
+%endif
+#%%if %{with speech}
+#sed -i -e 's/module_speech=n/module_speech=m/' .config
+#%%endif
+#%%if %{with speech}
+#sed -i -e 's/module_wmaker_docking=n/module_wmaker_docking=m/' .config
+#%%endif
+
 
 chmod u+w aclocal.m4 configure
 %{__aclocal}
@@ -161,6 +190,12 @@ rm -rf $RPM_BUILD_ROOT
 %lang(en) %{_datadir}/%{name}/translations/qt_en.qm
 %lang(it) %{_datadir}/%{name}/translations/qt_it.qm
 %lang(pl) %{_datadir}/%{name}/translations/qt_pl.qm
+
+#temporarily, move to subpackages
+%{_datadir}/%{name}/modules/arts*
+%{_datadir}/%{name}/modules/esd*
+%{_datadir}/%{name}/modules/nas*
+%{_datadir}/%{name}/modules/echo*
 
 %if %{with xmms}
 %files module-xmms
