@@ -1,22 +1,32 @@
 Summary:	An Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
-Version:	0.1.9
-Release:	3
+Version:	0.2.0
+Release:	1
 License:	GPL
 Group:		Applications/Communications
+Group(cs):	Aplikace/Komunikace
+Group(da):	Programmer/Kommunikation
 Group(de):	Applikationen/Kommunikation
+Group(es):	Aplicaciones/Comunicaciones
+Group(fr):	Applications/Transmissions
+Group(is):	Forrit/Samskipti
+Group(it):	Applicazioni/Comunicazioni
+Group(ja):	¥¢¥×¥ê¥±¡¼¥·¥ç¥ó/ÄÌ¿®
+Group(no):	Applikasjoner/Kommunikasjon
 Group(pl):	Aplikacje/Komunikacja
+Group(pt):	Aplicações/Comunicações
+Group(ru):	ðÒÉÌÏÖÅÎÉÑ/ëÏÍÍÕÎÉËÁÃÉÉ
+Group(sl):	Programi/Komunikacije
+Group(sv):	Tillämpningar/Kommunikation
+Group(uk):	ðÒÉËÌÁÄÎ¦ ðÒÏÇÒÁÍÉ/ëÏÍÕÎ¦ËÁÃ¦§
 URL:		http://cpi.pl/Kadu/
 Source0:	http://cpi.pl/Kadu/%{name}-%{version}.tar.gz
-Patch0:		%{name}-am_ac.patch
-Patch1:		%{name}-time.patch
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	kdelibs-devel >= 2.2.0
-BuildRequires:	libgadu-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel
@@ -40,17 +50,15 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
 
 %build
-gettextize --copy --force
-libtoolize --copy --force
-aclocal
-autoconf
-automake -a -c
-%configure
-
+#gettextize --copy --force
+#libtoolize --copy --force
+#aclocal
+#autoconf
+#automake -a -c
+:> ./k_install; chmod 755 k_install
+%configure2_13
 %{__make}
 
 %install
