@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without	xmms		# without xmms player support module
+%bcond_without	xmms		# without XMMS player support module
 %bcond_without	arts		# without arts sound server support
 %bcond_without	esd		# without ESD sound server support
 %bcond_without	nas		# without Network Audio System support
@@ -58,19 +58,19 @@ systemów UN*Xowych). Napisano go w oparciu o bibliotekê Qt i KDE,
 przeznaczony jest wiêc dla tego ¶rodowiska.
 
 %package module-xmms
-Summary:	Support xmms status
-Summary(pl):	Modu³ statusu dla xmms
+Summary:	Support XMMS status
+Summary(pl):	Modu³ statusu dla XMMS-a
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	xmms
 
 %description module-xmms
 Module which allows showing in status description information about
-the song currently played in xmms.
+the song currently played in XMMS.
 
 %description module-xmms -l pl
 Modu³ umo¿liwiaj±cy pokazywanie w opisie statusu informacji 
-o odgrywanym utworze z odtwarzacza xmms.
+o odgrywanym utworze z odtwarzacza XMMS.
 
 
 %package module-sound-arts
