@@ -1,4 +1,3 @@
-#
 
 %define		_pre		rc3
 
@@ -6,7 +5,7 @@ Summary:	An Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.4
-Release:	0.%{_pre}.2
+Release:	0.%{_pre}.3
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://kadu.net/releases/%{name}-%{version}-%{_pre}.tar.gz
@@ -18,11 +17,11 @@ URL:		http://kadu.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
+BuildRequires:	libgadu-devel >= 3:1.1
 BuildRequires:	libtool
-BuildRequires:	readline-devel
 BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	qt-devel
-BuildRequires:	libgadu-devel >= 3:1.1
+BuildRequires:	readline-devel
 Requires:	libgadu >= 3:1.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -43,11 +42,10 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 
 %build
 chmod +w aclocal.m4 configure
-%{__autoheader}
 %{__aclocal}
 %{__autoconf}
+%{__autoheader}
 %{__automake}
-
 %configure \
 	--enable-dist-info=PLD \
 	--with-existing-libgadu
@@ -62,10 +60,9 @@ install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 	DESTDIR=$RPM_BUILD_ROOT \
 	kde_appsdir=%{_applnkdir}
 
-
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 
-install kadu/hi48-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}
+install kadu/hi48-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/kadu.png
 
 %find_lang %{name} --with-kde
 
