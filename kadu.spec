@@ -43,6 +43,7 @@ BuildRequires:	libgsm-devel
 BuildRequires:	libtool
 %{?with_nas:BuildRequires:	nas-devel}
 BuildRequires:	openssl-devel >= 0.9.7d
+BuildRequires:	kdelibs-devel
 BuildRequires:	qt-devel
 %{?with_xmms:BuildRequires:	xmms-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
