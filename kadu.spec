@@ -1,3 +1,6 @@
+#
+# --with icondir	instals icons in /usr/share/icons/hicolor
+#
 
 %define		_pre		pre3
 
@@ -5,7 +8,7 @@ Summary:	An Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.4
-Release:	0.%{_pre}.1
+Release:	0.%{_pre}.2
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://kadu.net/releases/%{name}-%{version}-%{_pre}.tar.gz
@@ -16,12 +19,18 @@ URL:		http://kadu.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
+%if %{?_with_icondir:1}0
+BuildRequires:	kdelibs-devel >= 3.2-0.030613.1
+%else
 BuildRequires:	kdelibs-devel >= 3.0
+%endif
 BuildRequires:	libtool
 BuildRequires:	readline-devel
 BuildRequires:	openssl-devel >= 0.9.7
 Requires:	libgadu >= 3:1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%{?_with_icondir:%define _pixmapsdir %{_datadir}/icons}	
 
 %description
 Kadu is client of Gadu-Gadu protocol. It's an IM for Linux and UN*X.
@@ -38,8 +47,6 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 %patch0 -p1
 
 %build
-kde_appsdir="%{_applnkdir}"; export kde_appsdir
-kde_icondir="%{_pixmapsdir}"; export kde_icondir
 chmod +w aclocal.m4 configure
 %{__autoheader}
 %{__aclocal}
@@ -53,7 +60,10 @@ chmod +w aclocal.m4 configure
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	kde_appsdir=%{_applnkdir}
+	
 
 install -d $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
