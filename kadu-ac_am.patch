@@ -1,0 +1,25 @@
+--- kadu/po/Makefile.am~	2003-02-10 02:58:33.000000000 +0100
++++ kadu/po/Makefile.am	2003-05-28 11:28:14.000000000 +0200
+@@ -4,4 +4,4 @@
+ 	$(INSTALL_DATA) pl/kadu.mo "$(DESTDIR)/$(datadir)/locale/pl/LC_MESSAGES";
+ 
+ uninstall-local:
+-	rm -f "$(DESTDIR)/$(datadir)/locale/pl/LC_MESSAGES/kadu.mo"; \
++	rm -f "$(DESTDIR)/$(datadir)/locale/pl/LC_MESSAGES/kadu.mo"; 
+--- kadu/configure.ac~	2003-05-23 18:00:55.000000000 +0200
++++ kadu/configure.ac	2003-05-28 11:38:00.000000000 +0200
+@@ -385,10 +385,12 @@
+ 	AC_CHECK_HEADER(openssl/rsa.h,[
+ 		AC_CHECK_LIB(crypto,RSA_public_encrypt,,[
+ 			AC_MSG_ERROR([libcrypto was not found!])
+-		])
++			],[$PTHREAD_CPPFLAGS $PTHREAD_LIBS])
++		
+ 		AC_CHECK_LIB(ssl,BIO_new,,[
+ 			AC_MSG_ERROR([libssl was not found!])
+-		])
++			],[$PTHREAD_CPPFLAGS $PTHREAD_LIBS])
++		
+ 	],[
+ 		AC_MSG_ERROR([openssl/rsa.h was not found!])
+ 	])
