@@ -1,0 +1,26 @@
+diff -Nur kadu.orig/libgadu/Makefile.in kadu.chng/libgadu/Makefile.in
+--- kadu.orig/libgadu/Makefile.in	Tue Nov 19 01:58:48 2002
++++ kadu.chng/libgadu/Makefile.in	Fri Dec 13 09:28:12 2002
+@@ -13,7 +13,7 @@
+ 
+ #
+ 
+-all:	configure libgadu @ekg@ @make_ekgwap@
++all:	libgadu @ekg@ @make_ekgwap@
+ 
+ libgadu:
+ 	cd lib && $(MAKE) all
+@@ -27,13 +27,6 @@
+ examples:
+ 	cd examples && $(MAKE) all
+ 
+-#
+-
+-configure:	configure.in m4/*
+-	./autogen.sh
+-
+-#
+-
+ install:	all install-libgadu @install_ekg@ @install_ekgwap@
+ 
+ install-libgadu:
