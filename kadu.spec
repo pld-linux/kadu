@@ -2,8 +2,8 @@
 %bcond_with	xmms	# with xmms player support module
 
 %define		_libgadu_ver	4:1.4-2
-%define		_xmms_mod_ver	1.10
-%define		snapshot	20040725
+%define		_xmms_mod_ver	1.11
+%define		snapshot	20040727
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
@@ -14,7 +14,7 @@ License:	GPL
 Group:		Applications/Communications
 # Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
 Source0:	http://kadu.net/download/snapshots/kadu-%{snapshot}.tar.bz2
-# Source0-md5:	91f1b176560a88c958cc68f18f273dc8
+# Source0-md5:	41ab1d7b8eef63661cf93c407ff4fd78
 Source1:	%{name}.desktop
 # Source2:	http://scripts.one.pl/xmms/stable/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
 Source2:	http://scripts.one.pl/xmms/stable/0.3.9/xmms-%{_xmms_mod_ver}.tar.gz
@@ -49,6 +49,8 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 tar xzf %{SOURCE2} -C modules
 %endif
 
+%{__perl} -pi -e 's@/lib@/%{_lib}@g' modules/x11_docking/spec
+
 %build
 chmod u+w aclocal.m4 configure
 %{__aclocal}
@@ -72,6 +74,8 @@ install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 
 install kadu/hi48-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/kadu.png
+
+rm -rf $RPM_BUILD_ROOT%{_includedir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
