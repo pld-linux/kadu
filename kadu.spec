@@ -1,4 +1,6 @@
 #
+# TODO: move arch-dependent modules out of /usr/share!!!
+#
 # Conditional build:
 %bcond_without	xmms		# without xmms player support module
 %bcond_without	arts		# without arts sound server support
@@ -220,7 +222,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog INSTALL README TODO
+%doc ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/*
 %{_desktopdir}/kadu.desktop
 %{_pixmapsdir}/kadu.png
@@ -230,11 +232,11 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/%{name}/modules
 %{_datadir}/%{name}/modules/autoaway.desc
 %{_datadir}/%{name}/modules/autoresponder.desc
-%{_datadir}/%{name}/modules/autoresponder.so
+%attr(755,root,root) %{_datadir}/%{name}/modules/autoresponder.so
 %{_datadir}/%{name}/modules/default_sms.desc
 %{_datadir}/%{name}/modules/docking.desc
 %{_datadir}/%{name}/modules/dsp_sound.desc
-%{_datadir}/%{name}/modules/dsp_sound.so
+%attr(755,root,root) %{_datadir}/%{name}/modules/dsp_sound.so
 %{_datadir}/%{name}/modules/encryption.desc
 %{_datadir}/%{name}/modules/ext_sound.desc
 %{_datadir}/%{name}/modules/sms.desc
@@ -290,37 +292,37 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with xmms}
 %files module-xmms
 %defattr(644,root,root,755)
-%lang(pl) %{_datadir}/%{name}/modules/translations/xmms_pl.qm
 %{_datadir}/%{name}/modules/xmms.desc
-%{_datadir}/%{name}/modules/xmms.so
+%attr(755,root,root) %{_datadir}/%{name}/modules/xmms.so
+%lang(pl) %{_datadir}/%{name}/modules/translations/xmms_pl.qm
 %endif
 
 %if %{with arts}
 %files module-sound-arts
 %defattr(644,root,root,755)
 %{_datadir}/%{name}/modules/arts_sound.desc
-%{_datadir}/%{name}/modules/arts_sound.so
+%attr(755,root,root) %{_datadir}/%{name}/modules/arts_sound.so
 %endif
 
 %if %{with esd}
 %files module-sound-esd
 %defattr(644,root,root,755)
 %{_datadir}/%{name}/modules/esd_sound.desc
-%{_datadir}/%{name}/modules/esd_sound.so
+%attr(755,root,root) %{_datadir}/%{name}/modules/esd_sound.so
 %endif
 
 %if %{with nas}
 %files module-sound-nas
 %defattr(644,root,root,755)
 %{_datadir}/%{name}/modules/nas_sound.desc
-%{_datadir}/%{name}/modules/nas_sound.so
+%attr(755,root,root) %{_datadir}/%{name}/modules/nas_sound.so
 %endif
 
 %if %{with speech}
 %files module-speech
 %defattr(644,root,root,755)
 %{_datadir}/%{name}/modules/speech.desc
-%{_datadir}/%{name}/modules/speech.so
+%attr(755,root,root) %{_datadir}/%{name}/modules/speech.so
 %lang(de) %{_datadir}/%{name}/modules/translations/speech_de.qm
 %lang(it) %{_datadir}/%{name}/modules/translations/speech_it.qm
 %lang(pl) %{_datadir}/%{name}/modules/translations/speech_pl.qm
@@ -329,15 +331,15 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with amarok}
 %files module-amarok
 %defattr(644,root,root,755)
-%lang(pl) %{_datadir}/%{name}/modules/translations/amarok_pl.qm
 %{_datadir}/%{name}/modules/amarok.desc
-%{_datadir}/%{name}/modules/amarok.so
+%attr(755,root,root) %{_datadir}/%{name}/modules/amarok.so
+%lang(pl) %{_datadir}/%{name}/modules/translations/amarok_pl.qm
 %endif
 
 %if %{with spellchecker}
 %files module-spellchecker
 %defattr(644,root,root,755)
-%lang(pl) %{_datadir}/%{name}/modules/translations/spellchecker_pl.qm
 %{_datadir}/%{name}/modules/spellchecker.desc
-%{_datadir}/%{name}/modules/spellchecker.so
+%attr(755,root,root) %{_datadir}/%{name}/modules/spellchecker.so
+%lang(pl) %{_datadir}/%{name}/modules/translations/spellchecker_pl.qm
 %endif
