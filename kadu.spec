@@ -18,7 +18,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.9
-Release:	2.2
+Release:	2.3
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -31,7 +31,6 @@ Source3:	http://scripts.one.pl/amarok/stable/%{version}/amarok-%{_amarok_mod_ver
 Source4:	http://scripts.one.pl/spellchecker/stable/%{version}/spellchecker-0.9.tar.gz
 # Source4-md5:	b699879a56b679690a57e653dbc9d64d
 Patch0:		%{name}-ac_am.patch
-Patch1:		%{name}-FHS.patch
 URL:		http://kadu.net/
 #BuildRequires:	FHS-compliance-needed
 %{?with_arts:BuildRequires:	arts-devel}
@@ -159,7 +158,6 @@ Modu³ sprawdzaj±cy pisownie.
 %prep
 %setup -q -n %{name}
 %patch0 -p1
-%patch1 -p1
 
 %if %{with xmms}
 tar xzf %{SOURCE2} -C modules
@@ -171,7 +169,7 @@ tar xzf %{SOURCE3} -C modules
 tar xzf %{SOURCE4} -C modules
 %endif
 
-%{__perl} -pi -e 's@/lib@/%{_lib}@g' kadu/modules.cpp
+%{__perl} -pi -e 's@\(dataPath\("kadu/modules/?@\(\("%{_libdir}/kadu/modules/@g' kadu/modules.cpp
 %{__perl} -pi -e 's@/lib@/%{_lib}@g' modules/x11_docking/spec
 
 %build
