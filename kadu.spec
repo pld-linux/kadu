@@ -1,10 +1,9 @@
 
-%define		_pre	rc2
-
 Summary:	An Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.3
+%define		_pre	rc2
 Release:	0.%{_pre}.1
 License:	GPL
 Group:		Applications/Communications
@@ -19,7 +18,7 @@ BuildRequires:	kdelibs-devel >= 3.0
 BuildRequires:	libtool
 BuildRequires:	qt-devel >= 3.0.5
 BuildRequires:	readline-devel
-BuildRequires:	openssl-devel
+BuildRequires:	openssl-devel >= 0.9.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
