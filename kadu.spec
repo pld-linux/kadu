@@ -2,7 +2,7 @@
 # --with icondir	installs icons in /usr/share/icons/hicolor
 #
 
-%define		_pre		rc2
+%define		_pre		rc3
 
 Summary:	An Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
@@ -12,7 +12,7 @@ Release:	0.%{_pre}.1
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://kadu.net/releases/%{name}-%{version}-%{_pre}.tar.gz
-# Source0-md5:	917fb939aa8782926f90dc2667bd0f53
+# Source0-md5:	036224e2b72749ba5fae72520dd52bf3
 Source1:	%{name}.desktop
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
