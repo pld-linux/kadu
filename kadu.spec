@@ -2,7 +2,7 @@ Summary:	An Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.1.9
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Communications
 Group(de):	Applikationen/Kommunikation
@@ -11,22 +11,22 @@ URL:		http://cpi.pl/Kadu/
 Source0:	http://cpi.pl/Kadu/%{name}-%{version}.tar.gz
 Patch0:		%{name}-am_ac.patch
 Patch1:		%{name}-time.patch
-BuildRequires:	qt-devel >= 2.1.1
-BuildRequires:	libstdc++-devel
-BuildRequires:	kdelibs-devel >= 2.2.0
 BuildRequires:	XFree86-devel
-BuildRequires:	zlib-devel
-BuildRequires:	libpng-devel
-BuildRequires:	libjpeg-devel
-BuildRequires:	automake
 BuildRequires:	autoconf
-BuildRequires:	libtool
+BuildRequires:	automake
 BuildRequires:	gettext-devel
-BuildRequires:	libgg-devel
+BuildRequires:	kdelibs-devel >= 2.2.0
+BuildRequires:	libgadu-devel
+BuildRequires:	libjpeg-devel
+BuildRequires:	libpng-devel
+BuildRequires:	libstdc++-devel
+BuildRequires:	libtool
+BuildRequires:	qt-devel >= 2.1.1
+BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_prefix	/usr/X11R6
-%define		_mandir	%{_prefix}/man
+%define		_prefix		/usr/X11R6
+%define		_mandir		%{_prefix}/man
 
 %description
 Kadu is client of Gadu-Gadu protocol. It's an IM for Linux and UN*X.
@@ -57,7 +57,7 @@ automake -a -c
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications
 
-%{__make} DESTDIR=$RPM_BUILD_ROOT install
+%{__make} install DESTDIR=$RPM_BUILD_ROOT
 install kadu/kadu.desktop $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications
 
 gzip -9nf ChangeLog INSTALL README TODO
