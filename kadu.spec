@@ -40,7 +40,7 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
-%configure --with-qt-includes=/usr/X11R6/include/qt
+%configure
 %{__make} all CC=%{__cc} CXX=%{__cxx}
 
 %install
