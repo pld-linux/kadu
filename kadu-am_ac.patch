@@ -1,6 +1,6 @@
 diff -urN kadu-0.1.9.org/Makefile.am kadu-0.1.9/Makefile.am
 --- kadu-0.1.9.org/Makefile.am	Thu Nov 29 15:55:09 2001
-+++ kadu-0.1.9/Makefile.am	Thu Nov 29 15:55:42 2001
++++ kadu-0.1.9/Makefile.am	Sat Dec  1 23:34:05 2001
 @@ -24,8 +24,6 @@
  	$(MAKE) -f admin/Makefile.common package-messages
  	$(MAKE) -C po merge
@@ -12,7 +12,7 @@ diff -urN kadu-0.1.9.org/Makefile.am kadu-0.1.9/Makefile.am
  	cd $(top_distdir) && $(MAKE) -f admin/Makefile.common subdirs
 diff -urN kadu-0.1.9.org/acinclude.m4 kadu-0.1.9/acinclude.m4
 --- kadu-0.1.9.org/acinclude.m4	Thu Nov 29 15:55:09 2001
-+++ kadu-0.1.9/acinclude.m4	Thu Nov 29 15:57:02 2001
++++ kadu-0.1.9/acinclude.m4	Sat Dec  1 23:34:05 2001
 @@ -2476,50 +2476,6 @@
  ])
  
@@ -64,3 +64,28 @@ diff -urN kadu-0.1.9.org/acinclude.m4 kadu-0.1.9/acinclude.m4
  
  # Macro to add for using GNU gettext.
  # Ulrich Drepper <drepper@cygnus.com>, 1995.
+diff -urN kadu-0.1.9.org/kadu/Makefile.am kadu-0.1.9/kadu/Makefile.am
+--- kadu-0.1.9.org/kadu/Makefile.am	Thu Nov 29 15:55:09 2001
++++ kadu-0.1.9/kadu/Makefile.am	Sat Dec  1 23:36:23 2001
+@@ -60,3 +60,8 @@
+ 	 $(XGETTEXT) $$LIST -o $(podir)/kadu.pot; \
+ 	fi
+ 
++kadu.cpp: kadu.moc
++
++kadu.moc:
++	$(MOC)	-o kadu.moc kadu.h
++
+diff -urN kadu-0.1.9.org/kadu/kadu.cpp kadu-0.1.9/kadu/kadu.cpp
+--- kadu-0.1.9.org/kadu/kadu.cpp	Thu Nov 29 15:55:09 2001
++++ kadu-0.1.9/kadu/kadu.cpp	Sat Dec  1 23:35:55 2001
+@@ -1162,4 +1162,7 @@
+ 	writeIgnored(NULL);
+ 	}
+ 
+-Kadu::~Kadu(void) { ; }
+\ No newline at end of file
++Kadu::~Kadu(void) { ; }
++
++#include "kadu.moc"
++
