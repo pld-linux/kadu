@@ -8,6 +8,7 @@
 %bcond_without	amarok		# without amarok player support module
 %bcond_without	spellchecker	# without spellchecker (Aspell support)
 %bcond_without	weather		# without Weather support module
+%bcond_without	tcl_scripting	# without TCL scripting support and KaduPro extensions
 
 %define		_libgadu_ver	4:1.4-2
 %define		_amarok_mod_ver	1.5
@@ -17,7 +18,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.9
-Release:	7
+Release:	8
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -29,8 +30,10 @@ Source3:	http://scripts.one.pl/amarok/stable/%{version}/amarok-%{_amarok_mod_ver
 # Source3-md5:	2ad7832cf02422a84bdd675a507a47d0
 Source4:	http://scripts.one.pl/spellchecker/stable/%{version}/spellchecker-0.9.tar.gz
 # Source4-md5:	b699879a56b679690a57e653dbc9d64d
-Source5:	http://republika.pl/buysk/weather/kadu-weather-1.45.tar.bz2
+Source5:	http://republika.pl/buysk/weather/%{name}-weather-1.45.tar.bz2
 # Source5-md5:	f1e4cb0138fcf01ee534dc4f83ccb7cf
+Source6:	http://scripts.one.pl/tcl4kadu/files/stable/%{version}/tcl_scripting-0.5.5-Gueneveth.tar.gz
+# Source6-md5:	5c650dbfd57ced5218e864d55b5826a2
 Patch0:		%{name}-ac_am.patch
 Patch1:		%{name}-userlist.patch
 URL:		http://kadu.net/
@@ -48,6 +51,8 @@ BuildRequires:	libtool
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	sed >= 4.0
 %{?with_xmms:BuildRequires:	xmms-devel}
+%{?with_tcl_scripting:BuildRequires:	tk-devel >= 8.4}
+%{?with_tcl_scripting:BuildRequires:	tcl-devel >= 8.4}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -72,8 +77,8 @@ Module which allows showing in status description information about
 the song currently played in XMMS.
 
 %description module-xmms -l pl
-Modu³ umo¿liwiaj±cy pokazywanie w opisie statusu informacji 
-o odgrywanym utworze z odtwarzacza XMMS.
+Modu³ umo¿liwiaj±cy pokazywanie w opisie statusu informacji o
+odgrywanym utworze z odtwarzacza XMMS.
 
 
 %package module-sound-arts
@@ -169,6 +174,24 @@ Informations of weather in locality of contact.
 %description module-weather -l pl
 Informacje o pogodzie w miejscowo¶ci danego kontaktu.
 
+%package module-tcl_scripting
+Summary:	TCL scripting support and KaduPro extensions
+Summary(pl):	Obs³uga skryptów TCL i rozszerzeñ KaduPRo
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+Requires:	tcl
+Requires:	tk
+
+%description module-tcl_scripting
+KaduPro jest dodatkiem do Kadu wykorzystuj±cym modu³ TCL. Poszerza on
+mo¿liwo¶ci Kadu o przydatne na codzieñ funkcje, których implementacja
+w samym Kadu mog³a by byæ dosyæ skomplikowana, lub te¿ czasoch³onna.
+
+%description module-tcl_scripting -l pl
+KaduPro is an add-on to Kadu, which uses a TCL module. If extends Kadu
+functionality by usefull,common daily functions, which implementation
+in Kadu might be enough complicated or time-consuming.
+
 %prep
 %setup -q -n %{name}
 %patch0 -p1
@@ -185,6 +208,9 @@ tar xzf %{SOURCE4} -C modules
 %endif
 %if %{with weather}
 tar xjf %{SOURCE5} -C modules
+%endif
+%if %{with tcl_scripting}
+tar xzf %{SOURCE6} -C modules
 %endif
 
 %{__sed} -i 's,dataPath("kadu/modules/*,("%{_libdir}/kadu/modules/,g'  kadu/modules.cpp
@@ -219,6 +245,9 @@ echo 'MODULE_LIBS_PATH="/usr/lib"' >> modules/amarok/spec
 echo "" >> .config
 echo "module_weather=m" >> .config
 %{__sed} -i 's,dataPath("kadu/modules/*,("%{_libdir}/kadu/modules/,g' modules/weather/weather.cpp
+%endif
+%if %{with tcl_scripting}
+%{__sed} -i 's/module_tcl_scripting=n/module_tcl_scripting=m/' .config
 %endif
 
 chmod u+w aclocal.m4 configure
@@ -389,4 +418,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/%{name}/modules/weather.so
 %{_libdir}/%{name}/modules/data/weather
 %lang(pl) %{_libdir}/%{name}/modules/translations/weather_pl.qm
+%endif
+
+%if %{with tcl_scripting}
+%files module-tcl_scripting
+%defattr(644,root,root,755)
+%{_libdir}/%{name}/modules/tcl_scripting.desc
+%attr(755,root,root) %{_libdir}/%{name}/modules/tcl_scripting.so
+%{_libdir}/%{name}/modules/data/tcl_scripting
+%lang(de) %{_libdir}/%{name}/modules/translations/tcl_scripting_de.qm
+%lang(pl) %{_libdir}/%{name}/modules/translations/tcl_scripting_pl.qm
 %endif
