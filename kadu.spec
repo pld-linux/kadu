@@ -1,10 +1,11 @@
 #
-%bcond_without	xmms	# without xmms player support module
-%bcond_without	arts	# without arts sound server support
-%bcond_without	esd	# without ESD sound server support
-%bcond_without	nas	# without Network Audio System support
-%bcond_without	speech	# without Speech synthesis support
-%bcond_without	amarok	# without amarok player support module
+%bcond_without	xmms		# without xmms player support module
+%bcond_without	arts		# without arts sound server support
+%bcond_without	esd		# without ESD sound server support
+%bcond_without	nas		# without Network Audio System support
+%bcond_without	speech		# without Speech synthesis support
+%bcond_without	amarok		# without amarok player support module
+%bcond_without	spellchecker	# without spellchecker (Aspell support)
 
 %define		_libgadu_ver	4:1.4-2
 %define		_xmms_mod_ver	1.10
@@ -14,7 +15,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.9
-Release:	1.3
+Release:	1.4
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -24,6 +25,8 @@ Source2:	http://scripts.one.pl/xmms/stable/%{version}/xmms-%{_xmms_mod_ver}.tar.
 # Source2-md5	12ca8a6f0fcb61c87602ab7fc869483d
 Source3:	http://scripts.one.pl/amarok/stable/%{version}/amarok-%{_amarok_mod_ver}.tar.gz
 # Source3-md5	2ad7832cf02422a84bdd675a507a47d0
+Source4:	http://scripts.one.pl/spellchecker/stable/%{version}/spellchecker-0.9.tar.gz
+# Source4-md5	b699879a56b679690a57e653dbc9d64d
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
 BuildRequires:	autoconf
@@ -37,6 +40,7 @@ BuildRequires:	qt-devel
 %{?with_arts:BuildRequires:	arts-devel}
 %{?with_esd:BuildRequires:	esound-devel}
 %{?with_nas:BuildRequires:	nas-devel}
+%{?with_spellchecker:BuildRequires:	aspell-devel}
 %{?with_xmms:BuildRequires:	xmms-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -132,6 +136,19 @@ the song currently played in amarok.
 Modu³ umo¿liwiajacy w opisie statusu pokazywanie informacji o
 odgrywanym utworze z odtwarzacza amarok.
 
+%package module-spellchecker
+Summary:	Checker of spelling mistakes
+Summary(pl):	Modu³ sprawdzaj±cy pisownie
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+Requires:	aspell
+
+%description module-spellchecker
+Checker of spelling mistakes.
+
+%description module-spellchecker -l pl
+Modu³ sprawdzaj±cy pisownie.
+
 %prep
 %setup -q -n %{name}
 %patch0 -p1
@@ -140,6 +157,9 @@ tar xzf %{SOURCE2} -C modules
 %endif
 %if %{with amarok}
 tar xzf %{SOURCE3} -C modules
+%endif
+%if %{with spellchecker}
+tar xzf %{SOURCE4} -C modules
 %endif
 
 %build
@@ -161,6 +181,9 @@ sed -i -e 's/module_speech=n/module_speech=m/' .config
 %if %{with amarok}
 sed -i -e 's/module_amarok=n/module_amarok=m/' .config
 echo 'MODULE_INCLUDES_PATH="/usr/include"'>>modules/amarok/spec
+%endif
+%if %{with spellchecker}
+sed -i -e 's/module_spellchecker=n/module_spellchecker=m/' .config
 %endif
 
 chmod u+w aclocal.m4 configure
@@ -305,4 +328,12 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{_datadir}/%{name}/modules/translations/amarok_pl.qm
 %{_datadir}/%{name}/modules/amarok.desc
 %{_datadir}/%{name}/modules/amarok.so
+%endif
+
+%if %{with spellchecker}
+%files module-spellchecker
+%defattr(644,root,root,755)
+%lang(pl) %{_datadir}/%{name}/modules/translations/spellchecker_pl.qm
+%{_datadir}/%{name}/modules/spellchecker.desc
+%{_datadir}/%{name}/modules/spellchecker.so
 %endif
