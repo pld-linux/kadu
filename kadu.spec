@@ -2,8 +2,8 @@
 %bcond_with	xmms	# with xmms player support module
 
 %define		_libgadu_ver	4:1.4-2
-%define		_xmms_mod_ver	1.8
-%define		snapshot	20040703
+%define		_xmms_mod_ver	1.10
+%define		snapshot	20040710
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
@@ -14,7 +14,7 @@ License:	GPL
 Group:		Applications/Communications
 # Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
 Source0:	http://kadu.net/download/snapshots/kadu-%{snapshot}.tar.bz2
-# Source0-md5:	7accadfaa38e287091a22103d499d1ae
+# Source0-md5:	d73aa8f25bbd94d9004d145560087784
 Source1:	%{name}.desktop
 # Source2:	http://scripts.one.pl/xmms/stable/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
 Source2:	http://scripts.one.pl/xmms/stable/0.3.9/xmms-%{_xmms_mod_ver}.tar.gz
@@ -83,11 +83,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kadu.desktop
 %{_pixmapsdir}/kadu.png
 %{_datadir}/%{name}
-%lang(de) %{_datadir}/%{name}/translations/kadu_de.qm
-%lang(en) %{_datadir}/%{name}/translations/kadu_en.qm
-%lang(it) %{_datadir}/%{name}/translations/kadu_it.qm
-%lang(pl) %{_datadir}/%{name}/translations/kadu_pl.qm
-%lang(de) %{_datadir}/%{name}/translations/qt_de.qm
-%lang(en) %{_datadir}/%{name}/translations/qt_en.qm
-%lang(it) %{_datadir}/%{name}/translations/qt_it.qm
-%lang(pl) %{_datadir}/%{name}/translations/qt_pl.qm
