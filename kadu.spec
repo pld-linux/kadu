@@ -53,7 +53,7 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 tar xzf %{SOURCE2} -C modules
 %endif
 %if %{with spellchecker}
-tar xzf %{SOURCE3333C modules
+tar xzf %{SOURCE3} -C modules
 %endif
 
 %{__perl} -pi -e 's@\(dataPath\("kadu/modules/?@\(\("%{_libdir}/kadu/modules/@g' kadu/modules.cpp
