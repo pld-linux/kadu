@@ -7,7 +7,7 @@
 %define		_xmms_mod_ver	1.22
 %define		_spellchecker_mod_ver	0.12
 %define		_weather_ver	1.54
-%define		snapshot	20041227
+%define		snapshot	20041229
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
@@ -18,7 +18,7 @@ License:	GPL
 Group:		Applications/Communications
 # Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
 Source0:	http://kadu.net/download/snapshots/%{name}-%{snapshot}.tar.bz2
-# Source0-md5:	4ab56347c4f2170c55dd7e3e7eb47cb4
+# Source0-md5:	4f51f24dcc90970c00f0bade3b78e715
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
 # Source2-md5:	0f72af4a92624263338447e63cbc4bf7
@@ -39,6 +39,7 @@ BuildRequires:	libsndfile-devel
 BuildRequires:	libtool
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	qt-devel
+BuildRequires:	sed >= 4.0
 %{?with_xmms:BuildRequires:	xmms-devel}
 %{?with_xmms:Provides:	kadu-module-xmms}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -67,18 +68,17 @@ tar xzf %{SOURCE3} -C modules
 tar xjf %{SOURCE4} -C modules
 %endif
 
-%{__perl} -pi -e 's@\(dataPath\("kadu/modules/?@\(\("%{_libdir}/kadu/modules/@g' kadu/modules.cpp
-%{__perl} -pi -e 's@/lib@/%{_lib}@g' modules/x11_docking/spec
+%{__sed} -i 's,dataPath("kadu/modules/*,("%{_libdir}/kadu/modules/,g'  kadu/modules.cpp
 
 %build
 %if %{with xmms}
-sed -i -e 's/module_xmms=n/module_xmms=m/' .config
+%{__sed} -i -e 's/module_xmms=n/module_xmms=m/' .config
 %endif
 %if %{with spellchecker}
-sed -i -e 's/module_spellchecker=n/module_spellchecker=m/' .config
+%{__sed} -i -e 's/module_spellchecker=n/module_spellchecker=m/' .config
 %endif
 %if %{with weather}
-sed -i -e 's/module_weather=n/module_weather=m/' .config
+%{__sed} -i -e 's/module_weather=n/module_weather=m/' .config
 %endif
 
 chmod u+w aclocal.m4 configure
@@ -127,7 +127,7 @@ rm -rf `find $RPM_BUILD_ROOT -name CVS`
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files 
 %defattr(644,root,root,755)
 %doc ChangeLog README TODO HISTORY
 %attr(755,root,root) %{_bindir}/*
@@ -150,7 +150,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_modules_dir}/translations
 %{_datadir}/%{name}/modules/data/config_wizard/joi/*
 %{_datadir}/%{name}/modules/data/config_wizard/ronk2/*
-
 %lang(de) %{_modules_dir}/translations/*_de.qm
 %lang(it) %{_modules_dir}/translations/*_it.qm
 %lang(pl) %{_modules_dir}/translations/*_pl.qm
