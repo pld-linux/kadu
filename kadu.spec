@@ -7,6 +7,7 @@
 %bcond_without	speech		# without Speech synthesis support
 %bcond_without	amarok		# without amarok player support module
 %bcond_without	spellchecker	# without spellchecker (Aspell support)
+%bcond_without	weather		# without Weather support module
 
 %define		_libgadu_ver	4:1.4-2
 %define		_amarok_mod_ver	1.5
@@ -16,7 +17,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.9
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -28,9 +29,10 @@ Source3:	http://scripts.one.pl/amarok/stable/%{version}/amarok-%{_amarok_mod_ver
 # Source3-md5:	2ad7832cf02422a84bdd675a507a47d0
 Source4:	http://scripts.one.pl/spellchecker/stable/%{version}/spellchecker-0.9.tar.gz
 # Source4-md5:	b699879a56b679690a57e653dbc9d64d
+Source5:	http://pcb45.tech.us.edu.pl/~blysk/weather/kadu-weather-1.45.tar.bz2
+# Source5-md5:	f1e4cb0138fcf01ee534dc4f83ccb7cf
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
-#BuildRequires:	FHS-compliance-needed
 %{?with_arts:BuildRequires:	arts-devel}
 %{?with_spellchecker:BuildRequires:	aspell-devel}
 BuildRequires:	autoconf
@@ -124,7 +126,7 @@ Kadu module which supports reading aloud using speech synthesis
 provided by external program "powiedz".
 
 %description module-speech -l pl
-Modu³ obs³ugi "G³o¶nego czytania" przez zewnêtrzny program "Powiedz".
+Modu³ obs³ugi "G³o¶nego czytania" przez zewnêtrzny program "powiedz".
 
 %package module-amarok
 Summary:	Support amarok status
@@ -143,7 +145,7 @@ odgrywanym utworze z odtwarzacza amarok.
 
 %package module-spellchecker
 Summary:	Checker of spelling mistakes
-Summary(pl):	Modu³ sprawdzaj±cy pisownie
+Summary(pl):	Modu³ sprawdzaj±cy pisowniê
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	aspell
@@ -152,7 +154,19 @@ Requires:	aspell
 Checker of spelling mistakes.
 
 %description module-spellchecker -l pl
-Modu³ sprawdzaj±cy pisownie.
+Modu³ sprawdzaj±cy pisowniê.
+
+%package module-weather
+Summary:	Weather module
+Summary(pl):	Modu³ pogodowy
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-weather
+Informations of weather in locality of contact.
+
+%description module-weather -l pl
+Informacje o pogodzie w miejscowo¶ci danego kontaktu.
 
 %prep
 %setup -q -n %{name}
@@ -167,6 +181,9 @@ tar xzf %{SOURCE3} -C modules
 %if %{with spellchecker}
 tar xzf %{SOURCE4} -C modules
 %endif
+%if %{with weather}
+tar xjf %{SOURCE5} -C modules
+%endif
 
 %{__perl} -pi -e 's@\(dataPath\("kadu/modules/?@\(\("%{_libdir}/kadu/modules/@g' kadu/modules.cpp
 %{__perl} -pi -e 's@/lib@/%{_lib}@g' modules/x11_docking/spec
@@ -174,6 +191,7 @@ tar xzf %{SOURCE4} -C modules
 %build
 %if %{with xmms}
 sed -i -e 's/module_xmms=n/module_xmms=m/' .config
+rm -f modules/xmms/.autodownloaded
 %endif
 %if %{with arts}
 sed -i -e 's/module_arts_sound=n/module_arts_sound=m/' .config
@@ -195,6 +213,10 @@ echo 'MODULE_LIBS_PATH="/usr/lib"' >> modules/amarok/spec
 %endif
 %if %{with spellchecker}
 sed -i -e 's/module_spellchecker=n/module_spellchecker=m/' .config
+%endif
+%if %{with weather}
+sed -i -e 's/module_weather=n/module_weather=m/' .config
+%{__perl} -pi -e 's@dataPath\("kadu/modules/?@\("%{_libdir}/kadu/modules/@g' modules/weather/weather.cpp
 %endif
 
 chmod u+w aclocal.m4 configure
@@ -230,7 +252,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog README TODO
+%doc HISTORY README TODO ChangeLog
 %attr(755,root,root) %{_bindir}/*
 %{_desktopdir}/kadu.desktop
 %{_pixmapsdir}/kadu.png
@@ -350,4 +372,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/modules/spellchecker.desc
 %attr(755,root,root) %{_libdir}/%{name}/modules/spellchecker.so
 %lang(pl) %{_libdir}/%{name}/modules/translations/spellchecker_pl.qm
+%endif
+
+%if %{with weather}
+%files module-weather
+%defattr(644,root,root,755)
+%{_libdir}/%{name}/modules/weather.desc
+%attr(755,root,root) %{_libdir}/%{name}/modules/weather.so
+%{_libdir}/%{name}/modules/data/weather
+%lang(pl) %{_libdir}/%{name}/modules/translations/weather_pl.qm
 %endif
