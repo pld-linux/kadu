@@ -50,8 +50,9 @@ kde_icondir="%{_pixmapsdir}"; export kde_icondir
 #%{__automake}
 
 %configure \
-    --with-qt-includes=/usr/X11R6/include/qt \
-     --with-existing-libgadu
+	--with-qt-includes=/usr/X11R6/include/qt \
+	--enable-dist-info=PLD \
+	--with-existing-libgadu
 
 %{__make}
 
