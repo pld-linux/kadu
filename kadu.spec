@@ -56,8 +56,8 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	xmms
 
 %description module-xmms
-Module which allows to show in status description informations about
-currently played song in xmms.
+Module which allows showing in status description information about the
+song currently played in xmms.
 
 %description module-xmms -l pl
 Modu³ umo¿liwiajacy w opisie statusu pokazywanie informacji o
