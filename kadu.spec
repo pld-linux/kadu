@@ -18,7 +18,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.9
-Release:	2.1
+Release:	2.2
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -31,8 +31,9 @@ Source3:	http://scripts.one.pl/amarok/stable/%{version}/amarok-%{_amarok_mod_ver
 Source4:	http://scripts.one.pl/spellchecker/stable/%{version}/spellchecker-0.9.tar.gz
 # Source4-md5:	b699879a56b679690a57e653dbc9d64d
 Patch0:		%{name}-ac_am.patch
+Patch1:		%{name}-FHS.patch
 URL:		http://kadu.net/
-BuildRequires:	FHS-compliance-needed
+#BuildRequires:	FHS-compliance-needed
 %{?with_arts:BuildRequires:	arts-devel}
 %{?with_spellchecker:BuildRequires:	aspell-devel}
 BuildRequires:	autoconf
@@ -158,6 +159,8 @@ Modu³ sprawdzaj±cy pisownie.
 %prep
 %setup -q -n %{name}
 %patch0 -p1
+%patch1 -p1
+
 %if %{with xmms}
 tar xzf %{SOURCE2} -C modules
 %endif
@@ -210,7 +213,7 @@ chmod u+w aclocal.m4 configure
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
+install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_libdir}/%{name}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -220,6 +223,9 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install kadu/hi48-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/kadu.png
 
 rm -rf $RPM_BUILD_ROOT%{_includedir}
+
+#ending of FHS-patch
+mv -f $RPM_BUILD_ROOT%{_datadir}/%{name}/modules $RPM_BUILD_ROOT%{_libdir}/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -233,55 +239,55 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/themes
 #default modules:
-%dir %{_datadir}/%{name}/modules
-%{_datadir}/%{name}/modules/autoaway.desc
-%{_datadir}/%{name}/modules/autoresponder.desc
-%attr(755,root,root) %{_datadir}/%{name}/modules/autoresponder.so
-%{_datadir}/%{name}/modules/default_sms.desc
-%{_datadir}/%{name}/modules/docking.desc
-%{_datadir}/%{name}/modules/dsp_sound.desc
-%attr(755,root,root) %{_datadir}/%{name}/modules/dsp_sound.so
-%{_datadir}/%{name}/modules/encryption.desc
-%{_datadir}/%{name}/modules/ext_sound.desc
-%{_datadir}/%{name}/modules/sms.desc
-%{_datadir}/%{name}/modules/sound.desc
-%{_datadir}/%{name}/modules/voice.desc
-%{_datadir}/%{name}/modules/x11_docking.desc
+%dir %{_libdir}/%{name}/modules
+%{_libdir}/%{name}/modules/autoaway.desc
+%{_libdir}/%{name}/modules/autoresponder.desc
+%attr(755,root,root) %{_libdir}/%{name}/modules/autoresponder.so
+%{_libdir}/%{name}/modules/default_sms.desc
+%{_libdir}/%{name}/modules/docking.desc
+%{_libdir}/%{name}/modules/dsp_sound.desc
+%attr(755,root,root) %{_libdir}/%{name}/modules/dsp_sound.so
+%{_libdir}/%{name}/modules/encryption.desc
+%{_libdir}/%{name}/modules/ext_sound.desc
+%{_libdir}/%{name}/modules/sms.desc
+%{_libdir}/%{name}/modules/sound.desc
+%{_libdir}/%{name}/modules/voice.desc
+%{_libdir}/%{name}/modules/x11_docking.desc
 #default modules translation:
-%dir %{_datadir}/%{name}/modules/translations
-%lang(de) %{_datadir}/%{name}/modules/translations/autoaway_de.qm
-%lang(it) %{_datadir}/%{name}/modules/translations/autoaway_it.qm
-%lang(pl) %{_datadir}/%{name}/modules/translations/autoaway_pl.qm
-%lang(de) %{_datadir}/%{name}/modules/translations/autoresponder_de.qm
-%lang(it) %{_datadir}/%{name}/modules/translations/autoresponder_it.qm
-%lang(pl) %{_datadir}/%{name}/modules/translations/autoresponder_pl.qm
-%lang(de) %{_datadir}/%{name}/modules/translations/default_sms_de.qm
-%lang(it) %{_datadir}/%{name}/modules/translations/default_sms_it.qm
-%lang(pl) %{_datadir}/%{name}/modules/translations/default_sms_pl.qm
-%lang(de) %{_datadir}/%{name}/modules/translations/docking_de.qm
-%lang(it) %{_datadir}/%{name}/modules/translations/docking_it.qm
-%lang(pl) %{_datadir}/%{name}/modules/translations/docking_pl.qm
-%lang(de) %{_datadir}/%{name}/modules/translations/dsp_sound_de.qm
-%lang(it) %{_datadir}/%{name}/modules/translations/dsp_sound_it.qm
-%lang(pl) %{_datadir}/%{name}/modules/translations/dsp_sound_pl.qm
-%lang(de) %{_datadir}/%{name}/modules/translations/encryption_de.qm
-%lang(it) %{_datadir}/%{name}/modules/translations/encryption_it.qm
-%lang(pl) %{_datadir}/%{name}/modules/translations/encryption_pl.qm
-%lang(de) %{_datadir}/%{name}/modules/translations/ext_sound_de.qm
-%lang(it) %{_datadir}/%{name}/modules/translations/ext_sound_it.qm
-%lang(pl) %{_datadir}/%{name}/modules/translations/ext_sound_pl.qm
-%lang(de) %{_datadir}/%{name}/modules/translations/sms_de.qm
-%lang(it) %{_datadir}/%{name}/modules/translations/sms_it.qm
-%lang(pl) %{_datadir}/%{name}/modules/translations/sms_pl.qm
-%lang(de) %{_datadir}/%{name}/modules/translations/sound_de.qm
-%lang(it) %{_datadir}/%{name}/modules/translations/sound_it.qm
-%lang(pl) %{_datadir}/%{name}/modules/translations/sound_pl.qm
-%lang(de) %{_datadir}/%{name}/modules/translations/voice_de.qm
-%lang(it) %{_datadir}/%{name}/modules/translations/voice_it.qm
-%lang(pl) %{_datadir}/%{name}/modules/translations/voice_pl.qm
-%lang(de) %{_datadir}/%{name}/modules/translations/x11_docking_de.qm
-%lang(it) %{_datadir}/%{name}/modules/translations/x11_docking_it.qm
-%lang(pl) %{_datadir}/%{name}/modules/translations/x11_docking_pl.qm
+%dir %{_libdir}/%{name}/modules/translations
+%lang(de) %{_libdir}/%{name}/modules/translations/autoaway_de.qm
+%lang(it) %{_libdir}/%{name}/modules/translations/autoaway_it.qm
+%lang(pl) %{_libdir}/%{name}/modules/translations/autoaway_pl.qm
+%lang(de) %{_libdir}/%{name}/modules/translations/autoresponder_de.qm
+%lang(it) %{_libdir}/%{name}/modules/translations/autoresponder_it.qm
+%lang(pl) %{_libdir}/%{name}/modules/translations/autoresponder_pl.qm
+%lang(de) %{_libdir}/%{name}/modules/translations/default_sms_de.qm
+%lang(it) %{_libdir}/%{name}/modules/translations/default_sms_it.qm
+%lang(pl) %{_libdir}/%{name}/modules/translations/default_sms_pl.qm
+%lang(de) %{_libdir}/%{name}/modules/translations/docking_de.qm
+%lang(it) %{_libdir}/%{name}/modules/translations/docking_it.qm
+%lang(pl) %{_libdir}/%{name}/modules/translations/docking_pl.qm
+%lang(de) %{_libdir}/%{name}/modules/translations/dsp_sound_de.qm
+%lang(it) %{_libdir}/%{name}/modules/translations/dsp_sound_it.qm
+%lang(pl) %{_libdir}/%{name}/modules/translations/dsp_sound_pl.qm
+%lang(de) %{_libdir}/%{name}/modules/translations/encryption_de.qm
+%lang(it) %{_libdir}/%{name}/modules/translations/encryption_it.qm
+%lang(pl) %{_libdir}/%{name}/modules/translations/encryption_pl.qm
+%lang(de) %{_libdir}/%{name}/modules/translations/ext_sound_de.qm
+%lang(it) %{_libdir}/%{name}/modules/translations/ext_sound_it.qm
+%lang(pl) %{_libdir}/%{name}/modules/translations/ext_sound_pl.qm
+%lang(de) %{_libdir}/%{name}/modules/translations/sms_de.qm
+%lang(it) %{_libdir}/%{name}/modules/translations/sms_it.qm
+%lang(pl) %{_libdir}/%{name}/modules/translations/sms_pl.qm
+%lang(de) %{_libdir}/%{name}/modules/translations/sound_de.qm
+%lang(it) %{_libdir}/%{name}/modules/translations/sound_it.qm
+%lang(pl) %{_libdir}/%{name}/modules/translations/sound_pl.qm
+%lang(de) %{_libdir}/%{name}/modules/translations/voice_de.qm
+%lang(it) %{_libdir}/%{name}/modules/translations/voice_it.qm
+%lang(pl) %{_libdir}/%{name}/modules/translations/voice_pl.qm
+%lang(de) %{_libdir}/%{name}/modules/translations/x11_docking_de.qm
+%lang(it) %{_libdir}/%{name}/modules/translations/x11_docking_it.qm
+%lang(pl) %{_libdir}/%{name}/modules/translations/x11_docking_pl.qm
 #global translation:
 %dir %{_datadir}/%{name}/translations
 %lang(de) %{_datadir}/%{name}/translations/kadu_de.qm
@@ -296,54 +302,54 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with xmms}
 %files module-xmms
 %defattr(644,root,root,755)
-%{_datadir}/%{name}/modules/xmms.desc
-%attr(755,root,root) %{_datadir}/%{name}/modules/xmms.so
-%lang(pl) %{_datadir}/%{name}/modules/translations/xmms_pl.qm
+%{_libdir}/%{name}/modules/xmms.desc
+%attr(755,root,root) %{_libdir}/%{name}/modules/xmms.so
+%lang(pl) %{_libdir}/%{name}/modules/translations/xmms_pl.qm
 %endif
 
 %if %{with arts}
 %files module-sound-arts
 %defattr(644,root,root,755)
-%{_datadir}/%{name}/modules/arts_sound.desc
-%attr(755,root,root) %{_datadir}/%{name}/modules/arts_sound.so
+%{_libdir}/%{name}/modules/arts_sound.desc
+%attr(755,root,root) %{_libdir}/%{name}/modules/arts_sound.so
 %endif
 
 %if %{with esd}
 %files module-sound-esd
 %defattr(644,root,root,755)
-%{_datadir}/%{name}/modules/esd_sound.desc
-%attr(755,root,root) %{_datadir}/%{name}/modules/esd_sound.so
+%{_libdir}/%{name}/modules/esd_sound.desc
+%attr(755,root,root) %{_libdir}/%{name}/modules/esd_sound.so
 %endif
 
 %if %{with nas}
 %files module-sound-nas
 %defattr(644,root,root,755)
-%{_datadir}/%{name}/modules/nas_sound.desc
-%attr(755,root,root) %{_datadir}/%{name}/modules/nas_sound.so
+%{_libdir}/%{name}/modules/nas_sound.desc
+%attr(755,root,root) %{_libdir}/%{name}/modules/nas_sound.so
 %endif
 
 %if %{with speech}
 %files module-speech
 %defattr(644,root,root,755)
-%{_datadir}/%{name}/modules/speech.desc
-%attr(755,root,root) %{_datadir}/%{name}/modules/speech.so
-%lang(de) %{_datadir}/%{name}/modules/translations/speech_de.qm
-%lang(it) %{_datadir}/%{name}/modules/translations/speech_it.qm
-%lang(pl) %{_datadir}/%{name}/modules/translations/speech_pl.qm
+%{_libdir}/%{name}/modules/speech.desc
+%attr(755,root,root) %{_libdir}/%{name}/modules/speech.so
+%lang(de) %{_libdir}/%{name}/modules/translations/speech_de.qm
+%lang(it) %{_libdir}/%{name}/modules/translations/speech_it.qm
+%lang(pl) %{_libdir}/%{name}/modules/translations/speech_pl.qm
 %endif
 
 %if %{with amarok}
 %files module-amarok
 %defattr(644,root,root,755)
-%{_datadir}/%{name}/modules/amarok.desc
-%attr(755,root,root) %{_datadir}/%{name}/modules/amarok.so
-%lang(pl) %{_datadir}/%{name}/modules/translations/amarok_pl.qm
+%{_libdir}/%{name}/modules/amarok.desc
+%attr(755,root,root) %{_libdir}/%{name}/modules/amarok.so
+%lang(pl) %{_libdir}/%{name}/modules/translations/amarok_pl.qm
 %endif
 
 %if %{with spellchecker}
 %files module-spellchecker
 %defattr(644,root,root,755)
-%{_datadir}/%{name}/modules/spellchecker.desc
-%attr(755,root,root) %{_datadir}/%{name}/modules/spellchecker.so
-%lang(pl) %{_datadir}/%{name}/modules/translations/spellchecker_pl.qm
+%{_libdir}/%{name}/modules/spellchecker.desc
+%attr(755,root,root) %{_libdir}/%{name}/modules/spellchecker.so
+%lang(pl) %{_libdir}/%{name}/modules/translations/spellchecker_pl.qm
 %endif
