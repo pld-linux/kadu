@@ -1,7 +1,7 @@
 Summary:	An Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
-Version:	0.1.6b
+Version:	0.1.9
 Release:	1
 License:	GPL
 Group:		Applications/Communications
@@ -10,7 +10,7 @@ Group(pl):	Aplikacje/Komunikacja
 URL:		http://cpi.pl/Kadu/
 Source0:	http://cpi.pl/Kadu/%{name}-%{version}.tar.gz
 Patch0:		%{name}-am_ac.patch
-Patch1:		%{name}-libgg.patch
+Patch1:		%{name}-time.patch
 BuildRequires:	qt-devel >= 2.1.1
 BuildRequires:	libstdc++-devel
 BuildRequires:	kdelibs-devel >= 2.2.0
@@ -22,10 +22,11 @@ BuildRequires:	automake
 BuildRequires:	autoconf
 BuildRequires:	libtool
 BuildRequires:	gettext-devel
+BuildRequires:	libgg-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix	/usr/X11R6
-%define		_mandi	%{_prefix}/man
+%define		_mandir	%{_prefix}/man
 
 %description
 Kadu is client of Gadu-Gadu protocol. It's an IM for Linux and UN*X.
