@@ -2,7 +2,7 @@ Summary:	An Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.1.9
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Communications
 Group(de):	Applikationen/Kommunikation
@@ -60,7 +60,7 @@ install -d $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
 install kadu/kadu.desktop $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications
 
-gzip -9nf ChangeLog, INSTALL, README, TODO
+gzip -9nf ChangeLog INSTALL README TODO
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -70,4 +70,4 @@ rm -rf $RPM_BUILD_ROOT
 %doc *.gz
 %attr(755,root,root) %{_bindir}/*
 %{_applnkdir}/Network/Communications/*.desktop
-%{_datadir}/icons/*/*/*.png
+%{_datadir}/icons/locolor/*/*/*.png
