@@ -3,7 +3,7 @@ Summary:	An Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.3
-%define		_pre	rc3
+%define		_pre	rc4
 Release:	0.%{_pre}.1
 License:	GPL
 Group:		Applications/Communications
