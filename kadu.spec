@@ -1,13 +1,14 @@
+%define		_snapshot	20020827
 Summary:	An Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.1
-Release:	1
+Release:	1.2
 License:	GPL
 Group:		Applications/Communications
-#Source0:	http://cpi.pl/Kadu/%{name}-%{version}.tar.gz
-Source0:	ftp://ftp.pld.org.pl/people/tomee/kadu/unstable/%{name}-%{version}.tar.gz
-URL:		http://cpi.pl/Kadu/
+#Source0:	http://kadu.net/%{name}-%{version}.tar.gz
+Source0:	http://kadu.net/%{name}-%{_snapshot}.tar.gz
+URL:		http://kadu.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
@@ -31,7 +32,7 @@ systemów UN*Xowych). Napisano go w oparciu o bibliotekê Qt i KDE,
 przeznaczony jest wiêc dla tego ¶rodowiska.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{_snapshot}
 
 %build
 #%{__gettextize}
