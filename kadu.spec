@@ -213,7 +213,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/modules/sms.desc
 %{_datadir}/%{name}/modules/sound.desc
 %{_datadir}/%{name}/modules/voice.desc
-%{_datadir}/%{name}/modules/wmaker_docking.desc
 %{_datadir}/%{name}/modules/x11_docking.desc
 #default modules translation:
 %dir %{_datadir}/%{name}/modules/translations
