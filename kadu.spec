@@ -36,6 +36,7 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 
 %build
 :> ./k_install; chmod 755 k_install
+kde_appsdir="%{_applnkdir}"; export kde_appsdir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
 %configure
