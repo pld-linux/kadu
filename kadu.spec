@@ -4,10 +4,10 @@
 %bcond_without	weather	# without weather check module support
 
 # %define		_libgadu_ver	4:1.6
-%define		_xmms_mod_ver	1.24
+%define		_xmms_mod_ver	1.25
 %define		_spellchecker_mod_ver	0.13
 %define		_weather_ver	2.01
-%define		snapshot	20050319
+%define		snapshot	20050404
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
@@ -18,10 +18,10 @@ License:	GPL v2
 Group:		Applications/Communications
 # Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
 Source0:	http://kadu.net/download/snapshots/%{name}-%{snapshot}.tar.bz2
-# Source0-md5:	c09ac44eca2f89c15e6c71081c3c0ad7
+# Source0-md5:	3e379852870afa84b420d8855f578bd1
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
-# Source2-md5:	57cae3ca45d3163ba51a306f5d783d55
+# Source2-md5:	4a6e4d52b8efa3d182e2a55e02cc3383
 Source3:	http://scripts.one.pl/spellchecker/devel/%{version}/spellchecker-%{_spellchecker_mod_ver}.tar.gz
 # Source3-md5:	0e427d25f69f5f5d10e303f8d2e79e70
 Source4:	http://republika.pl/buysk/weather/weather-%{_weather_ver}.tar.bz2
