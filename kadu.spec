@@ -4,21 +4,19 @@
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
-Version:	0.3.5
+Version:	0.3.6
 Release:	1
 License:	GPL
 Group:		Applications/Communications
-Source0:	http://kadu.net/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	68d5e49e26044b4e19cf2bd2f7e52975
+Source0:	http://kadu.net/releases/%{name}-%{version}.tar.bz2
+# Source0-md5:	cc4189b739d2503ccbda6edd9412b117
 Source1:	%{name}.desktop
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
-BuildRequires:	libgadu-devel >= 3:1.4
-# it requires at least 1.4 rc2 version of libgadu, but dunno how to
-# add it here :)
+BuildRequires:	libgadu-devel >= 4:1.4-2
 BuildRequires:	libgsm-devel
 BuildRequires:	libtool
 BuildRequires:	openssl-devel >= 0.9.7c
@@ -71,7 +69,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc ChangeLog INSTALL README TODO
-%attr(755,root,root) %{_bindir}/kadu
+%attr(755,root,root) %{_bindir}/*
 %{_desktopdir}/kadu.desktop
 %{_pixmapsdir}/kadu.png
 %{_datadir}/%{name}
