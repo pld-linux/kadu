@@ -8,13 +8,14 @@ Summary:	An Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.4
-Release:	0.%{_pre}.1
+Release:	0.%{_pre}.2
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://kadu.net/releases/%{name}-%{version}-%{_pre}.tar.gz
 # Source0-md5:	036224e2b72749ba5fae72520dd52bf3
 Source1:	%{name}.desktop
 Patch0:		%{name}-ac_am.patch
+Patch1:		%{name}-config-reading-fix.patch
 URL:		http://kadu.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -46,6 +47,7 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 %prep
 %setup -q -n %{name}
 %patch0 -p1
+%patch1 -p1
 
 %build
 chmod +w aclocal.m4 configure
