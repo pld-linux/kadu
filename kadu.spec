@@ -1,22 +1,20 @@
 
-%define		_pre		rc4
-
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.4
-Release:	0.%{_pre}.1
+Release:	1
 License:	GPL
 Group:		Applications/Communications
-Source0:	http://kadu.net/releases/%{name}-%{version}-%{_pre}.tar.gz
-# Source0-md5:	638d8a7ab299a170e5615731ab2947f7
+Source0:	http://kadu.net/releases/%{name}-%{version}.tar.gz
+# Source0-md5:	61fcefc7b0ac32b959544c52666d8d5c
 Source1:	%{name}.desktop
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
-BuildRequires:	libgadu-devel >= 3:1.1
+BuildRequires:	libgadu-devel >= 3:1.4
 BuildRequires:	libtool
 BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	qt-devel
