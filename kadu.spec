@@ -182,7 +182,7 @@ Requires:	tk
 
 %description module-tcl_scripting
 KaduPro is an add-on to Kadu, which uses a TCL module. If extends Kadu
-functionality by usefull,common daily functions, which implementation
+functionality by useful, common daily functions, which implementation
 in Kadu might be enough complicated or time-consuming.
 
 %description module-tcl_scripting -l pl
