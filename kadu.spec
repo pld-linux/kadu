@@ -215,7 +215,8 @@ echo 'MODULE_LIBS_PATH="/usr/lib"' >> modules/amarok/spec
 %{__sed} -i 's/module_spellchecker=n/module_spellchecker=m/' .config
 %endif
 %if %{with weather}
-%{__sed} -i 's/module_weather=n/module_weather=m/' .config
+echo "" >> .config
+echo "module_weather=m" >> .config
 %{__sed} -i 's,dataPath("kadu/modules/*,("%{_libdir}/kadu/modules/,g' modules/weather/weather.cpp
 %endif
 
