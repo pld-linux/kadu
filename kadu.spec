@@ -34,7 +34,7 @@ It's written for KDE2.
 
 %description -l pl
 Kadu jest klientem protko³u Gadu-Gadu. Inaczej mówi±c, jest
-komunikatorem dla Linuxa (oraz, przy niewielkim wysi³ku, innych
+komunikatorem dla Linuksa (oraz, przy niewielkim wysi³ku, innych
 systemów UN*Xowych). Napisano go w oparciu o bibliotekê Qt2 i KDE2,
 przeznaczony jest wiêc dla tego ¶rodowiska.
 
