@@ -78,16 +78,21 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog INSTALL README TODO AUTHORS COPYING ChangeLog HISTORY THANKS
+%doc AUTHORS ChangeLog HISTORY README THANKS TODO
 %attr(755,root,root) %{_bindir}/*
 %{_desktopdir}/kadu.desktop
 %{_pixmapsdir}/kadu.png
+%dir %{_datadir}/%{name}
 %{_datadir}/%{name}/themes
+%dir %{_datadir}/%{name}/modules
 %{_datadir}/%{name}/modules/*.desc
-%{_datadir}/%{name}/modules/*.so
+# XXX: binaries cannot reside in /usr/share!!!
+%attr(755,root,root) %{_datadir}/%{name}/modules/*.so
+%dir %{_datadir}/%{name}/modules/translations
 %lang(de) %{_datadir}/%{name}/modules/translations/*_de.qm
 %lang(it) %{_datadir}/%{name}/modules/translations/*_it.qm
 %lang(pl) %{_datadir}/%{name}/modules/translations/*_pl.qm
+%dir %{_datadir}/%{name}/translations
 %lang(de) %{_datadir}/%{name}/translations/*_de.qm
 %lang(en) %{_datadir}/%{name}/translations/*_en.qm
 %lang(it) %{_datadir}/%{name}/translations/*_it.qm
