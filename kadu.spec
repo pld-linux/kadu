@@ -5,9 +5,9 @@
 
 # %define		_libgadu_ver	4:1.4-2
 %define		_xmms_mod_ver	1.21
-%define		_spellchecker_mod_ver	0.11
+%define		_spellchecker_mod_ver	0.12
 %define		_weather_ver	1.51
-%define		snapshot	20041025
+%define		snapshot	20041109
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
@@ -18,12 +18,12 @@ License:	GPL
 Group:		Applications/Communications
 # Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
 Source0:	http://kadu.net/download/snapshots/%{name}-%{snapshot}.tar.bz2
-# Source0-md5:	18eea8c161ed5bb65dc3314343f2c28b
+# Source0-md5:	f8134724c4022b8ebe9c41ad8a36ea2d
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
 # Source2-md5:	fb76ea3899e2b223b8134c9cc97a222f
 Source3:	http://scripts.one.pl/spellchecker/devel/%{version}/spellchecker-%{_spellchecker_mod_ver}.tar.gz
-# Source3-md5:	a721c8f4b51f447ba287e918aee926bc
+# Source3-md5:	90a531a18351d7c193826739f392908b
 Source4:	http://republika.pl/buysk/weather/%{name}-weather-%{_weather_ver}.tar.bz2
 # Source4-md5:	46c452f0f1b488501cc50b271714f3c1
 Patch0:		%{name}-ac_am.patch
@@ -117,6 +117,10 @@ mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/xmms $RPM_BUILD_ROOT%{_data
 mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/weather $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 %endif
 
+%if %{with spellchecker}
+mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/spellchecker $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+%endif
+
 rm -rf `find $RPM_BUILD_ROOT -name CVS`
 
 %clean
@@ -129,6 +133,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kadu.desktop
 %{_pixmapsdir}/kadu.png
 %{?with_xmms: %{_datadir}/%{name}/modules/data/xmms/xmms.png}
+%{?with_spellchecker: %{_datadir}/%{name}/modules/data/spellchecker/config.png}
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/AUTHORS
 %{_datadir}/%{name}/ChangeLog
