@@ -18,7 +18,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.9
-Release:	2
+Release:	2.1
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -32,6 +32,7 @@ Source4:	http://scripts.one.pl/spellchecker/stable/%{version}/spellchecker-0.9.t
 # Source4-md5:	b699879a56b679690a57e653dbc9d64d
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
+BuildRequires:	FHS-compliance-needed
 %{?with_arts:BuildRequires:	arts-devel}
 %{?with_spellchecker:BuildRequires:	aspell-devel}
 BuildRequires:	autoconf
