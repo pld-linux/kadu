@@ -13,7 +13,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.4.0
-Release:	0.%{snapshot}.1
+Release:	0.%{snapshot}.2
 License:	GPL
 Group:		Applications/Communications
 # Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -92,7 +92,7 @@ chmod u+w aclocal.m4 configure
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_libdir}/%{name}}
+install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_libdir}/%{name},%{_datadir}/%{name}/modules/data}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -104,6 +104,8 @@ install kadu/hi48-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/kadu.png
 rm -rf $RPM_BUILD_ROOT%{_includedir}
 
 mv -f $RPM_BUILD_ROOT%{_datadir}/%{name}/modules $RPM_BUILD_ROOT%{_libdir}/%{name}
+# mkdir -p $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/{weather,config_wizard} $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -121,13 +123,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/THANKS
 %{_datadir}/%{name}/themes
 %dir %{_modules_dir}
-%{?with_weather: %dir %{_modules_dir}/data/weather}
-%{?with_weather: %{_modules_dir}/data/weather/*}
+%{?with_weather: %dir %{_datadir}/%{name}/modules/data/weather}
+%{?with_weather: %{_datadir}/%{name}/modules/data/weather/*}
 %{_modules_dir}/*.desc
 # XXX: binaries cannot reside in /usr/share!!!
 %attr(755,root,root) %{_modules_dir}/*.so
 %dir %{_modules_dir}/translations
-%{_modules_dir}/data/config_wizard/ronk2/*
+%{_datadir}/%{name}/modules/data/config_wizard/ronk2/*
 
 %lang(de) %{_modules_dir}/translations/*_de.qm
 %lang(it) %{_modules_dir}/translations/*_it.qm
