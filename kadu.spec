@@ -54,7 +54,7 @@ Kadu is client of Gadu-Gadu protocol. It's an IM for Linux and UN*X.
 It's written for KDE.
 
 %description -l pl
-Kadu jest klientem protko³u Gadu-Gadu. Inaczej mówi±c, jest
+Kadu jest klientem protoko³u Gadu-Gadu. Inaczej mówi±c, jest
 komunikatorem dla Linuksa (oraz, przy niewielkim wysi³ku, innych
 systemów UN*Xowych). Napisano go w oparciu o bibliotekê Qt i KDE,
 przeznaczony jest wiêc dla tego ¶rodowiska.
