@@ -50,30 +50,30 @@ cd ../..
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d {$RPM_BUILD_ROOT%{_bindir},$RPM_BUILD_ROOT%{_applnkdir}/Network/Communications}
-install -d $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/{16x16/apps,32x32/apps,48x48/apps}
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
+
+install -d $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications
+install -d $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/{16x16/apps,32x32/apps,48x48/apps}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications
 install kadu/hi16-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/16x16/apps/kadu.png
 install kadu/hi32-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/32x32/apps/kadu.png
 install kadu/hi48-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/apps/kadu.png
 
+%find_lang %{name} --with-kde
+
 %clean
-%{!?_without_clean:rm -rf $RPM_BUILD_ROOT}
+rm -rf $RPM_BUILD_ROOT
 
 %post
 echo "Additional image files can be downloaded from http://www.kadu.net/download.php
 and should be placed in .gg/images folder inside user's home directory."
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc ChangeLog INSTALL README TODO
 %attr(755,root,root) %{_bindir}/*
+%{_datadir}/apps/%{name}
 %{_applnkdir}/Network/Communications/*.desktop
 %{_pixmapsdir}/*/*/apps/*.png
-%dir %{_datadir}/apps/%{name}
-%{_datadir}/apps/%{name}/msg.wav
-%{_datadir}/apps/%{name}/themes
-%{_datadir}/apps/%{name}/doc
 %lang(pl) %{_mandir}/pl/man1/*.1*
