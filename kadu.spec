@@ -1,4 +1,6 @@
-
+#
+# TODO: fix BuildRequires with libgadu,
+#
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
@@ -15,6 +17,8 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	libgadu-devel >= 3:1.4
+# it requires at least 1.4 rc2 version of libgadu, but dunno how to
+# add it here :)
 BuildRequires:	libgsm-devel
 BuildRequires:	libtool
 BuildRequires:	openssl-devel >= 0.9.7c
