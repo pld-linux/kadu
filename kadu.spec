@@ -9,6 +9,7 @@ URL:		http://cpi.pl/Kadu/
 Source0:	http://cpi.pl/Kadu/%{name}-%{version}.tar.gz
 Patch0:		%{name}-edit_clear.patch
 Patch1:		%{name}-am.patch
+Patch2:		%{name}-gcc31.patch
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -40,6 +41,7 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 %setup -q
 %patch0
 %patch1
+%patch2 -p1
 
 %build
 #gettextize --copy --force
