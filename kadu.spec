@@ -1,5 +1,5 @@
 
-%define		_pre	rc1
+%define		_pre	rc2
 
 Summary:	An Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
