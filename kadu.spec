@@ -2,7 +2,7 @@ Summary:	An Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.3
-%define		_pre	rc2
+%define		_pre	rc3
 Release:	0.%{_pre}.1
 License:	GPL
 Group:		Applications/Communications
@@ -17,7 +17,7 @@ BuildRequires:	libtool
 BuildRequires:	qt-devel >= 3.0.5
 BuildRequires:	readline-devel
 BuildRequires:	openssl-devel >= 0.9.6i
-Requires:	libgadu
+Requires:	libgadu >= 20030208
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -37,12 +37,11 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 %setup -q -n %{name}
 
 %build
-:> ./k_install; chmod 755 k_install
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
-%configure --with-qt-includes=/usr/X11R6/include/qt
-%{__make} all CC=%{__cc} CXX=%{__cxx}
+%configure \
+    --with-qt-includes=/usr/X11R6/include/qt
 
 %install
 rm -rf $RPM_BUILD_ROOT
