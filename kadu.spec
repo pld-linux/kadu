@@ -107,10 +107,14 @@ rm -rf $RPM_BUILD_ROOT%{_includedir}
 
 mv -f $RPM_BUILD_ROOT%{_datadir}/%{name}/modules $RPM_BUILD_ROOT%{_libdir}/%{name}
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
-mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/{weather,config_wizard} $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/{config_wizard} $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 
 %if %{with xmms}
 mv -f $RPM_BUILD_ROOT%_libdir}/%{name}/modules/data/xmms} $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+%endif
+
+%if %{with weather}
+mv -f $RPM_BUILD_ROOT%_libdir}/%{name}/modules/data/weather $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 %endif
 
 rm -rf `find $RPM_BUILD_ROOT -name CVS`
