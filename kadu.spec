@@ -1,11 +1,11 @@
 #
-# TODO: fix BuildRequires with libgadu,
+%define		_libgadu_ver	4:1.4-2
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.6
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://kadu.net/releases/%{name}-%{version}.tar.bz2
@@ -16,13 +16,11 @@ URL:		http://kadu.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
-BuildRequires:	libgadu-devel >= 4:1.4-2
+BuildRequires:	libgadu-devel >= %{_libgadu_ver}
 BuildRequires:	libgsm-devel
 BuildRequires:	libtool
 BuildRequires:	openssl-devel >= 0.9.7c
 BuildRequires:	qt-devel
-BuildRequires:	readline-devel
-Requires:	libgadu >= 3:1.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -42,6 +40,7 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 %build
 chmod u+w aclocal.m4 configure
 %{__aclocal}
+%{__autoheader}
 %{__autoconf}
 %{__automake}
 %configure \
