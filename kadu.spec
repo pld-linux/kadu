@@ -2,7 +2,7 @@
 %bcond_with	xmms	# with xmms player support module
 
 %define		_libgadu_ver	4:1.4-2
-%define		_xmms_mod_ver	1.8
+%define		_xmms_mod_ver	1.9
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
@@ -14,8 +14,8 @@ Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
 # Source0-md5:	d461c4b19670920e2ba1425d12e23f6b
 Source1:	%{name}.desktop
-Source2:	http://scripts.one.pl/xmms/stable/0.3.8/xmms-%{_xmms_mod_ver}.tar.gz
-# Source2-md5	376537ff5e2a605958097e4a5f024a26
+Source2:	http://scripts.one.pl/xmms/stable/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
+# Source2-md5	c5a35a5d206dd5024304fc891f3e7723
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
 BuildRequires:	autoconf
