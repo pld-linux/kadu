@@ -7,18 +7,18 @@
 %define		_xmms_mod_ver	1.19
 %define		_spellchecker_mod_ver	0.11
 %define		_weather_ver	1.46
-%define		snapshot	20040905
+%define		snapshot	20040906
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.4.0
-Release:	0.%{snapshot}.2
+Release:	0.%{snapshot}.1
 License:	GPL
 Group:		Applications/Communications
 # Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
 Source0:	http://kadu.net/download/snapshots/kadu-%{snapshot}.tar.bz2
-# Source0-md5:	aa191261ac96bcc74c53ca2e0bb70b7e
+# Source0-md5:	018ab814e95c00abc58b7c39ea19cf63
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
 # Source2-md5:	5513d94b1f2f41b1e5f0dbf785dc8a15
@@ -29,6 +29,7 @@ Source4:	http://republika.pl/buysk/weather/%{name}-weather-%{_weather_ver}.tar.b
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
 %{?with_spellchecker:BuildRequires:	aspell-devel}
+%{?with_spellchecker:Provides:	kadu-module-spellchecker}
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
@@ -38,6 +39,7 @@ BuildRequires:	libtool
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	qt-devel
 %{?with_xmms:BuildRequires:	xmms-devel}
+%{?with_xmms:Provides:	kadu-module-xmms}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_modules_dir	%{_libdir}/%{name}/modules
 
@@ -46,7 +48,7 @@ Kadu is client of Gadu-Gadu protocol. It's an IM for Linux and UN*X.
 It's written for KDE.
 
 %description -l pl
-Kadu jest klientem protko³u Gadu-Gadu. Inaczej mówi±c, jest
+Kadu jest klientem protoko³u Gadu-Gadu. Inaczej mówi±c, jest
 komunikatorem dla Linuksa (oraz, przy niewielkim wysi³ku, innych
 systemów UN*Xowych). Napisano go w oparciu o bibliotekê Qt i KDE,
 przeznaczony jest wiêc dla tego ¶rodowiska.
