@@ -1,5 +1,5 @@
 #
-%bcond_with	xmms	# with xmms player support module
+%bcond_without	xmms	# with xmms player support module
 
 %define		_libgadu_ver	4:1.4-2
 %define		_xmms_mod_ver	1.9
@@ -8,7 +8,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.9
-Release:	1
+Release:	1.1
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -39,6 +39,20 @@ komunikatorem dla Linuksa (oraz, przy niewielkim wysi³ku, innych
 systemów UN*Xowych). Napisano go w oparciu o bibliotekê Qt i KDE,
 przeznaczony jest wiêc dla tego ¶rodowiska.
 
+%package module-xmms
+Summary:	Support xmms status
+Summary(pl):	Modu³ statusu dla xmms
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+Requires:	xmms
+
+%description module-xmms
+Module to enlabe (to make possible ?)... TODO
+
+%description module-xmms -l pl
+Modu³ umo¿liwiajacy w opisie statusu pokazywanie informacji o
+odgrywanym utowrze z odtwarzacza xmms.
+
 %prep
 %setup -q -n %{name}
 %patch0 -p1
@@ -47,6 +61,10 @@ tar xzf %{SOURCE2} -C modules
 %endif
 
 %build
+%if %{with xmms}
+sed -i -e 's/module_xmms=n/module_xmms=m/' .config
+%endif
+
 chmod u+w aclocal.m4 configure
 %{__aclocal}
 %{__autoheader}
@@ -70,6 +88,8 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 
 install kadu/hi48-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/kadu.png
 
+rm -rf $RPM_BUILD_ROOT%{_includedir}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -79,7 +99,60 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %{_desktopdir}/kadu.desktop
 %{_pixmapsdir}/kadu.png
-%{_datadir}/%{name}
+%dir %{_datadir}/%{name}
+%{_datadir}/%{name}/themes
+#default modules:
+%dir %{_datadir}/%{name}/modules
+%{_datadir}/%{name}/modules/autoaway.desc
+%{_datadir}/%{name}/modules/autoresponder.desc
+%{_datadir}/%{name}/modules/autoresponder.so
+%{_datadir}/%{name}/modules/default_sms.desc
+%{_datadir}/%{name}/modules/docking.desc
+%{_datadir}/%{name}/modules/dsp_sound.desc
+%{_datadir}/%{name}/modules/dsp_sound.so
+%{_datadir}/%{name}/modules/encryption.desc
+%{_datadir}/%{name}/modules/ext_sound.desc
+%{_datadir}/%{name}/modules/sms.desc
+%{_datadir}/%{name}/modules/sound.desc
+%{_datadir}/%{name}/modules/voice.desc
+%{_datadir}/%{name}/modules/x11_docking.desc
+#default modules translation:
+%dir %{_datadir}/%{name}/modules/translations
+%lang(de) %{_datadir}/%{name}/modules/translations/autoaway_de.qm
+%lang(it) %{_datadir}/%{name}/modules/translations/autoaway_it.qm
+%lang(pl) %{_datadir}/%{name}/modules/translations/autoaway_pl.qm
+%lang(de) %{_datadir}/%{name}/modules/translations/autoresponder_de.qm
+%lang(it) %{_datadir}/%{name}/modules/translations/autoresponder_it.qm
+%lang(pl) %{_datadir}/%{name}/modules/translations/autoresponder_pl.qm
+%lang(de) %{_datadir}/%{name}/modules/translations/default_sms_de.qm
+%lang(it) %{_datadir}/%{name}/modules/translations/default_sms_it.qm
+%lang(pl) %{_datadir}/%{name}/modules/translations/default_sms_pl.qm
+%lang(de) %{_datadir}/%{name}/modules/translations/docking_de.qm
+%lang(it) %{_datadir}/%{name}/modules/translations/docking_it.qm
+%lang(pl) %{_datadir}/%{name}/modules/translations/docking_pl.qm
+%lang(de) %{_datadir}/%{name}/modules/translations/dsp_sound_de.qm
+%lang(it) %{_datadir}/%{name}/modules/translations/dsp_sound_it.qm
+%lang(pl) %{_datadir}/%{name}/modules/translations/dsp_sound_pl.qm
+%lang(de) %{_datadir}/%{name}/modules/translations/encryption_de.qm
+%lang(it) %{_datadir}/%{name}/modules/translations/encryption_it.qm
+%lang(pl) %{_datadir}/%{name}/modules/translations/encryption_pl.qm
+%lang(de) %{_datadir}/%{name}/modules/translations/ext_sound_de.qm
+%lang(it) %{_datadir}/%{name}/modules/translations/ext_sound_it.qm
+%lang(pl) %{_datadir}/%{name}/modules/translations/ext_sound_pl.qm
+%lang(de) %{_datadir}/%{name}/modules/translations/sms_de.qm
+%lang(it) %{_datadir}/%{name}/modules/translations/sms_it.qm
+%lang(pl) %{_datadir}/%{name}/modules/translations/sms_pl.qm
+%lang(de) %{_datadir}/%{name}/modules/translations/sound_de.qm
+%lang(it) %{_datadir}/%{name}/modules/translations/sound_it.qm
+%lang(pl) %{_datadir}/%{name}/modules/translations/sound_pl.qm
+%lang(de) %{_datadir}/%{name}/modules/translations/voice_de.qm
+%lang(it) %{_datadir}/%{name}/modules/translations/voice_it.qm
+%lang(pl) %{_datadir}/%{name}/modules/translations/voice_pl.qm
+%lang(de) %{_datadir}/%{name}/modules/translations/x11_docking_de.qm
+%lang(it) %{_datadir}/%{name}/modules/translations/x11_docking_it.qm
+%lang(pl) %{_datadir}/%{name}/modules/translations/x11_docking_pl.qm
+#global translation:
+%dir %{_datadir}/%{name}/translations
 %lang(de) %{_datadir}/%{name}/translations/kadu_de.qm
 %lang(en) %{_datadir}/%{name}/translations/kadu_en.qm
 %lang(it) %{_datadir}/%{name}/translations/kadu_it.qm
@@ -88,3 +161,11 @@ rm -rf $RPM_BUILD_ROOT
 %lang(en) %{_datadir}/%{name}/translations/qt_en.qm
 %lang(it) %{_datadir}/%{name}/translations/qt_it.qm
 %lang(pl) %{_datadir}/%{name}/translations/qt_pl.qm
+
+%if %{with xmms}
+%files module-xmms
+%defattr(644,root,root,755)
+%lang(pl) %{_datadir}/%{name}/modules/translations/xmms_pl.qm
+%{_datadir}/%{name}/modules/xmms.desc
+%{_datadir}/%{name}/modules/xmms.so
+%endif
