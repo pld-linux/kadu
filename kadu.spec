@@ -17,7 +17,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.9
-Release:	6
+Release:	7
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -32,6 +32,7 @@ Source4:	http://scripts.one.pl/spellchecker/stable/%{version}/spellchecker-0.9.t
 Source5:	http://republika.pl/buysk/weather/kadu-weather-1.45.tar.bz2
 # Source5-md5:	f1e4cb0138fcf01ee534dc4f83ccb7cf
 Patch0:		%{name}-ac_am.patch
+Patch1:		%{name}-userlist.patch
 URL:		http://kadu.net/
 %{?with_arts:BuildRequires:	arts-devel}
 %{?with_spellchecker:BuildRequires:	aspell-devel}
@@ -45,7 +46,6 @@ BuildRequires:	libgsm-devel
 BuildRequires:	libtool
 %{?with_nas:BuildRequires:	nas-devel}
 BuildRequires:	openssl-devel >= 0.9.7d
-BuildRequires:	qt-devel
 BuildRequires:	sed >= 4.0
 %{?with_xmms:BuildRequires:	xmms-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -172,6 +172,7 @@ Informacje o pogodzie w miejscowo¶ci danego kontaktu.
 %prep
 %setup -q -n %{name}
 %patch0 -p1
+%patch1 -p1
 
 %if %{with xmms}
 tar xzf %{SOURCE2} -C modules
