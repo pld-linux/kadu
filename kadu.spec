@@ -92,7 +92,7 @@ chmod u+w aclocal.m4 configure
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_libdir}/%{name},%{_datadir}/%{name}/modules/data}
+install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_libdir}/%{name}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -104,7 +104,7 @@ install kadu/hi48-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/kadu.png
 rm -rf $RPM_BUILD_ROOT%{_includedir}
 
 mv -f $RPM_BUILD_ROOT%{_datadir}/%{name}/modules $RPM_BUILD_ROOT%{_libdir}/%{name}
-# mkdir -p $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/{weather,config_wizard} $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 
 %clean
