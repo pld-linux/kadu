@@ -3,7 +3,7 @@
 %bcond_without	spellchecker	# without spellchecker (Aspell support)
 %bcond_without	weather	# without weather check module support
 
-# %define		_libgadu_ver	4:1.4-2
+# %define		_libgadu_ver	4:1.6
 %define		_xmms_mod_ver	1.22
 %define		_spellchecker_mod_ver	0.12
 %define		_weather_ver	1.54
@@ -18,7 +18,7 @@ License:	GPL
 Group:		Applications/Communications
 # Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
 Source0:	http://kadu.net/download/snapshots/%{name}-%{snapshot}.tar.bz2
-# Source0-md5:	4f51f24dcc90970c00f0bade3b78e715
+# Source0-md5:	220c130bef4d65876da899067c28f5e7
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
 # Source2-md5:	0f72af4a92624263338447e63cbc4bf7
@@ -33,7 +33,7 @@ URL:		http://kadu.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
-# BuildRequires:	libgadu-devel >= %{_libgadu_ver}
+BuildRequires:	libgadu-devel >= %{_libgadu_ver}
 BuildRequires:	libgsm-devel
 BuildRequires:	libsndfile-devel
 BuildRequires:	libtool
@@ -88,8 +88,8 @@ chmod u+w aclocal.m4 configure
 %{__automake}
 %configure \
 	--enable-voice \
-	--enable-dist-info=PLD
-#	--with-existing-libgadu=/usr
+	--enable-dist-info=PLD \
+	--with-existing-libgadu=/usr
 
 %{__make}
 
@@ -151,6 +151,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/modules/data/config_wizard/joi/*
 %{_datadir}/%{name}/modules/data/config_wizard/ronk2/*
 %lang(de) %{_modules_dir}/translations/*_de.qm
+%lang(fr) %{_modules_dir}/translations/*_fr.qm
 %lang(it) %{_modules_dir}/translations/*_it.qm
 %lang(pl) %{_modules_dir}/translations/*_pl.qm
 %dir %{_datadir}/%{name}/translations
