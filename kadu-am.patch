@@ -1,34 +1,16 @@
---- kadu/Makefile.in~	Fri Apr  5 20:50:02 2002
-+++ kadu/Makefile.in	Fri Apr  5 21:09:17 2002
-@@ -598,13 +598,13 @@
- #>- 	$(INSTALL_DATA) $(srcdir)/kadu.desktop $(kde_appsdir)/Applications/kadu.desktop
- #>+ 1
- 	$(INSTALL_DATA) $(srcdir)/kadu.desktop $(DESTDIR)$(kde_appsdir)/Applications/kadu.desktop
--#>- 	$(mkinstalldirs) $(kde_icondir)/hicolor/32x32/apps/
-+	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps/
- #>+ 1
- 	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/locolor/32x32/apps/
- #>- 	$(INSTALL_DATA) $(srcdir)/hi32-app-kadu.png $(kde_icondir)/hicolor/32x32/apps/kadu.png
- #>+ 1
- 	$(INSTALL_DATA) $(srcdir)/hi32-app-kadu.png $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps/kadu.png
--#>- 	$(mkinstalldirs) $(kde_icondir)/hicolor/16x16/apps/
-+	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/16x16/apps/
- #>+ 1
- 	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/locolor/16x16/apps/
- #>- 	$(INSTALL_DATA) $(srcdir)/hi16-app-kadu.png $(kde_icondir)/hicolor/16x16/apps/kadu.png
 --- kadu/Makefile.in~	Fri Apr  5 21:10:19 2002
 +++ kadu/Makefile.in	Fri Apr  5 21:24:44 2002
 @@ -600,13 +600,13 @@
  	$(INSTALL_DATA) $(srcdir)/kadu.desktop $(DESTDIR)$(kde_appsdir)/Applications/kadu.desktop
  	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps/
- #>+ 1
+
 -	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/locolor/32x32/apps/
 +#	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/locolor/32x32/apps/
  #>- 	$(INSTALL_DATA) $(srcdir)/hi32-app-kadu.png $(kde_icondir)/hicolor/32x32/apps/kadu.png
  #>+ 1
  	$(INSTALL_DATA) $(srcdir)/hi32-app-kadu.png $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps/kadu.png
  	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/16x16/apps/
- #>+ 1
+
 -	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/locolor/16x16/apps/
 +#	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/locolor/16x16/apps/
  #>- 	$(INSTALL_DATA) $(srcdir)/hi16-app-kadu.png $(kde_icondir)/hicolor/16x16/apps/kadu.png

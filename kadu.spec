@@ -1,15 +1,16 @@
 Summary:	An Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
-Version:	0.2.1
-Release:	2
+Version:	0.3.0
+Release:	1
 License:	GPL
 Group:		Applications/Communications
 URL:		http://cpi.pl/Kadu/
-Source0:	http://cpi.pl/Kadu/%{name}-%{version}.tar.gz
-Patch0:		%{name}-edit_clear.patch
+#Source0:	http://cpi.pl/Kadu/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.pld.org.pl/people/tomee/kadu/unstable/%{name}-%{version}.tar.gz
+#Patch0:		%{name}-edit_clear.patch
 Patch1:		%{name}-am.patch
-Patch2:		%{name}-gcc31.patch
+#Patch2:		%{name}-gcc31.patch
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -39,9 +40,9 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 
 %prep
 %setup -q
-%patch0
+#%patch0
 %patch1
-%patch2 -p1
+#%patch2 -p1
 
 %build
 #gettextize --copy --force
@@ -50,6 +51,7 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 #autoconf
 #automake -a -c
 :> ./k_install; chmod 755 k_install
+kde_icondir="%{_pixmapsdir}"; export kde_icondir
 %configure2_13
 %{__make}
 
@@ -74,4 +76,5 @@ and should be placed in .gg/images folder inside user's home directory."
 %doc *.gz
 %attr(755,root,root) %{_bindir}/*
 %{_applnkdir}/Network/Communications/*.desktop
-%{_datadir}/icons/hicolor/*/*/*.png
+%{_datadir}/pixmaps/hicolor/*/*/*.png
+%{_datadir}/apps/%{name}/*
