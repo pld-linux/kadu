@@ -19,6 +19,7 @@ BuildRequires:	kdelibs-devel >= 3.0
 BuildRequires:	libtool
 BuildRequires:	qt-devel >= 3.0.5
 BuildRequires:	readline-devel
+BuildREquires:	openssl-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -39,14 +40,8 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
-%configure
-cd libgadu
-%configure
-cd lib
+%configure --with-qt-includes=/usr/X11R6/include/qt
 %{__make} all CC=%{__cc} CXX=%{__cxx}
-cd ../..
-%{__make}
-
 
 %install
 rm -rf $RPM_BUILD_ROOT
