@@ -54,7 +54,9 @@ chmod +w aclocal.m4 configure
 %{__autoconf}
 %{__automake}
 
-%configure --with-existing-libgadu
+%configure \
+	--enable-dist-info=PLD \
+	--with-existing-libgadu
 
 %{__make}
 
