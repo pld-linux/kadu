@@ -1,7 +1,7 @@
 
 %define		_pre		rc4
 
-Summary:	An Gadu-Gadu client for online messaging
+Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.4
