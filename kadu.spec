@@ -21,7 +21,7 @@ BuildRequires:	libpng-devel
 BuildRequires:	libgadu-devel >= 3:1.1
 BuildRequires:	libtool
 BuildRequires:	readline-devel
-BuildRequires:	openssl-devel >= 0.9.6k
+BuildRequires:	openssl-devel >= 0.9.6m
 BuildRequires:	qt-devel
 Requires:	libgadu >= 3:1.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
