@@ -3,7 +3,7 @@ Summary:	An Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.3
-Release:	0.1%{_snapshot}
+Release:	0.%{_snapshot}
 License:	GPL
 Group:		Applications/Communications
 #Source0:	http://kadu.net/%{name}-%{version}.tar.gz
@@ -38,7 +38,11 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 %build
 :> ./k_install; chmod 755 k_install
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
+
 %configure
+cd libgadu/lib
+%{__make} all CC=%{__cc} CXX=%{__cxx}
+cd ../..
 %{__make}
 
 %install
