@@ -38,16 +38,16 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 
 %prep
 %setup -q -n %{name}
-#%patch0 -p1
+%patch0 -p1
 
 %build
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
-#chmod +w aclocal.m4 configure
-#%{__autoheader}
-#%{__aclocal}
-#%{__autoconf}
-#%{__automake}
+chmod +w aclocal.m4 configure
+%{__autoheader}
+%{__aclocal}
+%{__autoconf}
+%{__automake}
 
 %configure \
 	--with-qt-includes=/usr/X11R6/include/qt \
