@@ -180,13 +180,15 @@ sed -i -e 's/module_esd_sound=n/module_esd_sound=m/' .config
 %endif
 %if %{with nas}
 sed -i -e 's/module_nas_sound=n/module_nas_sound=m/' .config
+echo 'MODULE_LIBS_PATH="/usr/lib"' >> modules/nas_sound/spec
 %endif
 %if %{with speech}
 sed -i -e 's/module_speech=n/module_speech=m/' .config
 %endif
 %if %{with amarok}
 sed -i -e 's/module_amarok=n/module_amarok=m/' .config
-echo 'MODULE_INCLUDES_PATH="/usr/include"'>>modules/amarok/spec
+echo 'MODULE_INCLUDES_PATH="/usr/include"'>> modules/amarok/spec
+echo 'MODULE_LIBS_PATH="/usr/lib"' >> modules/amarok/spec
 %endif
 %if %{with spellchecker}
 sed -i -e 's/module_spellchecker=n/module_spellchecker=m/' .config
