@@ -11,7 +11,6 @@ Group:		Applications/Communications
 Source0:	http://kadu.net/releases/%{name}-%{version}-%{_pre}.tar.gz
 # Source0-md5:	87aee67cffcad829362b16119ed7eb79
 Source1:	%{name}.desktop
-Patch0:		%{name}-no-reconnect-after-disconnect.patch
 URL:		http://kadu.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -35,7 +34,6 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 
 %prep
 %setup -q -n %{name}
-%patch0 -p1
 
 %build
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
