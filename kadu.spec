@@ -16,7 +16,7 @@ BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	libgadu-devel >= 3:1.4
 BuildRequires:	libtool
-BuildRequires:	openssl-devel >= 0.9.7
+BuildRequires:	openssl-devel >= 0.9.7c
 BuildRequires:	qt-devel
 BuildRequires:	readline-devel
 Requires:	libgadu >= 3:1.1
