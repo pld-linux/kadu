@@ -1,22 +1,19 @@
 Summary:	An Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
-Version:	0.3.0
-Release:	1.1
+Version:	0.3.1
+Release:	1
 License:	GPL
 Group:		Applications/Communications
 #Source0:	http://cpi.pl/Kadu/%{name}-%{version}.tar.gz
 Source0:	ftp://ftp.pld.org.pl/people/tomee/kadu/unstable/%{name}-%{version}.tar.gz
-#Patch0:		%{name}-edit_clear.patch
-Patch1:		%{name}-am.patch
-#Patch2:		%{name}-gcc31.patch
 URL:		http://cpi.pl/Kadu/
-#BuildRequires:	autoconf
-#BuildRequires:	automake
-#BuildRequires:	gettext-devel
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	gettext-devel
 BuildRequires:	kdelibs-devel >= 3.0
-#BuildRequires:	libtool
-BuildRequires:	qt-devel >= 3.0.3
+BuildRequires:	libtool
+BuildRequires:	qt-devel >= 3.0.5
 BuildRequires:	readline-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -35,9 +32,6 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 
 %prep
 %setup -q
-#%patch0
-%patch1
-#%patch2 -p1
 
 %build
 #%{__gettextize}
@@ -47,7 +41,7 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 #%{__automake}
 :> ./k_install; chmod 755 k_install
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
-%configure2_13
+%configure
 %{__make}
 
 %install
@@ -69,5 +63,5 @@ and should be placed in .gg/images folder inside user's home directory."
 %doc ChangeLog INSTALL README TODO
 %attr(755,root,root) %{_bindir}/*
 %{_applnkdir}/Network/Communications/*.desktop
-%{_pixmapsdir}/*/*/apps/*.png
+#%{_pixmapsdir}/*/*/apps/*.png
 %{_datadir}/apps/%{name}
