@@ -66,7 +66,33 @@ diff -urN kadu-0.1.9.org/acinclude.m4 kadu-0.1.9/acinclude.m4
  # Ulrich Drepper <drepper@cygnus.com>, 1995.
 diff -urN kadu-0.1.9.org/kadu/Makefile.am kadu-0.1.9/kadu/Makefile.am
 --- kadu-0.1.9.org/kadu/Makefile.am	Thu Nov 29 15:55:09 2001
-+++ kadu-0.1.9/kadu/Makefile.am	Sat Dec  1 23:36:23 2001
++++ kadu-0.1.9/kadu/Makefile.am	Sat Dec  1 23:44:28 2001
+@@ -1,18 +1,18 @@
+ ####### kdevelop will overwrite this part!!! (begin)##########
+ bin_PROGRAMS = kadu
+-kadu_SOURCES = about.cpp ignore.cpp adduser.cpp userinfo.cpp network.cpp search.cpp userlist.cpp history.cpp chat.cpp events.cpp kadu.cpp main.cpp 
++kadu_SOURCES = about.cpp ignore.cpp adduser.cpp userinfo.cpp network.cpp search.cpp userlist.cpp history.cpp chat.cpp events.cpp kadu.cpp main.cpp
+ kadu_LDADD   = -lgg $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT) $(LIBSOCKET)
+ 
+ 
+ EXTRA_DIST = main.cpp kadu.cpp kadu.h kadu.desktop lo32-app-kadu.png lo16-app-kadu.png events.h events.cpp chat.cpp chat.h history.h history.cpp pixmaps.h userlist.cpp search.h search.cpp network.cpp userinfo.cpp adduser.cpp ignore.cpp about.cpp 
+ 
+ install-data-local:
+-	$(mkinstalldirs) $(kde_appsdir)/Applications/
+-	$(INSTALL_DATA) $(srcdir)/kadu.desktop $(kde_appsdir)/Applications/kadu.desktop
+-	$(mkinstalldirs) $(kde_icondir)/locolor/32x32/apps/
+-	$(INSTALL_DATA) $(srcdir)/lo32-app-kadu.png $(kde_icondir)/locolor/32x32/apps/kadu.png
+-	$(mkinstalldirs) $(kde_icondir)/locolor/16x16/apps/
+-	$(INSTALL_DATA) $(srcdir)/lo16-app-kadu.png $(kde_icondir)/locolor/16x16/apps/kadu.png
++	$(mkinstalldirs) $(DESTDIR)$(kde_appsdir)/Applications/
++	$(INSTALL_DATA) $(srcdir)/kadu.desktop $(DESTDIR)$(kde_appsdir)/Applications/kadu.desktop
++	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/locolor/32x32/apps/
++	$(INSTALL_DATA) $(srcdir)/lo32-app-kadu.png $(DESTDIR)$(kde_icondir)/locolor/32x32/apps/kadu.png
++	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/locolor/16x16/apps/
++	$(INSTALL_DATA) $(srcdir)/lo16-app-kadu.png $(DESTDIR)$(kde_icondir)/locolor/16x16/apps/kadu.png
+ 
+ uninstall-local:
+ 	-rm -f $(kde_appsdir)/Applications/kadu.desktop
 @@ -60,3 +60,8 @@
  	 $(XGETTEXT) $$LIST -o $(podir)/kadu.pot; \
  	fi
