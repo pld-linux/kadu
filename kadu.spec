@@ -1,5 +1,5 @@
 #
-# --with icondir	instals icons in /usr/share/icons/hicolor
+# --with icondir	installs icons in /usr/share/icons/hicolor
 #
 
 %define		_pre		rc1
@@ -20,7 +20,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
 %if %{?_with_icondir:1}0
-BuildRequires:	kdelibs-devel >= 3.2-0.030613.1
+BuildRequires:	kdelibs-devel >= 8:3.2-0.030613.1
 %else
 BuildRequires:	kdelibs-devel >= 3.0
 %endif
