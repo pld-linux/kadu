@@ -1,6 +1,4 @@
 #
-# --with icondir	installs icons in /usr/share/icons/hicolor
-#
 
 %define		_pre		rc3
 
@@ -24,12 +22,9 @@ BuildRequires:	libtool
 BuildRequires:	readline-devel
 BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	qt-devel
-BuildRequires:	libpng-devel
 BuildRequires:	libgadu-devel >= 3:1.1
 Requires:	libgadu >= 3:1.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%{?_with_icondir:%define _pixmapsdir %{_datadir}/icons}	
 
 %description
 Kadu is client of Gadu-Gadu protocol. It's an IM for Linux and UN*X.
@@ -61,7 +56,7 @@ chmod +w aclocal.m4 configure
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}/hicolor/{16x16,32x32,48x48}/apps}
+install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
@@ -70,9 +65,7 @@ install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}/hicolor/{16x16,32x32,48
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 
-install kadu/hi16-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/16x16/apps/kadu.png
-install kadu/hi32-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/32x32/apps/kadu.png
-install kadu/hi48-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/apps/kadu.png
+install kadu/hi48-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}
 
 %find_lang %{name} --with-kde
 
@@ -85,5 +78,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kadu
 %{_datadir}/apps/%{name}
 %{_desktopdir}/kadu.desktop
-%{_pixmapsdir}/*/*/apps/kadu.png
+%{_pixmapsdir}/kadu.png
 %lang(pl) %{_mandir}/pl/man1/kadu.1*
