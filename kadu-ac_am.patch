@@ -1,7 +1,7 @@
 diff -urN kadu.org/acinclude.m4 kadu/acinclude.m4
 --- kadu.org/acinclude.m4	1970-01-01 01:00:00.000000000 +0100
-+++ kadu/acinclude.m4	2003-08-23 19:43:12.000000000 +0200
-@@ -0,0 +1,71 @@
++++ kadu/acinclude.m4	2003-11-06 01:13:06.000000000 +0100
+@@ -0,0 +1,72 @@
 +AC_DEFUN(AC_CHECK_OPENSSL,[
 +  AC_SUBST(OPENSSL_LIBS)
 +  AC_SUBST(OPENSSL_INCLUDES)
@@ -21,6 +21,7 @@ diff -urN kadu.org/acinclude.m4 kadu/acinclude.m4
 +      OPENSSL_LIBS=$($PKGCONFIG --libs openssl)
 +      OPENSSL_INCLUDES=$($PKGCONFIG --cflags openssl)
 +      if test "x$OPENSSL_LIBS" != "x" -o "x$OPENSSL_INCLUDES" != "x"; then
++	AC_DEFINE(HAVE_OPENSSL, 1, [define if you have OpenSSL])
 +	AC_MSG_RESULT([yes])
 +        without_openssl=yes
 +	have_openssl=yes
@@ -73,12 +74,18 @@ diff -urN kadu.org/acinclude.m4 kadu/acinclude.m4
 +  fi
 +])
 +
-diff -urN kadu.org/po/Makefile.am kadu/po/Makefile.am
---- kadu.org/po/Makefile.am	2003-08-23 19:41:51.000000000 +0200
-+++ kadu/po/Makefile.am	2003-08-23 19:42:36.000000000 +0200
-@@ -4,4 +4,4 @@
- 	$(INSTALL_DATA) pl/kadu.mo "$(DESTDIR)/$(datadir)/locale/pl/LC_MESSAGES";
- 
- uninstall-local:
--	rm -f "$(DESTDIR)/$(datadir)/locale/pl/LC_MESSAGES/kadu.mo"; \
-+	rm -f "$(DESTDIR)/$(datadir)/locale/pl/LC_MESSAGES/kadu.mo";
+diff -urN kadu.org/configure.ac kadu/configure.ac
+--- kadu.org/configure.ac	2003-11-06 01:12:02.000000000 +0100
++++ kadu/configure.ac	2003-11-06 01:14:06.000000000 +0100
+@@ -324,9 +324,8 @@
+ fi
+ if test "$enable_voice" = "yes"; then
+ 	AC_DEFINE(VOICE_ENABLED,1,[Define if voice talk support is enabled])
+-	GSM_LIBS="-L../libgsm/lib -lgsm"
+-	GSM_INCLUDES="-I../libgsm/inc"
+-	MY_SUBDIRS="$MY_SUBDIRS libgsm"
++	GSM_LIBS="-lgsm"
++	GSM_INCLUDES=""
+ fi
+ AM_CONDITIONAL(VOICE,[test "$enable_voice" = "yes"])
+ AC_SUBST(GSM_LIBS)
