@@ -80,3 +80,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kadu.desktop
 %{_pixmapsdir}/kadu.png
 %{_datadir}/%{name}
+%lang(de) %{_datadir}/%{name}/translations/kadu_de.qm
+%lang(en) %{_datadir}/%{name}/translations/kadu_en.qm
+%lang(it) %{_datadir}/%{name}/translations/kadu_it.qm
+%lang(pl) %{_datadir}/%{name}/translations/kadu_pl.qm
+%lang(de) %{_datadir}/%{name}/translations/qt_de.qm
+%lang(en) %{_datadir}/%{name}/translations/qt_en.qm
+%lang(it) %{_datadir}/%{name}/translations/qt_it.qm
+%lang(pl) %{_datadir}/%{name}/translations/qt_pl.qm
