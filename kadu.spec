@@ -6,26 +6,26 @@
 %define		_libgadu_ver	4:1.4-2
 %define		_xmms_mod_ver	1.20
 %define		_spellchecker_mod_ver	0.11
-%define		_weather_ver	1.46
-%define		snapshot	20040911
+%define		_weather_ver	1.5
+%define		snapshot	20040912
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.4.0
-Release:	0.%{snapshot}.2
+Release:	0.%{snapshot}.1
 License:	GPL
 Group:		Applications/Communications
 # Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
 Source0:	http://kadu.net/download/snapshots/kadu-%{snapshot}.tar.bz2
-# Source0-md5:	6781a83da9f59d15f463ae5b6bfe6df2
+# Source0-md5:	490b88e0f256bda7752069a016c04290
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
 # Source2-md5:	fb88a8f479b4295fb396ad35c8ba0035
 Source3:	http://scripts.one.pl/spellchecker/devel/%{version}/spellchecker-%{_spellchecker_mod_ver}.tar.gz
 # Source3-md5:	a721c8f4b51f447ba287e918aee926bc
 Source4:	http://republika.pl/buysk/weather/%{name}-weather-%{_weather_ver}.tar.bz2
-# Source4-md5:	6be160f44f9f1fbe4e959c4983ee790c
+# Source4-md5:	8b8841c7a2fc2b302d1d0f01b15ee456
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
 %{?with_spellchecker:BuildRequires:	aspell-devel}
