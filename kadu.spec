@@ -3,7 +3,7 @@
 %bcond_without	spellchecker	# without spellchecker (Aspell support)
 
 %define		_libgadu_ver	4:1.4-2
-%define		_xmms_mod_ver	1.15
+%define		_xmms_mod_ver	1.14
 %define		_spellchecker_mod_ver	0.11
 %define		snapshot	20040828
 #
@@ -20,7 +20,7 @@ Source0:	http://kadu.net/download/snapshots/kadu-%{snapshot}.tar.bz2
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
 # Source2-md5	c5a35a5d206dd5024304fc891f3e7723
-Source3:       http://scripts.one.pl/spellchecker/devel/%{version}/spellchecker-%{_spellchecker_mod_ver}.tar.gz
+Source3:	http://scripts.one.pl/spellchecker/devel/%{version}/spellchecker-%{_spellchecker_mod_ver}.tar.gz
 # Source3-md5:	a721c8f4b51f447ba287e918aee926bc
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
@@ -99,11 +99,15 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog README TODO
+%doc ChangeLog README TODO HISTORY
 %attr(755,root,root) %{_bindir}/*
 %{_desktopdir}/kadu.desktop
 %{_pixmapsdir}/kadu.png
 %dir %{_datadir}/%{name}
+%{_datadir}/%{name}/AUTHORS
+%{_datadir}/%{name}/ChangeLog
+%{_datadir}/%{name}/COPYING
+%{_datadir}/%{name}/THANKS
 %{_datadir}/%{name}/themes
 %dir %{_libdir}/%{name}/modules
 %{_libdir}/%{name}/modules/*.desc
