@@ -1,0 +1,59 @@
+--- kadu/Makefile.in~	Fri Apr  5 20:50:02 2002
++++ kadu/Makefile.in	Fri Apr  5 21:09:17 2002
+@@ -598,13 +598,13 @@
+ #>- 	$(INSTALL_DATA) $(srcdir)/kadu.desktop $(kde_appsdir)/Applications/kadu.desktop
+ #>+ 1
+ 	$(INSTALL_DATA) $(srcdir)/kadu.desktop $(DESTDIR)$(kde_appsdir)/Applications/kadu.desktop
+-#>- 	$(mkinstalldirs) $(kde_icondir)/hicolor/32x32/apps/
++	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps/
+ #>+ 1
+ 	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/locolor/32x32/apps/
+ #>- 	$(INSTALL_DATA) $(srcdir)/hi32-app-kadu.png $(kde_icondir)/hicolor/32x32/apps/kadu.png
+ #>+ 1
+ 	$(INSTALL_DATA) $(srcdir)/hi32-app-kadu.png $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps/kadu.png
+-#>- 	$(mkinstalldirs) $(kde_icondir)/hicolor/16x16/apps/
++	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/16x16/apps/
+ #>+ 1
+ 	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/locolor/16x16/apps/
+ #>- 	$(INSTALL_DATA) $(srcdir)/hi16-app-kadu.png $(kde_icondir)/hicolor/16x16/apps/kadu.png
+--- kadu/Makefile.in~	Fri Apr  5 21:10:19 2002
++++ kadu/Makefile.in	Fri Apr  5 21:24:44 2002
+@@ -600,13 +600,13 @@
+ 	$(INSTALL_DATA) $(srcdir)/kadu.desktop $(DESTDIR)$(kde_appsdir)/Applications/kadu.desktop
+ 	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps/
+ #>+ 1
+-	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/locolor/32x32/apps/
++#	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/locolor/32x32/apps/
+ #>- 	$(INSTALL_DATA) $(srcdir)/hi32-app-kadu.png $(kde_icondir)/hicolor/32x32/apps/kadu.png
+ #>+ 1
+ 	$(INSTALL_DATA) $(srcdir)/hi32-app-kadu.png $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps/kadu.png
+ 	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/16x16/apps/
+ #>+ 1
+-	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/locolor/16x16/apps/
++#	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/locolor/16x16/apps/
+ #>- 	$(INSTALL_DATA) $(srcdir)/hi16-app-kadu.png $(kde_icondir)/hicolor/16x16/apps/kadu.png
+ #>+ 1
+ 	$(INSTALL_DATA) $(srcdir)/hi16-app-kadu.png $(DESTDIR)$(kde_icondir)/hicolor/16x16/apps/kadu.png
+--- ekg/Makefile.in~	Sun Mar 17 18:53:11 2002
++++ ekg/Makefile.in	Mon Apr 29 15:22:39 2002
+@@ -16,7 +16,7 @@
+ CFLAGS = @DFLAGS@ @CFLAGS@ $(INCLUDES) -DTHEMES_DIR=\"$(datadir)/ekg/themes\" -DIOCTL_DAEMON_PATH=\"$(prefix)/bin/ioctl_daemon\"
+ OBJS = stuff.o commands.o events.o themes.o vars.o dynstuff.o
+ 
+-all:	libgadu ekg
++all:	libgadu
+ 
+ ekg:	
+ 	(cd src; $(MAKE) all)
+
+--- ekg/configure~	Sun Mar 17 18:53:11 2002
++++ ekg/configure	Mon Apr 29 15:28:00 2002
+@@ -4601,7 +4601,7 @@
+ echo "${ECHO_T} just kidding :)" >&6
+ fi
+ 
+-ac_config_files="$ac_config_files Makefile lib/Makefile src/Makefile examples/Makefile"
++ac_config_files="$ac_config_files Makefile lib/Makefile src/Makefile"
+ cat >confcache <<\_ACEOF
+ # This file is a shell script that caches the results of configure
+ # tests run on this system so they can be shared between configure
