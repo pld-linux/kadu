@@ -7,7 +7,7 @@
 %define		_xmms_mod_ver	1.22
 %define		_spellchecker_mod_ver	0.12
 %define		_weather_ver	1.54
-%define		snapshot	20041229
+%define		snapshot	20050113
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
