@@ -3,7 +3,7 @@
 
 %define		_libgadu_ver	4:1.4-2
 %define		_xmms_mod_ver	1.8
-%define		snapshot	20040702
+%define		snapshot	20040703
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
@@ -13,12 +13,12 @@ Release:	0.%{snapshot}.1
 License:	GPL
 Group:		Applications/Communications
 # Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
-Source0:       http://kadu.net/download/snapshots/kadu-%{snapshot}.tar.bz2
-# Source0-md5:	18caa9340acc3233fd6b6011a116eb3f
+Source0:	http://kadu.net/download/snapshots/kadu-%{snapshot}.tar.bz2
+# Source0-md5:	7accadfaa38e287091a22103d499d1ae
 Source1:	%{name}.desktop
 # Source2:	http://scripts.one.pl/xmms/stable/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
-Source2:	http://scripts.one.pl/xmms/stable/0.3.8/xmms-%{_xmms_mod_ver}.tar.gz
-# Source2-md5	376537ff5e2a605958097e4a5f024a26
+Source2:	http://scripts.one.pl/xmms/stable/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
+# Source2-md5	c5a35a5d206dd5024304fc891f3e7723
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
 BuildRequires:	autoconf
@@ -83,3 +83,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kadu.desktop
 %{_pixmapsdir}/kadu.png
 %{_datadir}/%{name}
+%lang(de) %{_datadir}/%{name}/translations/kadu_de.qm
+%lang(en) %{_datadir}/%{name}/translations/kadu_en.qm
+%lang(it) %{_datadir}/%{name}/translations/kadu_it.qm
+%lang(pl) %{_datadir}/%{name}/translations/kadu_pl.qm
+%lang(de) %{_datadir}/%{name}/translations/qt_de.qm
+%lang(en) %{_datadir}/%{name}/translations/qt_en.qm
+%lang(it) %{_datadir}/%{name}/translations/qt_it.qm
+%lang(pl) %{_datadir}/%{name}/translations/qt_pl.qm
