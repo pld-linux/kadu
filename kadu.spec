@@ -19,7 +19,7 @@ BuildRequires:	libtool
 BuildRequires:	qt-devel >= 3.0.5
 BuildRequires:	readline-devel
 BuildRequires:	openssl-devel >= 0.9.7
-Requires:	libgadu >= 20030208
+Requires:	libgadu >= 1:20030208
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
