@@ -39,7 +39,8 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
-%configure
+%configure \
+	--with-qt-includes=/usr/X11R6/include/qt
 %{__make}
 
 %install
