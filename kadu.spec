@@ -29,7 +29,7 @@ Source3:	http://scripts.one.pl/amarok/stable/%{version}/amarok-%{_amarok_mod_ver
 # Source3-md5:	2ad7832cf02422a84bdd675a507a47d0
 Source4:	http://scripts.one.pl/spellchecker/stable/%{version}/spellchecker-0.9.tar.gz
 # Source4-md5:	b699879a56b679690a57e653dbc9d64d
-Source5:	http://pcb45.tech.us.edu.pl/~blysk/weather/kadu-weather-1.45.tar.bz2
+Source5:	http://republika.pl/buysk/weather/kadu-weather-1.45.tar.bz2
 # Source5-md5:	f1e4cb0138fcf01ee534dc4f83ccb7cf
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
@@ -39,13 +39,14 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_esd:BuildRequires:	esound-devel}
 BuildRequires:	gettext-devel
+BuildRequires:	kdelibs-devel
 BuildRequires:	libgadu-devel >= %{_libgadu_ver}
 BuildRequires:	libgsm-devel
 BuildRequires:	libtool
 %{?with_nas:BuildRequires:	nas-devel}
 BuildRequires:	openssl-devel >= 0.9.7d
-BuildRequires:	kdelibs-devel
 BuildRequires:	qt-devel
+BuildRequires:	sed >= 4.0
 %{?with_xmms:BuildRequires:	xmms-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -185,38 +186,37 @@ tar xzf %{SOURCE4} -C modules
 tar xjf %{SOURCE5} -C modules
 %endif
 
-%{__perl} -pi -e 's@\(dataPath\("kadu/modules/?@\(\("%{_libdir}/kadu/modules/@g' kadu/modules.cpp
-%{__perl} -pi -e 's@/lib@/%{_lib}@g' modules/x11_docking/spec
+%{__sed} -i 's,dataPath("kadu/modules/*,("%{_libdir}/kadu/modules/,g'  kadu/modules.cpp
 
 %build
 %if %{with xmms}
-sed -i -e 's/module_xmms=n/module_xmms=m/' .config
+%{__sed} -i 's/module_xmms=n/module_xmms=m/' .config
 rm -f modules/xmms/.autodownloaded
 %endif
 %if %{with arts}
-sed -i -e 's/module_arts_sound=n/module_arts_sound=m/' .config
+%{__sed} -i 's/module_arts_sound=n/module_arts_sound=m/' .config
 %endif
 %if %{with esd}
-sed -i -e 's/module_esd_sound=n/module_esd_sound=m/' .config
+%{__sed} -i 's/module_esd_sound=n/module_esd_sound=m/' .config
 %endif
 %if %{with nas}
-sed -i -e 's/module_nas_sound=n/module_nas_sound=m/' .config
+%{__sed} -i 's/module_nas_sound=n/module_nas_sound=m/' .config
 echo 'MODULE_LIBS_PATH="/usr/lib"' >> modules/nas_sound/spec
 %endif
 %if %{with speech}
-sed -i -e 's/module_speech=n/module_speech=m/' .config
+%{__sed} -i 's/module_speech=n/module_speech=m/' .config
 %endif
 %if %{with amarok}
-sed -i -e 's/module_amarok=n/module_amarok=m/' .config
+%{__sed} -i 's/module_amarok=n/module_amarok=m/' .config
 echo 'MODULE_INCLUDES_PATH="/usr/include"'>> modules/amarok/spec
 echo 'MODULE_LIBS_PATH="/usr/lib"' >> modules/amarok/spec
 %endif
 %if %{with spellchecker}
-sed -i -e 's/module_spellchecker=n/module_spellchecker=m/' .config
+%{__sed} -i 's/module_spellchecker=n/module_spellchecker=m/' .config
 %endif
 %if %{with weather}
-sed -i -e 's/module_weather=n/module_weather=m/' .config
-%{__perl} -pi -e 's@dataPath\("kadu/modules/?@\("%{_libdir}/kadu/modules/@g' modules/weather/weather.cpp
+%{__sed} -i 's/module_weather=n/module_weather=m/' .config
+%{__sed} -i 's,dataPath("kadu/modules/*,("%{_libdir}/kadu/modules/,g' modules/weather/weather.cpp
 %endif
 
 chmod u+w aclocal.m4 configure
