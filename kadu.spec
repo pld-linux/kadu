@@ -8,7 +8,7 @@
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
-Version:	0.3.9
+Version:	0.4.0
 Release:	0.%{snapshot}.1
 License:	GPL
 Group:		Applications/Communications
@@ -17,7 +17,7 @@ Source0:	http://kadu.net/download/snapshots/kadu-%{snapshot}.tar.bz2
 # Source0-md5:	7accadfaa38e287091a22103d499d1ae
 Source1:	%{name}.desktop
 # Source2:	http://scripts.one.pl/xmms/stable/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
-Source2:	http://scripts.one.pl/xmms/stable/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
+Source2:	http://scripts.one.pl/xmms/stable/0.3.9/xmms-%{_xmms_mod_ver}.tar.gz
 # Source2-md5	c5a35a5d206dd5024304fc891f3e7723
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
