@@ -1,15 +1,6 @@
-diff -urN kadu-0.1.6b.org/Makefile.am kadu-0.1.6b/Makefile.am
---- kadu-0.1.6b.org/Makefile.am	Sat Sep 29 16:56:11 2001
-+++ kadu-0.1.6b/Makefile.am	Sat Sep 29 16:57:13 2001
-@@ -2,7 +2,7 @@
- 
- SUBDIRS = kadu po 
- 
--EXTRA_DIST = kadu.kdevprj AUTHORS COPYING ChangeLog INSTALL README TODO kadu.lsm 
-+EXTRA_DIST = kadu.kdevprj AUTHORS COPYING ChangeLog INSTALL README TODO kadu.lsm admin
- 
- ####### kdevelop will overwrite this part!!! (end)############
- # not a GNU package. You can remove this line, if 
+diff -urN kadu-0.1.9.org/Makefile.am kadu-0.1.9/Makefile.am
+--- kadu-0.1.9.org/Makefile.am	Thu Nov 29 15:55:09 2001
++++ kadu-0.1.9/Makefile.am	Thu Nov 29 15:55:42 2001
 @@ -24,8 +24,6 @@
  	$(MAKE) -f admin/Makefile.common package-messages
  	$(MAKE) -C po merge
@@ -19,13 +10,17 @@ diff -urN kadu-0.1.6b.org/Makefile.am kadu-0.1.6b/Makefile.am
  dist-hook:
  	cd $(top_distdir) && perl admin/am_edit -padmin
  	cd $(top_distdir) && $(MAKE) -f admin/Makefile.common subdirs
-diff -urN kadu-0.1.6b.org/acinclude.m4 kadu-0.1.6b/acinclude.m4
---- kadu-0.1.6b.org/acinclude.m4	Sat Sep 29 16:56:11 2001
-+++ kadu-0.1.6b/acinclude.m4	Sat Sep 29 16:56:33 2001
-@@ -2480,47 +2480,6 @@
- # Ulrich Drepper <drepper@cygnus.com>, 1995.
+diff -urN kadu-0.1.9.org/acinclude.m4 kadu-0.1.9/acinclude.m4
+--- kadu-0.1.9.org/acinclude.m4	Thu Nov 29 15:55:09 2001
++++ kadu-0.1.9/acinclude.m4	Thu Nov 29 15:57:02 2001
+@@ -2476,50 +2476,6 @@
+ ])
  
- # serial 1
+ 
+-# Check whether LC_MESSAGES is available in <locale.h>.
+-# Ulrich Drepper <drepper@cygnus.com>, 1995.
+-
+-# serial 1
 -
 -AC_DEFUN(AM_LC_MESSAGES,
 -  [if test $ac_cv_header_locale_h = yes; then
@@ -66,7 +61,6 @@ diff -urN kadu-0.1.6b.org/acinclude.m4 kadu-0.1.6b/acinclude.m4
 - fi
 - AC_SUBST(LIBOBJS)dnl
 -])
--
+ 
  # Macro to add for using GNU gettext.
  # Ulrich Drepper <drepper@cygnus.com>, 1995.
- 
