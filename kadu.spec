@@ -3,7 +3,8 @@
 %bcond_without	spellchecker	# without spellchecker (Aspell support)
 
 %define		_libgadu_ver	4:1.4-2
-%define		_xmms_mod_ver	1.11
+%define		_xmms_mod_ver	1.15
+%define		_spellchecker_mod_ver	0.11
 %define		snapshot	20040828
 #
 Summary:	A Gadu-Gadu client for online messaging
@@ -17,11 +18,10 @@ Group:		Applications/Communications
 Source0:	http://kadu.net/download/snapshots/kadu-%{snapshot}.tar.bz2
 # Source0-md5:	60f816ba9e3cd0abe55369945195c929
 Source1:	%{name}.desktop
-# Source2:	http://scripts.one.pl/xmms/stable/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
-Source2:	http://scripts.one.pl/xmms/stable/0.3.9/xmms-%{_xmms_mod_ver}.tar.gz
+Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
 # Source2-md5	c5a35a5d206dd5024304fc891f3e7723
-Source3:       http://scripts.one.pl/spellchecker/stable/%{version}/spellchecker-0.9.tar.gz
-# Source3-md5: b699879a56b679690a57e653dbc9d64d
+Source3:       http://scripts.one.pl/spellchecker/devel/%{version}/spellchecker-%{_spellchecker_mod_ver}.tar.gz
+# Source3-md5:	a721c8f4b51f447ba287e918aee926bc
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
 %{?with_spellchecker:BuildRequires:	aspell-devel}
@@ -105,14 +105,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_pixmapsdir}/kadu.png
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/themes
-%dir %{_datadir}/%{name}/modules
-%{_datadir}/%{name}/modules/*.desc
+%dir %{_libdir}/%{name}/modules
+%{_libdir}/%{name}/modules/*.desc
 # XXX: binaries cannot reside in /usr/share!!!
-%attr(755,root,root) %{_datadir}/%{name}/modules/*.so
-%dir %{_datadir}/%{name}/modules/translations
-%lang(de) %{_datadir}/%{name}/modules/translations/*_de.qm
-%lang(it) %{_datadir}/%{name}/modules/translations/*_it.qm
-%lang(pl) %{_datadir}/%{name}/modules/translations/*_pl.qm
+%attr(755,root,root) %{_libdir}/%{name}/modules/*.so
+%dir %{_libdir}/%{name}/modules/translations
+%lang(de) %{_libdir}/%{name}/modules/translations/*_de.qm
+%lang(it) %{_libdir}/%{name}/modules/translations/*_it.qm
+%lang(pl) %{_libdir}/%{name}/modules/translations/*_pl.qm
 %dir %{_datadir}/%{name}/translations
 %lang(de) %{_datadir}/%{name}/translations/*_de.qm
 %lang(en) %{_datadir}/%{name}/translations/*_en.qm
