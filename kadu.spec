@@ -53,11 +53,11 @@ chmod u+w aclocal.m4 configure
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	kde_appsdir=%{_applnkdir}
+	DESTDIR=$RPM_BUILD_ROOT
+
+install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 
