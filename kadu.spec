@@ -7,7 +7,7 @@
 %define		_xmms_mod_ver	1.20
 %define		_spellchecker_mod_ver	0.11
 %define		_weather_ver	1.5
-%define		snapshot	20040912
+%define		snapshot	20040913
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
@@ -18,7 +18,7 @@ License:	GPL
 Group:		Applications/Communications
 # Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
 Source0:	http://kadu.net/download/snapshots/kadu-%{snapshot}.tar.bz2
-# Source0-md5:	490b88e0f256bda7752069a016c04290
+# Source0-md5:	1a963d2d046728435dcc6958f87aafdb
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
 # Source2-md5:	fb88a8f479b4295fb396ad35c8ba0035
@@ -107,14 +107,14 @@ rm -rf $RPM_BUILD_ROOT%{_includedir}
 
 mv -f $RPM_BUILD_ROOT%{_datadir}/%{name}/modules $RPM_BUILD_ROOT%{_libdir}/%{name}
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
-mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/{config_wizard} $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/config_wizard $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 
 %if %{with xmms}
-mv -f $RPM_BUILD_ROOT%_libdir}/%{name}/modules/data/xmms} $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/xmms $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 %endif
 
 %if %{with weather}
-mv -f $RPM_BUILD_ROOT%_libdir}/%{name}/modules/data/weather $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/weather $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 %endif
 
 rm -rf `find $RPM_BUILD_ROOT -name CVS`
