@@ -1,9 +1,9 @@
-%define		_snapshot	20020918
+%define		_snapshot	20021005
 Summary:	An Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.1
-Release:	6
+Release:	7
 License:	GPL
 Group:		Applications/Communications
 #Source0:	http://kadu.net/%{name}-%{version}.tar.gz
@@ -51,7 +51,7 @@ install -d {$RPM_BUILD_ROOT%{_bindir},$RPM_BUILD_ROOT%{_applnkdir}/Network/Commu
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+%{!?_without_clean:rm -rf $RPM_BUILD_ROOT}
 
 %post
 echo "Additional image files can be downloaded from http://cpi.pl/Kadu/images.tgz
