@@ -1,4 +1,3 @@
-
 Summary:	An Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
@@ -17,9 +16,12 @@ BuildRequires:	kdelibs-devel >= 3.0
 BuildRequires:	libtool
 BuildRequires:	qt-devel >= 3.0.5
 BuildRequires:	readline-devel
-BuildRequires:	openssl-devel >= 0.9.7
+BuildRequires:	openssl-devel >= 0.9.6j
 Requires:	libgadu >= 1:20030208
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_prefix		/usr/X11R6
+%define		_mandir		%{_prefix}/man
 
 %description
 Kadu is client of Gadu-Gadu protocol. It's an IM for Linux and UN*X.
@@ -38,9 +40,8 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
-%configure
-
-%{__make}
+%configure \
+    --with-qt-includes=/usr/X11R6/include/qt
 
 %install
 rm -rf $RPM_BUILD_ROOT
