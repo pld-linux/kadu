@@ -17,7 +17,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.9
-Release:	5
+Release:	6
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -264,6 +264,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/COPYING
 %{_datadir}/%{name}/THANKS
 #default modules:
+%dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/modules
 %{_libdir}/%{name}/modules/autoaway.desc
 %{_libdir}/%{name}/modules/autoresponder.desc
