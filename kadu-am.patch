@@ -1,0 +1,67 @@
+--- kadu/Makefile.in~	Sun Mar 17 19:53:12 2002
++++ kadu/Makefile.in	Fri Apr  5 20:16:03 2002
+@@ -261,7 +261,7 @@
+ sms.$(OBJEXT) userbox.$(OBJEXT) about.$(OBJEXT) ignore.$(OBJEXT) adduser.$(OBJEXT) \
+ userinfo.$(OBJEXT) network.$(OBJEXT) search.$(OBJEXT) \
+ userlist.$(OBJEXT) history.$(OBJEXT) chat.$(OBJEXT) events.$(OBJEXT) \
+-kadu.$(OBJEXT) main.$(OBJEXT) dcc.$(OBJEXT) ../ekg/lib/libgadu.a\
++kadu.$(OBJEXT) main.$(OBJEXT) dcc.$(OBJEXT) \
+ chat.moc.o  \
+ kadu_meta_unload.o 
+ @KDE_USE_FINAL_FALSE@kadu_OBJECTS = $(kadu_nofinal_OBJECTS)
+@@ -740,8 +740,4 @@
+ #>+ 2
+ $(srcdir)/kadu.cpp: kadu.moc 
+ 
+-../ekg/lib/libgadu.a:
+-	cd ../ekg; ./configure;
+-	make -C ../ekg/lib;
+-	strip -g ../ekg/lib/libgadu.a;
+ 
+--- kadu/Makefile.in~	Fri Apr  5 20:23:55 2002
++++ kadu/Makefile.in	Fri Apr  5 20:41:32 2002
+@@ -214,7 +214,7 @@
+ 
+ bin_PROGRAMS = kadu
+ kadu_SOURCES = config.cpp expimp.cpp register.cpp dcc.cpp sms.cpp userbox.cpp about.cpp ignore.cpp adduser.cpp userinfo.cpp network.cpp search.cpp userlist.cpp history.cpp chat.cpp events.cpp kadu.cpp main.cpp 
+-kadu_LDADD =  $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT) $(LIBSOCKET)
++kadu_LDADD =  -lgadu $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT) $(LIBSOCKET)
+ 
+ EXTRA_DIST = main.cpp kadu.cpp kadu.h kadu.desktop hi32-app-kadu.png hi16-app-kadu.png events.h events.cpp chat.cpp chat.h history.h history.cpp pixmaps.h userlist.cpp search.h search.cpp network.cpp userinfo.cpp adduser.cpp ignore.cpp about.cpp sms.cpp userbox.cppregister.cpp dcc.cpp expimp.cpp config.cpp 
+ 
+--- kadu/Makefile.in~	Fri Apr  5 20:50:02 2002
++++ kadu/Makefile.in	Fri Apr  5 21:09:17 2002
+@@ -598,13 +598,13 @@
+ #>- 	$(INSTALL_DATA) $(srcdir)/kadu.desktop $(kde_appsdir)/Applications/kadu.desktop
+ #>+ 1
+ 	$(INSTALL_DATA) $(srcdir)/kadu.desktop $(DESTDIR)$(kde_appsdir)/Applications/kadu.desktop
+-#>- 	$(mkinstalldirs) $(kde_icondir)/hicolor/32x32/apps/
++	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps/
+ #>+ 1
+ 	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/locolor/32x32/apps/
+ #>- 	$(INSTALL_DATA) $(srcdir)/hi32-app-kadu.png $(kde_icondir)/hicolor/32x32/apps/kadu.png
+ #>+ 1
+ 	$(INSTALL_DATA) $(srcdir)/hi32-app-kadu.png $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps/kadu.png
+-#>- 	$(mkinstalldirs) $(kde_icondir)/hicolor/16x16/apps/
++	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/16x16/apps/
+ #>+ 1
+ 	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/locolor/16x16/apps/
+ #>- 	$(INSTALL_DATA) $(srcdir)/hi16-app-kadu.png $(kde_icondir)/hicolor/16x16/apps/kadu.png
+--- kadu/Makefile.in~	Fri Apr  5 21:10:19 2002
++++ kadu/Makefile.in	Fri Apr  5 21:24:44 2002
+@@ -600,13 +600,13 @@
+ 	$(INSTALL_DATA) $(srcdir)/kadu.desktop $(DESTDIR)$(kde_appsdir)/Applications/kadu.desktop
+ 	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps/
+ #>+ 1
+-	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/locolor/32x32/apps/
++#	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/locolor/32x32/apps/
+ #>- 	$(INSTALL_DATA) $(srcdir)/hi32-app-kadu.png $(kde_icondir)/hicolor/32x32/apps/kadu.png
+ #>+ 1
+ 	$(INSTALL_DATA) $(srcdir)/hi32-app-kadu.png $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps/kadu.png
+ 	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/16x16/apps/
+ #>+ 1
+-	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/locolor/16x16/apps/
++#	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/locolor/16x16/apps/
+ #>- 	$(INSTALL_DATA) $(srcdir)/hi16-app-kadu.png $(kde_icondir)/hicolor/16x16/apps/kadu.png
+ #>+ 1
+ 	$(INSTALL_DATA) $(srcdir)/hi16-app-kadu.png $(DESTDIR)$(kde_icondir)/hicolor/16x16/apps/kadu.png
