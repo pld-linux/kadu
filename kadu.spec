@@ -1,4 +1,5 @@
 #
+# Conditional build:
 %bcond_without	xmms		# without xmms player support module
 %bcond_without	arts		# without arts sound server support
 %bcond_without	esd		# without ESD sound server support
@@ -15,7 +16,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.9
-Release:	1.4
+Release:	1.5
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -29,18 +30,18 @@ Source4:	http://scripts.one.pl/spellchecker/stable/%{version}/spellchecker-0.9.t
 # Source4-md5:	b699879a56b679690a57e653dbc9d64d
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
+%{?with_arts:BuildRequires:	arts-devel}
+%{?with_spellchecker:BuildRequires:	aspell-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
+%{?with_esd:BuildRequires:	esound-devel}
 BuildRequires:	gettext-devel
 BuildRequires:	libgadu-devel >= %{_libgadu_ver}
 BuildRequires:	libgsm-devel
 BuildRequires:	libtool
+%{?with_nas:BuildRequires:	nas-devel}
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	qt-devel
-%{?with_arts:BuildRequires:	arts-devel}
-%{?with_esd:BuildRequires:	esound-devel}
-%{?with_nas:BuildRequires:	nas-devel}
-%{?with_spellchecker:BuildRequires:	aspell-devel}
 %{?with_xmms:BuildRequires:	xmms-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -116,7 +117,8 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	powiedz
 
 %description module-speech
-TODO
+Kadu module which supports reading aloud using speech synthesis
+provided by external program "powiedz".
 
 %description module-speech -l pl
 Modu³ obs³ugi "G³o¶nego czytania" przez zewnêtrzny program "Powiedz".
@@ -161,6 +163,8 @@ tar xzf %{SOURCE3} -C modules
 %if %{with spellchecker}
 tar xzf %{SOURCE4} -C modules
 %endif
+
+%{__perl} -pi -e 's@/lib@/%{_lib}@g' modules/x11_docking/spec
 
 %build
 %if %{with xmms}
