@@ -3,11 +3,11 @@
 %bcond_without	spellchecker	# without spellchecker (Aspell support)
 %bcond_without	weather	# without weather check module support
 
-%define		_libgadu_ver	4:1.4-2
-%define		_xmms_mod_ver	1.20
+# %define		_libgadu_ver	4:1.4-2
+%define		_xmms_mod_ver	1.21
 %define		_spellchecker_mod_ver	0.11
-%define		_weather_ver	1.5
-%define		snapshot	20040913
+%define		_weather_ver	1.51
+%define		snapshot	20041012
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
@@ -18,14 +18,14 @@ License:	GPL
 Group:		Applications/Communications
 # Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
 Source0:	http://kadu.net/download/snapshots/%{name}-%{snapshot}.tar.bz2
-# Source0-md5:	1a963d2d046728435dcc6958f87aafdb
+# Source0-md5:	ef8796d6e7664cc9121730bf907db2ad
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
-# Source2-md5:	fb88a8f479b4295fb396ad35c8ba0035
+# Source2-md5:	fb76ea3899e2b223b8134c9cc97a222f
 Source3:	http://scripts.one.pl/spellchecker/devel/%{version}/spellchecker-%{_spellchecker_mod_ver}.tar.gz
 # Source3-md5:	a721c8f4b51f447ba287e918aee926bc
 Source4:	http://republika.pl/buysk/weather/%{name}-weather-%{_weather_ver}.tar.bz2
-# Source4-md5:	8b8841c7a2fc2b302d1d0f01b15ee456
+# Source4-md5:	46c452f0f1b488501cc50b271714f3c1
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
 %{?with_spellchecker:BuildRequires:	aspell-devel}
@@ -33,7 +33,7 @@ URL:		http://kadu.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
-BuildRequires:	libgadu-devel >= %{_libgadu_ver}
+# BuildRequires:	libgadu-devel >= %{_libgadu_ver}
 BuildRequires:	libgsm-devel
 BuildRequires:	libtool
 BuildRequires:	openssl-devel >= 0.9.7d
@@ -87,8 +87,8 @@ chmod u+w aclocal.m4 configure
 %{__automake}
 %configure \
 	--enable-voice \
-	--enable-dist-info=PLD \
-	--with-existing-libgadu=/usr
+	--enable-dist-info=PLD
+#	--with-existing-libgadu=/usr
 
 %{__make}
 
