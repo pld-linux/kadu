@@ -3,25 +3,27 @@
 %bcond_without	arts	# without arts sound server support
 %bcond_without	esd	# without ESD sound server support
 %bcond_without	nas	# without Network Audio System support
-%bcond_without	echo	# without Echo sample module
-#%%bcond_without	speech	# without Speech synthesis support
-#%%bcond_without	WM	# without WindowMaker docking module
+%bcond_without	speech	# without Speech synthesis support
+%bcond_without	amarok	# without amarok player support module
 
 %define		_libgadu_ver	4:1.4-2
-%define		_xmms_mod_ver	1.9
+%define		_xmms_mod_ver	1.10
+%define		_amarok_mod_ver	1.5
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.9
-Release:	1.2
+Release:	1.3
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
 # Source0-md5:	d461c4b19670920e2ba1425d12e23f6b
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/stable/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
-# Source2-md5	c5a35a5d206dd5024304fc891f3e7723
+# Source2-md5	12ca8a6f0fcb61c87602ab7fc869483d
+Source3:	http://scripts.one.pl/amarok/stable/%{version}/amarok-%{_amarok_mod_ver}.tar.gz
+# Source3-md5	2ad7832cf02422a84bdd675a507a47d0
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
 BuildRequires:	autoconf
@@ -56,18 +58,88 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	xmms
 
 %description module-xmms
-Module which allows showing in status description information about the
-song currently played in xmms.
+Module which allows showing in status description information about
+the song currently played in xmms.
 
 %description module-xmms -l pl
 Modu³ umo¿liwiajacy w opisie statusu pokazywanie informacji o
 odgrywanym utworze z odtwarzacza xmms.
+
+%package module-sound-arts
+Summary:	Support aRts sound server
+Summary(pl):	Wsparcie dla serwera dzwiêku arts
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+Requires:	arts
+
+%description module-sound-arts
+aRts sound server support module.
+
+%description module-sound-arts -l pl
+Modu³ do obs³ugi serwera d¼wiêku aRts.
+
+%package module-sound-esd
+Summary:	Support ESD sound server
+Summary(pl):	Wsparcie dla serwera dzwiêku ESD
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+Requires:	esound
+
+%description module-sound-esd
+ESD sound module.
+
+%description module-sound-esd -l pl
+Modu³ obs³ugi d¼wiêku przez ESD.
+
+%package module-sound-nas
+Summary:	Support Network Audio System
+Summary(pl):	Wsparcie dla sieciowego systemu dzwiêku NAS
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+Requires:	nas
+
+%description module-sound-nas
+Network Audio System sound module.
+
+%description module-sound-nas -l pl
+Modu³ obs³ugi d¼wiêku przez NAS.
+
+%package module-speech
+Summary:	Speech synthesis support
+Summary(pl):	Modu³ obs³ugi "G³o¶nego czytania"
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+Requires:	powiedz
+
+%description module-speech
+TODO
+
+%description module-speech -l pl
+Modu³ obs³ugi "G³o¶nego czytania" przez zewnêtrzny program "Powiedz".
+
+%package module-amarok
+Summary:	Support amarok status
+Summary(pl):	Modu³ statusu dla amarok
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+Requires:	amarok
+
+%description module-amarok
+Module which allows showing in status description information about
+the song currently played in amarok.
+
+%description module-amarok -l pl
+Modu³ umo¿liwiajacy w opisie statusu pokazywanie informacji o
+odgrywanym utworze z odtwarzacza amarok.
 
 %prep
 %setup -q -n %{name}
 %patch0 -p1
 %if %{with xmms}
 tar xzf %{SOURCE2} -C modules
+%endif
+%if %{with amarok}
+tar xzf %{SOURCE3} -C modules
 %endif
 
 %build
@@ -83,16 +155,13 @@ sed -i -e 's/module_esd_sound=n/module_esd_sound=m/' .config
 %if %{with nas}
 sed -i -e 's/module_nas_sound=n/module_nas_sound=m/' .config
 %endif
-%if %{with echo}
-sed -i -e 's/module_echo=n/module_echo=m/' .config
+%if %{with speech}
+sed -i -e 's/module_speech=n/module_speech=m/' .config
 %endif
-#%%if %{with speech}
-#sed -i -e 's/module_speech=n/module_speech=m/' .config
-#%%endif
-#%%if %{with speech}
-#sed -i -e 's/module_wmaker_docking=n/module_wmaker_docking=m/' .config
-#%%endif
-
+%if %{with amarok}
+sed -i -e 's/module_amarok=n/module_amarok=m/' .config
+echo 'MODULE_INCLUDES_PATH="/usr/include"'>>modules/amarok/spec
+%endif
 
 chmod u+w aclocal.m4 configure
 %{__aclocal}
@@ -144,6 +213,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/modules/sms.desc
 %{_datadir}/%{name}/modules/sound.desc
 %{_datadir}/%{name}/modules/voice.desc
+%{_datadir}/%{name}/modules/wmaker_docking.desc
 %{_datadir}/%{name}/modules/x11_docking.desc
 #default modules translation:
 %dir %{_datadir}/%{name}/modules/translations
@@ -191,16 +261,49 @@ rm -rf $RPM_BUILD_ROOT
 %lang(it) %{_datadir}/%{name}/translations/qt_it.qm
 %lang(pl) %{_datadir}/%{name}/translations/qt_pl.qm
 
-#temporarily, move to subpackages
-%{_datadir}/%{name}/modules/arts*
-%{_datadir}/%{name}/modules/esd*
-%{_datadir}/%{name}/modules/nas*
-%{_datadir}/%{name}/modules/echo*
-
 %if %{with xmms}
 %files module-xmms
 %defattr(644,root,root,755)
 %lang(pl) %{_datadir}/%{name}/modules/translations/xmms_pl.qm
 %{_datadir}/%{name}/modules/xmms.desc
 %{_datadir}/%{name}/modules/xmms.so
+%endif
+
+%if %{with arts}
+%files module-sound-arts
+%defattr(644,root,root,755)
+%{_datadir}/%{name}/modules/arts_sound.desc
+%{_datadir}/%{name}/modules/arts_sound.so
+%endif
+
+%if %{with esd}
+%files module-sound-esd
+%defattr(644,root,root,755)
+%{_datadir}/%{name}/modules/esd_sound.desc
+%{_datadir}/%{name}/modules/esd_sound.so
+%endif
+
+%if %{with nas}
+%files module-sound-nas
+%defattr(644,root,root,755)
+%{_datadir}/%{name}/modules/nas_sound.desc
+%{_datadir}/%{name}/modules/nas_sound.so
+%endif
+
+%if %{with speech}
+%files module-speech
+%defattr(644,root,root,755)
+%{_datadir}/%{name}/modules/speech.desc
+%{_datadir}/%{name}/modules/speech.so
+%lang(de) %{_datadir}/%{name}/modules/translations/speech_de.qm
+%lang(it) %{_datadir}/%{name}/modules/translations/speech_it.qm
+%lang(pl) %{_datadir}/%{name}/modules/translations/speech_pl.qm
+%endif
+
+%if %{with amarok}
+%files module-amarok
+%defattr(644,root,root,755)
+%lang(pl) %{_datadir}/%{name}/modules/translations/amarok_pl.qm
+%{_datadir}/%{name}/modules/amarok.desc
+%{_datadir}/%{name}/modules/amarok.so
 %endif
