@@ -2,7 +2,7 @@ Summary:	An Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.2.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Communications
 URL:		http://cpi.pl/Kadu/
@@ -15,7 +15,6 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	kdelibs-devel >= 2.2.0
-BuildRequires:	libgadu-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel
