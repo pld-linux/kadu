@@ -2,12 +2,12 @@
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
-Version:	0.3.4
-Release:	2
+Version:	0.3.5
+Release:	1
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://kadu.net/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	61fcefc7b0ac32b959544c52666d8d5c
+# Source0-md5:	68d5e49e26044b4e19cf2bd2f7e52975
 Source1:	%{name}.desktop
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
@@ -15,6 +15,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	libgadu-devel >= 3:1.4
+BuildRequires:	libgsm-devel
 BuildRequires:	libtool
 BuildRequires:	openssl-devel >= 0.9.7c
 BuildRequires:	qt-devel
@@ -37,12 +38,12 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 %patch0 -p1
 
 %build
-chmod +w aclocal.m4 configure
+chmod u+w aclocal.m4 configure
 %{__aclocal}
 %{__autoconf}
-%{__autoheader}
 %{__automake}
 %configure \
+	--enable-voice \
 	--enable-dist-info=PLD \
 	--with-existing-libgadu
 
@@ -60,16 +61,13 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 
 install kadu/hi48-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/kadu.png
 
-%find_lang %{name} --with-kde
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f %{name}.lang
+%files
 %defattr(644,root,root,755)
 %doc ChangeLog INSTALL README TODO
 %attr(755,root,root) %{_bindir}/kadu
-%{_datadir}/apps/%{name}
 %{_desktopdir}/kadu.desktop
 %{_pixmapsdir}/kadu.png
-%lang(pl) %{_mandir}/pl/man1/kadu.1*
+%{_datadir}/%{name}
