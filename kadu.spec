@@ -71,8 +71,9 @@ Module which allows showing in status description information about
 the song currently played in xmms.
 
 %description module-xmms -l pl
-Modu³ umo¿liwiajacy w opisie statusu pokazywanie informacji o
-odgrywanym utworze z odtwarzacza xmms.
+Modu³ umo¿liwiaj±cy pokazywanie w opisie statusu informacji 
+o odgrywanym utworze z odtwarzacza xmms.
+
 
 %package module-sound-arts
 Summary:	Support aRts sound server
@@ -139,7 +140,7 @@ Module which allows showing in status description information about
 the song currently played in amarok.
 
 %description module-amarok -l pl
-Modu³ umo¿liwiajacy w opisie statusu pokazywanie informacji o
+Modu³ umo¿liwiaj±cy w opisie statusu pokazywanie informacji o
 odgrywanym utworze z odtwarzacza amarok.
 
 %package module-spellchecker
