@@ -1,12 +1,14 @@
 Summary:	An Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
-Version:	0.2.0
+Version:	0.2.1
 Release:	1
 License:	GPL
 Group:		Applications/Communications
 URL:		http://cpi.pl/Kadu/
 Source0:	http://cpi.pl/Kadu/%{name}-%{version}.tar.gz
+Patch0:		%{name}-edit_clear.patch
+Patch1:		%{name}-am.patch
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -35,6 +37,8 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 
 %prep
 %setup -q
+%patch0
+%patch1
 
 %build
 #gettextize --copy --force
@@ -67,4 +71,4 @@ and should be placed in .gg/images folder inside user's home directory."
 %doc *.gz
 %attr(755,root,root) %{_bindir}/*
 %{_applnkdir}/Network/Communications/*.desktop
-%{_datadir}/icons/locolor/*/*/*.png
+%{_datadir}/icons/hicolor/*/*/*.png
