@@ -2,11 +2,11 @@ Summary:	An Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.3.3
-%define		_pre	rc3
-Release:	0.%{_pre}.1
+Release:	1
 License:	GPL
 Group:		Applications/Communications
-Source0:	http://kadu.net/releases/%{name}-%{version}-%{_pre}.tar.gz
+#Source0:	http://kadu.net/%{name}-%{version}.tar.gz
+Source0:	http://kadu.net/releases/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 URL:		http://kadu.net/
 BuildRequires:	autoconf
@@ -61,7 +61,7 @@ install kadu/hi48-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/apps/
 rm -rf $RPM_BUILD_ROOT
 
 %post
-echo "Additional image files can be downloaded from http://cpi.pl/Kadu/images.tgz
+echo "Additional image files can be downloaded from http://www.kadu.net/download.php
 and should be placed in .gg/images folder inside user's home directory."
 
 %files -f %{name}.lang
