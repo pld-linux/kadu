@@ -5,23 +5,18 @@ Version:	0.3.0
 Release:	1
 License:	GPL
 Group:		Applications/Communications
-URL:		http://cpi.pl/Kadu/
 #Source0:	http://cpi.pl/Kadu/%{name}-%{version}.tar.gz
 Source0:	ftp://ftp.pld.org.pl/people/tomee/kadu/unstable/%{name}-%{version}.tar.gz
 #Patch0:		%{name}-edit_clear.patch
 Patch1:		%{name}-am.patch
 #Patch2:		%{name}-gcc31.patch
-BuildRequires:	XFree86-devel
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	gettext-devel
+URL:		http://cpi.pl/Kadu/
+#BuildRequires:	autoconf
+#BuildRequires:	automake
+#BuildRequires:	gettext-devel
 BuildRequires:	kdelibs-devel >= 3.0
-BuildRequires:	libjpeg-devel
-BuildRequires:	libpng-devel
-BuildRequires:	libstdc++-devel
-BuildRequires:	libtool
+#BuildRequires:	libtool
 BuildRequires:	qt-devel >= 3.0.3
-BuildRequires:	zlib-devel
 BuildRequires:	readline-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -30,12 +25,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Kadu is client of Gadu-Gadu protocol. It's an IM for Linux and UN*X.
-It's written for KDE2.
+It's written for KDE.
 
 %description -l pl
 Kadu jest klientem protko³u Gadu-Gadu. Inaczej mówi±c, jest
 komunikatorem dla Linuksa (oraz, przy niewielkim wysi³ku, innych
-systemów UN*Xowych). Napisano go w oparciu o bibliotekê Qt2 i KDE2,
+systemów UN*Xowych). Napisano go w oparciu o bibliotekê Qt i KDE,
 przeznaczony jest wiêc dla tego ¶rodowiska.
 
 %prep
@@ -45,11 +40,11 @@ przeznaczony jest wiêc dla tego ¶rodowiska.
 #%patch2 -p1
 
 %build
-#gettextize --copy --force
-#libtoolize --copy --force
+#%{__gettextize}
+#%{__libtoolize}
 #aclocal
-#autoconf
-#automake -a -c
+#%{__autoconf}
+#%{__automake}
 :> ./k_install; chmod 755 k_install
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 %configure2_13
@@ -62,8 +57,6 @@ install -d $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 install kadu/kadu.desktop $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications
 
-gzip -9nf ChangeLog INSTALL README TODO
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -73,8 +66,8 @@ and should be placed in .gg/images folder inside user's home directory."
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc ChangeLog INSTALL README TODO
 %attr(755,root,root) %{_bindir}/*
 %{_applnkdir}/Network/Communications/*.desktop
-%{_datadir}/pixmaps/hicolor/*/*/*.png
-%{_datadir}/apps/%{name}/*
+%{_pixmapsdir}/*/*/apps/*.png
+%{_datadir}/apps/%{name}
