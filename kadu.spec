@@ -18,7 +18,6 @@ BuildRequires:	qt-devel >= 3.0.5
 BuildRequires:	readline-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-
 %description
 Kadu is client of Gadu-Gadu protocol. It's an IM for Linux and UN*X.
 It's written for KDE.
@@ -57,7 +56,6 @@ install kadu/hi16-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/16x16/apps/
 install kadu/hi32-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/32x32/apps/kadu.png
 install kadu/hi48-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/apps/kadu.png
 
-
 %clean
 %{!?_without_clean:rm -rf $RPM_BUILD_ROOT}
 
@@ -71,7 +69,8 @@ and should be placed in .gg/images folder inside user's home directory."
 %attr(755,root,root) %{_bindir}/*
 %{_applnkdir}/Network/Communications/*.desktop
 %{_pixmapsdir}/*/*/apps/*.png
+%dir %{_datadir}/apps/%{name}
 %{_datadir}/apps/%{name}/msg.wav
 %{_datadir}/apps/%{name}/themes
 %{_datadir}/apps/%{name}/doc
-%{_datadir}/man/*/man1/*.gz
+%lang(pl) %{_mandir}/pl/man1/*.1*
