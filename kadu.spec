@@ -3,7 +3,7 @@
 
 %define		_libgadu_ver	4:1.4-2
 %define		_xmms_mod_ver	1.10
-%define		snapshot	20040710
+%define		snapshot	20040713
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
@@ -14,7 +14,7 @@ License:	GPL
 Group:		Applications/Communications
 # Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
 Source0:	http://kadu.net/download/snapshots/kadu-%{snapshot}.tar.bz2
-# Source0-md5:	d73aa8f25bbd94d9004d145560087784
+# Source0-md5:	ac9be452f6575f19256738739de91193
 Source1:	%{name}.desktop
 # Source2:	http://scripts.one.pl/xmms/stable/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
 Source2:	http://scripts.one.pl/xmms/stable/0.3.9/xmms-%{_xmms_mod_ver}.tar.gz
@@ -29,7 +29,7 @@ BuildRequires:	libgsm-devel
 BuildRequires:	libtool
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	qt-devel
-%{?with_xmms:BuildRequires:     xmms-devel}
+%{?with_xmms:BuildRequires:	xmms-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -78,8 +78,17 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog INSTALL README TODO
+%doc ChangeLog INSTALL README TODO AUTHORS COPYING ChangeLog HISTORY THANKS
 %attr(755,root,root) %{_bindir}/*
 %{_desktopdir}/kadu.desktop
 %{_pixmapsdir}/kadu.png
-%{_datadir}/%{name}
+%{_datadir}/%{name}/themes
+%{_datadir}/%{name}/modules/*.desc
+%{_datadir}/%{name}/modules/*.so
+%lang(de) %{_datadir}/%{name}/modules/translations/*_de.qm
+%lang(it) %{_datadir}/%{name}/modules/translations/*_it.qm
+%lang(pl) %{_datadir}/%{name}/modules/translations/*_pl.qm
+%lang(de) %{_datadir}/%{name}/translations/*_de.qm
+%lang(en) %{_datadir}/%{name}/translations/*_en.qm
+%lang(it) %{_datadir}/%{name}/translations/*_it.qm
+%lang(pl) %{_datadir}/%{name}/translations/*_pl.qm
