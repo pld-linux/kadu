@@ -1,13 +1,14 @@
 
+%define		_pre		pre1
+
 Summary:	An Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
-Version:	0.3.3
-Release:	1
+Version:	0.3.4
+Release:	0.%{_pre}.1
 License:	GPL
 Group:		Applications/Communications
-#Source0:	http://kadu.net/%{name}-%{version}.tar.gz
-Source0:	http://kadu.net/releases/%{name}-%{version}.tar.gz
+Source0:	http://kadu.net/releases/%{name}-%{version}-%{_pre}.tar.gz
 Source1:	%{name}.desktop
 URL:		http://kadu.net/
 BuildRequires:	autoconf
@@ -18,7 +19,7 @@ BuildRequires:	libtool
 BuildRequires:	qt-devel >= 3.0.5
 BuildRequires:	readline-devel
 BuildRequires:	openssl-devel >= 0.9.7
-Requires:	libgadu >= 1:20030208
+Requires:	libgadu >= 1:1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -47,9 +48,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications
-install -d $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/{16x16/apps,32x32/apps,48x48/apps}
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Network/Communications
+install -d $RPM_BUILD_ROOT%{_desktopdir}
+install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
+
+install -d $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/{16x16,32x32,48x48}/apps
 install kadu/hi16-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/16x16/apps/kadu.png
 install kadu/hi32-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/32x32/apps/kadu.png
 install kadu/hi48-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/apps/kadu.png
@@ -59,15 +61,11 @@ install kadu/hi48-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/apps/
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-echo "Additional image files can be downloaded from http://www.kadu.net/download.php
-and should be placed in .gg/images folder inside user's home directory."
-
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc ChangeLog INSTALL README TODO
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/kadu
 %{_datadir}/apps/%{name}
-%{_applnkdir}/Network/Communications/*.desktop
-%{_pixmapsdir}/*/*/apps/*.png
-%lang(pl) %{_mandir}/pl/man1/*.1*
+%{_desktopdir}/kadu.desktop
+%{_pixmapsdir}/*/*/apps/kadu.png
+%lang(pl) %{_mandir}/pl/man1/kadu.1*
