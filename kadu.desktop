@@ -9,3 +9,4 @@ Terminal=0
 Type=Application
 DocPath=kadu/index.html
 Categories=Qt;Network;InstantMessaging
+Encoding=UTF-8
