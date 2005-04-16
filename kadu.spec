@@ -7,18 +7,18 @@
 %define		_xmms_mod_ver	1.25
 %define		_spellchecker_mod_ver	0.13
 %define		_weather_ver	2.01
-%define		snapshot	20050413
+#%define		snapshot	20050413
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.4.0
-Release:	0.%{snapshot}.1
+Release:	0.1
 License:	GPL v2
 Group:		Applications/Communications
-# Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
-Source0:	http://kadu.net/download/snapshots/%{name}-%{snapshot}.tar.bz2
-# Source0-md5:	c3913eee19ea2222bf0f38c6447f6da2
+Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
+# Source0-md5:	9d6c6e5ece8bb88a9e988c554af07bea
+# Source0:	http://kadu.net/download/snapshots/%{name}-%{snapshot}.tar.bz2
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
 # Source2-md5:	4a6e4d52b8efa3d182e2a55e02cc3383
