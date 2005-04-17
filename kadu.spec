@@ -1,14 +1,14 @@
 #
 # Conditional build:
-%bcond_without	xmms		# without XMMS player support module
-%bcond_without	arts		# without arts sound server support
-%bcond_without	esd		# without ESD sound server support
-%bcond_without	nas		# without Network Audio System support
-%bcond_without	speech		# without Speech synthesis support
-%bcond_without	amarok		# without amarok player support module
-%bcond_without	spellchecker	# without spellchecker (Aspell support)
-%bcond_without	weather		# without Weather support module
-%bcond_without	tcl_scripting	# without TCL scripting support and KaduPro extensions
+%bcond_with	xmms		# without XMMS player support module
+%bcond_with	arts		# without arts sound server support
+%bcond_with	esd		# without ESD sound server support
+%bcond_with	nas		# without Network Audio System support
+%bcond_with	speech		# without Speech synthesis support
+%bcond_with	amarok		# without amarok player support module
+%bcond_with	spellchecker	# without spellchecker (Aspell support)
+%bcond_with	weather		# without Weather support module
+%bcond_with	tcl_scripting	# without TCL scripting support and KaduPro extensions
 
 %define		_libgadu_ver	4:1.4-2
 %define		_amarok_mod_ver	1.5
@@ -17,12 +17,12 @@
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
-Version:	0.3.9
-Release:	8
+Version:	0.4.0
+Release:	0.1
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
-# Source0-md5:	d461c4b19670920e2ba1425d12e23f6b
+# Source0-md5:	9d6c6e5ece8bb88a9e988c554af07bea
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/stable/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
 # Source2-md5:	db1de97ec33b84d406ca1d45daaae17f
@@ -193,7 +193,7 @@ w samym Kadu mog³a by byæ dosyæ skomplikowana, lub te¿ czasoch³onna.
 %prep
 %setup -q -n %{name}
 %patch0 -p1
-%patch1 -p1
+#%%patch1 -p1
 
 %if %{with xmms}
 tar xzf %{SOURCE2} -C modules
@@ -214,6 +214,14 @@ tar xzf %{SOURCE6} -C modules
 %{__sed} -i 's,dataPath("kadu/modules/*,("%{_libdir}/kadu/modules/,g'  kadu/modules.cpp
 
 %build
+%{__sed} -i 's/module_account_management=m/module_account_management=y/' .config
+%{__sed} -i 's/module_config_wizard=m/module_config_wizard=y/' .config
+%{__sed} -i 's/module_hints=m/module_hints=y/' .config
+%{__sed} -i 's/module_x11_docking=m/module_x11_docking=y/' .config
+%{__sed} -i 's/module_window_notify=m/module_window_notify=y/' .config
+%{__sed} -i 's/module_encryption=m/module_encryption=y/' .config
+%{__sed} -i 's/module_sms=m/module_sms=y/' .config
+
 %if %{with xmms}
 %{__sed} -i 's/module_xmms=n/module_xmms=m/' .config
 rm -f modules/xmms/.autodownloaded
@@ -295,54 +303,87 @@ rm -rf $RPM_BUILD_ROOT
 #default modules:
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/modules
+%{_libdir}/%{name}/modules/account_management.desc
 %{_libdir}/%{name}/modules/autoaway.desc
 %{_libdir}/%{name}/modules/autoresponder.desc
 %attr(755,root,root) %{_libdir}/%{name}/modules/autoresponder.so
+%{_libdir}/%{name}/modules/config_wizard.desc
 %{_libdir}/%{name}/modules/default_sms.desc
 %{_libdir}/%{name}/modules/docking.desc
 %{_libdir}/%{name}/modules/dsp_sound.desc
 %attr(755,root,root) %{_libdir}/%{name}/modules/dsp_sound.so
 %{_libdir}/%{name}/modules/encryption.desc
 %{_libdir}/%{name}/modules/ext_sound.desc
+#%%attr(755,root,root) %{_libdir}/%{name}/modules/hints.so
+%{_libdir}/%{name}/modules/hints.desc
+%{_libdir}/%{name}/modules/*notify.desc
 %{_libdir}/%{name}/modules/sms.desc
 %{_libdir}/%{name}/modules/sound.desc
 %{_libdir}/%{name}/modules/voice.desc
 %{_libdir}/%{name}/modules/x11_docking.desc
 #default modules translation:
 %dir %{_libdir}/%{name}/modules/translations
+%lang(de) %{_libdir}/%{name}/modules/translations/account_management_de.qm
+%lang(fr) %{_libdir}/%{name}/modules/translations/account_management_fr.qm
+%lang(it) %{_libdir}/%{name}/modules/translations/account_management_it.qm
+%lang(pl) %{_libdir}/%{name}/modules/translations/account_management_pl.qm
 %lang(de) %{_libdir}/%{name}/modules/translations/autoaway_de.qm
+%lang(fr) %{_libdir}/%{name}/modules/translations/autoaway_fr.qm
 %lang(it) %{_libdir}/%{name}/modules/translations/autoaway_it.qm
 %lang(pl) %{_libdir}/%{name}/modules/translations/autoaway_pl.qm
 %lang(de) %{_libdir}/%{name}/modules/translations/autoresponder_de.qm
+%lang(fr) %{_libdir}/%{name}/modules/translations/autoresponder_fr.qm
 %lang(it) %{_libdir}/%{name}/modules/translations/autoresponder_it.qm
 %lang(pl) %{_libdir}/%{name}/modules/translations/autoresponder_pl.qm
+%lang(de) %{_libdir}/%{name}/modules/translations/config_wizard_de.qm
+%lang(fr) %{_libdir}/%{name}/modules/translations/config_wizard_fr.qm
+%lang(it) %{_libdir}/%{name}/modules/translations/config_wizard_it.qm
+%lang(pl) %{_libdir}/%{name}/modules/translations/config_wizard_pl.qm
 %lang(de) %{_libdir}/%{name}/modules/translations/default_sms_de.qm
+%lang(fr) %{_libdir}/%{name}/modules/translations/default_sms_fr.qm
 %lang(it) %{_libdir}/%{name}/modules/translations/default_sms_it.qm
 %lang(pl) %{_libdir}/%{name}/modules/translations/default_sms_pl.qm
 %lang(de) %{_libdir}/%{name}/modules/translations/docking_de.qm
+%lang(fr) %{_libdir}/%{name}/modules/translations/docking_fr.qm
 %lang(it) %{_libdir}/%{name}/modules/translations/docking_it.qm
 %lang(pl) %{_libdir}/%{name}/modules/translations/docking_pl.qm
 %lang(de) %{_libdir}/%{name}/modules/translations/dsp_sound_de.qm
+%lang(fr) %{_libdir}/%{name}/modules/translations/dsp_sound_fr.qm
 %lang(it) %{_libdir}/%{name}/modules/translations/dsp_sound_it.qm
 %lang(pl) %{_libdir}/%{name}/modules/translations/dsp_sound_pl.qm
 %lang(de) %{_libdir}/%{name}/modules/translations/encryption_de.qm
+%lang(fr) %{_libdir}/%{name}/modules/translations/encryption_fr.qm
 %lang(it) %{_libdir}/%{name}/modules/translations/encryption_it.qm
 %lang(pl) %{_libdir}/%{name}/modules/translations/encryption_pl.qm
 %lang(de) %{_libdir}/%{name}/modules/translations/ext_sound_de.qm
+%lang(fr) %{_libdir}/%{name}/modules/translations/ext_sound_fr.qm
 %lang(it) %{_libdir}/%{name}/modules/translations/ext_sound_it.qm
 %lang(pl) %{_libdir}/%{name}/modules/translations/ext_sound_pl.qm
+%lang(de) %{_libdir}/%{name}/modules/translations/hints_de.qm
+%lang(fr) %{_libdir}/%{name}/modules/translations/hints_fr.qm
+%lang(it) %{_libdir}/%{name}/modules/translations/hints_it.qm
+%lang(pl) %{_libdir}/%{name}/modules/translations/hints_pl.qm
+%lang(de) %{_libdir}/%{name}/modules/translations/*notify_de.qm
+%lang(fr) %{_libdir}/%{name}/modules/translations/*notify_fr.qm
+%lang(it) %{_libdir}/%{name}/modules/translations/*notify_it.qm
+%lang(pl) %{_libdir}/%{name}/modules/translations/*notify_pl.qm
 %lang(de) %{_libdir}/%{name}/modules/translations/sms_de.qm
+%lang(fr) %{_libdir}/%{name}/modules/translations/sms_fr.qm
 %lang(it) %{_libdir}/%{name}/modules/translations/sms_it.qm
 %lang(pl) %{_libdir}/%{name}/modules/translations/sms_pl.qm
 %lang(de) %{_libdir}/%{name}/modules/translations/sound_de.qm
+%lang(fr) %{_libdir}/%{name}/modules/translations/sound_fr.qm
 %lang(it) %{_libdir}/%{name}/modules/translations/sound_it.qm
 %lang(pl) %{_libdir}/%{name}/modules/translations/sound_pl.qm
 %lang(de) %{_libdir}/%{name}/modules/translations/voice_de.qm
+%lang(fr) %{_libdir}/%{name}/modules/translations/voice_fr.qm
 %lang(it) %{_libdir}/%{name}/modules/translations/voice_it.qm
 %lang(pl) %{_libdir}/%{name}/modules/translations/voice_pl.qm
 %lang(de) %{_libdir}/%{name}/modules/translations/x11_docking_de.qm
+%lang(fr) %{_libdir}/%{name}/modules/translations/x11_docking_fr.qm
 %lang(it) %{_libdir}/%{name}/modules/translations/x11_docking_it.qm
 %lang(pl) %{_libdir}/%{name}/modules/translations/x11_docking_pl.qm
+						
 #global translation:
 %dir %{_datadir}/%{name}/translations
 %lang(de) %{_datadir}/%{name}/translations/kadu_de.qm
@@ -353,6 +394,8 @@ rm -rf $RPM_BUILD_ROOT
 %lang(en) %{_datadir}/%{name}/translations/qt_en.qm
 %lang(it) %{_datadir}/%{name}/translations/qt_it.qm
 %lang(pl) %{_datadir}/%{name}/translations/qt_pl.qm
+#wizard
+%{_libdir}/%{name}/modules/data/config_wizard
 
 %if %{with xmms}
 %files module-xmms
