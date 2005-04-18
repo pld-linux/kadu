@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_with	xmms		# without XMMS player support module
+%bcond_without	xmms		# without XMMS player support module
 %bcond_with	arts		# without arts sound server support
 %bcond_with	esd		# without ESD sound server support
 %bcond_with	nas		# without Network Audio System support
@@ -9,31 +9,34 @@
 %bcond_with	spellchecker	# without spellchecker (Aspell support)
 %bcond_with	weather		# without Weather support module
 %bcond_with	tcl_scripting	# without TCL scripting support and KaduPro extensions
+%bcond_without	spy		# without Spying module that shows who's invisible
 
 %define		_libgadu_ver	4:1.4-2
 %define		_amarok_mod_ver	1.5
-%define		_xmms_mod_ver	1.11
+%define		_xmms_mod_ver	1.25
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.4.0
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
 # Source0-md5:	9d6c6e5ece8bb88a9e988c554af07bea
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/stable/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
-# Source2-md5:	db1de97ec33b84d406ca1d45daaae17f
+# Source2-md5:	4a6e4d52b8efa3d182e2a55e02cc3383
 Source3:	http://scripts.one.pl/amarok/stable/%{version}/amarok-%{_amarok_mod_ver}.tar.gz
 # Source3-md5:	2ad7832cf02422a84bdd675a507a47d0
-Source4:	http://scripts.one.pl/spellchecker/stable/%{version}/spellchecker-0.9.tar.gz
-# Source4-md5:	b699879a56b679690a57e653dbc9d64d
+Source4:	http://scripts.one.pl/spellchecker/stable/%{version}/spellchecker-0.13.tar.gz
+# Source4-md5:	0e427d25f69f5f5d10e303f8d2e79e70
 Source5:	http://republika.pl/buysk/weather/%{name}-weather-1.45.tar.bz2
 # Source5-md5:	f1e4cb0138fcf01ee534dc4f83ccb7cf
 Source6:	http://scripts.one.pl/tcl4kadu/files/stable/%{version}/tcl_scripting-0.5.5-Gueneveth.tar.gz
 # Source6-md5:	5c650dbfd57ced5218e864d55b5826a2
+Source7:	http://scripts.one.pl/~przemos/download/kadu-spy-0.0.7.tar.gz
+# Source7-md5:	09ebecad6e06088a8da746c705a1bfb7
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
 %{?with_arts:BuildRequires:	arts-devel}
@@ -189,6 +192,18 @@ KaduPro jest dodatkiem do Kadu wykorzystuj±cym modu³ TCL. Poszerza on
 mo¿liwo¶ci Kadu o przydatne na codzieñ funkcje, których implementacja
 w samym Kadu mog³a by byæ dosyæ skomplikowana, lub te¿ czasoch³onna.
 
+%package module-spy
+Summary:	Spying module that shows who's invisible
+Summary(pl):	Modu³ szpiegowski pokazujcy ukryte osoby
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-spy
+Spying module that shows who's invisible
+
+%description module-spy -l pl
+Modu³ szpiegowski pokazujcy ukryte osoby.
+
 %prep
 %setup -q -n %{name}
 %patch0 -p1
@@ -208,10 +223,14 @@ tar xjf %{SOURCE5} -C modules
 %if %{with tcl_scripting}
 tar xzf %{SOURCE6} -C modules
 %endif
+%if %{with spy}
+tar xzf %{SOURCE7} -C modules
+%endif
 
 %{__sed} -i 's,dataPath("kadu/modules/*,("%{_libdir}/kadu/modules/,g'  kadu/modules.cpp
 
 %build
+#basic functional
 %{__sed} -i 's/module_account_management=m/module_account_management=y/' .config
 %{__sed} -i 's/module_autoaway=m/module_autoaway=y/' .config
 %{__sed} -i 's/module_default_sms=m/module_default_sms=y/' .config
@@ -304,7 +323,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/%{name}/modules
 %{_libdir}/%{name}/modules/account_management.desc
 %{_libdir}/%{name}/modules/autoaway.desc
-#%%attr(755,root,root)%{_libdir}/%{name}/modules/autoaway.so
 %{_libdir}/%{name}/modules/autoresponder.desc
 %attr(755,root,root) %{_libdir}/%{name}/modules/autoresponder.so
 %{_libdir}/%{name}/modules/config_wizard.desc
@@ -312,7 +330,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/modules/dcc.desc
 %attr(755,root,root) %{_libdir}/%{name}/modules/dcc.so
 %{_libdir}/%{name}/modules/default_sms.desc
-#%%attr(755,root,root) %{_libdir}/%{name}/modules/default_sms.so
 %{_libdir}/%{name}/modules/docking.desc
 %{_libdir}/%{name}/modules/dsp_sound.desc
 %attr(755,root,root) %{_libdir}/%{name}/modules/dsp_sound.so
@@ -323,7 +340,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/modules/hints.desc
 %{_libdir}/%{name}/modules/*notify.desc
 %{_libdir}/%{name}/modules/sms.desc
-#%%attr(755,root,root) %{_libdir}/%{name}/modules/sms.so
 %{_libdir}/%{name}/modules/sound.desc
 %{_libdir}/%{name}/modules/voice.desc
 %attr(755,root,root) %{_libdir}/%{name}/modules/voice.so
@@ -481,4 +497,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/modules/data/tcl_scripting
 %lang(de) %{_libdir}/%{name}/modules/translations/tcl_scripting_de.qm
 %lang(pl) %{_libdir}/%{name}/modules/translations/tcl_scripting_pl.qm
+%endif
+
+%if %{with spy}
+%files module-spy
+%defattr(644,root,root,755)
+%{_libdir}/%{name}/modules/data/spy/spy32.png
+%{_libdir}/%{name}/modules/spy.desc
+%attr(755,root,root) %{_libdir}/%{name}/modules/spy.so
+%lang(pl) %{_libdir}/%{name}/modules/translations/spy_pl.qm
 %endif
