@@ -1,25 +1,25 @@
 #
 # Conditional build:
 %bcond_without	xmms		# without XMMS player support module
-%bcond_with	arts		# without arts sound server support
-%bcond_with	esd		# without ESD sound server support
-%bcond_with	nas		# without Network Audio System support
-%bcond_with	speech		# without Speech synthesis support
-%bcond_with	amarok		# without amarok player support module
-%bcond_with	spellchecker	# without spellchecker (Aspell support)
-%bcond_with	weather		# without Weather support module
+%bcond_without	arts		# without arts sound server support
+%bcond_without	esd		# without ESD sound server support
+%bcond_without	nas		# without Network Audio System support
+%bcond_without	speech		# without Speech synthesis support
+%bcond_without	amarok		# without amarok player support module
+%bcond_without	spellchecker	# without spellchecker (Aspell support)
+%bcond_without	weather		# without Weather support module
 %bcond_with	tcl_scripting	# without TCL scripting support and KaduPro extensions
 %bcond_without	spy		# without Spying module that shows who's invisible
 
 %define		_libgadu_ver	4:1.4-2
-%define		_amarok_mod_ver	1.5
+%define		_amarok_mod_ver	1.13
 %define		_xmms_mod_ver	1.25
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.4.0
-Release:	0.2
+Release:	0.3
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -28,11 +28,11 @@ Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/stable/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
 # Source2-md5:	4a6e4d52b8efa3d182e2a55e02cc3383
 Source3:	http://scripts.one.pl/amarok/stable/%{version}/amarok-%{_amarok_mod_ver}.tar.gz
-# Source3-md5:	2ad7832cf02422a84bdd675a507a47d0
+# Source3-md5:	539afdd2295ec462022f5e10d80a816c
 Source4:	http://scripts.one.pl/spellchecker/stable/%{version}/spellchecker-0.13.tar.gz
 # Source4-md5:	0e427d25f69f5f5d10e303f8d2e79e70
-Source5:	http://republika.pl/buysk/weather/%{name}-weather-1.45.tar.bz2
-# Source5-md5:	f1e4cb0138fcf01ee534dc4f83ccb7cf
+Source5:	http://pcb45.tech.us.edu.pl/~blysk/weather/kadu-weather-1.55.tar.bz2
+# Source5-md5:	bc9f36fbd618227888fc696b1000a2d1
 Source6:	http://scripts.one.pl/tcl4kadu/files/stable/%{version}/tcl_scripting-0.5.5-Gueneveth.tar.gz
 # Source6-md5:	5c650dbfd57ced5218e864d55b5826a2
 Source7:	http://scripts.one.pl/~przemos/download/kadu-spy-0.0.7.tar.gz
@@ -431,6 +431,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/modules/xmms.desc
 %attr(755,root,root) %{_libdir}/%{name}/modules/xmms.so
 %lang(pl) %{_libdir}/%{name}/modules/translations/xmms_pl.qm
+%{_libdir}/%{name}/modules/data/xmms/xmms.png
 %endif
 
 %if %{with arts}
@@ -438,6 +439,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/%{name}/modules/arts_sound.desc
 %attr(755,root,root) %{_libdir}/%{name}/modules/arts_sound.so
+%dir %{_libdir}/%{name}/modules/bin/
+%dir %{_libdir}/%{name}/modules/bin/arts_sound
+%attr(755,root,root) %{_libdir}/%{name}/modules/bin/arts_sound/arts_connector
 %endif
 
 %if %{with esd}
@@ -460,6 +464,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/modules/speech.desc
 %attr(755,root,root) %{_libdir}/%{name}/modules/speech.so
 %lang(de) %{_libdir}/%{name}/modules/translations/speech_de.qm
+%lang(fr) %{_libdir}/%{name}/modules/translations/speech_fr.qm
 %lang(it) %{_libdir}/%{name}/modules/translations/speech_it.qm
 %lang(pl) %{_libdir}/%{name}/modules/translations/speech_pl.qm
 %endif
@@ -470,6 +475,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/modules/amarok.desc
 %attr(755,root,root) %{_libdir}/%{name}/modules/amarok.so
 %lang(pl) %{_libdir}/%{name}/modules/translations/amarok_pl.qm
+%{_libdir}/%{name}/modules/data/amarok/amarok.png
 %endif
 
 %if %{with spellchecker}
@@ -478,6 +484,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/modules/spellchecker.desc
 %attr(755,root,root) %{_libdir}/%{name}/modules/spellchecker.so
 %lang(pl) %{_libdir}/%{name}/modules/translations/spellchecker_pl.qm
+%{_libdir}/%{name}/modules/data/spellchecker/config.png
 %endif
 
 %if %{with weather}
