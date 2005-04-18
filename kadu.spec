@@ -19,7 +19,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.4.0
-Release:	0.3
+Release:	0.4
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -48,6 +48,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	kdelibs-devel
 BuildRequires:	libgadu-devel >= %{_libgadu_ver}
 BuildRequires:	libgsm-devel
+BuildRequires:	libsndfile-devel >= 1.0
 BuildRequires:	libtool
 %{?with_nas:BuildRequires:	nas-devel}
 BuildRequires:	openssl-devel >= 0.9.7d
