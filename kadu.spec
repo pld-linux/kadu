@@ -8,7 +8,7 @@
 %bcond_without	amarok		# without amarok player support module
 %bcond_without	spellchecker	# without spellchecker (Aspell support)
 %bcond_without	weather		# without Weather support module
-%bcond_with	tcl_scripting	# without TCL scripting support and KaduPro extensions
+%bcond_with	tcl_scripting	# with TCL scripting support and KaduPro extensions
 %bcond_without	spy		# without Spying module that shows who's invisible
 
 %define		_libgadu_ver	4:1.4-2
@@ -194,7 +194,7 @@ w samym Kadu mog³a by byæ dosyæ skomplikowana, lub te¿ czasoch³onna.
 
 %package module-spy
 Summary:	Spying module that shows who's invisible
-Summary(pl):	Modu³ szpiegowski pokazujcy ukryte osoby
+Summary(pl):	Modu³ szpiegowski pokazuj±cy ukryte osoby
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -202,7 +202,7 @@ Requires:	%{name} = %{version}-%{release}
 Spying module that shows who's invisible
 
 %description module-spy -l pl
-Modu³ szpiegowski pokazujcy ukryte osoby.
+Modu³ szpiegowski pokazuj±cy ukryte osoby.
 
 %prep
 %setup -q -n %{name}
