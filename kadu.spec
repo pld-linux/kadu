@@ -35,7 +35,6 @@ Source5:	http://republika.pl/buysk/weather/%{name}-weather-1.45.tar.bz2
 Source6:	http://scripts.one.pl/tcl4kadu/files/stable/%{version}/tcl_scripting-0.5.5-Gueneveth.tar.gz
 # Source6-md5:	5c650dbfd57ced5218e864d55b5826a2
 Patch0:		%{name}-ac_am.patch
-Patch1:		%{name}-userlist.patch
 URL:		http://kadu.net/
 %{?with_arts:BuildRequires:	arts-devel}
 %{?with_spellchecker:BuildRequires:	aspell-devel}
@@ -193,7 +192,6 @@ w samym Kadu mog³a by byæ dosyæ skomplikowana, lub te¿ czasoch³onna.
 %prep
 %setup -q -n %{name}
 %patch0 -p1
-#%%patch1 -p1
 
 %if %{with xmms}
 tar xzf %{SOURCE2} -C modules
@@ -215,12 +213,13 @@ tar xzf %{SOURCE6} -C modules
 
 %build
 %{__sed} -i 's/module_account_management=m/module_account_management=y/' .config
-%{__sed} -i 's/module_config_wizard=m/module_config_wizard=y/' .config
+%{__sed} -i 's/module_autoaway=m/module_autoaway=y/' .config
+%{__sed} -i 's/module_default_sms=m/module_default_sms=y/' .config
 %{__sed} -i 's/module_hints=m/module_hints=y/' .config
 %{__sed} -i 's/module_x11_docking=m/module_x11_docking=y/' .config
 %{__sed} -i 's/module_window_notify=m/module_window_notify=y/' .config
-%{__sed} -i 's/module_encryption=m/module_encryption=y/' .config
 %{__sed} -i 's/module_sms=m/module_sms=y/' .config
+%{__sed} -i 's/module_default_sms=m/module_default_sms=y/' .config
 
 %if %{with xmms}
 %{__sed} -i 's/module_xmms=n/module_xmms=m/' .config
@@ -305,21 +304,29 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/%{name}/modules
 %{_libdir}/%{name}/modules/account_management.desc
 %{_libdir}/%{name}/modules/autoaway.desc
+#%%attr(755,root,root)%{_libdir}/%{name}/modules/autoaway.so
 %{_libdir}/%{name}/modules/autoresponder.desc
 %attr(755,root,root) %{_libdir}/%{name}/modules/autoresponder.so
 %{_libdir}/%{name}/modules/config_wizard.desc
+%attr(755,root,root) %{_libdir}/%{name}/modules/config_wizard.so
+%{_libdir}/%{name}/modules/dcc.desc
+%attr(755,root,root) %{_libdir}/%{name}/modules/dcc.so
 %{_libdir}/%{name}/modules/default_sms.desc
+#%%attr(755,root,root) %{_libdir}/%{name}/modules/default_sms.so
 %{_libdir}/%{name}/modules/docking.desc
 %{_libdir}/%{name}/modules/dsp_sound.desc
 %attr(755,root,root) %{_libdir}/%{name}/modules/dsp_sound.so
 %{_libdir}/%{name}/modules/encryption.desc
+%attr(755,root,root) %{_libdir}/%{name}/modules/encryption.so
 %{_libdir}/%{name}/modules/ext_sound.desc
-#%%attr(755,root,root) %{_libdir}/%{name}/modules/hints.so
+%attr(755,root,root) %{_libdir}/%{name}/modules/ext_sound.so
 %{_libdir}/%{name}/modules/hints.desc
 %{_libdir}/%{name}/modules/*notify.desc
 %{_libdir}/%{name}/modules/sms.desc
+#%%attr(755,root,root) %{_libdir}/%{name}/modules/sms.so
 %{_libdir}/%{name}/modules/sound.desc
 %{_libdir}/%{name}/modules/voice.desc
+%attr(755,root,root) %{_libdir}/%{name}/modules/voice.so
 %{_libdir}/%{name}/modules/x11_docking.desc
 #default modules translation:
 %dir %{_libdir}/%{name}/modules/translations
@@ -339,6 +346,10 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_libdir}/%{name}/modules/translations/config_wizard_fr.qm
 %lang(it) %{_libdir}/%{name}/modules/translations/config_wizard_it.qm
 %lang(pl) %{_libdir}/%{name}/modules/translations/config_wizard_pl.qm
+%lang(de) %{_libdir}/%{name}/modules/translations/dcc_de.qm
+%lang(fr) %{_libdir}/%{name}/modules/translations/dcc_fr.qm
+%lang(it) %{_libdir}/%{name}/modules/translations/dcc_it.qm
+%lang(pl) %{_libdir}/%{name}/modules/translations/dcc_pl.qm
 %lang(de) %{_libdir}/%{name}/modules/translations/default_sms_de.qm
 %lang(fr) %{_libdir}/%{name}/modules/translations/default_sms_fr.qm
 %lang(it) %{_libdir}/%{name}/modules/translations/default_sms_it.qm
@@ -382,16 +393,17 @@ rm -rf $RPM_BUILD_ROOT
 %lang(de) %{_libdir}/%{name}/modules/translations/x11_docking_de.qm
 %lang(fr) %{_libdir}/%{name}/modules/translations/x11_docking_fr.qm
 %lang(it) %{_libdir}/%{name}/modules/translations/x11_docking_it.qm
-%lang(pl) %{_libdir}/%{name}/modules/translations/x11_docking_pl.qm
-						
+%lang(pl) %{_libdir}/%{name}/modules/translations/x11_docking_pl.qm				
 #global translation:
 %dir %{_datadir}/%{name}/translations
 %lang(de) %{_datadir}/%{name}/translations/kadu_de.qm
 %lang(en) %{_datadir}/%{name}/translations/kadu_en.qm
+%lang(fr) %{_datadir}/%{name}/translations/kadu_fr.qm
 %lang(it) %{_datadir}/%{name}/translations/kadu_it.qm
 %lang(pl) %{_datadir}/%{name}/translations/kadu_pl.qm
 %lang(de) %{_datadir}/%{name}/translations/qt_de.qm
 %lang(en) %{_datadir}/%{name}/translations/qt_en.qm
+%lang(en) %{_datadir}/%{name}/translations/qt_fr.qm
 %lang(it) %{_datadir}/%{name}/translations/qt_it.qm
 %lang(pl) %{_datadir}/%{name}/translations/qt_pl.qm
 #wizard
