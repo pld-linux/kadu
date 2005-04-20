@@ -11,7 +11,7 @@
 %bcond_with	tcl_scripting	# with TCL scripting support and KaduPro extensions
 %bcond_without	spy		# without Spying module that shows who's invisible
 
-%define		_libgadu_ver	4:1.4-2
+%define		_libgadu_ver	4:1.6
 %define		_amarok_mod_ver	1.13
 %define		_xmms_mod_ver	1.25
 #
