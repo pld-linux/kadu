@@ -63,12 +63,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Kadu is client of Gadu-Gadu protocol. It's an IM for Linux and UN*X.
-It's written for KDE.
+It's written with use of QT libraries.
 
 %description -l pl
 Kadu jest klientem protoko³u Gadu-Gadu. Inaczej mówi±c, jest
 komunikatorem dla Linuksa (oraz, przy niewielkim wysi³ku, innych
-systemów UN*Xowych). Napisano go w oparciu o bibliotekê Qt i KDE,
+systemów UN*Xowych). Napisano go w oparciu o bibliotekê QT i KDE,
 przeznaczony jest wiêc dla tego ¶rodowiska.
 
 %package module-xmms
@@ -271,8 +271,7 @@ echo 'MODULE_LIBS_PATH="/usr/lib"' >> modules/amarok/spec
 %{__sed} -i 's/module_spellchecker=n/module_spellchecker=m/' .config
 %endif
 %if %{with weather}
-echo "" >> .config
-echo "module_weather=m" >> .config
+%{__sed} -i 's/module_weather=n/module_weather=m/' .config
 %{__sed} -i 's,dataPath("kadu/modules/*,("%{_libdir}/kadu/modules/,g' modules/weather/weather.cpp
 %endif
 %if %{with tcl_scripting}
@@ -304,8 +303,28 @@ install kadu/hi48-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/kadu.png
 
 rm -rf $RPM_BUILD_ROOT%{_includedir}
 
-#ending of FHS-patch
 mv -f $RPM_BUILD_ROOT%{_datadir}/%{name}/modules $RPM_BUILD_ROOT%{_libdir}/%{name}
+install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+
+%if %{with xmms}
+mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/xmms $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+%endif
+
+%if %{with weather}
+mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/weather $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+%endif
+
+%if %{with amarok}
+mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/amarok $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+%endif
+
+%if %{with spellchecker}
+mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/spellchecker $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+%endif
+
+%if %{with spy}
+mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/spy $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -436,7 +455,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/modules/xmms.desc
 %attr(755,root,root) %{_libdir}/%{name}/modules/xmms.so
 %lang(pl) %{_libdir}/%{name}/modules/translations/xmms_pl.qm
-%{_libdir}/%{name}/modules/data/xmms/xmms.png
+%{_datadir}/%{name}/modules/data/xmms/xmms.png
 %endif
 
 %if %{with arts}
@@ -480,7 +499,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/modules/amarok.desc
 %attr(755,root,root) %{_libdir}/%{name}/modules/amarok.so
 %lang(pl) %{_libdir}/%{name}/modules/translations/amarok_pl.qm
-%{_libdir}/%{name}/modules/data/amarok/amarok.png
+%{_datadir}/%{name}/modules/data/amarok/amarok.png
 %endif
 
 %if %{with spellchecker}
@@ -489,7 +508,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/modules/spellchecker.desc
 %attr(755,root,root) %{_libdir}/%{name}/modules/spellchecker.so
 %lang(pl) %{_libdir}/%{name}/modules/translations/spellchecker_pl.qm
-%{_libdir}/%{name}/modules/data/spellchecker/config.png
+%{_datadir}/%{name}/modules/data/spellchecker/config.png
 %endif
 
 %if %{with weather}
@@ -497,7 +516,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/%{name}/modules/weather.desc
 %attr(755,root,root) %{_libdir}/%{name}/modules/weather.so
-%{_libdir}/%{name}/modules/data/weather
+%{_datadir}/%{name}/modules/data/weather
 %lang(pl) %{_libdir}/%{name}/modules/translations/weather_pl.qm
 %endif
 
@@ -514,7 +533,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with spy}
 %files module-spy
 %defattr(644,root,root,755)
-%{_libdir}/%{name}/modules/data/spy/spy32.png
+%{_datadir}/%{name}/modules/data/spy/spy32.png
 %{_libdir}/%{name}/modules/spy.desc
 %attr(755,root,root) %{_libdir}/%{name}/modules/spy.so
 %lang(pl) %{_libdir}/%{name}/modules/translations/spy_pl.qm
