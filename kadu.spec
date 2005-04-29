@@ -1,6 +1,7 @@
 #
 # Conditional build:
 %bcond_without	xmms		# without XMMS player support module
+%bcond_without	alsa		# without ALSA support
 %bcond_without	arts		# without arts sound server support
 %bcond_without	esd		# without ESD sound server support
 %bcond_without	nas		# without Network Audio System support
@@ -23,7 +24,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.4.0
-Release:	0.5
+Release:	0.6
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -43,6 +44,7 @@ Source7:	http://scripts.one.pl/~przemos/download/kadu-spy-%{_spy_mod_ver}.tar.gz
 # Source7-md5:	09ebecad6e06088a8da746c705a1bfb7
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
+%{?with_alsa:BuildRequires:	alsa-lib-devel}
 %{?with_arts:BuildRequires:	arts-devel}
 %{?with_spellchecker:BuildRequires:	aspell-devel}
 BuildRequires:	autoconf
@@ -87,9 +89,23 @@ Modu³ umo¿liwiaj±cy pokazywanie w opisie statusu informacji o
 odgrywanym utworze z odtwarzacza XMMS.
 
 
+%package module-sound-alsa
+Summary:	Support ALSA sound
+Summary(pl):	Wsparcie dla d¼wiêku ALSA
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+Requires:	arts
+
+%description module-sound-alsa
+ALSA sound support module.
+
+%description module-sound-alsa -l pl
+Modu³ obs³ugi d¼wiêku przez ALSA.
+
+
 %package module-sound-arts
 Summary:	Support aRts sound server
-Summary(pl):	Wsparcie dla serwera dzwiêku arts
+Summary(pl):	Wsparcie dla serwera d¼wiêku aRts
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	arts
@@ -102,7 +118,7 @@ Modu³ do obs³ugi serwera d¼wiêku aRts.
 
 %package module-sound-esd
 Summary:	Support ESD sound server
-Summary(pl):	Wsparcie dla serwera dzwiêku ESD
+Summary(pl):	Wsparcie dla serwera d¼wiêku ESD
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	esound
@@ -115,7 +131,7 @@ Modu³ obs³ugi d¼wiêku przez ESD.
 
 %package module-sound-nas
 Summary:	Support Network Audio System
-Summary(pl):	Wsparcie dla sieciowego systemu dzwiêku NAS
+Summary(pl):	Wsparcie dla sieciowego systemu d¼wiêku NAS
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	nas
@@ -182,7 +198,7 @@ Informacje o pogodzie w miejscowo¶ci danego kontaktu.
 
 %package module-tcl_scripting
 Summary:	TCL scripting support and KaduPro extensions
-Summary(pl):	Obs³uga skryptów TCL i rozszerzeñ KaduPRo
+Summary(pl):	Obs³uga skryptów TCL i rozszerzeñ KaduPro
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	tk
@@ -195,7 +211,7 @@ in Kadu might be enough complicated or time-consuming.
 %description module-tcl_scripting -l pl
 KaduPro jest dodatkiem do Kadu wykorzystuj±cym modu³ TCL. Poszerza on
 mo¿liwo¶ci Kadu o przydatne na codzieñ funkcje, których implementacja
-w samym Kadu mog³a by byæ dosyæ skomplikowana, lub te¿ czasoch³onna.
+w samym Kadu mog³aby byæ dosyæ skomplikowana, lub te¿ czasoch³onna.
 
 %package module-spy
 Summary:	Spying module that shows who's invisible
@@ -249,6 +265,9 @@ tar xzf %{SOURCE7} -C modules
 %{__sed} -i 's/module_xmms=n/module_xmms=m/' .config
 rm -f modules/xmms/.autodownloaded
 %endif
+%if %{with alsa}
+%{__sed} -i 's/module_alsa_sound=n/module_alsa_sound=m/' .config
+%endif
 %if %{with arts}
 %{__sed} -i 's/module_arts_sound=n/module_arts_sound=m/' .config
 %endif
@@ -272,7 +291,6 @@ echo 'MODULE_LIBS_PATH="/usr/lib"' >> modules/amarok/spec
 %endif
 %if %{with weather}
 %{__sed} -i 's/module_weather=n/module_weather=m/' .config
-%{__sed} -i 's,dataPath("kadu/modules/*,("%{_libdir}/kadu/modules/,g' modules/weather/weather.cpp
 %endif
 %if %{with tcl_scripting}
 %{__sed} -i 's/module_tcl_scripting=n/module_tcl_scripting=m/' .config
@@ -456,6 +474,17 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/%{name}/modules/xmms.so
 %lang(pl) %{_libdir}/%{name}/modules/translations/xmms_pl.qm
 %{_datadir}/%{name}/modules/data/xmms/xmms.png
+%endif
+
+%if %{with alsa}
+%files module-sound-alsa
+%defattr(644,root,root,755)
+%{_libdir}/%{name}/modules/alsa_sound.desc
+%attr(755,root,root) %{_libdir}/%{name}/modules/alsa_sound.so
+%lang(de) %{_libdir}/%{name}/modules/translations/alsa_sound_de.qm
+%lang(fr) %{_libdir}/%{name}/modules/translations/alsa_sound_fr.qm
+%lang(it) %{_libdir}/%{name}/modules/translations/alsa_sound_it.qm
+%lang(pl) %{_libdir}/%{name}/modules/translations/alsa_sound_pl.qm
 %endif
 
 %if %{with arts}
