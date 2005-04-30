@@ -94,7 +94,7 @@ Summary:	Support ALSA sound
 Summary(pl):	Wsparcie dla d¼wiêku ALSA
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
-Requires:	arts
+Requires:	alsa-lib
 
 %description module-sound-alsa
 ALSA sound support module.
