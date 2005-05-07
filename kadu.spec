@@ -1,8 +1,10 @@
 #
 # Conditional build:
 %bcond_without amarok		# without amarok player support module
+%bcond_without alsa		# without ALSA support
 %bcond_without arts		# without arts sound server support
 %bcond_without esd		# without ESD sound server support
+%bcond_without miasto_plusa	# without miasto_plusa module support
 %bcond_without nas		# without Network Audio System support
 %bcond_without speech		# without Speech synthesis support
 %bcond_without spellchecker	# without spellchecker (Aspell support)
@@ -18,17 +20,20 @@
 %define		_tcl_mod_ver		0.6.0-Hyacinth
 %define		_weather_ver		2.01
 %define		_xmms_mod_ver		1.25
-%define		snapshot		20050422
+%define		_led_ver		0.2
+%define		_miasto_plusa_ver	1.3
+%define		_tabs_ver		rev35
+%define		snapshot		20050507
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
-Version:	0.4.0
+Version:	0.4.1
 Release:	0.%{snapshot}.1
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/snapshots/%{name}-%{snapshot}.tar.bz2
-# Source0-md5:	3e3573fa83102bc8961bcfcd7205cc1e
+# Source0-md5:	5cbf822b134beb0986c73369b530056c
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
 # Source2-md5:	4a6e4d52b8efa3d182e2a55e02cc3383
@@ -42,12 +47,20 @@ Source6:	http://scripts.one.pl/tcl4kadu/files/stable/%{version}/tcl_scripting-%{
 # Source6-md5:	e9467a208a30538aa9d45d3c7d079927
 Source7:	http://scripts.one.pl/~przemos/download/kadu-spy-%{_spy_mod_ver}.tar.gz
 # Source7-md5:	09ebecad6e06088a8da746c705a1bfb7
+Source8:	http://republika.pl/buysk/led_notify/led_notify-%{_led_ver}.tar.bz2
+# Source8-md5:	7bf1890bc208897e407189e3b504682f
+Source9:	http://poczta.prezu.one.pl/miastoplusa_sms/miastoplusa_sms-%{_miasto_plusa_ver}.tar.gz
+# Source9-md5:	ec176bb66be3190a4c49ad0e9e1b73b8
+Source10:	http://gov.one.pl/svnsnap/tabs-svn-%{_tabs_ver}.tar.gz
+# Source10-md5:	1fe389b82728f5f7ae44fe4bafc7356e
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
+%{?with_alsa:BuildRequires:	alsa-lib-devel}
 %{?with_arts:BuildRequires:	arts-devel}
 %{?with_spellchecker:BuildRequires:	aspell-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
+%{?with_miasto_plusa:BuildRequires:	curl-devel}
 %{?with_esd:BuildRequires:	esound-devel}
 BuildRequires:	gettext-devel
 BuildRequires:	kdelibs-devel
@@ -88,6 +101,20 @@ the song currently played in XMMS.
 Modu³ umo¿liwiaj±cy pokazywanie w opisie statusu informacji o
 odgrywanym utworze z odtwarzacza XMMS.
 
+%package module-sound-alsa
+Summary:	Support ALSA sound
+Summary(pl):	Wsparcie dla d¼wiêku ALSA
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+Requires:	alsa-lib
+
+%description module-sound-alsa
+ALSA sound support module.
+
+%description module-sound-alsa -l pl
+Modu³ obs³ugi d¼wiêku przez ALSA.
+
+
 %package module-sound-arts
 Summary:	Support aRts sound server
 Summary(pl):	Wsparcie dla serwera dzwiêku arts
@@ -103,7 +130,7 @@ Modu³ do obs³ugi serwera d¼wiêku aRts.
 
 %package module-sound-esd
 Summary:	Support ESD sound server
-Summary(pl):	Wsparcie dla serwera dzwiêku ESD
+Summary(pl):	Wsparcie dla serwera d¼wiêku ESD
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	esound
@@ -182,7 +209,7 @@ Informacje o pogodzie w miejscowo¶ci danego kontaktu.
 
 %package module-tcl_scripting
 Summary:	TCL scripting support and KaduPro extensions
-Summary(pl):	Obs³uga skryptów TCL i rozszerzeñ KaduPRo
+Summary(pl):	Obs³uga skryptów TCL i rozszerzeñ KaduPro
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	tk
@@ -231,13 +258,27 @@ tar xzf %{SOURCE6} -C modules
 %if %{with spy}
 tar xzf %{SOURCE7} -C modules
 %endif
+tar xjf %{SOURCE8} -C modules
+%if %{with miasto_plusa}
+tar xzf %{SOURCE9} -C modules
+%endif
+tar xzf %{SOURCE10} -C modules
+
 
 %{__sed} -i 's,dataPath("kadu/modules/*,("%{_libdir}/kadu/modules/,g'  kadu/modules.cpp
 
 %build
+%{__sed} -i 's/module_tabs=n/module_tabs=m/' .config
+%if %{with miasto_plusa}
+%{__sed} -i 's/module_miastoplusa_sms=n/module_miastoplusa_sms=m/' .config
+%endif
+%{__sed} -i 's/module_led_notify=n/module_led_notify=m/' .config
 %if %{with xmms}
 %{__sed} -i 's/module_xmms=n/module_xmms=m/' .config
 rm -f modules/xmms/.autodownloaded
+%endif
+%if %{with alsa}
+%{__sed} -i 's/module_alsa_sound=n/module_alsa_sound=m/' .config
 %endif
 %if %{with arts}
 %{__sed} -i 's/module_arts_sound=n/module_arts_sound=m/' .config
@@ -262,7 +303,6 @@ echo 'MODULE_LIBS_PATH="/usr/lib"' >> modules/amarok/spec
 %endif
 %if %{with weather}
 %{__sed} -i 's/module_weather=n/module_weather=m/' .config
-%{__sed} -i 's,dataPath("kadu/modules/*,("%{_libdir}/kadu/modules/,g' modules/weather/weather.cpp
 %endif
 %if %{with tcl_scripting}
 %{__sed} -i 's/module_tcl_scripting=n/module_tcl_scripting=m/' .config
@@ -296,6 +336,7 @@ rm -rf $RPM_BUILD_ROOT%{_includedir}
 mv -f $RPM_BUILD_ROOT%{_datadir}/%{name}/modules $RPM_BUILD_ROOT%{_libdir}/%{name}
 install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 mv -f $RPM_BUILD_ROOT%{_modules_dir}/data/config_wizard $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+mv -f $RPM_BUILD_ROOT%{_modules_dir}/data/tabs $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 
 %if %{with xmms}
 mv -f $RPM_BUILD_ROOT%{_modules_dir}/data/xmms $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
@@ -317,6 +358,11 @@ mv -f $RPM_BUILD_ROOT%{_modules_dir}/data/spellchecker $RPM_BUILD_ROOT%{_datadir
 mv -f $RPM_BUILD_ROOT%{_modules_dir}/data/spy $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 %endif
 
+%if %{with miasto_plusa}
+mv -f $RPM_BUILD_ROOT%{_modules_dir}/data/miastoplusa_sms $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+%endif
+
+
 rm -rf `find $RPM_BUILD_ROOT -name CVS`
 
 %clean
@@ -334,6 +380,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/ChangeLog
 %{_datadir}/%{name}/COPYING
 %{_datadir}/%{name}/THANKS
+%{_datadir}/%{name}/modules/data/miastoplusa_sms/curl-ca-bundle.crt
+%{_datadir}/%{name}/modules/data/tabs/attach.png
 
 #default modules:
 %dir %{_libdir}/%{name}
@@ -359,10 +407,15 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_modules_dir}/ext_sound.so
 %{_modules_dir}/hints.desc
 %attr(755,root,root) %{_modules_dir}/hints.so
+%{_modules_dir}/miastoplusa_sms.desc
+%attr(755,root,root) %{_modules_dir}/miastoplusa_sms.so
 %{_modules_dir}/*notify.desc
+%attr(755,root,root) %{_modules_dir}/led_notify.so
 %{_modules_dir}/sms.desc
 %attr(755,root,root) %{_modules_dir}/sms.so
 %{_modules_dir}/sound.desc
+%{_modules_dir}/tabs.desc
+%attr(755,root,root) %{_modules_dir}/tabs.so
 %{_modules_dir}/voice.desc
 %attr(755,root,root) %{_modules_dir}/voice.so
 %attr(755,root,root) %{_modules_dir}/window_notify.so
@@ -414,6 +467,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_modules_dir}/translations/hints_fr.qm
 %lang(it) %{_modules_dir}/translations/hints_it.qm
 %lang(pl) %{_modules_dir}/translations/hints_pl.qm
+%lang(pl) %{_modules_dir}/translations/miastoplusa_sms_pl.qm
 %lang(de) %{_modules_dir}/translations/*notify_de.qm
 %lang(fr) %{_modules_dir}/translations/*notify_fr.qm
 %lang(it) %{_modules_dir}/translations/*notify_it.qm
@@ -426,6 +480,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_modules_dir}/translations/sound_fr.qm
 %lang(it) %{_modules_dir}/translations/sound_it.qm
 %lang(pl) %{_modules_dir}/translations/sound_pl.qm
+%lang(pl) %{_modules_dir}/translations/tabs_pl.qm
 %lang(de) %{_modules_dir}/translations/voice_de.qm
 %lang(fr) %{_modules_dir}/translations/voice_fr.qm
 %lang(it) %{_modules_dir}/translations/voice_it.qm
@@ -456,6 +511,17 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_modules_dir}/xmms.so
 %lang(pl) %{_modules_dir}/translations/xmms_pl.qm
 %{_datadir}/%{name}/modules/data/xmms/xmms.png
+%endif
+
+%if %{with alsa}
+%files module-sound-alsa
+%defattr(644,root,root,755)
+%{_libdir}/%{name}/modules/alsa_sound.desc
+%attr(755,root,root) %{_libdir}/%{name}/modules/alsa_sound.so
+%lang(de) %{_libdir}/%{name}/modules/translations/alsa_sound_de.qm
+%lang(fr) %{_libdir}/%{name}/modules/translations/alsa_sound_fr.qm
+%lang(it) %{_libdir}/%{name}/modules/translations/alsa_sound_it.qm
+%lang(pl) %{_libdir}/%{name}/modules/translations/alsa_sound_pl.qm
 %endif
 
 %if %{with arts}
