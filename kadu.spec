@@ -15,32 +15,32 @@
 
 %define		_amarok_mod_ver		1.13
 %define		_libgadu_ver		4:1.6
-%define		_spellchecker_mod_ver	0.13
+%define		_spellchecker_mod_ver	0.15
 %define		_spy_mod_ver		0.0.7
 %define		_tcl_mod_ver		0.6.0-Hyacinth
 %define		_weather_ver		2.01
 %define		_xmms_mod_ver		1.25
 %define		_led_ver		0.2
 %define		_miasto_plusa_ver	1.3
-%define		_tabs_ver		rev35
-%define		snapshot		20050507
+%define		_tabs_ver		rev36
+%define		snapshot		20050524
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
-Version:	0.4.1
+Version:	0.5.0
 Release:	0.%{snapshot}.1
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/snapshots/%{name}-%{snapshot}.tar.bz2
-# Source0-md5:	5cbf822b134beb0986c73369b530056c
+# Source0-md5:	4c61492397a4853577abb24f1e7f5476
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
 # Source2-md5:	4a6e4d52b8efa3d182e2a55e02cc3383
 Source3:	http://scripts.one.pl/amarok/devel/%{version}/amarok-%{_amarok_mod_ver}.tar.gz
 # Source3-md5:	539afdd2295ec462022f5e10d80a816c
 Source4:	http://scripts.one.pl/spellchecker/devel/%{version}/spellchecker-%{_spellchecker_mod_ver}.tar.gz
-# Source4-md5:	0e427d25f69f5f5d10e303f8d2e79e70
+# Source4-md5:	02495130277cc8a48430535a4107708d
 Source5:	http://republika.pl/buysk/weather/weather-%{_weather_ver}.tar.bz2
 # Source5-md5:	640acacc8f5b33da6e1eb379eb3177dc
 Source6:	http://scripts.one.pl/tcl4kadu/files/stable/%{version}/tcl_scripting-%{_tcl_mod_ver}.tar.gz
@@ -52,7 +52,7 @@ Source8:	http://republika.pl/buysk/led_notify/led_notify-%{_led_ver}.tar.bz2
 Source9:	http://poczta.prezu.one.pl/miastoplusa_sms/miastoplusa_sms-%{_miasto_plusa_ver}.tar.gz
 # Source9-md5:	ec176bb66be3190a4c49ad0e9e1b73b8
 Source10:	http://gov.one.pl/svnsnap/tabs-svn-%{_tabs_ver}.tar.gz
-# Source10-md5:	1fe389b82728f5f7ae44fe4bafc7356e
+# Source10-md5:	21eec41cfc0883f41a49850969eef328
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
