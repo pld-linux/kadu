@@ -23,7 +23,7 @@
 %define		_led_ver		0.2
 %define		_miasto_plusa_ver	1.3
 %define		_tabs_ver		rev36
-%define		snapshot		20050524
+%define		snapshot		20050526
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
@@ -33,7 +33,7 @@ Release:	0.%{snapshot}.1
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/snapshots/%{name}-%{snapshot}.tar.bz2
-# Source0-md5:	4c61492397a4853577abb24f1e7f5476
+# Source0-md5:	20e1f9abb86e92811f6ad8e4fc4f0347
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
 # Source2-md5:	4a6e4d52b8efa3d182e2a55e02cc3383
@@ -409,6 +409,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_modules_dir}/hints.so
 %{_modules_dir}/miastoplusa_sms.desc
 %attr(755,root,root) %{_modules_dir}/miastoplusa_sms.so
+%{_modules_dir}/migration.desc
+%attr(755,root,root) %{_modules_dir}/migration.so
 %{_modules_dir}/*notify.desc
 %attr(755,root,root) %{_modules_dir}/led_notify.so
 %{_modules_dir}/sms.desc
