@@ -16,24 +16,24 @@
 %define		_amarok_mod_ver		1.13
 %define		_libgadu_ver		4:1.6
 %define		_spellchecker_mod_ver	0.15
-%define		_spy_mod_ver		0.0.7
-%define		_tcl_mod_ver		0.6.0-Hyacinth
+%define		_spy_mod_ver		0.0.8
+%define		_tcl_mod_ver		0.6.1-Isilmalinir
 %define		_weather_ver		2.01
 %define		_xmms_mod_ver		1.25
 %define		_led_ver		0.2
 %define		_miasto_plusa_ver	1.3
-%define		_tabs_ver		rev36
-%define		snapshot		20050526
+%define		_tabs_ver		rev37
+%define		snapshot		20050611
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.5.0
-Release:	0.%{snapshot}.1
+Release:	0.%{snapshot}.2
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/snapshots/%{name}-%{snapshot}.tar.bz2
-# Source0-md5:	20e1f9abb86e92811f6ad8e4fc4f0347
+# Source0-md5:	143418e0604e391f68c0151b92dedba7
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
 # Source2-md5:	4a6e4d52b8efa3d182e2a55e02cc3383
@@ -43,16 +43,16 @@ Source4:	http://scripts.one.pl/spellchecker/devel/%{version}/spellchecker-%{_spe
 # Source4-md5:	02495130277cc8a48430535a4107708d
 Source5:	http://republika.pl/buysk/weather/weather-%{_weather_ver}.tar.bz2
 # Source5-md5:	640acacc8f5b33da6e1eb379eb3177dc
-Source6:	http://scripts.one.pl/tcl4kadu/files/stable/%{version}/tcl_scripting-%{_tcl_mod_ver}.tar.gz
-# Source6-md5:	e9467a208a30538aa9d45d3c7d079927
+Source6:	http://scripts.one.pl/tcl4kadu/files/stable/0.4.0/tcl_scripting-%{_tcl_mod_ver}.tar.gz
+# Source6-md5:	53d21296a688dceec44e247977fdef91
 Source7:	http://scripts.one.pl/~przemos/download/kadu-spy-%{_spy_mod_ver}.tar.gz
-# Source7-md5:	09ebecad6e06088a8da746c705a1bfb7
+# Source7-md5:	4019b059916a70889ccf8281da3926bc
 Source8:	http://republika.pl/buysk/led_notify/led_notify-%{_led_ver}.tar.bz2
 # Source8-md5:	7bf1890bc208897e407189e3b504682f
 Source9:	http://poczta.prezu.one.pl/miastoplusa_sms/miastoplusa_sms-%{_miasto_plusa_ver}.tar.gz
 # Source9-md5:	ec176bb66be3190a4c49ad0e9e1b73b8
 Source10:	http://gov.one.pl/svnsnap/tabs-svn-%{_tabs_ver}.tar.gz
-# Source10-md5:	21eec41cfc0883f41a49850969eef328
+# Source10-md5:	29ff216ab300d5271e7287c8b1797126
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
