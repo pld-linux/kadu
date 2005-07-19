@@ -15,7 +15,7 @@
 %define		_libgadu_ver		4:1.6
 %define		_amarok_mod_ver		1.13
 %define		_spellchecker_mod_ver	0.13
-%define		_spy_mod_ver		0.0.7
+%define		_spy_mod_ver		0.0.8
 %define		_tcl_mod_ver		0.6.0-Hyacinth
 %define		_weather_ver		2.01
 %define		_xmms_mod_ver		1.25
@@ -40,8 +40,9 @@ Source5:	http://pcb45.tech.us.edu.pl/~blysk/weather/weather-%{_weather_ver}.tar.
 # Source5-md5:	640acacc8f5b33da6e1eb379eb3177dc
 Source6:	http://scripts.one.pl/tcl4kadu/files/stable/%{version}/tcl_scripting-%{_tcl_mod_ver}.tar.gz
 # Source6-md5:	e9467a208a30538aa9d45d3c7d079927
-Source7:	http://scripts.one.pl/~przemos/download/kadu-spy-%{_spy_mod_ver}.tar.gz
-# Source7-md5:	09ebecad6e06088a8da746c705a1bfb7
+#Source7:	http://scripts.one.pl/~przemos/download/kadu-spy-%{_spy_mod_ver}.tar.gz
+Source7:	kadu-spy-%{_spy_mod_ver}.tar.gz
+# Source7-md5:	4019b059916a70889ccf8281da3926bc
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
