@@ -12,36 +12,36 @@
 %bcond_with	tcl_scripting	# with TCL scripting support and KaduPro extensions
 %bcond_without	spy		# without Spying module that shows who's invisible
 
+%define		_sver			0.4.0
 %define		_libgadu_ver		4:1.6
 %define		_amarok_mod_ver		1.13
-%define		_spellchecker_mod_ver	0.13
+%define		_spellchecker_mod_ver	0.15
 %define		_spy_mod_ver		0.0.8
-%define		_tcl_mod_ver		0.6.0-Hyacinth
+%define		_tcl_mod_ver		0.6.1-Isilmalinir
 %define		_weather_ver		2.01
 %define		_xmms_mod_ver		1.25
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
-Version:	0.4.0
-Release:	0.6
+Version:	0.4.1
+Release:	0.9
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
-# Source0-md5:	9d6c6e5ece8bb88a9e988c554af07bea
+# Source0-md5:	52c582fcc175b2af534c7ddab24e0b6b
 Source1:	%{name}.desktop
-Source2:	http://scripts.one.pl/xmms/stable/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
+Source2:	http://scripts.one.pl/xmms/stable/%{_sver}/xmms-%{_xmms_mod_ver}.tar.gz
 # Source2-md5:	4a6e4d52b8efa3d182e2a55e02cc3383
-Source3:	http://scripts.one.pl/amarok/stable/%{version}/amarok-%{_amarok_mod_ver}.tar.gz
+Source3:	http://scripts.one.pl/amarok/stable/%{_sver}/amarok-%{_amarok_mod_ver}.tar.gz
 # Source3-md5:	539afdd2295ec462022f5e10d80a816c
-Source4:	http://scripts.one.pl/spellchecker/stable/%{version}/spellchecker-%{_spellchecker_mod_ver}.tar.gz
-# Source4-md5:	0e427d25f69f5f5d10e303f8d2e79e70
+Source4:	http://scripts.one.pl/spellchecker/stable/%{_sver}/spellchecker-%{_spellchecker_mod_ver}.tar.gz
+# Source4-md5:	02495130277cc8a48430535a4107708d
 Source5:	http://pcb45.tech.us.edu.pl/~blysk/weather/weather-%{_weather_ver}.tar.bz2
 # Source5-md5:	640acacc8f5b33da6e1eb379eb3177dc
-Source6:	http://scripts.one.pl/tcl4kadu/files/stable/%{version}/tcl_scripting-%{_tcl_mod_ver}.tar.gz
-# Source6-md5:	e9467a208a30538aa9d45d3c7d079927
-#Source7:	http://scripts.one.pl/~przemos/download/kadu-spy-%{_spy_mod_ver}.tar.gz
-Source7:	kadu-spy-%{_spy_mod_ver}.tar.gz
+Source6:	http://scripts.one.pl/tcl4kadu/files/stable/%{_sver}/tcl_scripting-%{_tcl_mod_ver}.tar.gz
+# Source6-md5:	53d21296a688dceec44e247977fdef91
+Source7:	http://scripts.one.pl/~przemos/download/kadu-spy-%{_spy_mod_ver}.tar.gz
 # Source7-md5:	4019b059916a70889ccf8281da3926bc
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
