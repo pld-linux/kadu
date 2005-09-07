@@ -13,17 +13,17 @@
 %bcond_without weather		# without weather check module support
 %bcond_without xmms		# without xmms player support module
 
-%define		_amarok_mod_ver		1.13
+%define		_amarok_mod_ver		1.14
 %define		_libgadu_ver		4:1.6
-%define		_spellchecker_mod_ver	0.15
+%define		_spellchecker_mod_ver	0.16
 %define		_spy_mod_ver		0.0.8-1
 %define		_tcl_mod_ver		0.6.1-Isilmalinir
-%define		_weather_ver		2.02
-%define		_xmms_mod_ver		1.26
-%define		_led_ver		0.2
+%define		_weather_ver		svn
+%define		_xmms_mod_ver		1.27
+%define		_led_ver		svn
 %define		_miasto_plusa_ver	1.3
-%define		_tabs_ver		rev38
-%define		snapshot		20050807
+%define		_tabs_ver		rev41
+%define		snapshot		20050907
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
@@ -33,26 +33,26 @@ Release:	0.%{snapshot}.1
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/snapshots/%{name}-%{snapshot}.tar.bz2
-# Source0-md5:	db31fa4c61c48fb867e3bcb7893f4aad
+# Source0-md5:	a44a4d16d0a063b6c6f38cde189a2cb5
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
-# Source2-md5:	00e35dbfcb1a0240baf61b446fb2adad
+# Source2-md5:	9900cfd66d9d8ab8a54f7515ad6eb140
 Source3:	http://scripts.one.pl/amarok/devel/%{version}/amarok-%{_amarok_mod_ver}.tar.gz
-# Source3-md5:	539afdd2295ec462022f5e10d80a816c
+# Source3-md5:	16553034fc098ba1014bc1549cb49366
 Source4:	http://scripts.one.pl/spellchecker/devel/%{version}/spellchecker-%{_spellchecker_mod_ver}.tar.gz
-# Source4-md5:	02495130277cc8a48430535a4107708d
+# Source4-md5:	8290eac6481b734c091285d322bc0b58
 Source5:	http://www.kadu.net/~blysk/weather-%{_weather_ver}.tar.bz2
-# Source5-md5:	362d77600e0e02ec67d1b3bdf3cc64e2
+# Source5-md5:	73f11715c07b5a0699642106a58ef7e5
 Source6:	http://scripts.one.pl/tcl4kadu/files/stable/0.4.0/tcl_scripting-%{_tcl_mod_ver}.tar.gz
 # Source6-md5:	53d21296a688dceec44e247977fdef91
 Source7:	http://scripts.one.pl/~przemos/download/kadu-spy-%{_spy_mod_ver}.tar.gz
 # Source7-md5:	c402bab70b3f5840b15312eb4f776f2c
-Source8:	http://republika.pl/buysk/led_notify/led_notify-%{_led_ver}.tar.bz2
-# Source8-md5:	7bf1890bc208897e407189e3b504682f
+Source8:	http://www.kadu.net/~blysk/led_notify-%{_led_ver}.tar.bz2
+# Source8-md5:	ec2bd940f5c8923449b45a90c41e30e4
 Source9:	http://poczta.prezu.one.pl/miastoplusa_sms/miastoplusa_sms-%{_miasto_plusa_ver}.tar.gz
 # Source9-md5:	ec176bb66be3190a4c49ad0e9e1b73b8
 Source10:	http://gov.one.pl/svnsnap/tabs-svn-%{_tabs_ver}.tar.gz
-# Source10-md5:	53f3185a0b8db6033ceb02cbefd182c9
+# Source10-md5:	e04c307d1d62f997a49ed011d3953359
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
@@ -317,7 +317,7 @@ chmod u+w aclocal.m4 configure
 	--enable-voice \
 	--enable-dist-info=PLD \
 	--with-existing-libgadu=/usr
-
+%{__sed} -i 's,/bin/sh,/bin/bash,g' configure
 %{__make}
 
 %install
@@ -571,6 +571,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_modules_dir}/amarok.desc
 %attr(755,root,root) %{_modules_dir}/amarok.so
 %lang(pl) %{_modules_dir}/translations/amarok_pl.qm
+%lang(de) %{_modules_dir}/translations/amarok_de.qm
 %{_datadir}/%{name}/modules/data/amarok/amarok.png
 %endif
 
