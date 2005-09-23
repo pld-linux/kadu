@@ -355,6 +355,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kadu.desktop
 %{_pixmapsdir}/kadu.png
 %dir %{_datadir}/%{name}
+%dir %{_datadir}/%{name}/modules/data
 %{_datadir}/%{name}/themes
 #About... files
 %{_datadir}/%{name}/AUTHORS
@@ -473,8 +474,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/%{name}/modules/xmms.desc
 %attr(755,root,root) %{_libdir}/%{name}/modules/xmms.so
+%{_datadir}/%{name}/modules/data/xmms
 %lang(pl) %{_libdir}/%{name}/modules/translations/xmms_pl.qm
-%{_datadir}/%{name}/modules/data/xmms/xmms.png
 %endif
 
 %if %{with alsa}
@@ -528,8 +529,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/%{name}/modules/amarok.desc
 %attr(755,root,root) %{_libdir}/%{name}/modules/amarok.so
+%{_datadir}/%{name}/modules/data/amarok
 %lang(pl) %{_libdir}/%{name}/modules/translations/amarok_pl.qm
-%{_datadir}/%{name}/modules/data/amarok/amarok.png
 %endif
 
 %if %{with spellchecker}
@@ -537,8 +538,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/%{name}/modules/spellchecker.desc
 %attr(755,root,root) %{_libdir}/%{name}/modules/spellchecker.so
+%{_datadir}/%{name}/modules/data/spellchecker
 %lang(pl) %{_libdir}/%{name}/modules/translations/spellchecker_pl.qm
-%{_datadir}/%{name}/modules/data/spellchecker/config.png
 %endif
 
 %if %{with weather}
@@ -563,8 +564,8 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with spy}
 %files module-spy
 %defattr(644,root,root,755)
-%{_datadir}/%{name}/modules/data/spy/spy32.png
 %{_libdir}/%{name}/modules/spy.desc
 %attr(755,root,root) %{_libdir}/%{name}/modules/spy.so
+%{_datadir}/%{name}/modules/data/spy
 %lang(pl) %{_libdir}/%{name}/modules/translations/spy_pl.qm
 %endif
