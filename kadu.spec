@@ -22,8 +22,8 @@
 %define		_xmms_mod_ver		1.27
 %define		_led_ver		svn
 %define		_miasto_plusa_ver	1.3
-%define		_tabs_ver		rev41
-%define		snapshot		20050907
+%define		_tabs_ver		rev42
+%define		snapshot		20050927
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
@@ -33,7 +33,7 @@ Release:	0.%{snapshot}.1
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/snapshots/%{name}-%{snapshot}.tar.bz2
-# Source0-md5:	a44a4d16d0a063b6c6f38cde189a2cb5
+# Source0-md5:	ecd4d82ad3f523c18805f65083e323e0
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
 # Source2-md5:	9900cfd66d9d8ab8a54f7515ad6eb140
@@ -52,8 +52,9 @@ Source8:	http://www.kadu.net/~blysk/led_notify-%{_led_ver}.tar.bz2
 Source9:	http://poczta.prezu.one.pl/miastoplusa_sms/miastoplusa_sms-%{_miasto_plusa_ver}.tar.gz
 # Source9-md5:	ec176bb66be3190a4c49ad0e9e1b73b8
 Source10:	http://gov.one.pl/svnsnap/tabs-svn-%{_tabs_ver}.tar.gz
-# Source10-md5:	e04c307d1d62f997a49ed011d3953359
+# Source10-md5:	7819c3adcb9cab240163c63d42535df7
 Patch0:		%{name}-ac_am.patch
+Patch1:		%{name}-sms_orange.patch
 URL:		http://kadu.net/
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
 %{?with_arts:BuildRequires:	arts-devel}
@@ -239,6 +240,7 @@ Modu³ szpiegowski pokazuj±cy ukryte osoby.
 %prep
 %setup -q -n %{name}
 %patch0 -p1
+%patch1 -p1
 
 %if %{with xmms}
 tar xzf %{SOURCE2} -C modules
