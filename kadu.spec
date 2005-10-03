@@ -355,6 +355,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kadu.desktop
 %{_pixmapsdir}/kadu.png
 %dir %{_datadir}/%{name}
+%dir %{_datadir}/%{name}/modules
 %dir %{_datadir}/%{name}/modules/data
 %{_datadir}/%{name}/themes
 #About... files
