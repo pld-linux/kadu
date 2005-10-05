@@ -25,7 +25,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.4.1
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -44,6 +44,7 @@ Source6:	http://scripts.one.pl/tcl4kadu/files/stable/%{_sver}/tcl_scripting-%{_t
 Source7:	http://scripts.one.pl/~przemos/download/kadu-spy-%{_spy_mod_ver}.tar.gz
 # Source7-md5:	4019b059916a70889ccf8281da3926bc
 Patch0:		%{name}-ac_am.patch
+Patch1:		%{name}-sms.patch
 URL:		http://kadu.net/
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
 %{?with_arts:BuildRequires:	arts-devel}
@@ -229,6 +230,7 @@ Modu³ szpiegowski pokazuj±cy ukryte osoby.
 %prep
 %setup -q -n %{name}
 %patch0 -p1
+%patch1 -p0
 
 %if %{with xmms}
 tar xzf %{SOURCE2} -C modules
