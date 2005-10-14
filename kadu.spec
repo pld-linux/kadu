@@ -15,15 +15,15 @@
 
 %define		_amarok_mod_ver		1.14
 %define		_libgadu_ver		4:1.6
-%define		_spellchecker_mod_ver	0.16
+%define		_spellchecker_mod_ver	0.18
 %define		_spy_mod_ver		0.0.8-1
 %define		_tcl_mod_ver		0.6.1-Isilmalinir
 %define		_weather_ver		svn
-%define		_xmms_mod_ver		1.27
+%define		_xmms_mod_ver		1.30
 %define		_led_ver		svn
-%define		_miasto_plusa_ver	1.3
-%define		_tabs_ver		rev42
-%define		snapshot		20050927
+%define		_miasto_plusa_ver	1.3.2
+%define		_tabs_ver		rev45
+%define		snapshot		20051014
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
@@ -33,14 +33,14 @@ Release:	0.%{snapshot}.1
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/snapshots/%{name}-%{snapshot}.tar.bz2
-# Source0-md5:	ecd4d82ad3f523c18805f65083e323e0
+# Source0-md5:	96945474c504a0b0e54e3a877499351a
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
-# Source2-md5:	9900cfd66d9d8ab8a54f7515ad6eb140
+# Source2-md5:	422b0bfe2fe1d67620896576e3092ac8
 Source3:	http://scripts.one.pl/amarok/devel/%{version}/amarok-%{_amarok_mod_ver}.tar.gz
 # Source3-md5:	16553034fc098ba1014bc1549cb49366
 Source4:	http://scripts.one.pl/spellchecker/devel/%{version}/spellchecker-%{_spellchecker_mod_ver}.tar.gz
-# Source4-md5:	8290eac6481b734c091285d322bc0b58
+# Source4-md5:	6bf19f183eb4e5ea48e2a27d04da2ead
 Source5:	http://www.kadu.net/~blysk/weather-%{_weather_ver}.tar.bz2
 # Source5-md5:	73f11715c07b5a0699642106a58ef7e5
 Source6:	http://scripts.one.pl/tcl4kadu/files/stable/0.4.0/tcl_scripting-%{_tcl_mod_ver}.tar.gz
@@ -49,12 +49,11 @@ Source7:	http://scripts.one.pl/~przemos/download/kadu-spy-%{_spy_mod_ver}.tar.gz
 # Source7-md5:	c402bab70b3f5840b15312eb4f776f2c
 Source8:	http://www.kadu.net/~blysk/led_notify-%{_led_ver}.tar.bz2
 # Source8-md5:	ec2bd940f5c8923449b45a90c41e30e4
-Source9:	http://poczta.prezu.one.pl/miastoplusa_sms/miastoplusa_sms-%{_miasto_plusa_ver}.tar.gz
-# Source9-md5:	ec176bb66be3190a4c49ad0e9e1b73b8
+Source9:	http://www.kadu.net/~patryk/miastoplusa_sms/miastoplusa_sms-%{_miasto_plusa_ver}.tar.gz
+# Source9-md5:	76233b35fa769c56d7ff1343b1bf810f
 Source10:	http://gov.one.pl/svnsnap/tabs-svn-%{_tabs_ver}.tar.gz
-# Source10-md5:	7819c3adcb9cab240163c63d42535df7
+# Source10-md5:	87e9edd96e1a100fbab3838b5e8236d8
 Patch0:		%{name}-ac_am.patch
-Patch1:		%{name}-sms_orange.patch
 URL:		http://kadu.net/
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
 %{?with_arts:BuildRequires:	arts-devel}
@@ -240,7 +239,6 @@ Modu³ szpiegowski pokazuj±cy ukryte osoby.
 %prep
 %setup -q -n %{name}
 %patch0 -p1
-%patch1 -p1
 
 %if %{with xmms}
 tar xzf %{SOURCE2} -C modules
@@ -335,13 +333,18 @@ install kadu/hi48-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/kadu.png
 
 rm -rf $RPM_BUILD_ROOT%{_includedir}
 
-mv -f $RPM_BUILD_ROOT%{_datadir}/%{name}/modules $RPM_BUILD_ROOT%{_libdir}/%{name}
+# force in mv stopped working
+cp -fa $RPM_BUILD_ROOT%{_datadir}/%{name}/modules $RPM_BUILD_ROOT%{_libdir}/%{name}
+rm -fr $RPM_BUILD_ROOT%{_datadir}/%{name}/modules
 install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
-mv -f $RPM_BUILD_ROOT%{_modules_dir}/data/config_wizard $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
-mv -f $RPM_BUILD_ROOT%{_modules_dir}/data/tabs $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/config_wizard $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/config_wizard
+cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/tabs $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/tabs
 
 %if %{with xmms}
-mv -f $RPM_BUILD_ROOT%{_modules_dir}/data/xmms $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/xmms $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/xmms
 %endif
 
 %if %{with weather}
@@ -353,7 +356,8 @@ mv -f $RPM_BUILD_ROOT%{_modules_dir}/data/amarok $RPM_BUILD_ROOT%{_datadir}/%{na
 %endif
 
 %if %{with spellchecker}
-mv -f $RPM_BUILD_ROOT%{_modules_dir}/data/spellchecker $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/spellchecker $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/spellchecker
 %endif
 
 %if %{with spy}
@@ -361,7 +365,8 @@ mv -f $RPM_BUILD_ROOT%{_modules_dir}/data/spy $RPM_BUILD_ROOT%{_datadir}/%{name}
 %endif
 
 %if %{with miasto_plusa}
-mv -f $RPM_BUILD_ROOT%{_modules_dir}/data/miastoplusa_sms $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/miastoplusa_sms $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/miastoplusa_sms
 %endif
 
 
