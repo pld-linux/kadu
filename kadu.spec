@@ -350,6 +350,10 @@ mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/spellchecker $RPM_BUILD_ROO
 mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/spy $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 %endif
 
+# These should not be packaged
+rm -f $RPM_BUILD_ROOT%{_datadir}/%{name}/{HISTORY,README}
+rm -f $RPM_BUILD_ROOT%{_datadir}/applnk/*/*
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -536,6 +540,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/modules/amarok.desc
 %attr(755,root,root) %{_libdir}/%{name}/modules/amarok.so
 %{_datadir}/%{name}/modules/data/amarok
+%lang(de) %{_libdir}/%{name}/modules/translations/amarok_de.qm
 %lang(pl) %{_libdir}/%{name}/modules/translations/amarok_pl.qm
 %endif
 
