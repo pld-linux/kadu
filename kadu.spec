@@ -24,12 +24,12 @@
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
-Version:	0.4.1
-Release:	2
+Version:	0.4.2
+Release:	0.1
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
-# Source0-md5:	52c582fcc175b2af534c7ddab24e0b6b
+# Source0-md5:	77792981e2a0b67d86afea7d5d768463
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/stable/%{_sver}/xmms-%{_xmms_mod_ver}.tar.gz
 # Source2-md5:	4a6e4d52b8efa3d182e2a55e02cc3383
@@ -45,6 +45,7 @@ Source7:	http://scripts.one.pl/~przemos/download/kadu-spy-%{_spy_mod_ver}.tar.gz
 # Source7-md5:	4019b059916a70889ccf8281da3926bc
 Patch0:		%{name}-ac_am.patch
 Patch1:		%{name}-sms.patch
+Patch2:		%{name}-bashism.patch
 URL:		http://kadu.net/
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
 %{?with_arts:BuildRequires:	arts-devel}
@@ -60,6 +61,7 @@ BuildRequires:	libsndfile-devel >= 1.0
 BuildRequires:	libtool
 %{?with_nas:BuildRequires:	nas-devel}
 BuildRequires:	openssl-devel >= 0.9.7d
+BuildRequires:	qt-linguist
 BuildRequires:	sed >= 4.0
 %{?with_xmms:BuildRequires:	xmms-devel}
 %{?with_tcl_scripting:BuildRequires:	tk-devel >= 8.4}
@@ -231,6 +233,7 @@ Modu³ szpiegowski pokazuj±cy ukryte osoby.
 %setup -q -n %{name}
 %patch0 -p1
 %patch1 -p0
+%patch2 -p1
 
 %if %{with xmms}
 tar xzf %{SOURCE2} -C modules
