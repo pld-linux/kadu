@@ -16,7 +16,7 @@
 %define		_libgadu_ver		4:1.6
 %define		_amarok_mod_ver		1.13
 %define		_spellchecker_mod_ver	0.15
-%define		_spy_mod_ver		0.0.8
+%define		_spy_mod_ver		0.0.8-1
 %define		_tcl_mod_ver		0.6.1-Isilmalinir
 %define		_weather_ver		2.01
 %define		_xmms_mod_ver		1.25
@@ -42,7 +42,7 @@ Source5:	http://pcb45.tech.us.edu.pl/~blysk/weather/weather-%{_weather_ver}.tar.
 Source6:	http://scripts.one.pl/tcl4kadu/files/stable/%{_sver}/tcl_scripting-%{_tcl_mod_ver}.tar.gz
 # Source6-md5:	53d21296a688dceec44e247977fdef91
 Source7:	http://scripts.one.pl/~przemos/download/kadu-spy-%{_spy_mod_ver}.tar.gz
-# Source7-md5:	4019b059916a70889ccf8281da3926bc
+# Source7-md5:	c402bab70b3f5840b15312eb4f776f2c
 Patch0:		%{name}-ac_am.patch
 Patch1:		%{name}-sms.patch
 Patch2:		%{name}-bashism.patch
