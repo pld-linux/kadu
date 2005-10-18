@@ -13,17 +13,17 @@
 %bcond_without weather		# without weather check module support
 %bcond_without xmms		# without xmms player support module
 
-%define		_amarok_mod_ver		1.14
+%define		_amarok_mod_ver		1.15
 %define		_libgadu_ver		4:1.6
 %define		_spellchecker_mod_ver	0.18
 %define		_spy_mod_ver		0.0.8-1
 %define		_tcl_mod_ver		0.6.1-Isilmalinir
-%define		_weather_ver		svn
+%define		_weather_ver		2.05
 %define		_xmms_mod_ver		1.30
 %define		_led_ver		svn
 %define		_miasto_plusa_ver	1.3.2
 %define		_tabs_ver		rev45
-%define		snapshot		20051014
+%define		snapshot		20051018
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
@@ -33,16 +33,16 @@ Release:	0.%{snapshot}.1
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/snapshots/%{name}-%{snapshot}.tar.bz2
-# Source0-md5:	96945474c504a0b0e54e3a877499351a
+# Source0-md5:	b2ef183d192406b48c7511c0c266ab4b
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
 # Source2-md5:	422b0bfe2fe1d67620896576e3092ac8
 Source3:	http://scripts.one.pl/amarok/devel/%{version}/amarok-%{_amarok_mod_ver}.tar.gz
-# Source3-md5:	16553034fc098ba1014bc1549cb49366
+# Source3-md5:	85f40cdec8a2f2fa35a16fcf18012ae3
 Source4:	http://scripts.one.pl/spellchecker/devel/%{version}/spellchecker-%{_spellchecker_mod_ver}.tar.gz
 # Source4-md5:	6bf19f183eb4e5ea48e2a27d04da2ead
 Source5:	http://www.kadu.net/~blysk/weather-%{_weather_ver}.tar.bz2
-# Source5-md5:	73f11715c07b5a0699642106a58ef7e5
+# Source5-md5:	7ff3d850cca2bfc0bfd9a2d88729e952
 Source6:	http://scripts.one.pl/tcl4kadu/files/stable/0.4.0/tcl_scripting-%{_tcl_mod_ver}.tar.gz
 # Source6-md5:	53d21296a688dceec44e247977fdef91
 Source7:	http://scripts.one.pl/~przemos/download/kadu-spy-%{_spy_mod_ver}.tar.gz
