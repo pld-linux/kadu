@@ -70,6 +70,7 @@ BuildRequires:	libsndfile-devel >= 1.0
 BuildRequires:	libtool
 %{?with_nas:BuildRequires:	nas-devel}
 BuildRequires:	openssl-devel >= 0.9.7d
+BuildRequires:	qt-linguist
 BuildRequires:	sed >= 4.0
 %{?with_tcl_scripting:BuildRequires:	tk-devel >= 8.4}
 %{?with_xmms:BuildRequires:	xmms-devel}
