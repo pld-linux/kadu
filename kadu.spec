@@ -12,24 +12,24 @@
 %bcond_with	tcl_scripting	# with TCL scripting support and KaduPro extensions
 %bcond_without	spy		# without Spying module that shows who's invisible
 
-%define		_sver			0.4.2
+%define		_sver			0.4.3
 %define		_libgadu_ver		4:1.6
 %define		_amarok_mod_ver		1.13
 %define		_spellchecker_mod_ver	0.15
-%define		_spy_mod_ver		0.0.8-1
-%define		_tcl_mod_ver		0.6.1-Isilmalinir
-%define		_weather_ver		2.02
+%define		_spy_mod_ver		0.0.8-2
+%define		_tcl_mod_ver		0.6.2-Josephine
+%define		_weather_ver		2.07
 %define		_xmms_mod_ver		1.25
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
-Version:	0.4.2
-Release:	2
+Version:	0.4.3
+Release:	1
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
-# Source0-md5:	77792981e2a0b67d86afea7d5d768463
+# Source0-md5:	ef66bd638df30aee6338aae3b22dd194
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/stable/%{_sver}/xmms-%{_xmms_mod_ver}.tar.gz
 # Source2-md5:	4a6e4d52b8efa3d182e2a55e02cc3383
@@ -38,11 +38,11 @@ Source3:	http://scripts.one.pl/amarok/stable/%{_sver}/amarok-%{_amarok_mod_ver}.
 Source4:	http://scripts.one.pl/spellchecker/stable/%{_sver}/spellchecker-%{_spellchecker_mod_ver}.tar.gz
 # Source4-md5:	02495130277cc8a48430535a4107708d
 Source5:	http://www.kadu.net/~blysk/weather-%{_weather_ver}.tar.bz2
-# Source5-md5:	362d77600e0e02ec67d1b3bdf3cc64e2
+# Source5-md5:	275fc991bebd80fae5efb050a6b463d9
 Source6:	http://scripts.one.pl/tcl4kadu/files/stable/%{_sver}/tcl_scripting-%{_tcl_mod_ver}.tar.gz
-# Source6-md5:	53d21296a688dceec44e247977fdef91
+# Source6-md5:	97406c1f3f34b8a073e0a1a18e842c9e
 Source7:	http://scripts.one.pl/~przemos/download/kadu-spy-%{_spy_mod_ver}.tar.gz
-# Source7-md5:	c402bab70b3f5840b15312eb4f776f2c
+# Source7-md5:	2ffba6058d5d463ade20ff697e200f7c
 Patch0:		%{name}-ac_am.patch
 Patch1:		%{name}-bashism.patch
 URL:		http://kadu.net/
