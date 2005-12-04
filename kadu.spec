@@ -18,7 +18,7 @@
 %define		_spellchecker_mod_ver	0.15
 %define		_spy_mod_ver		0.0.8-1
 %define		_tcl_mod_ver		0.6.2-Josephine
-%define		_weather_ver		2.07
+%define		_weather_ver		2.02
 %define		_xmms_mod_ver		1.25
 #
 Summary:	A Gadu-Gadu client for online messaging
@@ -38,7 +38,7 @@ Source3:	http://scripts.one.pl/amarok/stable/%{_sver}/amarok-%{_amarok_mod_ver}.
 Source4:	http://scripts.one.pl/spellchecker/stable/%{_sver}/spellchecker-%{_spellchecker_mod_ver}.tar.gz
 # Source4-md5:	02495130277cc8a48430535a4107708d
 Source5:	http://www.kadu.net/~blysk/weather-%{_weather_ver}.tar.bz2
-# Source5-md5:	275fc991bebd80fae5efb050a6b463d9
+# Source5-md5:	362d77600e0e02ec67d1b3bdf3cc64e2
 Source6:	http://scripts.one.pl/tcl4kadu/files/stable/%{_sver}/tcl_scripting-%{_tcl_mod_ver}.tar.gz
 # Source6-md5:	97406c1f3f34b8a073e0a1a18e842c9e
 Source7:	http://scripts.one.pl/~przemos/download/kadu-spy-%{_spy_mod_ver}.tar.gz
