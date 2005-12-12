@@ -13,17 +13,17 @@
 %bcond_without weather		# without weather check module support
 %bcond_without xmms		# without xmms player support module
 
-%define		_amarok_mod_ver		1.15
+%define		_amarok_mod_ver		1.16
 %define		_libgadu_ver		4:1.6
 %define		_spellchecker_mod_ver	0.18
-%define		_spy_mod_ver		0.0.8-1
-%define		_tcl_mod_ver		0.6.1-Isilmalinir
+%define		_spy_mod_ver		0.0.8-2
+%define		_tcl_mod_ver		0.6.2-Josephine
 %define		_weather_ver		2.07
 %define		_xmms_mod_ver		1.30
 %define		_led_ver		0.5
 %define		_miasto_plusa_ver	1.3.2
 %define		_tabs_ver		rev45
-%define		snapshot		20051021
+%define		snapshot		20051212
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
@@ -33,20 +33,20 @@ Release:	0.%{snapshot}.1
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/snapshots/%{name}-%{snapshot}.tar.bz2
-# Source0-md5:	bfe225ce6007ef4277daedb44b2a7c05
+# Source0-md5:	89b09f8bac61b4af55ac55d35a43f90e
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
 # Source2-md5:	422b0bfe2fe1d67620896576e3092ac8
 Source3:	http://scripts.one.pl/amarok/devel/%{version}/amarok-%{_amarok_mod_ver}.tar.gz
-# Source3-md5:	85f40cdec8a2f2fa35a16fcf18012ae3
+# Source3-md5:	45ba32f7a1d2a6fbf01cbe166a090bf1
 Source4:	http://scripts.one.pl/spellchecker/devel/%{version}/spellchecker-%{_spellchecker_mod_ver}.tar.gz
 # Source4-md5:	6bf19f183eb4e5ea48e2a27d04da2ead
 Source5:	http://www.kadu.net/~blysk/weather-%{_weather_ver}.tar.bz2
 # Source5-md5:	275fc991bebd80fae5efb050a6b463d9
-Source6:	http://scripts.one.pl/tcl4kadu/files/stable/0.4.0/tcl_scripting-%{_tcl_mod_ver}.tar.gz
-# Source6-md5:	53d21296a688dceec44e247977fdef91
+Source6:	http://scripts.one.pl/tcl4kadu/files/stable/0.4.3/tcl_scripting-%{_tcl_mod_ver}.tar.gz
+# Source6-md5:	97406c1f3f34b8a073e0a1a18e842c9e
 Source7:	http://scripts.one.pl/~przemos/download/kadu-spy-%{_spy_mod_ver}.tar.gz
-# Source7-md5:	c402bab70b3f5840b15312eb4f776f2c
+# Source7-md5:	2ffba6058d5d463ade20ff697e200f7c
 Source8:	http://www.kadu.net/~blysk/led_notify-%{_led_ver}.tar.bz2
 # Source8-md5:	179e453b3d8dcf6f23d82409d270a534
 Source9:	http://www.kadu.net/~patryk/miastoplusa_sms/miastoplusa_sms-%{_miasto_plusa_ver}.tar.gz
@@ -318,7 +318,6 @@ chmod u+w aclocal.m4 configure
 	--enable-voice \
 	--enable-dist-info=PLD \
 	--with-existing-libgadu=/usr
-%{__sed} -i 's,/bin/sh,/bin/bash,g' configure
 %{__make}
 
 %install
