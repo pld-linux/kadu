@@ -13,7 +13,7 @@
 %bcond_without weather		# without weather check module support
 %bcond_without xmms		# without xmms player support module
 
-%define		_amarok_mod_ver		1.16
+%define		_amarok_mod_ver		1.17
 %define		_libgadu_ver		4:1.6
 %define		_spellchecker_mod_ver	0.18
 %define		_spy_mod_ver		0.0.8-2
@@ -22,8 +22,8 @@
 %define		_xmms_mod_ver		1.30
 %define		_led_ver		0.5
 %define		_miasto_plusa_ver	1.3.2
-%define		_tabs_ver		rev45
-%define		snapshot		20051212
+%define		_tabs_ver		rev46
+%define		snapshot		20060112
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
@@ -33,12 +33,12 @@ Release:	0.%{snapshot}.1
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/snapshots/%{name}-%{snapshot}.tar.bz2
-# Source0-md5:	89b09f8bac61b4af55ac55d35a43f90e
+# Source0-md5:	1e28e49dd5654e252daa185ce6e4daa4
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
 # Source2-md5:	422b0bfe2fe1d67620896576e3092ac8
 Source3:	http://scripts.one.pl/amarok/devel/%{version}/amarok-%{_amarok_mod_ver}.tar.gz
-# Source3-md5:	45ba32f7a1d2a6fbf01cbe166a090bf1
+# Source3-md5:	0fb5d8f465899ffbe96d44685e5e9955
 Source4:	http://scripts.one.pl/spellchecker/devel/%{version}/spellchecker-%{_spellchecker_mod_ver}.tar.gz
 # Source4-md5:	6bf19f183eb4e5ea48e2a27d04da2ead
 Source5:	http://www.kadu.net/~blysk/weather-%{_weather_ver}.tar.bz2
@@ -52,7 +52,7 @@ Source8:	http://www.kadu.net/~blysk/led_notify-%{_led_ver}.tar.bz2
 Source9:	http://www.kadu.net/~patryk/miastoplusa_sms/miastoplusa_sms-%{_miasto_plusa_ver}.tar.gz
 # Source9-md5:	76233b35fa769c56d7ff1343b1bf810f
 Source10:	http://gov.one.pl/svnsnap/tabs-svn-%{_tabs_ver}.tar.gz
-# Source10-md5:	87e9edd96e1a100fbab3838b5e8236d8
+# Source10-md5:	0d313a489bad8bf8b324e347e74f00e6
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
