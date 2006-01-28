@@ -109,7 +109,6 @@ the song currently played in XMMS.
 Modu³ umo¿liwiaj±cy pokazywanie w opisie statusu informacji o
 odgrywanym utworze z odtwarzacza XMMS.
 
-
 %package module-sound-alsa
 Summary:	Support ALSA sound
 Summary(pl):	Wsparcie dla d¼wiêku ALSA
@@ -122,7 +121,6 @@ ALSA sound support module.
 
 %description module-sound-alsa -l pl
 Modu³ obs³ugi d¼wiêku przez ALSA.
-
 
 %package module-sound-arts
 Summary:	Support aRts sound server
@@ -248,7 +246,7 @@ Modu³ szpiegowski pokazuj±cy ukryte osoby.
 
 %package module-imiface
 Summary:	imiface module that integrate kadu with KDE with KIMIface interface
-Summary(pl):	imiface to modu³ do integrowania kadu z KDE za pomoc± interfejsu KIMIface
+Summary(pl):	Modu³ imiface do integrowania kadu z KDE za pomoc± interfejsu KIMIface
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-module-dcopexport-%{version}-%{release}
@@ -262,7 +260,7 @@ KIMIface.
 
 %package module-iwait4u
 Summary:	iwait4u module inform you, that someone from userlist is active
-Summary(pl):	Modul iwait4u informuje Ciê, ¿e dana osoba na która czekasz jest dostêpna
+Summary(pl):	Modul iwait4u do informowania o dostêpno¶ci osób z listy
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -270,8 +268,7 @@ Requires:	%{name} = %{version}-%{release}
 iwait4u module inform you, that someone from userlist is active.
 
 %description module-iwait4u -l pl
-Modul iwait4u informuje Ciê, ¿e dana osoba na która czekasz jest
-dostêpna.
+Modul iwait4u informuje, ¿e osoba z listy u¿ytkowników jest dostêpna.
 
 %package module-dcopexport
 Summary:	Kadu DCOP interface
