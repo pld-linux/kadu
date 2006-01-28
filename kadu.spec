@@ -1,6 +1,3 @@
-# TODO
-# - check dcompexport Requires 
-#
 # Conditional build:
 %bcond_without	xmms		# without XMMS player support module
 %bcond_without	alsa		# without ALSA support
@@ -37,7 +34,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.4.3
-Release:	1.99
+Release:	2
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -249,7 +246,7 @@ Summary:	imiface module that integrate kadu with KDE with KIMIface interface
 Summary(pl):	Modu³ imiface do integrowania kadu z KDE za pomoc± interfejsu KIMIface
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
-Requires:	%{name}-module-dcopexport-%{version}-%{release}
+Requires:	%{name}-module-dcopexport = %{version}-%{release}
 
 %description module-imiface
 imiface module that integrate kadu with KDE with KIMIface interface.
@@ -362,7 +359,7 @@ echo 'MODULE_LIBS_PATH="%{_prefix}/lib"' >> modules/amarok/spec
 %if %{with tcl_scripting}
 %{__sed} -i 's/module_tcl_scripting=n/module_tcl_scripting=m/' .config
 %endif
-%if %{with imiface}
+%if %{with imiface} && %{with dcopexport}
 echo "module_imiface=m" >>.config
 %endif
 %if %{with iwait4u}
