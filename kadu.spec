@@ -1,3 +1,5 @@
+# TODO
+# - check dcompexport Requires 
 #
 # Conditional build:
 %bcond_without	xmms		# without XMMS player support module
@@ -11,6 +13,13 @@
 %bcond_without	weather		# without Weather support module
 %bcond_with	tcl_scripting	# with TCL scripting support and KaduPro extensions
 %bcond_without	spy		# without Spying module that shows who's invisible
+%bcond_without	imiface		# without imiface module that integrate kadu with KDE with KIMIface interface
+%bcond_without 	iwait4u		# without iwait4u module
+%bcond_without	dcopexport	# without dcopexport module
+
+%if %{with imiface} && %{without dcopexport}
+cannot build imiface without dcopexport
+%endif
 
 %define		_sver			0.4.3
 %define		_libgadu_ver		4:1.6
@@ -20,12 +29,15 @@
 %define		_tcl_mod_ver		0.6.2-Josephine
 %define		_weather_ver		2.02
 %define		_xmms_mod_ver		1.25
+%define		_imiface_ver		0.2
+%define		_iwait4u_ver		1.0
+%define		_dcopexport_ver		0.11.1-20051201-0.4.3
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.4.3
-Release:	1
+Release:	1.99
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -41,8 +53,14 @@ Source5:	http://www.kadu.net/~blysk/weather-%{_weather_ver}.tar.bz2
 # Source5-md5:	362d77600e0e02ec67d1b3bdf3cc64e2
 Source6:	http://scripts.one.pl/tcl4kadu/files/stable/%{_sver}/tcl_scripting-%{_tcl_mod_ver}.tar.gz
 # Source6-md5:	97406c1f3f34b8a073e0a1a18e842c9e
-Source7:	http://scripts.one.pl/~przemos/download/kadu-spy-%{_spy_mod_ver}.tar.gz
+Source7:	http://scripts.one.pl/~przemos/download/%{name}-spy-%{_spy_mod_ver}.tar.gz
 # Source7-md5:	c402bab70b3f5840b15312eb4f776f2c
+Source8:	http://vogel.iglu.cz/kadu/imiface/imiface-%{_imiface_ver}.tgz
+# Source8-md5:	926284ffb2bcda107d86d9d93b9f2bed
+Source9:	http://www.kadu.net/~pan_wojtas/iwait4u/download/%{name}-iwait4u-%{_iwait4u_ver}.tar.bz2
+# Source9-md5:	01c19f94168a6420346aaf1f2cc424ec
+Source10:	http://kadu.net/~pinkworm/dcopexport/dcopexport-%{_dcopexport_ver}.tar.bz2
+# Source10-md5	2be815da3015312c6469dddc12d65bca
 Patch0:		%{name}-ac_am.patch
 Patch1:		%{name}-bashism.patch
 URL:		http://kadu.net/
@@ -62,8 +80,8 @@ BuildRequires:	libtool
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	qt-linguist
 BuildRequires:	sed >= 4.0
-%{?with_xmms:BuildRequires:	xmms-devel}
 %{?with_tcl_scripting:BuildRequires:	tk-devel >= 8.4}
+%{?with_xmms:BuildRequires:	xmms-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -223,10 +241,49 @@ Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-spy
-Spying module that shows who's invisible
+Spying module that shows who's invisible.
 
 %description module-spy -l pl
 Modu³ szpiegowski pokazuj±cy ukryte osoby.
+
+%package module-imiface
+Summary:	imiface module that integrate kadu with KDE with KIMIface interface
+Summary(pl):	imiface to modu³ do integrowania kadu z KDE za pomoc± interfejsu KIMIface
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-module-dcopexport-%{version}-%{release}
+
+%description module-imiface
+imiface module that integrate kadu with KDE with KIMIface interface.
+
+%description module-imiface -l pl
+imiface to modu³ do integrowania kadu z KDE za pomoc± interfejsu
+KIMIface.
+
+%package module-iwait4u
+Summary:	iwait4u module inform you, that someone from userlist is active
+Summary(pl):	Modul iwait4u informuje Ciê, ¿e dana osoba na która czekasz jest dostêpna
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-iwait4u
+iwait4u module inform you, that someone from userlist is active.
+
+%description module-iwait4u -l pl
+Modul iwait4u informuje Ciê, ¿e dana osoba na która czekasz jest
+dostêpna.
+
+%package module-dcopexport
+Summary:	Kadu DCOP interface
+Summary(pl):	Interfejs niektórych funkcji Kadu do DCOP
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-dcopexport
+Kadu DCOP interface.
+
+%description module-dcopexport -l pl
+Interfejs niektórych funkcji Kadu do DCOP.
 
 %prep
 %setup -q -n %{name}
@@ -250,6 +307,15 @@ tar xzf %{SOURCE6} -C modules
 %endif
 %if %{with spy}
 tar xzf %{SOURCE7} -C modules
+%endif
+%if %{with imiface}
+tar xzf %{SOURCE8} -C modules
+%endif
+%if %{with iwait4u}
+tar xjf %{SOURCE9} -C modules
+%endif
+%if %{with dcopexport}
+tar xjf %{SOURCE10} -C modules
 %endif
 
 %{__sed} -i 's,dataPath("kadu/modules/*,("%{_libdir}/kadu/modules/,g'  kadu/modules.cpp
@@ -280,15 +346,15 @@ rm -f modules/xmms/.autodownloaded
 %endif
 %if %{with nas}
 %{__sed} -i 's/module_nas_sound=n/module_nas_sound=m/' .config
-echo 'MODULE_LIBS_PATH="/usr/lib"' >> modules/nas_sound/spec
+echo 'MODULE_LIBS_PATH="%{_prefix}/lib"' >> modules/nas_sound/spec
 %endif
 %if %{with speech}
 %{__sed} -i 's/module_speech=n/module_speech=m/' .config
 %endif
 %if %{with amarok}
 %{__sed} -i 's/module_amarok=n/module_amarok=m/' .config
-echo 'MODULE_INCLUDES_PATH="/usr/include"'>> modules/amarok/spec
-echo 'MODULE_LIBS_PATH="/usr/lib"' >> modules/amarok/spec
+echo 'MODULE_INCLUDES_PATH="%{_includedir}"'>> modules/amarok/spec
+echo 'MODULE_LIBS_PATH="%{_prefix}/lib"' >> modules/amarok/spec
 %endif
 %if %{with spellchecker}
 %{__sed} -i 's/module_spellchecker=n/module_spellchecker=m/' .config
@@ -298,6 +364,15 @@ echo 'MODULE_LIBS_PATH="/usr/lib"' >> modules/amarok/spec
 %endif
 %if %{with tcl_scripting}
 %{__sed} -i 's/module_tcl_scripting=n/module_tcl_scripting=m/' .config
+%endif
+%if %{with imiface}
+echo "module_imiface=m" >>.config
+%endif
+%if %{with iwait4u}
+echo "module_iwait4u=m" >>.config
+%endif
+%if %{with dcopexport}
+echo "module_dcopexport=m" >>.config
 %endif
 
 chmod u+w aclocal.m4 configure
@@ -461,7 +536,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(de) %{_libdir}/%{name}/modules/translations/x11_docking_de.qm
 %lang(fr) %{_libdir}/%{name}/modules/translations/x11_docking_fr.qm
 %lang(it) %{_libdir}/%{name}/modules/translations/x11_docking_it.qm
-%lang(pl) %{_libdir}/%{name}/modules/translations/x11_docking_pl.qm				
+%lang(pl) %{_libdir}/%{name}/modules/translations/x11_docking_pl.qm
 #global translation:
 %dir %{_datadir}/%{name}/translations
 %lang(de) %{_datadir}/%{name}/translations/kadu_de.qm
@@ -577,4 +652,29 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/%{name}/modules/spy.so
 %{_datadir}/%{name}/modules/data/spy
 %lang(pl) %{_libdir}/%{name}/modules/translations/spy_pl.qm
+%endif
+
+%if %{with dcopexport}
+%files module-dcopexport
+%defattr(644,root,root,755)
+%{_libdir}/%{name}/modules/dcopexport.desc
+%attr(755,root,root) %{_libdir}/%{name}/modules/dcopexport.so
+%lang(pl) %{_libdir}/%{name}/modules/translations/dcopexport_pl.qm
+%attr(755,root,root) %{_libdir}/%{name}/modules/bin/dcopexport/*.sh
+%{_libdir}/%{name}/modules/data/dcopexport/dcopexport.png
+%endif
+
+%if %{with imiface}
+%files module-imiface
+%defattr(644,root,root,755)
+%{_libdir}/%{name}/modules/imiface.desc
+%attr(755,root,root) %{_libdir}/%{name}/modules/imiface.so
+%endif
+
+%if %{with iwait4u}
+%files module-iwait4u
+%defattr(644,root,root,755)
+%{_libdir}/%{name}/modules/iwait4u.desc
+%attr(755,root,root) %{_libdir}/%{name}/modules/iwait4u.so
+%lang(pl) %{_libdir}/%{name}/modules/translations/iwait4u_pl.qm
 %endif
