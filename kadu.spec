@@ -57,7 +57,7 @@ Source8:	http://vogel.iglu.cz/kadu/imiface/imiface-%{_imiface_ver}.tgz
 Source9:	http://www.kadu.net/~pan_wojtas/iwait4u/download/%{name}-iwait4u-%{_iwait4u_ver}.tar.bz2
 # Source9-md5:	01c19f94168a6420346aaf1f2cc424ec
 Source10:	http://kadu.net/~pinkworm/dcopexport/dcopexport-%{_dcopexport_ver}.tar.bz2
-# Source10-md5	2be815da3015312c6469dddc12d65bca
+# Source10-md5:	2be815da3015312c6469dddc12d65bca
 Patch0:		%{name}-ac_am.patch
 Patch1:		%{name}-bashism.patch
 URL:		http://kadu.net/
