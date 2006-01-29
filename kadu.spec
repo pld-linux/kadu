@@ -1,18 +1,18 @@
 # Conditional build:
-%bcond_without	xmms		# without XMMS player support module
-%bcond_without	alsa		# without ALSA support
+%bcond_without 	alsa		# without ALSA support
+%bcond_without	amarok		# without amarok player support module
 %bcond_without	arts		# without arts sound server support
+%bcond_without	dcopexport	# without dcopexport module
 %bcond_without	esd		# without ESD sound server support
+%bcond_without	imiface		# without imiface module that integrate kadu with KDE with KIMIface interface
+%bcond_without	iwait4u		# without iwait4u module
 %bcond_without	nas		# without Network Audio System support
 %bcond_without	speech		# without Speech synthesis support
-%bcond_without	amarok		# without amarok player support module
 %bcond_without	spellchecker	# without spellchecker (Aspell support)
-%bcond_without	weather		# without Weather support module
-%bcond_with	tcl_scripting	# with TCL scripting support and KaduPro extensions
 %bcond_without	spy		# without Spying module that shows who's invisible
-%bcond_without	imiface		# without imiface module that integrate kadu with KDE with KIMIface interface
-%bcond_without 	iwait4u		# without iwait4u module
-%bcond_without	dcopexport	# without dcopexport module
+%bcond_with	tcl_scripting	# with TCL scripting support and KaduPro extensions
+%bcond_without	weather		# without Weather support module
+%bcond_without	xmms		# without XMMS player support module
 
 %if %{with imiface} && %{without dcopexport}
 cannot build imiface without dcopexport
