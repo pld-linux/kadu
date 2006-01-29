@@ -1,5 +1,6 @@
+#
 # Conditional build:
-%bcond_without 	alsa		# without ALSA support
+%bcond_without	alsa		# without ALSA support
 %bcond_without	amarok		# without amarok player support module
 %bcond_without	arts		# without arts sound server support
 %bcond_without	dcopexport	# without dcopexport module
@@ -312,7 +313,7 @@ tar xjf %{SOURCE9} -C modules
 tar xjf %{SOURCE10} -C modules
 %endif
 
-%{__sed} -i 's,dataPath("kadu/modules/*,("%{_libdir}/kadu/modules/,g'  kadu/modules.cpp
+%{__sed} -i 's,dataPath("kadu/modules/*,("%{_libdir}/kadu/modules/,g' kadu/modules.cpp
 
 %build
 #basic functional
