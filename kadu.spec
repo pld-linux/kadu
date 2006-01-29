@@ -417,6 +417,9 @@ mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/spellchecker $RPM_BUILD_ROO
 %if %{with spy}
 mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/spy $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 %endif
+%if %{with dcopexport}
+mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/dcopexport $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+%endif
 
 # These should not be packaged
 rm -f $RPM_BUILD_ROOT%{_datadir}/%{name}/{HISTORY,README}
@@ -443,6 +446,8 @@ rm -rf $RPM_BUILD_ROOT
 #default modules:
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/modules
+%dir %{_libdir}/%{name}/modules/bin
+%dir %{_libdir}/%{name}/modules/data
 %{_libdir}/%{name}/modules/account_management.desc
 %{_libdir}/%{name}/modules/autoaway.desc
 %{_libdir}/%{name}/modules/autoresponder.desc
@@ -572,7 +577,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/%{name}/modules/arts_sound.desc
 %attr(755,root,root) %{_libdir}/%{name}/modules/arts_sound.so
-%dir %{_libdir}/%{name}/modules/bin/
 %dir %{_libdir}/%{name}/modules/bin/arts_sound
 %attr(755,root,root) %{_libdir}/%{name}/modules/bin/arts_sound/arts_connector
 %endif
@@ -655,8 +659,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/modules/dcopexport.desc
 %attr(755,root,root) %{_libdir}/%{name}/modules/dcopexport.so
 %lang(pl) %{_libdir}/%{name}/modules/translations/dcopexport_pl.qm
+%dir %{_libdir}/%{name}/modules/bin/dcopexport
 %attr(755,root,root) %{_libdir}/%{name}/modules/bin/dcopexport/*.sh
-%{_libdir}/%{name}/modules/data/dcopexport/dcopexport.png
+%{_datadir}/%{name}/modules/data/dcopexport
 %endif
 
 %if %{with imiface}
