@@ -387,7 +387,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/ChangeLog
 %{_datadir}/%{name}/COPYING
 %{_datadir}/%{name}/THANKS
+%if %{with miasto_plusa}
 %{_datadir}/%{name}/modules/data/miastoplusa_sms/curl-ca-bundle.crt
+%endif
 %{_datadir}/%{name}/modules/data/tabs/attach.png
 
 #default modules:
@@ -414,8 +416,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_modules_dir}/ext_sound.so
 %{_modules_dir}/hints.desc
 %attr(755,root,root) %{_modules_dir}/hints.so
+%if %{with miasto_plusa}
 %{_modules_dir}/miastoplusa_sms.desc
 %attr(755,root,root) %{_modules_dir}/miastoplusa_sms.so
+%endif
 %{_modules_dir}/migration.desc
 %attr(755,root,root) %{_modules_dir}/migration.so
 %{_modules_dir}/*notify.desc
@@ -476,7 +480,9 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_modules_dir}/translations/hints_fr.qm
 %lang(it) %{_modules_dir}/translations/hints_it.qm
 %lang(pl) %{_modules_dir}/translations/hints_pl.qm
+%if %{with miasto_plusa}
 %lang(pl) %{_modules_dir}/translations/miastoplusa_sms_pl.qm
+%endif
 %lang(de) %{_modules_dir}/translations/migration_de.qm
 %lang(fr) %{_modules_dir}/translations/migration_fr.qm
 %lang(it) %{_modules_dir}/translations/migration_it.qm
