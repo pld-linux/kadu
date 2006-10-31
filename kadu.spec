@@ -1,54 +1,60 @@
 #
+# TODO:
+# - make miasto_plusa/tcl_scripting compile again
+# - consider dropping spy module: doesn't work anymore as expected 
+#   (also website is down, download is down)
+#
 # Conditional build:
-%bcond_without amarok		# without amarok player support module
-%bcond_without alsa		# without ALSA support
-%bcond_without arts		# without arts sound server support
-%bcond_without esd		# without ESD sound server support
-%bcond_without miasto_plusa	# without miasto_plusa module support
-%bcond_without nas		# without Network Audio System support
-%bcond_without speech		# without Speech synthesis support
-%bcond_without spellchecker	# without spellchecker (Aspell support)
-%bcond_without spy		# without Spying module that shows who's invisible
-%bcond_without tcl_scripting	# without TCL scripting support and KaduPro extensions
-%bcond_without weather		# without weather check module support
-%bcond_without xmms		# without xmms player support module
+%bcond_without	amarok		# without amarok player support module
+%bcond_without	alsa		# without ALSA support
+%bcond_without	arts		# without arts sound server support
+%bcond_without	esd		# without ESD sound server support
+%bcond_with	miasto_plusa	# without miasto_plusa module support
+%bcond_without	nas		# without Network Audio System support
+%bcond_without	speech		# without Speech synthesis support
+%bcond_without	spellchecker	# without spellchecker (Aspell support)
+%bcond_with	spy		# without Spying module that shows who's invisible
+%bcond_with	tcl_scripting	# without TCL scripting support and KaduPro extensions
+%bcond_without	weather		# without weather check module support
+%bcond_without	xmms		# without xmms player support module
 
-%define		_amarok_mod_ver		1.17
+%define		_amarok_mod_ver		1.18
 %define		_libgadu_ver		4:1.6
-%define		_spellchecker_mod_ver	0.18
+%define		_spellchecker_mod_ver	0.19
 %define		_spy_mod_ver		0.0.8-2
 %define		_tcl_mod_ver		0.6.2-Josephine
-%define		_weather_ver		3.0
+%define		_weather_ver		3.01
 %define		_xmms_mod_ver		1.30
-%define		_led_ver		0.7
+%define		_led_ver		0.9
 %define		_miasto_plusa_ver	1.3.2
 %define		_tabs_ver		rev46
-%define		snapshot		20060315
+%define		snapshot_major		2006
+%define		snapshot_minor		1025
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.5.0
-Release:	0.%{snapshot}.1
+Release:	0.%{snapshot_major}%{snapshot_minor}.2
 License:	GPL v2
 Group:		Applications/Communications
-Source0:	http://kadu.net/download/snapshots/%{name}-%{snapshot}.tar.bz2
-# Source0-md5:	74f8ae094de51a357dc9f5cb94051416
+Source0:	http://kadu.net/download/snapshots/%{snapshot_major}/%{name}-%{snapshot_major}%{snapshot_minor}.tar.bz2
+# Source0-md5:	21a55d099699d967028e49f4d8307a99
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
 # Source2-md5:	422b0bfe2fe1d67620896576e3092ac8
 Source3:	http://scripts.one.pl/amarok/devel/%{version}/amarok-%{_amarok_mod_ver}.tar.gz
-# Source3-md5:	0fb5d8f465899ffbe96d44685e5e9955
+# Source3-md5:	0ec8466884d98d63a6d2e4eeac814612
 Source4:	http://scripts.one.pl/spellchecker/devel/%{version}/spellchecker-%{_spellchecker_mod_ver}.tar.gz
-# Source4-md5:	6bf19f183eb4e5ea48e2a27d04da2ead
+# Source4-md5:	f1e1c572f9fd92dfb420e62818bc826c
 Source5:	http://www.kadu.net/~blysk/weather-%{_weather_ver}.tar.bz2
-# Source5-md5:	01fc8dbdfe8431e30d8cd87387f5d56f
+# Source5-md5:	c21727575d4bab551adeb9b5b1787f0c
 Source6:	http://scripts.one.pl/tcl4kadu/files/stable/0.4.3/tcl_scripting-%{_tcl_mod_ver}.tar.gz
 # Source6-md5:	97406c1f3f34b8a073e0a1a18e842c9e
 Source7:	http://scripts.one.pl/~przemos/download/kadu-spy-%{_spy_mod_ver}.tar.gz
 # Source7-md5:	2ffba6058d5d463ade20ff697e200f7c
 Source8:	http://www.kadu.net/~blysk/led_notify-%{_led_ver}.tar.bz2
-# Source8-md5:	a16e1c898594b0edda25ffe9a4fb5df6
+# Source8-md5:	3f9e347fd775324f4077f2f6849a0de7
 Source9:	http://www.kadu.net/~patryk/miastoplusa_sms/miastoplusa_sms-%{_miasto_plusa_ver}.tar.gz
 # Source9-md5:	76233b35fa769c56d7ff1343b1bf810f
 Source10:	http://gov.one.pl/svnsnap/tabs-svn-%{_tabs_ver}.tar.gz
@@ -336,7 +342,7 @@ rm -rf $RPM_BUILD_ROOT%{_includedir}
 # force in mv stopped working
 cp -fa $RPM_BUILD_ROOT%{_datadir}/%{name}/modules $RPM_BUILD_ROOT%{_libdir}/%{name}
 rm -fr $RPM_BUILD_ROOT%{_datadir}/%{name}/modules
-install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data/tabs
 cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/config_wizard $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/config_wizard
 cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/tabs $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
