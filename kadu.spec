@@ -35,7 +35,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.5.0
-Release:	0.%{snapshot_major}%{snapshot_minor}.2
+Release:	0.%{snapshot_major}%{snapshot_minor}.3
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/snapshots/%{snapshot_major}/%{name}-%{snapshot_major}%{snapshot_minor}.tar.bz2
@@ -342,10 +342,10 @@ rm -rf $RPM_BUILD_ROOT%{_includedir}
 # force in mv stopped working
 cp -fa $RPM_BUILD_ROOT%{_datadir}/%{name}/modules $RPM_BUILD_ROOT%{_libdir}/%{name}
 rm -fr $RPM_BUILD_ROOT%{_datadir}/%{name}/modules
-install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data/tabs
+install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/config_wizard $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/config_wizard
-cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/tabs $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+cp -Rfa $RPM_BUILD_ROOT%{_modules_dir}/data/tabs $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/tabs
 
 %if %{with xmms}
@@ -396,10 +396,15 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with miasto_plusa}
 %{_datadir}/%{name}/modules/data/miastoplusa_sms/curl-ca-bundle.crt
 %endif
+
+%dir %{_datadir}/%{name}/modules
+%dir %{_datadir}/%{name}/modules/data
+%dir %{_datadir}/%{name}/modules/data/tabs
 %{_datadir}/%{name}/modules/data/tabs/attach.png
 
 #default modules:
 %dir %{_libdir}/%{name}
+%dir %{_libdir}/%{name}/modules
 %dir %{_modules_dir}
 %{_modules_dir}/account_management.desc
 %attr(755,root,root) %{_modules_dir}/account_management.so
@@ -591,6 +596,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_modules_dir}/amarok.so
 %lang(pl) %{_modules_dir}/translations/amarok_pl.qm
 %lang(de) %{_modules_dir}/translations/amarok_de.qm
+%dir %{_datadir}/%{name}/modules/data/amarok
 %{_datadir}/%{name}/modules/data/amarok/amarok.png
 %endif
 
@@ -600,6 +606,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_modules_dir}/spellchecker.desc
 %attr(755,root,root) %{_modules_dir}/spellchecker.so
 %lang(pl) %{_modules_dir}/translations/spellchecker_pl.qm
+%dir %{_datadir}/%{name}/modules/data/spellchecker
 %{_datadir}/%{name}/modules/data/spellchecker/config.png
 %endif
 
@@ -608,6 +615,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_modules_dir}/weather.desc
 %attr(755,root,root) %{_modules_dir}/weather.so
+%dir %{_datadir}/%{name}/modules/data/weather
 %{_datadir}/%{name}/modules/data/weather
 %lang(pl) %{_modules_dir}/translations/weather_pl.qm
 %endif
@@ -625,6 +633,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with spy}
 %files module-spy
 %defattr(644,root,root,755)
+%dir %{_datadir}/%{name}/modules/data/spy
 %{_datadir}/%{name}/modules/data/spy/spy32.png
 %{_modules_dir}/spy.desc
 %attr(755,root,root) %{_modules_dir}/spy.so
