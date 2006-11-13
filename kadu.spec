@@ -15,7 +15,7 @@
 %bcond_without	weather		# without Weather support module
 %bcond_without	xmms		# without XMMS player support module
 
-%if %{with imiface} && %{without dcopexport}
+%if %{with imiface} && !%{with dcopexport}
 cannot build imiface without dcopexport
 %endif
 
