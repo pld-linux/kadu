@@ -28,17 +28,17 @@
 %define		_led_ver		0.9
 %define		_miasto_plusa_ver	1.3.2
 %define		_tabs_ver		rev46
-%define		snapshot_major		2006
-%define		snapshot_minor		1025
+%define		snapshot		20061025
+%define		year	%(echo %{snapshot} |cut -b -4)
 #
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.5.0
-Release:	0.%{snapshot_major}%{snapshot_minor}.3
+Release:	0.%{snapshot}.3
 License:	GPL v2
 Group:		Applications/Communications
-Source0:	http://kadu.net/download/snapshots/%{snapshot_major}/%{name}-%{snapshot_major}%{snapshot_minor}.tar.bz2
+Source0:	http://kadu.net/download/snapshots/%{year}/%{name}-%{snapshot}.tar.bz2
 # Source0-md5:	21a55d099699d967028e49f4d8307a99
 Source1:	%{name}.desktop
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
