@@ -1,10 +1,11 @@
 #
 # TODO:
-# - make miasto_plusa/tcl_scripting compile again
-# - consider dropping spy module: doesn't work anymore as expected 
-#   (also website is down, download is down)
+# - spy module - won't work with gg7 clients
 #
 # Conditional build:
+
+%bcond_with	snap		# build cvs snapshot
+
 %bcond_without	amarok		# without amarok player support module
 %bcond_without	alsa		# without ALSA support
 %bcond_without	arts		# without arts sound server support
@@ -14,51 +15,66 @@
 %bcond_without	speech		# without Speech synthesis support
 %bcond_without	spellchecker	# without spellchecker (Aspell support)
 %bcond_with	spy		# without Spying module that shows who's invisible
-%bcond_with	tcl_scripting	# without TCL scripting support and KaduPro extensions
+%bcond_with	powerkadu	# without PowerKadu extensions
 %bcond_without	weather		# without weather check module support
 %bcond_without	xmms		# without xmms player support module
+%bcond_with	tabs		# without tabs support module
 
-%define		_amarok_mod_ver		1.18
-%define		_libgadu_ver		4:1.6
+%define		_snap	20061218
+%define		_rel	rc1
+
+%define		_amarok_mod_ver		1.19
+%define		_libgadu_ver		4:1.7
 %define		_spellchecker_mod_ver	0.19
-%define		_spy_mod_ver		0.0.8-2
-%define		_tcl_mod_ver		0.6.2-Josephine
+%define		_spy_mod_ver		0.0.8-3
+%define		_powerkadu_ver		20061109
 %define		_weather_ver		3.01
-%define		_xmms_mod_ver		1.30
+%define		_xmms_mod_ver		1.32
 %define		_led_ver		0.9
-%define		_miasto_plusa_ver	1.3.2
+%define		_miasto_plusa_ver	1.3.5
 %define		_tabs_ver		rev46
-%define		snapshot		20061025
-%define		year	%(echo %{snapshot} |cut -b -4)
-#
+
+%if %{with snap}
+%define		year	%(echo %{_snap} |cut -b -4)
+%endif
+
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
 Version:	0.5.0
-Release:	0.%{snapshot}.3
+Release:	0.%{?with_snap:%{_snap}}%{!?with_snap:%{_rel}}.1
 License:	GPL v2
 Group:		Applications/Communications
-Source0:	http://kadu.net/download/snapshots/%{year}/%{name}-%{snapshot}.tar.bz2
-# Source0-md5:	21a55d099699d967028e49f4d8307a99
-Source1:	%{name}.desktop
+
+%if %{with snap}
+Source0:	http://kadu.net/download/snapshots/%{year}/%{name}-%{_snap}.tar.bz2
+# Source0-md5:	013d9cde2da23021418a50d15203c36e
+%else
+Source1:	http://kadu.net/download/stable/%{name}-%{version}-%{_rel}.tar.bz2
+# Source1-md5:	75e5ebd7d0952e5ac4d10ea87b8f3f60
+%endif
+
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
-# Source2-md5:	422b0bfe2fe1d67620896576e3092ac8
+# Source2-md5:	e4ac1276f5326c5b17ef086ad2448e91
 Source3:	http://scripts.one.pl/amarok/devel/%{version}/amarok-%{_amarok_mod_ver}.tar.gz
-# Source3-md5:	0ec8466884d98d63a6d2e4eeac814612
+# Source3-md5:	139e50cbe9ff2014ca35e9b3b4be1f67
 Source4:	http://scripts.one.pl/spellchecker/devel/%{version}/spellchecker-%{_spellchecker_mod_ver}.tar.gz
 # Source4-md5:	f1e1c572f9fd92dfb420e62818bc826c
 Source5:	http://www.kadu.net/~blysk/weather-%{_weather_ver}.tar.bz2
 # Source5-md5:	c21727575d4bab551adeb9b5b1787f0c
-Source6:	http://scripts.one.pl/tcl4kadu/files/stable/0.4.3/tcl_scripting-%{_tcl_mod_ver}.tar.gz
-# Source6-md5:	97406c1f3f34b8a073e0a1a18e842c9e
-Source7:	http://scripts.one.pl/~przemos/download/kadu-spy-%{_spy_mod_ver}.tar.gz
-# Source7-md5:	2ffba6058d5d463ade20ff697e200f7c
+Source6:	http://kadu.net/~patryk/powerkadu/powerkadu-%{_powerkadu_ver}.tar.gz
+# Source6-md5:	a776953e41d819a92188979c71c02fa5
+#Source7: http://scripts.one.pl/~przemos/download/kadu-spy-%{_spy_mod_ver}.tar.gz 
+Source7:	http://student.agh.edu.pl/neeo/kadu-spy-%{_spy_mod_ver}.tar.bz2
+# Source7-md5:	b04fb7a4a98abe5d32e321da3058bbf0
 Source8:	http://www.kadu.net/~blysk/led_notify-%{_led_ver}.tar.bz2
 # Source8-md5:	3f9e347fd775324f4077f2f6849a0de7
-Source9:	http://www.kadu.net/~patryk/miastoplusa_sms/miastoplusa_sms-%{_miasto_plusa_ver}.tar.gz
-# Source9-md5:	76233b35fa769c56d7ff1343b1bf810f
-Source10:	http://gov.one.pl/svnsnap/tabs-svn-%{_tabs_ver}.tar.gz
-# Source10-md5:	0d313a489bad8bf8b324e347e74f00e6
+Source9:	http://kadu.net/~patryk/miastoplusa_sms/miastoplusa_sms-0.5-%{_miasto_plusa_ver}.tar.gz
+# Source9-md5:	fae1f6bd3d4aca845ef5a57403b5b58c
+#Source10:	http://gov.one.pl/svnsnap/tabs-svn-%{_tabs_ver}.tar.gz
+Source10:	http://www.zakrzow.ovh.org/_tmp/tabs.tar.gz
+# Source10-md5:	ecb8994e52112e877604e2d505e14bb1
+Source11:	%{name}.desktop
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
@@ -78,10 +94,10 @@ BuildRequires:	libtool
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	qt-linguist
 BuildRequires:	sed >= 4.0
-%{?with_tcl_scripting:BuildRequires:	tk-devel >= 8.4}
 %{?with_xmms:BuildRequires:	xmms-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_modules_dir	%{_libdir}/%{name}/modules
+%define		_bin_dir	%{_libdir}/%{name}/bin
 
 %description
 Kadu is client of Gadu-Gadu protocol. It's an IM for Linux and UN*X.
@@ -214,22 +230,21 @@ Informations of weather in locality of contact.
 %description module-weather -l pl
 Informacje o pogodzie w miejscowo¶ci danego kontaktu.
 
-%package module-tcl_scripting
-Summary:	TCL scripting support and KaduPro extensions
-Summary(pl):	Obs³uga skryptów TCL i rozszerzeñ KaduPro
+%package module-powerkadu
+Summary:	PowerKadu extensions
+Summary(pl):	Rozszerzenia PowerKadu
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
-Requires:	tk
 
-%description module-tcl_scripting
-KaduPro is an add-on to Kadu, which uses a TCL module. If extends Kadu
-functionality by useful, common daily functions, which implementation
-in Kadu might be enough complicated or time-consuming.
+%description module-powerkadu
+PowerKadu is an add-on to Kadu. It extends Kadu
+functionality by useful functions, like :
+autostatus, antistring, cenzor, Tex formula, ... .
 
-%description module-tcl_scripting -l pl
-KaduPro jest dodatkiem do Kadu wykorzystuj±cym modu³ TCL. Poszerza on
-mo¿liwo¶ci Kadu o przydatne na codzieñ funkcje, których implementacja
-w samym Kadu mog³a by byæ dosyæ skomplikowana, lub te¿ czasoch³onna.
+%description module-powerkadu -l pl
+PowerKadu jest dodatkiem do Kadu. Poszerza on
+mo¿liwo¶ci Kadu o przydatne funkcje, takie jak:
+autostatus, anty³añcuszek, cenzor, formu³y Tex, ... .
 
 %package module-spy
 Summary:	Spying module that shows who's invisible
@@ -259,23 +274,27 @@ tar xzf %{SOURCE4} -C modules
 %if %{with weather}
 tar xjf %{SOURCE5} -C modules
 %endif
-%if %{with tcl_scripting}
+%if %{with powerkadu}
 tar xzf %{SOURCE6} -C modules
 %endif
 %if %{with spy}
-tar xzf %{SOURCE7} -C modules
+tar xjf %{SOURCE7} -C modules
 %endif
 tar xjf %{SOURCE8} -C modules
 %if %{with miasto_plusa}
 tar xzf %{SOURCE9} -C modules
 %endif
+%if %{with tabs}
 tar xzf %{SOURCE10} -C modules
-
+%endif
 
 %{__sed} -i 's,dataPath("kadu/modules/*,("%{_libdir}/kadu/modules/,g'  kadu/modules.cpp
 
 %build
+
+%if %{with tabs}
 %{__sed} -i 's/module_tabs=n/module_tabs=m/' .config
+%endif
 %if %{with miasto_plusa}
 %{__sed} -i 's/module_miastoplusa_sms=n/module_miastoplusa_sms=m/' .config
 %endif
@@ -311,8 +330,8 @@ echo 'MODULE_LIBS_PATH="/usr/lib"' >> modules/amarok/spec
 %if %{with weather}
 %{__sed} -i 's/module_weather=n/module_weather=m/' .config
 %endif
-%if %{with tcl_scripting}
-%{__sed} -i 's/module_tcl_scripting=n/module_tcl_scripting=m/' .config
+%if %{with powerkadu}
+%{__sed} -i 's/module_powerkadu=n/module_powerkadu=m/' .config
 %endif
 
 chmod u+w aclocal.m4 configure
@@ -333,7 +352,7 @@ install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_libdir}/%{name}}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
+install %{SOURCE11} $RPM_BUILD_ROOT%{_desktopdir}
 
 install kadu/hi48-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/kadu.png
 
@@ -345,8 +364,11 @@ rm -fr $RPM_BUILD_ROOT%{_datadir}/%{name}/modules
 install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/config_wizard $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/config_wizard
+
+%if %{with tabs}
 cp -Rfa $RPM_BUILD_ROOT%{_modules_dir}/data/tabs $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/tabs
+%endif
 
 %if %{with xmms}
 cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/xmms $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
@@ -375,6 +397,9 @@ cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/miastoplusa_sms $RPM_BUILD_ROOT%{_dat
 rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/miastoplusa_sms
 %endif
 
+%if %{with powerkadu}
+cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/powerkadu $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+%endif
 
 rm -rf `find $RPM_BUILD_ROOT -name CVS`
 
@@ -399,8 +424,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %dir %{_datadir}/%{name}/modules
 %dir %{_datadir}/%{name}/modules/data
-%dir %{_datadir}/%{name}/modules/data/tabs
-%{_datadir}/%{name}/modules/data/tabs/attach.png
 
 #default modules:
 %dir %{_libdir}/%{name}
@@ -438,13 +461,20 @@ rm -rf $RPM_BUILD_ROOT
 %{_modules_dir}/sms.desc
 %attr(755,root,root) %{_modules_dir}/sms.so
 %{_modules_dir}/sound.desc
+
+%if %{with tabs}
 %{_modules_dir}/tabs.desc
 %attr(755,root,root) %{_modules_dir}/tabs.so
+%dir %{_datadir}/%{name}/modules/data/tabs
+%{_datadir}/%{name}/modules/data/tabs/attach.png
+%endif
+
 %{_modules_dir}/voice.desc
 %attr(755,root,root) %{_modules_dir}/voice.so
 %attr(755,root,root) %{_modules_dir}/window_notify.so
 %{_modules_dir}/x11_docking.desc
 %attr(755,root,root) %{_modules_dir}/x11_docking.so
+
 #default modules translation:
 %dir %{_modules_dir}/translations
 %lang(de) %{_modules_dir}/translations/account_management_de.qm
@@ -510,7 +540,9 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_modules_dir}/translations/sound_fr.qm
 %lang(it) %{_modules_dir}/translations/sound_it.qm
 %lang(pl) %{_modules_dir}/translations/sound_pl.qm
+%if %{with tabs}
 %lang(pl) %{_modules_dir}/translations/tabs_pl.qm
+%endif
 %lang(de) %{_modules_dir}/translations/voice_de.qm
 %lang(fr) %{_modules_dir}/translations/voice_fr.qm
 %lang(it) %{_modules_dir}/translations/voice_it.qm
@@ -620,14 +652,16 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{_modules_dir}/translations/weather_pl.qm
 %endif
 
-%if %{with tcl_scripting}
-%files module-tcl_scripting
+%if %{with powerkadu}
+%files module-powerkadu
 %defattr(644,root,root,755)
-%{_modules_dir}/tcl_scripting.desc
-%attr(755,root,root) %{_modules_dir}/tcl_scripting.so
-%{_modules_dir}/data/tcl_scripting
-%lang(de) %{_modules_dir}/translations/tcl_scripting_de.qm
-%lang(pl) %{_modules_dir}/translations/tcl_scripting_pl.qm
+%{_modules_dir}/powerkadu.desc
+%attr(755,root,root) %{_modules_dir}/powerkadu.so
+#%{_modules_dir}/data/powerkadu
+%attr(755,root,root) %{_modules_dir}/bin/powerkadu/mimetex
+%dir %{_datadir}/%{name}/modules/data/powerkadu
+%{_datadir}/%{name}/modules/data/powerkadu
+%lang(pl) %{_modules_dir}/translations/powerkadu_pl.qm
 %endif
 
 %if %{with spy}
