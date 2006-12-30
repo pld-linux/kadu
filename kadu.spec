@@ -47,11 +47,11 @@ License:	GPL v2
 Group:		Applications/Communications
 
 %if %{with snap}
-Source0:	http://kadu.net/download/snapshots/%{year}/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	013d9cde2da23021418a50d15203c36e
+Source100:	http://kadu.net/download/snapshots/%{year}/%{name}-%{_snap}.tar.bz2
+# Source100-md5:	013d9cde2da23021418a50d15203c36e
 %else
-Source1:	http://kadu.net/download/stable/%{name}-%{version}-%{_rel}.tar.bz2
-# Source1-md5:	75e5ebd7d0952e5ac4d10ea87b8f3f60
+Source0:	http://kadu.net/download/stable/%{name}-%{version}-%{_rel}.tar.bz2
+# Source0-md5:	75e5ebd7d0952e5ac4d10ea87b8f3f60
 %endif
 
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
@@ -136,7 +136,6 @@ ALSA sound support module.
 
 %description module-sound-alsa -l pl
 Modu³ obs³ugi d¼wiêku przez ALSA.
-
 
 %package module-sound-arts
 Summary:	Support aRts sound server
@@ -259,7 +258,7 @@ Spying module that shows who's invisible
 Modu³ szpiegowski pokazuj±cy ukryte osoby.
 
 %prep
-%setup -q -n %{name}
+%setup -q -T -b %{?with_snap:10}0 -n %{name}
 %patch0 -p1
 
 %if %{with xmms}
