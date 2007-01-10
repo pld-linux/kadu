@@ -19,7 +19,7 @@
 %bcond_with	tabs		# without tabs support module
 
 %define		_amarok_mod_ver		1.19
-%define		_libgadu_ver		4:1.6
+%define		_libgadu_ver		4:1.7
 %define		_spellchecker_mod_ver	0.19
 %define		_spy_mod_ver		0.0.8-3
 %define		_powerkadu_ver		20061109
