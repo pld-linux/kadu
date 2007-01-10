@@ -1,72 +1,74 @@
 #
+# TODO:
+# - spy module - won't work with gg7 clients
+#
 # Conditional build:
-%bcond_without	alsa		# without ALSA support
+
 %bcond_without	amarok		# without amarok player support module
+%bcond_without	alsa		# without ALSA support
 %bcond_without	arts		# without arts sound server support
-%bcond_without	dcopexport	# without dcopexport module
 %bcond_without	esd		# without ESD sound server support
-%bcond_without	imiface		# without imiface module that integrate kadu with KDE with KIMIface interface
-%bcond_without	iwait4u		# without iwait4u module
+%bcond_with	miasto_plusa	# without miasto_plusa module support
 %bcond_without	nas		# without Network Audio System support
 %bcond_without	speech		# without Speech synthesis support
 %bcond_without	spellchecker	# without spellchecker (Aspell support)
-%bcond_without	spy		# without Spying module that shows who's invisible
-%bcond_with	tcl_scripting	# with TCL scripting support and KaduPro extensions
-%bcond_without	weather		# without Weather support module
-%bcond_without	xmms		# without XMMS player support module
+%bcond_with	spy		# without Spying module that shows who's invisible
+%bcond_with	powerkadu	# without PowerKadu extensions
+%bcond_without	weather		# without weather check module support
+%bcond_without	xmms		# without xmms player support module
+%bcond_with	tabs		# without tabs support module
 
-%if %{with imiface} && %{without dcopexport}
-cannot build imiface without dcopexport
-%endif
-
-%define		_sver			0.4.3
+%define		_amarok_mod_ver		1.19
 %define		_libgadu_ver		4:1.6
-%define		_amarok_mod_ver		1.13
-%define		_spellchecker_mod_ver	0.15
-%define		_spy_mod_ver		0.0.8-1
-%define		_tcl_mod_ver		0.6.2-Josephine
-%define		_weather_ver		2.02
-%define		_xmms_mod_ver		1.25
-%define		_imiface_ver		0.2
-%define		_iwait4u_ver		1.0
-%define		_dcopexport_ver		0.11.1-20051201-0.4.3
-#
+%define		_spellchecker_mod_ver	0.19
+%define		_spy_mod_ver		0.0.8-3
+%define		_powerkadu_ver		20061109
+%define		_weather_ver		3.01
+%define		_xmms_mod_ver		1.33
+%define		_led_ver		0.9
+%define		_miasto_plusa_ver	1.3.5
+%define		_tabs_ver		20061223
+
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl):	Klient Gadu-Gadu do przesy³ania wiadomo¶ci po sieci
 Name:		kadu
-Version:	0.4.3
-Release:	3
+Version:	0.5.0
+Release:	1
 License:	GPL v2
 Group:		Applications/Communications
+
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
-# Source0-md5:	ef66bd638df30aee6338aae3b22dd194
-Source1:	%{name}.desktop
-Source2:	http://scripts.one.pl/xmms/stable/%{_sver}/xmms-%{_xmms_mod_ver}.tar.gz
-# Source2-md5:	4a6e4d52b8efa3d182e2a55e02cc3383
-Source3:	http://scripts.one.pl/amarok/stable/%{_sver}/amarok-%{_amarok_mod_ver}.tar.gz
-# Source3-md5:	539afdd2295ec462022f5e10d80a816c
-Source4:	http://scripts.one.pl/spellchecker/stable/%{_sver}/spellchecker-%{_spellchecker_mod_ver}.tar.gz
-# Source4-md5:	02495130277cc8a48430535a4107708d
-Source5:	http://www.kadu.net/~blysk/weather-%{_weather_ver}.tar.bz2
-# Source5-md5:	362d77600e0e02ec67d1b3bdf3cc64e2
-Source6:	http://scripts.one.pl/tcl4kadu/files/stable/%{_sver}/tcl_scripting-%{_tcl_mod_ver}.tar.gz
-# Source6-md5:	97406c1f3f34b8a073e0a1a18e842c9e
-Source7:	http://scripts.one.pl/~przemos/download/%{name}-spy-%{_spy_mod_ver}.tar.gz
-# Source7-md5:	c402bab70b3f5840b15312eb4f776f2c
-Source8:	http://vogel.iglu.cz/kadu/imiface/imiface-%{_imiface_ver}.tgz
-# Source8-md5:	926284ffb2bcda107d86d9d93b9f2bed
-Source9:	http://www.kadu.net/~pan_wojtas/iwait4u/download/%{name}-iwait4u-%{_iwait4u_ver}.tar.bz2
-# Source9-md5:	01c19f94168a6420346aaf1f2cc424ec
-Source10:	http://kadu.net/~pinkworm/dcopexport/dcopexport-%{_dcopexport_ver}.tar.bz2
-# Source10-md5:	2be815da3015312c6469dddc12d65bca
+
+Source1:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
+# Source1-md5:	b06143188ac8df6853d3343e6033b9d2
+Source2:	http://scripts.one.pl/amarok/devel/%{version}/amarok-%{_amarok_mod_ver}.tar.gz
+# Source2-md5:	139e50cbe9ff2014ca35e9b3b4be1f67
+Source3:	http://scripts.one.pl/spellchecker/devel/%{version}/spellchecker-%{_spellchecker_mod_ver}.tar.gz
+# Source3-md5:	f1e1c572f9fd92dfb420e62818bc826c
+Source4:	http://kadu.net/~blysk/weather-%{_weather_ver}.tar.bz2
+# Source4-md5:	c21727575d4bab551adeb9b5b1787f0c
+Source5:	http://kadu.net/~patryk/powerkadu/powerkadu-%{_powerkadu_ver}.tar.gz
+# Source5-md5:	a776953e41d819a92188979c71c02fa5
+#Source6: http://scripts.one.pl/~przemos/download/kadu-spy-%{_spy_mod_ver}.tar.gz 
+Source6:	http://student.agh.edu.pl/neeo/kadu-spy-%{_spy_mod_ver}.tar.bz2
+# Source6-md5:	b04fb7a4a98abe5d32e321da3058bbf0
+Source7:	http://kadu.net/~blysk/led_notify-%{_led_ver}.tar.bz2
+# Source7-md5:	3f9e347fd775324f4077f2f6849a0de7
+Source8:	http://kadu.net/~patryk/miastoplusa_sms/miastoplusa_sms-0.5-%{_miasto_plusa_ver}.tar.gz
+# Source8-md5:	fae1f6bd3d4aca845ef5a57403b5b58c
+#Source9:	http://gov.one.pl/svnsnap/tabs-svn-%{_tabs_ver}.tar.gz
+#Source9:	http://www.zakrzow.ovh.org/_tmp/tabs.tar.gz
+Source9:	http://kadu.net/download/modules_mirror/tabs-%{_tabs_ver}.tar.bz2
+# Source9-md5:	bda5770b0ba6930c226ae59d74d266e2
+Source10:	%{name}.desktop
 Patch0:		%{name}-ac_am.patch
-Patch1:		%{name}-bashism.patch
 URL:		http://kadu.net/
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
 %{?with_arts:BuildRequires:	arts-devel}
 %{?with_spellchecker:BuildRequires:	aspell-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
+%{?with_miasto_plusa:BuildRequires:	curl-devel}
 %{?with_esd:BuildRequires:	esound-devel}
 BuildRequires:	gettext-devel
 BuildRequires:	kdelibs-devel
@@ -78,9 +80,10 @@ BuildRequires:	libtool
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	qt-linguist
 BuildRequires:	sed >= 4.0
-%{?with_tcl_scripting:BuildRequires:	tk-devel >= 8.4}
 %{?with_xmms:BuildRequires:	xmms-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+%define		_modules_dir	%{_libdir}/%{name}/modules
+%define		_bin_dir	%{_libdir}/%{name}/bin
 
 %description
 Kadu is client of Gadu-Gadu protocol. It's an IM for Linux and UN*X.
@@ -122,7 +125,7 @@ Modu³ obs³ugi d¼wiêku przez ALSA.
 
 %package module-sound-arts
 Summary:	Support aRts sound server
-Summary(pl):	Wsparcie dla serwera d¼wiêku aRts
+Summary(pl):	Wsparcie dla serwera dzwiêku arts
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	arts
@@ -148,7 +151,7 @@ Modu³ obs³ugi d¼wiêku przez ESD.
 
 %package module-sound-nas
 Summary:	Support Network Audio System
-Summary(pl):	Wsparcie dla sieciowego systemu d¼wiêku NAS
+Summary(pl):	Wsparcie dla sieciowego systemu dzwiêku NAS
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	nas
@@ -213,22 +216,21 @@ Informations of weather in locality of contact.
 %description module-weather -l pl
 Informacje o pogodzie w miejscowo¶ci danego kontaktu.
 
-%package module-tcl_scripting
-Summary:	TCL scripting support and KaduPro extensions
-Summary(pl):	Obs³uga skryptów TCL i rozszerzeñ KaduPro
+%package module-powerkadu
+Summary:	PowerKadu extensions
+Summary(pl):	Rozszerzenia PowerKadu
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
-Requires:	tk
 
-%description module-tcl_scripting
-KaduPro is an add-on to Kadu, which uses a TCL module. If extends Kadu
-functionality by useful, common daily functions, which implementation
-in Kadu might be enough complicated or time-consuming.
+%description module-powerkadu
+PowerKadu is an add-on to Kadu. It extends Kadu
+functionality by useful functions, like :
+autostatus, antistring, cenzor, Tex formula, ... .
 
-%description module-tcl_scripting -l pl
-KaduPro jest dodatkiem do Kadu wykorzystuj±cym modu³ TCL. Poszerza on
-mo¿liwo¶ci Kadu o przydatne na codzieñ funkcje, których implementacja
-w samym Kadu mog³aby byæ dosyæ skomplikowana, lub te¿ czasoch³onna.
+%description module-powerkadu -l pl
+PowerKadu jest dodatkiem do Kadu. Poszerza on
+mo¿liwo¶ci Kadu o przydatne funkcje, takie jak:
+autostatus, anty³añcuszek, cenzor, formu³y Tex, ... .
 
 %package module-spy
 Summary:	Spying module that shows who's invisible
@@ -237,95 +239,52 @@ Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-spy
-Spying module that shows who's invisible.
+Spying module that shows who's invisible
 
 %description module-spy -l pl
 Modu³ szpiegowski pokazuj±cy ukryte osoby.
 
-%package module-imiface
-Summary:	imiface module that integrate kadu with KDE with KIMIface interface
-Summary(pl):	Modu³ imiface do integrowania kadu z KDE za pomoc± interfejsu KIMIface
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-Requires:	%{name}-module-dcopexport = %{version}-%{release}
-
-%description module-imiface
-imiface module that integrate kadu with KDE with KIMIface interface.
-
-%description module-imiface -l pl
-imiface to modu³ do integrowania kadu z KDE za pomoc± interfejsu
-KIMIface.
-
-%package module-iwait4u
-Summary:	iwait4u module inform you, that someone from userlist is active
-Summary(pl):	Modul iwait4u do informowania o dostêpno¶ci osób z listy
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description module-iwait4u
-iwait4u module inform you, that someone from userlist is active.
-
-%description module-iwait4u -l pl
-Modul iwait4u informuje, ¿e osoba z listy u¿ytkowników jest dostêpna.
-
-%package module-dcopexport
-Summary:	Kadu DCOP interface
-Summary(pl):	Interfejs niektórych funkcji Kadu do DCOP
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description module-dcopexport
-Kadu DCOP interface.
-
-%description module-dcopexport -l pl
-Interfejs niektórych funkcji Kadu do DCOP.
-
 %prep
-%setup -q -n %{name}
+%setup -q -T -b 0 -n %{name}
 %patch0 -p1
-%patch1 -p1
 
 %if %{with xmms}
-tar xzf %{SOURCE2} -C modules
+tar xzf %{SOURCE1} -C modules
 %endif
 %if %{with amarok}
-tar xzf %{SOURCE3} -C modules
+tar xzf %{SOURCE2} -C modules
 %endif
 %if %{with spellchecker}
-tar xzf %{SOURCE4} -C modules
+tar xzf %{SOURCE3} -C modules
 %endif
 %if %{with weather}
-tar xjf %{SOURCE5} -C modules
+tar xjf %{SOURCE4} -C modules
 %endif
-%if %{with tcl_scripting}
-tar xzf %{SOURCE6} -C modules
+%if %{with powerkadu}
+tar xzf %{SOURCE5} -C modules
 %endif
 %if %{with spy}
-tar xzf %{SOURCE7} -C modules
+tar xjf %{SOURCE6} -C modules
 %endif
-%if %{with imiface}
+tar xjf %{SOURCE7} -C modules
+%if %{with miasto_plusa}
 tar xzf %{SOURCE8} -C modules
 %endif
-%if %{with iwait4u}
+%if %{with tabs}
 tar xjf %{SOURCE9} -C modules
 %endif
-%if %{with dcopexport}
-tar xjf %{SOURCE10} -C modules
-%endif
 
-%{__sed} -i 's,dataPath("kadu/modules/*,("%{_libdir}/kadu/modules/,g' kadu/modules.cpp
+%{__sed} -i 's,dataPath("kadu/modules/*,("%{_libdir}/kadu/modules/,g'  kadu/modules.cpp
 
 %build
-#basic functional
-%{__sed} -i 's/module_account_management=m/module_account_management=y/' .config
-%{__sed} -i 's/module_autoaway=m/module_autoaway=y/' .config
-%{__sed} -i 's/module_default_sms=m/module_default_sms=y/' .config
-%{__sed} -i 's/module_hints=m/module_hints=y/' .config
-%{__sed} -i 's/module_x11_docking=m/module_x11_docking=y/' .config
-%{__sed} -i 's/module_window_notify=m/module_window_notify=y/' .config
-%{__sed} -i 's/module_sms=m/module_sms=y/' .config
-%{__sed} -i 's/module_default_sms=m/module_default_sms=y/' .config
 
+%if %{with tabs}
+%{__sed} -i 's/module_tabs=n/module_tabs=m/' .config
+%endif
+%if %{with miasto_plusa}
+%{__sed} -i 's/module_miastoplusa_sms=n/module_miastoplusa_sms=m/' .config
+%endif
+%{__sed} -i 's/module_led_notify=n/module_led_notify=m/' .config
 %if %{with xmms}
 %{__sed} -i 's/module_xmms=n/module_xmms=m/' .config
 rm -f modules/xmms/.autodownloaded
@@ -341,15 +300,15 @@ rm -f modules/xmms/.autodownloaded
 %endif
 %if %{with nas}
 %{__sed} -i 's/module_nas_sound=n/module_nas_sound=m/' .config
-echo 'MODULE_LIBS_PATH="%{_prefix}/lib"' >> modules/nas_sound/spec
+echo 'MODULE_LIBS_PATH="/usr/lib"' >> modules/nas_sound/spec
 %endif
 %if %{with speech}
 %{__sed} -i 's/module_speech=n/module_speech=m/' .config
 %endif
 %if %{with amarok}
 %{__sed} -i 's/module_amarok=n/module_amarok=m/' .config
-echo 'MODULE_INCLUDES_PATH="%{_includedir}"'>> modules/amarok/spec
-echo 'MODULE_LIBS_PATH="%{_prefix}/lib"' >> modules/amarok/spec
+echo 'MODULE_INCLUDES_PATH="/usr/include"'>> modules/amarok/spec
+echo 'MODULE_LIBS_PATH="/usr/lib"' >> modules/amarok/spec
 %endif
 %if %{with spellchecker}
 %{__sed} -i 's/module_spellchecker=n/module_spellchecker=m/' .config
@@ -357,17 +316,8 @@ echo 'MODULE_LIBS_PATH="%{_prefix}/lib"' >> modules/amarok/spec
 %if %{with weather}
 %{__sed} -i 's/module_weather=n/module_weather=m/' .config
 %endif
-%if %{with tcl_scripting}
-%{__sed} -i 's/module_tcl_scripting=n/module_tcl_scripting=m/' .config
-%endif
-%if %{with imiface} && %{with dcopexport}
-echo "module_imiface=m" >>.config
-%endif
-%if %{with iwait4u}
-echo "module_iwait4u=m" >>.config
-%endif
-%if %{with dcopexport}
-echo "module_dcopexport=m" >>.config
+%if %{with powerkadu}
+%{__sed} -i 's/module_powerkadu=n/module_powerkadu=m/' .config
 %endif
 
 chmod u+w aclocal.m4 configure
@@ -379,7 +329,6 @@ chmod u+w aclocal.m4 configure
 	--enable-voice \
 	--enable-dist-info=PLD \
 	--with-existing-libgadu=/usr
-
 %{__make}
 
 %install
@@ -389,41 +338,56 @@ install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_libdir}/%{name}}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
+install %{SOURCE10} $RPM_BUILD_ROOT%{_desktopdir}
 
 install kadu/hi48-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/kadu.png
 
 rm -rf $RPM_BUILD_ROOT%{_includedir}
 
-mv -f $RPM_BUILD_ROOT%{_datadir}/%{name}/modules $RPM_BUILD_ROOT%{_libdir}/%{name}
+# force in mv stopped working
+cp -fa $RPM_BUILD_ROOT%{_datadir}/%{name}/modules $RPM_BUILD_ROOT%{_libdir}/%{name}
+rm -fr $RPM_BUILD_ROOT%{_datadir}/%{name}/modules
 install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/config_wizard $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/config_wizard
+
+%if %{with tabs}
+cp -Rfa $RPM_BUILD_ROOT%{_modules_dir}/data/tabs $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/tabs
+%endif
 
 %if %{with xmms}
-mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/xmms $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/xmms $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/xmms
 %endif
 
 %if %{with weather}
-mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/weather $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+mv -f $RPM_BUILD_ROOT%{_modules_dir}/data/weather $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 %endif
 
 %if %{with amarok}
-mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/amarok $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+mv -f $RPM_BUILD_ROOT%{_modules_dir}/data/amarok $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 %endif
 
 %if %{with spellchecker}
-mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/spellchecker $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/spellchecker $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/spellchecker
 %endif
 
 %if %{with spy}
-mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/spy $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
-%endif
-%if %{with dcopexport}
-mv -f $RPM_BUILD_ROOT%{_libdir}/%{name}/modules/data/dcopexport $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+mv -f $RPM_BUILD_ROOT%{_modules_dir}/data/spy $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 %endif
 
-# These should not be packaged
-rm -f $RPM_BUILD_ROOT%{_datadir}/%{name}/{HISTORY,README}
-rm -f $RPM_BUILD_ROOT%{_datadir}/applnk/*/*
+%if %{with miasto_plusa}
+cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/miastoplusa_sms $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/miastoplusa_sms
+%endif
+
+%if %{with powerkadu}
+cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/powerkadu $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+%endif
+
+rm -rf `find $RPM_BUILD_ROOT -name CVS`
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -435,108 +399,144 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kadu.desktop
 %{_pixmapsdir}/kadu.png
 %dir %{_datadir}/%{name}
-%dir %{_datadir}/%{name}/modules
-%dir %{_datadir}/%{name}/modules/data
 %{_datadir}/%{name}/themes
-#About... files
 %{_datadir}/%{name}/AUTHORS
 %{_datadir}/%{name}/ChangeLog
 %{_datadir}/%{name}/COPYING
 %{_datadir}/%{name}/THANKS
+%if %{with miasto_plusa}
+%{_datadir}/%{name}/modules/data/miastoplusa_sms/curl-ca-bundle.crt
+%endif
+
+%dir %{_datadir}/%{name}/modules
+%dir %{_datadir}/%{name}/modules/data
+
 #default modules:
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/modules
-%dir %{_libdir}/%{name}/modules/bin
-%dir %{_libdir}/%{name}/modules/data
-%{_libdir}/%{name}/modules/account_management.desc
-%{_libdir}/%{name}/modules/autoaway.desc
-%{_libdir}/%{name}/modules/autoresponder.desc
-%attr(755,root,root) %{_libdir}/%{name}/modules/autoresponder.so
-%{_libdir}/%{name}/modules/config_wizard.desc
-%attr(755,root,root) %{_libdir}/%{name}/modules/config_wizard.so
-%{_libdir}/%{name}/modules/dcc.desc
-%attr(755,root,root) %{_libdir}/%{name}/modules/dcc.so
-%{_libdir}/%{name}/modules/default_sms.desc
-%{_libdir}/%{name}/modules/docking.desc
-%{_libdir}/%{name}/modules/dsp_sound.desc
-%attr(755,root,root) %{_libdir}/%{name}/modules/dsp_sound.so
-%{_libdir}/%{name}/modules/encryption.desc
-%attr(755,root,root) %{_libdir}/%{name}/modules/encryption.so
-%{_libdir}/%{name}/modules/ext_sound.desc
-%attr(755,root,root) %{_libdir}/%{name}/modules/ext_sound.so
-%{_libdir}/%{name}/modules/hints.desc
-%{_libdir}/%{name}/modules/*notify.desc
-%{_libdir}/%{name}/modules/sms.desc
-%{_libdir}/%{name}/modules/sound.desc
-%{_libdir}/%{name}/modules/voice.desc
-%attr(755,root,root) %{_libdir}/%{name}/modules/voice.so
-%{_libdir}/%{name}/modules/x11_docking.desc
+%dir %{_modules_dir}
+%{_modules_dir}/account_management.desc
+%attr(755,root,root) %{_modules_dir}/account_management.so
+%{_modules_dir}/autoaway.desc
+%attr(755,root,root) %{_modules_dir}/autoaway.so
+%{_modules_dir}/autoresponder.desc
+%attr(755,root,root) %{_modules_dir}/autoresponder.so
+%{_modules_dir}/config_wizard.desc
+%attr(755,root,root) %{_modules_dir}/config_wizard.so
+%{_modules_dir}/dcc.desc
+%attr(755,root,root) %{_modules_dir}/dcc.so
+%{_modules_dir}/default_sms.desc
+%attr(755,root,root) %{_modules_dir}/default_sms.so
+%{_modules_dir}/docking.desc
+%{_modules_dir}/dsp_sound.desc
+%attr(755,root,root) %{_modules_dir}/dsp_sound.so
+%{_modules_dir}/encryption.desc
+%attr(755,root,root) %{_modules_dir}/encryption.so
+%{_modules_dir}/ext_sound.desc
+%attr(755,root,root) %{_modules_dir}/ext_sound.so
+%{_modules_dir}/hints.desc
+%attr(755,root,root) %{_modules_dir}/hints.so
+%if %{with miasto_plusa}
+%{_modules_dir}/miastoplusa_sms.desc
+%attr(755,root,root) %{_modules_dir}/miastoplusa_sms.so
+%endif
+%{_modules_dir}/migration.desc
+%attr(755,root,root) %{_modules_dir}/migration.so
+%{_modules_dir}/*notify.desc
+%attr(755,root,root) %{_modules_dir}/led_notify.so
+%{_modules_dir}/sms.desc
+%attr(755,root,root) %{_modules_dir}/sms.so
+%{_modules_dir}/sound.desc
+
+%if %{with tabs}
+%{_modules_dir}/tabs.desc
+%attr(755,root,root) %{_modules_dir}/tabs.so
+%dir %{_datadir}/%{name}/modules/data/tabs
+%{_datadir}/%{name}/modules/data/tabs/attach.png
+%endif
+
+%{_modules_dir}/voice.desc
+%attr(755,root,root) %{_modules_dir}/voice.so
+%attr(755,root,root) %{_modules_dir}/window_notify.so
+%{_modules_dir}/x11_docking.desc
+%attr(755,root,root) %{_modules_dir}/x11_docking.so
+
 #default modules translation:
-%dir %{_libdir}/%{name}/modules/translations
-%lang(de) %{_libdir}/%{name}/modules/translations/account_management_de.qm
-%lang(fr) %{_libdir}/%{name}/modules/translations/account_management_fr.qm
-%lang(it) %{_libdir}/%{name}/modules/translations/account_management_it.qm
-%lang(pl) %{_libdir}/%{name}/modules/translations/account_management_pl.qm
-%lang(de) %{_libdir}/%{name}/modules/translations/autoaway_de.qm
-%lang(fr) %{_libdir}/%{name}/modules/translations/autoaway_fr.qm
-%lang(it) %{_libdir}/%{name}/modules/translations/autoaway_it.qm
-%lang(pl) %{_libdir}/%{name}/modules/translations/autoaway_pl.qm
-%lang(de) %{_libdir}/%{name}/modules/translations/autoresponder_de.qm
-%lang(fr) %{_libdir}/%{name}/modules/translations/autoresponder_fr.qm
-%lang(it) %{_libdir}/%{name}/modules/translations/autoresponder_it.qm
-%lang(pl) %{_libdir}/%{name}/modules/translations/autoresponder_pl.qm
-%lang(de) %{_libdir}/%{name}/modules/translations/config_wizard_de.qm
-%lang(fr) %{_libdir}/%{name}/modules/translations/config_wizard_fr.qm
-%lang(it) %{_libdir}/%{name}/modules/translations/config_wizard_it.qm
-%lang(pl) %{_libdir}/%{name}/modules/translations/config_wizard_pl.qm
-%lang(de) %{_libdir}/%{name}/modules/translations/dcc_de.qm
-%lang(fr) %{_libdir}/%{name}/modules/translations/dcc_fr.qm
-%lang(it) %{_libdir}/%{name}/modules/translations/dcc_it.qm
-%lang(pl) %{_libdir}/%{name}/modules/translations/dcc_pl.qm
-%lang(de) %{_libdir}/%{name}/modules/translations/default_sms_de.qm
-%lang(fr) %{_libdir}/%{name}/modules/translations/default_sms_fr.qm
-%lang(it) %{_libdir}/%{name}/modules/translations/default_sms_it.qm
-%lang(pl) %{_libdir}/%{name}/modules/translations/default_sms_pl.qm
-%lang(de) %{_libdir}/%{name}/modules/translations/docking_de.qm
-%lang(fr) %{_libdir}/%{name}/modules/translations/docking_fr.qm
-%lang(it) %{_libdir}/%{name}/modules/translations/docking_it.qm
-%lang(pl) %{_libdir}/%{name}/modules/translations/docking_pl.qm
-%lang(de) %{_libdir}/%{name}/modules/translations/dsp_sound_de.qm
-%lang(fr) %{_libdir}/%{name}/modules/translations/dsp_sound_fr.qm
-%lang(it) %{_libdir}/%{name}/modules/translations/dsp_sound_it.qm
-%lang(pl) %{_libdir}/%{name}/modules/translations/dsp_sound_pl.qm
-%lang(de) %{_libdir}/%{name}/modules/translations/encryption_de.qm
-%lang(fr) %{_libdir}/%{name}/modules/translations/encryption_fr.qm
-%lang(it) %{_libdir}/%{name}/modules/translations/encryption_it.qm
-%lang(pl) %{_libdir}/%{name}/modules/translations/encryption_pl.qm
-%lang(de) %{_libdir}/%{name}/modules/translations/ext_sound_de.qm
-%lang(fr) %{_libdir}/%{name}/modules/translations/ext_sound_fr.qm
-%lang(it) %{_libdir}/%{name}/modules/translations/ext_sound_it.qm
-%lang(pl) %{_libdir}/%{name}/modules/translations/ext_sound_pl.qm
-%lang(de) %{_libdir}/%{name}/modules/translations/hints_de.qm
-%lang(fr) %{_libdir}/%{name}/modules/translations/hints_fr.qm
-%lang(it) %{_libdir}/%{name}/modules/translations/hints_it.qm
-%lang(pl) %{_libdir}/%{name}/modules/translations/hints_pl.qm
-%lang(de) %{_libdir}/%{name}/modules/translations/*notify_de.qm
-%lang(fr) %{_libdir}/%{name}/modules/translations/*notify_fr.qm
-%lang(it) %{_libdir}/%{name}/modules/translations/*notify_it.qm
-%lang(pl) %{_libdir}/%{name}/modules/translations/*notify_pl.qm
-%lang(de) %{_libdir}/%{name}/modules/translations/sms_de.qm
-%lang(fr) %{_libdir}/%{name}/modules/translations/sms_fr.qm
-%lang(it) %{_libdir}/%{name}/modules/translations/sms_it.qm
-%lang(pl) %{_libdir}/%{name}/modules/translations/sms_pl.qm
-%lang(de) %{_libdir}/%{name}/modules/translations/sound_de.qm
-%lang(fr) %{_libdir}/%{name}/modules/translations/sound_fr.qm
-%lang(it) %{_libdir}/%{name}/modules/translations/sound_it.qm
-%lang(pl) %{_libdir}/%{name}/modules/translations/sound_pl.qm
-%lang(de) %{_libdir}/%{name}/modules/translations/voice_de.qm
-%lang(fr) %{_libdir}/%{name}/modules/translations/voice_fr.qm
-%lang(it) %{_libdir}/%{name}/modules/translations/voice_it.qm
-%lang(pl) %{_libdir}/%{name}/modules/translations/voice_pl.qm
-%lang(de) %{_libdir}/%{name}/modules/translations/x11_docking_de.qm
-%lang(fr) %{_libdir}/%{name}/modules/translations/x11_docking_fr.qm
-%lang(it) %{_libdir}/%{name}/modules/translations/x11_docking_it.qm
-%lang(pl) %{_libdir}/%{name}/modules/translations/x11_docking_pl.qm
+%dir %{_modules_dir}/translations
+%lang(de) %{_modules_dir}/translations/account_management_de.qm
+%lang(fr) %{_modules_dir}/translations/account_management_fr.qm
+%lang(it) %{_modules_dir}/translations/account_management_it.qm
+%lang(pl) %{_modules_dir}/translations/account_management_pl.qm
+%lang(de) %{_modules_dir}/translations/autoaway_de.qm
+%lang(fr) %{_modules_dir}/translations/autoaway_fr.qm
+%lang(it) %{_modules_dir}/translations/autoaway_it.qm
+%lang(pl) %{_modules_dir}/translations/autoaway_pl.qm
+%lang(de) %{_modules_dir}/translations/autoresponder_de.qm
+%lang(fr) %{_modules_dir}/translations/autoresponder_fr.qm
+%lang(it) %{_modules_dir}/translations/autoresponder_it.qm
+%lang(pl) %{_modules_dir}/translations/autoresponder_pl.qm
+%lang(de) %{_modules_dir}/translations/config_wizard_de.qm
+%lang(fr) %{_modules_dir}/translations/config_wizard_fr.qm
+%lang(it) %{_modules_dir}/translations/config_wizard_it.qm
+%lang(pl) %{_modules_dir}/translations/config_wizard_pl.qm
+%lang(de) %{_modules_dir}/translations/dcc_de.qm
+%lang(fr) %{_modules_dir}/translations/dcc_fr.qm
+%lang(it) %{_modules_dir}/translations/dcc_it.qm
+%lang(pl) %{_modules_dir}/translations/dcc_pl.qm
+%lang(de) %{_modules_dir}/translations/default_sms_de.qm
+%lang(fr) %{_modules_dir}/translations/default_sms_fr.qm
+%lang(it) %{_modules_dir}/translations/default_sms_it.qm
+%lang(pl) %{_modules_dir}/translations/default_sms_pl.qm
+%lang(de) %{_modules_dir}/translations/docking_de.qm
+%lang(fr) %{_modules_dir}/translations/docking_fr.qm
+%lang(it) %{_modules_dir}/translations/docking_it.qm
+%lang(pl) %{_modules_dir}/translations/docking_pl.qm
+%lang(de) %{_modules_dir}/translations/dsp_sound_de.qm
+%lang(fr) %{_modules_dir}/translations/dsp_sound_fr.qm
+%lang(it) %{_modules_dir}/translations/dsp_sound_it.qm
+%lang(pl) %{_modules_dir}/translations/dsp_sound_pl.qm
+%lang(de) %{_modules_dir}/translations/encryption_de.qm
+%lang(fr) %{_modules_dir}/translations/encryption_fr.qm
+%lang(it) %{_modules_dir}/translations/encryption_it.qm
+%lang(pl) %{_modules_dir}/translations/encryption_pl.qm
+%lang(de) %{_modules_dir}/translations/ext_sound_de.qm
+%lang(fr) %{_modules_dir}/translations/ext_sound_fr.qm
+%lang(it) %{_modules_dir}/translations/ext_sound_it.qm
+%lang(pl) %{_modules_dir}/translations/ext_sound_pl.qm
+%lang(de) %{_modules_dir}/translations/hints_de.qm
+%lang(fr) %{_modules_dir}/translations/hints_fr.qm
+%lang(it) %{_modules_dir}/translations/hints_it.qm
+%lang(pl) %{_modules_dir}/translations/hints_pl.qm
+%if %{with miasto_plusa}
+%lang(pl) %{_modules_dir}/translations/miastoplusa_sms_pl.qm
+%endif
+%lang(de) %{_modules_dir}/translations/migration_de.qm
+%lang(fr) %{_modules_dir}/translations/migration_fr.qm
+%lang(it) %{_modules_dir}/translations/migration_it.qm
+%lang(pl) %{_modules_dir}/translations/migration_pl.qm
+%lang(de) %{_modules_dir}/translations/*notify_de.qm
+%lang(fr) %{_modules_dir}/translations/*notify_fr.qm
+%lang(it) %{_modules_dir}/translations/*notify_it.qm
+%lang(pl) %{_modules_dir}/translations/*notify_pl.qm
+%lang(de) %{_modules_dir}/translations/sms_de.qm
+%lang(fr) %{_modules_dir}/translations/sms_fr.qm
+%lang(it) %{_modules_dir}/translations/sms_it.qm
+%lang(pl) %{_modules_dir}/translations/sms_pl.qm
+%lang(de) %{_modules_dir}/translations/sound_de.qm
+%lang(fr) %{_modules_dir}/translations/sound_fr.qm
+%lang(it) %{_modules_dir}/translations/sound_it.qm
+%lang(pl) %{_modules_dir}/translations/sound_pl.qm
+%if %{with tabs}
+%lang(pl) %{_modules_dir}/translations/tabs_pl.qm
+%endif
+%lang(de) %{_modules_dir}/translations/voice_de.qm
+%lang(fr) %{_modules_dir}/translations/voice_fr.qm
+%lang(it) %{_modules_dir}/translations/voice_it.qm
+%lang(pl) %{_modules_dir}/translations/voice_pl.qm
+%lang(de) %{_modules_dir}/translations/x11_docking_de.qm
+%lang(fr) %{_modules_dir}/translations/x11_docking_fr.qm
+%lang(it) %{_modules_dir}/translations/x11_docking_it.qm
+%lang(pl) %{_modules_dir}/translations/x11_docking_pl.qm
 #global translation:
 %dir %{_datadir}/%{name}/translations
 %lang(de) %{_datadir}/%{name}/translations/kadu_de.qm
@@ -550,15 +550,15 @@ rm -rf $RPM_BUILD_ROOT
 %lang(it) %{_datadir}/%{name}/translations/qt_it.qm
 %lang(pl) %{_datadir}/%{name}/translations/qt_pl.qm
 #wizard
-%{_libdir}/%{name}/modules/data/config_wizard
+%{_datadir}/%{name}/modules/data/config_wizard
 
 %if %{with xmms}
 %files module-xmms
 %defattr(644,root,root,755)
-%{_libdir}/%{name}/modules/xmms.desc
-%attr(755,root,root) %{_libdir}/%{name}/modules/xmms.so
-%{_datadir}/%{name}/modules/data/xmms
-%lang(pl) %{_libdir}/%{name}/modules/translations/xmms_pl.qm
+%{_modules_dir}/xmms.desc
+%attr(755,root,root) %{_modules_dir}/xmms.so
+%lang(pl) %{_modules_dir}/translations/xmms_pl.qm
+%{_datadir}/%{name}/modules/data/xmms/xmms.png
 %endif
 
 %if %{with alsa}
@@ -575,106 +575,87 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with arts}
 %files module-sound-arts
 %defattr(644,root,root,755)
-%{_libdir}/%{name}/modules/arts_sound.desc
-%attr(755,root,root) %{_libdir}/%{name}/modules/arts_sound.so
-%dir %{_libdir}/%{name}/modules/bin/arts_sound
-%attr(755,root,root) %{_libdir}/%{name}/modules/bin/arts_sound/arts_connector
+%{_modules_dir}/arts_sound.desc
+%attr(755,root,root) %{_modules_dir}/arts_sound.so
+%dir %{_modules_dir}/bin/
+%dir %{_modules_dir}/bin/arts_sound
+%attr(755,root,root) %{_modules_dir}/bin/arts_sound/arts_connector
 %endif
 
 %if %{with esd}
 %files module-sound-esd
 %defattr(644,root,root,755)
-%{_libdir}/%{name}/modules/esd_sound.desc
-%attr(755,root,root) %{_libdir}/%{name}/modules/esd_sound.so
+%{_modules_dir}/esd_sound.desc
+%attr(755,root,root) %{_modules_dir}/esd_sound.so
 %endif
 
 %if %{with nas}
 %files module-sound-nas
 %defattr(644,root,root,755)
-%{_libdir}/%{name}/modules/nas_sound.desc
-%attr(755,root,root) %{_libdir}/%{name}/modules/nas_sound.so
+%{_modules_dir}/nas_sound.desc
+%attr(755,root,root) %{_modules_dir}/nas_sound.so
 %endif
 
 %if %{with speech}
 %files module-speech
 %defattr(644,root,root,755)
-%{_libdir}/%{name}/modules/speech.desc
-%attr(755,root,root) %{_libdir}/%{name}/modules/speech.so
-%lang(de) %{_libdir}/%{name}/modules/translations/speech_de.qm
-%lang(fr) %{_libdir}/%{name}/modules/translations/speech_fr.qm
-%lang(it) %{_libdir}/%{name}/modules/translations/speech_it.qm
-%lang(pl) %{_libdir}/%{name}/modules/translations/speech_pl.qm
+%{_modules_dir}/speech.desc
+%attr(755,root,root) %{_modules_dir}/speech.so
+%lang(de) %{_modules_dir}/translations/speech_de.qm
+%lang(fr) %{_modules_dir}/translations/speech_fr.qm
+%lang(it) %{_modules_dir}/translations/speech_it.qm
+%lang(pl) %{_modules_dir}/translations/speech_pl.qm
 %endif
 
 %if %{with amarok}
 %files module-amarok
 %defattr(644,root,root,755)
-%{_libdir}/%{name}/modules/amarok.desc
-%attr(755,root,root) %{_libdir}/%{name}/modules/amarok.so
-%{_datadir}/%{name}/modules/data/amarok
-%lang(de) %{_libdir}/%{name}/modules/translations/amarok_de.qm
-%lang(pl) %{_libdir}/%{name}/modules/translations/amarok_pl.qm
+%{_modules_dir}/amarok.desc
+%attr(755,root,root) %{_modules_dir}/amarok.so
+%lang(pl) %{_modules_dir}/translations/amarok_pl.qm
+%lang(de) %{_modules_dir}/translations/amarok_de.qm
+%dir %{_datadir}/%{name}/modules/data/amarok
+%{_datadir}/%{name}/modules/data/amarok/amarok.png
 %endif
 
 %if %{with spellchecker}
 %files module-spellchecker
 %defattr(644,root,root,755)
-%{_libdir}/%{name}/modules/spellchecker.desc
-%attr(755,root,root) %{_libdir}/%{name}/modules/spellchecker.so
-%{_datadir}/%{name}/modules/data/spellchecker
-%lang(pl) %{_libdir}/%{name}/modules/translations/spellchecker_pl.qm
+%{_modules_dir}/spellchecker.desc
+%attr(755,root,root) %{_modules_dir}/spellchecker.so
+%lang(pl) %{_modules_dir}/translations/spellchecker_pl.qm
+%dir %{_datadir}/%{name}/modules/data/spellchecker
+%{_datadir}/%{name}/modules/data/spellchecker/config.png
 %endif
 
 %if %{with weather}
 %files module-weather
 %defattr(644,root,root,755)
-%{_libdir}/%{name}/modules/weather.desc
-%attr(755,root,root) %{_libdir}/%{name}/modules/weather.so
+%{_modules_dir}/weather.desc
+%attr(755,root,root) %{_modules_dir}/weather.so
+%dir %{_datadir}/%{name}/modules/data/weather
 %{_datadir}/%{name}/modules/data/weather
-%lang(pl) %{_libdir}/%{name}/modules/translations/weather_pl.qm
+%lang(pl) %{_modules_dir}/translations/weather_pl.qm
 %endif
 
-%if %{with tcl_scripting}
-%files module-tcl_scripting
+%if %{with powerkadu}
+%files module-powerkadu
 %defattr(644,root,root,755)
-%{_libdir}/%{name}/modules/tcl_scripting.desc
-%attr(755,root,root) %{_libdir}/%{name}/modules/tcl_scripting.so
-%{_libdir}/%{name}/modules/data/tcl_scripting
-%lang(de) %{_libdir}/%{name}/modules/translations/tcl_scripting_de.qm
-%lang(pl) %{_libdir}/%{name}/modules/translations/tcl_scripting_pl.qm
+%{_modules_dir}/powerkadu.desc
+%attr(755,root,root) %{_modules_dir}/powerkadu.so
+#%{_modules_dir}/data/powerkadu
+%attr(755,root,root) %{_modules_dir}/bin/powerkadu/mimetex
+%dir %{_datadir}/%{name}/modules/data/powerkadu
+%{_datadir}/%{name}/modules/data/powerkadu
+%lang(pl) %{_modules_dir}/translations/powerkadu_pl.qm
 %endif
 
 %if %{with spy}
 %files module-spy
 %defattr(644,root,root,755)
-%{_libdir}/%{name}/modules/spy.desc
-%attr(755,root,root) %{_libdir}/%{name}/modules/spy.so
-%{_datadir}/%{name}/modules/data/spy
-%lang(pl) %{_libdir}/%{name}/modules/translations/spy_pl.qm
-%endif
-
-%if %{with dcopexport}
-%files module-dcopexport
-%defattr(644,root,root,755)
-%{_libdir}/%{name}/modules/dcopexport.desc
-%attr(755,root,root) %{_libdir}/%{name}/modules/dcopexport.so
-%lang(pl) %{_libdir}/%{name}/modules/translations/dcopexport_pl.qm
-%dir %{_libdir}/%{name}/modules/bin/dcopexport
-%attr(755,root,root) %{_libdir}/%{name}/modules/bin/dcopexport/*.sh
-%{_datadir}/%{name}/modules/data/dcopexport
-%endif
-
-%if %{with imiface}
-%files module-imiface
-%defattr(644,root,root,755)
-%{_libdir}/%{name}/modules/imiface.desc
-%attr(755,root,root) %{_libdir}/%{name}/modules/imiface.so
-%endif
-
-%if %{with iwait4u}
-%files module-iwait4u
-%defattr(644,root,root,755)
-%{_libdir}/%{name}/modules/iwait4u.desc
-%attr(755,root,root) %{_libdir}/%{name}/modules/iwait4u.so
-%lang(pl) %{_libdir}/%{name}/modules/translations/iwait4u_pl.qm
+%dir %{_datadir}/%{name}/modules/data/spy
+%{_datadir}/%{name}/modules/data/spy/spy32.png
+%{_modules_dir}/spy.desc
+%attr(755,root,root) %{_modules_dir}/spy.so
+%lang(pl) %{_modules_dir}/translations/spy_pl.qm
 %endif
