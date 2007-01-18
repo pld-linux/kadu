@@ -3,7 +3,6 @@
 # - spy module - won't work with gg7 clients
 #
 # Conditional build:
-
 %bcond_without	advanced_userlist	# without Advanced Userlist support
 %bcond_without	amarok			# without amarok player support module
 %bcond_without	autoresponder		# without autoresponder module support
@@ -307,13 +306,13 @@ Requires:	%{name} = %{version}-%{release}
 
 %description module-powerkadu
 PowerKadu is an add-on to Kadu. It extends Kadu functionality by
-useful functions, like : autostatus, antistring, cenzor, Tex formula,
-words fix, ... .
+useful functions, like : autostatus, antistring, cenzor, TeX formula,
+words fix, ...
 
 %description module-powerkadu -l pl
 PowerKadu jest dodatkiem do Kadu. Poszerza on mo¿liwo¶ci Kadu o
 przydatne funkcje, takie jak: autostatus, anty³añcuszek, cenzor,
-formu³y Tex, korekta s³ów, ... .
+formu³y TeX-a, korekta s³ów...
 
 %package module-profiles
 Summary:	Kadu Profiles
@@ -322,10 +321,10 @@ Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-profiles
-Kadu Profiles
+Kadu Profiles.
 
 %description module-profiles -l pl
-Profile w Kadu
+Profile w Kadu.
 
 %package module-screenshot
 Summary:	Simple ScreenShots module
@@ -341,7 +340,7 @@ Modu³ prostych zrzutów ekranu.
 
 %package module-sms-miastoplusa
 Summary:	SMS Gateway on Miasto Plusa module
-Summary(pl):	Modu³ obs³ugi bramki sms w Miescie Plusa
+Summary(pl):	Modu³ obs³ugi bramki SMS w Mie¶cie Plusa
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -349,7 +348,7 @@ Requires:	%{name} = %{version}-%{release}
 SMS Gateway on Miasto Plusa module.
 
 %description module-sms-miastoplusa -l pl
-Modu³ obs³ugi bramki sms w Miescie Plusa.
+Modu³ obs³ugi bramki SMS w Mie¶cie Plusa.
 
 %package module-sound-alsa
 Summary:	Support ALSA sound
