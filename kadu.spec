@@ -51,7 +51,7 @@
 %define		_xmms_mod_ver		1.34
 
 Summary:	A Gadu-Gadu client for online messaging
-Summary(pl):	Klient Gadu-Gadu do przesy≥ania wiadomo∂ci po sieci
+Summary(pl.UTF-8):   Klient Gadu-Gadu do przesy≈Çania wiadomo≈õci po sieci
 Name:		kadu
 Version:	0.5.0
 Release:	1
@@ -142,27 +142,27 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Kadu is client of Gadu-Gadu protocol. It's an IM for Linux and UN*X.
 It's written with use of QT libraries.
 
-%description -l pl
-Kadu jest klientem protoko≥u Gadu-Gadu. Inaczej mÛwi±c, jest
-komunikatorem dla Linuksa (oraz, przy niewielkim wysi≥ku, innych
-systemÛw UN*Xowych). Napisano go w oparciu o bibliotekÍ QT i KDE,
-przeznaczony jest wiÍc dla tego ∂rodowiska.
+%description -l pl.UTF-8
+Kadu jest klientem protoko≈Çu Gadu-Gadu. Inaczej m√≥wiƒÖc, jest
+komunikatorem dla Linuksa (oraz, przy niewielkim wysi≈Çku, innych
+system√≥w UN*Xowych). Napisano go w oparciu o bibliotekƒô QT i KDE,
+przeznaczony jest wiƒôc dla tego ≈õrodowiska.
 
 %package module-advanced_userlist
 Summary:	Advanced Userlist module
-Summary(pl):	Modu≥ zaawansowanej konfiguracji sortowania listy kontaktÛw
+Summary(pl.UTF-8):   Modu≈Ç zaawansowanej konfiguracji sortowania listy kontakt√≥w
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-advanced_userlist
 Advanced Userlist module.
 
-%description module-advanced_userlist -l pl
-Modu≥ zaawansowanej konfiguracji sortowania listy kontaktÛw.
+%description module-advanced_userlist -l pl.UTF-8
+Modu≈Ç zaawansowanej konfiguracji sortowania listy kontakt√≥w.
 
 %package module-amarok
 Summary:	Support amarok status
-Summary(pl):	Modu≥ statusu dla amarok
+Summary(pl.UTF-8):   Modu≈Ç statusu dla amarok
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	amarok
@@ -171,122 +171,122 @@ Requires:	amarok
 Module which allows showing in status description information about
 the song currently played in amarok.
 
-%description module-amarok -l pl
-Modu≥ umoøliwiaj±cy w opisie statusu pokazywanie informacji o
+%description module-amarok -l pl.UTF-8
+Modu≈Ç umo≈ºliwiajƒÖcy w opisie statusu pokazywanie informacji o
 odgrywanym utworze z odtwarzacza amarok.
 
 %package module-autoresponder
 Summary:	Autoresponder module
-Summary(pl):	Modu≥ autoodpowiedzi
+Summary(pl.UTF-8):   Modu≈Ç autoodpowiedzi
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-autoresponder
 Autoresponder module.
 
-%description module-autoresponder -l pl
-Modu≥ autoodpowiedzi.
+%description module-autoresponder -l pl.UTF-8
+Modu≈Ç autoodpowiedzi.
 
 %package module-dcopexport
 Summary:	Kadu DCOP interface
-Summary(pl):	Interfejs niektÛrych funkcji Kadu do DCOP
+Summary(pl.UTF-8):   Interfejs niekt√≥rych funkcji Kadu do DCOP
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-dcopexport
 Kadu DCOP interface.
 
-%description module-dcopexport -l pl
-Interfejs niektÛrych funkcji Kadu do DCOP.
+%description module-dcopexport -l pl.UTF-8
+Interfejs niekt√≥rych funkcji Kadu do DCOP.
 
 %package module-docking-desktop
 Summary:	Desktop docking module
-Summary(pl):	Modu≥ dokowania w dowolnym punkcie ekranu
+Summary(pl.UTF-8):   Modu≈Ç dokowania w dowolnym punkcie ekranu
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-docking-desktop
 Desktop docking module.
 
-%description module-docking-desktop -l pl
-Modu≥ dokowania w dowolnym punkcie ekranu.
+%description module-docking-desktop -l pl.UTF-8
+Modu≈Ç dokowania w dowolnym punkcie ekranu.
 
 %package module-filtering
 Summary:	User list filtering
-Summary(pl):	Filtrowanie listy kontaktÛw
+Summary(pl.UTF-8):   Filtrowanie listy kontakt√≥w
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-filtering
 User list filtering
 
-%description module-filtering -l pl
-Filtrowanie listy kontaktÛw.
+%description module-filtering -l pl.UTF-8
+Filtrowanie listy kontakt√≥w.
 
 %package module-iwait4u
 Summary:	iwait4u module inform you, that someone from userlist is active
-Summary(pl):	Modul iwait4u do informowania o dostÍpno∂ci osÛb z listy
+Summary(pl.UTF-8):   Modul iwait4u do informowania o dostƒôpno≈õci os√≥b z listy
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-iwait4u
 iwait4u module inform you, that someone from userlist is active.
 
-%description module-iwait4u -l pl
-Modul iwait4u informuje, øe osoba z listy uøytkownikÛw jest dostÍpna.
+%description module-iwait4u -l pl.UTF-8
+Modul iwait4u informuje, ≈ºe osoba z listy u≈ºytkownik√≥w jest dostƒôpna.
 
 %package module-notify-exec
 Summary:	Notification by external commands module
-Summary(pl):	Modu≥ powiadamiania uøytkownika o zdarzeniach za pomoc± zewnÍtrznych poleceÒ
+Summary(pl.UTF-8):   Modu≈Ç powiadamiania u≈ºytkownika o zdarzeniach za pomocƒÖ zewnƒôtrznych polece≈Ñ
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-notify-exec
 Notification by external commands module.
 
-%description module-notify-exec -l pl
-Modu≥ powiadamiania uøytkownika o zdarzeniach za pomoc± zewnÍtrznych
-poleceÒ.
+%description module-notify-exec -l pl.UTF-8
+Modu≈Ç powiadamiania u≈ºytkownika o zdarzeniach za pomocƒÖ zewnƒôtrznych
+polece≈Ñ.
 
 %package module-notify-led
 Summary:	Notification by Scroll Lock LED
-Summary(pl):	Modu≥ powiadamiania diod± Scroll Lock
+Summary(pl.UTF-8):   Modu≈Ç powiadamiania diodƒÖ Scroll Lock
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-notify-led
 Notification by Scroll Lock LED.
 
-%description module-notify-led -l pl
-Modu≥ powiadamiania diod± Scroll Lock.
+%description module-notify-led -l pl.UTF-8
+Modu≈Ç powiadamiania diodƒÖ Scroll Lock.
 
 %package module-notify-osdhints
 Summary:	Notification by OSD-like hints
-Summary(pl):	Powiadamianie o zdarzeniach przy pomocy dymkÛw typu OSD
+Summary(pl.UTF-8):   Powiadamianie o zdarzeniach przy pomocy dymk√≥w typu OSD
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-notify-osdhints
 Notification by OSD-like hints.
 
-%description module-notify-osdhints -l pl
-Powiadamianie o zdarzeniach przy pomocy dymkÛw typu OSD.
+%description module-notify-osdhints -l pl.UTF-8
+Powiadamianie o zdarzeniach przy pomocy dymk√≥w typu OSD.
 
 %package module-notify-pcspeaker
 Summary:	PC Speaker module
-Summary(pl):	Modu≥ do obs≥ugi PC Speakera
+Summary(pl.UTF-8):   Modu≈Ç do obs≈Çugi PC Speakera
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-notify-pcspeaker
 PC Speaker module.
 
-%description module-notify-pcspeaker -l pl
-Modu≥ do obs≥ugi PC Speakera.
+%description module-notify-pcspeaker -l pl.UTF-8
+Modu≈Ç do obs≈Çugi PC Speakera.
 
 %package module-notify-speech
 Summary:	Speech synthesis support
-Summary(pl):	Modu≥ obs≥ugi "G≥o∂nego czytania"
+Summary(pl.UTF-8):   Modu≈Ç obs≈Çugi "G≈Ço≈õnego czytania"
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	powiedz
@@ -295,12 +295,12 @@ Requires:	powiedz
 Kadu module which supports reading aloud using speech synthesis
 provided by external program "powiedz".
 
-%description module-notify-speech -l pl
-Modu≥ obs≥ugi "G≥o∂nego czytania" przez zewnÍtrzny program "powiedz".
+%description module-notify-speech -l pl.UTF-8
+Modu≈Ç obs≈Çugi "G≈Ço≈õnego czytania" przez zewnƒôtrzny program "powiedz".
 
 %package module-powerkadu
 Summary:	PowerKadu extensions
-Summary(pl):	Rozszerzenia PowerKadu
+Summary(pl.UTF-8):   Rozszerzenia PowerKadu
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -309,50 +309,50 @@ PowerKadu is an add-on to Kadu. It extends Kadu functionality by
 useful functions, like : autostatus, antistring, cenzor, TeX formula,
 words fix, ...
 
-%description module-powerkadu -l pl
-PowerKadu jest dodatkiem do Kadu. Poszerza on moøliwo∂ci Kadu o
-przydatne funkcje, takie jak: autostatus, anty≥aÒcuszek, cenzor,
-formu≥y TeX-a, korekta s≥Ûw...
+%description module-powerkadu -l pl.UTF-8
+PowerKadu jest dodatkiem do Kadu. Poszerza on mo≈ºliwo≈õci Kadu o
+przydatne funkcje, takie jak: autostatus, anty≈Ça≈Ñcuszek, cenzor,
+formu≈Çy TeX-a, korekta s≈Ç√≥w...
 
 %package module-profiles
 Summary:	Kadu Profiles
-Summary(pl):	Profile w Kadu
+Summary(pl.UTF-8):   Profile w Kadu
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-profiles
 Kadu Profiles.
 
-%description module-profiles -l pl
+%description module-profiles -l pl.UTF-8
 Profile w Kadu.
 
 %package module-screenshot
 Summary:	Simple ScreenShots module
-Summary(pl):	Modu≥ prostych zrzutÛw ekranu
+Summary(pl.UTF-8):   Modu≈Ç prostych zrzut√≥w ekranu
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-screenshot
 Simple ScreenShots module.
 
-%description module-screenshot -l pl
-Modu≥ prostych zrzutÛw ekranu.
+%description module-screenshot -l pl.UTF-8
+Modu≈Ç prostych zrzut√≥w ekranu.
 
 %package module-sms-miastoplusa
 Summary:	SMS Gateway on Miasto Plusa module
-Summary(pl):	Modu≥ obs≥ugi bramki SMS w Mie∂cie Plusa
+Summary(pl.UTF-8):   Modu≈Ç obs≈Çugi bramki SMS w Mie≈õcie Plusa
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-sms-miastoplusa
 SMS Gateway on Miasto Plusa module.
 
-%description module-sms-miastoplusa -l pl
-Modu≥ obs≥ugi bramki SMS w Mie∂cie Plusa.
+%description module-sms-miastoplusa -l pl.UTF-8
+Modu≈Ç obs≈Çugi bramki SMS w Mie≈õcie Plusa.
 
 %package module-sound-alsa
 Summary:	Support ALSA sound
-Summary(pl):	Wsparcie dla dºwiÍku ALSA
+Summary(pl.UTF-8):   Wsparcie dla d≈∫wiƒôku ALSA
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	alsa-lib
@@ -360,12 +360,12 @@ Requires:	alsa-lib
 %description module-sound-alsa
 ALSA sound support module.
 
-%description module-sound-alsa -l pl
-Modu≥ obs≥ugi dºwiÍku przez ALSA.
+%description module-sound-alsa -l pl.UTF-8
+Modu≈Ç obs≈Çugi d≈∫wiƒôku przez ALSA.
 
 %package module-sound-arts
 Summary:	Support aRts sound server
-Summary(pl):	Wsparcie dla serwera dºwiÍku aRts
+Summary(pl.UTF-8):   Wsparcie dla serwera d≈∫wiƒôku aRts
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	arts
@@ -373,24 +373,24 @@ Requires:	arts
 %description module-sound-arts
 aRts sound server support module.
 
-%description module-sound-arts -l pl
-Modu≥ do obs≥ugi serwera dºwiÍku aRts.
+%description module-sound-arts -l pl.UTF-8
+Modu≈Ç do obs≈Çugi serwera d≈∫wiƒôku aRts.
 
 %package module-sound-dsp
 Summary:	DSP sound module
-Summary(pl):	Modu≥ obs≥ugi dºwiÍku przez DSP
+Summary(pl.UTF-8):   Modu≈Ç obs≈Çugi d≈∫wiƒôku przez DSP
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-sound-dsp
 DSP sound module.
 
-%description module-sound-dsp -l pl
-Modu≥ obs≥ugi dºwiÍku przez DSP.
+%description module-sound-dsp -l pl.UTF-8
+Modu≈Ç obs≈Çugi d≈∫wiƒôku przez DSP.
 
 %package module-sound-esd
 Summary:	Support ESD sound server
-Summary(pl):	Wsparcie dla serwera dºwiÍku ESD
+Summary(pl.UTF-8):   Wsparcie dla serwera d≈∫wiƒôku ESD
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	esound
@@ -398,12 +398,12 @@ Requires:	esound
 %description module-sound-esd
 ESD sound module.
 
-%description module-sound-esd -l pl
-Modu≥ obs≥ugi dºwiÍku przez ESD.
+%description module-sound-esd -l pl.UTF-8
+Modu≈Ç obs≈Çugi d≈∫wiƒôku przez ESD.
 
 %package module-sound-nas
 Summary:	Support Network Audio System
-Summary(pl):	Wsparcie dla sieciowego systemu dºwiÍku NAS
+Summary(pl.UTF-8):   Wsparcie dla sieciowego systemu d≈∫wiƒôku NAS
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	nas
@@ -411,12 +411,12 @@ Requires:	nas
 %description module-sound-nas
 Network Audio System sound module.
 
-%description module-sound-nas -l pl
-Modu≥ obs≥ugi dºwiÍku przez NAS.
+%description module-sound-nas -l pl.UTF-8
+Modu≈Ç obs≈Çugi d≈∫wiƒôku przez NAS.
 
 %package module-spellchecker
 Summary:	Checker of spelling mistakes
-Summary(pl):	Modu≥ sprawdzaj±cy pisowniÍ
+Summary(pl.UTF-8):   Modu≈Ç sprawdzajƒÖcy pisowniƒô
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	aspell
@@ -424,48 +424,48 @@ Requires:	aspell
 %description module-spellchecker
 Checker of spelling mistakes.
 
-%description module-spellchecker -l pl
-Modu≥ sprawdzaj±cy pisowniÍ.
+%description module-spellchecker -l pl.UTF-8
+Modu≈Ç sprawdzajƒÖcy pisowniƒô.
 
 %package module-spy
 Summary:	Spying module that shows who's invisible
-Summary(pl):	Modu≥ szpiegowski pokazuj±cy ukryte osoby
+Summary(pl.UTF-8):   Modu≈Ç szpiegowski pokazujƒÖcy ukryte osoby
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-spy
 Spying module that shows who's invisible.
 
-%description module-spy -l pl
-Modu≥ szpiegowski pokazuj±cy ukryte osoby.
+%description module-spy -l pl.UTF-8
+Modu≈Ç szpiegowski pokazujƒÖcy ukryte osoby.
 
 %package module-tabs
 Summary:	Tabbed chat dialog module
-Summary(pl):	Modu≥ okna rozmowy z zak≥adkami
+Summary(pl.UTF-8):   Modu≈Ç okna rozmowy z zak≈Çadkami
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-tabs
 Tabbed chat dialog module.
 
-%description module-tabs -l pl
-Modu≥ okna rozmowy z zak≥adkami.
+%description module-tabs -l pl.UTF-8
+Modu≈Ç okna rozmowy z zak≈Çadkami.
 
 %package module-weather
 Summary:	Weather module
-Summary(pl):	Modu≥ pogodowy
+Summary(pl.UTF-8):   Modu≈Ç pogodowy
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-weather
 Informations of weather in locality of contact.
 
-%description module-weather -l pl
-Informacje o pogodzie w miejscowo∂ci danego kontaktu.
+%description module-weather -l pl.UTF-8
+Informacje o pogodzie w miejscowo≈õci danego kontaktu.
 
 %package module-xmms
 Summary:	Support XMMS status
-Summary(pl):	Modu≥ statusu dla XMMS-a
+Summary(pl.UTF-8):   Modu≈Ç statusu dla XMMS-a
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	xmms
@@ -474,80 +474,80 @@ Requires:	xmms
 Module which allows showing in status description information about
 the song currently played in XMMS.
 
-%description module-xmms -l pl
-Modu≥ umoøliwiaj±cy pokazywanie w opisie statusu informacji o
+%description module-xmms -l pl.UTF-8
+Modu≈Ç umo≈ºliwiajƒÖcy pokazywanie w opisie statusu informacji o
 odgrywanym utworze z odtwarzacza XMMS.
 
 %package theme-icons-crystal16
 Summary:	Crystal16 icon theme
-Summary(pl):	Zestaw ikon crystal16
+Summary(pl.UTF-8):   Zestaw ikon crystal16
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description theme-icons-crystal16
 Crystal16 icon theme.
 
-%description theme-icons-crystal16 -l pl
+%description theme-icons-crystal16 -l pl.UTF-8
 Zestaw ikon crystal16.
 
 %package theme-icons-crystal22
 Summary:	Crystal22 icon theme
-Summary(pl):	Zestaw ikon crystal22
+Summary(pl.UTF-8):   Zestaw ikon crystal22
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description theme-icons-crystal22
 Crystal22 icon theme.
 
-%description theme-icons-crystal22 -l pl
+%description theme-icons-crystal22 -l pl.UTF-8
 Zestaw ikon crystal22.
 
 %package theme-icons-glass16
 Summary:	Glass16 icon theme
-Summary(pl):	Zestaw ikon glass16
+Summary(pl.UTF-8):   Zestaw ikon glass16
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description theme-icons-glass16
 Glass16 icon theme.
 
-%description theme-icons-glass16 -l pl
+%description theme-icons-glass16 -l pl.UTF-8
 Zestaw ikon glass16.
 
 %package theme-icons-glass22
 Summary:	Glass22 icon theme
-Summary(pl):	Zestaw ikon glass22
+Summary(pl.UTF-8):   Zestaw ikon glass22
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description theme-icons-glass22
 Glass22 icon theme.
 
-%description theme-icons-glass22 -l pl
+%description theme-icons-glass22 -l pl.UTF-8
 Zestaw ikon glass22.
 
 %package theme-icons-nuvola16
 Summary:	Nuvola16 icon theme
-Summary(pl):	Zestaw ikon nuvola16
+Summary(pl.UTF-8):   Zestaw ikon nuvola16
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description theme-icons-nuvola16
 Nuvola16 icon theme.
 
-%description theme-icons-nuvola16 -l pl
+%description theme-icons-nuvola16 -l pl.UTF-8
 Zestaw ikon nuvola16.
 
 %package theme-icons-nuvola22
 Summary:	Nuvola22 icon theme
-Summary(pl):	Zestaw ikon nuvola22
+Summary(pl.UTF-8):   Zestaw ikon nuvola22
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description theme-icons-nuvola22
 Nuvola22 icon theme.
 
-%description theme-icons-nuvola22 -l pl
+%description theme-icons-nuvola22 -l pl.UTF-8
 Zestaw ikon nuvola22.
 
 %prep
