@@ -39,7 +39,7 @@
 %endif
 
 Summary:	A Gadu-Gadu client for online messaging
-Summary(pl):	Klient Gadu-Gadu do przesy≥ania wiadomo∂ci po sieci
+Summary(pl.UTF-8):   Klient Gadu-Gadu do przesy≈Çania wiadomo≈õci po sieci
 Name:		kadu
 Version:	0.5.0
 Release:	0.%{?with_snap:%{_snap}}%{!?with_snap:%{_rel}}.1
@@ -103,15 +103,15 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Kadu is client of Gadu-Gadu protocol. It's an IM for Linux and UN*X.
 It's written with use of QT libraries.
 
-%description -l pl
-Kadu jest klientem protoko≥u Gadu-Gadu. Inaczej mÛwi±c, jest
-komunikatorem dla Linuksa (oraz, przy niewielkim wysi≥ku, innych
-systemÛw UN*Xowych). Napisano go w oparciu o bibliotekÍ QT i KDE,
-przeznaczony jest wiÍc dla tego ∂rodowiska.
+%description -l pl.UTF-8
+Kadu jest klientem protoko≈Çu Gadu-Gadu. Inaczej m√≥wiƒÖc, jest
+komunikatorem dla Linuksa (oraz, przy niewielkim wysi≈Çku, innych
+system√≥w UN*Xowych). Napisano go w oparciu o bibliotekƒô QT i KDE,
+przeznaczony jest wiƒôc dla tego ≈õrodowiska.
 
 %package module-xmms
 Summary:	Support XMMS status
-Summary(pl):	Modu≥ statusu dla XMMS-a
+Summary(pl.UTF-8):   Modu≈Ç statusu dla XMMS-a
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	xmms
@@ -120,13 +120,13 @@ Requires:	xmms
 Module which allows showing in status description information about
 the song currently played in XMMS.
 
-%description module-xmms -l pl
-Modu≥ umoøliwiaj±cy pokazywanie w opisie statusu informacji o
+%description module-xmms -l pl.UTF-8
+Modu≈Ç umo≈ºliwiajƒÖcy pokazywanie w opisie statusu informacji o
 odgrywanym utworze z odtwarzacza XMMS.
 
 %package module-sound-alsa
 Summary:	Support ALSA sound
-Summary(pl):	Wsparcie dla dºwiÍku ALSA
+Summary(pl.UTF-8):   Wsparcie dla d≈∫wiƒôku ALSA
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	alsa-lib
@@ -134,12 +134,12 @@ Requires:	alsa-lib
 %description module-sound-alsa
 ALSA sound support module.
 
-%description module-sound-alsa -l pl
-Modu≥ obs≥ugi dºwiÍku przez ALSA.
+%description module-sound-alsa -l pl.UTF-8
+Modu≈Ç obs≈Çugi d≈∫wiƒôku przez ALSA.
 
 %package module-sound-arts
 Summary:	Support aRts sound server
-Summary(pl):	Wsparcie dla serwera dzwiÍku arts
+Summary(pl.UTF-8):   Wsparcie dla serwera dzwiƒôku arts
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	arts
@@ -147,12 +147,12 @@ Requires:	arts
 %description module-sound-arts
 aRts sound server support module.
 
-%description module-sound-arts -l pl
-Modu≥ do obs≥ugi serwera dºwiÍku aRts.
+%description module-sound-arts -l pl.UTF-8
+Modu≈Ç do obs≈Çugi serwera d≈∫wiƒôku aRts.
 
 %package module-sound-esd
 Summary:	Support ESD sound server
-Summary(pl):	Wsparcie dla serwera dºwiÍku ESD
+Summary(pl.UTF-8):   Wsparcie dla serwera d≈∫wiƒôku ESD
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	esound
@@ -160,12 +160,12 @@ Requires:	esound
 %description module-sound-esd
 ESD sound module.
 
-%description module-sound-esd -l pl
-Modu≥ obs≥ugi dºwiÍku przez ESD.
+%description module-sound-esd -l pl.UTF-8
+Modu≈Ç obs≈Çugi d≈∫wiƒôku przez ESD.
 
 %package module-sound-nas
 Summary:	Support Network Audio System
-Summary(pl):	Wsparcie dla sieciowego systemu dzwiÍku NAS
+Summary(pl.UTF-8):   Wsparcie dla sieciowego systemu dzwiƒôku NAS
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	nas
@@ -173,12 +173,12 @@ Requires:	nas
 %description module-sound-nas
 Network Audio System sound module.
 
-%description module-sound-nas -l pl
-Modu≥ obs≥ugi dºwiÍku przez NAS.
+%description module-sound-nas -l pl.UTF-8
+Modu≈Ç obs≈Çugi d≈∫wiƒôku przez NAS.
 
 %package module-speech
 Summary:	Speech synthesis support
-Summary(pl):	Modu≥ obs≥ugi "G≥o∂nego czytania"
+Summary(pl.UTF-8):   Modu≈Ç obs≈Çugi "G≈Ço≈õnego czytania"
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	powiedz
@@ -187,12 +187,12 @@ Requires:	powiedz
 Kadu module which supports reading aloud using speech synthesis
 provided by external program "powiedz".
 
-%description module-speech -l pl
-Modu≥ obs≥ugi "G≥o∂nego czytania" przez zewnÍtrzny program "powiedz".
+%description module-speech -l pl.UTF-8
+Modu≈Ç obs≈Çugi "G≈Ço≈õnego czytania" przez zewnƒôtrzny program "powiedz".
 
 %package module-amarok
 Summary:	Support amarok status
-Summary(pl):	Modu≥ statusu dla amarok
+Summary(pl.UTF-8):   Modu≈Ç statusu dla amarok
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	amarok
@@ -201,37 +201,37 @@ Requires:	amarok
 Module which allows showing in status description information about
 the song currently played in amarok.
 
-%description module-amarok -l pl
-Modu≥ umoøliwiaj±cy w opisie statusu pokazywanie informacji o
+%description module-amarok -l pl.UTF-8
+Modu≈Ç umo≈ºliwiajƒÖcy w opisie statusu pokazywanie informacji o
 odgrywanym utworze z odtwarzacza amarok.
 
 %package module-spellchecker
 Summary:	Checker of spelling mistakes
-Summary(pl):	Modu≥ sprawdzaj±cy pisowniÍ
+Summary(pl.UTF-8):   Modu≈Ç sprawdzajƒÖcy pisowniƒô
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	aspell
 %description module-spellchecker
 Checker of spelling mistakes.
 
-%description module-spellchecker -l pl
-Modu≥ sprawdzaj±cy pisowniÍ.
+%description module-spellchecker -l pl.UTF-8
+Modu≈Ç sprawdzajƒÖcy pisowniƒô.
 
 %package module-weather
 Summary:	Weather module
-Summary(pl):	Modu≥ pogodowy
+Summary(pl.UTF-8):   Modu≈Ç pogodowy
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-weather
 Informations of weather in locality of contact.
 
-%description module-weather -l pl
-Informacje o pogodzie w miejscowo∂ci danego kontaktu.
+%description module-weather -l pl.UTF-8
+Informacje o pogodzie w miejscowo≈õci danego kontaktu.
 
 %package module-powerkadu
 Summary:	PowerKadu extensions
-Summary(pl):	Rozszerzenia PowerKadu
+Summary(pl.UTF-8):   Rozszerzenia PowerKadu
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -240,22 +240,22 @@ PowerKadu is an add-on to Kadu. It extends Kadu
 functionality by useful functions, like :
 autostatus, antistring, cenzor, Tex formula, ... .
 
-%description module-powerkadu -l pl
+%description module-powerkadu -l pl.UTF-8
 PowerKadu jest dodatkiem do Kadu. Poszerza on
-moøliwo∂ci Kadu o przydatne funkcje, takie jak:
-autostatus, anty≥aÒcuszek, cenzor, formu≥y Tex, ... .
+mo≈ºliwo≈õci Kadu o przydatne funkcje, takie jak:
+autostatus, anty≈Ça≈Ñcuszek, cenzor, formu≈Çy Tex, ... .
 
 %package module-spy
 Summary:	Spying module that shows who's invisible
-Summary(pl):	Modu≥ szpiegowski pokazuj±cy ukryte osoby
+Summary(pl.UTF-8):   Modu≈Ç szpiegowski pokazujƒÖcy ukryte osoby
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-spy
 Spying module that shows who's invisible
 
-%description module-spy -l pl
-Modu≥ szpiegowski pokazuj±cy ukryte osoby.
+%description module-spy -l pl.UTF-8
+Modu≈Ç szpiegowski pokazujƒÖcy ukryte osoby.
 
 %prep
 %setup -q -T -b %{?with_snap:10}0 -n %{name}
