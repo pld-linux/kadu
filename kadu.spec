@@ -51,7 +51,7 @@
 %define		_xmms_mod_ver		1.34
 
 Summary:	A Gadu-Gadu client for online messaging
-Summary(pl.UTF-8):   Klient Gadu-Gadu do przesyłania wiadomości po sieci
+Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
 Version:	0.5.0
 Release:	1
@@ -150,7 +150,7 @@ przeznaczony jest więc dla tego środowiska.
 
 %package module-advanced_userlist
 Summary:	Advanced Userlist module
-Summary(pl.UTF-8):   Moduł zaawansowanej konfiguracji sortowania listy kontaktów
+Summary(pl.UTF-8):	Moduł zaawansowanej konfiguracji sortowania listy kontaktów
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -162,7 +162,7 @@ Moduł zaawansowanej konfiguracji sortowania listy kontaktów.
 
 %package module-amarok
 Summary:	Support amarok status
-Summary(pl.UTF-8):   Moduł statusu dla amarok
+Summary(pl.UTF-8):	Moduł statusu dla amarok
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	amarok
@@ -177,7 +177,7 @@ odgrywanym utworze z odtwarzacza amarok.
 
 %package module-autoresponder
 Summary:	Autoresponder module
-Summary(pl.UTF-8):   Moduł autoodpowiedzi
+Summary(pl.UTF-8):	Moduł autoodpowiedzi
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -189,7 +189,7 @@ Moduł autoodpowiedzi.
 
 %package module-dcopexport
 Summary:	Kadu DCOP interface
-Summary(pl.UTF-8):   Interfejs niektórych funkcji Kadu do DCOP
+Summary(pl.UTF-8):	Interfejs niektórych funkcji Kadu do DCOP
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -201,7 +201,7 @@ Interfejs niektórych funkcji Kadu do DCOP.
 
 %package module-docking-desktop
 Summary:	Desktop docking module
-Summary(pl.UTF-8):   Moduł dokowania w dowolnym punkcie ekranu
+Summary(pl.UTF-8):	Moduł dokowania w dowolnym punkcie ekranu
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -213,7 +213,7 @@ Moduł dokowania w dowolnym punkcie ekranu.
 
 %package module-filtering
 Summary:	User list filtering
-Summary(pl.UTF-8):   Filtrowanie listy kontaktów
+Summary(pl.UTF-8):	Filtrowanie listy kontaktów
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -225,7 +225,7 @@ Filtrowanie listy kontaktów.
 
 %package module-iwait4u
 Summary:	iwait4u module inform you, that someone from userlist is active
-Summary(pl.UTF-8):   Modul iwait4u do informowania o dostępności osób z listy
+Summary(pl.UTF-8):	Modul iwait4u do informowania o dostępności osób z listy
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -237,7 +237,7 @@ Modul iwait4u informuje, że osoba z listy użytkowników jest dostępna.
 
 %package module-notify-exec
 Summary:	Notification by external commands module
-Summary(pl.UTF-8):   Moduł powiadamiania użytkownika o zdarzeniach za pomocą zewnętrznych poleceń
+Summary(pl.UTF-8):	Moduł powiadamiania użytkownika o zdarzeniach za pomocą zewnętrznych poleceń
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -250,7 +250,7 @@ poleceń.
 
 %package module-notify-led
 Summary:	Notification by Scroll Lock LED
-Summary(pl.UTF-8):   Moduł powiadamiania diodą Scroll Lock
+Summary(pl.UTF-8):	Moduł powiadamiania diodą Scroll Lock
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -262,7 +262,7 @@ Moduł powiadamiania diodą Scroll Lock.
 
 %package module-notify-osdhints
 Summary:	Notification by OSD-like hints
-Summary(pl.UTF-8):   Powiadamianie o zdarzeniach przy pomocy dymków typu OSD
+Summary(pl.UTF-8):	Powiadamianie o zdarzeniach przy pomocy dymków typu OSD
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -274,7 +274,7 @@ Powiadamianie o zdarzeniach przy pomocy dymków typu OSD.
 
 %package module-notify-pcspeaker
 Summary:	PC Speaker module
-Summary(pl.UTF-8):   Moduł do obsługi PC Speakera
+Summary(pl.UTF-8):	Moduł do obsługi PC Speakera
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -286,7 +286,7 @@ Moduł do obsługi PC Speakera.
 
 %package module-notify-speech
 Summary:	Speech synthesis support
-Summary(pl.UTF-8):   Moduł obsługi "Głośnego czytania"
+Summary(pl.UTF-8):	Moduł obsługi "Głośnego czytania"
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	powiedz
@@ -300,7 +300,7 @@ Moduł obsługi "Głośnego czytania" przez zewnętrzny program "powiedz".
 
 %package module-powerkadu
 Summary:	PowerKadu extensions
-Summary(pl.UTF-8):   Rozszerzenia PowerKadu
+Summary(pl.UTF-8):	Rozszerzenia PowerKadu
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -316,7 +316,7 @@ formuły TeX-a, korekta słów...
 
 %package module-profiles
 Summary:	Kadu Profiles
-Summary(pl.UTF-8):   Profile w Kadu
+Summary(pl.UTF-8):	Profile w Kadu
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -328,7 +328,7 @@ Profile w Kadu.
 
 %package module-screenshot
 Summary:	Simple ScreenShots module
-Summary(pl.UTF-8):   Moduł prostych zrzutów ekranu
+Summary(pl.UTF-8):	Moduł prostych zrzutów ekranu
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -340,7 +340,7 @@ Moduł prostych zrzutów ekranu.
 
 %package module-sms-miastoplusa
 Summary:	SMS Gateway on Miasto Plusa module
-Summary(pl.UTF-8):   Moduł obsługi bramki SMS w Mieście Plusa
+Summary(pl.UTF-8):	Moduł obsługi bramki SMS w Mieście Plusa
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -352,7 +352,7 @@ Moduł obsługi bramki SMS w Mieście Plusa.
 
 %package module-sound-alsa
 Summary:	Support ALSA sound
-Summary(pl.UTF-8):   Wsparcie dla dźwięku ALSA
+Summary(pl.UTF-8):	Wsparcie dla dźwięku ALSA
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	alsa-lib
@@ -365,7 +365,7 @@ Moduł obsługi dźwięku przez ALSA.
 
 %package module-sound-arts
 Summary:	Support aRts sound server
-Summary(pl.UTF-8):   Wsparcie dla serwera dźwięku aRts
+Summary(pl.UTF-8):	Wsparcie dla serwera dźwięku aRts
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	arts
@@ -378,7 +378,7 @@ Moduł do obsługi serwera dźwięku aRts.
 
 %package module-sound-dsp
 Summary:	DSP sound module
-Summary(pl.UTF-8):   Moduł obsługi dźwięku przez DSP
+Summary(pl.UTF-8):	Moduł obsługi dźwięku przez DSP
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -390,7 +390,7 @@ Moduł obsługi dźwięku przez DSP.
 
 %package module-sound-esd
 Summary:	Support ESD sound server
-Summary(pl.UTF-8):   Wsparcie dla serwera dźwięku ESD
+Summary(pl.UTF-8):	Wsparcie dla serwera dźwięku ESD
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	esound
@@ -403,7 +403,7 @@ Moduł obsługi dźwięku przez ESD.
 
 %package module-sound-nas
 Summary:	Support Network Audio System
-Summary(pl.UTF-8):   Wsparcie dla sieciowego systemu dźwięku NAS
+Summary(pl.UTF-8):	Wsparcie dla sieciowego systemu dźwięku NAS
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	nas
@@ -416,7 +416,7 @@ Moduł obsługi dźwięku przez NAS.
 
 %package module-spellchecker
 Summary:	Checker of spelling mistakes
-Summary(pl.UTF-8):   Moduł sprawdzający pisownię
+Summary(pl.UTF-8):	Moduł sprawdzający pisownię
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	aspell
@@ -429,7 +429,7 @@ Moduł sprawdzający pisownię.
 
 %package module-spy
 Summary:	Spying module that shows who's invisible
-Summary(pl.UTF-8):   Moduł szpiegowski pokazujący ukryte osoby
+Summary(pl.UTF-8):	Moduł szpiegowski pokazujący ukryte osoby
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -441,7 +441,7 @@ Moduł szpiegowski pokazujący ukryte osoby.
 
 %package module-tabs
 Summary:	Tabbed chat dialog module
-Summary(pl.UTF-8):   Moduł okna rozmowy z zakładkami
+Summary(pl.UTF-8):	Moduł okna rozmowy z zakładkami
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -453,7 +453,7 @@ Moduł okna rozmowy z zakładkami.
 
 %package module-weather
 Summary:	Weather module
-Summary(pl.UTF-8):   Moduł pogodowy
+Summary(pl.UTF-8):	Moduł pogodowy
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -465,7 +465,7 @@ Informacje o pogodzie w miejscowości danego kontaktu.
 
 %package module-xmms
 Summary:	Support XMMS status
-Summary(pl.UTF-8):   Moduł statusu dla XMMS-a
+Summary(pl.UTF-8):	Moduł statusu dla XMMS-a
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	xmms
@@ -480,7 +480,7 @@ odgrywanym utworze z odtwarzacza XMMS.
 
 %package theme-icons-crystal16
 Summary:	Crystal16 icon theme
-Summary(pl.UTF-8):   Zestaw ikon crystal16
+Summary(pl.UTF-8):	Zestaw ikon crystal16
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -492,7 +492,7 @@ Zestaw ikon crystal16.
 
 %package theme-icons-crystal22
 Summary:	Crystal22 icon theme
-Summary(pl.UTF-8):   Zestaw ikon crystal22
+Summary(pl.UTF-8):	Zestaw ikon crystal22
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -504,7 +504,7 @@ Zestaw ikon crystal22.
 
 %package theme-icons-glass16
 Summary:	Glass16 icon theme
-Summary(pl.UTF-8):   Zestaw ikon glass16
+Summary(pl.UTF-8):	Zestaw ikon glass16
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -516,7 +516,7 @@ Zestaw ikon glass16.
 
 %package theme-icons-glass22
 Summary:	Glass22 icon theme
-Summary(pl.UTF-8):   Zestaw ikon glass22
+Summary(pl.UTF-8):	Zestaw ikon glass22
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -528,7 +528,7 @@ Zestaw ikon glass22.
 
 %package theme-icons-nuvola16
 Summary:	Nuvola16 icon theme
-Summary(pl.UTF-8):   Zestaw ikon nuvola16
+Summary(pl.UTF-8):	Zestaw ikon nuvola16
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -540,7 +540,7 @@ Zestaw ikon nuvola16.
 
 %package theme-icons-nuvola22
 Summary:	Nuvola22 icon theme
-Summary(pl.UTF-8):   Zestaw ikon nuvola22
+Summary(pl.UTF-8):	Zestaw ikon nuvola22
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
