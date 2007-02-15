@@ -54,7 +54,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
 Version:	0.5.0
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/Communications
 
@@ -811,8 +811,12 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/%{name}
 %dir %{_datadir}/%{name}/modules
 %dir %{_datadir}/%{name}/modules/data
+%dir %{_datadir}/%{name}/themes
+%dir %{_datadir}/%{name}/emoticons
 %{_datadir}/%{name}/themes/emoticons/penguins
+%dir %{_datadir}/%{name}/icons
 %{_datadir}/%{name}/themes/icons/default
+%dir %{_datadir}/%{name}/sounds
 %{_datadir}/%{name}/themes/sounds/default
 #About... files
 %{_datadir}/%{name}/AUTHORS
@@ -821,8 +825,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/THANKS
 #default modules:
 %dir %{_libdir}/%{name}
-%dir %{_libdir}/%{name}/modules
 %dir %{_modules_dir}
+%dir %{_modules_dir}/bin
 %{_modules_dir}/account_management.desc
 %attr(755,root,root) %{_modules_dir}/account_management.so
 %{_modules_dir}/autoaway.desc
@@ -1054,6 +1058,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_modules_dir}/powerkadu.desc
 %attr(755,root,root) %{_modules_dir}/powerkadu.so
 %lang(pl) %{_modules_dir}/translations/powerkadu_pl.qm
+%dir %{_modules_dir}/bin/powerkadu
 %attr(755,root,root) %{_modules_dir}/bin/powerkadu/mimetex
 %dir %{_datadir}/%{name}/modules/data/powerkadu
 %{_datadir}/%{name}/modules/data/powerkadu
@@ -1105,7 +1110,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_modules_dir}/arts_sound.desc
 %attr(755,root,root) %{_modules_dir}/arts_sound.so
-%dir %{_modules_dir}/bin/
 %dir %{_modules_dir}/bin/arts_sound
 %attr(755,root,root) %{_modules_dir}/bin/arts_sound/arts_connector
 %endif
@@ -1183,6 +1187,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_modules_dir}/xmms.desc
 %attr(755,root,root) %{_modules_dir}/xmms.so
 %lang(pl) %{_modules_dir}/translations/xmms_pl.qm
+%dir %{_datadir}/%{name}/modules/data/xmms
 %{_datadir}/%{name}/modules/data/xmms/xmms.png
 %endif
 
