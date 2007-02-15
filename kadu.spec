@@ -812,11 +812,11 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/%{name}/modules
 %dir %{_datadir}/%{name}/modules/data
 %dir %{_datadir}/%{name}/themes
-%dir %{_datadir}/%{name}/emoticons
+%dir %{_datadir}/%{name}/themes/emoticons
 %{_datadir}/%{name}/themes/emoticons/penguins
-%dir %{_datadir}/%{name}/icons
+%dir %{_datadir}/%{name}/themes/icons
 %{_datadir}/%{name}/themes/icons/default
-%dir %{_datadir}/%{name}/sounds
+%dir %{_datadir}/%{name}/themes/sounds
 %{_datadir}/%{name}/themes/sounds/default
 #About... files
 %{_datadir}/%{name}/AUTHORS
@@ -1060,7 +1060,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{_modules_dir}/translations/powerkadu_pl.qm
 %dir %{_modules_dir}/bin/powerkadu
 %attr(755,root,root) %{_modules_dir}/bin/powerkadu/mimetex
-%dir %{_datadir}/%{name}/modules/data/powerkadu
 %{_datadir}/%{name}/modules/data/powerkadu
 %endif
 
