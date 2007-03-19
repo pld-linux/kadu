@@ -1,6 +1,9 @@
 #
 # TODO:
 # - spy module - won't work with gg7 clients
+#	downloads stuff while building: Downloading crystal16 icon theme
+#--02:05:17--  http://kadu.net/autodownload/icons/kadu-0.5.0-crystal16.href
+#           => `kadu-0.5.0-crystal16.href'
 #
 # Conditional build:
 %bcond_without	advanced_userlist	# without Advanced Userlist support
