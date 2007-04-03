@@ -49,7 +49,7 @@
 %define		_sms_miastoplusa_ver	1.3.5
 %define		_spellchecker_mod_ver	0.19
 %define		_spy_mod_ver		0.0.8-3
-%define		_tabs_ver		0.48
+%define		_tabs_ver		0.52
 %define		_weather_ver		3.01
 %define		_xmms_mod_ver		1.34
 
@@ -57,7 +57,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
 Version:	0.5.0
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		Applications/Communications
 
@@ -95,7 +95,7 @@ Source15:	http://scripts.one.pl/spellchecker/devel/%{version}/spellchecker-%{_sp
 Source16:	http://student.agh.edu.pl/neeo/%{name}-spy-%{_spy_mod_ver}.tar.bz2
 # Source16-md5:	b04fb7a4a98abe5d32e321da3058bbf0
 Source17:	http://kadu.net/~arvenil/tabs/download/%{version}/%{name}-module-tabs-%{_tabs_ver}.tar.bz2
-# Source17-md5:	b8aef059dce105cfd9c7f3f00d085d8e
+# Source17-md5:	23491804ea3595f10bfce39c1f8a7c84
 Source18:	http://kadu.net/~blysk/weather-%{_weather_ver}.tar.bz2
 # Source18-md5:	c21727575d4bab551adeb9b5b1787f0c
 Source19:	http://scripts.one.pl/xmms/stable/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
@@ -619,10 +619,16 @@ tar xzf %{SOURCE23} -C varia/themes/icons
 tar xzf %{SOURCE24} -C varia/themes/icons
 tar xzf %{SOURCE25} -C varia/themes/icons
 
+# rename theme directories to be sure that they
+# will not be re-downloaded by configure
+for dir in varia/themes/icons/kadu-theme-*; do
+	theme=`echo $dir | %{__sed} -e 's/kadu-theme-//; s/[_-]//;'`;
+	mv $dir $theme
+done
+
 %{__sed} -i 's,dataPath("kadu/modules/*,("%{_libdir}/kadu/modules/,g' kadu/modules.cpp
 
 %build
-
 %if %{with advanced_userlist}
 %{__sed} -i 's/module_advanced_userlist=n/module_advanced_userlist=m/' .config
 %endif
