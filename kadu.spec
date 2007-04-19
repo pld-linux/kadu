@@ -47,7 +47,7 @@
 %define		_sms_miastoplusa_ver	1.3.5
 %define		_spellchecker_mod_ver	0.19
 %define		_spy_mod_ver		0.0.8-3
-%define		_tabs_ver		0.52
+%define		_tabs_ver		1.0.0
 %define		_weather_ver		3.01
 %define		_xmms_mod_ver		1.34
 
@@ -93,7 +93,7 @@ Source15:	http://scripts.one.pl/spellchecker/devel/%{version}/spellchecker-%{_sp
 Source16:	http://student.agh.edu.pl/neeo/%{name}-spy-%{_spy_mod_ver}.tar.bz2
 # Source16-md5:	b04fb7a4a98abe5d32e321da3058bbf0
 Source17:	http://kadu.net/~arvenil/tabs/download/%{version}/%{name}-module-tabs-%{_tabs_ver}.tar.bz2
-# Source17-md5:	23491804ea3595f10bfce39c1f8a7c84
+# Source17-md5:	7e16cd725d5ab273525130e85f16a28c
 Source18:	http://kadu.net/~blysk/weather-%{_weather_ver}.tar.bz2
 # Source18-md5:	c21727575d4bab551adeb9b5b1787f0c
 Source19:	http://scripts.one.pl/xmms/stable/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
