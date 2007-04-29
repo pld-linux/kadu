@@ -35,21 +35,21 @@
 %bcond_without	xmms			# without xmms player support module
 
 %define		_advanced_userlist_ver	20070101
-%define		_amarok_mod_ver		1.19
-%define		_dcopexport_ver		0.11.3-20070102-0.5.0
+%define		_amarok_mod_ver		1.21
+%define		_dcopexport_ver		0.11.3-20070321
 %define		_filedesc_ver		1.12
-%define		_filtering_ver		0.5.0-20070107-0.5.0
+%define		_filtering_ver		20070123
 %define		_iwait4u_ver		1.3
 %define		_libgadu_ver		4:1.7
 %define		_notify_exec_ver	20070101
 %define		_notify_led_ver		0.9
-%define		_notify_osdhints_ver	0.3.2.1
+%define		_notify_osdhints_ver	0.3.2.2
 %define		_notify_pcspeaker_ver	0.5.0.3
-%define		_powerkadu_ver		20070107
+%define		_powerkadu_ver		20070129
 %define		_profiles_ver		0.1.2
 %define		_screenshot_ver		0.4.4
 %define		_sms_miastoplusa_ver	1.3.5
-%define		_spellchecker_mod_ver	0.19
+%define		_spellchecker_mod_ver	0.20
 %define		_spy_mod_ver		0.0.8-3
 %define		_tabs_ver		1.0.0
 %define		_weather_ver		3.01
@@ -68,34 +68,34 @@ Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
 Source1:	%{name}.desktop
 Source2:	http://www.kadu.net/~joi/advanced_userlist/packages/advanced_userlist-%{_advanced_userlist_ver}.tar.bz2
 # Source2-md5:	fb60ce3c6fc3bf64909550bd758560c7
-Source3:	http://scripts.one.pl/amarok/devel/%{version}/amarok-%{_amarok_mod_ver}.tar.gz
-# Source3-md5:	139e50cbe9ff2014ca35e9b3b4be1f67
-Source4:	http://alan.umcs.lublin.pl/~pinkworm/dcopexport/dcopexport-%{_dcopexport_ver}.tar.bz2
-# Source4-md5:	3947606efa6053aad04b15f008176cd4
+Source3:	http://scripts.one.pl/amarok/stable/%{version}/amarok-%{_amarok_mod_ver}.tar.gz
+# Source3-md5:	6eb387be3d3d9a275dc9642f172035b1
+Source4:	http://alan.umcs.lublin.pl/~pinkworm/dcopexport/dcopexport-%{_dcopexport_ver}-0.5.0.tar.bz2
+# Source4-md5:	b5fd429c42d847b14dcac51d646f96ae
 Source5:	http://scripts.one.pl/filedesc/stable/%{version}/filedesc-%{_filedesc_ver}.tar.gz
 # Source5-md5:	d5e5718f3a64f33874a869b235bbdff7
-Source6:	http://alan.umcs.lublin.pl/~pinkworm/filtering/filtering-%{_filtering_ver}.tar.bz2
-# Source6-md5:	2684819390cb98403a9058ebae49d3a3
+Source6:	http://alan.umcs.lublin.pl/~pinkworm/filtering/filtering-0.5.1-%{_filtering_ver}-0.5.0.tar.bz2
+# Source6-md5:	3ecb26736c2490c18d5d534f8b0e31c2
 Source7:	http://www.kadu.net/~pan_wojtas/iwait4u/download/%{name}-iwait4u-%{_iwait4u_ver}.tar.gz
 # Source7-md5:	6233a8ef21d901fc5fb91c0db40d0e32
 Source8:	http://www.kadu.net/~joi/exec_notify/packages/exec_notify-%{_notify_exec_ver}.tar.bz2
 # Source8-md5:	ca4d620b707abf7483887f67a9c97c4f
 Source9:	http://kadu.net/~blysk/led_notify-%{_notify_led_ver}.tar.bz2
 # Source9-md5:	3f9e347fd775324f4077f2f6849a0de7
-Source10:	http://www.kadu.net/~pan_wojtas/osdhints_notify/download/%{name}-osdhints_notify-%{_notify_osdhints_ver}.tar.gz
-# Source10-md5:	4568a1cf1b242642a1fc6629969d05dd
+Source10:	http://www.kadu.net/~pan_wojtas/osdhints_notify/download/%{name}-osdhints_notify-%{_notify_osdhints_ver}-kadu-0.5.tar.gz
+# Source10-md5:	d3023aba93f8085612b8c532c0e06889
 Source11:	http://www.kadu.net/~dorr/%{name}-pcspeaker-%{_notify_pcspeaker_ver}.tar.gz
 # Source11-md5:	ba78bb43ec27309a29922d6f8bab1a35
 Source12:	http://kadu.net/~patryk/powerkadu/powerkadu-%{_powerkadu_ver}.tar.gz
-# Source12-md5:	cafdbecbcd29512d4a6ef0e761c1bce0
+# Source12-md5:	c6046e8b49dd9994fbf573faaafddab8
 Source13:	http://www.kadu.net/~dorr/%{name}-profiles-%{_profiles_ver}.tar.gz
 # Source13-md5:	723a58ec25a5bf6746e0ad0eb17e2f81
 Source14:	http://scripts.one.pl/screenshot/devel/0.5.0/screenshot-%{_screenshot_ver}.tar.gz
 # Source14-md5:	c6da85999cfebef413d228dca9c7d91f
 Source15:	http://kadu.net/~patryk/miastoplusa_sms/miastoplusa_sms-0.5-%{_sms_miastoplusa_ver}.tar.gz
 # Source15-md5:	fae1f6bd3d4aca845ef5a57403b5b58c
-Source16:	http://scripts.one.pl/spellchecker/devel/%{version}/spellchecker-%{_spellchecker_mod_ver}.tar.gz
-# Source16-md5:	f1e1c572f9fd92dfb420e62818bc826c
+Source16:	http://scripts.one.pl/spellchecker/stable/%{version}/spellchecker-%{_spellchecker_mod_ver}.tar.gz
+# Source16-md5:	384e3e039e3c1022b36780f9067caf4d
 Source17:	http://student.agh.edu.pl/neeo/%{name}-spy-%{_spy_mod_ver}.tar.bz2
 # Source17-md5:	b04fb7a4a98abe5d32e321da3058bbf0
 Source18:	http://kadu.net/~arvenil/tabs/download/%{version}/%{name}-module-tabs-%{_tabs_ver}.tar.bz2
@@ -1036,7 +1036,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_modules_dir}/filtering.desc
 %attr(755,root,root) %{_modules_dir}/filtering.so
-%lang(pl) %{_modules_dir}/translations/filtering.qm
+%lang(pl) %{_modules_dir}/translations/filtering_pl.qm
 %dir %{_datadir}/%{name}/modules/data/filtering
 %{_datadir}/%{name}/modules/data/filtering/*.png
 %endif
