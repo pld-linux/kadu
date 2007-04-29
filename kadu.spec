@@ -11,6 +11,7 @@
 %bcond_without	autoresponder		# without autoresponder module support
 %bcond_without	dcopexport		# without dcopexport module support
 %bcond_without	docking_desktop		# without desktop_docking module support
+%bcond_without	filedesc		# without filedesc module support
 %bcond_without	filtering		# without filtering module support
 %bcond_without	iwait4u			# without iwait4u module support
 %bcond_without	notify_exec		# without exec_notify module support
@@ -36,6 +37,7 @@
 %define		_advanced_userlist_ver	20070101
 %define		_amarok_mod_ver		1.19
 %define		_dcopexport_ver		0.11.3-20070102-0.5.0
+%define		_filedesc_ver		1.12
 %define		_filtering_ver		0.5.0-20070107-0.5.0
 %define		_iwait4u_ver		1.3
 %define		_libgadu_ver		4:1.7
@@ -70,49 +72,50 @@ Source3:	http://scripts.one.pl/amarok/devel/%{version}/amarok-%{_amarok_mod_ver}
 # Source3-md5:	139e50cbe9ff2014ca35e9b3b4be1f67
 Source4:	http://alan.umcs.lublin.pl/~pinkworm/dcopexport/dcopexport-%{_dcopexport_ver}.tar.bz2
 # Source4-md5:	3947606efa6053aad04b15f008176cd4
-Source5:	http://alan.umcs.lublin.pl/~pinkworm/filtering/filtering-%{_filtering_ver}.tar.bz2
-# Source5-md5:	2684819390cb98403a9058ebae49d3a3
-Source6:	http://www.kadu.net/~pan_wojtas/iwait4u/download/%{name}-iwait4u-%{_iwait4u_ver}.tar.gz
-# Source6-md5:	6233a8ef21d901fc5fb91c0db40d0e32
-Source7:	http://www.kadu.net/~joi/exec_notify/packages/exec_notify-%{_notify_exec_ver}.tar.bz2
-# Source7-md5:	ca4d620b707abf7483887f67a9c97c4f
-Source8:	http://kadu.net/~blysk/led_notify-%{_notify_led_ver}.tar.bz2
-# Source8-md5:	3f9e347fd775324f4077f2f6849a0de7
-Source9:	http://www.kadu.net/~pan_wojtas/osdhints_notify/download/%{name}-osdhints_notify-%{_notify_osdhints_ver}.tar.gz
-# Source9-md5:	4568a1cf1b242642a1fc6629969d05dd
-Source10:	http://www.kadu.net/~dorr/%{name}-pcspeaker-%{_notify_pcspeaker_ver}.tar.gz
-# Source10-md5:	ba78bb43ec27309a29922d6f8bab1a35
-Source11:	http://kadu.net/~patryk/powerkadu/powerkadu-%{_powerkadu_ver}.tar.gz
-# Source11-md5:	cafdbecbcd29512d4a6ef0e761c1bce0
-Source12:	http://www.kadu.net/~dorr/%{name}-profiles-%{_profiles_ver}.tar.gz
-# Source12-md5:	723a58ec25a5bf6746e0ad0eb17e2f81
-Source13:	http://scripts.one.pl/screenshot/devel/0.5.0/screenshot-%{_screenshot_ver}.tar.gz
-# Source13-md5:	c6da85999cfebef413d228dca9c7d91f
-Source14:	http://kadu.net/~patryk/miastoplusa_sms/miastoplusa_sms-0.5-%{_sms_miastoplusa_ver}.tar.gz
-# Source14-md5:	fae1f6bd3d4aca845ef5a57403b5b58c
-Source15:	http://scripts.one.pl/spellchecker/devel/%{version}/spellchecker-%{_spellchecker_mod_ver}.tar.gz
-# Source15-md5:	f1e1c572f9fd92dfb420e62818bc826c
-Source16:	http://student.agh.edu.pl/neeo/%{name}-spy-%{_spy_mod_ver}.tar.bz2
-# Source16-md5:	b04fb7a4a98abe5d32e321da3058bbf0
-Source17:	http://kadu.net/~arvenil/tabs/download/%{version}/%{name}-module-tabs-%{_tabs_ver}.tar.bz2
-# Source17-md5:	7e16cd725d5ab273525130e85f16a28c
-Source18:	http://kadu.net/~blysk/weather-%{_weather_ver}.tar.bz2
-# Source18-md5:	c21727575d4bab551adeb9b5b1787f0c
-Source19:	http://scripts.one.pl/xmms/stable/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
-# Source19-md5:	578191974e7dd60536373255e74bb38c
-Source20:	http://www.kadu.net/download/additions/%{name}-theme-crystal-16.tar.bz2
-# Source20-md5:	023085edabaf6a1b844fe6b5fc9315f9
-Source21:	http://www.kadu.net/download/additions/%{name}-theme-crystal-22.tar.bz2
-# Source21-md5:	57852ff3d3fd0063a642fcc173f7fa29
-Source22:	http://www.kadu.net/download/additions/%{name}-theme-glass_16.tar.gz
-# Source22-md5:	c3beb753222b96dad46f3adf230eb3e1
-Source23:	http://www.kadu.net/download/additions/%{name}-theme-glass_22.tar.gz
-# Source23-md5:	9ee70ca873fd0f22b2b83be133964d89
-Source24:	http://www.kadu.net/download/additions/%{name}-theme-nuvola-16.tar.gz
-# Source24-md5:	586cc6ff9ba62f0fdd7c7c1adf229efb
-Source25:	http://www.kadu.net/download/additions/%{name}-theme-nuvola-22.tar.gz
-# Source25-md5:	7a17b4881141b346c6268ef25c284613
-
+Source5:	http://scripts.one.pl/filedesc/stable/%{version}/filedesc-%{_filedesc_ver}.tar.gz
+# Source5-md5:	d5e5718f3a64f33874a869b235bbdff7
+Source6:	http://alan.umcs.lublin.pl/~pinkworm/filtering/filtering-%{_filtering_ver}.tar.bz2
+# Source6-md5:	2684819390cb98403a9058ebae49d3a3
+Source7:	http://www.kadu.net/~pan_wojtas/iwait4u/download/%{name}-iwait4u-%{_iwait4u_ver}.tar.gz
+# Source7-md5:	6233a8ef21d901fc5fb91c0db40d0e32
+Source8:	http://www.kadu.net/~joi/exec_notify/packages/exec_notify-%{_notify_exec_ver}.tar.bz2
+# Source8-md5:	ca4d620b707abf7483887f67a9c97c4f
+Source9:	http://kadu.net/~blysk/led_notify-%{_notify_led_ver}.tar.bz2
+# Source9-md5:	3f9e347fd775324f4077f2f6849a0de7
+Source10:	http://www.kadu.net/~pan_wojtas/osdhints_notify/download/%{name}-osdhints_notify-%{_notify_osdhints_ver}.tar.gz
+# Source10-md5:	4568a1cf1b242642a1fc6629969d05dd
+Source11:	http://www.kadu.net/~dorr/%{name}-pcspeaker-%{_notify_pcspeaker_ver}.tar.gz
+# Source11-md5:	ba78bb43ec27309a29922d6f8bab1a35
+Source12:	http://kadu.net/~patryk/powerkadu/powerkadu-%{_powerkadu_ver}.tar.gz
+# Source12-md5:	cafdbecbcd29512d4a6ef0e761c1bce0
+Source13:	http://www.kadu.net/~dorr/%{name}-profiles-%{_profiles_ver}.tar.gz
+# Source13-md5:	723a58ec25a5bf6746e0ad0eb17e2f81
+Source14:	http://scripts.one.pl/screenshot/devel/0.5.0/screenshot-%{_screenshot_ver}.tar.gz
+# Source14-md5:	c6da85999cfebef413d228dca9c7d91f
+Source15:	http://kadu.net/~patryk/miastoplusa_sms/miastoplusa_sms-0.5-%{_sms_miastoplusa_ver}.tar.gz
+# Source15-md5:	fae1f6bd3d4aca845ef5a57403b5b58c
+Source16:	http://scripts.one.pl/spellchecker/devel/%{version}/spellchecker-%{_spellchecker_mod_ver}.tar.gz
+# Source16-md5:	f1e1c572f9fd92dfb420e62818bc826c
+Source17:	http://student.agh.edu.pl/neeo/%{name}-spy-%{_spy_mod_ver}.tar.bz2
+# Source17-md5:	b04fb7a4a98abe5d32e321da3058bbf0
+Source18:	http://kadu.net/~arvenil/tabs/download/%{version}/%{name}-module-tabs-%{_tabs_ver}.tar.bz2
+# Source18-md5:	7e16cd725d5ab273525130e85f16a28c
+Source19:	http://kadu.net/~blysk/weather-%{_weather_ver}.tar.bz2
+# Source19-md5:	c21727575d4bab551adeb9b5b1787f0c
+Source20:	http://scripts.one.pl/xmms/stable/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
+# Source20-md5:	578191974e7dd60536373255e74bb38c
+Source21:	http://www.kadu.net/download/additions/%{name}-theme-crystal-16.tar.bz2
+# Source21-md5:	023085edabaf6a1b844fe6b5fc9315f9
+Source22:	http://www.kadu.net/download/additions/%{name}-theme-crystal-22.tar.bz2
+# Source22-md5:	57852ff3d3fd0063a642fcc173f7fa29
+Source23:	http://www.kadu.net/download/additions/%{name}-theme-glass_16.tar.gz
+# Source23-md5:	c3beb753222b96dad46f3adf230eb3e1
+Source24:	http://www.kadu.net/download/additions/%{name}-theme-glass_22.tar.gz
+# Source24-md5:	9ee70ca873fd0f22b2b83be133964d89
+Source25:	http://www.kadu.net/download/additions/%{name}-theme-nuvola-16.tar.gz
+# Source25-md5:	586cc6ff9ba62f0fdd7c7c1adf229efb
+Source26:	http://www.kadu.net/download/additions/%{name}-theme-nuvola-22.tar.gz
+# Source26-md5:	7a17b4881141b346c6268ef25c284613
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
 %{?with_sound_alsa:BuildRequires:	alsa-lib-devel}
@@ -221,10 +224,22 @@ Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-filtering
-User list filtering
+User list filtering.
 
 %description module-filtering -l pl.UTF-8
 Filtrowanie listy kontaktów.
+
+%package module-filedesc
+Summary:	Descriptions from file module
+Summary(pl.UTF-8):	Moduł obsługi opisów z pliku
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-filedesc
+Descriptions from file module.
+
+%description module-filedesc -l pl.UTF-8
+Moduł obsługi opisów z pliku.
 
 %package module-iwait4u
 Summary:	iwait4u module inform you, that someone from userlist is active
@@ -566,58 +581,61 @@ tar xzf %{SOURCE3} -C modules
 %if %{with dcopexport}
 tar xjf %{SOURCE4} -C modules
 %endif
-%if %{with filtering}
+%if %{with filedesc}
 tar xjf %{SOURCE5} -C modules
 %endif
+%if %{with filtering}
+tar xjf %{SOURCE6} -C modules
+%endif
 %if %{with iwait4u}
-tar xzf %{SOURCE6} -C modules
+tar xzf %{SOURCE7} -C modules
 %endif
 %if %{with notify_exec}
-tar xjf %{SOURCE7} -C modules
-%endif
-%if %{with notify_led}
 tar xjf %{SOURCE8} -C modules
 %endif
-%if %{with notify_osdhints}
-tar xzf %{SOURCE9} -C modules
+%if %{with notify_led}
+tar xjf %{SOURCE9} -C modules
 %endif
-%if %{with notify_pcspeaker}
+%if %{with notify_osdhints}
 tar xzf %{SOURCE10} -C modules
 %endif
-%if %{with powerkadu}
+%if %{with notify_pcspeaker}
 tar xzf %{SOURCE11} -C modules
 %endif
-%if %{with profiles}
+%if %{with powerkadu}
 tar xzf %{SOURCE12} -C modules
 %endif
-%if %{with screenshot}
+%if %{with profiles}
 tar xzf %{SOURCE13} -C modules
 %endif
-%if %{with sms_miastoplusa}
+%if %{with screenshot}
 tar xzf %{SOURCE14} -C modules
 %endif
-%if %{with spellchecker}
+%if %{with sms_miastoplusa}
 tar xzf %{SOURCE15} -C modules
 %endif
-%if %{with spy}
-tar xjf %{SOURCE16} -C modules
+%if %{with spellchecker}
+tar xzf %{SOURCE16} -C modules
 %endif
-%if %{with tabs}
+%if %{with spy}
 tar xjf %{SOURCE17} -C modules
 %endif
-%if %{with weather}
+%if %{with tabs}
 tar xjf %{SOURCE18} -C modules
 %endif
+%if %{with weather}
+tar xjf %{SOURCE19} -C modules
+%endif
 %if %{with xmms}
-tar xzf %{SOURCE19} -C modules
+tar xzf %{SOURCE20} -C modules
 %endif
 # themes-icons
-tar xjf %{SOURCE20} -C varia/themes/icons
 tar xjf %{SOURCE21} -C varia/themes/icons
-tar xzf %{SOURCE22} -C varia/themes/icons
+tar xjf %{SOURCE22} -C varia/themes/icons
 tar xzf %{SOURCE23} -C varia/themes/icons
 tar xzf %{SOURCE24} -C varia/themes/icons
 tar xzf %{SOURCE25} -C varia/themes/icons
+tar xzf %{SOURCE26} -C varia/themes/icons
 
 # rename theme directories to be sure that they
 # will not be re-downloaded by configure
@@ -645,6 +663,9 @@ echo 'MODULE_LIBS_PATH="%{_prefix}/lib"' >> modules/amarok/spec
 %endif
 %if %{with docking_desktop}
 %{__sed} -i 's/module_desktop_docking=n/module_desktop_docking=m/' .config
+%endif
+%if %{with filedesc}
+%{__sed} -i 's/module_filedesc=n/module_filedesc=m/' .config
 %endif
 %if %{with filtering}
 %{__sed} -i 's/module_filtering=n/module_filtering=m/' .config
@@ -756,6 +777,10 @@ mv -f $RPM_BUILD_ROOT%{_modules_dir}/data/amarok $RPM_BUILD_ROOT%{_datadir}/%{na
 %if %{with dcopexport}
 cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/dcopexport $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/dcopexport
+%endif
+
+%if %{with filedesc}
+cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/filedesc $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data+rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/filedesc
 %endif
 
 %if %{with filtering}
@@ -994,6 +1019,16 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_modules_dir}/translations/desktop_docking_fr.qm
 %lang(it) %{_modules_dir}/translations/desktop_docking_it.qm
 %lang(pl) %{_modules_dir}/translations/desktop_docking_pl.qm
+%endif
+
+%if %{with filedesc}
+%files module-filedesc
+%defattr(644,root,root,755)
+%{_modules_dir}/filedesc.desc
+%attr(755,root,root) %{_modules_dir}/filedesc.so
+%lang(pl) %{_modules_dir}/translations/filedesc_pl.qm
+%dir %{_datadir}/%{name}/modules/data/filedesc
+%{_datadir}/%{name}/modules/data/filedesc/*.png
 %endif
 
 %if %{with filtering}
