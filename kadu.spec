@@ -13,6 +13,7 @@
 %bcond_without	docking_desktop		# without desktop_docking module support
 %bcond_without	filedesc		# without filedesc module support
 %bcond_without	filtering		# without filtering module support
+%bcond_without	firewall		# without firewall module support
 %bcond_without	iwait4u			# without iwait4u module support
 %bcond_without	notify_exec		# without exec_notify module support
 %bcond_without	notify_led		# without led_notify module support
@@ -39,6 +40,7 @@
 %define		_dcopexport_ver		0.11.3-20070321
 %define		_filedesc_ver		1.12
 %define		_filtering_ver		20070123
+%define		_firewall_ver		0.6.4
 %define		_iwait4u_ver		1.3
 %define		_libgadu_ver		4:1.7
 %define		_notify_exec_ver	20070101
@@ -116,6 +118,9 @@ Source25:	http://www.kadu.net/download/additions/%{name}-theme-nuvola-16.tar.gz
 # Source25-md5:	586cc6ff9ba62f0fdd7c7c1adf229efb
 Source26:	http://www.kadu.net/download/additions/%{name}-theme-nuvola-22.tar.gz
 # Source26-md5:	7a17b4881141b346c6268ef25c284613
+Source27:	http://www.kadu.net/~pan_wojtas/firewall/download/%{name}-firewall-%{_firewall_ver}.tar.gz
+# Source27-md5:	0ec61d3db8befa99032029a8a05310c5
+
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
 %{?with_sound_alsa:BuildRequires:	alsa-lib-devel}
@@ -240,6 +245,18 @@ Descriptions from file module.
 
 %description module-filedesc -l pl.UTF-8
 Moduł obsługi opisów z pliku.
+
+%package module-firewall
+Summary:	Mudule blocks unknown persons, who wants to start chat
+Summary(pl.UTF-8):	Moduł blokuje nieznane osoby, chcące zacząć rozmowę
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-firewall
+Mudule blocks unknown persons, who wants to start chat.
+
+%description module-firewall -l pl.UTF-8
+Moduł blokuje nieznane osoby, chcące zacząć rozmowę.
 
 %package module-iwait4u
 Summary:	iwait4u module inform you, that someone from userlist is active
@@ -582,7 +599,7 @@ tar xzf %{SOURCE3} -C modules
 tar xjf %{SOURCE4} -C modules
 %endif
 %if %{with filedesc}
-tar xjf %{SOURCE5} -C modules
+tar xzf %{SOURCE5} -C modules
 %endif
 %if %{with filtering}
 tar xjf %{SOURCE6} -C modules
@@ -629,6 +646,9 @@ tar xjf %{SOURCE19} -C modules
 %if %{with xmms}
 tar xzf %{SOURCE20} -C modules
 %endif
+%if %{with firewall}
+tar xzf %{SOURCE27} -C modules
+%endif
 # themes-icons
 tar xjf %{SOURCE21} -C varia/themes/icons
 tar xjf %{SOURCE22} -C varia/themes/icons
@@ -669,6 +689,9 @@ echo 'MODULE_LIBS_PATH="%{_prefix}/lib"' >> modules/amarok/spec
 %endif
 %if %{with filtering}
 %{__sed} -i 's/module_filtering=n/module_filtering=m/' .config
+%endif
+%if %{with firewall}
+%{__sed} -i 's/module_firewall=n/module_firewall=m/' .config
 %endif
 %if %{with iwait4u}
 %{__sed} -i 's/module_iwait4u=n/module_iwait4u=m/' .config
@@ -780,12 +803,18 @@ rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/dcopexport
 %endif
 
 %if %{with filedesc}
-cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/filedesc $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data+rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/filedesc
+cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/filedesc $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/filedesc
 %endif
 
 %if %{with filtering}
 cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/filtering $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/filtering
+%endif
+
+%if %{with firewall}
+cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/firewall $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/firewall
 %endif
 
 %if %{with notify_osdhints}
@@ -1039,6 +1068,14 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{_modules_dir}/translations/filtering_pl.qm
 %dir %{_datadir}/%{name}/modules/data/filtering
 %{_datadir}/%{name}/modules/data/filtering/*.png
+%endif
+
+%if %{with firewall}
+%files module-firewall
+%defattr(644,root,root,755)
+%{_modules_dir}/filtering.desc
+%attr(755,root,root) %{_modules_dir}/filtering.so
+%lang(pl) %{_modules_dir}/translations/filtering_pl.qm
 %endif
 
 %if %{with iwait4u}
