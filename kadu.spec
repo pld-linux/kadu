@@ -1074,8 +1074,11 @@ rm -rf $RPM_BUILD_ROOT
 %files module-firewall
 %defattr(644,root,root,755)
 %{_modules_dir}/filtering.desc
-%attr(755,root,root) %{_modules_dir}/filtering.so
-%lang(pl) %{_modules_dir}/translations/filtering_pl.qm
+%attr(755,root,root) %{_modules_dir}/firewall.so
+%lang(pl) %{_modules_dir}/translations/firewall_pl.qm
+%{_modules_dir}/firewall.desc
+%dir %{_datadir}/%{name}/modules/data/firewall
+%{_datadir}/%{name}/modules/data/firewall/firewall.png
 %endif
 
 %if %{with iwait4u}
