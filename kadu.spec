@@ -61,7 +61,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
 Version:	0.5.0
-Release:	4
+Release:	5
 License:	GPL v2
 Group:		Applications/Communications
 
@@ -223,18 +223,6 @@ Desktop docking module.
 %description module-docking-desktop -l pl.UTF-8
 Moduł dokowania w dowolnym punkcie ekranu.
 
-%package module-filtering
-Summary:	User list filtering
-Summary(pl.UTF-8):	Filtrowanie listy kontaktów
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description module-filtering
-User list filtering.
-
-%description module-filtering -l pl.UTF-8
-Filtrowanie listy kontaktów.
-
 %package module-filedesc
 Summary:	Descriptions from file module
 Summary(pl.UTF-8):	Moduł obsługi opisów z pliku
@@ -246,6 +234,18 @@ Descriptions from file module.
 
 %description module-filedesc -l pl.UTF-8
 Moduł obsługi opisów z pliku.
+
+%package module-filtering
+Summary:	User list filtering
+Summary(pl.UTF-8):	Filtrowanie listy kontaktów
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-filtering
+User list filtering.
+
+%description module-filtering -l pl.UTF-8
+Filtrowanie listy kontaktów.
 
 %package module-firewall
 Summary:	Mudule blocks unknown persons, who wants to start chat
@@ -606,6 +606,9 @@ tar xzf %{SOURCE5} -C modules
 %if %{with filtering}
 tar xjf %{SOURCE6} -C modules
 %endif
+%if %{with firewall}
+tar xzf %{SOURCE27} -C modules
+%endif
 %if %{with iwait4u}
 tar xzf %{SOURCE7} -C modules
 %endif
@@ -647,9 +650,6 @@ tar xjf %{SOURCE19} -C modules
 %endif
 %if %{with xmms}
 tar xzf %{SOURCE20} -C modules
-%endif
-%if %{with firewall}
-tar xzf %{SOURCE27} -C modules
 %endif
 # themes-icons
 tar xjf %{SOURCE21} -C varia/themes/icons
