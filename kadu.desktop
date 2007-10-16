@@ -2,6 +2,8 @@
 Name=Kadu
 Comment=Gadu-Gadu client
 Comment[pl]=Klient Gadu-Gadu
+GenericName=Gadu-Gadu client
+GenericName[pl]=Klient Gadu-Gadu
 Exec=kadu -caption "%c" %i %m  
 Icon=kadu.png
 MiniIcon=kadu.png
