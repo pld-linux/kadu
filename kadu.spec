@@ -21,7 +21,7 @@
 %bcond_with	tabs		# without tabs support module
 
 %define		_snap	20061218
-%define		_rel	rc1
+%define		_rel	beta2
 
 %define		_amarok_mod_ver		1.19
 %define		_libgadu_ver		4:1.7
@@ -41,8 +41,8 @@
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):   Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
-Version:	0.5.0
-Release:	0.%{?with_snap:%{_snap}}%{!?with_snap:%{_rel}}.1
+Version:	0.6.0
+Release:	0.1
 License:	GPL v2
 Group:		Applications/Communications
 
@@ -51,7 +51,7 @@ Source100:	http://kadu.net/download/snapshots/%{year}/%{name}-%{_snap}.tar.bz2
 # Source100-md5:	013d9cde2da23021418a50d15203c36e
 %else
 Source0:	http://kadu.net/download/stable/%{name}-%{version}-%{_rel}.tar.bz2
-# Source0-md5:	75e5ebd7d0952e5ac4d10ea87b8f3f60
+# Source0-md5:	05b3130d7e57b537ddccb28613098228
 %endif
 
 Source2:	http://scripts.one.pl/xmms/devel/%{version}/xmms-%{_xmms_mod_ver}.tar.gz
@@ -77,13 +77,13 @@ Source10:	http://www.zakrzow.ovh.org/_tmp/tabs.tar.gz
 Source11:	%{name}.desktop
 Patch0:		%{name}-ac_am.patch
 URL:		http://kadu.net/
-%{?with_alsa:BuildRequires:	alsa-lib-devel}
-%{?with_arts:BuildRequires:	arts-devel}
+##%{?with_alsa:BuildRequires:	alsa-lib-devel}
+##%{?with_arts:BuildRequires:	arts-devel}
 %{?with_spellchecker:BuildRequires:	aspell-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{?with_miasto_plusa:BuildRequires:	curl-devel}
-%{?with_esd:BuildRequires:	esound-devel}
+##%{?with_miasto_plusa:BuildRequires:	curl-devel}
+##%{?with_esd:BuildRequires:	esound-devel}
 BuildRequires:	gettext-devel
 BuildRequires:	kdelibs-devel
 BuildRequires:	libgadu-devel >= %{_libgadu_ver}
@@ -94,7 +94,7 @@ BuildRequires:	libtool
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	qt-linguist
 BuildRequires:	sed >= 4.0
-%{?with_xmms:BuildRequires:	xmms-devel}
+##%{?with_xmms:BuildRequires:	xmms-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_modules_dir	%{_libdir}/%{name}/modules
 %define		_bin_dir	%{_libdir}/%{name}/bin
@@ -259,80 +259,80 @@ Moduł szpiegowski pokazujący ukryte osoby.
 
 %prep
 %setup -q -T -b %{?with_snap:10}0 -n %{name}
-%patch0 -p1
+## %patch0 -p1
 
-%if %{with xmms}
-tar xzf %{SOURCE2} -C modules
-%endif
-%if %{with amarok}
-tar xzf %{SOURCE3} -C modules
-%endif
-%if %{with spellchecker}
-tar xzf %{SOURCE4} -C modules
-%endif
-%if %{with weather}
-tar xjf %{SOURCE5} -C modules
-%endif
-%if %{with powerkadu}
-tar xzf %{SOURCE6} -C modules
-%endif
-%if %{with spy}
-tar xjf %{SOURCE7} -C modules
-%endif
-tar xjf %{SOURCE8} -C modules
-%if %{with miasto_plusa}
-tar xzf %{SOURCE9} -C modules
-%endif
-%if %{with tabs}
-tar xzf %{SOURCE10} -C modules
-%endif
+## %if %{with xmms}
+## tar xzf %{SOURCE2} -C modules
+## %endif
+## %if %{with amarok}
+## tar xzf %{SOURCE3} -C modules
+## %endif
+## %if %{with spellchecker}
+## tar xzf %{SOURCE4} -C modules
+## %endif
+## %if %{with weather}
+## tar xjf %{SOURCE5} -C modules
+## %endif
+## %if %{with powerkadu}
+## tar xzf %{SOURCE6} -C modules
+## %endif
+## %if %{with spy}
+## tar xjf %{SOURCE7} -C modules
+## %endif
+## tar xjf %{SOURCE8} -C modules
+## %if %{with miasto_plusa}
+## tar xzf %{SOURCE9} -C modules
+## %endif
+## %if %{with tabs}
+## tar xzf %{SOURCE10} -C modules
+## %endif
 
-%{__sed} -i 's,dataPath("kadu/modules/*,("%{_libdir}/kadu/modules/,g'  kadu/modules.cpp
+## %{__sed} -i 's,dataPath("kadu/modules/*,("%{_libdir}/kadu/modules/,g'  kadu/modules.cpp
 
 %build
 
-%if %{with tabs}
-%{__sed} -i 's/module_tabs=n/module_tabs=m/' .config
-%endif
-%if %{with miasto_plusa}
-%{__sed} -i 's/module_miastoplusa_sms=n/module_miastoplusa_sms=m/' .config
-%endif
-%{__sed} -i 's/module_led_notify=n/module_led_notify=m/' .config
-%if %{with xmms}
-%{__sed} -i 's/module_xmms=n/module_xmms=m/' .config
-rm -f modules/xmms/.autodownloaded
-%endif
-%if %{with alsa}
-%{__sed} -i 's/module_alsa_sound=n/module_alsa_sound=m/' .config
-%endif
-%if %{with arts}
-%{__sed} -i 's/module_arts_sound=n/module_arts_sound=m/' .config
-%endif
-%if %{with esd}
-%{__sed} -i 's/module_esd_sound=n/module_esd_sound=m/' .config
-%endif
-%if %{with nas}
-%{__sed} -i 's/module_nas_sound=n/module_nas_sound=m/' .config
-echo 'MODULE_LIBS_PATH="/usr/lib"' >> modules/nas_sound/spec
-%endif
-%if %{with speech}
-%{__sed} -i 's/module_speech=n/module_speech=m/' .config
-%endif
-%if %{with amarok}
-%{__sed} -i 's/module_amarok=n/module_amarok=m/' .config
-echo 'MODULE_INCLUDES_PATH="/usr/include"'>> modules/amarok/spec
-echo 'MODULE_LIBS_PATH="/usr/lib"' >> modules/amarok/spec
-%endif
-%if %{with spellchecker}
-%{__sed} -i 's/module_spellchecker=n/module_spellchecker=m/' .config
-%endif
-%if %{with weather}
-%{__sed} -i 's/module_weather=n/module_weather=m/' .config
-%endif
-%if %{with powerkadu}
-%{__sed} -i 's/module_powerkadu=n/module_powerkadu=m/' .config
-%endif
-
+## %if %{with tabs}
+## %{__sed} -i 's/module_tabs=n/module_tabs=m/' .config
+## %endif
+## %if %{with miasto_plusa}
+## %{__sed} -i 's/module_miastoplusa_sms=n/module_miastoplusa_sms=m/' .config
+## %endif
+## %{__sed} -i 's/module_led_notify=n/module_led_notify=m/' .config
+## %if %{with xmms}
+## #%{__sed} -i 's/module_xmms=n/module_xmms=m/' .config
+## #rm -f modules/xmms/.autodownloaded
+## %endif
+## %if %{with alsa}
+## %{__sed} -i 's/module_alsa_sound=n/module_alsa_sound=m/' .config
+## %endif
+## %if %{with arts}
+## %{__sed} -i 's/module_arts_sound=n/module_arts_sound=m/' .config
+## %endif
+## %if %{with esd}
+## %{__sed} -i 's/module_esd_sound=n/module_esd_sound=m/' .config
+## %endif
+## %if %{with nas}
+## %{__sed} -i 's/module_nas_sound=n/module_nas_sound=m/' .config
+## echo 'MODULE_LIBS_PATH="/usr/lib"' >> modules/nas_sound/spec
+## %endif
+## %if %{with speech}
+## %{__sed} -i 's/module_speech=n/module_speech=m/' .config
+## %endif
+## %if %{with amarok}
+## %{__sed} -i 's/module_amarok=n/module_amarok=m/' .config
+## echo 'MODULE_INCLUDES_PATH="/usr/include"'>> modules/amarok/spec
+## echo 'MODULE_LIBS_PATH="/usr/lib"' >> modules/amarok/spec
+## %endif
+## %if %{with spellchecker}
+## %{__sed} -i 's/module_spellchecker=n/module_spellchecker=m/' .config
+## %endif
+## %if %{with weather}
+## %{__sed} -i 's/module_weather=n/module_weather=m/' .config
+## %endif
+## %if %{with powerkadu}
+## %{__sed} -i 's/module_powerkadu=n/module_powerkadu=m/' .config
+## %endif
+ 
 chmod u+w aclocal.m4 configure
 %{__aclocal}
 %{__autoheader}
