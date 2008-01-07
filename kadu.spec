@@ -34,9 +34,9 @@
 %define		_miasto_plusa_ver	1.3.5
 %define		_tabs_ver		rev46
 
-%if %{with snap}
-%define		year	%(echo %{_snap} |cut -b -4)
-%endif
+## %if %{with snap}
+## %define		year	%(echo %{_snap} |cut -b -4)
+## %endif
 
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):   Klient Gadu-Gadu do przesyłania wiadomości po sieci
