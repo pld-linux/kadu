@@ -141,7 +141,7 @@ Source27:	http://www.kadu.net/~pan_wojtas/firewall/download/%{name}-firewall-%{_
 # Source27-md5:	0ec61d3db8befa99032029a8a05310c5
 
 Patch0:		%{name}-ac_am.patch
-Patch1:		%{name}-no_libgadu_debug.patch
+#Patch1:		%{name}-no_libgadu_debug.patch
 URL:		http://kadu.net/
 %{?with_sound_alsa:BuildRequires:	alsa-lib-devel}
 %{?with_sound_arts:BuildRequires:	arts-devel}
