@@ -27,7 +27,7 @@
 %bcond_without	notify_exec		# without exec_notify module support
 %bcond_without	notify_led		# without led_notify module support
 %bcond_with	notify_osdhints		# without osdhints_notify module
-%bcond_with	notify_pcspeaker	# without pcspeaker_notify module support
+%bcond_without	notify_pcspeaker	# without pcspeaker_notify module support
 %bcond_with	notify_speech		# without Speech synthesis support
 %bcond_with	powerkadu		# without PowerKadu extensions
 %bcond_with	profiles		# without profiles module support
@@ -58,7 +58,7 @@
 %define		_notify_exec_ver	20070101
 %define		_notify_led_ver		0.14
 %define		_notify_osdhints_ver	0.3.2.2
-%define		_notify_pcspeaker_ver	0.5.0.3
+%define		_notify_pcspeaker_ver	0.6.0.2
 %define		_powerkadu_ver		20070129
 %define		_profiles_ver		0.1.2
 %define		_screenshot_ver		20080104
@@ -106,8 +106,8 @@ Source9:	http://kadu.net/~blysk/led_notify-%{_notify_led_ver}.tar.bz2
 # Source9-md5:	6721b6507077936d87783e3408818d6c
 Source10:	http://www.kadu.net/~pan_wojtas/osdhints_notify/download/%{name}-osdhints_notify-%{_notify_osdhints_ver}-kadu-0.5.tar.gz
 # Source10-md5:	d3023aba93f8085612b8c532c0e06889
-Source11:	http://www.kadu.net/~dorr/%{name}-pcspeaker-%{_notify_pcspeaker_ver}.tar.gz
-# Source11-md5:	ba78bb43ec27309a29922d6f8bab1a35
+Source11:	http://www.kadu.net/~dorr/%{name}-pcspeaker-%{_notify_pcspeaker_ver}.tar.bz2
+# Source11-md5:	6f2609f6e9d4c80cee632bc8d0533973
 Source12:	http://kadu.net/~patryk/powerkadu/powerkadu-%{_powerkadu_ver}.tar.gz
 # Source12-md5:	c6046e8b49dd9994fbf573faaafddab8
 Source13:	http://www.kadu.net/~dorr/%{name}-profiles-%{_profiles_ver}.tar.gz
@@ -668,7 +668,7 @@ tar xjf %{SOURCE9} -C modules
 tar xzf %{SOURCE10} -C modules
 %endif
 %if %{with notify_pcspeaker}
-tar xzf %{SOURCE11} -C modules
+tar xjf %{SOURCE11} -C modules
 %endif
 %if %{with powerkadu}
 tar xzf %{SOURCE12} -C modules
