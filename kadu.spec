@@ -4,7 +4,7 @@
 #	downloads stuff while building: Downloading crystal16 icon theme
 #--02:05:17--  http://kadu.net/autodownload/icons/kadu-0.5.0-crystal16.href
 #           => `kadu-0.5.0-crystal16.href'
-# - temp. we use staticly linked libgadu because of no stable release with dcc7 
+# - temp. we use staticly linked libgadu because of no stable release with dcc7
 # - some modules with bcond_with will not work for now, we need to wait for next releases
 #
 # Conditional build:
@@ -193,7 +193,7 @@ Moduł zaawansowanej konfiguracji sortowania listy kontaktów.
 
 %package module-agent
 Summary:	Spying module that shows who's invisible
-Summary(pl.UTF-8):   Moduł szpiegowski pokazujący ukryte osoby
+Summary(pl.UTF-8):	Moduł szpiegowski pokazujący ukryte osoby
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Obsoletes:	kadu-module-spy
@@ -290,7 +290,7 @@ Modul iwait4u informuje, że osoba z listy użytkowników jest dostępna.
 
 %package module-mediaplayer
 Summary:	Support for status from mediaplayer
-Summary(pl.UTF-8):   Moduł statusu pobieranego z odtwarzaczy
+Summary(pl.UTF-8):	Moduł statusu pobieranego z odtwarzaczy
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -304,7 +304,7 @@ odgrywanym utworze.
 
 %package module-mediaplayer-amarok
 Summary:	Support amarok status
-Summary(pl.UTF-8):   Moduł statusu dla amarok
+Summary(pl.UTF-8):	Moduł statusu dla amarok
 Group:		Applications/Communications
 Requires:	%{name}-module-mediaplayer = %{version}-%{release}
 Requires:	amarok
@@ -319,7 +319,7 @@ odgrywanym utworze z odtwarzacza amarok.
 
 %package module-mediaplayer-falf
 Summary:	Support falf status
-Summary(pl.UTF-8):   Moduł statusu dla falf
+Summary(pl.UTF-8):	Moduł statusu dla falf
 Group:		Applications/Communications
 Requires:	%{name}-module-mediaplayer = %{version}-%{release}
 
@@ -333,7 +333,7 @@ odgrywanym utworze z odtwarzacza falf.
 
 %package module-mediaplayer-xmms
 Summary:	Support XMMS status
-Summary(pl.UTF-8):   Moduł statusu dla XMMS-a
+Summary(pl.UTF-8):	Moduł statusu dla XMMS-a
 Group:		Applications/Communications
 Requires:	%{name}-module-mediaplayer = %{version}-%{release}
 Requires:	xmms
@@ -764,8 +764,8 @@ done
 %endif
 %if %{with mediaplayer_amarok}
 %{__sed} -i 's/module_amarok_mediaplayer=n/module_amarok_mediaplayer=m/' .config
- echo 'MODULE_INCLUDES_PATH="/usr/include"'>> modules/amarok_mediaplayer/spec
- echo 'MODULE_LIBS_PATH="/usr/lib"' >> modules/amarok_mediaplayer/spec
+echo 'MODULE_INCLUDES_PATH="%{_includedir}"' >> modules/amarok_mediaplayer/spec
+echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok_mediaplayer/spec
 %else
 %{__sed} -i 's/module_amarok_mediaplayer=m/module_amarok_mediaplayer=n/' .config
 %endif
@@ -1227,6 +1227,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %if %{with mediaplayer}
 %files module-mediaplayer
+%defattr(644,root,root,755)
 %{_modules_dir}/mediaplayer.desc
 %{_datadir}/%{name}/modules/configuration/mediaplayer.ui
 %attr(755,root,root) %{_modules_dir}/mediaplayer.so
