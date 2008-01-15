@@ -1,11 +1,12 @@
 #
 # TODO:
-# - spy module - won't work with gg7 clients
-#	downloads stuff while building: Downloading crystal16 icon theme
-#--02:05:17--  http://kadu.net/autodownload/icons/kadu-0.5.0-crystal16.href
+# - downloads stuff while building: Downloading crystal16 icon theme
+#   --02:05:17--  http://kadu.net/autodownload/icons/kadu-0.5.0-crystal16.href
 #           => `kadu-0.5.0-crystal16.href'
-# - temp. we use staticly linked libgadu because of no stable release with dcc7
 # - some modules with bcond_with will not work for now, we need to wait for next releases
+#
+# NOTE:
+# - We use staticly linked libgadu because of no stable release with dcc7
 #
 # Conditional build:
 %bcond_with	snap			# build cvs snapshot
@@ -141,7 +142,6 @@ Source27:	http://www.kadu.net/~pan_wojtas/firewall/download/%{name}-firewall-%{_
 # Source27-md5:	0ec61d3db8befa99032029a8a05310c5
 
 Patch0:		%{name}-ac_am.patch
-#Patch1:		%{name}-no_libgadu_debug.patch
 URL:		http://kadu.net/
 %{?with_sound_alsa:BuildRequires:	alsa-lib-devel}
 %{?with_sound_arts:BuildRequires:	arts-devel}
@@ -152,7 +152,6 @@ BuildRequires:	automake
 %{?with_sound_esd:BuildRequires:	esound-devel}
 BuildRequires:	gettext-devel
 BuildRequires:	kdelibs-devel
-#BuildRequires:	libgadu-devel >= %{_libgadu_ver}
 BuildRequires:	libgsm-devel
 BuildRequires:	libsndfile-devel >= 1.0
 BuildRequires:	libtool
@@ -637,7 +636,6 @@ Zestaw ikon nuvola22.
 %prep
 %setup -q -T -b %{?with_snap:10}0 -n %{name}
 %patch0 -p1
-#% patch1 -p1
 
 %if %{with mediaplayer}
 tar xjf %{SOURCE2} -C modules
