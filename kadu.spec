@@ -23,14 +23,14 @@
 %bcond_without	mediaplayer		# without media player modules support
 %bcond_without	mediaplayer_amarok	# without amarok player support module
 %bcond_without	mediaplayer_falf	# without falf player support module
-%bcond_with	mediaplayer_xmms	# without xmms player support module
+%bcond_without	mediaplayer_xmms	# without xmms player support module
 %bcond_without	notify_exec		# without exec_notify module support
 %bcond_without	notify_led		# without led_notify module support
 %bcond_with	notify_osdhints		# without osdhints_notify module
 %bcond_without	notify_pcspeaker	# without pcspeaker_notify module support
 %bcond_with	notify_speech		# without Speech synthesis support
 %bcond_with	powerkadu		# without PowerKadu extensions
-%bcond_with	profiles		# without profiles module support
+%bcond_without	profiles		# without profiles module support
 %bcond_without	sound_alsa		# without ALSA support
 %bcond_without	sound_arts		# without arts sound server support
 %bcond_without	sound_dsp		# without DSP sound module support
@@ -43,7 +43,7 @@
 %bcond_without	weather			# without weather check module support
 
 %define		_snap	20080110
-%define		_rel	beta2
+%define		_rel	rc1
 
 %define		_agent_mod_ver		0.4.3
 %define		_amarok_mod_ver		20071220
@@ -60,11 +60,11 @@
 %define		_notify_osdhints_ver	0.3.2.2
 %define		_notify_pcspeaker_ver	0.6.0.2
 %define		_powerkadu_ver		20070129
-%define		_profiles_ver		0.1.2
+%define		_profiles_ver		0.3.1
 %define		_screenshot_ver		20080104
 %define		_sms_miastoplusa_ver	1.3.9
 %define		_spellchecker_mod_ver	20071230
-%define		_tabs_ver		1.1.2
+%define		_tabs_ver		1.1.3
 %define		_weather_ver		3.08
 %define		_xmms_mod_ver		20071220
 
@@ -76,7 +76,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
 Version:	0.6.0
-Release:	0.8
+Release:	0.9
 License:	GPL v2
 Group:		Applications/Communications
 
@@ -85,7 +85,7 @@ Source100:	http://kadu.net/download/snapshots/2008/%{name}-%{_snap}.tar.bz2
 # Source100-md5:	14a94cb448946f4e66ab6dcd5eccf70c
 %else
 Source0:	http://kadu.net/download/stable/%{name}-%{version}-%{_rel}.tar.bz2
-# Source0-md5:	05b3130d7e57b537ddccb28613098228
+# Source0-md5:	2ff4b8fd6ba9b866ed202e15b3524ab7
 %endif
 Source1:	%{name}.desktop
 Source2:	http://www.kadu.net/download/modules_extra/mediaplayer/mediaplayer-%{_mediaplayer_mod_ver}.tar.bz2
@@ -110,8 +110,8 @@ Source11:	http://www.kadu.net/~dorr/%{name}-pcspeaker-%{_notify_pcspeaker_ver}.t
 # Source11-md5:	6f2609f6e9d4c80cee632bc8d0533973
 Source12:	http://kadu.net/~patryk/powerkadu/powerkadu-%{_powerkadu_ver}.tar.gz
 # Source12-md5:	c6046e8b49dd9994fbf573faaafddab8
-Source13:	http://www.kadu.net/~dorr/%{name}-profiles-%{_profiles_ver}.tar.gz
-# Source13-md5:	723a58ec25a5bf6746e0ad0eb17e2f81
+Source13:	http://www.kadu.net/~dorr/%{name}-profiles-%{_profiles_ver}.tar.bz2
+# Source13-md5:	2f5ba8fd20efd00c88d22a9ee014ea7b
 Source14:	http://www.kadu.net/download/modules_extra/screenshot/screenshot-%{_screenshot_ver}.tar.bz2
 # Source14-md5:	47d3d5564b272a186667c1507e19844f
 Source15:	http://kadu.net/~patryk/miastoplusa_sms/miastoplusa_sms-0.6-%{_sms_miastoplusa_ver}.tar.gz
@@ -121,7 +121,7 @@ Source16:	http://www.kadu.net/download/modules_extra/spellchecker/spellchecker-%
 Source17:	http://misiek.jah.pl/assets/2007/12/27/agent-%{_agent_mod_ver}.tar.gz
 # Source17-md5:	a9a11dac6098de49d19b80760374fe3b
 Source18:	http://kadu.net/~arvenil/tabs/download/%{version}/%{_tabs_ver}/%{name}-tabs-%{_tabs_ver}.tar.bz2
-# Source18-md5:	e12e79fc50f47dd43d54cbac863e69f0
+# Source18-md5:	67ebc59abc770825f19b29a3d5114201
 Source19:	http://kadu.net/~blysk/weather-%{_weather_ver}.tar.bz2
 # Source19-md5:	3b8b409b520b24de4ea1872d287a29fe
 Source20:	http://www.kadu.net/download/modules_extra/xmms_mediaplayer/xmms_mediaplayer-%{_xmms_mod_ver}.tar.bz2
@@ -142,6 +142,7 @@ Source27:	http://www.kadu.net/~pan_wojtas/firewall/download/%{name}-firewall-%{_
 # Source27-md5:	0ec61d3db8befa99032029a8a05310c5
 
 Patch0:		%{name}-ac_am.patch
+Patch1:		%{name}-xmms.patch
 URL:		http://kadu.net/
 %{?with_sound_alsa:BuildRequires:	alsa-lib-devel}
 %{?with_sound_arts:BuildRequires:	arts-devel}
@@ -636,6 +637,7 @@ Zestaw ikon nuvola22.
 %prep
 %setup -q -T -b %{?with_snap:10}0 -n %{name}
 %patch0 -p1
+%patch1 -p0
 
 %if %{with mediaplayer}
 tar xjf %{SOURCE2} -C modules
@@ -674,7 +676,7 @@ tar xjf %{SOURCE11} -C modules
 tar xzf %{SOURCE12} -C modules
 %endif
 %if %{with profiles}
-tar xzf %{SOURCE13} -C modules
+tar xjf %{SOURCE13} -C modules
 %endif
 %if %{with screenshot}
 tar xjf %{SOURCE14} -C modules
@@ -962,11 +964,6 @@ rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/spellchecker
 mv -f $RPM_BUILD_ROOT%{_modules_dir}/data/weather $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 %endif
 
-%if %{with mediaplayer_xmms}
-cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/xmms $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
-rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/xmms
-%endif
-
 rm -rf `find $RPM_BUILD_ROOT -name CVS`
 
 %clean
@@ -1252,8 +1249,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_modules_dir}/xmms_mediaplayer.desc
 %attr(755,root,root) %{_modules_dir}/xmms_mediaplayer.so
-%lang(pl)  %{_datadir}/%{name}/translations/xmms_mediaplayer_pl.qm
-%{_datadir}/%{name}/modules/data/xmms_mediaplayer/xmms.png
 %endif
 
 %if %{with notify_exec}
@@ -1287,6 +1282,7 @@ rm -rf $RPM_BUILD_ROOT
 %files module-notify-pcspeaker
 %defattr(644,root,root,755)
 %{_modules_dir}/pcspeaker.desc
+%{_datadir}/%{name}/modules/configuration/pcspeaker.ui
 %attr(755,root,root) %{_modules_dir}/pcspeaker.so
 %lang(de) %{_modules_dir}/translations/pcspeaker_de.qm
 %lang(it) %{_modules_dir}/translations/pcspeaker_it.qm
@@ -1320,7 +1316,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_modules_dir}/profiles.desc
 %attr(755,root,root) %{_modules_dir}/profiles.so
-%lang(de) %{_modules_dir}/translations/profiles_de.qm
 %lang(it) %{_modules_dir}/translations/profiles_it.qm
 %lang(pl) %{_modules_dir}/translations/profiles_pl.qm
 %endif
