@@ -1,0 +1,17 @@
+--- modules/xmms_mediaplayer/xmms.cpp.orig	2008-01-15 19:38:12.000000000 +0100
++++ modules/xmms_mediaplayer/xmms.cpp	2008-01-15 19:38:40.000000000 +0100
+@@ -112,12 +112,12 @@
+ 	return title;
+ }
+ 
+-QString AudaciousMediaPlayer::getAlbum(int position)
++QString XmmsMediaPlayer::getAlbum(int position)
+ {
+ 	return QString::null;
+ }
+ 
+-QString AudaciousMediaPlayer::getArtist(int position)
++QString XmmsMediaPlayer::getArtist(int position)
+ {
+ 	return QString::null;
+ }
