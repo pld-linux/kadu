@@ -18,7 +18,7 @@
 %bcond_without	docking_desktop		# without desktop_docking module support
 %bcond_without	filedesc		# without filedesc module support
 %bcond_without	filtering		# without filtering module support
-%bcond_with	firewall		# without firewall module support
+%bcond_without	firewall		# without firewall module support
 %bcond_with	iwait4u			# without iwait4u module support
 %bcond_without	mediaplayer		# without media player modules support
 %bcond_without	mediaplayer_amarok	# without amarok player support module
@@ -28,7 +28,7 @@
 %bcond_without	notify_led		# without led_notify module support
 %bcond_with	notify_osdhints		# without osdhints_notify module
 %bcond_without	notify_pcspeaker	# without pcspeaker_notify module support
-%bcond_with	notify_speech		# without Speech synthesis support
+%bcond_without	notify_speech		# without Speech synthesis support
 %bcond_with	powerkadu		# without PowerKadu extensions
 %bcond_without	profiles		# without profiles module support
 %bcond_without	sound_alsa		# without ALSA support
@@ -51,7 +51,7 @@
 %define		_falf_mod_ver		20071225
 %define		_filedesc_ver		20071221
 %define		_filtering_ver		20080108
-%define		_firewall_ver		0.6.4
+%define		_firewall_ver		0.7.1
 %define		_iwait4u_ver		1.3
 %define		_libgadu_ver		4:1.7.1
 %define		_mediaplayer_mod_ver	20080104
@@ -138,9 +138,8 @@ Source25:	http://www.kadu.net/download/additions/%{name}-theme-nuvola-16.tar.gz
 # Source25-md5:	586cc6ff9ba62f0fdd7c7c1adf229efb
 Source26:	http://www.kadu.net/download/additions/%{name}-theme-nuvola-22.tar.gz
 # Source26-md5:	7a17b4881141b346c6268ef25c284613
-Source27:	http://www.kadu.net/~pan_wojtas/firewall/download/%{name}-firewall-%{_firewall_ver}.tar.gz
-# Source27-md5:	0ec61d3db8befa99032029a8a05310c5
-
+Source27:	http://www.kadu.net/~dorr/%{name}-firewall-%{_firewall_ver}.tar.bz2
+# Source27-md5:	a853e082901df6f3cfec375a6f6a4684
 Patch0:		%{name}-ac_am.patch
 Patch1:		%{name}-xmms.patch
 URL:		http://kadu.net/
@@ -160,7 +159,7 @@ BuildRequires:	libtool
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	qt-linguist
 BuildRequires:	sed >= 4.0
-%{?with_xmms:BuildRequires:	xmms-devel}
+%{?with_mediaplayer_xmms:BuildRequires:	xmms-devel}
 Obsoletes:	kadu-module-imiface <= 0.4.3
 Obsoletes:	kadu-module-speech <= 0.4.3
 Obsoletes:	kadu-module-tcl_scripting <= 0.4.3
@@ -637,7 +636,6 @@ Zestaw ikon nuvola22.
 %prep
 %setup -q -T -b %{?with_snap:10}0 -n %{name}
 %patch0 -p1
-%patch1 -p0
 
 %if %{with mediaplayer}
 tar xjf %{SOURCE2} -C modules
@@ -655,7 +653,7 @@ tar xjf %{SOURCE5} -C modules
 tar xjf %{SOURCE6} -C modules
 %endif
 %if %{with firewall}
-tar xzf %{SOURCE27} -C modules
+tar xjf %{SOURCE27} -C modules
 %endif
 %if %{with iwait4u}
 tar xzf %{SOURCE7} -C modules
@@ -698,6 +696,7 @@ tar xjf %{SOURCE19} -C modules
 %endif
 %if %{with mediaplayer_xmms}
 tar xjf %{SOURCE20} -C modules
+%patch1 -p0
 %endif
 # themes-icons
 tar xjf %{SOURCE21} -C varia/themes/icons
@@ -883,8 +882,7 @@ chmod u+w aclocal.m4 configure
 %{__automake}
 %configure \
 	--enable-voice \
-	--enable-dist-info=PLD \
-	#--with-existing-libgadu=/usr
+	--enable-dist-info="PLD Linux Distribution"
 %{__make}
 
 %install
@@ -922,11 +920,6 @@ rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/filedesc
 %if %{with filtering}
 cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/filtering $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/filtering
-%endif
-
-%if %{with firewall}
-cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/firewall $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
-rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/firewall
 %endif
 
 %if %{with mediaplayer}
@@ -1117,11 +1110,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/modules/configuration/docking.ui
 %{_datadir}/%{name}/modules/configuration/encryption.ui
 %{_datadir}/%{name}/modules/configuration/ext_sound.ui
+%{_datadir}/%{name}/modules/configuration/firewall.ui
 %{_datadir}/%{name}/modules/configuration/hints.ui
 %{_datadir}/%{name}/modules/configuration/history.ui
 %{_datadir}/%{name}/modules/configuration/notify.ui
 %{_datadir}/%{name}/modules/configuration/sms.ui
 %{_datadir}/%{name}/modules/configuration/sound.ui
+%{_datadir}/%{name}/modules/configuration/speech.ui
 %{_datadir}/%{name}/modules/configuration/voice.ui
 
 %if %{with advanced_userlist}
@@ -1208,8 +1203,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_modules_dir}/firewall.so
 %lang(pl) %{_modules_dir}/translations/firewall_pl.qm
 %{_modules_dir}/firewall.desc
-%dir %{_datadir}/%{name}/modules/data/firewall
-%{_datadir}/%{name}/modules/data/firewall/firewall.png
 %endif
 
 %if %{with iwait4u}
