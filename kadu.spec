@@ -33,6 +33,7 @@
 %bcond_with	notify_osdhints		# with osdhints_notify module
 %bcond_without	notify_pcspeaker	# without pcspeaker_notify module support
 %bcond_without	notify_speech		# without Speech synthesis support
+%bcond_without	notify_xosd		# without xosd_notify module support
 %bcond_with	powerkadu		# with PowerKadu extensions
 %bcond_without	profiles		# without profiles module support
 %bcond_without	sound_alsa		# without ALSA support
@@ -184,6 +185,7 @@ BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	qt-linguist
 BuildRequires:	sed >= 4.0
 %{?with_mediaplayer_xmms:BuildRequires:	xmms-devel}
+%{?with_notify_xosd:BuildRequires:	xosd-devel}
 Obsoletes:	kadu-module-imiface <= 0.4.3
 Obsoletes:	kadu-module-speech <= 0.4.3
 Obsoletes:	kadu-module-tcl_scripting <= 0.4.3
@@ -481,6 +483,18 @@ provided by external program "powiedz".
 
 %description module-notify-speech -l pl.UTF-8
 Moduł obsługi "Głośnego czytania" przez zewnętrzny program "powiedz".
+
+%package module-notify-xosd
+Summary:	Notification by XOSD module
+Summary(pl.UTF-8):	Moduł powiadamiania o zdarzeniach przy pomocy XOSD
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-notify-xosd
+Notification by XOSD module.
+
+%description module-notify-xosd -l pl.UTF-8
+Moduł powiadamiania o zdarzeniach przy pomocy XOSD.
 
 %package module-powerkadu
 Summary:	PowerKadu extensions
@@ -925,6 +939,11 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok_mediaplayer/spec
 %{__sed} -i 's/module_speech=n/module_speech=m/' .config
 %else
 %{__sed} -i 's/module_speech=m/module_speech=n/' .config
+%endif
+%if %{with notify_xosd}
+%{__sed} -i 's/module_xosd_notify=n/module_xosd_notify=m/' .config
+%else
+%{__sed} -i 's/module_xosd_notify=m/module_xosd_notify=n/' .config
 %endif
 %if %{with powerkadu}
 %{__sed} -i 's/module_powerkadu=n/module_powerkadu=m/' .config
@@ -1460,6 +1479,20 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_modules_dir}/translations/speech_fr.qm
 %lang(it) %{_modules_dir}/translations/speech_it.qm
 %lang(pl) %{_modules_dir}/translations/speech_pl.qm
+%endif
+
+%if %{with notify_xosd}
+%files module-notify-xosd
+%defattr(644,root,root,755)
+%{_modules_dir}/xosd_notify.desc
+%{_datadir}/%{name}/modules/configuration/xosd_notify.ui
+%attr(755,root,root) %{_modules_dir}/xosd_notify.so
+%dir %{_modules_dir}/bin/xosd_notify
+%attr(755,root,root) %{_modules_dir}/bin/xosd_notify/gtkfontdialog
+%lang(de) %{_modules_dir}/translations/xosd_notify_de.qm
+%lang(fr) %{_modules_dir}/translations/xosd_notify_fr.qm
+%lang(it) %{_modules_dir}/translations/xosd_notify_it.qm
+%lang(pl) %{_modules_dir}/translations/xosd_notify_pl.qm
 %endif
 
 %if %{with powerkadu}
