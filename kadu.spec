@@ -12,26 +12,31 @@
 %bcond_with	snap			# build cvs snapshot
 
 %bcond_without	advanced_userlist	# without Advanced Userlist support
-%bcond_without	agent			# with Spying module that shows who's
+%bcond_without	agent			# without agent module support
 %bcond_without	autoresponder		# without autoresponder module support
-%bcond_with	dcopexport		# without dcopexport module support
+%bcond_without	dcopexport		# with dcopexport module support
 %bcond_without	docking_desktop		# without desktop_docking module support
 %bcond_without	filedesc		# without filedesc module support
 %bcond_without	filtering		# without filtering module support
 %bcond_without	firewall		# without firewall module support
-%bcond_with	iwait4u			# without iwait4u module support
+%bcond_with	iwait4u			# with iwait4u module support
+%bcond_without	mail			# without mail module support
 %bcond_without	mediaplayer		# without media player modules support
 %bcond_without	mediaplayer_amarok	# without amarok player support module
+%bcond_without	mediaplayer_audacious	# with audacious player support module
 %bcond_without	mediaplayer_falf	# without falf player support module
 %bcond_without	mediaplayer_xmms	# without xmms player support module
+%bcond_without	mime_tex		# without mime_tex module support
 %bcond_without	notify_exec		# without exec_notify module support
 %bcond_without	notify_led		# without led_notify module support
-%bcond_with	notify_osdhints		# without osdhints_notify module
+%bcond_without	notify_mx610		# without led_notify module support
+%bcond_with	notify_osdhints		# with osdhints_notify module
 %bcond_without	notify_pcspeaker	# without pcspeaker_notify module support
 %bcond_without	notify_speech		# without Speech synthesis support
-%bcond_with	powerkadu		# without PowerKadu extensions
+%bcond_with	powerkadu		# with PowerKadu extensions
 %bcond_without	profiles		# without profiles module support
 %bcond_without	sound_alsa		# without ALSA support
+%bcond_without	sound_ao		# without ao support
 %bcond_without	sound_arts		# without arts sound server support
 %bcond_without	sound_dsp		# without DSP sound module support
 %bcond_without	sound_esd		# without ESD sound server support
@@ -47,22 +52,26 @@
 
 %define		_agent_mod_ver		0.4.3
 %define		_amarok_mod_ver		20071220
-%define		_dcopexport_ver		0.11.3-20070321
+%define		_dcopexport_ver		0.11.3-20071129
 %define		_falf_mod_ver		20071225
 %define		_filedesc_ver		20071221
 %define		_filtering_ver		20080108
-%define		_firewall_ver		0.7.1
+%define		_firewall_ver		0.7.3
 %define		_iwait4u_ver		1.3
-%define		_libgadu_ver		4:1.7.1
+%define		_mail_ver		0.3.1
 %define		_mediaplayer_mod_ver	20080104
+%define		_mediaplayer_audacious_ver	20071220
+%define		_mime_tex_ver		1.4
 %define		_notify_exec_ver	20070101
 %define		_notify_led_ver		0.14
+%define		_notify_mx610_ver	0.3.0
 %define		_notify_osdhints_ver	0.3.2.2
 %define		_notify_pcspeaker_ver	0.6.0.2
 %define		_powerkadu_ver		20070129
 %define		_profiles_ver		0.3.1
 %define		_screenshot_ver		20080104
 %define		_sms_miastoplusa_ver	1.3.9
+%define		_sound_ao_ver		20060424
 %define		_spellchecker_mod_ver	20071230
 %define		_tabs_ver		1.1.3
 %define		_weather_ver		3.08
@@ -92,8 +101,8 @@ Source2:	http://www.kadu.net/download/modules_extra/mediaplayer/mediaplayer-%{_m
 # Source2-md5:	bfc19ea0c1db22f2381c528b124866fe
 Source3:	http://www.kadu.net/download/modules_extra/amarok_mediaplayer/amarok_mediaplayer-%{_amarok_mod_ver}.tar.bz2
 # Source3-md5:	51d304e335e814f3d8c0f1654007a7d7
-Source4:	http://alan.umcs.lublin.pl/~pinkworm/dcopexport/dcopexport-%{_dcopexport_ver}-0.5.0.tar.bz2
-# Source4-md5:	b5fd429c42d847b14dcac51d646f96ae
+Source4:	http://alan.umcs.lublin.pl/~pinkworm/dcopexport/dcopexport-%{_dcopexport_ver}-%{version}.tar.bz2
+# Source4-md5:	b36fcfcf4756285f30cbb6c2b6c2a2da
 Source5:	http://www.kadu.net/download/modules_extra/filedesc/filedesc-%{_filedesc_ver}.tar.bz2
 # Source5-md5:	317627cbc5fd09a6a0039cdfccbfbce1
 Source6:	http://www.kadu.net/download/modules_extra/filtering/filtering-%{_filtering_ver}.tar.bz2
@@ -139,24 +148,38 @@ Source25:	http://www.kadu.net/download/additions/%{name}-theme-nuvola-16.tar.gz
 Source26:	http://www.kadu.net/download/additions/%{name}-theme-nuvola-22.tar.gz
 # Source26-md5:	7a17b4881141b346c6268ef25c284613
 Source27:	http://www.kadu.net/~dorr/%{name}-firewall-%{_firewall_ver}.tar.bz2
-# Source27-md5:	a853e082901df6f3cfec375a6f6a4684
+# Source27-md5:	1ba39f4d934d66a3a5d7fbf38266ff36
+Source28:	http://kadu.net/~patryk/mime_tex/mime_tex-%{_mime_tex_ver}.tar.bz2
+# Source28-md5:	8ed1d465614881a6dfd1da4c12d18587
+Source29:	http://kadu.jarzebski.pl/mx610_notify-%{_notify_mx610_ver}.tar.bz2
+# Source29-md5:	ca25d85581127e4f52b53193b5fcb45e
+Source30:	http://www.kadu.net/~joi/ao_sound/packages/ao_sound-%{_sound_ao_ver}.tar.bz2
+# Source30-md5:	95809d330e48e61f58ec961ddbf0b529
+Source31:	http://www.kadu.net/download/modules_extra/audacious_mediaplayer/audacious_mediaplayer-%{_mediaplayer_audacious_ver}.tar.bz2
+# Source31-md5:	37cb762e361208c5c571771fb86968b5
+Source32:	http://www.kadu.net/~weagle/mail/mail-%{_mail_ver}.tar.bz2
+# Source32-md5:	1be6fb5c52a37393030dd1c532648ee6
 Patch0:		%{name}-ac_am.patch
 Patch1:		%{name}-xmms.patch
+Patch2:		%{name}-mediaplayer-audacious.patch
 URL:		http://kadu.net/
 %{?with_sound_alsa:BuildRequires:	alsa-lib-devel}
 %{?with_sound_arts:BuildRequires:	arts-devel}
 %{?with_spellchecker:BuildRequires:	aspell-devel}
+%{?with_mediaplayer_audacious:BuildRequires:	audacious-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_sms_miastoplusa:BuildRequires:	curl-devel}
 %{?with_sound_esd:BuildRequires:	esound-devel}
 BuildRequires:	gettext-devel
 BuildRequires:	kdelibs-devel
+%{?with_sound_ao:BuildRequires:	libao-devel}
 BuildRequires:	libgsm-devel
 BuildRequires:	libsndfile-devel >= 1.0
 BuildRequires:	libtool
 %{?with_sound_nas:BuildRequires:	nas-devel}
 BuildRequires:	openssl-devel >= 0.9.7d
+%{?with_mediaplayer_audacious:BuildRequires:	pkgconfig}
 BuildRequires:	qt-linguist
 BuildRequires:	sed >= 4.0
 %{?with_mediaplayer_xmms:BuildRequires:	xmms-devel}
@@ -191,17 +214,16 @@ Advanced Userlist module.
 Moduł zaawansowanej konfiguracji sortowania listy kontaktów.
 
 %package module-agent
-Summary:	Spying module that shows who's invisible
-Summary(pl.UTF-8):	Moduł szpiegowski pokazujący ukryte osoby
+Summary:	Spying module that shows who has you on list
+Summary(pl.UTF-8):	Moduł szpiegowski pokazujący osoby które mają cię na liście
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
-Obsoletes:	kadu-module-spy
 
 %description module-agent
-Spying module that shows who's invisible
+Spying module that shows who has you on list.
 
 %description module-agent -l pl.UTF-8
-Moduł szpiegowski pokazujący ukryte osoby.
+Moduł szpiegowski pokazujący osoby które mają cię na liście.
 
 %package module-autoresponder
 Summary:	Autoresponder module
@@ -287,6 +309,18 @@ iwait4u module inform you, that someone from userlist is active.
 %description module-iwait4u -l pl.UTF-8
 Modul iwait4u informuje, że osoba z listy użytkowników jest dostępna.
 
+%package module-mail
+Summary:	Mail checker module
+Summary(pl.UTF-8):	Moduł do sprawdzania poczty
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-mail
+Mail checker module.
+
+%description module-mail -l pl.UTF-8
+Moduł do sprawdzania poczty.
+
 %package module-mediaplayer
 Summary:	Support for status from mediaplayer
 Summary(pl.UTF-8):	Moduł statusu pobieranego z odtwarzaczy
@@ -315,6 +349,21 @@ the song currently played in amarok.
 %description module-mediaplayer-amarok -l pl.UTF-8
 Moduł umożliwiający w opisie statusu pokazywanie informacji o
 odgrywanym utworze z odtwarzacza amarok.
+
+%package module-mediaplayer-audacious
+Summary:	Support audacious status
+Summary(pl.UTF-8):	Moduł statusu dla audacious
+Group:		Applications/Communications
+Requires:	%{name}-module-mediaplayer = %{version}-%{release}
+Requires:	audacious
+
+%description module-mediaplayer-audacious
+Module which allows showing in status description information about
+the song currently played in audacious.
+
+%description module-mediaplayer-audacious -l pl.UTF-8
+Moduł umożliwiający w opisie statusu pokazywanie informacji o
+odgrywanym utworze z odtwarzacza audacious.
 
 %package module-mediaplayer-falf
 Summary:	Support falf status
@@ -345,6 +394,18 @@ the song currently played in XMMS.
 Moduł umożliwiający pokazywanie w opisie statusu informacji o
 odgrywanym utworze z odtwarzacza XMMS.
 
+%package module-mime_tex
+Summary:	Mathematical TeX formulas in chat windows
+Summary(pl.UTF-8):	Matematyczne formuły TeX w oknach czat
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-mime_tex
+Mathematical TeX formulas for chat windows.
+
+%description module-mime_tex -l pl.UTF-8
+Matematyczne formuły TeX w oknach czat.
+
 %package module-notify-exec
 Summary:	Notification by external commands module
 Summary(pl.UTF-8):	Moduł powiadamiania użytkownika o zdarzeniach za pomocą zewnętrznych poleceń
@@ -369,6 +430,18 @@ Notification by Scroll Lock LED.
 
 %description module-notify-led -l pl.UTF-8
 Moduł powiadamiania diodą Scroll Lock.
+
+%package module-notify-mx610
+Summary:	Notification by IM-LED in Logitech MX610 mouse
+Summary(pl.UTF-8):	Moduł powiadamiania diodą IM w myszcze Logitech MX610
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-notify-mx610
+Notification by IM-LED in Logitech MX610 mouse.
+
+%description module-notify-mx610 -l pl.UTF-8
+Moduł powiadamiania diodą IM w myszcze Logitech MX610.
 
 %package module-notify-osdhints
 Summary:	Notification by OSD-like hints
@@ -472,6 +545,18 @@ ALSA sound support module.
 
 %description module-sound-alsa -l pl.UTF-8
 Moduł obsługi dźwięku przez ALSA.
+
+%package module-sound-ao
+Summary:	Libao sound module
+Summary(pl.UTF-8):	Moduł obsługi dźwięku poprzez bibliotekę libao
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-sound-ao
+Libao sound module.
+
+%description module-sound-ao -l pl.UTF-8
+Moduł obsługi dźwięku poprzez bibliotekę libao.
 
 %package module-sound-arts
 Summary:	Support aRts sound server
@@ -643,6 +728,10 @@ tar xjf %{SOURCE2} -C modules
 %if %{with mediaplayer_amarok}
 tar xjf %{SOURCE3} -C modules
 %endif
+%if %{with mediaplayer_audacious}
+tar xjf %{SOURCE31} -C modules
+%patch2 -p1
+%endif
 %if %{with dcopexport}
 tar xjf %{SOURCE4} -C modules
 %endif
@@ -658,11 +747,20 @@ tar xjf %{SOURCE27} -C modules
 %if %{with iwait4u}
 tar xzf %{SOURCE7} -C modules
 %endif
+%if %{with mail}
+tar xjf %{SOURCE32} -C modules
+%endif
 %if %{with mediaplayer_falf}
 tar xjf %{SOURCE8} -C modules
 %endif
+%if %{with mime_tex}
+tar xjf %{SOURCE28} -C modules
+%endif
 %if %{with notify_led}
 tar xjf %{SOURCE9} -C modules
+%endif
+%if %{with notify_mx610}
+tar xjf %{SOURCE29} -C modules
 %endif
 %if %{with notify_osdhints}
 tar xzf %{SOURCE10} -C modules
@@ -682,6 +780,9 @@ tar xjf %{SOURCE14} -C modules
 %if %{with sms_miastoplusa}
 tar xzf %{SOURCE15} -C modules
 %endif
+%if %{with sound_ao}
+tar xjf %{SOURCE30} -C modules
+%endif
 %if %{with spellchecker}
 tar xjf %{SOURCE16} -C modules
 %endif
@@ -696,7 +797,7 @@ tar xjf %{SOURCE19} -C modules
 %endif
 %if %{with mediaplayer_xmms}
 tar xjf %{SOURCE20} -C modules
-%patch1 -p0
+%patch1 -p1
 %endif
 # themes-icons
 tar xjf %{SOURCE21} -C varia/themes/icons
@@ -756,6 +857,11 @@ done
 %else
 %{__sed} -i 's/module_iwait4u=m/module_iwait4u=n/' .config
 %endif
+%if %{with mail}
+%{__sed} -i 's/module_mail=n/module_mail=m/' .config
+%else
+%{__sed} -i 's/module_mail=m/module_mail=n/' .config
+%endif
 %if %{with mediaplayer}
 %{__sed} -i 's/module_mediaplayer=n/module_mediaplayer=m/' .config
 %else
@@ -768,6 +874,11 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok_mediaplayer/spec
 %else
 %{__sed} -i 's/module_amarok_mediaplayer=m/module_amarok_mediaplayer=n/' .config
 %endif
+%if %{with mediaplayer_audacious}
+%{__sed} -i 's/module_audacious_mediaplayer=n/module_audacious_mediaplayer=m/' .config
+%else
+%{__sed} -i 's/module_audacious_mediaplayer=m/module_audacious_mediaplayer=n/' .config
+%endif
 %if %{with mediaplayer_falf}
 %{__sed} -i 's/module_falf_mediaplayer=n/module_falf_mediaplayer=m/' .config
 %else
@@ -778,6 +889,11 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok_mediaplayer/spec
 %else
 %{__sed} -i 's/module_xmms_mediaplayer=m/module_xmms_mediaplayer=n/' .config
 %endif
+%if %{with mime_tex}
+%{__sed} -i 's/module_mime_tex=n/module_mime_tex=m/' .config
+%else
+%{__sed} -i 's/module_mime_tex=m/module_mime_tex=n/' .config
+%endif
 %if %{with notify_exec}
 %{__sed} -i 's/module_exec_notify=n/module_exec_notify=m/' .config
 %else
@@ -787,6 +903,11 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok_mediaplayer/spec
 %{__sed} -i 's/module_led_notify=n/module_led_notify=m/' .config
 %else
 %{__sed} -i 's/module_led_notify=m/module_led_notify=n/' .config
+%endif
+%if %{with notify_mx610}
+%{__sed} -i 's/module_mx610_notify=n/module_mx610_notify=m/' .config
+%else
+%{__sed} -i 's/module_mx610_notify=m/module_mx610_notify=n/' .config
 %endif
 %if %{with notify_osdhints}
 %{__sed} -i 's/module_osdhints_notify=n/module_osdhints_notify=m/' .config
@@ -829,6 +950,11 @@ rm -f modules/powerkadu/bin/mimetex
 %{__sed} -i 's/module_alsa_sound=n/module_alsa_sound=m/' .config
 %else
 %{__sed} -i 's/module_alsa_sound=m/module_alsa_sound=n/' .config
+%endif
+%if %{with sound_ao}
+%{__sed} -i 's/module_ao_sound=n/module_ao_sound=m/' .config
+%else
+%{__sed} -i 's/module_ao_sound=m/module_ao_sound=n/' .config
 %endif
 %if %{with sound_arts}
 %{__sed} -i 's/module_arts_sound=n/module_arts_sound=m/' .config
@@ -873,7 +999,6 @@ echo 'MODULE_LIBS_PATH="%{_prefix}/lib"' >> modules/nas_sound/spec
 %{__sed} -i 's/icons_glass22=n/icons_glass22=y/' .config
 %{__sed} -i 's/icons_nuvola16=n/icons_nuvola16=y/' .config
 %{__sed} -i 's/icons_nuvola22=n/icons_nuvola22=y/' .config
-
 
 chmod u+w aclocal.m4 configure
 %{__aclocal}
@@ -927,6 +1052,11 @@ cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/mediaplayer $RPM_BUILD_ROOT%{_datadir
 rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/mediaplayer
 %endif
 
+%if %{with mime_tex}
+cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/mime_tex $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/mime_tex
+%endif
+
 %if %{with notify_osdhints}
 cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/osdhints_notify $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
 rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/osdhints_notify
@@ -952,9 +1082,9 @@ cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/spellchecker $RPM_BUILD_ROOT%{_datadi
 rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/spellchecker
 %endif
 
-
 %if %{with weather}
-mv -f $RPM_BUILD_ROOT%{_modules_dir}/data/weather $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+cp -fa $RPM_BUILD_ROOT%{_modules_dir}/data/weather $RPM_BUILD_ROOT%{_datadir}/%{name}/modules/data
+rm -fr $RPM_BUILD_ROOT%{_modules_dir}/data/weather
 %endif
 
 rm -rf `find $RPM_BUILD_ROOT -name CVS`
@@ -1213,6 +1343,15 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{_modules_dir}/translations/iwait4u_pl.qm
 %endif
 
+%if %{with mail}
+%files module-mail
+%defattr(644,root,root,755)
+%{_modules_dir}/mail.desc
+%{_datadir}/%{name}/modules/configuration/mail.ui
+%attr(755,root,root) %{_modules_dir}/mail.so
+%lang(pl) %{_modules_dir}/translations/mail_pl.qm
+%endif
+
 %if %{with mediaplayer}
 %files module-mediaplayer
 %defattr(644,root,root,755)
@@ -1230,6 +1369,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_modules_dir}/amarok_mediaplayer.so
 %endif
 
+%if %{with mediaplayer_audacious}
+%files module-mediaplayer-audacious
+%defattr(644,root,root,755)
+%{_modules_dir}/audacious_mediaplayer.desc
+%attr(755,root,root) %{_modules_dir}/audacious_mediaplayer.so
+%endif
+
 %if %{with mediaplayer_falf}
 %files module-mediaplayer-falf
 %defattr(644,root,root,755)
@@ -1242,6 +1388,19 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_modules_dir}/xmms_mediaplayer.desc
 %attr(755,root,root) %{_modules_dir}/xmms_mediaplayer.so
+%endif
+
+%if %{with mime_tex}
+%files module-mime_tex
+%defattr(644,root,root,755)
+%dir %{_modules_dir}/bin/mime_tex
+%attr(755,root,root) %{_modules_dir}/bin/mime_tex/mimetex
+%{_modules_dir}/mime_tex.desc
+%{_datadir}/%{name}/modules/configuration/mime_tex.ui
+%attr(755,root,root) %{_modules_dir}/mime_tex.so
+%dir %{_datadir}/%{name}/modules/data/mime_tex
+%{_datadir}/%{name}/modules/data/mime_tex
+%lang(pl) %{_modules_dir}/translations/mime_tex_pl.qm
 %endif
 
 %if %{with notify_exec}
@@ -1259,6 +1418,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/modules/configuration/led_notify.ui
 %attr(755,root,root) %{_modules_dir}/led_notify.so
 %lang(pl) %{_modules_dir}/translations/led_notify_pl.qm
+%endif
+
+%if %{with notify_mx610}
+%files module-notify-mx610
+%defattr(644,root,root,755)
+%{_modules_dir}/mx610_notify.desc
+%{_datadir}/%{name}/modules/configuration/mx610_notify.ui
+%attr(755,root,root) %{_modules_dir}/mx610_notify.so
 %endif
 
 %if %{with notify_osdhints}
@@ -1345,6 +1512,13 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_libdir}/%{name}/modules/translations/alsa_sound_fr.qm
 %lang(it) %{_libdir}/%{name}/modules/translations/alsa_sound_it.qm
 %lang(pl) %{_libdir}/%{name}/modules/translations/alsa_sound_pl.qm
+%endif
+
+%if %{with sound_ao}
+%files module-sound-ao
+%defattr(644,root,root,755)
+%{_libdir}/%{name}/modules/ao_sound.desc
+%attr(755,root,root) %{_libdir}/%{name}/modules/ao_sound.so
 %endif
 
 %if %{with sound_arts}
