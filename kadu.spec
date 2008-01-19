@@ -162,6 +162,10 @@ Source31:	http://www.kadu.net/download/modules_extra/audacious_mediaplayer/audac
 # Source31-md5:	37cb762e361208c5c571771fb86968b5
 Source32:	http://www.kadu.net/~weagle/mail/mail-%{_mail_ver}.tar.bz2
 # Source32-md5:	1be6fb5c52a37393030dd1c532648ee6
+Source33:	http://www.kadu.net/download/additions/%{name}-0.6-theme-oxygen-16.tar.gz
+# Source33-md5:	fb13f2624dec27632c42a6bc2c1a252f
+Source34:	http://www.kadu.net/download/additions/%{name}-0.6-theme-tango-16.tar.gz
+# Source34-md5:	44b4b4a62e0e93275f993d98f573612d
 Patch0:		%{name}-ac_am.patch
 Patch1:		%{name}-xmms.patch
 Patch2:		%{name}-mediaplayer-audacious.patch
@@ -759,6 +763,30 @@ Nuvola22 icon theme.
 %description theme-icons-nuvola22 -l pl.UTF-8
 Zestaw ikon nuvola22.
 
+%package theme-icons-oxygen16
+Summary:	Oxygen16 icon theme
+Summary(pl.UTF-8):	Zestaw ikon Oxygen16
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description theme-icons-oxygen16
+Oxygen16 icon theme.
+
+%description theme-icons-oxygen16 -l pl.UTF-8
+Zestaw ikon Oxygen16.
+
+%package theme-icons-tango16
+Summary:	Tango16 icon theme
+Summary(pl.UTF-8):	Zestaw ikon Tango16
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description theme-icons-tango16
+Tango16 icon theme.
+
+%description theme-icons-tango16 -l pl.UTF-8
+Zestaw ikon Tango16.
+
 %prep
 %setup -q -T -b %{?with_snap:10}0 -n %{name}
 %patch0 -p1
@@ -1061,6 +1089,8 @@ echo 'MODULE_LIBS_PATH="%{_prefix}/lib"' >> modules/nas_sound/spec
 %{__sed} -i 's/icons_glass22=n/icons_glass22=y/' .config
 %{__sed} -i 's/icons_nuvola16=n/icons_nuvola16=y/' .config
 %{__sed} -i 's/icons_nuvola22=n/icons_nuvola22=y/' .config
+%{__sed} -i 's/icons_oxygen16=n/icons_oxygen16=y/' .config
+%{__sed} -i 's/icons_tango16=n/icons_tango16=y/' .config
 
 chmod u+w aclocal.m4 configure
 %{__aclocal}
@@ -1698,3 +1728,11 @@ rm -rf $RPM_BUILD_ROOT
 %files theme-icons-nuvola22
 %defattr(644,root,root,755)
 %{_datadir}/%{name}/themes/icons/nuvola22
+
+%files theme-icons-oxygen16
+%defattr(644,root,root,755)
+%{_datadir}/%{name}/themes/icons/oxygen16
+
+%files theme-icons-tango16
+%defattr(644,root,root,755)
+%{_datadir}/%{name}/themes/icons/tango16
