@@ -833,6 +833,11 @@ done
 %{__sed} -i 's,dataPath("kadu/modules/*,("%{_libdir}/kadu/modules/,g' kadu-core/modules.cpp
 
 %build
+%if %{with advanced_userlist}
+%{__sed} -i 's/module_advanced_userlist=n/module_advanced_userlist=m/' .config
+%else
+%{__sed} -i 's/module_advanced_userlist=m/module_advanced_userlist=n/' .config
+%endif
 %if %{with agent}
 %{__sed} -i 's/module_agent=n/module_agent=m/' .config
 %else
