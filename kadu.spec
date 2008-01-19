@@ -139,10 +139,10 @@ Source21:	http://www.kadu.net/download/additions/%{name}-theme-crystal-16.tar.bz
 # Source21-md5:	023085edabaf6a1b844fe6b5fc9315f9
 Source22:	http://www.kadu.net/download/additions/%{name}-theme-crystal-22.tar.bz2
 # Source22-md5:	57852ff3d3fd0063a642fcc173f7fa29
-Source23:	http://www.kadu.net/download/additions/%{name}-theme-glass_16.tar.gz
-# Source23-md5:	c3beb753222b96dad46f3adf230eb3e1
-Source24:	http://www.kadu.net/download/additions/%{name}-theme-glass_22.tar.gz
-# Source24-md5:	9ee70ca873fd0f22b2b83be133964d89
+Source23:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-16.tar.gz
+# Source23-md5:	480c08874b2cb3a23d74b371d7921df0
+Source24:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-22.tar.gz
+# Source24-md5:	4a3e6a75c314d821c1e5afec2d537e80
 Source25:	http://www.kadu.net/download/additions/%{name}-theme-nuvola-16.tar.gz
 # Source25-md5:	586cc6ff9ba62f0fdd7c7c1adf229efb
 Source26:	http://www.kadu.net/download/additions/%{name}-theme-nuvola-22.tar.gz
@@ -166,7 +166,7 @@ URL:		http://kadu.net/
 %{?with_sound_alsa:BuildRequires:	alsa-lib-devel}
 %{?with_sound_arts:BuildRequires:	arts-devel}
 %{?with_spellchecker:BuildRequires:	aspell-devel}
-%{?with_mediaplayer_audacious:BuildRequires:	audacious-devel}
+%{?with_mediaplayer_audacious:BuildRequires:	audacious-devel >= 1.4.0}
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_sms_miastoplusa:BuildRequires:	curl-devel}
