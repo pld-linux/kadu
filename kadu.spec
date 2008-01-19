@@ -16,6 +16,7 @@
 %bcond_without	autoresponder		# without autoresponder module support
 %bcond_without	dcopexport		# with dcopexport module support
 %bcond_without	docking_desktop		# without desktop_docking module support
+%bcond_without	encryption		# without encryption module support
 %bcond_without	filedesc		# without filedesc module support
 %bcond_without	filtering		# without filtering module support
 %bcond_without	firewall		# without firewall module support
@@ -41,6 +42,7 @@
 %bcond_without	sound_arts		# without arts sound server support
 %bcond_without	sound_dsp		# without DSP sound module support
 %bcond_without	sound_esd		# without ESD sound server support
+%bcond_without	sound_ext		# without external application sound module support
 %bcond_without	sound_nas		# without Network Audio System support
 %bcond_without	screenshot		# without screenshot module support
 %bcond_without	sms_miastoplusa		# without miastoplusa_sms module support
@@ -180,7 +182,7 @@ BuildRequires:	kdelibs-devel
 BuildRequires:	libgsm-devel
 BuildRequires:	libsndfile-devel >= 1.0
 %{?with_sound_nas:BuildRequires:	nas-devel}
-BuildRequires:	openssl-devel >= 0.9.7d
+%{?with_encryption:BuildRequires:	openssl-devel >= 0.9.7d}
 %{?with_mediaplayer_audacious:BuildRequires:	pkgconfig}
 BuildRequires:	qt-linguist
 BuildRequires:	sed >= 4.0
@@ -263,6 +265,18 @@ Desktop docking module.
 
 %description module-docking-desktop -l pl.UTF-8
 Moduł dokowania w dowolnym punkcie ekranu.
+
+%package module-encryption
+Summary:	Chat encryption module
+Summary(pl.UTF-8):	Moduł szyfrowania rozmów
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-encryption
+Chat encryption module.
+
+%description module-encryption -l pl.UTF-8
+Moduł szyfrowania rozmów.
 
 %package module-filedesc
 Summary:	Descriptions from file module
@@ -611,6 +625,18 @@ ESD sound module.
 %description module-sound-esd -l pl.UTF-8
 Moduł obsługi dźwięku przez ESD.
 
+%package module-sound-ext
+Summary:	External application sound module
+Summary(pl.UTF-8):	Moduł obsługi dźwięku przez zewnętrzną aplikację
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-sound-ext
+External application sound module.
+
+%description module-sound-ext -l pl.UTF-8
+Moduł obsługi dźwięku przez zewnętrzną aplikację.
+
 %package module-sound-nas
 Summary:	Support Network Audio System
 Summary(pl.UTF-8):	Wsparcie dla sieciowego systemu dźwięku NAS
@@ -858,6 +884,11 @@ done
 %else
 %{__sed} -i 's/module_desktop_docking=m/module_desktop_docking=n/' .config
 %endif
+%if %{with encryption}
+%{__sed} -i 's/module_encryption=n/module_encryption=m/' .config
+%else
+%{__sed} -i 's/module_encryption=m/module_encryption=n/' .config
+%endif
 %if %{with filedesc}
 %{__sed} -i 's/module_filedesc=n/module_filedesc=m/' .config
 %else
@@ -996,6 +1027,11 @@ rm -f modules/powerkadu/bin/mimetex
 %{__sed} -i 's/module_esd_sound=n/module_esd_sound=m/' .config
 %else
 %{__sed} -i 's/module_esd_sound=m/module_esd_sound=n/' .config
+%endif
+%if %{with sound_ext}
+%{__sed} -i 's/module_ext_sound=n/module_ext_sound=m/' .config
+%else
+%{__sed} -i 's/module_ext_sound=m/module_ext_sound=n/' .config
 %endif
 %if %{with sound_nas}
 %{__sed} -i 's/module_nas_sound=n/module_nas_sound=m/' .config
@@ -1154,10 +1190,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_modules_dir}/default_sms.desc
 %attr(755,root,root) %{_modules_dir}/default_sms.so
 %{_modules_dir}/docking.desc
-%{_modules_dir}/encryption.desc
-%attr(755,root,root) %{_modules_dir}/encryption.so
-%{_modules_dir}/ext_sound.desc
-%attr(755,root,root) %{_modules_dir}/ext_sound.so
 %{_modules_dir}/hints.desc
 %attr(755,root,root) %{_modules_dir}/hints.so
 %{_modules_dir}/migration.desc
@@ -1201,14 +1233,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_modules_dir}/translations/docking_fr.qm
 %lang(it) %{_modules_dir}/translations/docking_it.qm
 %lang(pl) %{_modules_dir}/translations/docking_pl.qm
-%lang(de) %{_modules_dir}/translations/encryption_de.qm
-%lang(fr) %{_modules_dir}/translations/encryption_fr.qm
-%lang(it) %{_modules_dir}/translations/encryption_it.qm
-%lang(pl) %{_modules_dir}/translations/encryption_pl.qm
-%lang(de) %{_modules_dir}/translations/ext_sound_de.qm
-%lang(fr) %{_modules_dir}/translations/ext_sound_fr.qm
-%lang(it) %{_modules_dir}/translations/ext_sound_it.qm
-%lang(pl) %{_modules_dir}/translations/ext_sound_pl.qm
 %lang(de) %{_modules_dir}/translations/hints_de.qm
 %lang(fr) %{_modules_dir}/translations/hints_fr.qm
 %lang(it) %{_modules_dir}/translations/hints_it.qm
@@ -1263,8 +1287,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/modules/configuration/dcc.ui
 %{_datadir}/%{name}/modules/configuration/default_sms.ui
 %{_datadir}/%{name}/modules/configuration/docking.ui
-%{_datadir}/%{name}/modules/configuration/encryption.ui
-%{_datadir}/%{name}/modules/configuration/ext_sound.ui
 %{_datadir}/%{name}/modules/configuration/hints.ui
 %{_datadir}/%{name}/modules/configuration/history.ui
 %{_datadir}/%{name}/modules/configuration/notify.ui
@@ -1302,6 +1324,18 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_modules_dir}/translations/autoresponder_fr.qm
 %lang(it) %{_modules_dir}/translations/autoresponder_it.qm
 %lang(pl) %{_modules_dir}/translations/autoresponder_pl.qm
+%endif
+
+%if %{with encryption}
+%files module-encryption
+%defattr(644,root,root,755)
+%{_modules_dir}/encryption.desc
+%{_datadir}/%{name}/modules/configuration/encryption.ui
+%attr(755,root,root) %{_modules_dir}/encryption.so
+%lang(de) %{_modules_dir}/translations/encryption_de.qm
+%lang(fr) %{_modules_dir}/translations/encryption_fr.qm
+%lang(it) %{_modules_dir}/translations/encryption_it.qm
+%lang(pl) %{_modules_dir}/translations/encryption_pl.qm
 %endif
 
 %if %{with dcopexport}
@@ -1587,6 +1621,18 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_modules_dir}/esd_sound.desc
 %attr(755,root,root) %{_modules_dir}/esd_sound.so
+%endif
+
+%if %{with sound_ext}
+%files module-sound-ext
+%defattr(644,root,root,755)
+%{_modules_dir}/ext_sound.desc
+%{_datadir}/%{name}/modules/configuration/ext_sound.ui
+%attr(755,root,root) %{_modules_dir}/ext_sound.so
+%lang(de) %{_modules_dir}/translations/ext_sound_de.qm
+%lang(fr) %{_modules_dir}/translations/ext_sound_fr.qm
+%lang(it) %{_modules_dir}/translations/ext_sound_it.qm
+%lang(pl) %{_modules_dir}/translations/ext_sound_pl.qm
 %endif
 
 %if %{with sound_nas}
