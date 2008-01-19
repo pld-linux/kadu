@@ -1,0 +1,156 @@
+--- kadu/modules/audacious_mediaplayer/audacious.cpp	2007-12-20 22:45:32.000000000 +0000
++++ kadu/modules/audacious_mediaplayer/audacious.cpp	2008-01-19 15:38:49.000000000 +0000
+@@ -7,7 +7,7 @@
+  *                                                                         *
+  ***************************************************************************/
+ 
+-#include <audacious/beepctrl.h>
++#include <audacious/audctrl.h>
+ 
+ #include "debug.h"
+ 
+@@ -58,10 +58,10 @@
+ QString AudaciousMediaPlayer::getPlayerVersion()
+ {
+ 	kdebugf();
+-	if (!xmms_remote_is_running(0))
++	if (!audacious_remote_is_running(0))
+ 		return "";
+ 
+-	return QString::number(xmms_remote_get_version(0));
++	return audacious_remote_get_version(0);
+ }
+ 
+ QStringList AudaciousMediaPlayer::getPlayListTitles()
+@@ -101,20 +101,20 @@
+ uint AudaciousMediaPlayer::getPlayListLength()
+ {
+ 	kdebugf();
+-	return xmms_remote_get_playlist_length(0);
++	return audacious_remote_get_playlist_length(0);
+ }
+ 
+ QString AudaciousMediaPlayer::getTitle(int position)
+ {
+ 	kdebugf();
+-	if (!xmms_remote_is_running(0))
++	if (!audacious_remote_is_running(0))
+ 		return "";
+ 
+ 	// Do we want current track title, or given track title?
+ 	if (position == -1)
+-		position = xmms_remote_get_playlist_pos(0);
++		position = audacious_remote_get_playlist_pos(0);
+ 
+-	QString title(convert(xmms_remote_get_playlist_title(0, position)));
++	QString title(convert(audacious_remote_get_playlist_title(0, position)));
+ 	return title;
+ }
+ 
+@@ -134,9 +134,9 @@
+ 
+ 	// Do we want current track file name, or given track file name?
+ 	if (position == -1)
+-		position = xmms_remote_get_playlist_pos(0);
++		position = audacious_remote_get_playlist_pos(0);
+ 
+-	return convert(xmms_remote_get_playlist_file(0, position));
++	return convert(audacious_remote_get_playlist_file(0, position));
+ }
+ 
+ int AudaciousMediaPlayer::getLength(int position)
+@@ -145,15 +145,15 @@
+ 
+ 	// Do we want current track file name, or given track file name?
+ 	if (position == -1)
+-		position = xmms_remote_get_playlist_pos(0);
++		position = audacious_remote_get_playlist_pos(0);
+ 
+-	return xmms_remote_get_playlist_time(0, position);
++	return audacious_remote_get_playlist_time(0, position);
+ }
+ 
+ int AudaciousMediaPlayer::getCurrentPos()
+ {
+ 	kdebugf();
+-	return xmms_remote_get_output_time(0);
++	return audacious_remote_get_output_time(0);
+ }
+ 
+ // PlayerCommands
+@@ -161,43 +161,43 @@
+ void AudaciousMediaPlayer::nextTrack()
+ {
+ 	kdebugf();
+-	xmms_remote_playlist_next(0);
++	audacious_remote_playlist_next(0);
+ }
+ 
+ void AudaciousMediaPlayer::prevTrack()
+ {
+ 	kdebugf();
+-	xmms_remote_playlist_prev(0);
++	audacious_remote_playlist_prev(0);
+ }
+ 
+ void AudaciousMediaPlayer::play()
+ {
+ 	kdebugf();
+-	xmms_remote_play(0);
++	audacious_remote_play(0);
+ }
+ 
+ void AudaciousMediaPlayer::stop()
+ {
+ 	kdebugf();
+-	xmms_remote_stop(0);
++	audacious_remote_stop(0);
+ }
+ 
+ void AudaciousMediaPlayer::pause()
+ {
+ 	kdebugf();
+-	xmms_remote_pause(0);
++	audacious_remote_pause(0);
+ }
+ 
+ void AudaciousMediaPlayer::setVolume(int vol)
+ {
+ 	kdebugf();
+-	xmms_remote_set_main_volume(0, vol);
++	audacious_remote_set_main_volume(0, vol);
+ }
+ 
+ void AudaciousMediaPlayer::incrVolume()
+ {
+ 	kdebugf();
+-	int vol = xmms_remote_get_main_volume(0);
++	int vol = audacious_remote_get_main_volume(0);
+ 	vol += 2;
+ 	if (vol > 100)
+ 		vol = 100;
+@@ -208,7 +208,7 @@
+ void AudaciousMediaPlayer::decrVolume()
+ {
+ 	kdebugf();
+-	int vol = xmms_remote_get_main_volume(0);
++	int vol = audacious_remote_get_main_volume(0);
+ 	vol -= 2;
+ 	if (vol < 0)
+ 		vol = 0;
+@@ -219,13 +219,13 @@
+ bool AudaciousMediaPlayer::isPlaying()
+ {
+ 	kdebugf();
+-	return xmms_remote_is_playing(0);
++	return audacious_remote_is_playing(0);
+ }
+ 
+ bool AudaciousMediaPlayer::isActive()
+ {
+ 	kdebugf();
+-	return xmms_remote_get_version(0) > 0;
++	return audacious_remote_get_version(0) > 0;
+ }
+ 
+ QString AudaciousMediaPlayer::convert(QString str)
