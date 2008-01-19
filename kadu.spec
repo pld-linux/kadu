@@ -876,6 +876,8 @@ tar xzf %{SOURCE23} -C varia/themes/icons
 tar xzf %{SOURCE24} -C varia/themes/icons
 tar xzf %{SOURCE25} -C varia/themes/icons
 tar xzf %{SOURCE26} -C varia/themes/icons
+tar xzf %{SOURCE33} -C varia/themes/icons
+tar xzf %{SOURCE34} -C varia/themes/icons
 
 # rename theme directories to be sure that they
 # will not be re-downloaded by configure
@@ -1488,7 +1490,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/modules/configuration/mime_tex.ui
 %attr(755,root,root) %{_modules_dir}/mime_tex.so
 %dir %{_datadir}/%{name}/modules/data/mime_tex
-%{_datadir}/%{name}/modules/data/mime_tex
+%dir %{_datadir}/%{name}/modules/data/mime_tex/mime_tex_icons
+%{_datadir}/%{name}/modules/data/mime_tex/mime_tex_32x32.png
+%{_datadir}/%{name}/modules/data/mime_tex/mime_tex_icons/*.png
 %lang(pl) %{_modules_dir}/translations/mime_tex_pl.qm
 %endif
 
