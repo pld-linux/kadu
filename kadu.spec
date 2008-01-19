@@ -162,21 +162,22 @@ Source32:	http://www.kadu.net/~weagle/mail/mail-%{_mail_ver}.tar.bz2
 Patch0:		%{name}-ac_am.patch
 Patch1:		%{name}-xmms.patch
 Patch2:		%{name}-mediaplayer-audacious.patch
+Patch3:		%{name}-voice.patch
 URL:		http://kadu.net/
 %{?with_sound_alsa:BuildRequires:	alsa-lib-devel}
-%{?with_sound_arts:BuildRequires:	arts-devel}
+%{?with_sound_arts:BuildRequires:	artsc-devel}
 %{?with_spellchecker:BuildRequires:	aspell-devel}
 %{?with_mediaplayer_audacious:BuildRequires:	audacious-devel >= 1.4.0}
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_sms_miastoplusa:BuildRequires:	curl-devel}
 %{?with_sound_esd:BuildRequires:	esound-devel}
-BuildRequires:	gettext-devel
+%if %{with mediaplayer_amarok} || %{with dcopexport}
 BuildRequires:	kdelibs-devel
+%endif
 %{?with_sound_ao:BuildRequires:	libao-devel}
 BuildRequires:	libgsm-devel
 BuildRequires:	libsndfile-devel >= 1.0
-BuildRequires:	libtool
 %{?with_sound_nas:BuildRequires:	nas-devel}
 BuildRequires:	openssl-devel >= 0.9.7d
 %{?with_mediaplayer_audacious:BuildRequires:	pkgconfig}
@@ -721,6 +722,7 @@ Zestaw ikon nuvola22.
 %prep
 %setup -q -T -b %{?with_snap:10}0 -n %{name}
 %patch0 -p1
+%patch3 -p1
 
 %if %{with mediaplayer}
 tar xjf %{SOURCE2} -C modules
