@@ -1507,20 +1507,20 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with sound_alsa}
 %files module-sound-alsa
 %defattr(644,root,root,755)
-%{_libdir}/%{name}/modules/alsa_sound.desc
+%{_modules_dir}/alsa_sound.desc
 %{_datadir}/%{name}/modules/configuration/alsa_sound.ui
-%attr(755,root,root) %{_libdir}/%{name}/modules/alsa_sound.so
-%lang(de) %{_libdir}/%{name}/modules/translations/alsa_sound_de.qm
-%lang(fr) %{_libdir}/%{name}/modules/translations/alsa_sound_fr.qm
-%lang(it) %{_libdir}/%{name}/modules/translations/alsa_sound_it.qm
-%lang(pl) %{_libdir}/%{name}/modules/translations/alsa_sound_pl.qm
+%attr(755,root,root) %{_modules_dir}/alsa_sound.so
+%lang(de) %{_modules_dir}/translations/alsa_sound_de.qm
+%lang(fr) %{_modules_dir}/translations/alsa_sound_fr.qm
+%lang(it) %{_modules_dir}/translations/alsa_sound_it.qm
+%lang(pl) %{_modules_dir}/translations/alsa_sound_pl.qm
 %endif
 
 %if %{with sound_ao}
 %files module-sound-ao
 %defattr(644,root,root,755)
-%{_libdir}/%{name}/modules/ao_sound.desc
-%attr(755,root,root) %{_libdir}/%{name}/modules/ao_sound.so
+%{_modules_dir}/ao_sound.desc
+%attr(755,root,root) %{_modules_dir}/ao_sound.so
 %endif
 
 %if %{with sound_arts}
@@ -1535,13 +1535,13 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with sound_dsp}
 %files module-sound-dsp
 %defattr(644,root,root,755)
-%{_libdir}/%{name}/modules/dsp_sound.desc
+%{_modules_dir}/dsp_sound.desc
 %{_datadir}/%{name}/modules/configuration/dsp_sound.ui
-%attr(755,root,root) %{_libdir}/%{name}/modules/dsp_sound.so
-%lang(de) %{_libdir}/%{name}/modules/translations/dsp_sound_de.qm
-%lang(fr) %{_libdir}/%{name}/modules/translations/dsp_sound_fr.qm
-%lang(it) %{_libdir}/%{name}/modules/translations/dsp_sound_it.qm
-%lang(pl) %{_libdir}/%{name}/modules/translations/dsp_sound_pl.qm
+%attr(755,root,root) %{_modules_dir}/dsp_sound.so
+%lang(de) %{_modules_dir}/translations/dsp_sound_de.qm
+%lang(fr) %{_modules_dir}/translations/dsp_sound_fr.qm
+%lang(it) %{_modules_dir}/translations/dsp_sound_it.qm
+%lang(pl) %{_modules_dir}/translations/dsp_sound_pl.qm
 %endif
 
 %if %{with sound_esd}
