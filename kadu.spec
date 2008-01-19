@@ -1257,17 +1257,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/modules/configuration/autoaway.ui
 %{_datadir}/%{name}/modules/configuration/dcc.ui
 %{_datadir}/%{name}/modules/configuration/default_sms.ui
-%{_datadir}/%{name}/modules/configuration/desktop_docking.ui
 %{_datadir}/%{name}/modules/configuration/docking.ui
 %{_datadir}/%{name}/modules/configuration/encryption.ui
 %{_datadir}/%{name}/modules/configuration/ext_sound.ui
-%{_datadir}/%{name}/modules/configuration/firewall.ui
 %{_datadir}/%{name}/modules/configuration/hints.ui
 %{_datadir}/%{name}/modules/configuration/history.ui
 %{_datadir}/%{name}/modules/configuration/notify.ui
 %{_datadir}/%{name}/modules/configuration/sms.ui
 %{_datadir}/%{name}/modules/configuration/sound.ui
-%{_datadir}/%{name}/modules/configuration/speech.ui
 %{_datadir}/%{name}/modules/configuration/voice.ui
 
 %if %{with advanced_userlist}
@@ -1318,6 +1315,7 @@ rm -rf $RPM_BUILD_ROOT
 %files module-docking-desktop
 %defattr(644,root,root,755)
 %{_modules_dir}/desktop_docking.desc
+%{_datadir}/%{name}/modules/configuration/desktop_docking.ui
 %attr(755,root,root) %{_modules_dir}/desktop_docking.so
 %lang(de) %{_modules_dir}/translations/desktop_docking_de.qm
 %lang(fr) %{_modules_dir}/translations/desktop_docking_fr.qm
@@ -1351,6 +1349,7 @@ rm -rf $RPM_BUILD_ROOT
 %files module-firewall
 %defattr(644,root,root,755)
 %{_modules_dir}/filtering.desc
+%{_datadir}/%{name}/modules/configuration/firewall.ui
 %attr(755,root,root) %{_modules_dir}/firewall.so
 %lang(pl) %{_modules_dir}/translations/firewall_pl.qm
 %{_modules_dir}/firewall.desc
@@ -1474,6 +1473,7 @@ rm -rf $RPM_BUILD_ROOT
 %files module-notify-speech
 %defattr(644,root,root,755)
 %{_modules_dir}/speech.desc
+%{_datadir}/%{name}/modules/configuration/speech.ui
 %attr(755,root,root) %{_modules_dir}/speech.so
 %lang(de) %{_modules_dir}/translations/speech_de.qm
 %lang(fr) %{_modules_dir}/translations/speech_fr.qm
