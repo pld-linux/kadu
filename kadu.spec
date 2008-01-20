@@ -357,6 +357,8 @@ Summary(pl.UTF-8):	Moduł statusu dla amarok
 Group:		Applications/Communications
 Requires:	%{name}-module-mediaplayer = %{version}-%{release}
 Requires:	amarok
+Provides:	kadu-module-amarok > 0.5.0
+Obsoletes:	kadu-module-amarok <= 0.5.0
 
 %description module-mediaplayer-amarok
 Module which allows showing in status description information about
@@ -401,6 +403,8 @@ Summary(pl.UTF-8):	Moduł statusu dla XMMS-a
 Group:		Applications/Communications
 Requires:	%{name}-module-mediaplayer = %{version}-%{release}
 Requires:	xmms
+Provides:	kadu-module-xmms > 0.5.0
+Obsoletes:	kadu-module-xmms <= 0.5.0
 
 %description module-mediaplayer-xmms
 Module which allows showing in status description information about
