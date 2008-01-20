@@ -8,6 +8,7 @@
 #
 # Conditional build:
 %bcond_with	snap			# build cvs snapshot
+%bcond_with	debug			# build with debug
 
 %bcond_without	advanced_userlist	# without Advanced Userlist support
 %bcond_without	agent			# without agent module support
@@ -1031,6 +1032,7 @@ chmod u+w aclocal.m4 configure
 %{__autoconf}
 %{__automake}
 %configure \
+	--%{?with_debug:en}%{!?with_debug:dis}able-debug \
 	--enable-voice \
 	--enable-dist-info="PLD Linux Distribution" \
 	--disable-autodownload
