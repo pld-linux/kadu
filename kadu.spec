@@ -76,7 +76,7 @@
 %define		_sound_ao_ver		20060424
 %define		_spellchecker_mod_ver	20071230
 %define		_tabs_ver		1.1.3
-%define		_weather_ver		3.08
+%define		_weather_ver		3.11
 %define		_xmms_mod_ver		20071220
 
 %if %{with snap}
@@ -134,7 +134,7 @@ Source17:	http://misiek.jah.pl/assets/2007/12/27/agent-%{_agent_mod_ver}.tar.gz
 Source18:	http://kadu.net/~arvenil/tabs/download/%{version}/%{_tabs_ver}/%{name}-tabs-%{_tabs_ver}.tar.bz2
 # Source18-md5:	67ebc59abc770825f19b29a3d5114201
 Source19:	http://kadu.net/~blysk/weather-%{_weather_ver}.tar.bz2
-# Source19-md5:	3b8b409b520b24de4ea1872d287a29fe
+# Source19-md5:	d9528f5450d9760b2368fed0e6572306
 Source20:	http://www.kadu.net/download/modules_extra/xmms_mediaplayer/xmms_mediaplayer-%{_xmms_mod_ver}.tar.bz2
 # Source20-md5:	3c2bfa4507bea42395d1d3cd02576711
 Source23:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-16.tar.gz
