@@ -1,12 +1,13 @@
 --- kadu-0.6.0-rc1/modules/voice/spec	2008-01-12 09:43:57.000000000 +0000
 +++ kadu-0.6.0-rc1/modules/voice/spec	2008-01-19 19:49:34.000000000 +0000
-@@ -1,4 +1,4 @@
+@@ -1,4 +1,5 @@
  MODULE_SOURCES=voice.cpp
  MODULE_MOC_HEADERS=voice.h
 -MODULE_3RDPARTY=libgsm
 -MODULE_LDFLAGS=$MODULE_DIR/libgsm/lib/libgsm.a
 +MODULE_INCLUDES="gsm.h"
 +MODULE_INCLUDES_PATH="/usr/include"
++MODULE_LDFLAGS="-lgsm"
 --- kadu-0.6.0-rc1/modules/voice/voice.h	2008-01-12 09:43:57.000000000 +0000
 +++ kadu-0.6.0-rc1/modules/voice/voice.h	2008-01-19 19:50:07.000000000 +0000
 @@ -8,7 +8,7 @@
@@ -14,7 +15,7 @@
  
  extern "C" {
 -	#include "libgsm/inc/gsm.h"
-+	#include "gsm.h"
++	#include <gsm.h>
  };
  
  #include "../dcc/dcc.h"
