@@ -1,9 +1,7 @@
 #
 # TODO:
-# - downloads stuff while building: Downloading crystal16 icon theme
-#   --02:05:17--  http://kadu.net/autodownload/icons/kadu-0.5.0-crystal16.href
-#           => `kadu-0.5.0-crystal16.href'
-# - some modules with bcond_with will not work for now, we need to wait for next releases
+# - Some modules with bcond_with will not work for now, we need to wait for next releases
+# - Add Obsoletes for modules iwait4u, powerkadu, notify_osdhints if they will not be fixed before final 0.6.0
 #
 # NOTE:
 # - We use staticly linked libgadu because of no stable release with dcc7
@@ -138,18 +136,10 @@ Source19:	http://kadu.net/~blysk/weather-%{_weather_ver}.tar.bz2
 # Source19-md5:	3b8b409b520b24de4ea1872d287a29fe
 Source20:	http://www.kadu.net/download/modules_extra/xmms_mediaplayer/xmms_mediaplayer-%{_xmms_mod_ver}.tar.bz2
 # Source20-md5:	3c2bfa4507bea42395d1d3cd02576711
-Source21:	http://www.kadu.net/download/additions/%{name}-theme-crystal-16.tar.bz2
-# Source21-md5:	023085edabaf6a1b844fe6b5fc9315f9
-Source22:	http://www.kadu.net/download/additions/%{name}-theme-crystal-22.tar.bz2
-# Source22-md5:	57852ff3d3fd0063a642fcc173f7fa29
 Source23:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-16.tar.gz
 # Source23-md5:	480c08874b2cb3a23d74b371d7921df0
 Source24:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-22.tar.gz
 # Source24-md5:	4a3e6a75c314d821c1e5afec2d537e80
-Source25:	http://www.kadu.net/download/additions/%{name}-theme-nuvola-16.tar.gz
-# Source25-md5:	586cc6ff9ba62f0fdd7c7c1adf229efb
-Source26:	http://www.kadu.net/download/additions/%{name}-theme-nuvola-22.tar.gz
-# Source26-md5:	7a17b4881141b346c6268ef25c284613
 Source27:	http://www.kadu.net/~dorr/%{name}-firewall-%{_firewall_ver}.tar.bz2
 # Source27-md5:	1ba39f4d934d66a3a5d7fbf38266ff36
 Source28:	http://kadu.net/~patryk/mime_tex/mime_tex-%{_mime_tex_ver}.tar.bz2
@@ -195,6 +185,10 @@ BuildRequires:	sed >= 4.0
 Obsoletes:	kadu-module-imiface <= 0.4.3
 Obsoletes:	kadu-module-speech <= 0.4.3
 Obsoletes:	kadu-module-tcl_scripting <= 0.4.3
+Obsoletes:	kadu-themes-icons-crystal16 <= 0.5.0
+Obsoletes:	kadu-themes-icons-crystal22 <= 0.5.0
+Obsoletes:	kadu-themes-icons-nuvola16 <= 0.5.0
+Obsoletes:	kadu-themes-icons-nuvola22 <= 0.5.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_modules_dir	%{_libdir}/%{name}/modules
@@ -691,30 +685,6 @@ Informations of weather in locality of contact.
 %description module-weather -l pl.UTF-8
 Informacje o pogodzie w miejscowości danego kontaktu.
 
-%package theme-icons-crystal16
-Summary:	Crystal16 icon theme
-Summary(pl.UTF-8):	Zestaw ikon crystal16
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description theme-icons-crystal16
-Crystal16 icon theme.
-
-%description theme-icons-crystal16 -l pl.UTF-8
-Zestaw ikon crystal16.
-
-%package theme-icons-crystal22
-Summary:	Crystal22 icon theme
-Summary(pl.UTF-8):	Zestaw ikon crystal22
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description theme-icons-crystal22
-Crystal22 icon theme.
-
-%description theme-icons-crystal22 -l pl.UTF-8
-Zestaw ikon crystal22.
-
 %package theme-icons-glass16
 Summary:	Glass16 icon theme
 Summary(pl.UTF-8):	Zestaw ikon glass16
@@ -738,30 +708,6 @@ Glass22 icon theme.
 
 %description theme-icons-glass22 -l pl.UTF-8
 Zestaw ikon glass22.
-
-%package theme-icons-nuvola16
-Summary:	Nuvola16 icon theme
-Summary(pl.UTF-8):	Zestaw ikon nuvola16
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description theme-icons-nuvola16
-Nuvola16 icon theme.
-
-%description theme-icons-nuvola16 -l pl.UTF-8
-Zestaw ikon nuvola16.
-
-%package theme-icons-nuvola22
-Summary:	Nuvola22 icon theme
-Summary(pl.UTF-8):	Zestaw ikon nuvola22
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description theme-icons-nuvola22
-Nuvola22 icon theme.
-
-%description theme-icons-nuvola22 -l pl.UTF-8
-Zestaw ikon nuvola22.
 
 %package theme-icons-oxygen16
 Summary:	Oxygen16 icon theme
@@ -870,21 +816,10 @@ tar xjf %{SOURCE20} -C modules
 %patch1 -p1
 %endif
 # themes-icons
-tar xjf %{SOURCE21} -C varia/themes/icons
-tar xjf %{SOURCE22} -C varia/themes/icons
 tar xzf %{SOURCE23} -C varia/themes/icons
 tar xzf %{SOURCE24} -C varia/themes/icons
-tar xzf %{SOURCE25} -C varia/themes/icons
-tar xzf %{SOURCE26} -C varia/themes/icons
 tar xzf %{SOURCE33} -C varia/themes/icons
 tar xzf %{SOURCE34} -C varia/themes/icons
-
-# rename theme directories to be sure that they
-# will not be re-downloaded by configure
-for dir in varia/themes/icons/kadu-theme-*; do
-	theme=`echo $dir | %{__sed} -e 's/kadu-theme-//; s/[_-]//;'`;
-	mv $dir $theme
-done
 
 %{__sed} -i 's,dataPath("kadu/modules/*,("%{_libdir}/kadu/modules/,g' kadu-core/modules.cpp
 
@@ -1085,12 +1020,8 @@ echo 'MODULE_LIBS_PATH="%{_prefix}/lib"' >> modules/nas_sound/spec
 %{__sed} -i 's/module_weather=m/module_weather=n/' .config
 %endif
 
-%{__sed} -i 's/icons_crystal16=n/icons_crystal16=y/' .config
-%{__sed} -i 's/icons_crystal22=n/icons_crystal22=y/' .config
 %{__sed} -i 's/icons_glass16=n/icons_glass16=y/' .config
 %{__sed} -i 's/icons_glass22=n/icons_glass22=y/' .config
-%{__sed} -i 's/icons_nuvola16=n/icons_nuvola16=y/' .config
-%{__sed} -i 's/icons_nuvola22=n/icons_nuvola22=y/' .config
 %{__sed} -i 's/icons_oxygen16=n/icons_oxygen16=y/' .config
 %{__sed} -i 's/icons_tango16=n/icons_tango16=y/' .config
 
@@ -1101,7 +1032,8 @@ chmod u+w aclocal.m4 configure
 %{__automake}
 %configure \
 	--enable-voice \
-	--enable-dist-info="PLD Linux Distribution"
+	--enable-dist-info="PLD Linux Distribution" \
+	--disable-autodownload
 %{__make}
 
 %install
@@ -1709,14 +1641,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/modules/data/weather/icons/*.gif
 %endif
 
-%files theme-icons-crystal16
-%defattr(644,root,root,755)
-%{_datadir}/%{name}/themes/icons/crystal16
-
-%files theme-icons-crystal22
-%defattr(644,root,root,755)
-%{_datadir}/%{name}/themes/icons/crystal22
-
 %files theme-icons-glass16
 %defattr(644,root,root,755)
 %{_datadir}/%{name}/themes/icons/glass16
@@ -1724,14 +1648,6 @@ rm -rf $RPM_BUILD_ROOT
 %files theme-icons-glass22
 %defattr(644,root,root,755)
 %{_datadir}/%{name}/themes/icons/glass22
-
-%files theme-icons-nuvola16
-%defattr(644,root,root,755)
-%{_datadir}/%{name}/themes/icons/nuvola16
-
-%files theme-icons-nuvola22
-%defattr(644,root,root,755)
-%{_datadir}/%{name}/themes/icons/nuvola22
 
 %files theme-icons-oxygen16
 %defattr(644,root,root,755)
