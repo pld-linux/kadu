@@ -47,6 +47,7 @@
 %bcond_without	sms_miastoplusa		# without miastoplusa_sms module support
 %bcond_without	spellchecker		# without spellchecker (Aspell support) invisible
 %bcond_without	tabs			# without tabs support module
+%bcond_without	voice			# without voice support module
 %bcond_without	weather			# without weather check module support
 
 %define		_snap	20080110
@@ -174,7 +175,7 @@ BuildRequires:	automake
 BuildRequires:	kdelibs-devel
 %endif
 %{?with_sound_ao:BuildRequires:	libao-devel}
-BuildRequires:	libgsm-devel
+%{?with_voice:BuildRequires:	libgsm-devel}
 BuildRequires:	libsndfile-devel >= 1.0
 %{?with_sound_nas:BuildRequires:	nas-devel}
 %{?with_encryption:BuildRequires:	openssl-devel >= 0.9.7d}
@@ -669,7 +670,7 @@ Moduł sprawdzający pisownię.
 
 %package module-tabs
 Summary:	Tabbed chat dialog module
-Summary(pl.UTF-8):	Moduł okna rozmowy z zakładkami
+Summary(pl.UTF-8):	Moduł okna rozmowy z kartami
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -677,7 +678,19 @@ Requires:	%{name} = %{version}-%{release}
 Tabbed chat dialog module.
 
 %description module-tabs -l pl.UTF-8
-Moduł okna rozmowy z zakładkami.
+Moduł okna rozmowy z kartami.
+
+%package module-voice
+Summary:	Voice chat support module
+Summary(pl.UTF-8):	Moduł obsługi rozmów głosowych
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-voice
+Voice chat support module.
+
+%description module-voice -l pl.UTF-8
+Moduł obsługi rozmów głosowych.
 
 %package module-weather
 Summary:	Weather module
@@ -1021,6 +1034,11 @@ echo 'MODULE_LIBS_PATH="%{_prefix}/lib"' >> modules/nas_sound/spec
 %else
 %{__sed} -i 's/module_tabs=m/module_tabs=n/' .config
 %endif
+%if %{with voice}
+%{__sed} -i 's/module_voice=n/module_voice=m/' .config
+%else
+%{__sed} -i 's/module_voice=m/module_voice=n/' .config
+%endif
 %if %{with weather}
 %{__sed} -i 's/module_weather=n/module_weather=m/' .config
 %else
@@ -1110,8 +1128,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_modules_data_dir}/history.desc
 %attr(755,root,root) %{_modules_lib_dir}/history.so
 %{_modules_data_dir}/sound.desc
-%{_modules_data_dir}/voice.desc
-%attr(755,root,root) %{_modules_lib_dir}/voice.so
 %{_modules_data_dir}/window_notify.desc
 %attr(755,root,root) %{_modules_lib_dir}/window_notify.so
 %{_modules_data_dir}/x11_docking.desc
@@ -1167,10 +1183,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_modules_data_dir}/translations/sound_fr.qm
 %lang(it) %{_modules_data_dir}/translations/sound_it.qm
 %lang(pl) %{_modules_data_dir}/translations/sound_pl.qm
-%lang(de) %{_modules_data_dir}/translations/voice_de.qm
-%lang(fr) %{_modules_data_dir}/translations/voice_fr.qm
-%lang(it) %{_modules_data_dir}/translations/voice_it.qm
-%lang(pl) %{_modules_data_dir}/translations/voice_pl.qm
 %lang(de) %{_modules_data_dir}/translations/window_notify_de.qm
 %lang(fr) %{_modules_data_dir}/translations/window_notify_fr.qm
 %lang(it) %{_modules_data_dir}/translations/window_notify_it.qm
@@ -1206,7 +1218,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_modules_data_dir}/configuration/notify.ui
 %{_modules_data_dir}/configuration/sms.ui
 %{_modules_data_dir}/configuration/sound.ui
-%{_modules_data_dir}/configuration/voice.ui
 
 %if %{with advanced_userlist}
 %files module-advanced_userlist
@@ -1585,6 +1596,18 @@ rm -rf $RPM_BUILD_ROOT
 %{_modules_data_dir}/configuration/tabs.ui
 %attr(755,root,root) %{_modules_lib_dir}/tabs.so
 %lang(pl) %{_modules_data_dir}/translations/tabs_pl.qm
+%endif
+
+%if %{with voice}
+%files module-voice
+%defattr(644,root,root,755)
+%{_modules_data_dir}/voice.desc
+%{_modules_data_dir}/configuration/voice.ui
+%attr(755,root,root) %{_modules_lib_dir}/voice.so
+%lang(de) %{_modules_data_dir}/translations/voice_de.qm
+%lang(fr) %{_modules_data_dir}/translations/voice_fr.qm
+%lang(it) %{_modules_data_dir}/translations/voice_it.qm
+%lang(pl) %{_modules_data_dir}/translations/voice_pl.qm
 %endif
 
 %if %{with weather}
