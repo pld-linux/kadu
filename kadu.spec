@@ -304,7 +304,7 @@ User list filtering.
 Filtrowanie listy kontaktów.
 
 %package module-firewall
-Summary:	Mudule blocks unknown persons, who wants to start chat
+Summary:	Module blocks unknown persons, who wants to start chat
 Summary(pl.UTF-8):	Moduł blokuje nieznane osoby, chcące zacząć rozmowę
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
@@ -359,7 +359,7 @@ Summary(pl.UTF-8):	Moduł statusu dla amarok
 Group:		Applications/Communications
 Requires:	%{name}-module-mediaplayer = %{version}-%{release}
 Requires:	amarok
-Provides:	kadu-module-amarok > 0.5.0
+Provides:	kadu-module-amarok = %{version}
 Obsoletes:	kadu-module-amarok <= 0.5.0
 
 %description module-mediaplayer-amarok
