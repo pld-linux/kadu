@@ -405,7 +405,7 @@ Summary(pl.UTF-8):	Moduł statusu dla XMMS-a
 Group:		Applications/Communications
 Requires:	%{name}-module-mediaplayer = %{version}-%{release}
 Requires:	xmms
-Provides:	kadu-module-xmms > 0.5.0
+Provides:	kadu-module-xmms = %{version}
 Obsoletes:	kadu-module-xmms <= 0.5.0
 
 %description module-mediaplayer-xmms
