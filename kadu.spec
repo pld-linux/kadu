@@ -5,6 +5,7 @@
 #
 # NOTE:
 # - We use staticly linked libgadu because of no stable release with dcc7
+# - There is no audacious in AC so audacious module for kadu is disabled
 #
 # Conditional build:
 %bcond_with	snap			# build cvs snapshot
@@ -23,7 +24,7 @@
 %bcond_without	mail			# without mail module support
 %bcond_without	mediaplayer		# without media player modules support
 %bcond_without	mediaplayer_amarok	# without amarok player support module
-%bcond_without	mediaplayer_audacious	# without audacious player support module
+%bcond_with	mediaplayer_audacious	# with audacious player support module
 %bcond_without	mediaplayer_falf	# without falf player support module
 %bcond_without	mediaplayer_xmms	# without xmms player support module
 %bcond_without	mime_tex		# without mime_tex module support
@@ -162,6 +163,7 @@ Patch0:		%{name}-ac_am.patch
 Patch1:		%{name}-xmms.patch
 Patch2:		%{name}-mediaplayer-audacious.patch
 Patch3:		%{name}-voice.patch
+Patch4:		%{name}-gcc3.patch
 URL:		http://kadu.net/
 %{?with_sound_alsa:BuildRequires:	alsa-lib-devel}
 %{?with_sound_arts:BuildRequires:	artsc-devel}
@@ -756,6 +758,7 @@ Zestaw ikon Tango16.
 %setup -q -T -b %{?with_snap:10}0 -n %{name}
 %patch0 -p1
 %patch3 -p1
+%patch4 -p1
 
 %if %{with mediaplayer}
 tar xjf %{SOURCE2} -C modules
