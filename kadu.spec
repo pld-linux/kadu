@@ -50,7 +50,7 @@
 %bcond_without	voice			# without voice support module
 %bcond_without	weather			# without weather check module support
 
-%define		_snap	20080110
+%define		_snap	20080126
 %define		_rel	rc1
 
 %define		_agent_mod_ver		0.4.3
@@ -66,10 +66,10 @@
 %define		_mediaplayer_audacious_ver	20071220
 %define		_mime_tex_ver		1.4
 %define		_notify_exec_ver	20070101
-%define		_notify_led_ver		0.14
+%define		_notify_led_ver		0.18
 %define		_notify_mx610_ver	0.3.0
 %define		_notify_osdhints_ver	0.3.2.2
-%define		_notify_pcspeaker_ver	0.6.0.2
+%define		_notify_pcspeaker_ver	0.6.0.3
 %define		_powerkadu_ver		20070129
 %define		_profiles_ver		0.3.1
 %define		_screenshot_ver		20080104
@@ -93,8 +93,8 @@ License:	GPL v2
 Group:		Applications/Communications
 
 %if %{with snap}
-Source100:	http://kadu.net/download/snapshots/2008/%{name}-%{_snap}.tar.bz2
-# Source100-md5:	14a94cb448946f4e66ab6dcd5eccf70c
+Source100:	http://kadu.net/download/snapshots/%{name}-%{_snap}.tar.bz2
+# Source100-md5:	baf172630cad5ba2f8ed7d883bc529c6
 %else
 Source0:	http://kadu.net/download/stable/%{name}-%{version}-%{_rel}.tar.bz2
 # Source0-md5:	2ff4b8fd6ba9b866ed202e15b3524ab7
@@ -115,11 +115,11 @@ Source7:	http://www.kadu.net/~pan_wojtas/iwait4u/download/%{name}-iwait4u-%{_iwa
 Source8:	http://www.kadu.net/download/modules_extra/falf_mediaplayer/falf_mediaplayer-%{_falf_mod_ver}.tar.bz2
 # Source8-md5:	927db40f7136ff86b3e83307b5cec2d9
 Source9:	http://kadu.net/~blysk/led_notify-%{_notify_led_ver}.tar.bz2
-# Source9-md5:	6721b6507077936d87783e3408818d6c
+# Source9-md5:	786a0ee40a3aef03b51e2d89a2bceda5
 Source10:	http://www.kadu.net/~pan_wojtas/osdhints_notify/download/%{name}-osdhints_notify-%{_notify_osdhints_ver}-kadu-0.5.tar.gz
 # Source10-md5:	d3023aba93f8085612b8c532c0e06889
 Source11:	http://www.kadu.net/~dorr/%{name}-pcspeaker-%{_notify_pcspeaker_ver}.tar.bz2
-# Source11-md5:	6f2609f6e9d4c80cee632bc8d0533973
+# Source11-md5:	5fef08c32809bbce6b6bf96659b39df6
 Source12:	http://kadu.net/~patryk/powerkadu/powerkadu-%{_powerkadu_ver}.tar.gz
 # Source12-md5:	c6046e8b49dd9994fbf573faaafddab8
 Source13:	http://www.kadu.net/~dorr/%{name}-profiles-%{_profiles_ver}.tar.bz2
