@@ -50,7 +50,7 @@
 %bcond_without	voice			# without voice support module
 %bcond_without	weather			# without weather check module support
 
-%define		_snap	20080126
+%define		_snap	20080123
 %define		_rel	rc1
 
 %define		_agent_mod_ver		0.4.3
@@ -93,8 +93,8 @@ License:	GPL v2
 Group:		Applications/Communications
 
 %if %{with snap}
-Source100:	http://kadu.net/download/snapshots/%{name}-%{_snap}.tar.bz2
-# Source100-md5:	baf172630cad5ba2f8ed7d883bc529c6
+Source100:	http://kadu.net/download/snapshots/2008/%{name}-%{_snap}.tar.bz2
+# Source100-md5:	bd2c394156840f0e601c110d6baf788f
 %else
 Source0:	http://kadu.net/download/stable/%{name}-%{version}-%{_rel}.tar.bz2
 # Source0-md5:	2ff4b8fd6ba9b866ed202e15b3524ab7
