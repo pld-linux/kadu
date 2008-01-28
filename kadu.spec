@@ -61,7 +61,7 @@
 %define		_filtering_ver		20080108
 %define		_firewall_ver		0.7.3
 %define		_iwait4u_ver		1.3
-%define		_mail_ver		0.3.1
+%define		_mail_ver		0.3.2
 %define		_mediaplayer_mod_ver	20080104
 %define		_mediaplayer_audacious_ver	20071220
 %define		_mime_tex_ver		1.4
@@ -153,7 +153,7 @@ Source30:	http://www.kadu.net/~joi/ao_sound/packages/ao_sound-%{_sound_ao_ver}.t
 Source31:	http://www.kadu.net/download/modules_extra/audacious_mediaplayer/audacious_mediaplayer-%{_mediaplayer_audacious_ver}.tar.bz2
 # Source31-md5:	37cb762e361208c5c571771fb86968b5
 Source32:	http://www.kadu.net/~weagle/mail/mail-%{_mail_ver}.tar.bz2
-# Source32-md5:	1be6fb5c52a37393030dd1c532648ee6
+# Source32-md5:	0526354146a6c46b3670239f820a7caa
 Source33:	http://www.kadu.net/download/additions/%{name}-0.6-theme-oxygen-16.tar.gz
 # Source33-md5:	fb13f2624dec27632c42a6bc2c1a252f
 Source34:	http://www.kadu.net/download/additions/%{name}-0.6-theme-tango-16.tar.gz
