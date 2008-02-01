@@ -50,8 +50,8 @@
 %bcond_without	voice			# without voice support module
 %bcond_without	weather			# without weather check module support
 
-%define		_snap	20080123
-%define		_rel	rc1
+%define		_snap	20080130
+%define		_rel	rc2
 
 %define		_agent_mod_ver		0.4.3
 %define		_amarok_mod_ver		20071220
@@ -68,7 +68,7 @@
 %define		_notify_exec_ver	20070101
 %define		_notify_led_ver		0.18
 %define		_notify_mx610_ver	0.3.0
-%define		_notify_osdhints_ver	0.3.2.2
+%define		_notify_osdhints_ver	0.4.0.1
 %define		_notify_pcspeaker_ver	0.6.0.3
 %define		_powerkadu_ver		20070129
 %define		_profiles_ver		0.3.1
@@ -77,7 +77,7 @@
 %define		_sound_ao_ver		20060424
 %define		_spellchecker_mod_ver	20071230
 %define		_tabs_ver		1.1.3
-%define		_weather_ver		3.12
+%define		_weather_ver		3.13
 %define		_xmms_mod_ver		20071220
 
 %if %{with snap}
@@ -94,10 +94,10 @@ Group:		Applications/Communications
 
 %if %{with snap}
 Source100:	http://kadu.net/download/snapshots/2008/%{name}-%{_snap}.tar.bz2
-# Source100-md5:	bd2c394156840f0e601c110d6baf788f
+# Source100-md5:	ab9055143f90b3385ba4672b32a0196a
 %else
 Source0:	http://kadu.net/download/stable/%{name}-%{version}-%{_rel}.tar.bz2
-# Source0-md5:	2ff4b8fd6ba9b866ed202e15b3524ab7
+# Source0-md5:	d151a780c9907eb17d26703b6b344d7b
 %endif
 Source1:	%{name}.desktop
 Source2:	http://www.kadu.net/download/modules_extra/mediaplayer/mediaplayer-%{_mediaplayer_mod_ver}.tar.bz2
@@ -116,8 +116,8 @@ Source8:	http://www.kadu.net/download/modules_extra/falf_mediaplayer/falf_mediap
 # Source8-md5:	927db40f7136ff86b3e83307b5cec2d9
 Source9:	http://kadu.net/~blysk/led_notify-%{_notify_led_ver}.tar.bz2
 # Source9-md5:	786a0ee40a3aef03b51e2d89a2bceda5
-Source10:	http://www.kadu.net/~pan_wojtas/osdhints_notify/download/%{name}-osdhints_notify-%{_notify_osdhints_ver}-kadu-0.5.tar.gz
-# Source10-md5:	d3023aba93f8085612b8c532c0e06889
+Source10:	http://www.kadu.net/~dorr/%{name}-osdhints_notify-%{_notify_osdhints_ver}.tar.bz2
+# Source10-md5:	066db177e5604731f03b1a72809bfc87
 Source11:	http://www.kadu.net/~dorr/%{name}-pcspeaker-%{_notify_pcspeaker_ver}.tar.bz2
 # Source11-md5:	5fef08c32809bbce6b6bf96659b39df6
 Source12:	http://kadu.net/~patryk/powerkadu/powerkadu-%{_powerkadu_ver}.tar.gz
@@ -135,13 +135,13 @@ Source17:	http://misiek.jah.pl/assets/2007/12/27/agent-%{_agent_mod_ver}.tar.gz
 Source18:	http://kadu.net/~arvenil/tabs/download/%{version}/%{_tabs_ver}/%{name}-tabs-%{_tabs_ver}.tar.bz2
 # Source18-md5:	67ebc59abc770825f19b29a3d5114201
 Source19:	http://kadu.net/~blysk/weather-%{_weather_ver}.tar.bz2
-# Source19-md5:	1ba55b1ca7e38a3e70e6db0028976d65
+# Source19-md5:	41a6edd1356a36e4606e432d0bc856f6
 Source20:	http://www.kadu.net/download/modules_extra/xmms_mediaplayer/xmms_mediaplayer-%{_xmms_mod_ver}.tar.bz2
 # Source20-md5:	3c2bfa4507bea42395d1d3cd02576711
 Source23:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-16.tar.gz
-# Source23-md5:	480c08874b2cb3a23d74b371d7921df0
+# Source23-md5:	d09256b6b2ae801088c1f6e04bbac5f7
 Source24:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-22.tar.gz
-# Source24-md5:	4a3e6a75c314d821c1e5afec2d537e80
+# Source24-md5:	d9f33f1224315771615faaefd2397918
 Source27:	http://www.kadu.net/~dorr/%{name}-firewall-%{_firewall_ver}.tar.bz2
 # Source27-md5:	1ba39f4d934d66a3a5d7fbf38266ff36
 Source28:	http://kadu.net/~patryk/mime_tex/mime_tex-%{_mime_tex_ver}.tar.bz2
