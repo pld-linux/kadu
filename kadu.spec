@@ -58,13 +58,13 @@
 %define		_dcopexport_ver		0.11.3-20071129
 %define		_falf_mod_ver		20071225
 %define		_filedesc_ver		20071221
-%define		_filtering_ver		20080108
-%define		_firewall_ver		0.7.3
+%define		_filtering_ver		20080129
+%define		_firewall_ver		0.7.4
 %define		_iwait4u_ver		1.3
 %define		_mail_ver		0.3.2
-%define		_mediaplayer_mod_ver	20080104
+%define		_mediaplayer_mod_ver	20080129
 %define		_mediaplayer_audacious_ver	20071220
-%define		_mime_tex_ver		1.4
+%define		_mime_tex_ver		1.4.1
 %define		_notify_exec_ver	20070101
 %define		_notify_led_ver		0.18
 %define		_notify_mx610_ver	0.3.0
@@ -78,7 +78,7 @@
 %define		_spellchecker_mod_ver	20071230
 %define		_tabs_ver		1.1.3
 %define		_weather_ver		3.13
-%define		_xmms_mod_ver		20071220
+%define		_xmms_mod_ver		20080116
 
 %if %{with snap}
 %define		year	%(echo %{_snap} |cut -b -4)
@@ -101,7 +101,7 @@ Source0:	http://kadu.net/download/stable/%{name}-%{version}-%{_rel}.tar.bz2
 %endif
 Source1:	%{name}.desktop
 Source2:	http://www.kadu.net/download/modules_extra/mediaplayer/mediaplayer-%{_mediaplayer_mod_ver}.tar.bz2
-# Source2-md5:	bfc19ea0c1db22f2381c528b124866fe
+# Source2-md5:	4ddc8fb18de3bc37604fa9d9854fd0c5
 Source3:	http://www.kadu.net/download/modules_extra/amarok_mediaplayer/amarok_mediaplayer-%{_amarok_mod_ver}.tar.bz2
 # Source3-md5:	51d304e335e814f3d8c0f1654007a7d7
 Source4:	http://alan.umcs.lublin.pl/~pinkworm/dcopexport/dcopexport-%{_dcopexport_ver}-%{version}.tar.bz2
@@ -109,7 +109,7 @@ Source4:	http://alan.umcs.lublin.pl/~pinkworm/dcopexport/dcopexport-%{_dcopexpor
 Source5:	http://www.kadu.net/download/modules_extra/filedesc/filedesc-%{_filedesc_ver}.tar.bz2
 # Source5-md5:	317627cbc5fd09a6a0039cdfccbfbce1
 Source6:	http://www.kadu.net/download/modules_extra/filtering/filtering-%{_filtering_ver}.tar.bz2
-# Source6-md5:	628442e61e1a561d5f4d2b2d95eada0c
+# Source6-md5:	fe2fab7eedba180ebb6e28c273bc18c9
 Source7:	http://www.kadu.net/~pan_wojtas/iwait4u/download/%{name}-iwait4u-%{_iwait4u_ver}.tar.gz
 # Source7-md5:	6233a8ef21d901fc5fb91c0db40d0e32
 Source8:	http://www.kadu.net/download/modules_extra/falf_mediaplayer/falf_mediaplayer-%{_falf_mod_ver}.tar.bz2
@@ -137,15 +137,15 @@ Source18:	http://kadu.net/~arvenil/tabs/download/%{version}/%{_tabs_ver}/%{name}
 Source19:	http://kadu.net/~blysk/weather-%{_weather_ver}.tar.bz2
 # Source19-md5:	41a6edd1356a36e4606e432d0bc856f6
 Source20:	http://www.kadu.net/download/modules_extra/xmms_mediaplayer/xmms_mediaplayer-%{_xmms_mod_ver}.tar.bz2
-# Source20-md5:	3c2bfa4507bea42395d1d3cd02576711
+# Source20-md5:	97dd4c9cd19b69b9ab6d38a20cd37a2e
 Source23:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-16.tar.gz
 # Source23-md5:	d09256b6b2ae801088c1f6e04bbac5f7
 Source24:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-22.tar.gz
 # Source24-md5:	d9f33f1224315771615faaefd2397918
 Source27:	http://www.kadu.net/~dorr/%{name}-firewall-%{_firewall_ver}.tar.bz2
-# Source27-md5:	1ba39f4d934d66a3a5d7fbf38266ff36
+# Source27-md5:	3a316aeebf4eadfc0943349762670e77
 Source28:	http://kadu.net/~patryk/mime_tex/mime_tex-%{_mime_tex_ver}.tar.bz2
-# Source28-md5:	8ed1d465614881a6dfd1da4c12d18587
+# Source28-md5:	2680388f61bd81b0b313b520a6a1f9fd
 Source29:	http://kadu.jarzebski.pl/mx610_notify-%{_notify_mx610_ver}.tar.bz2
 # Source29-md5:	ca25d85581127e4f52b53193b5fcb45e
 Source30:	http://www.kadu.net/~joi/ao_sound/packages/ao_sound-%{_sound_ao_ver}.tar.bz2
@@ -159,9 +159,8 @@ Source33:	http://www.kadu.net/download/additions/%{name}-0.6-theme-oxygen-16.tar
 Source34:	http://www.kadu.net/download/additions/%{name}-0.6-theme-tango-16.tar.gz
 # Source34-md5:	44b4b4a62e0e93275f993d98f573612d
 Patch0:		%{name}-ac_am.patch
-Patch1:		%{name}-xmms.patch
+Patch1:		%{name}-voice.patch
 Patch2:		%{name}-mediaplayer-audacious.patch
-Patch3:		%{name}-voice.patch
 URL:		http://kadu.net/
 %{?with_sound_alsa:BuildRequires:	alsa-lib-devel}
 %{?with_sound_arts:BuildRequires:	artsc-devel}
@@ -755,7 +754,7 @@ Zestaw ikon Tango16.
 %prep
 %setup -q -T -b %{?with_snap:10}0 -n %{name}
 %patch0 -p1
-%patch3 -p1
+%patch1 -p1
 
 %if %{with mediaplayer}
 tar xjf %{SOURCE2} -C modules
@@ -790,6 +789,8 @@ tar xjf %{SOURCE8} -C modules
 %endif
 %if %{with mime_tex}
 tar xjf %{SOURCE28} -C modules
+#fix for 1.4.1 version
+rm -f modules/mime_tex/bin/.gitignore
 %endif
 %if %{with notify_led}
 tar xjf %{SOURCE9} -C modules
@@ -832,7 +833,6 @@ tar xjf %{SOURCE19} -C modules
 %endif
 %if %{with mediaplayer_xmms}
 tar xjf %{SOURCE20} -C modules
-%patch1 -p1
 %endif
 # themes-icons
 tar xzf %{SOURCE23} -C varia/themes/icons
@@ -1387,8 +1387,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_modules_data_dir}/configuration/mime_tex.ui
 %attr(755,root,root) %{_modules_lib_dir}/mime_tex.so
 %dir %{_modules_data_dir}/data/mime_tex
+%dir %{_modules_data_dir}/data/mime_tex/editor_icons
 %dir %{_modules_data_dir}/data/mime_tex/mime_tex_icons
 %{_modules_data_dir}/data/mime_tex/mime_tex_32x32.png
+%{_modules_data_dir}/data/mime_tex/editor_icons/*.png
 %{_modules_data_dir}/data/mime_tex/mime_tex_icons/*.png
 %lang(pl) %{_modules_data_dir}/translations/mime_tex_pl.qm
 %endif
