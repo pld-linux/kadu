@@ -33,6 +33,7 @@
 %bcond_with	notify_osdhints		# with osdhints_notify module
 %bcond_without	notify_pcspeaker	# without pcspeaker_notify module support
 %bcond_without	notify_speech		# without Speech synthesis support
+%bcond_without	notify_water		# without water_notify module support
 %bcond_without	notify_xosd		# without xosd_notify module support
 %bcond_with	powerkadu		# with PowerKadu extensions
 %bcond_without	profiles		# without profiles module support
@@ -50,33 +51,34 @@
 %bcond_without	voice			# without voice support module
 %bcond_without	weather			# without weather check module support
 
-%define		_snap	20080130
-%define		_rel	rc2
+%define		_snap	20080208
+%define		_rel	rc3
 
-%define		_agent_mod_ver		0.4.3
+%define		_agent_mod_ver		0.4.4
 %define		_amarok_mod_ver		20071220
 %define		_dcopexport_ver		0.11.3-20071129
 %define		_falf_mod_ver		20071225
-%define		_filedesc_ver		20071221
-%define		_filtering_ver		20080129
-%define		_firewall_ver		0.7.4
+%define		_filedesc_ver		20080104
+%define		_filtering_ver		20080204
+%define		_firewall_ver		0.7.5
 %define		_iwait4u_ver		1.3
 %define		_mail_ver		0.3.2
-%define		_mediaplayer_mod_ver	20080129
+%define		_mediaplayer_mod_ver	20080210
 %define		_mediaplayer_audacious_ver	20071220
 %define		_mime_tex_ver		1.4.1
 %define		_notify_exec_ver	20070101
 %define		_notify_led_ver		0.18
-%define		_notify_mx610_ver	0.3.0
-%define		_notify_osdhints_ver	0.4.0.1
+%define		_notify_mx610_ver	0.3.1
+%define		_notify_osdhints_ver	0.4.0.2
 %define		_notify_pcspeaker_ver	0.6.0.3
+%define		_notify_water_ver	0.1.1-try2
 %define		_powerkadu_ver		20070129
 %define		_profiles_ver		0.3.1
 %define		_screenshot_ver		20080104
 %define		_sms_miastoplusa_ver	1.3.9
 %define		_sound_ao_ver		20060424
 %define		_spellchecker_mod_ver	20071230
-%define		_tabs_ver		1.1.3
+%define		_tabs_ver		1.1.4
 %define		_weather_ver		3.13
 %define		_xmms_mod_ver		20080116
 
@@ -94,30 +96,30 @@ Group:		Applications/Communications
 
 %if %{with snap}
 Source100:	http://kadu.net/download/snapshots/2008/%{name}-%{_snap}.tar.bz2
-# Source100-md5:	ab9055143f90b3385ba4672b32a0196a
+# Source100-md5:	d158fe973922a66b36a3616b5494fd72
 %else
 Source0:	http://kadu.net/download/stable/%{name}-%{version}-%{_rel}.tar.bz2
-# Source0-md5:	d151a780c9907eb17d26703b6b344d7b
+# Source0-md5:	f943e42c31ca0dec3137472d37344f39
 %endif
 Source1:	%{name}.desktop
 Source2:	http://www.kadu.net/download/modules_extra/mediaplayer/mediaplayer-%{_mediaplayer_mod_ver}.tar.bz2
-# Source2-md5:	4ddc8fb18de3bc37604fa9d9854fd0c5
+# Source2-md5:	f24c85c640fa88a887cab078d8cacfc4
 Source3:	http://www.kadu.net/download/modules_extra/amarok_mediaplayer/amarok_mediaplayer-%{_amarok_mod_ver}.tar.bz2
 # Source3-md5:	51d304e335e814f3d8c0f1654007a7d7
 Source4:	http://alan.umcs.lublin.pl/~pinkworm/dcopexport/dcopexport-%{_dcopexport_ver}-%{version}.tar.bz2
 # Source4-md5:	b36fcfcf4756285f30cbb6c2b6c2a2da
 Source5:	http://www.kadu.net/download/modules_extra/filedesc/filedesc-%{_filedesc_ver}.tar.bz2
-# Source5-md5:	317627cbc5fd09a6a0039cdfccbfbce1
+# Source5-md5:	8d11979fa8a3795f7ab20fbb1fb8bdbb
 Source6:	http://www.kadu.net/download/modules_extra/filtering/filtering-%{_filtering_ver}.tar.bz2
-# Source6-md5:	fe2fab7eedba180ebb6e28c273bc18c9
+# Source6-md5:	89174f20bf9c71d23ca7d3619907737a
 Source7:	http://www.kadu.net/~pan_wojtas/iwait4u/download/%{name}-iwait4u-%{_iwait4u_ver}.tar.gz
 # Source7-md5:	6233a8ef21d901fc5fb91c0db40d0e32
 Source8:	http://www.kadu.net/download/modules_extra/falf_mediaplayer/falf_mediaplayer-%{_falf_mod_ver}.tar.bz2
 # Source8-md5:	927db40f7136ff86b3e83307b5cec2d9
 Source9:	http://kadu.net/~blysk/led_notify-%{_notify_led_ver}.tar.bz2
 # Source9-md5:	786a0ee40a3aef03b51e2d89a2bceda5
-Source10:	http://www.kadu.net/~dorr/%{name}-osdhints_notify-%{_notify_osdhints_ver}.tar.bz2
-# Source10-md5:	066db177e5604731f03b1a72809bfc87
+Source10:	http://www.kadu.net/~dorr/moduly/%{name}-osdhints_notify-%{_notify_osdhints_ver}.tar.bz2
+# Source10-md5:	a38b156ca6368a4ebf9385a17daf4e61
 Source11:	http://www.kadu.net/~dorr/%{name}-pcspeaker-%{_notify_pcspeaker_ver}.tar.bz2
 # Source11-md5:	5fef08c32809bbce6b6bf96659b39df6
 Source12:	http://kadu.net/~patryk/powerkadu/powerkadu-%{_powerkadu_ver}.tar.gz
@@ -130,24 +132,26 @@ Source15:	http://kadu.net/~patryk/miastoplusa_sms/miastoplusa_sms-0.6-%{_sms_mia
 # Source15-md5:	e5c4d5cd94cef40730e281b9a6c9ed37
 Source16:	http://www.kadu.net/download/modules_extra/spellchecker/spellchecker-%{_spellchecker_mod_ver}.tar.bz2
 # Source16-md5:	a46eab2f3d9c31cee13ccf3a441bceec
-Source17:	http://misiek.jah.pl/assets/2007/12/27/agent-%{_agent_mod_ver}.tar.gz
-# Source17-md5:	a9a11dac6098de49d19b80760374fe3b
+Source17:	http://misiek.jah.pl/assets/2008/2/8/agent-%{_agent_mod_ver}.tar.gz
+# Source17-md5:	4401e0e3c509af347cb14a89236301ea
 Source18:	http://kadu.net/~arvenil/tabs/download/%{version}/%{_tabs_ver}/%{name}-tabs-%{_tabs_ver}.tar.bz2
-# Source18-md5:	67ebc59abc770825f19b29a3d5114201
+# Source18-md5:	57e4c970f496ba81495d59d7b96bcdf1
 Source19:	http://kadu.net/~blysk/weather-%{_weather_ver}.tar.bz2
 # Source19-md5:	41a6edd1356a36e4606e432d0bc856f6
 Source20:	http://www.kadu.net/download/modules_extra/xmms_mediaplayer/xmms_mediaplayer-%{_xmms_mod_ver}.tar.bz2
 # Source20-md5:	97dd4c9cd19b69b9ab6d38a20cd37a2e
+Source21:	http://kadu.jarzebski.pl/water_notify-%{_notify_water_ver}.tar.bz2
+# Source21-md5:	10320f9b96366422bbcd7ec76d4e85a1
 Source23:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-16.tar.gz
 # Source23-md5:	d09256b6b2ae801088c1f6e04bbac5f7
 Source24:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-22.tar.gz
 # Source24-md5:	d9f33f1224315771615faaefd2397918
-Source27:	http://www.kadu.net/~dorr/%{name}-firewall-%{_firewall_ver}.tar.bz2
-# Source27-md5:	3a316aeebf4eadfc0943349762670e77
+Source27:	http://www.kadu.net/~dorr/moduly/%{name}-firewall-%{_firewall_ver}.tar.bz2
+# Source27-md5:	3f4bf46efa6345870537b865c8d84ef6
 Source28:	http://kadu.net/~patryk/mime_tex/mime_tex-%{_mime_tex_ver}.tar.bz2
-# Source28-md5:	2680388f61bd81b0b313b520a6a1f9fd
+# Source28-md5:	006912a27420388548000e90326fa5b3
 Source29:	http://kadu.jarzebski.pl/mx610_notify-%{_notify_mx610_ver}.tar.bz2
-# Source29-md5:	ca25d85581127e4f52b53193b5fcb45e
+# Source29-md5:	08bba105d9307bbf1a8e8482529441a4
 Source30:	http://www.kadu.net/~joi/ao_sound/packages/ao_sound-%{_sound_ao_ver}.tar.bz2
 # Source30-md5:	95809d330e48e61f58ec961ddbf0b529
 Source31:	http://www.kadu.net/download/modules_extra/audacious_mediaplayer/audacious_mediaplayer-%{_mediaplayer_audacious_ver}.tar.bz2
@@ -502,6 +506,18 @@ provided by external program "powiedz".
 %description module-notify-speech -l pl.UTF-8
 Moduł obsługi "Głośnego czytania" przez zewnętrzny program "powiedz".
 
+%package module-notify-water
+Summary:	Notification by Water Plugin in Compiz
+Summary(pl.UTF-8):	Moduł powiadamiania pluginem Water w Compiz
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-notify-water
+Notification by Water Plugin in Compiz.
+
+%description module-notify-water -l pl.UTF-8
+Moduł powiadamiania pluginem Water w Compiz.
+
 %package module-notify-xosd
 Summary:	Notification by XOSD module
 Summary(pl.UTF-8):	Moduł powiadamiania o zdarzeniach przy pomocy XOSD
@@ -804,6 +820,9 @@ tar xjf %{SOURCE10} -C modules
 %if %{with notify_pcspeaker}
 tar xjf %{SOURCE11} -C modules
 %endif
+%if %{with notify_water}
+tar xjf %{SOURCE21} -C modules
+%endif
 %if %{with powerkadu}
 tar xzf %{SOURCE12} -C modules
 %endif
@@ -960,6 +979,11 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok_mediaplayer/spec
 %{__sed} -i 's/module_speech=n/module_speech=m/' .config
 %else
 %{__sed} -i 's/module_speech=m/module_speech=n/' .config
+%endif
+%if %{with notify_water}
+%{__sed} -i 's/module_water_notify=n/module_water_notify=m/' .config
+%else
+%{__sed} -i 's/module_water_notify=m/module_water_notify=n/' .config
 %endif
 %if %{with notify_xosd}
 %{__sed} -i 's/module_xosd_notify=n/module_xosd_notify=m/' .config
@@ -1432,6 +1456,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_modules_lib_dir}/osdhints_notify.so
 %lang(pl) %{_modules_data_dir}/translations/osdhints_notify_pl.qm
 %dir %{_modules_data_dir}/data/osdhints_notify
+%{_modules_data_dir}/data/osdhints_notify/Licence
 %{_modules_data_dir}/data/osdhints_notify/*.png
 %endif
 
@@ -1456,6 +1481,15 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_modules_data_dir}/translations/speech_fr.qm
 %lang(it) %{_modules_data_dir}/translations/speech_it.qm
 %lang(pl) %{_modules_data_dir}/translations/speech_pl.qm
+%endif
+
+%if %{with notify_water}
+%files module-notify-water
+%defattr(644,root,root,755)
+%{_modules_data_dir}/water_notify.desc
+%{_modules_data_dir}/configuration/water_notify.ui
+%attr(755,root,root) %{_modules_lib_dir}/water_notify.so
+%lang(pl) %{_modules_data_dir}/translations/water_notify_pl.qm
 %endif
 
 %if %{with notify_xosd}
