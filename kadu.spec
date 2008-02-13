@@ -149,7 +149,7 @@ Source24:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-22.tar.
 Source27:	http://www.kadu.net/~dorr/moduly/%{name}-firewall-%{_firewall_ver}.tar.bz2
 # Source27-md5:	3f4bf46efa6345870537b865c8d84ef6
 Source28:	http://kadu.net/~patryk/mime_tex/mime_tex-%{_mime_tex_ver}.tar.bz2
-# Source28-md5:	006912a27420388548000e90326fa5b3
+# Source28-md5:	d640b2ba650fb5aa0f3502ad7379b14b
 Source29:	http://kadu.jarzebski.pl/mx610_notify-%{_notify_mx610_ver}.tar.bz2
 # Source29-md5:	08bba105d9307bbf1a8e8482529441a4
 Source30:	http://www.kadu.net/~joi/ao_sound/packages/ao_sound-%{_sound_ao_ver}.tar.bz2
