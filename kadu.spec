@@ -69,7 +69,7 @@
 %define		_notify_exec_ver	20070101
 %define		_notify_led_ver		0.18
 %define		_notify_mx610_ver	0.3.1
-%define		_notify_osdhints_ver	0.4.0.2
+%define		_notify_osdhints_ver	0.4.0.3
 %define		_notify_pcspeaker_ver	0.6.0.3
 %define		_notify_water_ver	0.1.1-try2
 %define		_powerkadu_ver		20070129
@@ -119,7 +119,7 @@ Source8:	http://www.kadu.net/download/modules_extra/falf_mediaplayer/falf_mediap
 Source9:	http://kadu.net/~blysk/led_notify-%{_notify_led_ver}.tar.bz2
 # Source9-md5:	786a0ee40a3aef03b51e2d89a2bceda5
 Source10:	http://www.kadu.net/~dorr/moduly/%{name}-osdhints_notify-%{_notify_osdhints_ver}.tar.bz2
-# Source10-md5:	a38b156ca6368a4ebf9385a17daf4e61
+# Source10-md5:	c1c1d2e1b0122684bb23145a71877c00
 Source11:	http://www.kadu.net/~dorr/%{name}-pcspeaker-%{_notify_pcspeaker_ver}.tar.bz2
 # Source11-md5:	5fef08c32809bbce6b6bf96659b39df6
 Source12:	http://kadu.net/~patryk/powerkadu/powerkadu-%{_powerkadu_ver}.tar.gz
@@ -161,7 +161,7 @@ Source32:	http://www.kadu.net/~weagle/mail/mail-%{_mail_ver}.tar.bz2
 Source33:	http://www.kadu.net/download/additions/%{name}-0.6-theme-oxygen-16.tar.gz
 # Source33-md5:	fb13f2624dec27632c42a6bc2c1a252f
 Source34:	http://www.kadu.net/download/additions/%{name}-0.6-theme-tango-16.tar.gz
-# Source34-md5:	44b4b4a62e0e93275f993d98f573612d
+# Source34-md5:	52fe12765b600b9aa44cfc6489dce8eb
 Patch0:		%{name}-ac_am.patch
 Patch1:		%{name}-voice.patch
 Patch2:		%{name}-mediaplayer-audacious.patch
@@ -805,8 +805,6 @@ tar xjf %{SOURCE8} -C modules
 %endif
 %if %{with mime_tex}
 tar xjf %{SOURCE28} -C modules
-#fix for 1.4.1 version
-rm -f modules/mime_tex/bin/.gitignore
 %endif
 %if %{with notify_led}
 tar xjf %{SOURCE9} -C modules
@@ -1456,7 +1454,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_modules_lib_dir}/osdhints_notify.so
 %lang(pl) %{_modules_data_dir}/translations/osdhints_notify_pl.qm
 %dir %{_modules_data_dir}/data/osdhints_notify
-%{_modules_data_dir}/data/osdhints_notify/Licence
+%{_modules_data_dir}/data/osdhints_notify/License
 %{_modules_data_dir}/data/osdhints_notify/*.png
 %endif
 
