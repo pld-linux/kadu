@@ -69,7 +69,7 @@
 %define		_notify_exec_ver	20070101
 %define		_notify_led_ver		0.18
 %define		_notify_mx610_ver	0.3.1
-%define		_notify_osdhints_ver	0.4.0.3
+%define		_notify_osdhints_ver	0.4.0.4
 %define		_notify_pcspeaker_ver	0.6.0.3
 %define		_notify_water_ver	0.1.1-try2
 %define		_powerkadu_ver		20070129
@@ -119,7 +119,7 @@ Source8:	http://www.kadu.net/download/modules_extra/falf_mediaplayer/falf_mediap
 Source9:	http://kadu.net/~blysk/led_notify-%{_notify_led_ver}.tar.bz2
 # Source9-md5:	786a0ee40a3aef03b51e2d89a2bceda5
 Source10:	http://www.kadu.net/~dorr/moduly/%{name}-osdhints_notify-%{_notify_osdhints_ver}.tar.bz2
-# Source10-md5:	c1c1d2e1b0122684bb23145a71877c00
+# Source10-md5:	d7b4e069731ecb2e8bde67b4a1e3211c
 Source11:	http://www.kadu.net/~dorr/%{name}-pcspeaker-%{_notify_pcspeaker_ver}.tar.bz2
 # Source11-md5:	5fef08c32809bbce6b6bf96659b39df6
 Source12:	http://kadu.net/~patryk/powerkadu/powerkadu-%{_powerkadu_ver}.tar.gz
@@ -147,7 +147,7 @@ Source23:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-16.tar.
 Source24:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-22.tar.gz
 # Source24-md5:	d9f33f1224315771615faaefd2397918
 Source27:	http://www.kadu.net/~dorr/moduly/%{name}-firewall-%{_firewall_ver}.tar.bz2
-# Source27-md5:	3f4bf46efa6345870537b865c8d84ef6
+# Source27-md5:	9b0f04b4254b4ff08254b15e59a81be7
 Source28:	http://kadu.net/~patryk/mime_tex/mime_tex-%{_mime_tex_ver}.tar.bz2
 # Source28-md5:	d640b2ba650fb5aa0f3502ad7379b14b
 Source29:	http://kadu.jarzebski.pl/mx610_notify-%{_notify_mx610_ver}.tar.bz2
