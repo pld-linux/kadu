@@ -2,8 +2,6 @@
 # TODO:
 # - Some modules with bcond_with will not work for now, we need to wait for next releases
 # - Add Obsoletes for modules iwait4u, powerkadu, notify_osdhints if they will not be fixed before final 0.6.0
-# - water_notify module doesn't build:
-#   "Please define DBUS_API_SUBJECT_TO_CHANGE to acknowledge your understanding that D-BUS hasn't reached 1.0 and is subject to protocol and API churn."
 #
 # NOTE:
 # - We use staticly linked libgadu because of no stable release with dcc7
@@ -36,7 +34,7 @@
 %bcond_with	notify_osdhints		# with osdhints_notify module
 %bcond_without	notify_pcspeaker	# without pcspeaker_notify module support
 %bcond_without	notify_speech		# without Speech synthesis support
-%bcond_with	notify_water		# with water_notify module support
+%bcond_without	notify_water		# without water_notify module support
 %bcond_without	notify_xosd		# without xosd_notify module support
 %bcond_with	powerkadu		# with PowerKadu extensions
 %bcond_without	profiles		# without profiles module support
@@ -1082,6 +1080,7 @@ chmod u+w aclocal.m4 configure
 %{__autoheader}
 %{__autoconf}
 %{__automake}
+CXXFLAGS="-DDBUS_API_SUBJECT_TO_CHANGE"
 %configure \
 	--%{?with_debug:en}%{!?with_debug:dis}able-debug \
 	--enable-dist-info="PLD Linux Distribution" \
