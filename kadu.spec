@@ -1,7 +1,7 @@
 #
 # TODO:
 # - Some modules with bcond_with will not work for now, we need to wait for next releases
-# - Add Obsoletes for modules iwait4u, powerkadu, notify_osdhints if they will not be fixed before final 0.6.0
+# - Add Obsoletes for modules iwait4u, powerkadu if they will not be fixed before final 0.6.0
 #
 # NOTE:
 # - We use staticly linked libgadu because of no stable release with dcc7
@@ -30,11 +30,12 @@
 %bcond_without	notify_exec		# without exec_notify module support
 %bcond_without	notify_led		# without led_notify module support
 %bcond_without	notify_mx610		# without led_notify module support
-%bcond_with	notify_osdhints		# with osdhints_notify module
+%bcond_without	notify_osdhints		# without osdhints_notify module
 %bcond_without	notify_pcspeaker	# without pcspeaker_notify module support
 %bcond_without	notify_speech		# without Speech synthesis support
 %bcond_without	notify_water		# without water_notify module support
 %bcond_without	notify_xosd		# without xosd_notify module support
+%bcond_without	panelkadu		# without panelkadu module support
 %bcond_with	powerkadu		# with PowerKadu extensions
 %bcond_without	profiles		# without profiles module support
 %bcond_without	sound_alsa		# without ALSA support
@@ -52,7 +53,7 @@
 %bcond_without	weather			# without weather check module support
 
 %define		_snap	20080208
-%define		_rel	rc3
+%define		_rel	rc4
 
 %define		_agent_mod_ver		0.4.4
 %define		_amarok_mod_ver		20071220
@@ -69,9 +70,10 @@
 %define		_notify_exec_ver	20070101
 %define		_notify_led_ver		0.18
 %define		_notify_mx610_ver	0.3.1
-%define		_notify_osdhints_ver	0.4.0.4
+%define		_notify_osdhints_ver	0.4.0.8
 %define		_notify_pcspeaker_ver	0.6.0.3
 %define		_notify_water_ver	0.1.1-try2
+%define		_panelkadu_ver		alpha3
 %define		_powerkadu_ver		20070129
 %define		_profiles_ver		0.3.1
 %define		_screenshot_ver		20080104
@@ -99,7 +101,7 @@ Source100:	http://kadu.net/download/snapshots/2008/%{name}-%{_snap}.tar.bz2
 # Source100-md5:	d158fe973922a66b36a3616b5494fd72
 %else
 Source0:	http://kadu.net/download/stable/%{name}-%{version}-%{_rel}.tar.bz2
-# Source0-md5:	f943e42c31ca0dec3137472d37344f39
+# Source0-md5:	6dbaf616e398f50ee4eaa7b60475ff1e
 %endif
 Source1:	%{name}.desktop
 Source2:	http://www.kadu.net/download/modules_extra/mediaplayer/mediaplayer-%{_mediaplayer_mod_ver}.tar.bz2
@@ -119,12 +121,12 @@ Source8:	http://www.kadu.net/download/modules_extra/falf_mediaplayer/falf_mediap
 Source9:	http://kadu.net/~blysk/led_notify-%{_notify_led_ver}.tar.bz2
 # Source9-md5:	786a0ee40a3aef03b51e2d89a2bceda5
 Source10:	http://www.kadu.net/~dorr/moduly/%{name}-osdhints_notify-%{_notify_osdhints_ver}.tar.bz2
-# Source10-md5:	d7b4e069731ecb2e8bde67b4a1e3211c
-Source11:	http://www.kadu.net/~dorr/%{name}-pcspeaker-%{_notify_pcspeaker_ver}.tar.bz2
-# Source11-md5:	5fef08c32809bbce6b6bf96659b39df6
+# Source10-md5:	ca064370d08cab843e5c33eed61afbf4
+Source11:	http://www.kadu.net/~dorr/moduly/%{name}-pcspeaker-%{_notify_pcspeaker_ver}.tar.bz2
+# Source11-md5:	4a60297c484ef770248b8a7a61da297a
 Source12:	http://kadu.net/~patryk/powerkadu/powerkadu-%{_powerkadu_ver}.tar.gz
 # Source12-md5:	c6046e8b49dd9994fbf573faaafddab8
-Source13:	http://www.kadu.net/~dorr/%{name}-profiles-%{_profiles_ver}.tar.bz2
+Source13:	http://www.kadu.net/~dorr/moduly/%{name}-profiles-%{_profiles_ver}.tar.bz2
 # Source13-md5:	2f5ba8fd20efd00c88d22a9ee014ea7b
 Source14:	http://www.kadu.net/download/modules_extra/screenshot/screenshot-%{_screenshot_ver}.tar.bz2
 # Source14-md5:	47d3d5564b272a186667c1507e19844f
@@ -142,6 +144,8 @@ Source20:	http://www.kadu.net/download/modules_extra/xmms_mediaplayer/xmms_media
 # Source20-md5:	97dd4c9cd19b69b9ab6d38a20cd37a2e
 Source21:	http://kadu.jarzebski.pl/water_notify-%{_notify_water_ver}.tar.bz2
 # Source21-md5:	10320f9b96366422bbcd7ec76d4e85a1
+Source22:	http://www.ultr.pl/kadu/panelkadu-0.6-%{_panelkadu_ver}.tar.gz
+# Source22-md5:	85adfdc9a9792b171d4a4892b2fef621
 Source23:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-16.tar.gz
 # Source23-md5:	d09256b6b2ae801088c1f6e04bbac5f7
 Source24:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-22.tar.gz
@@ -481,16 +485,16 @@ Notification by OSD-like hints.
 Powiadamianie o zdarzeniach przy pomocy dymków typu OSD.
 
 %package module-notify-pcspeaker
-Summary:	PC Speaker module
-Summary(pl.UTF-8):	Moduł do obsługi PC Speakera
+Summary:	Notification by PC Speaker
+Summary(pl.UTF-8):	Powiadamianie o zdarzeniach przy pomocy PC Speakera
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-notify-pcspeaker
-PC Speaker module.
+Notification by PC Speaker.
 
 %description module-notify-pcspeaker -l pl.UTF-8
-Moduł do obsługi PC Speakera.
+Powiadamianie o zdarzeniach przy pomocy PC Speakera.
 
 %package module-notify-speech
 Summary:	Speech synthesis support
@@ -529,6 +533,18 @@ Notification by XOSD module.
 
 %description module-notify-xosd -l pl.UTF-8
 Moduł powiadamiania o zdarzeniach przy pomocy XOSD.
+
+%package module-panelkadu
+Summary:	Module which makes Kadu look and behave like a panel
+Summary(pl.UTF-8):	Moduł sprawiający, że Kadu wygląda i zachowuje się jak panel
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-panelkadu
+Module which makes Kadu look and behave like a panel.
+
+%description module-panelkadu -l pl.UTF-8
+Moduł sprawiający, że Kadu wygląda i zachowuje się jak panel.
 
 %package module-powerkadu
 Summary:	PowerKadu extensions
@@ -821,6 +837,9 @@ tar xjf %{SOURCE11} -C modules
 %if %{with notify_water}
 tar xjf %{SOURCE21} -C modules
 %endif
+%if %{with panelkadu}
+tar xzf %{SOURCE22} -C modules
+%endif
 %if %{with powerkadu}
 tar xzf %{SOURCE12} -C modules
 %endif
@@ -987,6 +1006,11 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok_mediaplayer/spec
 %{__sed} -i 's/module_xosd_notify=n/module_xosd_notify=m/' .config
 %else
 %{__sed} -i 's/module_xosd_notify=m/module_xosd_notify=n/' .config
+%endif
+%if %{with panelkadu}
+%{__sed} -i 's/module_panelkadu=n/module_panelkadu=m/' .config
+%else
+%{__sed} -i 's/module_panelkadu=m/module_panelkadu=n/' .config
 %endif
 %if %{with powerkadu}
 %{__sed} -i 's/module_powerkadu=n/module_powerkadu=m/' .config
@@ -1502,6 +1526,15 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_modules_data_dir}/translations/xosd_notify_fr.qm
 %lang(it) %{_modules_data_dir}/translations/xosd_notify_it.qm
 %lang(pl) %{_modules_data_dir}/translations/xosd_notify_pl.qm
+%endif
+
+%if %{with panelkadu}
+%files module-panelkadu
+%defattr(644,root,root,755)
+%{_modules_data_dir}/panelkadu.desc
+%{_modules_data_dir}/configuration/panelkadu.ui
+%attr(755,root,root) %{_modules_lib_dir}/panelkadu.so
+%lang(pl) %{_modules_data_dir}/translations/panelkadu_pl.qm
 %endif
 
 %if %{with powerkadu}
