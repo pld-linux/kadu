@@ -123,11 +123,11 @@ Source9:	http://kadu.net/~blysk/led_notify-%{_notify_led_ver}.tar.bz2
 Source10:	http://www.kadu.net/~dorr/moduly/%{name}-osdhints_notify-%{_notify_osdhints_ver}.tar.bz2
 # Source10-md5:	ca064370d08cab843e5c33eed61afbf4
 Source11:	http://www.kadu.net/~dorr/moduly/%{name}-pcspeaker-%{_notify_pcspeaker_ver}.tar.bz2
-# Source11-md5:	4a60297c484ef770248b8a7a61da297a
+# Source11-md5:	4b8abfe0c57efabb49ba8c6c71a316f2
 Source12:	http://kadu.net/~patryk/powerkadu/powerkadu-%{_powerkadu_ver}.tar.gz
 # Source12-md5:	c6046e8b49dd9994fbf573faaafddab8
 Source13:	http://www.kadu.net/~dorr/moduly/%{name}-profiles-%{_profiles_ver}.tar.bz2
-# Source13-md5:	2f5ba8fd20efd00c88d22a9ee014ea7b
+# Source13-md5:	d7ec7f808d15308d10ed76d1e3743f37
 Source14:	http://www.kadu.net/download/modules_extra/screenshot/screenshot-%{_screenshot_ver}.tar.bz2
 # Source14-md5:	47d3d5564b272a186667c1507e19844f
 Source15:	http://kadu.net/~patryk/miastoplusa_sms/miastoplusa_sms-0.6-%{_sms_miastoplusa_ver}.tar.gz
