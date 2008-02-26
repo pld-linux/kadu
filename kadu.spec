@@ -1,10 +1,6 @@
 #
 # TODO:
 # - Some modules with bcond_with will not work for now, we need to wait for next releases
-# - Add Obsoletes for modules iwait4u, powerkadu if they will not be fixed before final 0.6.0
-#
-# NOTE:
-# - We use staticly linked libgadu because of no stable release with dcc7
 #
 # Conditional build:
 %bcond_with	snap			# build cvs snapshot
@@ -12,7 +8,11 @@
 
 %bcond_without	advanced_userlist	# without Advanced Userlist support
 %bcond_without	agent			# without agent module support
+%bcond_without	antistring		# without antistring module support
+%bcond_without	auto_hide		# without auto_hide module support
 %bcond_without	autoresponder		# without autoresponder module support
+%bcond_without	anonymous_check		# without anonymous_check module support
+%bcond_without	cenzor			# without cenzor module support
 %bcond_without	dcopexport		# without dcopexport module support
 %bcond_without	docking_desktop		# without desktop_docking module support
 %bcond_without	encryption		# without encryption module support
@@ -36,7 +36,8 @@
 %bcond_without	notify_water		# without water_notify module support
 %bcond_without	notify_xosd		# without xosd_notify module support
 %bcond_without	panelkadu		# without panelkadu module support
-%bcond_with	powerkadu		# with PowerKadu extensions
+%bcond_without	parser_extender		# without parser_extender extensions
+%bcond_without	powerkadu		# without PowerKadu extensions
 %bcond_without	profiles		# without profiles module support
 %bcond_without	sound_alsa		# without ALSA support
 %bcond_without	sound_ao		# without ao support
@@ -48,40 +49,50 @@
 %bcond_without	screenshot		# without screenshot module support
 %bcond_without	sms_miastoplusa		# without miastoplusa_sms module support
 %bcond_without	spellchecker		# without spellchecker (Aspell support) invisible
+%bcond_without	split_messages		# without split_messages module support
 %bcond_without	tabs			# without tabs support module
 %bcond_without	voice			# without voice support module
 %bcond_without	weather			# without weather check module support
+%bcond_without	word_fix		# without word_fix module support
 
 %define		_snap	20080208
 %define		_rel	rc4
+%define		_libgadu_ver		4:1.8.0
 
 %define		_agent_mod_ver		0.4.4
 %define		_amarok_mod_ver		20071220
+%define		_anonymous_check_ver	0.1
+%define		_antistring_ver		0.2
+%define		_auto_hide_ver		0.2
+%define		_cenzor_ver		0.2
 %define		_dcopexport_ver		0.11.3-20071129
 %define		_falf_mod_ver		20071225
 %define		_filedesc_ver		20080104
 %define		_filtering_ver		20080204
 %define		_firewall_ver		0.7.5
 %define		_iwait4u_ver		1.3
-%define		_mail_ver		0.3.2
+%define		_mail_ver		0.3.3
 %define		_mediaplayer_mod_ver	20080210
-%define		_mediaplayer_audacious_ver	20071220
+%define		_mediaplayer_audacious_ver	20080224
 %define		_mime_tex_ver		1.4.1
 %define		_notify_exec_ver	20070101
 %define		_notify_led_ver		0.18
 %define		_notify_mx610_ver	0.3.1
-%define		_notify_osdhints_ver	0.4.0.8
+%define		_notify_osdhints_ver	0.4.0.9
 %define		_notify_pcspeaker_ver	0.6.0.3
 %define		_notify_water_ver	0.1.1-try2
-%define		_panelkadu_ver		alpha3
-%define		_powerkadu_ver		20070129
+%define		_panelkadu_ver		beta2
+%define		_parser_extender_ver	0.1
+%define		_powerkadu_ver		2.0.1
 %define		_profiles_ver		0.3.1
 %define		_screenshot_ver		20080104
 %define		_sms_miastoplusa_ver	1.3.9
 %define		_sound_ao_ver		20060424
 %define		_spellchecker_mod_ver	20071230
+%define		_split_messages_ver	0.1
 %define		_tabs_ver		1.1.4
 %define		_weather_ver		3.13
+%define		_word_fix_ver		0.2
 %define		_xmms_mod_ver		20080116
 
 %if %{with snap}
@@ -121,11 +132,11 @@ Source8:	http://www.kadu.net/download/modules_extra/falf_mediaplayer/falf_mediap
 Source9:	http://kadu.net/~blysk/led_notify-%{_notify_led_ver}.tar.bz2
 # Source9-md5:	786a0ee40a3aef03b51e2d89a2bceda5
 Source10:	http://www.kadu.net/~dorr/moduly/%{name}-osdhints_notify-%{_notify_osdhints_ver}.tar.bz2
-# Source10-md5:	ca064370d08cab843e5c33eed61afbf4
+# Source10-md5:	f515d2dd54d4a5948f691b05d13be70d
 Source11:	http://www.kadu.net/~dorr/moduly/%{name}-pcspeaker-%{_notify_pcspeaker_ver}.tar.bz2
 # Source11-md5:	4b8abfe0c57efabb49ba8c6c71a316f2
-Source12:	http://kadu.net/~patryk/powerkadu/powerkadu-%{_powerkadu_ver}.tar.gz
-# Source12-md5:	c6046e8b49dd9994fbf573faaafddab8
+Source12:	http://www.kadu.net/~dorr/moduly/%{name}-powerkadu-%{_powerkadu_ver}.tar.bz2
+# Source12-md5:	2a0360e80e72cb4dbd1c65eb7bdca2c0
 Source13:	http://www.kadu.net/~dorr/moduly/%{name}-profiles-%{_profiles_ver}.tar.bz2
 # Source13-md5:	d7ec7f808d15308d10ed76d1e3743f37
 Source14:	http://www.kadu.net/download/modules_extra/screenshot/screenshot-%{_screenshot_ver}.tar.bz2
@@ -145,11 +156,13 @@ Source20:	http://www.kadu.net/download/modules_extra/xmms_mediaplayer/xmms_media
 Source21:	http://kadu.jarzebski.pl/water_notify-%{_notify_water_ver}.tar.bz2
 # Source21-md5:	10320f9b96366422bbcd7ec76d4e85a1
 Source22:	http://www.ultr.pl/kadu/panelkadu-0.6-%{_panelkadu_ver}.tar.gz
-# Source22-md5:	85adfdc9a9792b171d4a4892b2fef621
+# Source22-md5:	e909642ea5160421469e407f6e5b13f0
 Source23:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-16.tar.gz
-# Source23-md5:	d09256b6b2ae801088c1f6e04bbac5f7
+# Source23-md5:	74712871bc3edc4a9e612e18138c49b0
 Source24:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-22.tar.gz
-# Source24-md5:	d9f33f1224315771615faaefd2397918
+# Source24-md5:	c3f43652254f877dc991747b2d70f70a
+Source25:	http://www.kadu.net/~dorr/moduly/%{name}-word_fix-%{_word_fix_ver}.tar.bz2
+# Source25-md5:	9b86ca66a96e7ee709f5bd02975a09b8
 Source27:	http://www.kadu.net/~dorr/moduly/%{name}-firewall-%{_firewall_ver}.tar.bz2
 # Source27-md5:	9b0f04b4254b4ff08254b15e59a81be7
 Source28:	http://kadu.net/~patryk/mime_tex/mime_tex-%{_mime_tex_ver}.tar.bz2
@@ -159,16 +172,27 @@ Source29:	http://kadu.jarzebski.pl/mx610_notify-%{_notify_mx610_ver}.tar.bz2
 Source30:	http://www.kadu.net/~joi/ao_sound/packages/ao_sound-%{_sound_ao_ver}.tar.bz2
 # Source30-md5:	95809d330e48e61f58ec961ddbf0b529
 Source31:	http://www.kadu.net/download/modules_extra/audacious_mediaplayer/audacious_mediaplayer-%{_mediaplayer_audacious_ver}.tar.bz2
-# Source31-md5:	37cb762e361208c5c571771fb86968b5
+# Source31-md5:	aa427d5b87fcc48cdd799cf19fe92da1
 Source32:	http://www.kadu.net/~weagle/mail/mail-%{_mail_ver}.tar.bz2
-# Source32-md5:	0526354146a6c46b3670239f820a7caa
+# Source32-md5:	898561b215ac10a99be62fa4e3a50a55
 Source33:	http://www.kadu.net/download/additions/%{name}-0.6-theme-oxygen-16.tar.gz
 # Source33-md5:	fb13f2624dec27632c42a6bc2c1a252f
 Source34:	http://www.kadu.net/download/additions/%{name}-0.6-theme-tango-16.tar.gz
 # Source34-md5:	52fe12765b600b9aa44cfc6489dce8eb
+Source35:	http://www.kadu.net/~dorr/moduly/%{name}-split_messages-%{_split_messages_ver}.tar.bz2
+# Source35-md5:	2c1614033f03a4eb52d6dd8cdab90d92
+Source36:	http://kadu.net/~patryk/anonymous_check/anonymous_check-%{_anonymous_check_ver}.tar.bz2
+# Source36-md5:	6e14284254663dc601e271b12fced7d7
+Source37:	http://www.kadu.net/~dorr/moduly/%{name}-antistring-%{_antistring_ver}.tar.bz2
+# Source37-md5:	4e09f977471ec504ad4acdb52fdb76ec
+Source38:	http://www.kadu.net/~dorr/moduly/%{name}-auto_hide-%{_auto_hide_ver}.tar.bz2
+# Source38-md5:	70ca7666853a9b9696b0d54a9d70512e
+Source39:	http://www.kadu.net/~dorr/moduly/%{name}-cenzor-%{_cenzor_ver}.tar.bz2
+# Source39-md5:	ff759d913d2cc3f160502fbf23993c87
+Source40:	http://www.kadu.net/~dorr/moduly/%{name}-parser_extender-%{_parser_extender_ver}.tar.bz2
+# Source40-md5:	b94e24f182b54d3aadb0c411d6347af0
 Patch0:		%{name}-ac_am.patch
 Patch1:		%{name}-voice.patch
-Patch2:		%{name}-mediaplayer-audacious.patch
 URL:		http://kadu.net/
 %{?with_sound_alsa:BuildRequires:	alsa-lib-devel}
 %{?with_sound_arts:BuildRequires:	artsc-devel}
@@ -182,6 +206,7 @@ BuildRequires:	automake
 BuildRequires:	kdelibs-devel
 %endif
 %{?with_sound_ao:BuildRequires:	libao-devel}
+BuildRequires:	libgadu-devel >= %{_libgadu_ver}
 %{?with_voice:BuildRequires:	libgsm-devel}
 BuildRequires:	libsndfile-devel >= 1.0
 %{?with_sound_nas:BuildRequires:	nas-devel}
@@ -192,6 +217,7 @@ BuildRequires:	sed >= 4.0
 %{?with_mediaplayer_xmms:BuildRequires:	xmms-devel}
 %{?with_notify_xosd:BuildRequires:	xosd-devel}
 Obsoletes:	kadu-module-imiface <= 0.4.3
+Obsoletes:	kadu-module-iwait4u <= 0.5.0
 Obsoletes:	kadu-module-speech <= 0.4.3
 Obsoletes:	kadu-module-tcl_scripting <= 0.4.3
 Obsoletes:	kadu-theme-icons-crystal16 <= 0.5.0
@@ -249,6 +275,55 @@ Autoresponder module.
 
 %description module-autoresponder -l pl.UTF-8
 Moduł autoodpowiedzi.
+
+%package module-anonymous_check
+Summary:	Automatic lookup of an interlocutor in public directory
+Summary(pl.UTF-8):	Automatyczne wyszukiwanie nieznajomych rozmówców w publicznym katalogu
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-anonymous_check
+Automatic lookup of an interlocutor in public directory.
+
+%description module-anonymous_check -l pl.UTF-8
+Automatyczne wyszukiwanie nieznajomych rozmówców w publicznym
+katalogu.
+
+%package module-antistring
+Summary:	Antistring
+Summary(pl.UTF-8):	Ochrona przed łańcuszkami
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-antistring
+Antistring.
+
+%description module-antistring -l pl.UTF-8
+Ochrona przed łańcuszkami.
+
+%package module-auto_hide
+Summary:	Auto hide Kadu window
+Summary(pl.UTF-8):	Automatyczne ukrywanie okna Kadu
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-auto_hide
+Auto hide Kadu window.
+
+%description module-auto_hide -l pl.UTF-8
+Automatyczne ukrywanie okna Kadu.
+
+%package module-cenzor
+Summary:	Censor
+Summary(pl.UTF-8):	Cenzor
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-cenzor
+Censor.
+
+%description module-cenzor -l pl.UTF-8
+Cenzor.
 
 %package module-dcopexport
 Summary:	Kadu DCOP interface
@@ -397,6 +472,7 @@ Summary:	Support falf status
 Summary(pl.UTF-8):	Moduł statusu dla falf
 Group:		Applications/Communications
 Requires:	%{name}-module-mediaplayer = %{version}-%{release}
+Requires:	falf
 
 %description module-mediaplayer-falf
 Module which allows showing in status description information about
@@ -546,21 +622,39 @@ Module which makes Kadu look and behave like a panel.
 %description module-panelkadu -l pl.UTF-8
 Moduł sprawiający, że Kadu wygląda i zachowuje się jak panel.
 
+%package module-parser_extender
+Summary:	Extends Kadu Parser
+Summary(pl.UTF-8):	Rozszerza możliwości Parsera Kadu
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-parser_extender
+Extends Kadu Parser.
+
+%description module-parser_extender -l pl.UTF-8
+Rozszerza możliwości Parsera Kadu.
+
 %package module-powerkadu
 Summary:	PowerKadu extensions
 Summary(pl.UTF-8):	Rozszerzenia PowerKadu
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-module-anonymous_check = %{version}-%{release}
+Requires:	%{name}-module-antistring = %{version}-%{release}
+Requires:	%{name}-module-auto_hide = %{version}-%{release}
+Requires:	%{name}-module-cenzor = %{version}-%{release}
+Requires:	%{name}-module-parser_extender = %{version}-%{release}
+Requires:	%{name}-module-split_messages = %{version}-%{release}
+Requires:	%{name}-module-word_fix = %{version}-%{release}
 
 %description module-powerkadu
 PowerKadu is an add-on to Kadu. It extends Kadu functionality by
-useful functions, like : autostatus, antistring, cenzor, TeX formula,
-words fix, ...
+useful functions, like: autostatus, antistring, cenzor, words fix...
 
 %description module-powerkadu -l pl.UTF-8
 PowerKadu jest dodatkiem do Kadu. Poszerza on możliwości Kadu o
 przydatne funkcje, takie jak: autostatus, antyłańcuszek, cenzor,
-formuły TeX-a, korekta słów...
+korekta słów...
 
 %package module-profiles
 Summary:	Kadu Profiles
@@ -699,6 +793,19 @@ Checker of spelling mistakes.
 %description module-spellchecker -l pl.UTF-8
 Moduł sprawdzający pisownię.
 
+%package module-split_messages
+Summary:	Automaticaly split too long messages in Kadu
+Summary(pl.UTF-8):	Automatyczne dzielenie zbyt długich wiadomości w Kadu
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+Requires:	aspell
+
+%description module-split_messages
+Automaticaly split too long messages in Kadu.
+
+%description module-split_messages -l pl.UTF-8
+Automatyczne dzielenie zbyt długich wiadomości w Kadu.
+
 %package module-tabs
 Summary:	Tabbed chat dialog module
 Summary(pl.UTF-8):	Moduł okna rozmowy z kartami
@@ -734,6 +841,18 @@ Informations of weather in locality of contact.
 
 %description module-weather -l pl.UTF-8
 Informacje o pogodzie w miejscowości danego kontaktu.
+
+%package module-word_fix
+Summary:	Automatic word replacement module for Kadu
+Summary(pl.UTF-8):	Moduł automatycznej zamiany słów dla Kadu
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-word_fix
+Automatic word replacement module for Kadu.
+
+%description module-word_fix -l pl.UTF-8
+Moduł automatycznej zamiany słów dla Kadu.
 
 %package theme-icons-glass16
 Summary:	Glass16 icon theme
@@ -788,15 +907,20 @@ Zestaw ikon Tango16.
 %patch0 -p1
 %patch1 -p1
 
-%if %{with mediaplayer}
-tar xjf %{SOURCE2} -C modules
+%if %{with agent}
+tar xzf %{SOURCE17} -C modules
 %endif
-%if %{with mediaplayer_amarok}
-tar xjf %{SOURCE3} -C modules
+%if %{with anonymous_check}
+tar xjf %{SOURCE36} -C modules
 %endif
-%if %{with mediaplayer_audacious}
-tar xjf %{SOURCE31} -C modules
-%patch2 -p1
+%if %{with antistring}
+tar xjf %{SOURCE37} -C modules
+%endif
+%if %{with auto_hide}
+tar xjf %{SOURCE38} -C modules
+%endif
+%if %{with cenzor}
+tar xjf %{SOURCE39} -C modules
 %endif
 %if %{with dcopexport}
 tar xjf %{SOURCE4} -C modules
@@ -816,8 +940,20 @@ tar xzf %{SOURCE7} -C modules
 %if %{with mail}
 tar xjf %{SOURCE32} -C modules
 %endif
+%if %{with mediaplayer}
+tar xjf %{SOURCE2} -C modules
+%endif
+%if %{with mediaplayer_amarok}
+tar xjf %{SOURCE3} -C modules
+%endif
+%if %{with mediaplayer_audacious}
+tar xjf %{SOURCE31} -C modules
+%endif
 %if %{with mediaplayer_falf}
 tar xjf %{SOURCE8} -C modules
+%endif
+%if %{with mediaplayer_xmms}
+tar xjf %{SOURCE20} -C modules
 %endif
 %if %{with mime_tex}
 tar xjf %{SOURCE28} -C modules
@@ -840,8 +976,11 @@ tar xjf %{SOURCE21} -C modules
 %if %{with panelkadu}
 tar xzf %{SOURCE22} -C modules
 %endif
+%if %{with parser_extender}
+tar xjf %{SOURCE40} -C modules
+%endif
 %if %{with powerkadu}
-tar xzf %{SOURCE12} -C modules
+tar xjf %{SOURCE12} -C modules
 %endif
 %if %{with profiles}
 tar xjf %{SOURCE13} -C modules
@@ -858,8 +997,8 @@ tar xjf %{SOURCE30} -C modules
 %if %{with spellchecker}
 tar xjf %{SOURCE16} -C modules
 %endif
-%if %{with agent}
-tar xzf %{SOURCE17} -C modules
+%if %{with split_messages}
+tar xjf %{SOURCE35} -C modules
 %endif
 %if %{with tabs}
 tar xjf %{SOURCE18} -C modules
@@ -867,8 +1006,8 @@ tar xjf %{SOURCE18} -C modules
 %if %{with weather}
 tar xjf %{SOURCE19} -C modules
 %endif
-%if %{with mediaplayer_xmms}
-tar xjf %{SOURCE20} -C modules
+%if %{with word_fix}
+tar xjf %{SOURCE25} -C modules
 %endif
 # themes-icons
 tar xzf %{SOURCE23} -C varia/themes/icons
@@ -880,20 +1019,40 @@ tar xzf %{SOURCE34} -C varia/themes/icons
 %{__sed} -i 's,dataPath("kadu/modules/*,("%{_modules_data_dir}/,g' kadu-core/modules.cpp
 
 %build
-%if %{with advanced_userlist}
-%{__sed} -i 's/module_advanced_userlist=n/module_advanced_userlist=m/' .config
-%else
-%{__sed} -i 's/module_advanced_userlist=m/module_advanced_userlist=n/' .config
-%endif
 %if %{with agent}
 %{__sed} -i 's/module_agent=n/module_agent=m/' .config
 %else
 %{__sed} -i 's/module_agent=m/module_agent=n/' .config
 %endif
+%if %{with advanced_userlist}
+%{__sed} -i 's/module_advanced_userlist=n/module_advanced_userlist=m/' .config
+%else
+%{__sed} -i 's/module_advanced_userlist=m/module_advanced_userlist=n/' .config
+%endif
+%if %{with anonymous_check}
+%{__sed} -i 's/module_anonymous_check=n/module_anonymous_check=m/' .config
+%else
+%{__sed} -i 's/module_anonymous_check=m/module_anonymous_check=n/' .config
+%endif
+%if %{with antistring}
+%{__sed} -i 's/module_antistring=n/module_antistring=m/' .config
+%else
+%{__sed} -i 's/module_antistring=m/module_antistring=n/' .config
+%endif
 %if %{with autoresponder}
 %{__sed} -i 's/module_autoresponder=n/module_autoresponder=m/' .config
 %else
 %{__sed} -i 's/module_autoresponder=m/module_autoresponder=n/' .config
+%endif
+%if %{with auto_hide}
+%{__sed} -i 's/module_auto_hide=n/module_auto_hide=m/' .config
+%else
+%{__sed} -i 's/module_auto_hide=m/module_auto_hide=n/' .config
+%endif
+%if %{with cenzor}
+%{__sed} -i 's/module_cenzor=n/module_cenzor=m/' .config
+%else
+%{__sed} -i 's/module_cenzor=m/module_cenzor=n/' .config
 %endif
 %if %{with dcopexport}
 %{__sed} -i 's/module_dcopexport=n/module_dcopexport=m/' .config
@@ -1012,10 +1171,13 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok_mediaplayer/spec
 %else
 %{__sed} -i 's/module_panelkadu=m/module_panelkadu=n/' .config
 %endif
+%if %{with parser_extender}
+%{__sed} -i 's/module_parser_extender=n/module_parser_extender=m/' .config
+%else
+%{__sed} -i 's/module_parser_extender=m/module_parser_extender=n/' .config
+%endif
 %if %{with powerkadu}
 %{__sed} -i 's/module_powerkadu=n/module_powerkadu=m/' .config
-# fix for 20070107 version
-rm -f modules/powerkadu/bin/mimetex
 %else
 %{__sed} -i 's/module_powerkadu=m/module_powerkadu=n/' .config
 %endif
@@ -1075,6 +1237,11 @@ echo 'MODULE_LIBS_PATH="%{_prefix}/lib"' >> modules/nas_sound/spec
 %else
 %{__sed} -i 's/module_spellchecker=m/module_spellchecker=n/' .config
 %endif
+%if %{with split_messages}
+%{__sed} -i 's/module_split_messages=n/module_split_messages=m/' .config
+%else
+%{__sed} -i 's/module_split_messages=m/module_split_messages=n/' .config
+%endif
 %if %{with tabs}
 %{__sed} -i 's/module_tabs=n/module_tabs=m/' .config
 %else
@@ -1090,6 +1257,11 @@ echo 'MODULE_LIBS_PATH="%{_prefix}/lib"' >> modules/nas_sound/spec
 %else
 %{__sed} -i 's/module_weather=m/module_weather=n/' .config
 %endif
+%if %{with word_fix}
+%{__sed} -i 's/module_word_fix=n/module_word_fix=m/' .config
+%else
+%{__sed} -i 's/module_word_fix=m/module_word_fix=n/' .config
+%endif
 
 %{__sed} -i 's/icons_glass16=n/icons_glass16=y/' .config
 %{__sed} -i 's/icons_glass22=n/icons_glass22=y/' .config
@@ -1104,6 +1276,7 @@ chmod u+w aclocal.m4 configure
 %configure \
 	--%{?with_debug:en}%{!?with_debug:dis}able-debug \
 	--enable-dist-info="PLD Linux Distribution" \
+	--with-existing-libgadu=%{_prefix} \
 	--disable-autodownload
 %{__make}
 
@@ -1285,6 +1458,34 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{_modules_data_dir}/translations/agent_pl.qm
 %endif
 
+%if %{with antistring}
+%files module-antistring
+%defattr(644,root,root,755)
+%{_modules_data_dir}/antistring.desc
+%{_modules_data_dir}/configuration/antistring.ui
+%attr(755,root,root) %{_modules_lib_dir}/antistring.so
+%lang(pl) %{_modules_data_dir}/translations/antistring_pl.qm
+%dir %{_modules_data_dir}/data/antistring
+%{_modules_data_dir}/data/antistring/ant_conditions.conf
+%endif
+
+%if %{with auto_hide}
+%files module-auto_hide
+%defattr(644,root,root,755)
+%{_modules_data_dir}/auto_hide.desc
+%{_modules_data_dir}/configuration/auto_hide.ui
+%attr(755,root,root) %{_modules_lib_dir}/auto_hide.so
+%lang(pl) %{_modules_data_dir}/translations/auto_hide.qm
+%endif
+
+%if %{with anonymous_check}
+%files module-anonymous_check
+%defattr(644,root,root,755)
+%{_modules_data_dir}/anonymous_check.desc
+%{_modules_data_dir}/configuration/anonymous_check.ui
+%attr(755,root,root) %{_modules_lib_dir}/anonymous_check.so
+%endif
+
 %if %{with autoresponder}
 %files module-autoresponder
 %defattr(644,root,root,755)
@@ -1295,6 +1496,18 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_modules_data_dir}/translations/autoresponder_fr.qm
 %lang(it) %{_modules_data_dir}/translations/autoresponder_it.qm
 %lang(pl) %{_modules_data_dir}/translations/autoresponder_pl.qm
+%endif
+
+%if %{with cenzor}
+%files module-cenzor
+%defattr(644,root,root,755)
+%{_modules_data_dir}/cenzor.desc
+%{_modules_data_dir}/configuration/cenzor.ui
+%attr(755,root,root) %{_modules_lib_dir}/cenzor.so
+%lang(pl) %{_modules_data_dir}/translations/cenzor_pl.qm
+%dir %{_modules_data_dir}/data/cenzor
+%{_modules_data_dir}/data/cenzor/cenzor_words.conf
+%{_modules_data_dir}/data/cenzor/cenzor_words_ok.conf
 %endif
 
 %if %{with encryption}
@@ -1537,15 +1750,28 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{_modules_data_dir}/translations/panelkadu_pl.qm
 %endif
 
+%if %{with parser_extender}
+%files module-parser_extender
+%defattr(644,root,root,755)
+%{_modules_data_dir}/parser_extender.desc
+%{_modules_data_dir}/configuration/parser_extender.ui
+%attr(755,root,root) %{_modules_lib_dir}/parser_extender.so
+%lang(pl) %{_modules_data_dir}/translations/parser_extender.qm
+%endif
+
 %if %{with powerkadu}
 %files module-powerkadu
 %defattr(644,root,root,755)
 %{_modules_data_dir}/powerkadu.desc
 %attr(755,root,root) %{_modules_lib_dir}/powerkadu.so
 %lang(pl) %{_modules_data_dir}/translations/powerkadu_pl.qm
-%dir %{_modules_bin_dir}/powerkadu
-%attr(755,root,root) %{_modules_bin_dir}/powerkadu/mimetex
+%dir %{_modules_data_dir}/data/powerkadu
 %{_modules_data_dir}/data/powerkadu
+%{_modules_data_dir}/data/powerkadu/ChangeLog
+%{_modules_data_dir}/data/powerkadu/powerkadu_32x32.png
+%{_modules_data_dir}/data/powerkadu/powerkadu_big.png
+%lang(en) %{_modules_data_dir}/data/powerkadu/AUTHORS
+%lang(pl) %{_modules_data_dir}/data/powerkadu/AUTHORS.pl
 %endif
 
 %if %{with profiles}
@@ -1656,6 +1882,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_modules_data_dir}/data/spellchecker/config.png
 %endif
 
+%if %{with split_messages}
+%files module-split_messages
+%defattr(644,root,root,755)
+%{_modules_data_dir}/split_messages.desc
+%attr(755,root,root) %{_modules_lib_dir}/split_messages.so
+%endif
+
 %if %{with tabs}
 %files module-tabs
 %defattr(644,root,root,755)
@@ -1688,6 +1921,17 @@ rm -rf $RPM_BUILD_ROOT
 %{_modules_data_dir}/data/weather/*.ini
 %dir %{_modules_data_dir}/data/weather/icons
 %{_modules_data_dir}/data/weather/icons/*.gif
+%endif
+
+%if %{with word_fix}
+%files module-word_fix
+%defattr(644,root,root,755)
+%{_modules_data_dir}/word_fix.desc
+%{_modules_data_dir}/configuration/word_fix.ui
+%attr(755,root,root) %{_modules_lib_dir}/word_fix.so
+%lang(pl) %{_modules_data_dir}/translations/word_fix_pl.qm
+%dir %{_modules_data_dir}/data/word_fix
+%{_modules_data_dir}/data/word_fix/wf_default_list.data
 %endif
 
 %files theme-icons-glass16
