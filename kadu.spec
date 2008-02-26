@@ -89,10 +89,10 @@
 %define		_sms_miastoplusa_ver	1.3.9
 %define		_sound_ao_ver		20060424
 %define		_spellchecker_mod_ver	20071230
-%define		_split_messages_ver	0.1
+%define		_split_messages_ver	0.2
 %define		_tabs_ver		1.1.4
 %define		_weather_ver		3.13
-%define		_word_fix_ver		0.2
+%define		_word_fix_ver		0.3
 %define		_xmms_mod_ver		20080116
 
 %if %{with snap}
@@ -162,7 +162,7 @@ Source23:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-16.tar.
 Source24:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-22.tar.gz
 # Source24-md5:	c3f43652254f877dc991747b2d70f70a
 Source25:	http://www.kadu.net/~dorr/moduly/%{name}-word_fix-%{_word_fix_ver}.tar.bz2
-# Source25-md5:	9b86ca66a96e7ee709f5bd02975a09b8
+# Source25-md5:	691484a500c75079508b240449cb9c90
 Source27:	http://www.kadu.net/~dorr/moduly/%{name}-firewall-%{_firewall_ver}.tar.bz2
 # Source27-md5:	9b0f04b4254b4ff08254b15e59a81be7
 Source28:	http://kadu.net/~patryk/mime_tex/mime_tex-%{_mime_tex_ver}.tar.bz2
@@ -180,7 +180,7 @@ Source33:	http://www.kadu.net/download/additions/%{name}-0.6-theme-oxygen-16.tar
 Source34:	http://www.kadu.net/download/additions/%{name}-0.6-theme-tango-16.tar.gz
 # Source34-md5:	52fe12765b600b9aa44cfc6489dce8eb
 Source35:	http://www.kadu.net/~dorr/moduly/%{name}-split_messages-%{_split_messages_ver}.tar.bz2
-# Source35-md5:	2c1614033f03a4eb52d6dd8cdab90d92
+# Source35-md5:	450cbb8047aa15f4d040da361b660c5d
 Source36:	http://kadu.net/~patryk/anonymous_check/anonymous_check-%{_anonymous_check_ver}.tar.bz2
 # Source36-md5:	6e14284254663dc601e271b12fced7d7
 Source37:	http://www.kadu.net/~dorr/moduly/%{name}-antistring-%{_antistring_ver}.tar.bz2
