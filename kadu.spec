@@ -218,6 +218,7 @@ BuildRequires:	libsndfile-devel >= 1.0
 %{?with_mediaplayer_audacious:BuildRequires:	pkgconfig}
 BuildRequires:	qt-linguist
 BuildRequires:	sed >= 4.0
+%{?with_mediaplayer_audacious:BuildRequires:	which}
 %{?with_mediaplayer_xmms:BuildRequires:	xmms-devel}
 %{?with_notify_xosd:BuildRequires:	xosd-devel}
 Requires:	libgadu >= %{_libgadu_ver}
