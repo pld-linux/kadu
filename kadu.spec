@@ -15,6 +15,7 @@
 %bcond_without	cenzor			# without cenzor module support
 %bcond_without	dcopexport		# without dcopexport module support
 %bcond_without	docking_desktop		# without desktop_docking module support
+%bcond_without	docking_wmaker		# without wmaker_docking module support
 %bcond_without	encryption		# without encryption module support
 %bcond_without	filedesc		# without filedesc module support
 %bcond_without	filtering		# without filtering module support
@@ -61,18 +62,18 @@
 
 %define		_agent_mod_ver		0.4.4
 %define		_amarok_mod_ver		20071220
-%define		_anonymous_check_ver	0.1
+%define		_anonymous_check_ver	0.2
 %define		_antistring_ver		0.2
-%define		_auto_hide_ver		0.2
+%define		_auto_hide_ver		0.2.1
 %define		_cenzor_ver		0.2
 %define		_dcopexport_ver		0.11.3-20071129
 %define		_falf_mod_ver		20071225
 %define		_filedesc_ver		20080104
-%define		_filtering_ver		20080204
+%define		_filtering_ver		20080224
 %define		_firewall_ver		0.7.5
 %define		_iwait4u_ver		1.3
 %define		_mail_ver		0.3.3
-%define		_mediaplayer_mod_ver	20080210
+%define		_mediaplayer_mod_ver	20080224
 %define		_mediaplayer_audacious_ver	20080224
 %define		_mime_tex_ver		1.4.1
 %define		_notify_exec_ver	20070101
@@ -81,8 +82,8 @@
 %define		_notify_osdhints_ver	0.4.0.9
 %define		_notify_pcspeaker_ver	0.6.0.3
 %define		_notify_water_ver	0.1.1-try2
-%define		_panelkadu_ver		beta2
-%define		_parser_extender_ver	0.1
+%define		_panelkadu_ver		beta3
+%define		_parser_extender_ver	0.1.1
 %define		_powerkadu_ver		2.0.1
 %define		_profiles_ver		0.3.1
 %define		_screenshot_ver		20080104
@@ -90,7 +91,7 @@
 %define		_sound_ao_ver		20060424
 %define		_spellchecker_mod_ver	20071230
 %define		_split_messages_ver	0.2
-%define		_tabs_ver		1.1.4
+%define		_tabs_ver		1.1.5
 %define		_weather_ver		3.13
 %define		_word_fix_ver		0.3
 %define		_xmms_mod_ver		20080116
@@ -116,7 +117,7 @@ Source0:	http://kadu.net/download/stable/%{name}-%{version}-%{_rel}.tar.bz2
 %endif
 Source1:	%{name}.desktop
 Source2:	http://www.kadu.net/download/modules_extra/mediaplayer/mediaplayer-%{_mediaplayer_mod_ver}.tar.bz2
-# Source2-md5:	f24c85c640fa88a887cab078d8cacfc4
+# Source2-md5:	8a27d4873e6896d63f7c8193029b24ca
 Source3:	http://www.kadu.net/download/modules_extra/amarok_mediaplayer/amarok_mediaplayer-%{_amarok_mod_ver}.tar.bz2
 # Source3-md5:	51d304e335e814f3d8c0f1654007a7d7
 Source4:	http://alan.umcs.lublin.pl/~pinkworm/dcopexport/dcopexport-%{_dcopexport_ver}-%{version}.tar.bz2
@@ -124,7 +125,7 @@ Source4:	http://alan.umcs.lublin.pl/~pinkworm/dcopexport/dcopexport-%{_dcopexpor
 Source5:	http://www.kadu.net/download/modules_extra/filedesc/filedesc-%{_filedesc_ver}.tar.bz2
 # Source5-md5:	8d11979fa8a3795f7ab20fbb1fb8bdbb
 Source6:	http://www.kadu.net/download/modules_extra/filtering/filtering-%{_filtering_ver}.tar.bz2
-# Source6-md5:	89174f20bf9c71d23ca7d3619907737a
+# Source6-md5:	a672d4ef9ce113196e4689b9141b4aef
 Source7:	http://www.kadu.net/~pan_wojtas/iwait4u/download/%{name}-iwait4u-%{_iwait4u_ver}.tar.gz
 # Source7-md5:	6233a8ef21d901fc5fb91c0db40d0e32
 Source8:	http://www.kadu.net/download/modules_extra/falf_mediaplayer/falf_mediaplayer-%{_falf_mod_ver}.tar.bz2
@@ -148,7 +149,7 @@ Source16:	http://www.kadu.net/download/modules_extra/spellchecker/spellchecker-%
 Source17:	http://misiek.jah.pl/assets/2008/2/8/agent-%{_agent_mod_ver}.tar.gz
 # Source17-md5:	4401e0e3c509af347cb14a89236301ea
 Source18:	http://kadu.net/~arvenil/tabs/download/%{version}/%{_tabs_ver}/%{name}-tabs-%{_tabs_ver}.tar.bz2
-# Source18-md5:	57e4c970f496ba81495d59d7b96bcdf1
+# Source18-md5:	8313ae2aa85b4a6f890203ed5f93fa1b
 Source19:	http://kadu.net/~blysk/weather-%{_weather_ver}.tar.bz2
 # Source19-md5:	41a6edd1356a36e4606e432d0bc856f6
 Source20:	http://www.kadu.net/download/modules_extra/xmms_mediaplayer/xmms_mediaplayer-%{_xmms_mod_ver}.tar.bz2
@@ -156,7 +157,7 @@ Source20:	http://www.kadu.net/download/modules_extra/xmms_mediaplayer/xmms_media
 Source21:	http://kadu.jarzebski.pl/water_notify-%{_notify_water_ver}.tar.bz2
 # Source21-md5:	10320f9b96366422bbcd7ec76d4e85a1
 Source22:	http://www.ultr.pl/kadu/panelkadu-0.6-%{_panelkadu_ver}.tar.gz
-# Source22-md5:	e909642ea5160421469e407f6e5b13f0
+# Source22-md5:	0070c9bb4559ec29bb1195acdc5c5967
 Source23:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-16.tar.gz
 # Source23-md5:	74712871bc3edc4a9e612e18138c49b0
 Source24:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-22.tar.gz
@@ -182,15 +183,18 @@ Source34:	http://www.kadu.net/download/additions/%{name}-0.6-theme-tango-16.tar.
 Source35:	http://www.kadu.net/~dorr/moduly/%{name}-split_messages-%{_split_messages_ver}.tar.bz2
 # Source35-md5:	450cbb8047aa15f4d040da361b660c5d
 Source36:	http://kadu.net/~patryk/anonymous_check/anonymous_check-%{_anonymous_check_ver}.tar.bz2
-# Source36-md5:	6e14284254663dc601e271b12fced7d7
+# Source36-md5:	84abb6515abc9a5aaa5d1f6b1f2b12e0
 Source37:	http://www.kadu.net/~dorr/moduly/%{name}-antistring-%{_antistring_ver}.tar.bz2
 # Source37-md5:	4e09f977471ec504ad4acdb52fdb76ec
 Source38:	http://www.kadu.net/~dorr/moduly/%{name}-auto_hide-%{_auto_hide_ver}.tar.bz2
-# Source38-md5:	70ca7666853a9b9696b0d54a9d70512e
+# Source38-md5:	42dd07b9745aabd1c52bf088ae3b79e9
 Source39:	http://www.kadu.net/~dorr/moduly/%{name}-cenzor-%{_cenzor_ver}.tar.bz2
 # Source39-md5:	ff759d913d2cc3f160502fbf23993c87
 Source40:	http://www.kadu.net/~dorr/moduly/%{name}-parser_extender-%{_parser_extender_ver}.tar.bz2
-# Source40-md5:	b94e24f182b54d3aadb0c411d6347af0
+# Source40-md5:	06378537ce5dace67ce623bcb05b0ea1
+Source41:	http://www.kadu.net/download/additions/kadu-theme-kadu05.tar.gz
+# Source41-md5:	8576eef06700e8a9b7335452423a37a2
+
 Patch0:		%{name}-ac_am.patch
 Patch1:		%{name}-voice.patch
 URL:		http://kadu.net/
@@ -348,6 +352,18 @@ Desktop docking module.
 
 %description module-docking-desktop -l pl.UTF-8
 Moduł dokowania w dowolnym punkcie ekranu.
+
+%package module-docking-wmaker
+Summary:	WindowMaker docking module for Kadu
+Summary(pl.UTF-8):	Moduł dokujący ikonę Kadu w WindowMakerze
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-docking-wmaker
+WindowMaker docking module for Kadu.
+
+%description module-docking-wmaker -l pl.UTF-8
+Moduł dokujący ikonę Kadu w WindowMakerze.
 
 %package module-encryption
 Summary:	Chat encryption module
@@ -878,6 +894,18 @@ Glass22 icon theme.
 %description theme-icons-glass22 -l pl.UTF-8
 Zestaw ikon glass22.
 
+%package theme-icons-kadu05
+Summary:	Kadu05 icon theme
+Summary(pl.UTF-8):	Zestaw ikon Kadu05
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description theme-icons-kadu05
+Kadu05 icon theme.
+
+%description theme-icons-kadu05 -l pl.UTF-8
+Zestaw ikon Kadu05.
+
 %package theme-icons-oxygen16
 Summary:	Oxygen16 icon theme
 Summary(pl.UTF-8):	Zestaw ikon Oxygen16
@@ -1014,6 +1042,7 @@ tar xzf %{SOURCE23} -C varia/themes/icons
 tar xzf %{SOURCE24} -C varia/themes/icons
 tar xzf %{SOURCE33} -C varia/themes/icons
 tar xzf %{SOURCE34} -C varia/themes/icons
+tar xzf %{SOURCE41} -C varia/themes/icons
 
 # Change hard coded path to modules data files
 %{__sed} -i 's,dataPath("kadu/modules/*,("%{_modules_data_dir}/,g' kadu-core/modules.cpp
@@ -1063,6 +1092,11 @@ tar xzf %{SOURCE34} -C varia/themes/icons
 %{__sed} -i 's/module_desktop_docking=n/module_desktop_docking=m/' .config
 %else
 %{__sed} -i 's/module_desktop_docking=m/module_desktop_docking=n/' .config
+%endif
+%if %{with docking_wmaker}
+%{__sed} -i 's/module_wmaker_docking=n/module_wmaker_docking=m/' .config
+%else
+%{__sed} -i 's/module_wmaker_docking=m/module_wmaker_docking=n/' .config
 %endif
 %if %{with encryption}
 %{__sed} -i 's/module_encryption=n/module_encryption=m/' .config
@@ -1265,6 +1299,7 @@ echo 'MODULE_LIBS_PATH="%{_prefix}/lib"' >> modules/nas_sound/spec
 
 %{__sed} -i 's/icons_glass16=n/icons_glass16=y/' .config
 %{__sed} -i 's/icons_glass22=n/icons_glass22=y/' .config
+%{__sed} -i 's/icons_kadu05=n/icons_kadu05=y/' .config
 %{__sed} -i 's/icons_oxygen16=n/icons_oxygen16=y/' .config
 %{__sed} -i 's/icons_tango16=n/icons_tango16=y/' .config
 
@@ -1475,7 +1510,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_modules_data_dir}/auto_hide.desc
 %{_modules_data_dir}/configuration/auto_hide.ui
 %attr(755,root,root) %{_modules_lib_dir}/auto_hide.so
-%lang(pl) %{_modules_data_dir}/translations/auto_hide.qm
+%lang(pl) %{_modules_data_dir}/translations/auto_hide_pl.qm
 %endif
 
 %if %{with anonymous_check}
@@ -1484,6 +1519,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_modules_data_dir}/anonymous_check.desc
 %{_modules_data_dir}/configuration/anonymous_check.ui
 %attr(755,root,root) %{_modules_lib_dir}/anonymous_check.so
+%lang(pl) %{_modules_data_dir}/translations/anonymous_check.qm
 %endif
 
 %if %{with autoresponder}
@@ -1548,6 +1584,13 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_modules_data_dir}/translations/desktop_docking_fr.qm
 %lang(it) %{_modules_data_dir}/translations/desktop_docking_it.qm
 %lang(pl) %{_modules_data_dir}/translations/desktop_docking_pl.qm
+%endif
+
+%if %{with docking_wmaker}
+%files module-docking-wmaker
+%defattr(644,root,root,755)
+%{_modules_data_dir}/wmaker_docking.desc
+%attr(755,root,root) %{_modules_lib_dir}/wmaker_docking.so
 %endif
 
 %if %{with filedesc}
@@ -1756,7 +1799,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_modules_data_dir}/parser_extender.desc
 %{_modules_data_dir}/configuration/parser_extender.ui
 %attr(755,root,root) %{_modules_lib_dir}/parser_extender.so
-%lang(pl) %{_modules_data_dir}/translations/parser_extender.qm
+%lang(pl) %{_modules_data_dir}/translations/parser_extender_pl.qm
 %endif
 
 %if %{with powerkadu}
@@ -1766,7 +1809,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_modules_lib_dir}/powerkadu.so
 %lang(pl) %{_modules_data_dir}/translations/powerkadu_pl.qm
 %dir %{_modules_data_dir}/data/powerkadu
-%{_modules_data_dir}/data/powerkadu
 %{_modules_data_dir}/data/powerkadu/ChangeLog
 %{_modules_data_dir}/data/powerkadu/powerkadu_32x32.png
 %{_modules_data_dir}/data/powerkadu/powerkadu_big.png
@@ -1886,7 +1928,9 @@ rm -rf $RPM_BUILD_ROOT
 %files module-split_messages
 %defattr(644,root,root,755)
 %{_modules_data_dir}/split_messages.desc
+%{_modules_data_dir}/configuration/split_messages.ui
 %attr(755,root,root) %{_modules_lib_dir}/split_messages.so
+%lang(pl) %{_modules_data_dir}/translations/split_messages_pl.qm
 %endif
 
 %if %{with tabs}
@@ -1941,6 +1985,10 @@ rm -rf $RPM_BUILD_ROOT
 %files theme-icons-glass22
 %defattr(644,root,root,755)
 %{_datadir}/%{name}/themes/icons/glass22
+
+%files theme-icons-kadu05
+%defattr(644,root,root,755)
+%{_datadir}/%{name}/themes/icons/kadu05
 
 %files theme-icons-oxygen16
 %defattr(644,root,root,755)
