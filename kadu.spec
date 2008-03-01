@@ -192,7 +192,7 @@ Source39:	http://www.kadu.net/~dorr/moduly/%{name}-cenzor-%{_cenzor_ver}.tar.bz2
 # Source39-md5:	ff759d913d2cc3f160502fbf23993c87
 Source40:	http://www.kadu.net/~dorr/moduly/%{name}-parser_extender-%{_parser_extender_ver}.tar.bz2
 # Source40-md5:	06378537ce5dace67ce623bcb05b0ea1
-Source41:	http://www.kadu.net/download/additions/kadu-theme-kadu05.tar.gz
+Source41:	http://www.kadu.net/download/additions/%{name}-theme-kadu05.tar.gz
 # Source41-md5:	8576eef06700e8a9b7335452423a37a2
 
 Patch0:		%{name}-ac_am.patch
@@ -220,6 +220,7 @@ BuildRequires:	qt-linguist
 BuildRequires:	sed >= 4.0
 %{?with_mediaplayer_xmms:BuildRequires:	xmms-devel}
 %{?with_notify_xosd:BuildRequires:	xosd-devel}
+Requires:	libgadu >= %{_libgadu_ver}
 Obsoletes:	kadu-module-imiface <= 0.4.3
 Obsoletes:	kadu-module-iwait4u <= 0.5.0
 Obsoletes:	kadu-module-speech <= 0.4.3
