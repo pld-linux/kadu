@@ -222,12 +222,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Kadu is client of Gadu-Gadu protocol. It's an IM for Linux and UN*X.
-It's written with use of QT libraries.
+It's written with use of Qt and KDE libraries.
 
 %description -l pl.UTF-8
 Kadu jest klientem protokołu Gadu-Gadu. Inaczej mówiąc, jest
 komunikatorem dla Linuksa (oraz, przy niewielkim wysiłku, innych
-systemów UN*Xowych). Napisano go w oparciu o bibliotekę QT i KDE,
+systemów uniksowych). Napisano go w oparciu o bibliotekę Qt i KDE,
 przeznaczony jest więc dla tego środowiska.
 
 %package module-advanced_userlist
@@ -244,7 +244,7 @@ Moduł zaawansowanej konfiguracji sortowania listy kontaktów.
 
 %package module-agent
 Summary:	Spying module that shows who has you on list
-Summary(pl.UTF-8):	Moduł szpiegowski pokazujący osoby które mają cię na liście
+Summary(pl.UTF-8):	Moduł szpiegowski pokazujący osoby które mają użytkownika na liście
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -252,7 +252,7 @@ Requires:	%{name} = %{version}-%{release}
 Spying module that shows who has you on list.
 
 %description module-agent -l pl.UTF-8
-Moduł szpiegowski pokazujący osoby które mają cię na liście.
+Moduł szpiegowski pokazujący osoby które mają użytkownika na liście.
 
 %package module-autoresponder
 Summary:	Autoresponder module
@@ -268,7 +268,7 @@ Moduł autoodpowiedzi.
 
 %package module-anonymous_check
 Summary:	Automatic lookup of an interlocutor in public directory
-Summary(pl.UTF-8):	Automatyczne wyszukiwanie nieznajomych rozmówców w publicznym katalogu
+Summary(pl.UTF-8):	Automatyczne wyszukiwanie nieznajomych rozmówców w katalogu publicznym
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -276,20 +276,20 @@ Requires:	%{name} = %{version}-%{release}
 Automatic lookup of an interlocutor in public directory.
 
 %description module-anonymous_check -l pl.UTF-8
-Automatyczne wyszukiwanie nieznajomych rozmówców w publicznym
-katalogu.
+Automatyczne wyszukiwanie nieznajomych rozmówców w katalogu
+publicznym.
 
 %package module-antistring
-Summary:	Antistring
-Summary(pl.UTF-8):	Ochrona przed łańcuszkami
+Summary:	Antistring module
+Summary(pl.UTF-8):	Moduł chroniący przed łańcuszkami
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-antistring
-Antistring.
+Antistring module.
 
 %description module-antistring -l pl.UTF-8
-Ochrona przed łańcuszkami.
+Moduł chroniący przed łańcuszkami.
 
 %package module-auto_hide
 Summary:	Auto hide Kadu window
@@ -304,16 +304,16 @@ Auto hide Kadu window.
 Automatyczne ukrywanie okna Kadu.
 
 %package module-cenzor
-Summary:	Censor
-Summary(pl.UTF-8):	Cenzor
+Summary:	Censor module
+Summary(pl.UTF-8):	Moduł cenzora
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-cenzor
-Censor.
+Censor module.
 
 %description module-cenzor -l pl.UTF-8
-Cenzor.
+Moduł cenzora.
 
 %package module-dcopexport
 Summary:	Kadu DCOP interface
@@ -388,13 +388,13 @@ User list filtering.
 Filtrowanie listy kontaktów.
 
 %package module-firewall
-Summary:	Module blocks unknown persons, who wants to start chat
+Summary:	Module to block unknown persons, who wants to start chat
 Summary(pl.UTF-8):	Moduł blokuje nieznane osoby, chcące zacząć rozmowę
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-firewall
-Mudule blocks unknown persons, who wants to start chat.
+Module to block unknown persons, who wants to start chat.
 
 %description module-firewall -l pl.UTF-8
 Moduł blokuje nieznane osoby, chcące zacząć rozmowę.
@@ -409,7 +409,7 @@ Requires:	%{name} = %{version}-%{release}
 iwait4u module inform you, that someone from userlist is active.
 
 %description module-iwait4u -l pl.UTF-8
-Modul iwait4u informuje, że osoba z listy użytkowników jest dostępna.
+Moduł iwait4u informuje, że osoba z listy użytkowników jest dostępna.
 
 %package module-mail
 Summary:	Mail checker module
@@ -434,12 +434,12 @@ Module which allows showing in status description information about
 the song currently played.
 
 %description module-mediaplayer -l pl.UTF-8
-Moduł umożliwiający w opisie statusu pokazywanie informacji o
+Moduł umożliwiający pokazywanie w opisie statusu informacji o
 odgrywanym utworze.
 
 %package module-mediaplayer-amarok
 Summary:	Support amarok status
-Summary(pl.UTF-8):	Moduł statusu dla amarok
+Summary(pl.UTF-8):	Moduł statusu dla odtwarzacza amarok
 Group:		Applications/Communications
 Requires:	%{name}-module-mediaplayer = %{version}-%{release}
 Requires:	amarok
@@ -456,7 +456,7 @@ odgrywanym utworze z odtwarzacza amarok.
 
 %package module-mediaplayer-audacious
 Summary:	Support audacious status
-Summary(pl.UTF-8):	Moduł statusu dla audacious
+Summary(pl.UTF-8):	Moduł statusu dla odtwarzacza audacious
 Group:		Applications/Communications
 Requires:	%{name}-module-mediaplayer = %{version}-%{release}
 Requires:	audacious
@@ -590,7 +590,7 @@ Moduł obsługi "Głośnego czytania" przez zewnętrzny program "powiedz".
 
 %package module-notify-water
 Summary:	Notification by Water Plugin in Compiz
-Summary(pl.UTF-8):	Moduł powiadamiania pluginem Water w Compiz
+Summary(pl.UTF-8):	Moduł powiadamiania wtyczką Water w Compizie
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -598,7 +598,7 @@ Requires:	%{name} = %{version}-%{release}
 Notification by Water Plugin in Compiz.
 
 %description module-notify-water -l pl.UTF-8
-Moduł powiadamiania pluginem Water w Compiz.
+Moduł powiadamiania wtyczką Water w Compizie.
 
 %package module-notify-xosd
 Summary:	Notification by XOSD module
@@ -625,16 +625,16 @@ Module which makes Kadu look and behave like a panel.
 Moduł sprawiający, że Kadu wygląda i zachowuje się jak panel.
 
 %package module-parser_extender
-Summary:	Extends Kadu Parser
-Summary(pl.UTF-8):	Rozszerza możliwości Parsera Kadu
+Summary:	Module to extend Kadu Parser
+Summary(pl.UTF-8):	Moduł rozszerzający możliwości Parsera Kadu
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-parser_extender
-Extends Kadu Parser.
+Module to extend Kadu Parser.
 
 %description module-parser_extender -l pl.UTF-8
-Rozszerza możliwości Parsera Kadu.
+Moduł rozszerzający możliwości Parsera Kadu.
 
 %package module-powerkadu
 Summary:	PowerKadu extensions
@@ -695,8 +695,8 @@ SMS Gateway on Miasto Plusa module.
 Moduł obsługi bramki SMS w Mieście Plusa.
 
 %package module-sound-alsa
-Summary:	Support ALSA sound
-Summary(pl.UTF-8):	Wsparcie dla dźwięku ALSA
+Summary:	ALSA sound support module
+Summary(pl.UTF-8):	Moduł obsługi dźwięku przez ALSA
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	alsa-lib
@@ -720,8 +720,8 @@ Libao sound module.
 Moduł obsługi dźwięku poprzez bibliotekę libao.
 
 %package module-sound-arts
-Summary:	Support aRts sound server
-Summary(pl.UTF-8):	Wsparcie dla serwera dźwięku aRts
+Summary:	aRts sound server support module
+Summary(pl.UTF-8):	Moduł obsługi serwera dźwięku aRts
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	arts
@@ -745,8 +745,8 @@ DSP sound module.
 Moduł obsługi dźwięku przez DSP.
 
 %package module-sound-esd
-Summary:	Support ESD sound server
-Summary(pl.UTF-8):	Wsparcie dla serwera dźwięku ESD
+Summary:	ESD sound server support module
+Summary(pl.UTF-8):	Moduł obsługi serwera dźwięku ESD
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	esound
@@ -770,8 +770,8 @@ External application sound module.
 Moduł obsługi dźwięku przez zewnętrzną aplikację.
 
 %package module-sound-nas
-Summary:	Support Network Audio System
-Summary(pl.UTF-8):	Wsparcie dla sieciowego systemu dźwięku NAS
+Summary:	Network Audio System support module
+Summary(pl.UTF-8):	Moduł obsługi sieciowego systemu dźwięku NAS
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	nas
