@@ -2,6 +2,9 @@
 # TODO:
 # - Some modules with bcond_with will not work for now, we need to wait for next releases
 #
+# NOTE:
+# - There is no audacious in AC so audacious module for kadu is disabled
+#
 # Conditional build:
 %bcond_with	debug			# build with debug
 %bcond_without	advanced_userlist	# without Advanced Userlist support
