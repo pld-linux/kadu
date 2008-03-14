@@ -210,10 +210,10 @@ Obsoletes:	kadu-module-imiface <= 0.4.3
 Obsoletes:	kadu-module-iwait4u <= 0.5.0
 Obsoletes:	kadu-module-speech <= 0.4.3
 Obsoletes:	kadu-module-tcl_scripting <= 0.4.3
-Obsoletes:	kadu-theme-icons-crystal16 <= 0.5.0
-Obsoletes:	kadu-theme-icons-crystal22 <= 0.5.0
-Obsoletes:	kadu-theme-icons-nuvola16 <= 0.5.0
-Obsoletes:	kadu-theme-icons-nuvola22 <= 0.5.0
+Obsoletes:	kadu-theme-icons-crystal16
+Obsoletes:	kadu-theme-icons-crystal22
+Obsoletes:	kadu-theme-icons-nuvola16
+Obsoletes:	kadu-theme-icons-nuvola22
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		modules_lib_dir		%{_libdir}/%{name}/modules
