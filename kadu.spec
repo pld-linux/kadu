@@ -19,6 +19,7 @@
 %bcond_without	filtering		# without filtering module support
 %bcond_without	firewall		# without firewall module support
 %bcond_with	iwait4u			# with iwait4u module support
+%bcond_without	last_seen		# without last_seen module support
 %bcond_without	mail			# without mail module support
 %bcond_without	mediaplayer		# without media player modules support
 %bcond_without	mediaplayer_amarok	# without amarok player support module
@@ -68,25 +69,26 @@
 %define		filtering_ver		20080224
 %define		firewall_ver		0.7.5
 %define		iwait4u_ver		1.3
+%define		last_seen_ver		0.1.1
 %define		mail_ver		0.3.3
 %define		mediaplayer_mod_ver	20080224
 %define		mediaplayer_audacious_ver	20080224
 %define		mime_tex_ver		1.4.1
 %define		notify_led_ver		0.18
 %define		notify_mx610_ver	0.3.1
-%define		notify_osdhints_ver	0.4.0.9
+%define		notify_osdhints_ver	0.4.0.13
 %define		notify_pcspeaker_ver	0.6.0.3
 %define		notify_water_ver	0.1.1-try2
-%define		panelkadu_ver		beta3
+%define		panelkadu_ver		rc1
 %define		parser_extender_ver	0.1.1
-%define		powerkadu_ver		2.0.1
+%define		powerkadu_ver		2.0.2
 %define		profiles_ver		0.3.1
 %define		screenshot_ver		20080104
 %define		sms_miastoplusa_ver	1.3.9
 %define		sound_ao_ver		20060424
 %define		spellchecker_mod_ver	20071230
 %define		split_messages_ver	0.2
-%define		tabs_ver		1.1.5
+%define		tabs_ver		1.1.6
 %define		weather_ver		3.13
 %define		word_fix_ver		0.3
 %define		xmms_mod_ver		20080116
@@ -95,7 +97,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
 Version:	0.6.0
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -118,11 +120,11 @@ Source8:	http://www.kadu.net/download/modules_extra/falf_mediaplayer/falf_mediap
 Source9:	http://kadu.net/~blysk/led_notify-%{notify_led_ver}.tar.bz2
 # Source9-md5:	786a0ee40a3aef03b51e2d89a2bceda5
 Source10:	http://www.kadu.net/~dorr/moduly/%{name}-osdhints_notify-%{notify_osdhints_ver}.tar.bz2
-# Source10-md5:	f515d2dd54d4a5948f691b05d13be70d
+# Source10-md5:	44f9995760cd595134e6d55b1fcc0571
 Source11:	http://www.kadu.net/~dorr/moduly/%{name}-pcspeaker-%{notify_pcspeaker_ver}.tar.bz2
 # Source11-md5:	4b8abfe0c57efabb49ba8c6c71a316f2
 Source12:	http://www.kadu.net/~dorr/moduly/%{name}-powerkadu-%{powerkadu_ver}.tar.bz2
-# Source12-md5:	2a0360e80e72cb4dbd1c65eb7bdca2c0
+# Source12-md5:	204e9374e146dededf759e21fdc29a62
 Source13:	http://www.kadu.net/~dorr/moduly/%{name}-profiles-%{profiles_ver}.tar.bz2
 # Source13-md5:	d7ec7f808d15308d10ed76d1e3743f37
 Source14:	http://www.kadu.net/download/modules_extra/screenshot/screenshot-%{screenshot_ver}.tar.bz2
@@ -134,7 +136,7 @@ Source16:	http://www.kadu.net/download/modules_extra/spellchecker/spellchecker-%
 Source17:	http://misiek.jah.pl/assets/2008/2/8/agent-%{agent_mod_ver}.tar.gz
 # Source17-md5:	4401e0e3c509af347cb14a89236301ea
 Source18:	http://kadu.net/~arvenil/tabs/download/%{version}/%{tabs_ver}/%{name}-tabs-%{tabs_ver}.tar.bz2
-# Source18-md5:	8313ae2aa85b4a6f890203ed5f93fa1b
+# Source18-md5:	38ff221eb3e0ebfdbeed9322ed2d09e2
 Source19:	http://kadu.net/~blysk/weather-%{weather_ver}.tar.bz2
 # Source19-md5:	41a6edd1356a36e4606e432d0bc856f6
 Source20:	http://www.kadu.net/download/modules_extra/xmms_mediaplayer/xmms_mediaplayer-%{xmms_mod_ver}.tar.bz2
@@ -142,7 +144,7 @@ Source20:	http://www.kadu.net/download/modules_extra/xmms_mediaplayer/xmms_media
 Source21:	http://kadu.jarzebski.pl/water_notify-%{notify_water_ver}.tar.bz2
 # Source21-md5:	10320f9b96366422bbcd7ec76d4e85a1
 Source22:	http://www.ultr.pl/kadu/panelkadu-0.6-%{panelkadu_ver}.tar.gz
-# Source22-md5:	0070c9bb4559ec29bb1195acdc5c5967
+# Source22-md5:	d733b3fea55050c200c577077eef1a60
 Source23:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-16.tar.gz
 # Source23-md5:	74712871bc3edc4a9e612e18138c49b0
 Source24:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-22.tar.gz
@@ -179,6 +181,8 @@ Source40:	http://www.kadu.net/~dorr/moduly/%{name}-parser_extender-%{parser_exte
 # Source40-md5:	06378537ce5dace67ce623bcb05b0ea1
 Source41:	http://www.kadu.net/download/additions/%{name}-theme-kadu05.tar.gz
 # Source41-md5:	8576eef06700e8a9b7335452423a37a2
+Source42:	http://www.kadu.net/~dorr/moduly/%{name}-last_seen-%{last_seen_ver}.tar.bz2
+# Source42-md5:	b0b36bef5d8ff28b5fb6de0d1e1e8cc7
 Patch0:		%{name}-ac_am.patch
 Patch1:		%{name}-voice.patch
 URL:		http://kadu.net/
@@ -204,6 +208,7 @@ BuildRequires:	qt-linguist
 BuildRequires:	sed >= 4.0
 %{?with_mediaplayer_audacious:BuildRequires:	which}
 %{?with_mediaplayer_xmms:BuildRequires:	xmms-devel}
+%{?with_panelkadu:BuildRequires:	xorg-lib-libXtst-devel}
 %{?with_notify_xosd:BuildRequires:	xosd-devel}
 Requires:	libgadu >= %{libgadu_ver}
 Obsoletes:	kadu-module-imiface <= 0.4.3
@@ -410,6 +415,18 @@ iwait4u module inform you, that someone from userlist is active.
 
 %description module-iwait4u -l pl.UTF-8
 Moduł iwait4u informuje, że osoba z listy użytkowników jest dostępna.
+
+%package module-last_seen
+Summary:	Last seen
+Summary(pl.UTF-8):	Ostatnio widziani
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-last_seen
+Last seen.
+
+%description module-last_seen -l pl.UTF-8
+Ostatnio widziani.
 
 %package module-mail
 Summary:	Mail checker module
@@ -951,6 +968,9 @@ tar xjf %{SOURCE27} -C modules
 %if %{with iwait4u}
 tar xzf %{SOURCE7} -C modules
 %endif
+%if %{with last_seen}
+tar xjf %{SOURCE42} -C modules
+%endif
 %if %{with mail}
 tar xjf %{SOURCE32} -C modules
 %endif
@@ -1108,6 +1128,11 @@ tar xzf %{SOURCE41} -C varia/themes/icons
 %{__sed} -i 's/module_iwait4u=n/module_iwait4u=m/' .config
 %else
 %{__sed} -i 's/module_iwait4u=m/module_iwait4u=n/' .config
+%endif
+%if %{with last_seen}
+%{__sed} -i 's/last_seen=n/last_seen=m/' .config
+%else
+%{__sed} -i 's/last_seen=m/last_seen=n/' .config
 %endif
 %if %{with mail}
 %{__sed} -i 's/module_mail=n/module_mail=m/' .config
@@ -1617,6 +1642,14 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/iwait4u.desc
 %attr(755,root,root) %{modules_lib_dir}/iwait4u.so
 %lang(pl) %{modules_data_dir}/translations/iwait4u_pl.qm
+%endif
+
+%if %{with last_seen}
+%files module-last_seen
+%defattr(644,root,root,755)
+%{modules_data_dir}/last_seen.desc
+%attr(755,root,root) %{modules_lib_dir}/last_seen.so
+%lang(pl) %{modules_data_dir}/translations/last_seen_pl.qm
 %endif
 
 %if %{with mail}
