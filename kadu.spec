@@ -76,7 +76,7 @@
 %define		mime_tex_ver		1.4.1
 %define		notify_led_ver		0.18
 %define		notify_mx610_ver	0.3.1
-%define		notify_osdhints_ver	0.4.0.13
+%define		notify_osdhints_ver	0.4.1
 %define		notify_pcspeaker_ver	0.6.0.3
 %define		notify_water_ver	0.1.1-try2
 %define		panelkadu_ver		rc1
@@ -120,7 +120,7 @@ Source8:	http://www.kadu.net/download/modules_extra/falf_mediaplayer/falf_mediap
 Source9:	http://kadu.net/~blysk/led_notify-%{notify_led_ver}.tar.bz2
 # Source9-md5:	786a0ee40a3aef03b51e2d89a2bceda5
 Source10:	http://www.kadu.net/~dorr/moduly/%{name}-osdhints_notify-%{notify_osdhints_ver}.tar.bz2
-# Source10-md5:	44f9995760cd595134e6d55b1fcc0571
+# Source10-md5:	8535f59d43144be0bc89947c774e1208
 Source11:	http://www.kadu.net/~dorr/moduly/%{name}-pcspeaker-%{notify_pcspeaker_ver}.tar.bz2
 # Source11-md5:	4b8abfe0c57efabb49ba8c6c71a316f2
 Source12:	http://www.kadu.net/~dorr/moduly/%{name}-powerkadu-%{powerkadu_ver}.tar.bz2
@@ -201,9 +201,11 @@ BuildRequires:	kdelibs-devel
 BuildRequires:	libgadu-devel >= %{libgadu_ver}
 %{?with_voice:BuildRequires:	libgsm-devel}
 BuildRequires:	libsndfile-devel >= 1.0
+BuildRequires:	libstdc++-devel
 %{?with_sound_nas:BuildRequires:	nas-devel}
 %{?with_encryption:BuildRequires:	openssl-devel >= 0.9.7d}
 %{?with_mediaplayer_audacious:BuildRequires:	pkgconfig}
+BuildRequires:	qt-devel
 BuildRequires:	qt-linguist
 BuildRequires:	sed >= 4.0
 %{?with_mediaplayer_audacious:BuildRequires:	which}
