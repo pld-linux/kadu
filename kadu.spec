@@ -9,6 +9,7 @@
 %bcond_without	antistring		# without antistring module support
 %bcond_without	auto_hide		# without auto_hide module support
 %bcond_without	autoresponder		# without autoresponder module support
+%bcond_without	autostatus		# without autostatus module support
 %bcond_without	anonymous_check		# without anonymous_check module support
 %bcond_without	cenzor			# without cenzor module support
 %bcond_without	dcopexport		# without dcopexport module support
@@ -18,6 +19,7 @@
 %bcond_without	filedesc		# without filedesc module support
 %bcond_without	filtering		# without filtering module support
 %bcond_without	firewall		# without firewall module support
+%bcond_without	globalhotkeys		# without globalhotkeys module support
 %bcond_with	iwait4u			# with iwait4u module support
 %bcond_without	last_seen		# without last_seen module support
 %bcond_without	mail			# without mail module support
@@ -62,26 +64,28 @@
 %define		anonymous_check_ver	0.2
 %define		antistring_ver		0.2
 %define		auto_hide_ver		0.2.1
+%define		autostatus_ver		0.1
 %define		cenzor_ver		0.2
 %define		dcopexport_ver		0.11.3-20071129
 %define		falf_mod_ver		20071225
 %define		filedesc_ver		20080104
 %define		filtering_ver		20080224
 %define		firewall_ver		0.7.5
+%define		globalhotkeys_ver	beta3
 %define		iwait4u_ver		1.3
 %define		last_seen_ver		0.1.1
 %define		mail_ver		0.3.3
 %define		mediaplayer_mod_ver	20080224
 %define		mediaplayer_audacious_ver	20080224
-%define		mime_tex_ver		1.4.1
+%define		mime_tex_ver		1.4.1.1
 %define		notify_led_ver		0.18
 %define		notify_mx610_ver	0.3.1
 %define		notify_osdhints_ver	0.4.1
 %define		notify_pcspeaker_ver	0.6.0.3
 %define		notify_water_ver	0.1.1-try2
-%define		panelkadu_ver		rc1
+%define		panelkadu_ver		0.6.0-1
 %define		parser_extender_ver	0.1.1
-%define		powerkadu_ver		2.0.2
+%define		powerkadu_ver		2.0.4
 %define		profiles_ver		0.3.1
 %define		screenshot_ver		20080104
 %define		sms_miastoplusa_ver	1.3.9
@@ -96,18 +100,18 @@
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
-Version:	0.6.0
-Release:	2
+Version:	0.6.0.1
+Release:	1
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
-# Source0-md5:	8f1ee07558c82573d2c6e7ccd05f224f
+# Source0-md5:	e879ac2fedbd659099376133a83dce44
 Source1:	%{name}.desktop
 Source2:	http://www.kadu.net/download/modules_extra/mediaplayer/mediaplayer-%{mediaplayer_mod_ver}.tar.bz2
 # Source2-md5:	8a27d4873e6896d63f7c8193029b24ca
 Source3:	http://www.kadu.net/download/modules_extra/amarok_mediaplayer/amarok_mediaplayer-%{amarok_mod_ver}.tar.bz2
 # Source3-md5:	51d304e335e814f3d8c0f1654007a7d7
-Source4:	http://alan.umcs.lublin.pl/~pinkworm/dcopexport/dcopexport-%{dcopexport_ver}-%{version}.tar.bz2
+Source4:	http://alan.umcs.lublin.pl/~pinkworm/dcopexport/dcopexport-%{dcopexport_ver}-0.6.0.tar.bz2
 # Source4-md5:	b36fcfcf4756285f30cbb6c2b6c2a2da
 Source5:	http://www.kadu.net/download/modules_extra/filedesc/filedesc-%{filedesc_ver}.tar.bz2
 # Source5-md5:	8d11979fa8a3795f7ab20fbb1fb8bdbb
@@ -124,7 +128,7 @@ Source10:	http://www.kadu.net/~dorr/moduly/%{name}-osdhints_notify-%{notify_osdh
 Source11:	http://www.kadu.net/~dorr/moduly/%{name}-pcspeaker-%{notify_pcspeaker_ver}.tar.bz2
 # Source11-md5:	4b8abfe0c57efabb49ba8c6c71a316f2
 Source12:	http://www.kadu.net/~dorr/moduly/%{name}-powerkadu-%{powerkadu_ver}.tar.bz2
-# Source12-md5:	204e9374e146dededf759e21fdc29a62
+# Source12-md5:	6336dbee2fad52bf634f7d92f8c4a6eb
 Source13:	http://www.kadu.net/~dorr/moduly/%{name}-profiles-%{profiles_ver}.tar.bz2
 # Source13-md5:	d7ec7f808d15308d10ed76d1e3743f37
 Source14:	http://www.kadu.net/download/modules_extra/screenshot/screenshot-%{screenshot_ver}.tar.bz2
@@ -136,15 +140,15 @@ Source16:	http://www.kadu.net/download/modules_extra/spellchecker/spellchecker-%
 Source17:	http://misiek.jah.pl/assets/2008/2/8/agent-%{agent_mod_ver}.tar.gz
 # Source17-md5:	4401e0e3c509af347cb14a89236301ea
 Source18:	http://kadu.net/~arvenil/tabs/download/%{version}/%{tabs_ver}/%{name}-tabs-%{tabs_ver}.tar.bz2
-# Source18-md5:	38ff221eb3e0ebfdbeed9322ed2d09e2
+# Source18-md5:	f9a335a99785432499c733f0956f4c1c
 Source19:	http://kadu.net/~blysk/weather-%{weather_ver}.tar.bz2
 # Source19-md5:	41a6edd1356a36e4606e432d0bc856f6
 Source20:	http://www.kadu.net/download/modules_extra/xmms_mediaplayer/xmms_mediaplayer-%{xmms_mod_ver}.tar.bz2
 # Source20-md5:	97dd4c9cd19b69b9ab6d38a20cd37a2e
 Source21:	http://kadu.jarzebski.pl/water_notify-%{notify_water_ver}.tar.bz2
 # Source21-md5:	10320f9b96366422bbcd7ec76d4e85a1
-Source22:	http://www.ultr.pl/kadu/panelkadu-0.6-%{panelkadu_ver}.tar.gz
-# Source22-md5:	d733b3fea55050c200c577077eef1a60
+Source22:	http://www.ultr.pl/kadu/panelkadu-%{panelkadu_ver}.tar.gz
+# Source22-md5:	f520f9e7a295c8ab2ea0dd93d92c0318
 Source23:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-16.tar.gz
 # Source23-md5:	74712871bc3edc4a9e612e18138c49b0
 Source24:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-22.tar.gz
@@ -154,7 +158,7 @@ Source25:	http://www.kadu.net/~dorr/moduly/%{name}-word_fix-%{word_fix_ver}.tar.
 Source27:	http://www.kadu.net/~dorr/moduly/%{name}-firewall-%{firewall_ver}.tar.bz2
 # Source27-md5:	9b0f04b4254b4ff08254b15e59a81be7
 Source28:	http://kadu.net/~patryk/mime_tex/mime_tex-%{mime_tex_ver}.tar.bz2
-# Source28-md5:	d640b2ba650fb5aa0f3502ad7379b14b
+# Source28-md5:	7c407d03d64e2aaa62ae33187650d047
 Source29:	http://kadu.jarzebski.pl/mx610_notify-%{notify_mx610_ver}.tar.bz2
 # Source29-md5:	08bba105d9307bbf1a8e8482529441a4
 Source30:	http://www.kadu.net/~joi/ao_sound/packages/ao_sound-%{sound_ao_ver}.tar.bz2
@@ -183,6 +187,10 @@ Source41:	http://www.kadu.net/download/additions/%{name}-theme-kadu05.tar.gz
 # Source41-md5:	8576eef06700e8a9b7335452423a37a2
 Source42:	http://www.kadu.net/~dorr/moduly/%{name}-last_seen-%{last_seen_ver}.tar.bz2
 # Source42-md5:	b0b36bef5d8ff28b5fb6de0d1e1e8cc7
+Source43:	http://www.kadu.net/~dorr/moduly/%{name}-autostatus-%{autostatus_ver}.tar.bz2
+# Source43-md5:	bd508a350cb26f2925d055a40cd92e89
+Source44:	http://www.ultr.pl/kadu/globalhotkeys-0.6.0-%{globalhotkeys_ver}.tar.gz
+# Source44-md5:	be9676bc007fa42ab21c130daae5f706
 Patch0:		%{name}-ac_am.patch
 Patch1:		%{name}-voice.patch
 URL:		http://kadu.net/
@@ -272,6 +280,18 @@ Autoresponder module.
 
 %description module-autoresponder -l pl.UTF-8
 Moduł autoodpowiedzi.
+
+%package module-autostatus
+Summary:	Automatic status change module
+Summary(pl.UTF-8):	Moduł automatycznych zmian statusu
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-autostatus
+Automatic status change module.
+
+%description module-autostatus -l pl.UTF-8
+Moduł automatycznych zmian statusu.
 
 %package module-anonymous_check
 Summary:	Automatic lookup of an interlocutor in public directory
@@ -405,6 +425,18 @@ Module to block unknown persons, who wants to start chat.
 
 %description module-firewall -l pl.UTF-8
 Moduł blokuje nieznane osoby, chcące zacząć rozmowę.
+
+%package module-globalhotkeys
+Summary:	Adds global hotkeys support to Kadu
+Summary(pl.UTF-8):	Moduł dodający do Kadu obsługę skrótów globalnych
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-globalhotkeys
+Adds global hotkeys support to Kadu.
+
+%description module-globalhotkeys -l pl.UTF-8
+Moduł dodający do Kadu obsługę skrótów globalnych.
 
 %package module-iwait4u
 Summary:	iwait4u module inform you, that someone from userlist is active
@@ -663,6 +695,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-module-anonymous_check = %{version}-%{release}
 Requires:	%{name}-module-antistring = %{version}-%{release}
 Requires:	%{name}-module-auto_hide = %{version}-%{release}
+Requires:	%{name}-module-autostatus = %{version}-%{release}
 Requires:	%{name}-module-cenzor = %{version}-%{release}
 Requires:	%{name}-module-parser_extender = %{version}-%{release}
 Requires:	%{name}-module-split_messages = %{version}-%{release}
@@ -952,6 +985,9 @@ tar xjf %{SOURCE37} -C modules
 %if %{with auto_hide}
 tar xjf %{SOURCE38} -C modules
 %endif
+%if %{with autostatus}
+tar xjf %{SOURCE43} -C modules
+%endif
 %if %{with cenzor}
 tar xjf %{SOURCE39} -C modules
 %endif
@@ -966,6 +1002,9 @@ tar xjf %{SOURCE6} -C modules
 %endif
 %if %{with firewall}
 tar xjf %{SOURCE27} -C modules
+%endif
+%if %{with globalhotkeys}
+tar xzf %{SOURCE44} -C modules
 %endif
 %if %{with iwait4u}
 tar xzf %{SOURCE7} -C modules
@@ -1081,6 +1120,11 @@ tar xzf %{SOURCE41} -C varia/themes/icons
 %else
 %{__sed} -i 's/module_autoresponder=m/module_autoresponder=n/' .config
 %endif
+%if %{with autostatus}
+%{__sed} -i 's/module_autostatus=n/module_autostatus=m/' .config
+%else
+%{__sed} -i 's/module_autostatus=m/module_autostatus=n/' .config
+%endif
 %if %{with auto_hide}
 %{__sed} -i 's/module_auto_hide=n/module_auto_hide=m/' .config
 %else
@@ -1125,6 +1169,11 @@ tar xzf %{SOURCE41} -C varia/themes/icons
 %{__sed} -i 's/module_firewall=n/module_firewall=m/' .config
 %else
 %{__sed} -i 's/module_firewall=m/module_firewall=n/' .config
+%endif
+%if %{with globalhotkeys}
+%{__sed} -i 's/module_globalhotkeys=n/module_globalhotkeys=m/' .config
+%else
+%{__sed} -i 's/module_globalhotkeys=m/module_globalhotkeys=n/' .config
 %endif
 %if %{with iwait4u}
 %{__sed} -i 's/module_iwait4u=n/module_iwait4u=m/' .config
@@ -1547,6 +1596,15 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{modules_data_dir}/translations/autoresponder_pl.qm
 %endif
 
+%if %{with autostatus}
+%files module-autostatus
+%defattr(644,root,root,755)
+%{modules_data_dir}/autostatus.desc
+%{modules_data_dir}/configuration/autostatus.ui
+%attr(755,root,root) %{modules_lib_dir}/autostatus.so
+%lang(pl) %{modules_data_dir}/translations/autostatus_pl.qm
+%endif
+
 %if %{with cenzor}
 %files module-cenzor
 %defattr(644,root,root,755)
@@ -1631,11 +1689,19 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with firewall}
 %files module-firewall
 %defattr(644,root,root,755)
-%{modules_data_dir}/filtering.desc
+%{modules_data_dir}/firewall.desc
 %{modules_data_dir}/configuration/firewall.ui
 %attr(755,root,root) %{modules_lib_dir}/firewall.so
 %lang(pl) %{modules_data_dir}/translations/firewall_pl.qm
-%{modules_data_dir}/firewall.desc
+%endif
+
+%if %{with globalhotkeys}
+%files module-globalhotkeys
+%defattr(644,root,root,755)
+%{modules_data_dir}/globalhotkeys.desc
+%{modules_data_dir}/configuration/globalhotkeys.ui
+%attr(755,root,root) %{modules_lib_dir}/globalhotkeys.so
+%lang(pl) %{modules_data_dir}/translations/globalhotkeys_pl.qm
 %endif
 
 %if %{with iwait4u}
