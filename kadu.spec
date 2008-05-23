@@ -71,7 +71,7 @@
 %define		filedesc_ver		20080104
 %define		filtering_ver		20080224
 %define		firewall_ver		0.7.5
-%define		globalhotkeys_ver	beta3
+%define		globalhotkeys_ver	rc1
 %define		iwait4u_ver		1.3
 %define		last_seen_ver		0.1.1
 %define		mail_ver		0.3.3
@@ -190,7 +190,7 @@ Source42:	http://www.kadu.net/~dorr/moduly/%{name}-last_seen-%{last_seen_ver}.ta
 Source43:	http://www.kadu.net/~dorr/moduly/%{name}-autostatus-%{autostatus_ver}.tar.bz2
 # Source43-md5:	bd508a350cb26f2925d055a40cd92e89
 Source44:	http://www.ultr.pl/kadu/globalhotkeys-0.6.0-%{globalhotkeys_ver}.tar.gz
-# Source44-md5:	be9676bc007fa42ab21c130daae5f706
+# Source44-md5:	66a4e6bcbf8f7eb5a1d49e280d1f8af2
 Patch0:		%{name}-ac_am.patch
 Patch1:		%{name}-voice.patch
 URL:		http://kadu.net/
