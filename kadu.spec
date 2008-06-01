@@ -71,7 +71,7 @@
 %define		filedesc_ver		20080104
 %define		filtering_ver		20080224
 %define		firewall_ver		0.7.5
-%define		globalhotkeys_ver	rc1
+%define		globalhotkeys_ver	0.6.0-1
 %define		iwait4u_ver		1.3
 %define		last_seen_ver		0.1.1
 %define		mail_ver		0.3.3
@@ -101,7 +101,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
 Version:	0.6.0.1
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -189,8 +189,8 @@ Source42:	http://www.kadu.net/~dorr/moduly/%{name}-last_seen-%{last_seen_ver}.ta
 # Source42-md5:	b0b36bef5d8ff28b5fb6de0d1e1e8cc7
 Source43:	http://www.kadu.net/~dorr/moduly/%{name}-autostatus-%{autostatus_ver}.tar.bz2
 # Source43-md5:	bd508a350cb26f2925d055a40cd92e89
-Source44:	http://www.ultr.pl/kadu/globalhotkeys-0.6.0-%{globalhotkeys_ver}.tar.gz
-# Source44-md5:	66a4e6bcbf8f7eb5a1d49e280d1f8af2
+Source44:	http://www.ultr.pl/kadu/globalhotkeys-%{globalhotkeys_ver}.tar.gz
+# Source44-md5:	303e73f3ff2b27d8fe7ca04783155974
 Patch0:		%{name}-ac_am.patch
 Patch1:		%{name}-voice.patch
 URL:		http://kadu.net/
