@@ -107,7 +107,7 @@
 %define		word_fix_ver		0.3
 %define		xmms_mod_ver		20080116
 
-%define		year	%(echo %{_snap} |cut -b -4)
+%define		year	2008
 
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
