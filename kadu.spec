@@ -776,7 +776,8 @@ Requires:	%{name} = %{version}-%{release}
 Kadu module which adds history of sent messages to chat windows.
 
 %description module-senthistory -l pl.UTF-8
-Moduł kadu który dodaje historię wysłanych wiadomości do okien rozmowy.
+Moduł kadu który dodaje historię wysłanych wiadomości do okien
+rozmowy.
 
 %package module-screenshot
 Summary:	Simple ScreenShots module
@@ -2014,7 +2015,9 @@ rm -rf $RPM_BUILD_ROOT
 %files module-senthistory
 %defattr(644,root,root,755)
 %{modules_data_dir}/senthistory.desc
+%{modules_data_dir}/configuration/senthistory.ui
 %attr(755,root,root) %{modules_lib_dir}/senthistory.so
+%lang(pl) %{modules_data_dir}/translations/senthistory_pl.qm
 %endif
 
 %if %{with screenshot}
