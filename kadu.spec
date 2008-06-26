@@ -1,18 +1,20 @@
 #
 # TODO:
 # - Some modules with bcond_with will not work for now, we need to wait for next releases
+# - better descriptions/summaries for all modules (maybe also information in each package that it is a kadu module/theme)
 #
 # Conditional build:
 %bcond_with	snap			# build cvs snapshot
 %bcond_with	debug			# build with debug
-
 %bcond_without	advanced_userlist	# without Advanced Userlist support
 %bcond_without	agent			# without agent module support
 %bcond_without	antistring		# without antistring module support
 %bcond_without	auto_hide		# without auto_hide module support
 %bcond_without	autoresponder		# without autoresponder module support
+%bcond_without	autostatus		# without autostatus module support
 %bcond_without	anonymous_check		# without anonymous_check module support
 %bcond_without	cenzor			# without cenzor module support
+%bcond_with	desc_history		# with dcopexport module support (disabled becouse not in autodownload/not well tested)
 %bcond_without	dcopexport		# without dcopexport module support
 %bcond_without	docking_desktop		# without desktop_docking module support
 %bcond_without	docking_wmaker		# without wmaker_docking module support
@@ -20,7 +22,9 @@
 %bcond_without	filedesc		# without filedesc module support
 %bcond_without	filtering		# without filtering module support
 %bcond_without	firewall		# without firewall module support
-%bcond_with	iwait4u			# with iwait4u module support
+%bcond_without	globalhotkeys		# without globalhotkeys module support
+%bcond_with	iwait4u			# with iwait4u module support (not available for kadu 0.6.x)
+%bcond_without	last_seen		# without last_seen module support
 %bcond_without	mail			# without mail module support
 %bcond_without	mediaplayer		# without media player modules support
 %bcond_without	mediaplayer_amarok	# without amarok player support module
@@ -28,6 +32,7 @@
 %bcond_without	mediaplayer_falf	# without falf player support module
 %bcond_without	mediaplayer_xmms	# without xmms player support module
 %bcond_without	mime_tex		# without mime_tex module support
+%bcond_with	nextinfo		# with nextinfo module support (disabled becouse not in autodownload/not well tested)
 %bcond_without	notify_exec		# without exec_notify module support
 %bcond_without	notify_led		# without led_notify module support
 %bcond_without	notify_mx610		# without led_notify module support
@@ -40,6 +45,7 @@
 %bcond_without	parser_extender		# without parser_extender extensions
 %bcond_without	powerkadu		# without PowerKadu extensions
 %bcond_without	profiles		# without profiles module support
+%bcond_without	senthistory		# without senthistory module support
 %bcond_without	sound_alsa		# without ALSA support
 %bcond_without	sound_ao		# without ao support
 %bcond_without	sound_arts		# without arts sound server support
@@ -56,145 +62,155 @@
 %bcond_without	weather			# without weather check module support
 %bcond_without	word_fix		# without word_fix module support
 
+%define		libgadu_ver		4:1.8.0
 %define		_snap	20080208
-%define		_rel	rc4
-%define		_libgadu_ver		4:1.8.0
+%define		_rel	rc1
 
-%define		_agent_mod_ver		0.4.4
-%define		_amarok_mod_ver		20071220
-%define		_anonymous_check_ver	0.2
-%define		_antistring_ver		0.2
-%define		_auto_hide_ver		0.2.1
-%define		_cenzor_ver		0.2
-%define		_dcopexport_ver		0.11.3-20071129
-%define		_falf_mod_ver		20071225
-%define		_filedesc_ver		20080104
-%define		_filtering_ver		20080224
-%define		_firewall_ver		0.7.5
-%define		_iwait4u_ver		1.3
-%define		_mail_ver		0.3.3
-%define		_mediaplayer_mod_ver	20080224
-%define		_mediaplayer_audacious_ver	20080224
-%define		_mime_tex_ver		1.4.1
-%define		_notify_exec_ver	20070101
-%define		_notify_led_ver		0.18
-%define		_notify_mx610_ver	0.3.1
-%define		_notify_osdhints_ver	0.4.0.9
-%define		_notify_pcspeaker_ver	0.6.0.3
-%define		_notify_water_ver	0.1.1-try2
-%define		_panelkadu_ver		beta3
-%define		_parser_extender_ver	0.1.1
-%define		_powerkadu_ver		2.0.1
-%define		_profiles_ver		0.3.1
-%define		_screenshot_ver		20080104
-%define		_sms_miastoplusa_ver	1.3.9
-%define		_sound_ao_ver		20060424
-%define		_spellchecker_mod_ver	20071230
-%define		_split_messages_ver	0.2
-%define		_tabs_ver		1.1.5
-%define		_weather_ver		3.13
-%define		_word_fix_ver		0.3
-%define		_xmms_mod_ver		20080116
+%define		agent_mod_ver		0.4.4
+%define		amarok_mod_ver		20071220
+%define		anonymous_check_ver	0.2
+%define		antistring_ver		0.2
+%define		auto_hide_ver		0.2.1
+%define		autostatus_ver		0.1
+%define		cenzor_ver		0.2
+%define		desc_history_ver	1.1
+%define		dcopexport_ver		0.11.3-20071129
+%define		falf_mod_ver		20071225
+%define		filedesc_ver		20080104
+%define		filtering_ver		20080224
+%define		firewall_ver		0.7.5.1
+%define		globalhotkeys_ver	0.6.0-3
+%define		iwait4u_ver		1.3
+%define		last_seen_ver		0.1.1
+%define		mail_ver		0.3.3
+%define		mediaplayer_mod_ver	20080224
+%define		mediaplayer_audacious_ver	20080423
+%define		mime_tex_ver		1.4.1.1
+%define		nextinfo_ver		0.6.0-rc3
+%define		notify_led_ver		0.18
+%define		notify_mx610_ver	0.3.1
+%define		notify_osdhints_ver	0.4.3
+%define		notify_pcspeaker_ver	0.6.0.3
+%define		notify_water_ver	0.1.1-try2
+%define		panelkadu_ver		0.6.0-1
+%define		parser_extender_ver	0.1.1
+%define		powerkadu_ver		2.0.4
+%define		profiles_ver		0.3.1
+%define		senthistory_ver		0.6.0-rc1
+%define		screenshot_ver		20080104
+%define		sms_miastoplusa_ver	1.3.9
+%define		sound_ao_ver		20060424
+%define		spellchecker_mod_ver	20071230
+%define		split_messages_ver	0.2
+%define		tabs_ver		1.1.6
+%define		weather_ver		3.13
+%define		word_fix_ver		0.3
+%define		xmms_mod_ver		20080116
 
-%if %{with snap}
 %define		year	%(echo %{_snap} |cut -b -4)
-%endif
 
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
-Version:	0.6.0
+Version:	0.6.0.2
 Release:	0.%{?with_snap:%{_snap}}%{!?with_snap:%{_rel}}.1
 License:	GPL v2
 Group:		Applications/Communications
-
-%if %{with snap}
-Source100:	http://kadu.net/download/snapshots/2008/%{name}-%{_snap}.tar.bz2
-# Source100-md5:	d158fe973922a66b36a3616b5494fd72
-%else
 Source0:	http://kadu.net/download/stable/%{name}-%{version}-%{_rel}.tar.bz2
-# Source0-md5:	6dbaf616e398f50ee4eaa7b60475ff1e
-%endif
+# Source0-md5:	1f7797fe114069779ed924563ce1e1e9
+Source100:	http://kadu.net/download/snapshots/%{year}/%{name}-%{_snap}.tar.bz2
+# Source100-md5:	d158fe973922a66b36a3616b5494fd72
 Source1:	%{name}.desktop
-Source2:	http://www.kadu.net/download/modules_extra/mediaplayer/mediaplayer-%{_mediaplayer_mod_ver}.tar.bz2
+Source2:	http://www.kadu.net/download/modules_extra/mediaplayer/mediaplayer-%{mediaplayer_mod_ver}.tar.bz2
 # Source2-md5:	8a27d4873e6896d63f7c8193029b24ca
-Source3:	http://www.kadu.net/download/modules_extra/amarok_mediaplayer/amarok_mediaplayer-%{_amarok_mod_ver}.tar.bz2
+Source3:	http://www.kadu.net/download/modules_extra/amarok_mediaplayer/amarok_mediaplayer-%{amarok_mod_ver}.tar.bz2
 # Source3-md5:	51d304e335e814f3d8c0f1654007a7d7
-Source4:	http://alan.umcs.lublin.pl/~pinkworm/dcopexport/dcopexport-%{_dcopexport_ver}-%{version}.tar.bz2
+Source4:	http://alan.umcs.lublin.pl/~pinkworm/dcopexport/dcopexport-%{dcopexport_ver}-0.6.0.tar.bz2
 # Source4-md5:	b36fcfcf4756285f30cbb6c2b6c2a2da
-Source5:	http://www.kadu.net/download/modules_extra/filedesc/filedesc-%{_filedesc_ver}.tar.bz2
+Source5:	http://www.kadu.net/download/modules_extra/filedesc/filedesc-%{filedesc_ver}.tar.bz2
 # Source5-md5:	8d11979fa8a3795f7ab20fbb1fb8bdbb
-Source6:	http://www.kadu.net/download/modules_extra/filtering/filtering-%{_filtering_ver}.tar.bz2
+Source6:	http://www.kadu.net/download/modules_extra/filtering/filtering-%{filtering_ver}.tar.bz2
 # Source6-md5:	a672d4ef9ce113196e4689b9141b4aef
-Source7:	http://www.kadu.net/~pan_wojtas/iwait4u/download/%{name}-iwait4u-%{_iwait4u_ver}.tar.gz
+Source7:	http://www.kadu.net/~pan_wojtas/iwait4u/download/%{name}-iwait4u-%{iwait4u_ver}.tar.gz
 # Source7-md5:	6233a8ef21d901fc5fb91c0db40d0e32
-Source8:	http://www.kadu.net/download/modules_extra/falf_mediaplayer/falf_mediaplayer-%{_falf_mod_ver}.tar.bz2
+Source8:	http://www.kadu.net/download/modules_extra/falf_mediaplayer/falf_mediaplayer-%{falf_mod_ver}.tar.bz2
 # Source8-md5:	927db40f7136ff86b3e83307b5cec2d9
-Source9:	http://kadu.net/~blysk/led_notify-%{_notify_led_ver}.tar.bz2
+Source9:	http://kadu.net/~blysk/led_notify-%{notify_led_ver}.tar.bz2
 # Source9-md5:	786a0ee40a3aef03b51e2d89a2bceda5
-Source10:	http://www.kadu.net/~dorr/moduly/%{name}-osdhints_notify-%{_notify_osdhints_ver}.tar.bz2
-# Source10-md5:	f515d2dd54d4a5948f691b05d13be70d
-Source11:	http://www.kadu.net/~dorr/moduly/%{name}-pcspeaker-%{_notify_pcspeaker_ver}.tar.bz2
+Source10:	http://www.kadu.net/~dorr/moduly/%{name}-osdhints_notify-%{notify_osdhints_ver}.tar.bz2
+# Source10-md5:	5913203482de8ef9d596e94afcbff147
+Source11:	http://www.kadu.net/~dorr/moduly/%{name}-pcspeaker-%{notify_pcspeaker_ver}.tar.bz2
 # Source11-md5:	4b8abfe0c57efabb49ba8c6c71a316f2
-Source12:	http://www.kadu.net/~dorr/moduly/%{name}-powerkadu-%{_powerkadu_ver}.tar.bz2
-# Source12-md5:	2a0360e80e72cb4dbd1c65eb7bdca2c0
-Source13:	http://www.kadu.net/~dorr/moduly/%{name}-profiles-%{_profiles_ver}.tar.bz2
+Source12:	http://www.kadu.net/~dorr/moduly/%{name}-powerkadu-%{powerkadu_ver}.tar.bz2
+# Source12-md5:	6336dbee2fad52bf634f7d92f8c4a6eb
+Source13:	http://www.kadu.net/~dorr/moduly/%{name}-profiles-%{profiles_ver}.tar.bz2
 # Source13-md5:	d7ec7f808d15308d10ed76d1e3743f37
-Source14:	http://www.kadu.net/download/modules_extra/screenshot/screenshot-%{_screenshot_ver}.tar.bz2
+Source14:	http://www.kadu.net/download/modules_extra/screenshot/screenshot-%{screenshot_ver}.tar.bz2
 # Source14-md5:	47d3d5564b272a186667c1507e19844f
-Source15:	http://kadu.net/~patryk/miastoplusa_sms/miastoplusa_sms-0.6-%{_sms_miastoplusa_ver}.tar.gz
+Source15:	http://kadu.net/~patryk/miastoplusa_sms/miastoplusa_sms-0.6-%{sms_miastoplusa_ver}.tar.gz
 # Source15-md5:	e5c4d5cd94cef40730e281b9a6c9ed37
-Source16:	http://www.kadu.net/download/modules_extra/spellchecker/spellchecker-%{_spellchecker_mod_ver}.tar.bz2
+Source16:	http://www.kadu.net/download/modules_extra/spellchecker/spellchecker-%{spellchecker_mod_ver}.tar.bz2
 # Source16-md5:	a46eab2f3d9c31cee13ccf3a441bceec
-Source17:	http://misiek.jah.pl/assets/2008/2/8/agent-%{_agent_mod_ver}.tar.gz
+Source17:	http://misiek.jah.pl/assets/2008/2/8/agent-%{agent_mod_ver}.tar.gz
 # Source17-md5:	4401e0e3c509af347cb14a89236301ea
-Source18:	http://kadu.net/~arvenil/tabs/download/%{version}/%{_tabs_ver}/%{name}-tabs-%{_tabs_ver}.tar.bz2
-# Source18-md5:	8313ae2aa85b4a6f890203ed5f93fa1b
-Source19:	http://kadu.net/~blysk/weather-%{_weather_ver}.tar.bz2
+Source18:	http://kadu.net/~arvenil/tabs/download/%{version}/%{tabs_ver}/%{name}-tabs-%{tabs_ver}.tar.bz2
+# Source18-md5:	fa780b90db6f7e41b16008291dde3dac
+Source19:	http://kadu.net/~blysk/weather-%{weather_ver}.tar.bz2
 # Source19-md5:	41a6edd1356a36e4606e432d0bc856f6
-Source20:	http://www.kadu.net/download/modules_extra/xmms_mediaplayer/xmms_mediaplayer-%{_xmms_mod_ver}.tar.bz2
+Source20:	http://www.kadu.net/download/modules_extra/xmms_mediaplayer/xmms_mediaplayer-%{xmms_mod_ver}.tar.bz2
 # Source20-md5:	97dd4c9cd19b69b9ab6d38a20cd37a2e
-Source21:	http://kadu.jarzebski.pl/water_notify-%{_notify_water_ver}.tar.bz2
+Source21:	http://kadu.jarzebski.pl/water_notify-%{notify_water_ver}.tar.bz2
 # Source21-md5:	10320f9b96366422bbcd7ec76d4e85a1
-Source22:	http://www.ultr.pl/kadu/panelkadu-0.6-%{_panelkadu_ver}.tar.gz
-# Source22-md5:	0070c9bb4559ec29bb1195acdc5c5967
+Source22:	http://www.ultr.pl/kadu/panelkadu-%{panelkadu_ver}.tar.gz
+# Source22-md5:	f520f9e7a295c8ab2ea0dd93d92c0318
 Source23:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-16.tar.gz
 # Source23-md5:	74712871bc3edc4a9e612e18138c49b0
 Source24:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-22.tar.gz
 # Source24-md5:	c3f43652254f877dc991747b2d70f70a
-Source25:	http://www.kadu.net/~dorr/moduly/%{name}-word_fix-%{_word_fix_ver}.tar.bz2
+Source25:	http://www.kadu.net/~dorr/moduly/%{name}-word_fix-%{word_fix_ver}.tar.bz2
 # Source25-md5:	691484a500c75079508b240449cb9c90
-Source27:	http://www.kadu.net/~dorr/moduly/%{name}-firewall-%{_firewall_ver}.tar.bz2
-# Source27-md5:	9b0f04b4254b4ff08254b15e59a81be7
-Source28:	http://kadu.net/~patryk/mime_tex/mime_tex-%{_mime_tex_ver}.tar.bz2
-# Source28-md5:	d640b2ba650fb5aa0f3502ad7379b14b
-Source29:	http://kadu.jarzebski.pl/mx610_notify-%{_notify_mx610_ver}.tar.bz2
+Source27:	http://www.kadu.net/~dorr/moduly/%{name}-firewall-%{firewall_ver}.tar.bz2
+# Source27-md5:	f0d4e6f3ec989d71eb3d07759dd9b92a
+Source28:	http://kadu.net/~patryk/mime_tex/mime_tex-%{mime_tex_ver}.tar.bz2
+# Source28-md5:	7c407d03d64e2aaa62ae33187650d047
+Source29:	http://kadu.jarzebski.pl/mx610_notify-%{notify_mx610_ver}.tar.bz2
 # Source29-md5:	08bba105d9307bbf1a8e8482529441a4
-Source30:	http://www.kadu.net/~joi/ao_sound/packages/ao_sound-%{_sound_ao_ver}.tar.bz2
+Source30:	http://www.kadu.net/~joi/ao_sound/packages/ao_sound-%{sound_ao_ver}.tar.bz2
 # Source30-md5:	95809d330e48e61f58ec961ddbf0b529
-Source31:	http://www.kadu.net/download/modules_extra/audacious_mediaplayer/audacious_mediaplayer-%{_mediaplayer_audacious_ver}.tar.bz2
-# Source31-md5:	aa427d5b87fcc48cdd799cf19fe92da1
-Source32:	http://www.kadu.net/~weagle/mail/mail-%{_mail_ver}.tar.bz2
+Source31:	http://www.kadu.net/download/modules_extra/audacious_mediaplayer/audacious_mediaplayer-%{mediaplayer_audacious_ver}.tar.bz2
+# Source31-md5:	76611a2d47203465224b329bfa1eea7e
+Source32:	http://www.kadu.net/~weagle/mail/mail-%{mail_ver}.tar.bz2
 # Source32-md5:	898561b215ac10a99be62fa4e3a50a55
 Source33:	http://www.kadu.net/download/additions/%{name}-0.6-theme-oxygen-16.tar.gz
 # Source33-md5:	fb13f2624dec27632c42a6bc2c1a252f
 Source34:	http://www.kadu.net/download/additions/%{name}-0.6-theme-tango-16.tar.gz
 # Source34-md5:	52fe12765b600b9aa44cfc6489dce8eb
-Source35:	http://www.kadu.net/~dorr/moduly/%{name}-split_messages-%{_split_messages_ver}.tar.bz2
+Source35:	http://www.kadu.net/~dorr/moduly/%{name}-split_messages-%{split_messages_ver}.tar.bz2
 # Source35-md5:	450cbb8047aa15f4d040da361b660c5d
-Source36:	http://kadu.net/~patryk/anonymous_check/anonymous_check-%{_anonymous_check_ver}.tar.bz2
+Source36:	http://kadu.net/~patryk/anonymous_check/anonymous_check-%{anonymous_check_ver}.tar.bz2
 # Source36-md5:	84abb6515abc9a5aaa5d1f6b1f2b12e0
-Source37:	http://www.kadu.net/~dorr/moduly/%{name}-antistring-%{_antistring_ver}.tar.bz2
+Source37:	http://www.kadu.net/~dorr/moduly/%{name}-antistring-%{antistring_ver}.tar.bz2
 # Source37-md5:	4e09f977471ec504ad4acdb52fdb76ec
-Source38:	http://www.kadu.net/~dorr/moduly/%{name}-auto_hide-%{_auto_hide_ver}.tar.bz2
+Source38:	http://www.kadu.net/~dorr/moduly/%{name}-auto_hide-%{auto_hide_ver}.tar.bz2
 # Source38-md5:	42dd07b9745aabd1c52bf088ae3b79e9
-Source39:	http://www.kadu.net/~dorr/moduly/%{name}-cenzor-%{_cenzor_ver}.tar.bz2
+Source39:	http://www.kadu.net/~dorr/moduly/%{name}-cenzor-%{cenzor_ver}.tar.bz2
 # Source39-md5:	ff759d913d2cc3f160502fbf23993c87
-Source40:	http://www.kadu.net/~dorr/moduly/%{name}-parser_extender-%{_parser_extender_ver}.tar.bz2
+Source40:	http://www.kadu.net/~dorr/moduly/%{name}-parser_extender-%{parser_extender_ver}.tar.bz2
 # Source40-md5:	06378537ce5dace67ce623bcb05b0ea1
 Source41:	http://www.kadu.net/download/additions/%{name}-theme-kadu05.tar.gz
 # Source41-md5:	8576eef06700e8a9b7335452423a37a2
-
+Source42:	http://www.kadu.net/~dorr/moduly/%{name}-last_seen-%{last_seen_ver}.tar.bz2
+# Source42-md5:	b0b36bef5d8ff28b5fb6de0d1e1e8cc7
+Source43:	http://www.kadu.net/~dorr/moduly/%{name}-autostatus-%{autostatus_ver}.tar.bz2
+# Source43-md5:	bd508a350cb26f2925d055a40cd92e89
+Source44:	http://www.ultr.pl/kadu/globalhotkeys-%{globalhotkeys_ver}.tar.gz
+# Source44-md5:	ac1414714910786ea7fc4dface44265d
+Source45:	http://www.ultr.pl/kadu/senthistory-%{senthistory_ver}.tar.gz
+# Source45-md5:	45c05a4856d591e8f8c9343eb1f1446a
+Source46:	http://www.ultr.pl/kadu/nextinfo-%{nextinfo_ver}.tar.gz
+# Source46-md5:	8ba8bc7eb6b1fe1e7b48e9f028094bc1
+Source47:	http://myslenice.one.pl/~boogie/desc_history/desc_history-%{desc_history_ver}.tar.bz2
+# Source47-md5:	cf7d7c8f86d9cfe4b5a0ab52b5deff34
 Patch0:		%{name}-ac_am.patch
 Patch1:		%{name}-voice.patch
 URL:		http://kadu.net/
@@ -210,40 +226,43 @@ BuildRequires:	automake
 BuildRequires:	kdelibs-devel
 %endif
 %{?with_sound_ao:BuildRequires:	libao-devel}
-BuildRequires:	libgadu-devel >= %{_libgadu_ver}
+BuildRequires:	libgadu-devel >= %{libgadu_ver}
 %{?with_voice:BuildRequires:	libgsm-devel}
 BuildRequires:	libsndfile-devel >= 1.0
+BuildRequires:	libstdc++-devel
 %{?with_sound_nas:BuildRequires:	nas-devel}
 %{?with_encryption:BuildRequires:	openssl-devel >= 0.9.7d}
 %{?with_mediaplayer_audacious:BuildRequires:	pkgconfig}
+BuildRequires:	qt-devel
 BuildRequires:	qt-linguist
 BuildRequires:	sed >= 4.0
 %{?with_mediaplayer_audacious:BuildRequires:	which}
 %{?with_mediaplayer_xmms:BuildRequires:	xmms-devel}
+%{?with_panelkadu:BuildRequires:	xorg-lib-libXtst-devel}
 %{?with_notify_xosd:BuildRequires:	xosd-devel}
-Requires:	libgadu >= %{_libgadu_ver}
+Requires:	libgadu >= %{libgadu_ver}
 Obsoletes:	kadu-module-imiface <= 0.4.3
 Obsoletes:	kadu-module-iwait4u <= 0.5.0
 Obsoletes:	kadu-module-speech <= 0.4.3
 Obsoletes:	kadu-module-tcl_scripting <= 0.4.3
-Obsoletes:	kadu-theme-icons-crystal16 <= 0.5.0
-Obsoletes:	kadu-theme-icons-crystal22 <= 0.5.0
-Obsoletes:	kadu-theme-icons-nuvola16 <= 0.5.0
-Obsoletes:	kadu-theme-icons-nuvola22 <= 0.5.0
+Obsoletes:	kadu-theme-icons-crystal16
+Obsoletes:	kadu-theme-icons-crystal22
+Obsoletes:	kadu-theme-icons-nuvola16
+Obsoletes:	kadu-theme-icons-nuvola22
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_modules_lib_dir	%{_libdir}/%{name}/modules
-%define		_modules_data_dir	%{_datadir}/%{name}/modules
-%define		_modules_bin_dir	%{_modules_lib_dir}/bin
+%define		modules_lib_dir		%{_libdir}/%{name}/modules
+%define		modules_data_dir	%{_datadir}/%{name}/modules
+%define		modules_bin_dir		%{modules_lib_dir}/bin
 
 %description
 Kadu is client of Gadu-Gadu protocol. It's an IM for Linux and UN*X.
-It's written with use of QT libraries.
+It's written with use of Qt and KDE libraries.
 
 %description -l pl.UTF-8
 Kadu jest klientem protokołu Gadu-Gadu. Inaczej mówiąc, jest
 komunikatorem dla Linuksa (oraz, przy niewielkim wysiłku, innych
-systemów UN*Xowych). Napisano go w oparciu o bibliotekę QT i KDE,
+systemów uniksowych). Napisano go w oparciu o bibliotekę Qt i KDE,
 przeznaczony jest więc dla tego środowiska.
 
 %package module-advanced_userlist
@@ -260,7 +279,7 @@ Moduł zaawansowanej konfiguracji sortowania listy kontaktów.
 
 %package module-agent
 Summary:	Spying module that shows who has you on list
-Summary(pl.UTF-8):	Moduł szpiegowski pokazujący osoby które mają cię na liście
+Summary(pl.UTF-8):	Moduł szpiegowski pokazujący osoby które mają użytkownika na liście
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -268,7 +287,7 @@ Requires:	%{name} = %{version}-%{release}
 Spying module that shows who has you on list.
 
 %description module-agent -l pl.UTF-8
-Moduł szpiegowski pokazujący osoby które mają cię na liście.
+Moduł szpiegowski pokazujący osoby które mają użytkownika na liście.
 
 %package module-autoresponder
 Summary:	Autoresponder module
@@ -282,9 +301,21 @@ Autoresponder module.
 %description module-autoresponder -l pl.UTF-8
 Moduł autoodpowiedzi.
 
+%package module-autostatus
+Summary:	Automatic status change module
+Summary(pl.UTF-8):	Moduł automatycznych zmian statusu
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-autostatus
+Automatic status change module.
+
+%description module-autostatus -l pl.UTF-8
+Moduł automatycznych zmian statusu.
+
 %package module-anonymous_check
 Summary:	Automatic lookup of an interlocutor in public directory
-Summary(pl.UTF-8):	Automatyczne wyszukiwanie nieznajomych rozmówców w publicznym katalogu
+Summary(pl.UTF-8):	Automatyczne wyszukiwanie nieznajomych rozmówców w katalogu publicznym
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -292,20 +323,20 @@ Requires:	%{name} = %{version}-%{release}
 Automatic lookup of an interlocutor in public directory.
 
 %description module-anonymous_check -l pl.UTF-8
-Automatyczne wyszukiwanie nieznajomych rozmówców w publicznym
-katalogu.
+Automatyczne wyszukiwanie nieznajomych rozmówców w katalogu
+publicznym.
 
 %package module-antistring
-Summary:	Antistring
-Summary(pl.UTF-8):	Ochrona przed łańcuszkami
+Summary:	Antistring module
+Summary(pl.UTF-8):	Moduł chroniący przed łańcuszkami
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-antistring
-Antistring.
+Antistring module.
 
 %description module-antistring -l pl.UTF-8
-Ochrona przed łańcuszkami.
+Moduł chroniący przed łańcuszkami.
 
 %package module-auto_hide
 Summary:	Auto hide Kadu window
@@ -320,16 +351,28 @@ Auto hide Kadu window.
 Automatyczne ukrywanie okna Kadu.
 
 %package module-cenzor
-Summary:	Censor
-Summary(pl.UTF-8):	Cenzor
+Summary:	Censor module
+Summary(pl.UTF-8):	Moduł cenzora
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-cenzor
-Censor.
+Censor module.
 
 %description module-cenzor -l pl.UTF-8
-Cenzor.
+Moduł cenzora.
+
+%package module-desc_history
+Summary:	Status descriptions history
+Summary(pl.UTF-8):	Historia opisów statusów
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-desc_history
+Status descriptions history.
+
+%description module-desc_history -l pl.UTF-8
+Historia opisów statusów.
 
 %package module-dcopexport
 Summary:	Kadu DCOP interface
@@ -404,16 +447,28 @@ User list filtering.
 Filtrowanie listy kontaktów.
 
 %package module-firewall
-Summary:	Module blocks unknown persons, who wants to start chat
+Summary:	Module to block unknown persons, who wants to start chat
 Summary(pl.UTF-8):	Moduł blokuje nieznane osoby, chcące zacząć rozmowę
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-firewall
-Mudule blocks unknown persons, who wants to start chat.
+Module to block unknown persons, who wants to start chat.
 
 %description module-firewall -l pl.UTF-8
 Moduł blokuje nieznane osoby, chcące zacząć rozmowę.
+
+%package module-globalhotkeys
+Summary:	Adds global hotkeys support to Kadu
+Summary(pl.UTF-8):	Moduł dodający do Kadu obsługę skrótów globalnych
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-globalhotkeys
+Adds global hotkeys support to Kadu.
+
+%description module-globalhotkeys -l pl.UTF-8
+Moduł dodający do Kadu obsługę skrótów globalnych.
 
 %package module-iwait4u
 Summary:	iwait4u module inform you, that someone from userlist is active
@@ -425,7 +480,19 @@ Requires:	%{name} = %{version}-%{release}
 iwait4u module inform you, that someone from userlist is active.
 
 %description module-iwait4u -l pl.UTF-8
-Modul iwait4u informuje, że osoba z listy użytkowników jest dostępna.
+Moduł iwait4u informuje, że osoba z listy użytkowników jest dostępna.
+
+%package module-last_seen
+Summary:	Last seen
+Summary(pl.UTF-8):	Ostatnio widziani
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-last_seen
+Last seen.
+
+%description module-last_seen -l pl.UTF-8
+Ostatnio widziani.
 
 %package module-mail
 Summary:	Mail checker module
@@ -450,12 +517,12 @@ Module which allows showing in status description information about
 the song currently played.
 
 %description module-mediaplayer -l pl.UTF-8
-Moduł umożliwiający w opisie statusu pokazywanie informacji o
+Moduł umożliwiający pokazywanie w opisie statusu informacji o
 odgrywanym utworze.
 
 %package module-mediaplayer-amarok
 Summary:	Support amarok status
-Summary(pl.UTF-8):	Moduł statusu dla amarok
+Summary(pl.UTF-8):	Moduł statusu dla odtwarzacza amarok
 Group:		Applications/Communications
 Requires:	%{name}-module-mediaplayer = %{version}-%{release}
 Requires:	amarok
@@ -472,7 +539,7 @@ odgrywanym utworze z odtwarzacza amarok.
 
 %package module-mediaplayer-audacious
 Summary:	Support audacious status
-Summary(pl.UTF-8):	Moduł statusu dla audacious
+Summary(pl.UTF-8):	Moduł statusu dla odtwarzacza audacious
 Group:		Applications/Communications
 Requires:	%{name}-module-mediaplayer = %{version}-%{release}
 Requires:	audacious
@@ -528,6 +595,18 @@ Mathematical TeX formulas for chat windows.
 
 %description module-mime_tex -l pl.UTF-8
 Matematyczne formuły TeX w oknach czat.
+
+%package module-nextinfo
+Summary:	Extended contact informations
+Summary(pl.UTF-8):	Rozszerzone informacje o kontakcie
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-nextinfo
+Extended contact information
+
+%description module-nextinfo -l pl.UTF-8
+Rozszerzone informacje o kontakcie
 
 %package module-notify-exec
 Summary:	Notification by external commands module
@@ -606,7 +685,7 @@ Moduł obsługi "Głośnego czytania" przez zewnętrzny program "powiedz".
 
 %package module-notify-water
 Summary:	Notification by Water Plugin in Compiz
-Summary(pl.UTF-8):	Moduł powiadamiania pluginem Water w Compiz
+Summary(pl.UTF-8):	Moduł powiadamiania wtyczką Water w Compizie
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -614,7 +693,7 @@ Requires:	%{name} = %{version}-%{release}
 Notification by Water Plugin in Compiz.
 
 %description module-notify-water -l pl.UTF-8
-Moduł powiadamiania pluginem Water w Compiz.
+Moduł powiadamiania wtyczką Water w Compizie.
 
 %package module-notify-xosd
 Summary:	Notification by XOSD module
@@ -641,16 +720,16 @@ Module which makes Kadu look and behave like a panel.
 Moduł sprawiający, że Kadu wygląda i zachowuje się jak panel.
 
 %package module-parser_extender
-Summary:	Extends Kadu Parser
-Summary(pl.UTF-8):	Rozszerza możliwości Parsera Kadu
+Summary:	Module to extend Kadu Parser
+Summary(pl.UTF-8):	Moduł rozszerzający możliwości Parsera Kadu
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-parser_extender
-Extends Kadu Parser.
+Module to extend Kadu Parser.
 
 %description module-parser_extender -l pl.UTF-8
-Rozszerza możliwości Parsera Kadu.
+Moduł rozszerzający możliwości Parsera Kadu.
 
 %package module-powerkadu
 Summary:	PowerKadu extensions
@@ -660,6 +739,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-module-anonymous_check = %{version}-%{release}
 Requires:	%{name}-module-antistring = %{version}-%{release}
 Requires:	%{name}-module-auto_hide = %{version}-%{release}
+Requires:	%{name}-module-autostatus = %{version}-%{release}
 Requires:	%{name}-module-cenzor = %{version}-%{release}
 Requires:	%{name}-module-parser_extender = %{version}-%{release}
 Requires:	%{name}-module-split_messages = %{version}-%{release}
@@ -686,6 +766,18 @@ Kadu Profiles.
 %description module-profiles -l pl.UTF-8
 Profile w Kadu.
 
+%package module-senthistory
+Summary:	Kadu module which adds history of sent messages to chat windows
+Summary(pl.UTF-8):	Moduł kadu który dodaje historię wysłanych wiadomości do okien rozmowy
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-senthistory
+Kadu module which adds history of sent messages to chat windows.
+
+%description module-senthistory -l pl.UTF-8
+Moduł kadu który dodaje historię wysłanych wiadomości do okien rozmowy.
+
 %package module-screenshot
 Summary:	Simple ScreenShots module
 Summary(pl.UTF-8):	Moduł prostych zrzutów ekranu
@@ -711,8 +803,8 @@ SMS Gateway on Miasto Plusa module.
 Moduł obsługi bramki SMS w Mieście Plusa.
 
 %package module-sound-alsa
-Summary:	Support ALSA sound
-Summary(pl.UTF-8):	Wsparcie dla dźwięku ALSA
+Summary:	ALSA sound support module
+Summary(pl.UTF-8):	Moduł obsługi dźwięku przez ALSA
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	alsa-lib
@@ -736,8 +828,8 @@ Libao sound module.
 Moduł obsługi dźwięku poprzez bibliotekę libao.
 
 %package module-sound-arts
-Summary:	Support aRts sound server
-Summary(pl.UTF-8):	Wsparcie dla serwera dźwięku aRts
+Summary:	aRts sound server support module
+Summary(pl.UTF-8):	Moduł obsługi serwera dźwięku aRts
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	arts
@@ -761,8 +853,8 @@ DSP sound module.
 Moduł obsługi dźwięku przez DSP.
 
 %package module-sound-esd
-Summary:	Support ESD sound server
-Summary(pl.UTF-8):	Wsparcie dla serwera dźwięku ESD
+Summary:	ESD sound server support module
+Summary(pl.UTF-8):	Moduł obsługi serwera dźwięku ESD
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	esound
@@ -786,8 +878,8 @@ External application sound module.
 Moduł obsługi dźwięku przez zewnętrzną aplikację.
 
 %package module-sound-nas
-Summary:	Support Network Audio System
-Summary(pl.UTF-8):	Wsparcie dla sieciowego systemu dźwięku NAS
+Summary:	Network Audio System support module
+Summary(pl.UTF-8):	Moduł obsługi sieciowego systemu dźwięku NAS
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 Requires:	nas
@@ -949,8 +1041,14 @@ tar xjf %{SOURCE37} -C modules
 %if %{with auto_hide}
 tar xjf %{SOURCE38} -C modules
 %endif
+%if %{with autostatus}
+tar xjf %{SOURCE43} -C modules
+%endif
 %if %{with cenzor}
 tar xjf %{SOURCE39} -C modules
+%endif
+%if %{with desc_history}
+tar xjf %{SOURCE47} -C modules
 %endif
 %if %{with dcopexport}
 tar xjf %{SOURCE4} -C modules
@@ -964,8 +1062,14 @@ tar xjf %{SOURCE6} -C modules
 %if %{with firewall}
 tar xjf %{SOURCE27} -C modules
 %endif
+%if %{with globalhotkeys}
+tar xzf %{SOURCE44} -C modules
+%endif
 %if %{with iwait4u}
 tar xzf %{SOURCE7} -C modules
+%endif
+%if %{with last_seen}
+tar xjf %{SOURCE42} -C modules
 %endif
 %if %{with mail}
 tar xjf %{SOURCE32} -C modules
@@ -987,6 +1091,9 @@ tar xjf %{SOURCE20} -C modules
 %endif
 %if %{with mime_tex}
 tar xjf %{SOURCE28} -C modules
+%endif
+%if %{with nextinfo}
+tar xzf %{SOURCE46} -C modules
 %endif
 %if %{with notify_led}
 tar xjf %{SOURCE9} -C modules
@@ -1014,6 +1121,9 @@ tar xjf %{SOURCE12} -C modules
 %endif
 %if %{with profiles}
 tar xjf %{SOURCE13} -C modules
+%endif
+%if %{with senthistory}
+tar xzf %{SOURCE45} -C modules
 %endif
 %if %{with screenshot}
 tar xjf %{SOURCE14} -C modules
@@ -1047,7 +1157,7 @@ tar xzf %{SOURCE34} -C varia/themes/icons
 tar xzf %{SOURCE41} -C varia/themes/icons
 
 # Change hard coded path to modules data files
-%{__sed} -i 's,dataPath("kadu/modules/*,("%{_modules_data_dir}/,g' kadu-core/modules.cpp
+%{__sed} -i 's,dataPath("kadu/modules/*,("%{modules_data_dir}/,g' kadu-core/modules.cpp
 
 %build
 %if %{with agent}
@@ -1075,6 +1185,11 @@ tar xzf %{SOURCE41} -C varia/themes/icons
 %else
 %{__sed} -i 's/module_autoresponder=m/module_autoresponder=n/' .config
 %endif
+%if %{with autostatus}
+%{__sed} -i 's/module_autostatus=n/module_autostatus=m/' .config
+%else
+%{__sed} -i 's/module_autostatus=m/module_autostatus=n/' .config
+%endif
 %if %{with auto_hide}
 %{__sed} -i 's/module_auto_hide=n/module_auto_hide=m/' .config
 %else
@@ -1084,6 +1199,11 @@ tar xzf %{SOURCE41} -C varia/themes/icons
 %{__sed} -i 's/module_cenzor=n/module_cenzor=m/' .config
 %else
 %{__sed} -i 's/module_cenzor=m/module_cenzor=n/' .config
+%endif
+%if %{with desc_history}
+%{__sed} -i 's/module_desc_history=n/module_desc_history=m/' .config
+%else
+%{__sed} -i 's/module_desc_history=m/module_desc_history=n/' .config
 %endif
 %if %{with dcopexport}
 %{__sed} -i 's/module_dcopexport=n/module_dcopexport=m/' .config
@@ -1120,10 +1240,20 @@ tar xzf %{SOURCE41} -C varia/themes/icons
 %else
 %{__sed} -i 's/module_firewall=m/module_firewall=n/' .config
 %endif
+%if %{with globalhotkeys}
+%{__sed} -i 's/module_globalhotkeys=n/module_globalhotkeys=m/' .config
+%else
+%{__sed} -i 's/module_globalhotkeys=m/module_globalhotkeys=n/' .config
+%endif
 %if %{with iwait4u}
 %{__sed} -i 's/module_iwait4u=n/module_iwait4u=m/' .config
 %else
 %{__sed} -i 's/module_iwait4u=m/module_iwait4u=n/' .config
+%endif
+%if %{with last_seen}
+%{__sed} -i 's/last_seen=n/last_seen=m/' .config
+%else
+%{__sed} -i 's/last_seen=m/last_seen=n/' .config
 %endif
 %if %{with mail}
 %{__sed} -i 's/module_mail=n/module_mail=m/' .config
@@ -1161,6 +1291,11 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok_mediaplayer/spec
 %{__sed} -i 's/module_mime_tex=n/module_mime_tex=m/' .config
 %else
 %{__sed} -i 's/module_mime_tex=m/module_mime_tex=n/' .config
+%endif
+%if %{with nextinfo}
+%{__sed} -i 's/module_nextinfo=n/module_nextinfo=m/' .config
+%else
+%{__sed} -i 's/module_nextinfo=m/module_nextinfo=n/' .config
 %endif
 %if %{with notify_exec}
 %{__sed} -i 's/module_exec_notify=n/module_exec_notify=m/' .config
@@ -1221,6 +1356,11 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok_mediaplayer/spec
 %{__sed} -i 's/module_profiles=n/module_profiles=m/' .config
 %else
 %{__sed} -i 's/module_profiles=m/module_profiles=n/' .config
+%endif
+%if %{with senthistory}
+%{__sed} -i 's/module_senthistory=n/module_senthistory=m/' .config
+%else
+%{__sed} -i 's/module_senthistory=m/module_senthistory=n/' .config
 %endif
 %if %{with screenshot}
 %{__sed} -i 's/module_screenshot=n/module_screenshot=m/' .config
@@ -1345,8 +1485,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/%{name}.desktop
 %{_pixmapsdir}/%{name}.png
 %dir %{_datadir}/%{name}
-%dir %{_modules_data_dir}
-%dir %{_modules_data_dir}/data
+%dir %{modules_data_dir}
+%dir %{modules_data_dir}/data
 %dir %{_datadir}/%{name}/themes
 %dir %{_datadir}/%{name}/themes/emoticons
 %{_datadir}/%{name}/themes/emoticons/penguins
@@ -1361,92 +1501,92 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/THANKS
 #default modules:
 %dir %{_libdir}/%{name}
-%dir %{_modules_lib_dir}
-%dir %{_modules_bin_dir}
-%{_modules_data_dir}/account_management.desc
-%attr(755,root,root) %{_modules_lib_dir}/account_management.so
-%{_modules_data_dir}/autoaway.desc
-%attr(755,root,root) %{_modules_lib_dir}/autoaway.so
-%{_modules_data_dir}/config_wizard.desc
-%attr(755,root,root) %{_modules_lib_dir}/config_wizard.so
-%{_modules_data_dir}/dcc.desc
-%attr(755,root,root) %{_modules_lib_dir}/dcc.so
-%{_modules_data_dir}/default_sms.desc
-%attr(755,root,root) %{_modules_lib_dir}/default_sms.so
-%{_modules_data_dir}/docking.desc
-%{_modules_data_dir}/hints.desc
-%attr(755,root,root) %{_modules_lib_dir}/hints.so
-%{_modules_data_dir}/migration.desc
-%attr(755,root,root) %{_modules_lib_dir}/migration.so
-%{_modules_data_dir}/notify.desc
-%{_modules_data_dir}/sms.desc
-%attr(755,root,root) %{_modules_lib_dir}/sms.so
-%{_modules_data_dir}/history.desc
-%attr(755,root,root) %{_modules_lib_dir}/history.so
-%{_modules_data_dir}/sound.desc
-%{_modules_data_dir}/window_notify.desc
-%attr(755,root,root) %{_modules_lib_dir}/window_notify.so
-%{_modules_data_dir}/x11_docking.desc
-%attr(755,root,root) %{_modules_lib_dir}/x11_docking.so
+%dir %{modules_lib_dir}
+%dir %{modules_bin_dir}
+%{modules_data_dir}/account_management.desc
+%attr(755,root,root) %{modules_lib_dir}/account_management.so
+%{modules_data_dir}/autoaway.desc
+%attr(755,root,root) %{modules_lib_dir}/autoaway.so
+%{modules_data_dir}/config_wizard.desc
+%attr(755,root,root) %{modules_lib_dir}/config_wizard.so
+%{modules_data_dir}/dcc.desc
+%attr(755,root,root) %{modules_lib_dir}/dcc.so
+%{modules_data_dir}/default_sms.desc
+%attr(755,root,root) %{modules_lib_dir}/default_sms.so
+%{modules_data_dir}/docking.desc
+%{modules_data_dir}/hints.desc
+%attr(755,root,root) %{modules_lib_dir}/hints.so
+%{modules_data_dir}/migration.desc
+%attr(755,root,root) %{modules_lib_dir}/migration.so
+%{modules_data_dir}/notify.desc
+%{modules_data_dir}/sms.desc
+%attr(755,root,root) %{modules_lib_dir}/sms.so
+%{modules_data_dir}/history.desc
+%attr(755,root,root) %{modules_lib_dir}/history.so
+%{modules_data_dir}/sound.desc
+%{modules_data_dir}/window_notify.desc
+%attr(755,root,root) %{modules_lib_dir}/window_notify.so
+%{modules_data_dir}/x11_docking.desc
+%attr(755,root,root) %{modules_lib_dir}/x11_docking.so
 
 #default modules translation:
-%dir %{_modules_data_dir}/translations
-%lang(de) %{_modules_data_dir}/translations/account_management_de.qm
-%lang(fr) %{_modules_data_dir}/translations/account_management_fr.qm
-%lang(it) %{_modules_data_dir}/translations/account_management_it.qm
-%lang(pl) %{_modules_data_dir}/translations/account_management_pl.qm
-%lang(de) %{_modules_data_dir}/translations/autoaway_de.qm
-%lang(fr) %{_modules_data_dir}/translations/autoaway_fr.qm
-%lang(it) %{_modules_data_dir}/translations/autoaway_it.qm
-%lang(pl) %{_modules_data_dir}/translations/autoaway_pl.qm
-%lang(de) %{_modules_data_dir}/translations/config_wizard_de.qm
-%lang(fr) %{_modules_data_dir}/translations/config_wizard_fr.qm
-%lang(it) %{_modules_data_dir}/translations/config_wizard_it.qm
-%lang(pl) %{_modules_data_dir}/translations/config_wizard_pl.qm
-%lang(de) %{_modules_data_dir}/translations/dcc_de.qm
-%lang(fr) %{_modules_data_dir}/translations/dcc_fr.qm
-%lang(it) %{_modules_data_dir}/translations/dcc_it.qm
-%lang(pl) %{_modules_data_dir}/translations/dcc_pl.qm
-%lang(de) %{_modules_data_dir}/translations/default_sms_de.qm
-%lang(fr) %{_modules_data_dir}/translations/default_sms_fr.qm
-%lang(it) %{_modules_data_dir}/translations/default_sms_it.qm
-%lang(pl) %{_modules_data_dir}/translations/default_sms_pl.qm
-%lang(de) %{_modules_data_dir}/translations/docking_de.qm
-%lang(fr) %{_modules_data_dir}/translations/docking_fr.qm
-%lang(it) %{_modules_data_dir}/translations/docking_it.qm
-%lang(pl) %{_modules_data_dir}/translations/docking_pl.qm
-%lang(de) %{_modules_data_dir}/translations/hints_de.qm
-%lang(fr) %{_modules_data_dir}/translations/hints_fr.qm
-%lang(it) %{_modules_data_dir}/translations/hints_it.qm
-%lang(pl) %{_modules_data_dir}/translations/hints_pl.qm
-%lang(de) %{_modules_data_dir}/translations/history_de.qm
-%lang(fr) %{_modules_data_dir}/translations/history_fr.qm
-%lang(it) %{_modules_data_dir}/translations/history_it.qm
-%lang(pl) %{_modules_data_dir}/translations/history_pl.qm
-%lang(de) %{_modules_data_dir}/translations/migration_de.qm
-%lang(fr) %{_modules_data_dir}/translations/migration_fr.qm
-%lang(it) %{_modules_data_dir}/translations/migration_it.qm
-%lang(pl) %{_modules_data_dir}/translations/migration_pl.qm
-%lang(de) %{_modules_data_dir}/translations/notify_de.qm
-%lang(fr) %{_modules_data_dir}/translations/notify_fr.qm
-%lang(it) %{_modules_data_dir}/translations/notify_it.qm
-%lang(pl) %{_modules_data_dir}/translations/notify_pl.qm
-%lang(de) %{_modules_data_dir}/translations/sms_de.qm
-%lang(fr) %{_modules_data_dir}/translations/sms_fr.qm
-%lang(it) %{_modules_data_dir}/translations/sms_it.qm
-%lang(pl) %{_modules_data_dir}/translations/sms_pl.qm
-%lang(de) %{_modules_data_dir}/translations/sound_de.qm
-%lang(fr) %{_modules_data_dir}/translations/sound_fr.qm
-%lang(it) %{_modules_data_dir}/translations/sound_it.qm
-%lang(pl) %{_modules_data_dir}/translations/sound_pl.qm
-%lang(de) %{_modules_data_dir}/translations/window_notify_de.qm
-%lang(fr) %{_modules_data_dir}/translations/window_notify_fr.qm
-%lang(it) %{_modules_data_dir}/translations/window_notify_it.qm
-%lang(pl) %{_modules_data_dir}/translations/window_notify_pl.qm
-%lang(de) %{_modules_data_dir}/translations/x11_docking_de.qm
-%lang(fr) %{_modules_data_dir}/translations/x11_docking_fr.qm
-%lang(it) %{_modules_data_dir}/translations/x11_docking_it.qm
-%lang(pl) %{_modules_data_dir}/translations/x11_docking_pl.qm
+%dir %{modules_data_dir}/translations
+%lang(de) %{modules_data_dir}/translations/account_management_de.qm
+%lang(fr) %{modules_data_dir}/translations/account_management_fr.qm
+%lang(it) %{modules_data_dir}/translations/account_management_it.qm
+%lang(pl) %{modules_data_dir}/translations/account_management_pl.qm
+%lang(de) %{modules_data_dir}/translations/autoaway_de.qm
+%lang(fr) %{modules_data_dir}/translations/autoaway_fr.qm
+%lang(it) %{modules_data_dir}/translations/autoaway_it.qm
+%lang(pl) %{modules_data_dir}/translations/autoaway_pl.qm
+%lang(de) %{modules_data_dir}/translations/config_wizard_de.qm
+%lang(fr) %{modules_data_dir}/translations/config_wizard_fr.qm
+%lang(it) %{modules_data_dir}/translations/config_wizard_it.qm
+%lang(pl) %{modules_data_dir}/translations/config_wizard_pl.qm
+%lang(de) %{modules_data_dir}/translations/dcc_de.qm
+%lang(fr) %{modules_data_dir}/translations/dcc_fr.qm
+%lang(it) %{modules_data_dir}/translations/dcc_it.qm
+%lang(pl) %{modules_data_dir}/translations/dcc_pl.qm
+%lang(de) %{modules_data_dir}/translations/default_sms_de.qm
+%lang(fr) %{modules_data_dir}/translations/default_sms_fr.qm
+%lang(it) %{modules_data_dir}/translations/default_sms_it.qm
+%lang(pl) %{modules_data_dir}/translations/default_sms_pl.qm
+%lang(de) %{modules_data_dir}/translations/docking_de.qm
+%lang(fr) %{modules_data_dir}/translations/docking_fr.qm
+%lang(it) %{modules_data_dir}/translations/docking_it.qm
+%lang(pl) %{modules_data_dir}/translations/docking_pl.qm
+%lang(de) %{modules_data_dir}/translations/hints_de.qm
+%lang(fr) %{modules_data_dir}/translations/hints_fr.qm
+%lang(it) %{modules_data_dir}/translations/hints_it.qm
+%lang(pl) %{modules_data_dir}/translations/hints_pl.qm
+%lang(de) %{modules_data_dir}/translations/history_de.qm
+%lang(fr) %{modules_data_dir}/translations/history_fr.qm
+%lang(it) %{modules_data_dir}/translations/history_it.qm
+%lang(pl) %{modules_data_dir}/translations/history_pl.qm
+%lang(de) %{modules_data_dir}/translations/migration_de.qm
+%lang(fr) %{modules_data_dir}/translations/migration_fr.qm
+%lang(it) %{modules_data_dir}/translations/migration_it.qm
+%lang(pl) %{modules_data_dir}/translations/migration_pl.qm
+%lang(de) %{modules_data_dir}/translations/notify_de.qm
+%lang(fr) %{modules_data_dir}/translations/notify_fr.qm
+%lang(it) %{modules_data_dir}/translations/notify_it.qm
+%lang(pl) %{modules_data_dir}/translations/notify_pl.qm
+%lang(de) %{modules_data_dir}/translations/sms_de.qm
+%lang(fr) %{modules_data_dir}/translations/sms_fr.qm
+%lang(it) %{modules_data_dir}/translations/sms_it.qm
+%lang(pl) %{modules_data_dir}/translations/sms_pl.qm
+%lang(de) %{modules_data_dir}/translations/sound_de.qm
+%lang(fr) %{modules_data_dir}/translations/sound_fr.qm
+%lang(it) %{modules_data_dir}/translations/sound_it.qm
+%lang(pl) %{modules_data_dir}/translations/sound_pl.qm
+%lang(de) %{modules_data_dir}/translations/window_notify_de.qm
+%lang(fr) %{modules_data_dir}/translations/window_notify_fr.qm
+%lang(it) %{modules_data_dir}/translations/window_notify_it.qm
+%lang(pl) %{modules_data_dir}/translations/window_notify_pl.qm
+%lang(de) %{modules_data_dir}/translations/x11_docking_de.qm
+%lang(fr) %{modules_data_dir}/translations/x11_docking_fr.qm
+%lang(it) %{modules_data_dir}/translations/x11_docking_it.qm
+%lang(pl) %{modules_data_dir}/translations/x11_docking_pl.qm
 #global translation:
 %dir %{_datadir}/%{name}/translations
 %lang(de) %{_datadir}/%{name}/translations/kadu_de.qm
@@ -1460,524 +1600,574 @@ rm -rf $RPM_BUILD_ROOT
 %lang(it) %{_datadir}/%{name}/translations/qt_it.qm
 %lang(pl) %{_datadir}/%{name}/translations/qt_pl.qm
 #wizard
-%{_modules_data_dir}/data/config_wizard
+%{modules_data_dir}/data/config_wizard
 %{_datadir}/%{name}/configuration
 %{_datadir}/%{name}/syntax
 
-%dir %{_modules_data_dir}/configuration
-%{_modules_data_dir}/configuration/autoaway.ui
-%{_modules_data_dir}/configuration/dcc.ui
-%{_modules_data_dir}/configuration/default_sms.ui
-%{_modules_data_dir}/configuration/docking.ui
-%{_modules_data_dir}/configuration/hints.ui
-%{_modules_data_dir}/configuration/history.ui
-%{_modules_data_dir}/configuration/notify.ui
-%{_modules_data_dir}/configuration/sms.ui
-%{_modules_data_dir}/configuration/sound.ui
+%dir %{modules_data_dir}/configuration
+%{modules_data_dir}/configuration/autoaway.ui
+%{modules_data_dir}/configuration/dcc.ui
+%{modules_data_dir}/configuration/default_sms.ui
+%{modules_data_dir}/configuration/docking.ui
+%{modules_data_dir}/configuration/hints.ui
+%{modules_data_dir}/configuration/history.ui
+%{modules_data_dir}/configuration/notify.ui
+%{modules_data_dir}/configuration/sms.ui
+%{modules_data_dir}/configuration/sound.ui
 
 %if %{with advanced_userlist}
 %files module-advanced_userlist
 %defattr(644,root,root,755)
-%{_modules_data_dir}/advanced_userlist.desc
-%{_modules_data_dir}/configuration/advanced_userlist.ui
-%attr(755,root,root) %{_modules_lib_dir}/advanced_userlist.so
-%lang(de) %{_modules_data_dir}/translations/advanced_userlist_de.qm
-%lang(fr) %{_modules_data_dir}/translations/advanced_userlist_fr.qm
-%lang(it) %{_modules_data_dir}/translations/advanced_userlist_it.qm
-%lang(pl) %{_modules_data_dir}/translations/advanced_userlist_pl.qm
+%{modules_data_dir}/advanced_userlist.desc
+%{modules_data_dir}/configuration/advanced_userlist.ui
+%attr(755,root,root) %{modules_lib_dir}/advanced_userlist.so
+%lang(de) %{modules_data_dir}/translations/advanced_userlist_de.qm
+%lang(fr) %{modules_data_dir}/translations/advanced_userlist_fr.qm
+%lang(it) %{modules_data_dir}/translations/advanced_userlist_it.qm
+%lang(pl) %{modules_data_dir}/translations/advanced_userlist_pl.qm
 %endif
 
 %if %{with agent}
 %files module-agent
 %defattr(644,root,root,755)
-%{_modules_data_dir}/agent.desc
-%attr(755,root,root) %{_modules_lib_dir}/agent.so
-%lang(pl) %{_modules_data_dir}/translations/agent_pl.qm
+%{modules_data_dir}/agent.desc
+%attr(755,root,root) %{modules_lib_dir}/agent.so
+%lang(pl) %{modules_data_dir}/translations/agent_pl.qm
 %endif
 
 %if %{with antistring}
 %files module-antistring
 %defattr(644,root,root,755)
-%{_modules_data_dir}/antistring.desc
-%{_modules_data_dir}/configuration/antistring.ui
-%attr(755,root,root) %{_modules_lib_dir}/antistring.so
-%lang(pl) %{_modules_data_dir}/translations/antistring_pl.qm
-%dir %{_modules_data_dir}/data/antistring
-%{_modules_data_dir}/data/antistring/ant_conditions.conf
+%{modules_data_dir}/antistring.desc
+%{modules_data_dir}/configuration/antistring.ui
+%attr(755,root,root) %{modules_lib_dir}/antistring.so
+%lang(pl) %{modules_data_dir}/translations/antistring_pl.qm
+%dir %{modules_data_dir}/data/antistring
+%{modules_data_dir}/data/antistring/ant_conditions.conf
 %endif
 
 %if %{with auto_hide}
 %files module-auto_hide
 %defattr(644,root,root,755)
-%{_modules_data_dir}/auto_hide.desc
-%{_modules_data_dir}/configuration/auto_hide.ui
-%attr(755,root,root) %{_modules_lib_dir}/auto_hide.so
-%lang(pl) %{_modules_data_dir}/translations/auto_hide_pl.qm
+%{modules_data_dir}/auto_hide.desc
+%{modules_data_dir}/configuration/auto_hide.ui
+%attr(755,root,root) %{modules_lib_dir}/auto_hide.so
+%lang(pl) %{modules_data_dir}/translations/auto_hide_pl.qm
 %endif
 
 %if %{with anonymous_check}
 %files module-anonymous_check
 %defattr(644,root,root,755)
-%{_modules_data_dir}/anonymous_check.desc
-%{_modules_data_dir}/configuration/anonymous_check.ui
-%attr(755,root,root) %{_modules_lib_dir}/anonymous_check.so
-%lang(pl) %{_modules_data_dir}/translations/anonymous_check.qm
+%{modules_data_dir}/anonymous_check.desc
+%{modules_data_dir}/configuration/anonymous_check.ui
+%attr(755,root,root) %{modules_lib_dir}/anonymous_check.so
+%lang(pl) %{modules_data_dir}/translations/anonymous_check.qm
 %endif
 
 %if %{with autoresponder}
 %files module-autoresponder
 %defattr(644,root,root,755)
-%{_modules_data_dir}/autoresponder.desc
-%{_modules_data_dir}/configuration/autoresponder.ui
-%attr(755,root,root) %{_modules_lib_dir}/autoresponder.so
-%lang(de) %{_modules_data_dir}/translations/autoresponder_de.qm
-%lang(fr) %{_modules_data_dir}/translations/autoresponder_fr.qm
-%lang(it) %{_modules_data_dir}/translations/autoresponder_it.qm
-%lang(pl) %{_modules_data_dir}/translations/autoresponder_pl.qm
+%{modules_data_dir}/autoresponder.desc
+%{modules_data_dir}/configuration/autoresponder.ui
+%attr(755,root,root) %{modules_lib_dir}/autoresponder.so
+%lang(de) %{modules_data_dir}/translations/autoresponder_de.qm
+%lang(fr) %{modules_data_dir}/translations/autoresponder_fr.qm
+%lang(it) %{modules_data_dir}/translations/autoresponder_it.qm
+%lang(pl) %{modules_data_dir}/translations/autoresponder_pl.qm
+%endif
+
+%if %{with autostatus}
+%files module-autostatus
+%defattr(644,root,root,755)
+%{modules_data_dir}/autostatus.desc
+%{modules_data_dir}/configuration/autostatus.ui
+%attr(755,root,root) %{modules_lib_dir}/autostatus.so
+%lang(pl) %{modules_data_dir}/translations/autostatus_pl.qm
 %endif
 
 %if %{with cenzor}
 %files module-cenzor
 %defattr(644,root,root,755)
-%{_modules_data_dir}/cenzor.desc
-%{_modules_data_dir}/configuration/cenzor.ui
-%attr(755,root,root) %{_modules_lib_dir}/cenzor.so
-%lang(pl) %{_modules_data_dir}/translations/cenzor_pl.qm
-%dir %{_modules_data_dir}/data/cenzor
-%{_modules_data_dir}/data/cenzor/cenzor_words.conf
-%{_modules_data_dir}/data/cenzor/cenzor_words_ok.conf
+%{modules_data_dir}/cenzor.desc
+%{modules_data_dir}/configuration/cenzor.ui
+%attr(755,root,root) %{modules_lib_dir}/cenzor.so
+%lang(pl) %{modules_data_dir}/translations/cenzor_pl.qm
+%dir %{modules_data_dir}/data/cenzor
+%{modules_data_dir}/data/cenzor/cenzor_words.conf
+%{modules_data_dir}/data/cenzor/cenzor_words_ok.conf
+%endif
+
+%if %{with desc_history}
+%files module-desc_history
+%defattr(644,root,root,755)
+%{modules_data_dir}/desc_history.desc
+%{modules_data_dir}/configuration/desc_history.ui
+%attr(755,root,root) %{modules_lib_dir}/desc_history.so
+%lang(pl) %{modules_data_dir}/translations/desc_history_pl.qm
 %endif
 
 %if %{with encryption}
 %files module-encryption
 %defattr(644,root,root,755)
-%{_modules_data_dir}/encryption.desc
-%{_modules_data_dir}/configuration/encryption.ui
-%attr(755,root,root) %{_modules_lib_dir}/encryption.so
-%lang(de) %{_modules_data_dir}/translations/encryption_de.qm
-%lang(fr) %{_modules_data_dir}/translations/encryption_fr.qm
-%lang(it) %{_modules_data_dir}/translations/encryption_it.qm
-%lang(pl) %{_modules_data_dir}/translations/encryption_pl.qm
+%{modules_data_dir}/encryption.desc
+%{modules_data_dir}/configuration/encryption.ui
+%attr(755,root,root) %{modules_lib_dir}/encryption.so
+%lang(de) %{modules_data_dir}/translations/encryption_de.qm
+%lang(fr) %{modules_data_dir}/translations/encryption_fr.qm
+%lang(it) %{modules_data_dir}/translations/encryption_it.qm
+%lang(pl) %{modules_data_dir}/translations/encryption_pl.qm
 %endif
 
 %if %{with dcopexport}
 %files module-dcopexport
 %defattr(644,root,root,755)
-%{_modules_data_dir}/dcopexport.desc
-%attr(755,root,root) %{_modules_lib_dir}/dcopexport.so
-%lang(pl) %{_modules_data_dir}/translations/dcopexport_pl.qm
-%dir %{_modules_bin_dir}/dcopexport
-%attr(755,root,root) %{_modules_bin_dir}/dcopexport/install-firefox-gg.sh
-%attr(755,root,root) %{_modules_bin_dir}/dcopexport/install-konqueror-gg.sh
-%attr(755,root,root) %{_modules_bin_dir}/dcopexport/install-konqueror-setAsKaduDesc.sh
-%attr(755,root,root) %{_modules_bin_dir}/dcopexport/install-opera-gg.sh
-%attr(755,root,root) %{_modules_bin_dir}/dcopexport/kadu-gg-handler.sh
-%dir %{_modules_data_dir}/data/dcopexport
-%{_modules_data_dir}/data/dcopexport/dcopexport.png
+%{modules_data_dir}/dcopexport.desc
+%attr(755,root,root) %{modules_lib_dir}/dcopexport.so
+%lang(pl) %{modules_data_dir}/translations/dcopexport_pl.qm
+%dir %{modules_bin_dir}/dcopexport
+%attr(755,root,root) %{modules_bin_dir}/dcopexport/install-firefox-gg.sh
+%attr(755,root,root) %{modules_bin_dir}/dcopexport/install-konqueror-gg.sh
+%attr(755,root,root) %{modules_bin_dir}/dcopexport/install-konqueror-setAsKaduDesc.sh
+%attr(755,root,root) %{modules_bin_dir}/dcopexport/install-opera-gg.sh
+%attr(755,root,root) %{modules_bin_dir}/dcopexport/kadu-gg-handler.sh
+%dir %{modules_data_dir}/data/dcopexport
+%{modules_data_dir}/data/dcopexport/dcopexport.png
 %endif
 
 %if %{with docking_desktop}
 %files module-docking-desktop
 %defattr(644,root,root,755)
-%{_modules_data_dir}/desktop_docking.desc
-%{_modules_data_dir}/configuration/desktop_docking.ui
-%attr(755,root,root) %{_modules_lib_dir}/desktop_docking.so
-%lang(de) %{_modules_data_dir}/translations/desktop_docking_de.qm
-%lang(fr) %{_modules_data_dir}/translations/desktop_docking_fr.qm
-%lang(it) %{_modules_data_dir}/translations/desktop_docking_it.qm
-%lang(pl) %{_modules_data_dir}/translations/desktop_docking_pl.qm
+%{modules_data_dir}/desktop_docking.desc
+%{modules_data_dir}/configuration/desktop_docking.ui
+%attr(755,root,root) %{modules_lib_dir}/desktop_docking.so
+%lang(de) %{modules_data_dir}/translations/desktop_docking_de.qm
+%lang(fr) %{modules_data_dir}/translations/desktop_docking_fr.qm
+%lang(it) %{modules_data_dir}/translations/desktop_docking_it.qm
+%lang(pl) %{modules_data_dir}/translations/desktop_docking_pl.qm
 %endif
 
 %if %{with docking_wmaker}
 %files module-docking-wmaker
 %defattr(644,root,root,755)
-%{_modules_data_dir}/wmaker_docking.desc
-%attr(755,root,root) %{_modules_lib_dir}/wmaker_docking.so
+%{modules_data_dir}/wmaker_docking.desc
+%attr(755,root,root) %{modules_lib_dir}/wmaker_docking.so
 %endif
 
 %if %{with filedesc}
 %files module-filedesc
 %defattr(644,root,root,755)
-%{_modules_data_dir}/filedesc.desc
-%{_modules_data_dir}/configuration/filedesc.ui
-%attr(755,root,root) %{_modules_lib_dir}/filedesc.so
-%lang(pl) %{_modules_data_dir}/translations/filedesc_pl.qm
-%dir %{_modules_data_dir}/data/filedesc
-%{_modules_data_dir}/data/filedesc/*.png
+%{modules_data_dir}/filedesc.desc
+%{modules_data_dir}/configuration/filedesc.ui
+%attr(755,root,root) %{modules_lib_dir}/filedesc.so
+%lang(pl) %{modules_data_dir}/translations/filedesc_pl.qm
+%dir %{modules_data_dir}/data/filedesc
+%{modules_data_dir}/data/filedesc/*.png
 %endif
 
 %if %{with filtering}
 %files module-filtering
 %defattr(644,root,root,755)
-%{_modules_data_dir}/filtering.desc
-%{_modules_data_dir}/configuration/filtering.ui
-%attr(755,root,root) %{_modules_lib_dir}/filtering.so
-%lang(pl) %{_modules_data_dir}/translations/filtering_pl.qm
-%dir %{_modules_data_dir}/data/filtering
-%{_modules_data_dir}/data/filtering/*.png
+%{modules_data_dir}/filtering.desc
+%{modules_data_dir}/configuration/filtering.ui
+%attr(755,root,root) %{modules_lib_dir}/filtering.so
+%lang(pl) %{modules_data_dir}/translations/filtering_pl.qm
+%dir %{modules_data_dir}/data/filtering
+%{modules_data_dir}/data/filtering/*.png
 %endif
 
 %if %{with firewall}
 %files module-firewall
 %defattr(644,root,root,755)
-%{_modules_data_dir}/filtering.desc
-%{_modules_data_dir}/configuration/firewall.ui
-%attr(755,root,root) %{_modules_lib_dir}/firewall.so
-%lang(pl) %{_modules_data_dir}/translations/firewall_pl.qm
-%{_modules_data_dir}/firewall.desc
+%{modules_data_dir}/firewall.desc
+%{modules_data_dir}/configuration/firewall.ui
+%attr(755,root,root) %{modules_lib_dir}/firewall.so
+%lang(pl) %{modules_data_dir}/translations/firewall_pl.qm
+%endif
+
+%if %{with globalhotkeys}
+%files module-globalhotkeys
+%defattr(644,root,root,755)
+%{modules_data_dir}/globalhotkeys.desc
+%{modules_data_dir}/configuration/globalhotkeys.ui
+%attr(755,root,root) %{modules_lib_dir}/globalhotkeys.so
+%lang(pl) %{modules_data_dir}/translations/globalhotkeys_pl.qm
 %endif
 
 %if %{with iwait4u}
 %files module-iwait4u
 %defattr(644,root,root,755)
-%{_modules_data_dir}/iwait4u.desc
-%attr(755,root,root) %{_modules_lib_dir}/iwait4u.so
-%lang(pl) %{_modules_data_dir}/translations/iwait4u_pl.qm
+%{modules_data_dir}/iwait4u.desc
+%attr(755,root,root) %{modules_lib_dir}/iwait4u.so
+%lang(pl) %{modules_data_dir}/translations/iwait4u_pl.qm
+%endif
+
+%if %{with last_seen}
+%files module-last_seen
+%defattr(644,root,root,755)
+%{modules_data_dir}/last_seen.desc
+%attr(755,root,root) %{modules_lib_dir}/last_seen.so
+%lang(pl) %{modules_data_dir}/translations/last_seen_pl.qm
 %endif
 
 %if %{with mail}
 %files module-mail
 %defattr(644,root,root,755)
-%{_modules_data_dir}/mail.desc
-%{_modules_data_dir}/configuration/mail.ui
-%attr(755,root,root) %{_modules_lib_dir}/mail.so
-%lang(pl) %{_modules_data_dir}/translations/mail_pl.qm
+%{modules_data_dir}/mail.desc
+%{modules_data_dir}/configuration/mail.ui
+%attr(755,root,root) %{modules_lib_dir}/mail.so
+%lang(pl) %{modules_data_dir}/translations/mail_pl.qm
 %endif
 
 %if %{with mediaplayer}
 %files module-mediaplayer
 %defattr(644,root,root,755)
-%{_modules_data_dir}/mediaplayer.desc
-%{_modules_data_dir}/configuration/mediaplayer.ui
-%attr(755,root,root) %{_modules_lib_dir}/mediaplayer.so
-%{_modules_data_dir}/data/mediaplayer
-%lang(pl) %{_modules_data_dir}/translations/mediaplayer_pl.qm
+%{modules_data_dir}/mediaplayer.desc
+%{modules_data_dir}/configuration/mediaplayer.ui
+%attr(755,root,root) %{modules_lib_dir}/mediaplayer.so
+%{modules_data_dir}/data/mediaplayer
+%lang(pl) %{modules_data_dir}/translations/mediaplayer_pl.qm
 %endif
 
 %if %{with mediaplayer_amarok}
 %files module-mediaplayer-amarok
 %defattr(644,root,root,755)
-%{_modules_data_dir}/amarok_mediaplayer.desc
-%attr(755,root,root) %{_modules_lib_dir}/amarok_mediaplayer.so
+%{modules_data_dir}/amarok_mediaplayer.desc
+%attr(755,root,root) %{modules_lib_dir}/amarok_mediaplayer.so
 %endif
 
 %if %{with mediaplayer_audacious}
 %files module-mediaplayer-audacious
 %defattr(644,root,root,755)
-%{_modules_data_dir}/audacious_mediaplayer.desc
-%attr(755,root,root) %{_modules_lib_dir}/audacious_mediaplayer.so
+%{modules_data_dir}/audacious_mediaplayer.desc
+%attr(755,root,root) %{modules_lib_dir}/audacious_mediaplayer.so
 %endif
 
 %if %{with mediaplayer_falf}
 %files module-mediaplayer-falf
 %defattr(644,root,root,755)
-%{_modules_data_dir}/falf_mediaplayer.desc
-%attr(755,root,root) %{_modules_lib_dir}/falf_mediaplayer.so
+%{modules_data_dir}/falf_mediaplayer.desc
+%attr(755,root,root) %{modules_lib_dir}/falf_mediaplayer.so
 %endif
 
 %if %{with mediaplayer_xmms}
 %files module-mediaplayer-xmms
 %defattr(644,root,root,755)
-%{_modules_data_dir}/xmms_mediaplayer.desc
-%attr(755,root,root) %{_modules_lib_dir}/xmms_mediaplayer.so
+%{modules_data_dir}/xmms_mediaplayer.desc
+%attr(755,root,root) %{modules_lib_dir}/xmms_mediaplayer.so
 %endif
 
 %if %{with mime_tex}
 %files module-mime_tex
 %defattr(644,root,root,755)
-%dir %{_modules_bin_dir}/mime_tex
-%attr(755,root,root) %{_modules_bin_dir}/mime_tex/mimetex
-%{_modules_data_dir}/mime_tex.desc
-%{_modules_data_dir}/configuration/mime_tex.ui
-%attr(755,root,root) %{_modules_lib_dir}/mime_tex.so
-%dir %{_modules_data_dir}/data/mime_tex
-%dir %{_modules_data_dir}/data/mime_tex/editor_icons
-%dir %{_modules_data_dir}/data/mime_tex/mime_tex_icons
-%{_modules_data_dir}/data/mime_tex/mime_tex_32x32.png
-%{_modules_data_dir}/data/mime_tex/editor_icons/*.png
-%{_modules_data_dir}/data/mime_tex/mime_tex_icons/*.png
-%lang(pl) %{_modules_data_dir}/translations/mime_tex_pl.qm
+%dir %{modules_bin_dir}/mime_tex
+%attr(755,root,root) %{modules_bin_dir}/mime_tex/mimetex
+%{modules_data_dir}/mime_tex.desc
+%{modules_data_dir}/configuration/mime_tex.ui
+%attr(755,root,root) %{modules_lib_dir}/mime_tex.so
+%dir %{modules_data_dir}/data/mime_tex
+%dir %{modules_data_dir}/data/mime_tex/editor_icons
+%dir %{modules_data_dir}/data/mime_tex/mime_tex_icons
+%{modules_data_dir}/data/mime_tex/mime_tex_32x32.png
+%{modules_data_dir}/data/mime_tex/editor_icons/*.png
+%{modules_data_dir}/data/mime_tex/mime_tex_icons/*.png
+%lang(pl) %{modules_data_dir}/translations/mime_tex_pl.qm
+%endif
+
+%if %{with nextinfo}
+%files module-nextinfo
+%defattr(644,root,root,755)
+%{modules_data_dir}/nextinfo.desc
+%{modules_data_dir}/configuration/nextinfo.ui
+%attr(755,root,root) %{modules_lib_dir}/nextinfo.so
+%lang(pl) %{modules_data_dir}/translations/nextinfo_pl.qm
 %endif
 
 %if %{with notify_exec}
 %files module-notify-exec
 %defattr(644,root,root,755)
-%{_modules_data_dir}/exec_notify.desc
-%attr(755,root,root) %{_modules_lib_dir}/exec_notify.so
-%lang(de) %{_modules_data_dir}/translations/exec_notify_de.qm
-%lang(fr) %{_modules_data_dir}/translations/exec_notify_fr.qm
-%lang(it) %{_modules_data_dir}/translations/exec_notify_it.qm
-%lang(pl) %{_modules_data_dir}/translations/exec_notify_pl.qm
+%{modules_data_dir}/exec_notify.desc
+%attr(755,root,root) %{modules_lib_dir}/exec_notify.so
+%lang(de) %{modules_data_dir}/translations/exec_notify_de.qm
+%lang(fr) %{modules_data_dir}/translations/exec_notify_fr.qm
+%lang(it) %{modules_data_dir}/translations/exec_notify_it.qm
+%lang(pl) %{modules_data_dir}/translations/exec_notify_pl.qm
 %endif
 
 %if %{with notify_led}
 %files module-notify-led
 %defattr(644,root,root,755)
-%{_modules_data_dir}/led_notify.desc
-%{_modules_data_dir}/configuration/led_notify.ui
-%attr(755,root,root) %{_modules_lib_dir}/led_notify.so
-%lang(pl) %{_modules_data_dir}/translations/led_notify_pl.qm
+%{modules_data_dir}/led_notify.desc
+%{modules_data_dir}/configuration/led_notify.ui
+%attr(755,root,root) %{modules_lib_dir}/led_notify.so
+%lang(pl) %{modules_data_dir}/translations/led_notify_pl.qm
 %endif
 
 %if %{with notify_mx610}
 %files module-notify-mx610
 %defattr(644,root,root,755)
-%{_modules_data_dir}/mx610_notify.desc
-%{_modules_data_dir}/configuration/mx610_notify.ui
-%attr(755,root,root) %{_modules_lib_dir}/mx610_notify.so
-%lang(pl) %{_modules_data_dir}/translations/mx610_notify_pl.qm
+%{modules_data_dir}/mx610_notify.desc
+%{modules_data_dir}/configuration/mx610_notify.ui
+%attr(755,root,root) %{modules_lib_dir}/mx610_notify.so
+%lang(pl) %{modules_data_dir}/translations/mx610_notify_pl.qm
 %endif
 
 %if %{with notify_osdhints}
 %files module-notify-osdhints
 %defattr(644,root,root,755)
-%{_modules_data_dir}/osdhints_notify.desc
-%{_modules_data_dir}/configuration/osdhints_notify.ui
-%attr(755,root,root) %{_modules_lib_dir}/osdhints_notify.so
-%lang(pl) %{_modules_data_dir}/translations/osdhints_notify_pl.qm
-%dir %{_modules_data_dir}/data/osdhints_notify
-%{_modules_data_dir}/data/osdhints_notify/License
-%{_modules_data_dir}/data/osdhints_notify/*.png
+%{modules_data_dir}/osdhints_notify.desc
+%{modules_data_dir}/configuration/osdhints_notify.ui
+%attr(755,root,root) %{modules_lib_dir}/osdhints_notify.so
+%lang(pl) %{modules_data_dir}/translations/osdhints_notify_pl.qm
+%dir %{modules_data_dir}/data/osdhints_notify
+%{modules_data_dir}/data/osdhints_notify/License
+%{modules_data_dir}/data/osdhints_notify/*.png
 %endif
 
 %if %{with notify_pcspeaker}
 %files module-notify-pcspeaker
 %defattr(644,root,root,755)
-%{_modules_data_dir}/pcspeaker.desc
-%{_modules_data_dir}/configuration/pcspeaker.ui
-%attr(755,root,root) %{_modules_lib_dir}/pcspeaker.so
-%lang(de) %{_modules_data_dir}/translations/pcspeaker_de.qm
-%lang(it) %{_modules_data_dir}/translations/pcspeaker_it.qm
-%lang(pl) %{_modules_data_dir}/translations/pcspeaker_pl.qm
+%{modules_data_dir}/pcspeaker.desc
+%{modules_data_dir}/configuration/pcspeaker.ui
+%attr(755,root,root) %{modules_lib_dir}/pcspeaker.so
+%lang(de) %{modules_data_dir}/translations/pcspeaker_de.qm
+%lang(it) %{modules_data_dir}/translations/pcspeaker_it.qm
+%lang(pl) %{modules_data_dir}/translations/pcspeaker_pl.qm
 %endif
 
 %if %{with notify_speech}
 %files module-notify-speech
 %defattr(644,root,root,755)
-%{_modules_data_dir}/speech.desc
-%{_modules_data_dir}/configuration/speech.ui
-%attr(755,root,root) %{_modules_lib_dir}/speech.so
-%lang(de) %{_modules_data_dir}/translations/speech_de.qm
-%lang(fr) %{_modules_data_dir}/translations/speech_fr.qm
-%lang(it) %{_modules_data_dir}/translations/speech_it.qm
-%lang(pl) %{_modules_data_dir}/translations/speech_pl.qm
+%{modules_data_dir}/speech.desc
+%{modules_data_dir}/configuration/speech.ui
+%attr(755,root,root) %{modules_lib_dir}/speech.so
+%lang(de) %{modules_data_dir}/translations/speech_de.qm
+%lang(fr) %{modules_data_dir}/translations/speech_fr.qm
+%lang(it) %{modules_data_dir}/translations/speech_it.qm
+%lang(pl) %{modules_data_dir}/translations/speech_pl.qm
 %endif
 
 %if %{with notify_water}
 %files module-notify-water
 %defattr(644,root,root,755)
-%{_modules_data_dir}/water_notify.desc
-%{_modules_data_dir}/configuration/water_notify.ui
-%attr(755,root,root) %{_modules_lib_dir}/water_notify.so
-%lang(pl) %{_modules_data_dir}/translations/water_notify_pl.qm
+%{modules_data_dir}/water_notify.desc
+%{modules_data_dir}/configuration/water_notify.ui
+%attr(755,root,root) %{modules_lib_dir}/water_notify.so
+%lang(pl) %{modules_data_dir}/translations/water_notify_pl.qm
 %endif
 
 %if %{with notify_xosd}
 %files module-notify-xosd
 %defattr(644,root,root,755)
-%{_modules_data_dir}/xosd_notify.desc
-%{_modules_data_dir}/configuration/xosd_notify.ui
-%attr(755,root,root) %{_modules_lib_dir}/xosd_notify.so
-%dir %{_modules_bin_dir}/xosd_notify
-%attr(755,root,root) %{_modules_bin_dir}/xosd_notify/gtkfontdialog
-%lang(de) %{_modules_data_dir}/translations/xosd_notify_de.qm
-%lang(fr) %{_modules_data_dir}/translations/xosd_notify_fr.qm
-%lang(it) %{_modules_data_dir}/translations/xosd_notify_it.qm
-%lang(pl) %{_modules_data_dir}/translations/xosd_notify_pl.qm
+%{modules_data_dir}/xosd_notify.desc
+%{modules_data_dir}/configuration/xosd_notify.ui
+%attr(755,root,root) %{modules_lib_dir}/xosd_notify.so
+%dir %{modules_bin_dir}/xosd_notify
+%attr(755,root,root) %{modules_bin_dir}/xosd_notify/gtkfontdialog
+%lang(de) %{modules_data_dir}/translations/xosd_notify_de.qm
+%lang(fr) %{modules_data_dir}/translations/xosd_notify_fr.qm
+%lang(it) %{modules_data_dir}/translations/xosd_notify_it.qm
+%lang(pl) %{modules_data_dir}/translations/xosd_notify_pl.qm
 %endif
 
 %if %{with panelkadu}
 %files module-panelkadu
 %defattr(644,root,root,755)
-%{_modules_data_dir}/panelkadu.desc
-%{_modules_data_dir}/configuration/panelkadu.ui
-%attr(755,root,root) %{_modules_lib_dir}/panelkadu.so
-%lang(pl) %{_modules_data_dir}/translations/panelkadu_pl.qm
+%{modules_data_dir}/panelkadu.desc
+%{modules_data_dir}/configuration/panelkadu.ui
+%attr(755,root,root) %{modules_lib_dir}/panelkadu.so
+%lang(pl) %{modules_data_dir}/translations/panelkadu_pl.qm
 %endif
 
 %if %{with parser_extender}
 %files module-parser_extender
 %defattr(644,root,root,755)
-%{_modules_data_dir}/parser_extender.desc
-%{_modules_data_dir}/configuration/parser_extender.ui
-%attr(755,root,root) %{_modules_lib_dir}/parser_extender.so
-%lang(pl) %{_modules_data_dir}/translations/parser_extender_pl.qm
+%{modules_data_dir}/parser_extender.desc
+%{modules_data_dir}/configuration/parser_extender.ui
+%attr(755,root,root) %{modules_lib_dir}/parser_extender.so
+%lang(pl) %{modules_data_dir}/translations/parser_extender_pl.qm
 %endif
 
 %if %{with powerkadu}
 %files module-powerkadu
 %defattr(644,root,root,755)
-%{_modules_data_dir}/powerkadu.desc
-%attr(755,root,root) %{_modules_lib_dir}/powerkadu.so
-%lang(pl) %{_modules_data_dir}/translations/powerkadu_pl.qm
-%dir %{_modules_data_dir}/data/powerkadu
-%{_modules_data_dir}/data/powerkadu/ChangeLog
-%{_modules_data_dir}/data/powerkadu/powerkadu_32x32.png
-%{_modules_data_dir}/data/powerkadu/powerkadu_big.png
-%lang(en) %{_modules_data_dir}/data/powerkadu/AUTHORS
-%lang(pl) %{_modules_data_dir}/data/powerkadu/AUTHORS.pl
+%{modules_data_dir}/powerkadu.desc
+%attr(755,root,root) %{modules_lib_dir}/powerkadu.so
+%lang(pl) %{modules_data_dir}/translations/powerkadu_pl.qm
+%dir %{modules_data_dir}/data/powerkadu
+%{modules_data_dir}/data/powerkadu/ChangeLog
+%{modules_data_dir}/data/powerkadu/powerkadu_32x32.png
+%{modules_data_dir}/data/powerkadu/powerkadu_big.png
+%lang(en) %{modules_data_dir}/data/powerkadu/AUTHORS
+%lang(pl) %{modules_data_dir}/data/powerkadu/AUTHORS.pl
 %endif
 
 %if %{with profiles}
 %files module-profiles
 %defattr(644,root,root,755)
-%{_modules_data_dir}/profiles.desc
-%attr(755,root,root) %{_modules_lib_dir}/profiles.so
-%lang(it) %{_modules_data_dir}/translations/profiles_it.qm
-%lang(pl) %{_modules_data_dir}/translations/profiles_pl.qm
+%{modules_data_dir}/profiles.desc
+%attr(755,root,root) %{modules_lib_dir}/profiles.so
+%lang(it) %{modules_data_dir}/translations/profiles_it.qm
+%lang(pl) %{modules_data_dir}/translations/profiles_pl.qm
+%endif
+
+%if %{with senthistory}
+%files module-senthistory
+%defattr(644,root,root,755)
+%{modules_data_dir}/senthistory.desc
+%attr(755,root,root) %{modules_lib_dir}/senthistory.so
 %endif
 
 %if %{with screenshot}
 %files module-screenshot
 %defattr(644,root,root,755)
-%{_modules_data_dir}/screenshot.desc
-%{_modules_data_dir}/configuration/screenshot.ui
-%attr(755,root,root) %{_modules_lib_dir}/screenshot.so
-%lang(pl) %{_modules_data_dir}/translations/screenshot_pl.qm
-%dir %{_modules_data_dir}/data/screenshot
-%{_modules_data_dir}/data/screenshot/*.png
+%{modules_data_dir}/screenshot.desc
+%{modules_data_dir}/configuration/screenshot.ui
+%attr(755,root,root) %{modules_lib_dir}/screenshot.so
+%lang(pl) %{modules_data_dir}/translations/screenshot_pl.qm
+%dir %{modules_data_dir}/data/screenshot
+%{modules_data_dir}/data/screenshot/*.png
 %endif
 
 %if %{with sms_miastoplusa}
 %files module-sms-miastoplusa
 %defattr(644,root,root,755)
-%{_modules_data_dir}/miastoplusa_sms.desc
-%{_modules_data_dir}/configuration/miastoplusa_sms.ui
-%attr(755,root,root) %{_modules_lib_dir}/miastoplusa_sms.so
-%lang(pl) %{_modules_data_dir}/translations/miastoplusa_sms_pl.qm
-%dir %{_modules_data_dir}/data/miastoplusa_sms
-%{_modules_data_dir}/data/miastoplusa_sms/curl-ca-bundle.crt
+%{modules_data_dir}/miastoplusa_sms.desc
+%{modules_data_dir}/configuration/miastoplusa_sms.ui
+%attr(755,root,root) %{modules_lib_dir}/miastoplusa_sms.so
+%lang(pl) %{modules_data_dir}/translations/miastoplusa_sms_pl.qm
+%dir %{modules_data_dir}/data/miastoplusa_sms
+%{modules_data_dir}/data/miastoplusa_sms/curl-ca-bundle.crt
 %endif
 
 %if %{with sound_alsa}
 %files module-sound-alsa
 %defattr(644,root,root,755)
-%{_modules_data_dir}/alsa_sound.desc
-%{_modules_data_dir}/configuration/alsa_sound.ui
-%attr(755,root,root) %{_modules_lib_dir}/alsa_sound.so
-%lang(de) %{_modules_data_dir}/translations/alsa_sound_de.qm
-%lang(fr) %{_modules_data_dir}/translations/alsa_sound_fr.qm
-%lang(it) %{_modules_data_dir}/translations/alsa_sound_it.qm
-%lang(pl) %{_modules_data_dir}/translations/alsa_sound_pl.qm
+%{modules_data_dir}/alsa_sound.desc
+%{modules_data_dir}/configuration/alsa_sound.ui
+%attr(755,root,root) %{modules_lib_dir}/alsa_sound.so
+%lang(de) %{modules_data_dir}/translations/alsa_sound_de.qm
+%lang(fr) %{modules_data_dir}/translations/alsa_sound_fr.qm
+%lang(it) %{modules_data_dir}/translations/alsa_sound_it.qm
+%lang(pl) %{modules_data_dir}/translations/alsa_sound_pl.qm
 %endif
 
 %if %{with sound_ao}
 %files module-sound-ao
 %defattr(644,root,root,755)
-%{_modules_data_dir}/ao_sound.desc
-%attr(755,root,root) %{_modules_lib_dir}/ao_sound.so
+%{modules_data_dir}/ao_sound.desc
+%attr(755,root,root) %{modules_lib_dir}/ao_sound.so
 %endif
 
 %if %{with sound_arts}
 %files module-sound-arts
 %defattr(644,root,root,755)
-%{_modules_data_dir}/arts_sound.desc
-%attr(755,root,root) %{_modules_lib_dir}/arts_sound.so
-%dir %{_modules_bin_dir}/arts_sound
-%attr(755,root,root) %{_modules_bin_dir}/arts_sound/arts_connector
+%{modules_data_dir}/arts_sound.desc
+%attr(755,root,root) %{modules_lib_dir}/arts_sound.so
+%dir %{modules_bin_dir}/arts_sound
+%attr(755,root,root) %{modules_bin_dir}/arts_sound/arts_connector
 %endif
 
 %if %{with sound_dsp}
 %files module-sound-dsp
 %defattr(644,root,root,755)
-%{_modules_data_dir}/dsp_sound.desc
-%{_modules_data_dir}/configuration/dsp_sound.ui
-%attr(755,root,root) %{_modules_lib_dir}/dsp_sound.so
-%lang(de) %{_modules_data_dir}/translations/dsp_sound_de.qm
-%lang(fr) %{_modules_data_dir}/translations/dsp_sound_fr.qm
-%lang(it) %{_modules_data_dir}/translations/dsp_sound_it.qm
-%lang(pl) %{_modules_data_dir}/translations/dsp_sound_pl.qm
+%{modules_data_dir}/dsp_sound.desc
+%{modules_data_dir}/configuration/dsp_sound.ui
+%attr(755,root,root) %{modules_lib_dir}/dsp_sound.so
+%lang(de) %{modules_data_dir}/translations/dsp_sound_de.qm
+%lang(fr) %{modules_data_dir}/translations/dsp_sound_fr.qm
+%lang(it) %{modules_data_dir}/translations/dsp_sound_it.qm
+%lang(pl) %{modules_data_dir}/translations/dsp_sound_pl.qm
 %endif
 
 %if %{with sound_esd}
 %files module-sound-esd
 %defattr(644,root,root,755)
-%{_modules_data_dir}/esd_sound.desc
-%attr(755,root,root) %{_modules_lib_dir}/esd_sound.so
+%{modules_data_dir}/esd_sound.desc
+%attr(755,root,root) %{modules_lib_dir}/esd_sound.so
 %endif
 
 %if %{with sound_ext}
 %files module-sound-ext
 %defattr(644,root,root,755)
-%{_modules_data_dir}/ext_sound.desc
-%{_modules_data_dir}/configuration/ext_sound.ui
-%attr(755,root,root) %{_modules_lib_dir}/ext_sound.so
-%lang(de) %{_modules_data_dir}/translations/ext_sound_de.qm
-%lang(fr) %{_modules_data_dir}/translations/ext_sound_fr.qm
-%lang(it) %{_modules_data_dir}/translations/ext_sound_it.qm
-%lang(pl) %{_modules_data_dir}/translations/ext_sound_pl.qm
+%{modules_data_dir}/ext_sound.desc
+%{modules_data_dir}/configuration/ext_sound.ui
+%attr(755,root,root) %{modules_lib_dir}/ext_sound.so
+%lang(de) %{modules_data_dir}/translations/ext_sound_de.qm
+%lang(fr) %{modules_data_dir}/translations/ext_sound_fr.qm
+%lang(it) %{modules_data_dir}/translations/ext_sound_it.qm
+%lang(pl) %{modules_data_dir}/translations/ext_sound_pl.qm
 %endif
 
 %if %{with sound_nas}
 %files module-sound-nas
 %defattr(644,root,root,755)
-%{_modules_data_dir}/nas_sound.desc
-%attr(755,root,root) %{_modules_lib_dir}/nas_sound.so
+%{modules_data_dir}/nas_sound.desc
+%attr(755,root,root) %{modules_lib_dir}/nas_sound.so
 %endif
 
 %if %{with spellchecker}
 %files module-spellchecker
 %defattr(644,root,root,755)
-%{_modules_data_dir}/spellchecker.desc
-%{_modules_data_dir}/configuration/spellchecker.ui
-%attr(755,root,root) %{_modules_lib_dir}/spellchecker.so
-%lang(pl) %{_modules_data_dir}/translations/spellchecker_pl.qm
-%dir %{_modules_data_dir}/data/spellchecker
-%{_modules_data_dir}/data/spellchecker/config.png
+%{modules_data_dir}/spellchecker.desc
+%{modules_data_dir}/configuration/spellchecker.ui
+%attr(755,root,root) %{modules_lib_dir}/spellchecker.so
+%lang(pl) %{modules_data_dir}/translations/spellchecker_pl.qm
+%dir %{modules_data_dir}/data/spellchecker
+%{modules_data_dir}/data/spellchecker/config.png
 %endif
 
 %if %{with split_messages}
 %files module-split_messages
 %defattr(644,root,root,755)
-%{_modules_data_dir}/split_messages.desc
-%{_modules_data_dir}/configuration/split_messages.ui
-%attr(755,root,root) %{_modules_lib_dir}/split_messages.so
-%lang(pl) %{_modules_data_dir}/translations/split_messages_pl.qm
+%{modules_data_dir}/split_messages.desc
+%{modules_data_dir}/configuration/split_messages.ui
+%attr(755,root,root) %{modules_lib_dir}/split_messages.so
+%lang(pl) %{modules_data_dir}/translations/split_messages_pl.qm
 %endif
 
 %if %{with tabs}
 %files module-tabs
 %defattr(644,root,root,755)
-%{_modules_data_dir}/tabs.desc
-%{_modules_data_dir}/configuration/tabs.ui
-%attr(755,root,root) %{_modules_lib_dir}/tabs.so
-%lang(pl) %{_modules_data_dir}/translations/tabs_pl.qm
+%{modules_data_dir}/tabs.desc
+%{modules_data_dir}/configuration/tabs.ui
+%attr(755,root,root) %{modules_lib_dir}/tabs.so
+%lang(pl) %{modules_data_dir}/translations/tabs_pl.qm
 %endif
 
 %if %{with voice}
 %files module-voice
 %defattr(644,root,root,755)
-%{_modules_data_dir}/voice.desc
-%{_modules_data_dir}/configuration/voice.ui
-%attr(755,root,root) %{_modules_lib_dir}/voice.so
-%lang(de) %{_modules_data_dir}/translations/voice_de.qm
-%lang(fr) %{_modules_data_dir}/translations/voice_fr.qm
-%lang(it) %{_modules_data_dir}/translations/voice_it.qm
-%lang(pl) %{_modules_data_dir}/translations/voice_pl.qm
+%{modules_data_dir}/voice.desc
+%{modules_data_dir}/configuration/voice.ui
+%attr(755,root,root) %{modules_lib_dir}/voice.so
+%lang(de) %{modules_data_dir}/translations/voice_de.qm
+%lang(fr) %{modules_data_dir}/translations/voice_fr.qm
+%lang(it) %{modules_data_dir}/translations/voice_it.qm
+%lang(pl) %{modules_data_dir}/translations/voice_pl.qm
 %endif
 
 %if %{with weather}
 %files module-weather
 %defattr(644,root,root,755)
-%{_modules_data_dir}/weather.desc
-%{_modules_data_dir}/configuration/weather.ui
-%attr(755,root,root) %{_modules_lib_dir}/weather.so
-%lang(pl) %{_modules_data_dir}/translations/weather_pl.qm
-%dir %{_modules_data_dir}/data/weather
-%{_modules_data_dir}/data/weather/*.ini
-%dir %{_modules_data_dir}/data/weather/icons
-%{_modules_data_dir}/data/weather/icons/*.gif
+%{modules_data_dir}/weather.desc
+%{modules_data_dir}/configuration/weather.ui
+%attr(755,root,root) %{modules_lib_dir}/weather.so
+%lang(pl) %{modules_data_dir}/translations/weather_pl.qm
+%dir %{modules_data_dir}/data/weather
+%{modules_data_dir}/data/weather/*.ini
+%dir %{modules_data_dir}/data/weather/icons
+%{modules_data_dir}/data/weather/icons/*.gif
 %endif
 
 %if %{with word_fix}
 %files module-word_fix
 %defattr(644,root,root,755)
-%{_modules_data_dir}/word_fix.desc
-%{_modules_data_dir}/configuration/word_fix.ui
-%attr(755,root,root) %{_modules_lib_dir}/word_fix.so
-%lang(pl) %{_modules_data_dir}/translations/word_fix_pl.qm
-%dir %{_modules_data_dir}/data/word_fix
-%{_modules_data_dir}/data/word_fix/wf_default_list.data
+%{modules_data_dir}/word_fix.desc
+%{modules_data_dir}/configuration/word_fix.ui
+%attr(755,root,root) %{modules_lib_dir}/word_fix.so
+%lang(pl) %{modules_data_dir}/translations/word_fix_pl.qm
+%dir %{modules_data_dir}/data/word_fix
+%{modules_data_dir}/data/word_fix/wf_default_list.data
 %endif
 
 %files theme-icons-glass16
