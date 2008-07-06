@@ -96,7 +96,7 @@
 %define		parser_extender_ver	0.1.1
 %define		powerkadu_ver		2.0.4
 %define		profiles_ver		0.3.1
-%define		senthistory_ver		0.6.0-rc1
+%define		senthistory_ver		0.6.0-1
 %define		screenshot_ver		20080104
 %define		sms_miastoplusa_ver	1.3.9
 %define		sound_ao_ver		20060424
@@ -206,7 +206,7 @@ Source43:	http://www.kadu.net/~dorr/moduly/%{name}-autostatus-%{autostatus_ver}.
 Source44:	http://www.ultr.pl/kadu/globalhotkeys-%{globalhotkeys_ver}.tar.gz
 # Source44-md5:	ac1414714910786ea7fc4dface44265d
 Source45:	http://www.ultr.pl/kadu/senthistory-%{senthistory_ver}.tar.gz
-# Source45-md5:	45c05a4856d591e8f8c9343eb1f1446a
+# Source45-md5:	8c69eec8d1432454b655d823e2d1ef2b
 Source46:	http://www.ultr.pl/kadu/nextinfo-%{nextinfo_ver}.tar.gz
 # Source46-md5:	8ba8bc7eb6b1fe1e7b48e9f028094bc1
 Source47:	http://myslenice.one.pl/~boogie/desc_history/desc_history-%{desc_history_ver}.tar.bz2
