@@ -112,7 +112,7 @@ Release:	1
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
-# Source0-md5:	1f7797fe114069779ed924563ce1e1e9
+# Source0-md5:	4dc9b51de59f2089cf4526804bffc4fb
 Source1:	%{name}.desktop
 Source2:	http://www.kadu.net/download/modules_extra/mediaplayer/mediaplayer-%{mediaplayer_mod_ver}.tar.bz2
 # Source2-md5:	8a27d4873e6896d63f7c8193029b24ca
