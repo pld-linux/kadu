@@ -1,6 +1,7 @@
 #
 # TODO:
 # - Some modules with bcond_with will not work for now, we need to wait for next releases
+# - better descriptions/summaries for all modules (maybe also information in each package that it is a kadu module/theme)
 #
 # Conditional build:
 %bcond_with	debug			# build with debug
@@ -12,6 +13,7 @@
 %bcond_without	autostatus		# without autostatus module support
 %bcond_without	anonymous_check		# without anonymous_check module support
 %bcond_without	cenzor			# without cenzor module support
+%bcond_with	desc_history		# with dcopexport module support (disabled becouse not in autodownload/not well tested)
 %bcond_without	dcopexport		# without dcopexport module support
 %bcond_without	docking_desktop		# without desktop_docking module support
 %bcond_without	docking_wmaker		# without wmaker_docking module support
@@ -20,7 +22,7 @@
 %bcond_without	filtering		# without filtering module support
 %bcond_without	firewall		# without firewall module support
 %bcond_without	globalhotkeys		# without globalhotkeys module support
-%bcond_with	iwait4u			# with iwait4u module support
+%bcond_with	iwait4u			# with iwait4u module support (not available for kadu 0.6.x)
 %bcond_without	last_seen		# without last_seen module support
 %bcond_without	mail			# without mail module support
 %bcond_without	mediaplayer		# without media player modules support
@@ -29,6 +31,7 @@
 %bcond_without	mediaplayer_falf	# without falf player support module
 %bcond_without	mediaplayer_xmms	# without xmms player support module
 %bcond_without	mime_tex		# without mime_tex module support
+%bcond_with	nextinfo		# with nextinfo module support (disabled becouse not in autodownload/not well tested)
 %bcond_without	notify_exec		# without exec_notify module support
 %bcond_without	notify_led		# without led_notify module support
 %bcond_without	notify_mx610		# without led_notify module support
@@ -41,6 +44,7 @@
 %bcond_without	parser_extender		# without parser_extender extensions
 %bcond_without	powerkadu		# without PowerKadu extensions
 %bcond_without	profiles		# without profiles module support
+%bcond_without	senthistory		# without senthistory module support
 %bcond_without	sound_alsa		# without ALSA support
 %bcond_without	sound_ao		# without ao support
 %bcond_without	sound_arts		# without arts sound server support
@@ -66,27 +70,30 @@
 %define		auto_hide_ver		0.2.1
 %define		autostatus_ver		0.1
 %define		cenzor_ver		0.2
+%define		desc_history_ver	1.1
 %define		dcopexport_ver		0.11.3-20071129
 %define		falf_mod_ver		20071225
 %define		filedesc_ver		20080104
 %define		filtering_ver		20080224
-%define		firewall_ver		0.7.5
-%define		globalhotkeys_ver	0.6.0-1
+%define		firewall_ver		0.7.5.1
+%define		globalhotkeys_ver	0.6.0-3
 %define		iwait4u_ver		1.3
 %define		last_seen_ver		0.1.1
 %define		mail_ver		0.3.3
 %define		mediaplayer_mod_ver	20080224
-%define		mediaplayer_audacious_ver	20080224
+%define		mediaplayer_audacious_ver	20080423
 %define		mime_tex_ver		1.4.1.1
+%define		nextinfo_ver		0.6.0-rc3
 %define		notify_led_ver		0.18
 %define		notify_mx610_ver	0.3.1
-%define		notify_osdhints_ver	0.4.1
+%define		notify_osdhints_ver	0.4.3
 %define		notify_pcspeaker_ver	0.6.0.3
 %define		notify_water_ver	0.1.1-try2
 %define		panelkadu_ver		0.6.0-1
 %define		parser_extender_ver	0.1.1
 %define		powerkadu_ver		2.0.4
 %define		profiles_ver		0.3.1
+%define		senthistory_ver		0.6.0-1
 %define		screenshot_ver		20080104
 %define		sms_miastoplusa_ver	1.3.9
 %define		sound_ao_ver		20060424
@@ -100,12 +107,12 @@
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
-Version:	0.6.0.1
-Release:	2
+Version:	0.6.0.2
+Release:	1
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
-# Source0-md5:	e879ac2fedbd659099376133a83dce44
+# Source0-md5:	1f7797fe114069779ed924563ce1e1e9
 Source1:	%{name}.desktop
 Source2:	http://www.kadu.net/download/modules_extra/mediaplayer/mediaplayer-%{mediaplayer_mod_ver}.tar.bz2
 # Source2-md5:	8a27d4873e6896d63f7c8193029b24ca
@@ -124,7 +131,7 @@ Source8:	http://www.kadu.net/download/modules_extra/falf_mediaplayer/falf_mediap
 Source9:	http://kadu.net/~blysk/led_notify-%{notify_led_ver}.tar.bz2
 # Source9-md5:	786a0ee40a3aef03b51e2d89a2bceda5
 Source10:	http://www.kadu.net/~dorr/moduly/%{name}-osdhints_notify-%{notify_osdhints_ver}.tar.bz2
-# Source10-md5:	8535f59d43144be0bc89947c774e1208
+# Source10-md5:	5913203482de8ef9d596e94afcbff147
 Source11:	http://www.kadu.net/~dorr/moduly/%{name}-pcspeaker-%{notify_pcspeaker_ver}.tar.bz2
 # Source11-md5:	4b8abfe0c57efabb49ba8c6c71a316f2
 Source12:	http://www.kadu.net/~dorr/moduly/%{name}-powerkadu-%{powerkadu_ver}.tar.bz2
@@ -140,7 +147,7 @@ Source16:	http://www.kadu.net/download/modules_extra/spellchecker/spellchecker-%
 Source17:	http://misiek.jah.pl/assets/2008/2/8/agent-%{agent_mod_ver}.tar.gz
 # Source17-md5:	4401e0e3c509af347cb14a89236301ea
 Source18:	http://kadu.net/~arvenil/tabs/download/%{version}/%{tabs_ver}/%{name}-tabs-%{tabs_ver}.tar.bz2
-# Source18-md5:	f9a335a99785432499c733f0956f4c1c
+# Source18-md5:	fa780b90db6f7e41b16008291dde3dac
 Source19:	http://kadu.net/~blysk/weather-%{weather_ver}.tar.bz2
 # Source19-md5:	41a6edd1356a36e4606e432d0bc856f6
 Source20:	http://www.kadu.net/download/modules_extra/xmms_mediaplayer/xmms_mediaplayer-%{xmms_mod_ver}.tar.bz2
@@ -156,7 +163,7 @@ Source24:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-22.tar.
 Source25:	http://www.kadu.net/~dorr/moduly/%{name}-word_fix-%{word_fix_ver}.tar.bz2
 # Source25-md5:	691484a500c75079508b240449cb9c90
 Source27:	http://www.kadu.net/~dorr/moduly/%{name}-firewall-%{firewall_ver}.tar.bz2
-# Source27-md5:	9b0f04b4254b4ff08254b15e59a81be7
+# Source27-md5:	f0d4e6f3ec989d71eb3d07759dd9b92a
 Source28:	http://kadu.net/~patryk/mime_tex/mime_tex-%{mime_tex_ver}.tar.bz2
 # Source28-md5:	7c407d03d64e2aaa62ae33187650d047
 Source29:	http://kadu.jarzebski.pl/mx610_notify-%{notify_mx610_ver}.tar.bz2
@@ -164,7 +171,7 @@ Source29:	http://kadu.jarzebski.pl/mx610_notify-%{notify_mx610_ver}.tar.bz2
 Source30:	http://www.kadu.net/~joi/ao_sound/packages/ao_sound-%{sound_ao_ver}.tar.bz2
 # Source30-md5:	95809d330e48e61f58ec961ddbf0b529
 Source31:	http://www.kadu.net/download/modules_extra/audacious_mediaplayer/audacious_mediaplayer-%{mediaplayer_audacious_ver}.tar.bz2
-# Source31-md5:	aa427d5b87fcc48cdd799cf19fe92da1
+# Source31-md5:	76611a2d47203465224b329bfa1eea7e
 Source32:	http://www.kadu.net/~weagle/mail/mail-%{mail_ver}.tar.bz2
 # Source32-md5:	898561b215ac10a99be62fa4e3a50a55
 Source33:	http://www.kadu.net/download/additions/%{name}-0.6-theme-oxygen-16.tar.gz
@@ -190,7 +197,13 @@ Source42:	http://www.kadu.net/~dorr/moduly/%{name}-last_seen-%{last_seen_ver}.ta
 Source43:	http://www.kadu.net/~dorr/moduly/%{name}-autostatus-%{autostatus_ver}.tar.bz2
 # Source43-md5:	bd508a350cb26f2925d055a40cd92e89
 Source44:	http://www.ultr.pl/kadu/globalhotkeys-%{globalhotkeys_ver}.tar.gz
-# Source44-md5:	303e73f3ff2b27d8fe7ca04783155974
+# Source44-md5:	ac1414714910786ea7fc4dface44265d
+Source45:	http://www.ultr.pl/kadu/senthistory-%{senthistory_ver}.tar.gz
+# Source45-md5:	8c69eec8d1432454b655d823e2d1ef2b
+Source46:	http://www.ultr.pl/kadu/nextinfo-%{nextinfo_ver}.tar.gz
+# Source46-md5:	8ba8bc7eb6b1fe1e7b48e9f028094bc1
+Source47:	http://myslenice.one.pl/~boogie/desc_history/desc_history-%{desc_history_ver}.tar.bz2
+# Source47-md5:	cf7d7c8f86d9cfe4b5a0ab52b5deff34
 Patch0:		%{name}-ac_am.patch
 Patch1:		%{name}-voice.patch
 URL:		http://kadu.net/
@@ -341,6 +354,18 @@ Censor module.
 
 %description module-cenzor -l pl.UTF-8
 Moduł cenzora.
+
+%package module-desc_history
+Summary:	Status descriptions history
+Summary(pl.UTF-8):	Historia opisów statusów
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-desc_history
+Status descriptions history.
+
+%description module-desc_history -l pl.UTF-8
+Historia opisów statusów.
 
 %package module-dcopexport
 Summary:	Kadu DCOP interface
@@ -564,6 +589,18 @@ Mathematical TeX formulas for chat windows.
 %description module-mime_tex -l pl.UTF-8
 Matematyczne formuły TeX w oknach czat.
 
+%package module-nextinfo
+Summary:	Extended contact informations
+Summary(pl.UTF-8):	Rozszerzone informacje o kontakcie
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-nextinfo
+Extended contact information
+
+%description module-nextinfo -l pl.UTF-8
+Rozszerzone informacje o kontakcie
+
 %package module-notify-exec
 Summary:	Notification by external commands module
 Summary(pl.UTF-8):	Moduł powiadamiania użytkownika o zdarzeniach za pomocą zewnętrznych poleceń
@@ -721,6 +758,19 @@ Kadu Profiles.
 
 %description module-profiles -l pl.UTF-8
 Profile w Kadu.
+
+%package module-senthistory
+Summary:	Kadu module which adds history of sent messages to chat windows
+Summary(pl.UTF-8):	Moduł kadu który dodaje historię wysłanych wiadomości do okien rozmowy
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-senthistory
+Kadu module which adds history of sent messages to chat windows.
+
+%description module-senthistory -l pl.UTF-8
+Moduł kadu który dodaje historię wysłanych wiadomości do okien
+rozmowy.
 
 %package module-screenshot
 Summary:	Simple ScreenShots module
@@ -991,6 +1041,9 @@ tar xjf %{SOURCE43} -C modules
 %if %{with cenzor}
 tar xjf %{SOURCE39} -C modules
 %endif
+%if %{with desc_history}
+tar xjf %{SOURCE47} -C modules
+%endif
 %if %{with dcopexport}
 tar xjf %{SOURCE4} -C modules
 %endif
@@ -1033,6 +1086,9 @@ tar xjf %{SOURCE20} -C modules
 %if %{with mime_tex}
 tar xjf %{SOURCE28} -C modules
 %endif
+%if %{with nextinfo}
+tar xzf %{SOURCE46} -C modules
+%endif
 %if %{with notify_led}
 tar xjf %{SOURCE9} -C modules
 %endif
@@ -1059,6 +1115,9 @@ tar xjf %{SOURCE12} -C modules
 %endif
 %if %{with profiles}
 tar xjf %{SOURCE13} -C modules
+%endif
+%if %{with senthistory}
+tar xzf %{SOURCE45} -C modules
 %endif
 %if %{with screenshot}
 tar xjf %{SOURCE14} -C modules
@@ -1134,6 +1193,11 @@ tar xzf %{SOURCE41} -C varia/themes/icons
 %{__sed} -i 's/module_cenzor=n/module_cenzor=m/' .config
 %else
 %{__sed} -i 's/module_cenzor=m/module_cenzor=n/' .config
+%endif
+%if %{with desc_history}
+%{__sed} -i 's/module_desc_history=n/module_desc_history=m/' .config
+%else
+%{__sed} -i 's/module_desc_history=m/module_desc_history=n/' .config
 %endif
 %if %{with dcopexport}
 %{__sed} -i 's/module_dcopexport=n/module_dcopexport=m/' .config
@@ -1222,6 +1286,11 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok_mediaplayer/spec
 %else
 %{__sed} -i 's/module_mime_tex=m/module_mime_tex=n/' .config
 %endif
+%if %{with nextinfo}
+%{__sed} -i 's/module_nextinfo=n/module_nextinfo=m/' .config
+%else
+%{__sed} -i 's/module_nextinfo=m/module_nextinfo=n/' .config
+%endif
 %if %{with notify_exec}
 %{__sed} -i 's/module_exec_notify=n/module_exec_notify=m/' .config
 %else
@@ -1281,6 +1350,11 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok_mediaplayer/spec
 %{__sed} -i 's/module_profiles=n/module_profiles=m/' .config
 %else
 %{__sed} -i 's/module_profiles=m/module_profiles=n/' .config
+%endif
+%if %{with senthistory}
+%{__sed} -i 's/module_senthistory=n/module_senthistory=m/' .config
+%else
+%{__sed} -i 's/module_senthistory=m/module_senthistory=n/' .config
 %endif
 %if %{with screenshot}
 %{__sed} -i 's/module_screenshot=n/module_screenshot=m/' .config
@@ -1617,6 +1691,15 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/data/cenzor/cenzor_words_ok.conf
 %endif
 
+%if %{with desc_history}
+%files module-desc_history
+%defattr(644,root,root,755)
+%{modules_data_dir}/desc_history.desc
+%{modules_data_dir}/configuration/desc_history.ui
+%attr(755,root,root) %{modules_lib_dir}/desc_history.so
+%lang(pl) %{modules_data_dir}/translations/desc_history_pl.qm
+%endif
+
 %if %{with encryption}
 %files module-encryption
 %defattr(644,root,root,755)
@@ -1784,6 +1867,15 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{modules_data_dir}/translations/mime_tex_pl.qm
 %endif
 
+%if %{with nextinfo}
+%files module-nextinfo
+%defattr(644,root,root,755)
+%{modules_data_dir}/nextinfo.desc
+%{modules_data_dir}/configuration/nextinfo.ui
+%attr(755,root,root) %{modules_lib_dir}/nextinfo.so
+%lang(pl) %{modules_data_dir}/translations/nextinfo_pl.qm
+%endif
+
 %if %{with notify_exec}
 %files module-notify-exec
 %defattr(644,root,root,755)
@@ -1910,6 +2002,15 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/profiles.so
 %lang(it) %{modules_data_dir}/translations/profiles_it.qm
 %lang(pl) %{modules_data_dir}/translations/profiles_pl.qm
+%endif
+
+%if %{with senthistory}
+%files module-senthistory
+%defattr(644,root,root,755)
+%{modules_data_dir}/senthistory.desc
+%{modules_data_dir}/configuration/senthistory.ui
+%attr(755,root,root) %{modules_lib_dir}/senthistory.so
+%lang(pl) %{modules_data_dir}/translations/senthistory_pl.qm
 %endif
 
 %if %{with screenshot}
