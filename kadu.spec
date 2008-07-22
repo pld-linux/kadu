@@ -214,6 +214,7 @@ URL:		http://kadu.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_sms_miastoplusa:BuildRequires:	curl-devel}
+%{?with_notify_water:BuildRequires:	dbus-devel}
 %{?with_sound_esd:BuildRequires:	esound-devel}
 %if %{with mediaplayer_amarok} || %{with dcopexport}
 BuildRequires:	kdelibs-devel
@@ -229,6 +230,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	qt-devel
 BuildRequires:	qt-linguist
 BuildRequires:	sed >= 4.0
+%{?with_desc_history:BuildRequires:     sqlite3-devel}
 %{?with_mediaplayer_audacious:BuildRequires:	which}
 %{?with_mediaplayer_xmms:BuildRequires:	xmms-devel}
 %{?with_panelkadu:BuildRequires:	xorg-lib-libXtst-devel}
