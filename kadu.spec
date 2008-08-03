@@ -76,7 +76,7 @@
 %define		filedesc_ver		20080104
 %define		filtering_ver		20080224
 %define		firewall_ver		0.7.5.1
-%define		globalhotkeys_ver	0.6.0-3
+%define		globalhotkeys_ver	0.6.0-4
 %define		iwait4u_ver		1.3
 %define		last_seen_ver		0.1.1
 %define		mail_ver		0.3.3
@@ -93,7 +93,7 @@
 %define		parser_extender_ver	0.1.1
 %define		powerkadu_ver		2.0.4
 %define		profiles_ver		0.3.1
-%define		senthistory_ver		0.6.0-1
+%define		senthistory_ver		0.6.0-2
 %define		screenshot_ver		20080104
 %define		sms_miastoplusa_ver	1.3.9
 %define		sound_ao_ver		20060424
@@ -108,7 +108,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
 Version:	0.6.0.2
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -197,9 +197,9 @@ Source42:	http://www.kadu.net/~dorr/moduly/%{name}-last_seen-%{last_seen_ver}.ta
 Source43:	http://www.kadu.net/~dorr/moduly/%{name}-autostatus-%{autostatus_ver}.tar.bz2
 # Source43-md5:	bd508a350cb26f2925d055a40cd92e89
 Source44:	http://www.ultr.pl/kadu/globalhotkeys-%{globalhotkeys_ver}.tar.gz
-# Source44-md5:	ac1414714910786ea7fc4dface44265d
+# Source44-md5:	098d92054bff4ecf5793fe4c622a117e
 Source45:	http://www.ultr.pl/kadu/senthistory-%{senthistory_ver}.tar.gz
-# Source45-md5:	8c69eec8d1432454b655d823e2d1ef2b
+# Source45-md5:	392d16f4240b91a2608d4ddf05861364
 Source46:	http://www.ultr.pl/kadu/nextinfo-%{nextinfo_ver}.tar.gz
 # Source46-md5:	8ba8bc7eb6b1fe1e7b48e9f028094bc1
 Source47:	http://myslenice.one.pl/~boogie/desc_history/desc_history-%{desc_history_ver}.tar.bz2
