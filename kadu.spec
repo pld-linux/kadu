@@ -79,7 +79,7 @@
 %define		filedesc_ver		20080104
 %define		filtering_ver		20080224
 %define		firewall_ver		0.7.5.1
-%define		globalhotkeys_ver	0.6.0-3
+%define		globalhotkeys_ver	0.6.0-5
 %define		iwait4u_ver		1.3
 %define		last_seen_ver		0.1.1
 %define		mail_ver		0.3.3
@@ -96,7 +96,7 @@
 %define		parser_extender_ver	0.1.1
 %define		powerkadu_ver		2.0.4
 %define		profiles_ver		0.3.1
-%define		senthistory_ver		0.6.0-1
+%define		senthistory_ver		0.6.0-2
 %define		screenshot_ver		20080104
 %define		sms_miastoplusa_ver	1.3.9
 %define		sound_ao_ver		20060424
@@ -204,9 +204,9 @@ Source42:	http://www.kadu.net/~dorr/moduly/%{name}-last_seen-%{last_seen_ver}.ta
 Source43:	http://www.kadu.net/~dorr/moduly/%{name}-autostatus-%{autostatus_ver}.tar.bz2
 # Source43-md5:	bd508a350cb26f2925d055a40cd92e89
 Source44:	http://www.ultr.pl/kadu/globalhotkeys-%{globalhotkeys_ver}.tar.gz
-# Source44-md5:	ac1414714910786ea7fc4dface44265d
+# Source44-md5:	2843b3882e8d169fe267fa04540b6fd4
 Source45:	http://www.ultr.pl/kadu/senthistory-%{senthistory_ver}.tar.gz
-# Source45-md5:	8c69eec8d1432454b655d823e2d1ef2b
+# Source45-md5:	392d16f4240b91a2608d4ddf05861364
 Source46:	http://www.ultr.pl/kadu/nextinfo-%{nextinfo_ver}.tar.gz
 # Source46-md5:	8ba8bc7eb6b1fe1e7b48e9f028094bc1
 Source47:	http://myslenice.one.pl/~boogie/desc_history/desc_history-%{desc_history_ver}.tar.bz2
@@ -221,6 +221,7 @@ URL:		http://kadu.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_sms_miastoplusa:BuildRequires:	curl-devel}
+%{?with_notify_water:BuildRequires:	dbus-devel}
 %{?with_sound_esd:BuildRequires:	esound-devel}
 %if %{with mediaplayer_amarok} || %{with dcopexport}
 BuildRequires:	kdelibs-devel
@@ -236,6 +237,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	qt-devel
 BuildRequires:	qt-linguist
 BuildRequires:	sed >= 4.0
+%{?with_desc_history:BuildRequires:     sqlite3-devel}
 %{?with_mediaplayer_audacious:BuildRequires:	which}
 %{?with_mediaplayer_xmms:BuildRequires:	xmms-devel}
 %{?with_panelkadu:BuildRequires:	xorg-lib-libXtst-devel}
