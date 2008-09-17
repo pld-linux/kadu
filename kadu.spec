@@ -76,7 +76,7 @@
 %define		filedesc_ver		20080104
 %define		filtering_ver		20080224
 %define		firewall_ver		0.7.5.1
-%define		globalhotkeys_ver	0.6.0-4
+%define		globalhotkeys_ver	0.6.0-5
 %define		iwait4u_ver		1.3
 %define		last_seen_ver		0.1.1
 %define		mail_ver		0.3.3
@@ -197,7 +197,7 @@ Source42:	http://www.kadu.net/~dorr/moduly/%{name}-last_seen-%{last_seen_ver}.ta
 Source43:	http://www.kadu.net/~dorr/moduly/%{name}-autostatus-%{autostatus_ver}.tar.bz2
 # Source43-md5:	bd508a350cb26f2925d055a40cd92e89
 Source44:	http://www.ultr.pl/kadu/globalhotkeys-%{globalhotkeys_ver}.tar.gz
-# Source44-md5:	098d92054bff4ecf5793fe4c622a117e
+# Source44-md5:	2843b3882e8d169fe267fa04540b6fd4
 Source45:	http://www.ultr.pl/kadu/senthistory-%{senthistory_ver}.tar.gz
 # Source45-md5:	392d16f4240b91a2608d4ddf05861364
 Source46:	http://www.ultr.pl/kadu/nextinfo-%{nextinfo_ver}.tar.gz
