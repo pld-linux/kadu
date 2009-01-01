@@ -22,7 +22,6 @@
 %bcond_without	filtering		# without filtering module support
 %bcond_without	firewall		# without firewall module support
 %bcond_without	globalhotkeys		# without globalhotkeys module support
-%bcond_with	iwait4u			# with iwait4u module support (not available for kadu 0.6.x)
 %bcond_without	last_seen		# without last_seen module support
 %bcond_without	mail			# without mail module support
 %bcond_without	mediaplayer		# without media player modules support
@@ -31,7 +30,7 @@
 %bcond_without	mediaplayer_falf	# without falf player support module
 %bcond_without	mediaplayer_xmms	# without xmms player support module
 %bcond_without	mime_tex		# without mime_tex module support
-%bcond_with	nextinfo		# with nextinfo module support (disabled becouse not in autodownload/not well tested)
+%bcond_without	nextinfo		# without nextinfo module support
 %bcond_without	notify_exec		# without exec_notify module support
 %bcond_without	notify_led		# without led_notify module support
 %bcond_without	notify_mx610		# without led_notify module support
@@ -61,7 +60,7 @@
 %bcond_without	weather			# without weather check module support
 %bcond_without	word_fix		# without word_fix module support
 
-%define		libgadu_ver		4:1.8.0
+%define		libgadu_ver		4:1.8.2
 
 %define		agent_mod_ver		0.4.4
 %define		amarok_mod_ver		20071220
@@ -76,24 +75,23 @@
 %define		filedesc_ver		20080104
 %define		filtering_ver		20080224
 %define		firewall_ver		0.7.5.1
-%define		globalhotkeys_ver	0.6.0-5
-%define		iwait4u_ver		1.3
+%define		globalhotkeys_ver	0.6.0-7
 %define		last_seen_ver		0.1.1
 %define		mail_ver		0.3.3
 %define		mediaplayer_mod_ver	20080224
 %define		mediaplayer_audacious_ver	20080423
 %define		mime_tex_ver		1.4.1.1
-%define		nextinfo_ver		0.6.0-rc3
+%define		nextinfo_ver		0.6.0-1
 %define		notify_led_ver		0.18
 %define		notify_mx610_ver	0.3.1
 %define		notify_osdhints_ver	0.4.3
 %define		notify_pcspeaker_ver	0.6.0.3
 %define		notify_water_ver	0.1.1-try2
-%define		panelkadu_ver		0.6.0-1
+%define		panelkadu_ver		0.6.0-2
 %define		parser_extender_ver	0.1.1
 %define		powerkadu_ver		2.0.4
 %define		profiles_ver		0.3.1
-%define		senthistory_ver		0.6.0-2
+%define		senthistory_ver		0.6.0-3
 %define		screenshot_ver		20080104
 %define		sms_miastoplusa_ver	1.3.9
 %define		sound_ao_ver		20060424
@@ -107,12 +105,12 @@
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
-Version:	0.6.0.2
-Release:	3
+Version:	0.6.0.3
+Release:	1
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
-# Source0-md5:	4dc9b51de59f2089cf4526804bffc4fb
+# Source0-md5:	53954a09caf8439589c746e99151dacb
 Source1:	%{name}.desktop
 Source2:	http://www.kadu.net/download/modules_extra/mediaplayer/mediaplayer-%{mediaplayer_mod_ver}.tar.bz2
 # Source2-md5:	8a27d4873e6896d63f7c8193029b24ca
@@ -124,8 +122,6 @@ Source5:	http://www.kadu.net/download/modules_extra/filedesc/filedesc-%{filedesc
 # Source5-md5:	8d11979fa8a3795f7ab20fbb1fb8bdbb
 Source6:	http://www.kadu.net/download/modules_extra/filtering/filtering-%{filtering_ver}.tar.bz2
 # Source6-md5:	a672d4ef9ce113196e4689b9141b4aef
-Source7:	http://www.kadu.net/~pan_wojtas/iwait4u/download/%{name}-iwait4u-%{iwait4u_ver}.tar.gz
-# Source7-md5:	6233a8ef21d901fc5fb91c0db40d0e32
 Source8:	http://www.kadu.net/download/modules_extra/falf_mediaplayer/falf_mediaplayer-%{falf_mod_ver}.tar.bz2
 # Source8-md5:	927db40f7136ff86b3e83307b5cec2d9
 Source9:	http://kadu.net/~blysk/led_notify-%{notify_led_ver}.tar.bz2
@@ -155,7 +151,7 @@ Source20:	http://www.kadu.net/download/modules_extra/xmms_mediaplayer/xmms_media
 Source21:	http://kadu.jarzebski.pl/water_notify-%{notify_water_ver}.tar.bz2
 # Source21-md5:	10320f9b96366422bbcd7ec76d4e85a1
 Source22:	http://www.ultr.pl/kadu/panelkadu-%{panelkadu_ver}.tar.gz
-# Source22-md5:	f520f9e7a295c8ab2ea0dd93d92c0318
+# Source22-md5:	e70dd751a8604a02f94552eb874c0678
 Source23:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-16.tar.gz
 # Source23-md5:	74712871bc3edc4a9e612e18138c49b0
 Source24:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-22.tar.gz
@@ -197,11 +193,11 @@ Source42:	http://www.kadu.net/~dorr/moduly/%{name}-last_seen-%{last_seen_ver}.ta
 Source43:	http://www.kadu.net/~dorr/moduly/%{name}-autostatus-%{autostatus_ver}.tar.bz2
 # Source43-md5:	bd508a350cb26f2925d055a40cd92e89
 Source44:	http://www.ultr.pl/kadu/globalhotkeys-%{globalhotkeys_ver}.tar.gz
-# Source44-md5:	2843b3882e8d169fe267fa04540b6fd4
+# Source44-md5:	77619522f9c7a6ebf35a137ab23affa3
 Source45:	http://www.ultr.pl/kadu/senthistory-%{senthistory_ver}.tar.gz
-# Source45-md5:	392d16f4240b91a2608d4ddf05861364
+# Source45-md5:	a9c12c51661766981666450154146619
 Source46:	http://www.ultr.pl/kadu/nextinfo-%{nextinfo_ver}.tar.gz
-# Source46-md5:	8ba8bc7eb6b1fe1e7b48e9f028094bc1
+# Source46-md5:	b763f1d1fe8eef651f399d4d3fdf590f
 Source47:	http://myslenice.one.pl/~boogie/desc_history/desc_history-%{desc_history_ver}.tar.bz2
 # Source47-md5:	cf7d7c8f86d9cfe4b5a0ab52b5deff34
 Patch0:		%{name}-ac_am.patch
@@ -464,18 +460,6 @@ Adds global hotkeys support to Kadu.
 
 %description module-globalhotkeys -l pl.UTF-8
 Moduł dodający do Kadu obsługę skrótów globalnych.
-
-%package module-iwait4u
-Summary:	iwait4u module inform you, that someone from userlist is active
-Summary(pl.UTF-8):	Modul iwait4u do informowania o dostępności osób z listy
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description module-iwait4u
-iwait4u module inform you, that someone from userlist is active.
-
-%description module-iwait4u -l pl.UTF-8
-Moduł iwait4u informuje, że osoba z listy użytkowników jest dostępna.
 
 %package module-last_seen
 Summary:	Last seen
@@ -1061,9 +1045,6 @@ tar xjf %{SOURCE27} -C modules
 %if %{with globalhotkeys}
 tar xzf %{SOURCE44} -C modules
 %endif
-%if %{with iwait4u}
-tar xzf %{SOURCE7} -C modules
-%endif
 %if %{with last_seen}
 tar xjf %{SOURCE42} -C modules
 %endif
@@ -1240,11 +1221,6 @@ tar xzf %{SOURCE41} -C varia/themes/icons
 %{__sed} -i 's/module_globalhotkeys=n/module_globalhotkeys=m/' .config
 %else
 %{__sed} -i 's/module_globalhotkeys=m/module_globalhotkeys=n/' .config
-%endif
-%if %{with iwait4u}
-%{__sed} -i 's/module_iwait4u=n/module_iwait4u=m/' .config
-%else
-%{__sed} -i 's/module_iwait4u=m/module_iwait4u=n/' .config
 %endif
 %if %{with last_seen}
 %{__sed} -i 's/last_seen=n/last_seen=m/' .config
@@ -1787,14 +1763,6 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/configuration/globalhotkeys.ui
 %attr(755,root,root) %{modules_lib_dir}/globalhotkeys.so
 %lang(pl) %{modules_data_dir}/translations/globalhotkeys_pl.qm
-%endif
-
-%if %{with iwait4u}
-%files module-iwait4u
-%defattr(644,root,root,755)
-%{modules_data_dir}/iwait4u.desc
-%attr(755,root,root) %{modules_lib_dir}/iwait4u.so
-%lang(pl) %{modules_data_dir}/translations/iwait4u_pl.qm
 %endif
 
 %if %{with last_seen}
