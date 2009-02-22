@@ -209,6 +209,7 @@ URL:		http://kadu.net/
 %{?with_mediaplayer_audacious:BuildRequires:	audacious-devel >= 1.4.0}
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	cmake
 %{?with_sms_miastoplusa:BuildRequires:	curl-devel}
 %{?with_notify_water:BuildRequires:	dbus-devel}
 %{?with_sound_esd:BuildRequires:	esound-devel}
@@ -230,6 +231,7 @@ BuildRequires:	sed >= 4.0
 %{?with_mediaplayer_xmms:BuildRequires:	xmms-devel}
 %{?with_panelkadu:BuildRequires:	xorg-lib-libXtst-devel}
 %{?with_notify_xosd:BuildRequires:	xosd-devel}
+BuildRequires:	QtWebKit-devel >= 4.4
 Requires:	libgadu >= %{libgadu_ver}
 Obsoletes:	kadu-module-imiface <= 0.4.3
 Obsoletes:	kadu-module-iwait4u <= 0.5.0
