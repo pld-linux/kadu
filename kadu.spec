@@ -202,7 +202,11 @@ Source47:	http://myslenice.one.pl/~boogie/desc_history/desc_history-%{desc_histo
 # Source47-md5:	cf7d7c8f86d9cfe4b5a0ab52b5deff34
 Patch0:		%{name}-ac_am.patch
 Patch1:		%{name}-voice.patch
+Patch2:		%{name}-weather-duplicated-translation-fix.patch
 URL:		http://kadu.net/
+BuildRequires:	Qt3Support-devel >= 4.4
+BuildRequires:	QtScript-devel >= 4.4
+BuildRequires:	QtWebKit-devel >= 4.4
 %{?with_sound_alsa:BuildRequires:	alsa-lib-devel}
 %{?with_sound_arts:BuildRequires:	artsc-devel}
 %{?with_spellchecker:BuildRequires:	aspell-devel}
@@ -231,7 +235,6 @@ BuildRequires:	sed >= 4.0
 %{?with_mediaplayer_xmms:BuildRequires:	xmms-devel}
 %{?with_panelkadu:BuildRequires:	xorg-lib-libXtst-devel}
 %{?with_notify_xosd:BuildRequires:	xosd-devel}
-BuildRequires:	QtWebKit-devel >= 4.4
 Requires:	libgadu >= %{libgadu_ver}
 Obsoletes:	kadu-module-imiface <= 0.4.3
 Obsoletes:	kadu-module-iwait4u <= 0.5.0
@@ -1123,6 +1126,7 @@ tar xjf %{SOURCE18} -C modules
 %endif
 %if %{with weather}
 tar xjf %{SOURCE19} -C modules
+%patch2 -p1
 %endif
 %if %{with word_fix}
 tar xjf %{SOURCE25} -C modules
