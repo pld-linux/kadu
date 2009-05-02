@@ -106,7 +106,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
 Version:	0.6.5.1
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -200,9 +200,8 @@ Source46:	http://www.ultr.pl/kadu/nextinfo-%{nextinfo_ver}.tar.gz
 # Source46-md5:	b763f1d1fe8eef651f399d4d3fdf590f
 Source47:	http://myslenice.one.pl/~boogie/desc_history/desc_history-%{desc_history_ver}.tar.bz2
 # Source47-md5:	cf7d7c8f86d9cfe4b5a0ab52b5deff34
-Patch0:		%{name}-ac_am.patch
-Patch1:		%{name}-voice.patch
-Patch2:		%{name}-weather-duplicated-translation-fix.patch
+Patch0:		%{name}-weather-duplicated-translation-fix.patch
+Patch1:		%{name}-gcc44.patch
 URL:		http://kadu.net/
 BuildRequires:	Qt3Support-devel >= 4.4
 BuildRequires:	QtScript-devel >= 4.4
@@ -1010,8 +1009,7 @@ Zestaw ikon Tango16.
 
 %prep
 %setup -q -T -b 0 -n %{name}
-#%patch0 -p1
-#%patch1 -p1
+%patch1 -p1
 
 %if %{with agent}
 tar xzf %{SOURCE17} -C modules
@@ -1126,7 +1124,7 @@ tar xjf %{SOURCE18} -C modules
 %endif
 %if %{with weather}
 tar xjf %{SOURCE19} -C modules
-%patch2 -p1
+%patch0 -p1
 %endif
 %if %{with word_fix}
 tar xjf %{SOURCE25} -C modules
