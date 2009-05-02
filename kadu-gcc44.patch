@@ -1,0 +1,11 @@
+--- kadu/kadu-core/protocol.h.org	2009-05-02 23:24:13.564602365 +0000
++++ kadu/kadu-core/protocol.h	2009-05-02 23:24:28.954366616 +0000
+@@ -12,6 +12,8 @@
+ #include "kinttypes.h"
+ #endif
+ 
++#include <stdint.h>
++
+ #include "status.h"
+ #include "usergroup.h"
+ 
