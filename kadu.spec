@@ -1146,6 +1146,8 @@ tar xzf %{SOURCE41} -C varia/themes/icons
 %{__sed} -i 's,dataPath("kadu/modules/*,("%{modules_data_dir}/,g' kadu-core/modules.cpp
 
 %build
+install -d build
+
 %if %{with agent}
 %{__sed} -i 's/module_agent=n/module_agent=m/' .config
 %else
@@ -1420,6 +1422,7 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok_mediaplayer/spec
 %{__sed} -i 's/icons_oxygen16=n/icons_oxygen16=y/' .config
 %{__sed} -i 's/icons_tango16=n/icons_tango16=y/' .config
 
+cd build
 %cmake \
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
 	-DSYSCONF_INSTALL_DIR=%{_sysconfdir} \
@@ -1427,14 +1430,14 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok_mediaplayer/spec
 %if "%{_lib}" == "lib64"
 	-DLIB_SUFFIX=64 \
 %endif
-	.
+	..
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 
-%{__make} install \
+%{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
