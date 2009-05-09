@@ -1492,6 +1492,8 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/docking.desc
 %{modules_data_dir}/hints.desc
 %attr(755,root,root) %{modules_lib_dir}/libhints.so
+%{modules_data_dir}/idle.desc
+%attr(755,root,root) %{modules_lib_dir}/libidle.so
 %{modules_data_dir}/notify.desc
 %{modules_data_dir}/sms.desc
 %attr(755,root,root) %{modules_lib_dir}/libsms.so
