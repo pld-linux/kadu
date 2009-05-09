@@ -9,3 +9,14 @@
  #include "status.h"
  #include "usergroup.h"
  
+--- kadu/modules/encryption/pkcs1_certificate.cpp.orig	2009-05-09 11:19:14.000000000 +0200
++++ kadu/modules/encryption/pkcs1_certificate.cpp	2009-05-09 11:19:37.000000000 +0200
+@@ -29,6 +29,8 @@
+  */
+ 
+ #include <limits.h>
++#include <stdint.h>
++
+ #include "pkcs1_certificate.h"
+ 
+ PKCS1Certificate::~PKCS1Certificate()
