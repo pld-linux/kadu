@@ -1136,6 +1136,12 @@ tar xzf %{SOURCE33} -C varia/themes/icons
 tar xzf %{SOURCE34} -C varia/themes/icons
 tar xzf %{SOURCE41} -C varia/themes/icons
 
+# Drop this in 0.6.6 - fix modules install on x86_64
+%if "%{_lib}" == "lib64"
+%{__sed} -i 's/lib\/kadu\/modules/lib64\/kadu\/modules/' modules/*/CMakeLists.txt
+%{__sed} -i 's/lib\/kadu\/modules/lib64\/kadu\/modules/' modules/mime_tex/mimetex/CMakeLists.txt
+%endif
+
 # Change hard coded path to modules data files
 %{__sed} -i 's,dataPath("kadu/modules/*,("%{modules_data_dir}/,g' kadu-core/modules.cpp
 
@@ -1426,7 +1432,7 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok_mediaplayer/spec
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_desktopdir}
+install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
