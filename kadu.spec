@@ -22,6 +22,7 @@
 %bcond_without	filedesc		# without filedesc module support
 %bcond_without	filtering		# without filtering module support
 %bcond_without	firewall		# without firewall module support
+%bcond_without	gg_avatars		# without gg_avatars module support
 %bcond_without	globalhotkeys		# without globalhotkeys module support
 %bcond_with	last_seen		# without last_seen module support
 %bcond_with	mail			# without mail module support
@@ -451,6 +452,18 @@ Module to block unknown persons, who wants to start chat.
 
 %description module-firewall -l pl.UTF-8
 Moduł blokuje nieznane osoby, chcące zacząć rozmowę.
+
+%package module-gg_avatars
+Summary:	Adds gadu avatars support to Kadu
+Summary(pl.UTF-8):	Moduł dodający do Kadu obsługę avatarów gg
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-gg_avatars
+Adds global hotkeys support to Kadu.
+
+%description module-gg_avatars -l pl.UTF-8
+Moduł dodający do Kadu obsługę awatarów gg.
 
 %package module-globalhotkeys
 Summary:	Adds global hotkeys support to Kadu
@@ -1228,6 +1241,11 @@ install -d build
 %else
 %{__sed} -i 's/module_firewall=m/module_firewall=n/' .config
 %endif
+%if %{with gg_avatars}
+%{__sed} -i 's/module_gg_avatars=n/module_gg_avatars=m/' .config
+%else
+%{__sed} -i 's/module_gg_avatars=m/module_gg_avatars=n/' .config
+%endif
 %if %{with globalhotkeys}
 %{__sed} -i 's/module_globalhotkeys=n/module_globalhotkeys=m/' .config
 %else
@@ -1751,6 +1769,14 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/configuration/firewall.ui
 %attr(755,root,root) %{modules_lib_dir}/libfirewall.so
 %lang(pl) %{modules_data_dir}/translations/firewall_pl.qm
+%endif
+
+%if %{with gg_avatars}
+%files module-gg_avatars
+%defattr(644,root,root,755)
+%{modules_data_dir}/gg_avatars.desc
+%attr(755,root,root) %{modules_lib_dir}/libgg_avatars.so
+%lang(pl) %{modules_data_dir}/translations/gg_avatars_pl.qm
 %endif
 
 %if %{with globalhotkeys}
