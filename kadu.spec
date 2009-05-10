@@ -227,6 +227,7 @@ BuildRequires:	libsndfile-devel >= 1.0
 BuildRequires:	libstdc++-devel
 %{?with_encryption:BuildRequires:	openssl-devel >= 0.9.7d}
 %{?with_mediaplayer_audacious:BuildRequires:	pkgconfig}
+%{?with_encryption:BuildRequires:	qca-devel}
 #BuildRequires:	qt-devel
 #BuildRequires:	qt-linguist
 BuildRequires:	sed >= 4.0
@@ -234,6 +235,7 @@ BuildRequires:	sed >= 4.0
 %{?with_mediaplayer_audacious:BuildRequires:	which}
 %{?with_mediaplayer_xmms:BuildRequires:	xmms-devel}
 %{?with_panelkadu:BuildRequires:	xorg-lib-libXtst-devel}
+BuildRequires:	xorg-lib-libXScrnSaver-devel
 %{?with_notify_xosd:BuildRequires:	xosd-devel}
 Requires:	libgadu >= %{libgadu_ver}
 Obsoletes:	kadu-module-imiface <= 0.4.3
