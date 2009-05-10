@@ -1153,6 +1153,8 @@ tar xzf %{SOURCE41} -C varia/themes/icons
 %if "%{_lib}" == "lib64"
 %{__sed} -i 's/lib\/kadu\/modules/lib64\/kadu\/modules/' modules/*/CMakeLists.txt
 %{__sed} -i 's/lib\/kadu\/modules/lib64\/kadu\/modules/' modules/mime_tex/mimetex/CMakeLists.txt
+# Change hard coded path to modules libs
+%{__sed} -i 's/..\/lib/..\/lib64/' kadu-core/misc.cpp
 %endif
 
 # Change hard coded path to modules data files
