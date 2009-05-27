@@ -107,7 +107,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
 Version:	0.6.5.2
-Release:	3
+Release:	4
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -203,6 +203,7 @@ Source47:	http://myslenice.one.pl/~boogie/desc_history/desc_history-%{desc_histo
 # Source47-md5:	cf7d7c8f86d9cfe4b5a0ab52b5deff34
 Patch0:		%{name}-weather-duplicated-translation-fix.patch
 Patch1:		%{name}-gcc44.patch
+Patch2:		%{name}-libsuffix.patch
 URL:		http://kadu.net/
 BuildRequires:	Qt3Support-devel >= 4.4
 BuildRequires:	QtScript-devel >= 4.4
@@ -1025,6 +1026,7 @@ Zestaw ikon Tango16.
 %prep
 %setup -q -T -b 0 -n %{name}
 %patch1 -p1
+%patch2 -p0
 
 %if %{with agent}
 tar xzf %{SOURCE17} -C modules
@@ -1151,12 +1153,10 @@ tar xzf %{SOURCE33} -C varia/themes/icons
 tar xzf %{SOURCE34} -C varia/themes/icons
 tar xzf %{SOURCE41} -C varia/themes/icons
 
-# Drop this in 0.6.6 - fix modules install on x86_64
+# Drop this in 0.6.6 - fix external modules installation on x86_64
 %if "%{_lib}" == "lib64"
 %{__sed} -i 's/lib\/kadu\/modules/lib64\/kadu\/modules/' modules/*/CMakeLists.txt
 %{__sed} -i 's/lib\/kadu\/modules/lib64\/kadu\/modules/' modules/mime_tex/mimetex/CMakeLists.txt
-# Change hard coded path to modules libs
-%{__sed} -i 's#/lib#/lib64#' kadu-core/misc.cpp
 %endif
 
 # Change hard coded path to modules data files

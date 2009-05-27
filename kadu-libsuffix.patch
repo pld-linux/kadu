@@ -1,0 +1,1508 @@
+Index: modules/bmpx_mediaplayer/CMakeLists.txt
+===================================================================
+--- modules/bmpx_mediaplayer/CMakeLists.txt	(wersja 6633)
++++ modules/bmpx_mediaplayer/CMakeLists.txt	(wersja 6634)
+@@ -18,5 +18,5 @@
+ if (bmpx_mediaplayer STREQUAL STATIC)
+ 	set_target_properties(bmpx_mediaplayer PROPERTIES COMPILE_FLAGS "-DKADULIB" )
+ else (bmpx_mediaplayer STREQUAL STATIC)
+-	install (TARGETS bmpx_mediaplayer DESTINATION lib/kadu/modules)
++	install (TARGETS bmpx_mediaplayer DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (bmpx_mediaplayer STREQUAL STATIC)
+Index: modules/itunes_mediaplayer/CMakeLists.txt
+===================================================================
+--- modules/itunes_mediaplayer/CMakeLists.txt	(wersja 6633)
++++ modules/itunes_mediaplayer/CMakeLists.txt	(wersja 6634)
+@@ -21,5 +21,5 @@
+ 	if (APPLE)
+ 		set_target_properties(itunes_mediaplayer PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS itunes_mediaplayer DESTINATION lib/kadu/modules)
++	install (TARGETS itunes_mediaplayer DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (itunes_mediaplayer STREQUAL STATIC)
+Index: modules/hints/CMakeLists.txt
+===================================================================
+--- modules/hints/CMakeLists.txt	(wersja 6633)
++++ modules/hints/CMakeLists.txt	(wersja 6634)
+@@ -51,6 +51,6 @@
+ 	if (APPLE)
+ 		set_target_properties(hints PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS hints DESTINATION lib/kadu/modules)
++	install (TARGETS hints DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (hints STREQUAL STATIC)
+ 
+Index: modules/dcc/CMakeLists.txt
+===================================================================
+--- modules/dcc/CMakeLists.txt	(wersja 6633)
++++ modules/dcc/CMakeLists.txt	(wersja 6634)
+@@ -59,6 +59,6 @@
+ 	if (APPLE)
+ 		set_target_properties(dcc PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS dcc DESTINATION lib/kadu/modules)
++	install (TARGETS dcc DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (dcc STREQUAL STATIC)
+ 
+Index: modules/window_notify/CMakeLists.txt
+===================================================================
+--- modules/window_notify/CMakeLists.txt	(wersja 6633)
++++ modules/window_notify/CMakeLists.txt	(wersja 6634)
+@@ -42,6 +42,6 @@
+ 	if (APPLE)
+ 		set_target_properties(pcspeaker PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS window_notify DESTINATION lib/kadu/modules)
++	install (TARGETS window_notify DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (window_notify STREQUAL STATIC)
+ 
+Index: modules/vlc_mediaplayer/CMakeLists.txt
+===================================================================
+--- modules/vlc_mediaplayer/CMakeLists.txt	(wersja 6633)
++++ modules/vlc_mediaplayer/CMakeLists.txt	(wersja 6634)
+@@ -18,5 +18,5 @@
+ if (vlc_mediaplayer STREQUAL STATIC)
+ 	set_target_properties(vlc_mediaplayer PROPERTIES COMPILE_FLAGS "-DKADULIB" )
+ else (vlc_mediaplayer STREQUAL STATIC)
+-	install (TARGETS vlc_mediaplayer DESTINATION lib/kadu/modules)
++	install (TARGETS vlc_mediaplayer DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (vlc_mediaplayer STREQUAL STATIC)
+Index: modules/cenzor/CMakeLists.txt
+===================================================================
+--- modules/cenzor/CMakeLists.txt	(wersja 6633)
++++ modules/cenzor/CMakeLists.txt	(wersja 6634)
+@@ -47,6 +47,6 @@
+ 	if (APPLE)
+ 		set_target_properties(cenzor PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS cenzor DESTINATION lib/kadu/modules)
++	install (TARGETS cenzor DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (cenzor STREQUAL STATIC)
+ 
+Index: modules/phonon_sound/CMakeLists.txt
+===================================================================
+--- modules/phonon_sound/CMakeLists.txt	(wersja 6633)
++++ modules/phonon_sound/CMakeLists.txt	(wersja 6634)
+@@ -29,6 +29,6 @@
+ 	if (APPLE)
+ 		set_target_properties(phonon_sound PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS phonon_sound DESTINATION lib/kadu/modules)
++	install (TARGETS phonon_sound DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (phonon_sound STREQUAL STATIC)
+ 
+Index: modules/autostatus/CMakeLists.txt
+===================================================================
+--- modules/autostatus/CMakeLists.txt	(wersja 6633)
++++ modules/autostatus/CMakeLists.txt	(wersja 6634)
+@@ -44,6 +44,6 @@
+ 	if (APPLE)
+ 		set_target_properties(autostatus PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS autostatus DESTINATION lib/kadu/modules)
++	install (TARGETS autostatus DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (autostatus STREQUAL STATIC)
+ 
+Index: modules/gg_avatars/CMakeLists.txt
+===================================================================
+--- modules/gg_avatars/CMakeLists.txt	(wersja 6633)
++++ modules/gg_avatars/CMakeLists.txt	(wersja 6634)
+@@ -51,6 +51,6 @@
+ 	if (APPLE)
+ 		set_target_properties(gg_avatars PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS gg_avatars DESTINATION lib/kadu/modules)
++	install (TARGETS gg_avatars DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (gg_avatars STREQUAL STATIC)
+ 
+Index: modules/qt4_sound/CMakeLists.txt
+===================================================================
+--- modules/qt4_sound/CMakeLists.txt	(wersja 6633)
++++ modules/qt4_sound/CMakeLists.txt	(wersja 6634)
+@@ -26,6 +26,6 @@
+ 	if (APPLE)
+ 		set_target_properties(qt4_sound PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS qt4_sound DESTINATION lib/kadu/modules)
++	install (TARGETS qt4_sound DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (qt4_sound STREQUAL STATIC)
+ 
+Index: modules/growl_notify/CMakeLists.txt
+===================================================================
+--- modules/growl_notify/CMakeLists.txt	(wersja 6633)
++++ modules/growl_notify/CMakeLists.txt	(wersja 6634)
+@@ -34,6 +34,6 @@
+ 	if (APPLE)
+ 		set_target_properties(growl_notify PROPERTIES LINK_FLAGS "-undefined dynamic_lookup -framework Growl -framework CoreFoundation")
+ 	endif (APPLE)
+-	install (TARGETS growl_notify DESTINATION lib/kadu/modules)
++	install (TARGETS growl_notify DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (growl_notify STREQUAL STATIC)
+ 
+Index: modules/alsa_sound/CMakeLists.txt
+===================================================================
+--- modules/alsa_sound/CMakeLists.txt	(wersja 6633)
++++ modules/alsa_sound/CMakeLists.txt	(wersja 6634)
+@@ -41,6 +41,6 @@
+ if (alsa_sound STREQUAL STATIC)
+ 	set_target_properties(alsa_sound PROPERTIES COMPILE_FLAGS "-DKADULIB" )
+ else (alsa_sound STREQUAL STATIC)
+-	install (TARGETS alsa_sound DESTINATION lib/kadu/modules)
++	install (TARGETS alsa_sound DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (alsa_sound STREQUAL STATIC)
+ 
+Index: modules/account_management/CMakeLists.txt
+===================================================================
+--- modules/account_management/CMakeLists.txt	(wersja 6633)
++++ modules/account_management/CMakeLists.txt	(wersja 6634)
+@@ -50,6 +50,6 @@
+ 	if (APPLE)
+ 		set_target_properties(account_management PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS account_management DESTINATION lib/kadu/modules)
++	install (TARGETS account_management DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (account_management STREQUAL STATIC)
+ 
+Index: modules/osd_hints/CMakeLists.txt
+===================================================================
+--- modules/osd_hints/CMakeLists.txt	(wersja 6633)
++++ modules/osd_hints/CMakeLists.txt	(wersja 6634)
+@@ -108,5 +108,5 @@
+ 	if (APPLE)
+ 		set_target_properties(osd_hints PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS osd_hints DESTINATION lib/kadu/modules)
++	install (TARGETS osd_hints DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (osd_hints STREQUAL STATIC)
+Index: modules/agent/CMakeLists.txt
+===================================================================
+--- modules/agent/CMakeLists.txt	(wersja 6633)
++++ modules/agent/CMakeLists.txt	(wersja 6634)
+@@ -41,6 +41,6 @@
+ 	if (APPLE)
+ 		set_target_properties(agent PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS agent DESTINATION lib/kadu/modules)
++	install (TARGETS agent DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (agent STREQUAL STATIC)
+ 
+Index: modules/powerkadu/CMakeLists.txt
+===================================================================
+--- modules/powerkadu/CMakeLists.txt	(wersja 6633)
++++ modules/powerkadu/CMakeLists.txt	(wersja 6634)
+@@ -53,4 +53,4 @@
+ endif (powerkadu STREQUAL STATIC)
+ add_dependencies (powerkadu powerkadu-translations)
+ 
+-install (TARGETS powerkadu DESTINATION lib/kadu/modules)
++install (TARGETS powerkadu DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+Index: modules/history/CMakeLists.txt
+===================================================================
+--- modules/history/CMakeLists.txt	(wersja 6633)
++++ modules/history/CMakeLists.txt	(wersja 6634)
+@@ -53,6 +53,6 @@
+ 	if (APPLE)
+ 		set_target_properties(history PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS history DESTINATION lib/kadu/modules)
++	install (TARGETS history DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (history STREQUAL STATIC)
+ 
+Index: modules/auto_hide/CMakeLists.txt
+===================================================================
+--- modules/auto_hide/CMakeLists.txt	(wersja 6633)
++++ modules/auto_hide/CMakeLists.txt	(wersja 6634)
+@@ -40,6 +40,6 @@
+ 	if (APPLE)
+ 		set_target_properties(auto_hide PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS auto_hide DESTINATION lib/kadu/modules)
++	install (TARGETS auto_hide DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (auto_hide STREQUAL STATIC)
+ 
+Index: modules/sms/CMakeLists.txt
+===================================================================
+--- modules/sms/CMakeLists.txt	(wersja 6633)
++++ modules/sms/CMakeLists.txt	(wersja 6634)
+@@ -47,6 +47,6 @@
+ 	if (APPLE)
+ 		set_target_properties(sms PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS sms DESTINATION lib/kadu/modules)
++	install (TARGETS sms DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (sms STREQUAL STATIC)
+ 
+Index: modules/qt4_docking/CMakeLists.txt
+===================================================================
+--- modules/qt4_docking/CMakeLists.txt	(wersja 6633)
++++ modules/qt4_docking/CMakeLists.txt	(wersja 6634)
+@@ -33,7 +33,7 @@
+ 	if (APPLE)
+ 		set_target_properties(qt4_docking PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS qt4_docking DESTINATION lib/kadu/modules)
++	install (TARGETS qt4_docking DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (qt4_docking STREQUAL STATIC)
+ 
+ 
+Index: modules/amarok1_mediaplayer/CMakeLists.txt
+===================================================================
+--- modules/amarok1_mediaplayer/CMakeLists.txt	(wersja 6633)
++++ modules/amarok1_mediaplayer/CMakeLists.txt	(wersja 6634)
+@@ -18,5 +18,5 @@
+ if (amarok1_mediaplayer STREQUAL STATIC)
+ 	set_target_properties(amarok1_mediaplayer PROPERTIES COMPILE_FLAGS "-DKADULIB" )
+ else (amarok1_mediaplayer STREQUAL STATIC)
+-	install (TARGETS amarok1_mediaplayer DESTINATION lib/kadu/modules)
++	install (TARGETS amarok1_mediaplayer DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (amarok1_mediaplayer STREQUAL STATIC)
+Index: modules/amarok2_mediaplayer/CMakeLists.txt
+===================================================================
+--- modules/amarok2_mediaplayer/CMakeLists.txt	(wersja 6633)
++++ modules/amarok2_mediaplayer/CMakeLists.txt	(wersja 6634)
+@@ -20,5 +20,5 @@
+ if (amarok2_mediaplayer STREQUAL STATIC)
+ 	set_target_properties(amarok2_mediaplayer PROPERTIES COMPILE_FLAGS "-DKADULIB" )
+ else (amarok2_mediaplayer STREQUAL STATIC)
+-	install (TARGETS amarok2_mediaplayer DESTINATION lib/kadu/modules)
++	install (TARGETS amarok2_mediaplayer DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (amarok2_mediaplayer STREQUAL STATIC)
+Index: modules/win32_sound/CMakeLists.txt
+===================================================================
+--- modules/win32_sound/CMakeLists.txt	(wersja 6633)
++++ modules/win32_sound/CMakeLists.txt	(wersja 6634)
+@@ -48,4 +48,4 @@
+ endif (win32_sound STREQUAL STATIC)
+ add_dependencies (win32_sound win32_sound-translations)
+ 
+-install (TARGETS win32_sound DESTINATION lib/kadu/modules)
++install (TARGETS win32_sound DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+Index: modules/screenshot/CMakeLists.txt
+===================================================================
+--- modules/screenshot/CMakeLists.txt	(wersja 6633)
++++ modules/screenshot/CMakeLists.txt	(wersja 6634)
+@@ -44,6 +44,6 @@
+ 	if (APPLE)
+ 		set_target_properties(screenshot PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS screenshot DESTINATION lib/kadu/modules)
++	install (TARGETS screenshot DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (screenshot STREQUAL STATIC)
+ 
+Index: modules/echo/CMakeLists.txt
+===================================================================
+--- modules/echo/CMakeLists.txt	(wersja 6633)
++++ modules/echo/CMakeLists.txt	(wersja 6634)
+@@ -26,7 +26,7 @@
+ 	if (WIN32)
+ 		target_link_libraries(echo kadu_core)
+ 	endif (WIN32)
+-	install (TARGETS echo DESTINATION lib/kadu/modules)
++	install (TARGETS echo DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (echo STREQUAL STATIC)
+ 
+ 
+Index: modules/word_fix/CMakeLists.txt
+===================================================================
+--- modules/word_fix/CMakeLists.txt	(wersja 6633)
++++ modules/word_fix/CMakeLists.txt	(wersja 6634)
+@@ -46,6 +46,6 @@
+ 	if (APPLE)
+ 		set_target_properties(word_fix PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS word_fix DESTINATION lib/kadu/modules)
++	install (TARGETS word_fix DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (word_fix STREQUAL STATIC)
+ 
+Index: modules/xmms2_mediaplayer/CMakeLists.txt
+===================================================================
+--- modules/xmms2_mediaplayer/CMakeLists.txt	(wersja 6633)
++++ modules/xmms2_mediaplayer/CMakeLists.txt	(wersja 6634)
+@@ -18,5 +18,5 @@
+ if (xmms2_mediaplayer STREQUAL STATIC)
+ 	set_target_properties(xmms2_mediaplayer PROPERTIES COMPILE_FLAGS "-DKADULIB" )
+ else (xmms2_mediaplayer STREQUAL STATIC)
+-	install (TARGETS xmms2_mediaplayer DESTINATION lib/kadu/modules)
++	install (TARGETS xmms2_mediaplayer DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (xmms2_mediaplayer STREQUAL STATIC)
+Index: modules/split_messages/CMakeLists.txt
+===================================================================
+--- modules/split_messages/CMakeLists.txt	(wersja 6633)
++++ modules/split_messages/CMakeLists.txt	(wersja 6634)
+@@ -43,4 +43,4 @@
+ endif (split_messages STREQUAL STATIC)
+ add_dependencies (split_messages split_messages-translations)
+ 
+-install (TARGETS split_messages DESTINATION lib/kadu/modules)
++install (TARGETS split_messages DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+Index: modules/antistring/CMakeLists.txt
+===================================================================
+--- modules/antistring/CMakeLists.txt	(wersja 6633)
++++ modules/antistring/CMakeLists.txt	(wersja 6634)
+@@ -46,6 +46,6 @@
+ 	if (APPLE)
+ 		set_target_properties(antistring PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS antistring DESTINATION lib/kadu/modules)
++	install (TARGETS antistring DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (antistring STREQUAL STATIC)
+ 
+Index: modules/profiles/CMakeLists.txt
+===================================================================
+--- modules/profiles/CMakeLists.txt	(wersja 6633)
++++ modules/profiles/CMakeLists.txt	(wersja 6634)
+@@ -36,6 +36,6 @@
+ 	if (APPLE)
+ 		set_target_properties(profiles PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS profiles DESTINATION lib/kadu/modules)
++	install (TARGETS profiles DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (profiles STREQUAL STATIC)
+ 
+Index: modules/config_wizard/CMakeLists.txt
+===================================================================
+--- modules/config_wizard/CMakeLists.txt	(wersja 6633)
++++ modules/config_wizard/CMakeLists.txt	(wersja 6634)
+@@ -55,6 +55,6 @@
+ 	if (APPLE)
+ 		set_target_properties(config_wizard PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS config_wizard DESTINATION lib/kadu/modules)
++	install (TARGETS config_wizard DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (config_wizard STREQUAL STATIC)
+ 
+Index: modules/dragon_mediaplayer/CMakeLists.txt
+===================================================================
+--- modules/dragon_mediaplayer/CMakeLists.txt	(wersja 6633)
++++ modules/dragon_mediaplayer/CMakeLists.txt	(wersja 6634)
+@@ -20,5 +20,5 @@
+ if (dragon_mediaplayer STREQUAL STATIC)
+ 	set_target_properties(dragon_mediaplayer PROPERTIES COMPILE_FLAGS "-DKADULIB" )
+ else (dragon_mediaplayer STREQUAL STATIC)
+-	install (TARGETS dragon_mediaplayer DESTINATION lib/kadu/modules)
++	install (TARGETS dragon_mediaplayer DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (dragon_mediaplayer STREQUAL STATIC)
+Index: modules/sound/CMakeLists.txt
+===================================================================
+--- modules/sound/CMakeLists.txt	(wersja 6633)
++++ modules/sound/CMakeLists.txt	(wersja 6634)
+@@ -59,7 +59,7 @@
+ 	if (APPLE)
+ 		set_target_properties(sound PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS sound DESTINATION lib/kadu/modules)
++	install (TARGETS sound DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (sound STREQUAL STATIC)
+ 
+ 
+Index: modules/macosx_docking/CMakeLists.txt
+===================================================================
+--- modules/macosx_docking/CMakeLists.txt	(wersja 6633)
++++ modules/macosx_docking/CMakeLists.txt	(wersja 6634)
+@@ -38,6 +38,6 @@
+ 	if (APPLE)
+ 		set_target_properties(macosx_docking PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS macosx_docking DESTINATION lib/kadu/modules)
++	install (TARGETS macosx_docking DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (macosx_docking STREQUAL STATIC)
+ 
+Index: modules/audacious_mediaplayer/CMakeLists.txt
+===================================================================
+--- modules/audacious_mediaplayer/CMakeLists.txt	(wersja 6633)
++++ modules/audacious_mediaplayer/CMakeLists.txt	(wersja 6634)
+@@ -20,5 +20,5 @@
+ if (audacious_mediaplayer STREQUAL STATIC)
+ 	set_target_properties(audacious_mediaplayer PROPERTIES COMPILE_FLAGS "-DKADULIB" )
+ else (audacious_mediaplayer STREQUAL STATIC)
+-	install (TARGETS audacious_mediaplayer DESTINATION lib/kadu/modules)
++	install (TARGETS audacious_mediaplayer DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (audacious_mediaplayer STREQUAL STATIC)
+Index: modules/encryption/CMakeLists.txt
+===================================================================
+--- modules/encryption/CMakeLists.txt	(wersja 6633)
++++ modules/encryption/CMakeLists.txt	(wersja 6634)
+@@ -61,6 +61,6 @@
+ 	if (APPLE)
+ 		set_target_properties(encryption PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS encryption DESTINATION lib/kadu/modules)
++	install (TARGETS encryption DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (encryption STREQUAL STATIC)
+ 
+Index: modules/autoaway/CMakeLists.txt
+===================================================================
+--- modules/autoaway/CMakeLists.txt	(wersja 6633)
++++ modules/autoaway/CMakeLists.txt	(wersja 6634)
+@@ -46,6 +46,6 @@
+ 	if (APPLE)
+ 		set_target_properties(autoaway PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS autoaway DESTINATION lib/kadu/modules)
++	install (TARGETS autoaway DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (autoaway STREQUAL STATIC)
+ 
+Index: modules/autoresponder/CMakeLists.txt
+===================================================================
+--- modules/autoresponder/CMakeLists.txt	(wersja 6633)
++++ modules/autoresponder/CMakeLists.txt	(wersja 6634)
+@@ -46,6 +46,6 @@
+ 	if (APPLE)
+ 		set_target_properties(autoresponder PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS autoresponder DESTINATION lib/kadu/modules)
++	install (TARGETS autoresponder DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (autoresponder STREQUAL STATIC)
+ 
+Index: modules/parser_extender/CMakeLists.txt
+===================================================================
+--- modules/parser_extender/CMakeLists.txt	(wersja 6633)
++++ modules/parser_extender/CMakeLists.txt	(wersja 6634)
+@@ -40,6 +40,6 @@
+ 	if (APPLE)
+ 		set_target_properties(parser_extender PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS parser_extender DESTINATION lib/kadu/modules)
++	install (TARGETS parser_extender DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (parser_extender STREQUAL STATIC)
+ 
+Index: modules/mediaplayer/CMakeLists.txt
+===================================================================
+--- modules/mediaplayer/CMakeLists.txt	(wersja 6633)
++++ modules/mediaplayer/CMakeLists.txt	(wersja 6634)
+@@ -76,6 +76,6 @@
+ 	if (APPLE)
+ 		set_target_properties(mediaplayer PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS mediaplayer DESTINATION lib/kadu/modules)
++	install (TARGETS mediaplayer DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (mediaplayer STREQUAL STATIC)
+ 
+Index: modules/voice/CMakeLists.txt
+===================================================================
+--- modules/voice/CMakeLists.txt	(wersja 6633)
++++ modules/voice/CMakeLists.txt	(wersja 6634)
+@@ -50,6 +50,6 @@
+ 	else (WIN32)
+ 		target_link_libraries(voice gsm)
+ 	endif (WIN32)
+-	install (TARGETS voice DESTINATION lib/kadu/modules)
++	install (TARGETS voice DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (voice STREQUAL STATIC)
+ 
+Index: modules/default_sms/CMakeLists.txt
+===================================================================
+--- modules/default_sms/CMakeLists.txt	(wersja 6633)
++++ modules/default_sms/CMakeLists.txt	(wersja 6634)
+@@ -46,6 +46,6 @@
+ 	if (APPLE)
+ 		set_target_properties(default_sms PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS default_sms DESTINATION lib/kadu/modules)
++	install (TARGETS default_sms DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (default_sms STREQUAL STATIC)
+ 
+Index: modules/ext_sound/CMakeLists.txt
+===================================================================
+--- modules/ext_sound/CMakeLists.txt	(wersja 6633)
++++ modules/ext_sound/CMakeLists.txt	(wersja 6634)
+@@ -49,6 +49,6 @@
+ 	if (APPLE)
+ 		set_target_properties(ext_sound PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS ext_sound DESTINATION lib/kadu/modules)
++	install (TARGETS ext_sound DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (ext_sound STREQUAL STATIC)
+ 
+Index: modules/notify/CMakeLists.txt
+===================================================================
+--- modules/notify/CMakeLists.txt	(wersja 6633)
++++ modules/notify/CMakeLists.txt	(wersja 6634)
+@@ -57,6 +57,6 @@
+ 	if (APPLE)
+ 		set_target_properties(notify PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS notify DESTINATION lib/kadu/modules)
++	install (TARGETS notify DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (notify STREQUAL STATIC)
+ 
+Index: modules/last_seen/CMakeLists.txt
+===================================================================
+--- modules/last_seen/CMakeLists.txt	(wersja 6633)
++++ modules/last_seen/CMakeLists.txt	(wersja 6634)
+@@ -38,6 +38,6 @@
+ 	if (APPLE)
+ 		set_target_properties(last_seen PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS last_seen DESTINATION lib/kadu/modules)
++	install (TARGETS last_seen DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (last_seen STREQUAL STATIC)
+ 
+Index: modules/pcspeaker/CMakeLists.txt
+===================================================================
+--- modules/pcspeaker/CMakeLists.txt	(wersja 6633)
++++ modules/pcspeaker/CMakeLists.txt	(wersja 6634)
+@@ -47,6 +47,6 @@
+ 	if (APPLE)
+ 		set_target_properties(pcspeaker PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS pcspeaker DESTINATION lib/kadu/modules)
++	install (TARGETS pcspeaker DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (pcspeaker STREQUAL STATIC)
+ 
+Index: modules/docking/CMakeLists.txt
+===================================================================
+--- modules/docking/CMakeLists.txt	(wersja 6633)
++++ modules/docking/CMakeLists.txt	(wersja 6634)
+@@ -47,6 +47,6 @@
+ 	if (APPLE)
+ 		set_target_properties(docking PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS docking DESTINATION lib/kadu/modules)
++	install (TARGETS docking DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (docking STREQUAL STATIC)
+ 
+Index: modules/filedesc/CMakeLists.txt
+===================================================================
+--- modules/filedesc/CMakeLists.txt	(wersja 6633)
++++ modules/filedesc/CMakeLists.txt	(wersja 6634)
+@@ -43,6 +43,6 @@
+ 	if (APPLE)
+ 		set_target_properties(filedesc PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS filedesc DESTINATION lib/kadu/modules)
++	install (TARGETS filedesc DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (filedesc STREQUAL STATIC)
+ 
+Index: modules/filtering/CMakeLists.txt
+===================================================================
+--- modules/filtering/CMakeLists.txt	(wersja 6633)
++++ modules/filtering/CMakeLists.txt	(wersja 6634)
+@@ -59,7 +59,7 @@
+ 	if (APPLE)
+ 		set_target_properties(filtering PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS filtering DESTINATION lib/kadu/modules)
++	install (TARGETS filtering DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (filtering STREQUAL STATIC)
+ 
+ install (FILES "data/clear.png" "data/filtering.png" DESTINATION "share/kadu/modules/data/filtering")
+Index: modules/falf_mediaplayer/CMakeLists.txt
+===================================================================
+--- modules/falf_mediaplayer/CMakeLists.txt	(wersja 6633)
++++ modules/falf_mediaplayer/CMakeLists.txt	(wersja 6634)
+@@ -23,6 +23,6 @@
+ if (falf_mediaplayer STREQUAL STATIC)
+ 	set_target_properties(falf_mediaplayer PROPERTIES COMPILE_FLAGS "-DKADULIB" )
+ else (falf_mediaplayer STREQUAL STATIC)
+-	install (TARGETS falf_mediaplayer DESTINATION lib/kadu/modules)
++	install (TARGETS falf_mediaplayer DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (falf_mediaplayer STREQUAL STATIC)
+ 
+Index: modules/dshow_sound/CMakeLists.txt
+===================================================================
+--- modules/dshow_sound/CMakeLists.txt	(wersja 6633)
++++ modules/dshow_sound/CMakeLists.txt	(wersja 6634)
+@@ -39,7 +39,7 @@
+ 	set_target_properties(dshow_sound PROPERTIES COMPILE_FLAGS "-DKADULIB" )
+ else (dshow_sound STREQUAL STATIC)
+ 	target_link_libraries(dshow_sound kadu_core sound)
+-	install (TARGETS dshow_sound DESTINATION lib/kadu/modules)
++	install (TARGETS dshow_sound DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (dshow_sound STREQUAL STATIC)
+ #add_dependencies (dshow_sound dshow_sound-translations)
+ 
+Index: modules/dsp_sound/CMakeLists.txt
+===================================================================
+--- modules/dsp_sound/CMakeLists.txt	(wersja 6633)
++++ modules/dsp_sound/CMakeLists.txt	(wersja 6634)
+@@ -36,6 +36,6 @@
+ if (dsp_sound STREQUAL STATIC)
+ 	set_target_properties(dsp_sound PROPERTIES COMPILE_FLAGS "-DKADULIB" )
+ else (dsp_sound STREQUAL STATIC)
+-	install (TARGETS dsp_sound DESTINATION lib/kadu/modules)
++	install (TARGETS dsp_sound DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (dsp_sound STREQUAL STATIC)
+ 
+Index: modules/advanced_userlist/CMakeLists.txt
+===================================================================
+--- modules/advanced_userlist/CMakeLists.txt	(wersja 6633)
++++ modules/advanced_userlist/CMakeLists.txt	(wersja 6634)
+@@ -47,7 +47,7 @@
+ 	if (APPLE)
+ 		set_target_properties(advanced_userlist PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS advanced_userlist DESTINATION lib/kadu/modules)
++	install (TARGETS advanced_userlist DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (advanced_userlist STREQUAL STATIC)
+ 
+ 
+Index: modules/xmms_mediaplayer/CMakeLists.txt
+===================================================================
+--- modules/xmms_mediaplayer/CMakeLists.txt	(wersja 6633)
++++ modules/xmms_mediaplayer/CMakeLists.txt	(wersja 6634)
+@@ -31,6 +31,6 @@
+ if (xmms_mediaplayer STREQUAL STATIC)
+ 	set_target_properties(xmms_mediaplayer PROPERTIES COMPILE_FLAGS "-DKADULIB" )
+ else (xmms_mediaplayer STREQUAL STATIC)
+-	install (TARGETS xmms_mediaplayer DESTINATION lib/kadu/modules)
++	install (TARGETS xmms_mediaplayer DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (xmms_mediaplayer STREQUAL STATIC)
+ 
+Index: modules/spellchecker/CMakeLists.txt
+===================================================================
+--- modules/spellchecker/CMakeLists.txt	(wersja 6633)
++++ modules/spellchecker/CMakeLists.txt	(wersja 6634)
+@@ -55,6 +55,6 @@
+ 	if (APPLE)
+ 		set_target_properties(spellchecker PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS spellchecker DESTINATION lib/kadu/modules)
++	install (TARGETS spellchecker DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (spellchecker STREQUAL STATIC)
+ 
+Index: modules/firewall/CMakeLists.txt
+===================================================================
+--- modules/firewall/CMakeLists.txt	(wersja 6633)
++++ modules/firewall/CMakeLists.txt	(wersja 6634)
+@@ -40,6 +40,6 @@
+ 	if (APPLE)
+ 		set_target_properties(firewall PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS firewall DESTINATION lib/kadu/modules)
++	install (TARGETS firewall DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (firewall STREQUAL STATIC)
+ 
+Index: modules/ao_sound/CMakeLists.txt
+===================================================================
+--- modules/ao_sound/CMakeLists.txt	(wersja 6633)
++++ modules/ao_sound/CMakeLists.txt	(wersja 6634)
+@@ -32,6 +32,6 @@
+ 	if (APPLE)
+ 		set_target_properties(ao_sound PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS ao_sound DESTINATION lib/kadu/modules)
++	install (TARGETS ao_sound DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (ao_sound STREQUAL STATIC)
+ 
+Index: modules/desktop_docking/CMakeLists.txt
+===================================================================
+--- modules/desktop_docking/CMakeLists.txt	(wersja 6633)
++++ modules/desktop_docking/CMakeLists.txt	(wersja 6634)
+@@ -46,6 +46,6 @@
+ 	if (APPLE)
+ 		set_target_properties(desktop_docking PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS desktop_docking DESTINATION lib/kadu/modules)
++	install (TARGETS desktop_docking DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (desktop_docking STREQUAL STATIC)
+ 
+Index: modules/exec_notify/CMakeLists.txt
+===================================================================
+--- modules/exec_notify/CMakeLists.txt	(wersja 6633)
++++ modules/exec_notify/CMakeLists.txt	(wersja 6634)
+@@ -42,6 +42,6 @@
+ 	if (APPLE)
+ 		set_target_properties(encryption PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS exec_notify DESTINATION lib/kadu/modules)
++	install (TARGETS exec_notify DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (exec_notify STREQUAL STATIC)
+ 
+Index: modules/idle/CMakeLists.txt
+===================================================================
+--- modules/idle/CMakeLists.txt	(wersja 6633)
++++ modules/idle/CMakeLists.txt	(wersja 6634)
+@@ -56,5 +56,5 @@
+ 	if (APPLE)
+ 		set_target_properties(idle PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS idle DESTINATION lib/kadu/modules)
++	install (TARGETS idle DESTINATION lib${LIB_SUFFIX}/kadu/modules)
+ endif (idle STREQUAL STATIC)
+Index: CMakeLists.txt
+===================================================================
+--- CMakeLists.txt	(wersja 6633)
++++ CMakeLists.txt	(wersja 6634)
+@@ -55,10 +55,29 @@
+ 	set (CMAKE_SHARED_LIBRARY_PREFIX "")
+ endif(MINGW)
+ 
++if (UNIX AND NOT APPLE)
++	if (CMAKE_SIZEOF_VOID_P EQUAL 4)
++		MESSAGE(STATUS "32 bit architecture detected")
++		set (LIB_SUFFIX )
++		set_property (GLOBAL PROPERTY FIND_LIBRARY_USE_LIB64_PATHS FALSE)
++	endif(CMAKE_SIZEOF_VOID_P EQUAL 4)
++	if (CMAKE_SIZEOF_VOID_P EQUAL 8)
++		MESSAGE(STATUS "64 bit architecture detected")
++		set (LIB_SUFFIX 64)
++		set_property (GLOBAL PROPERTY FIND_LIBRARY_USE_LIB64_PATHS TRUE)
++	endif(CMAKE_SIZEOF_VOID_P EQUAL 8)
++else (UNIX AND NOT APPLE)
++	set (LIB_SUFFIX )
++endif (UNIX AND NOT APPLE)
++
+ set (DATADIR ${CMAKE_INSTALL_PREFIX}/share)
+-set (LIBDIR ${CMAKE_INSTALL_PREFIX}/lib)
++set (LIBDIR ${CMAKE_INSTALL_PREFIX}/lib${LIB_SUFFIX})
+ set (BINDIR ${CMAKE_INSTALL_PREFIX}/bin)
+ 
++message (STATUS "DATADIR: ${DATADIR}")
++message (STATUS "LIBDIR: ${LIBDIR}")
++message (STATUS "BINDIR: ${BINDIR}")
++
+ # macros
+ 
+ macro (kadu_configuration)
+Index: modules/bmpx_mediaplayer/CMakeLists.txt
+===================================================================
+--- modules/bmpx_mediaplayer/CMakeLists.txt	(wersja 6640)
++++ modules/bmpx_mediaplayer/CMakeLists.txt	(wersja 6641)
+@@ -18,5 +18,5 @@
+ if (bmpx_mediaplayer STREQUAL STATIC)
+ 	set_target_properties(bmpx_mediaplayer PROPERTIES COMPILE_FLAGS "-DKADULIB" )
+ else (bmpx_mediaplayer STREQUAL STATIC)
+-	install (TARGETS bmpx_mediaplayer DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS bmpx_mediaplayer DESTINATION ${MODULEDIR})
+ endif (bmpx_mediaplayer STREQUAL STATIC)
+Index: modules/itunes_mediaplayer/CMakeLists.txt
+===================================================================
+--- modules/itunes_mediaplayer/CMakeLists.txt	(wersja 6640)
++++ modules/itunes_mediaplayer/CMakeLists.txt	(wersja 6641)
+@@ -21,5 +21,5 @@
+ 	if (APPLE)
+ 		set_target_properties(itunes_mediaplayer PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS itunes_mediaplayer DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS itunes_mediaplayer DESTINATION ${MODULEDIR})
+ endif (itunes_mediaplayer STREQUAL STATIC)
+Index: modules/hints/CMakeLists.txt
+===================================================================
+--- modules/hints/CMakeLists.txt	(wersja 6640)
++++ modules/hints/CMakeLists.txt	(wersja 6641)
+@@ -51,6 +51,6 @@
+ 	if (APPLE)
+ 		set_target_properties(hints PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS hints DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS hints DESTINATION ${MODULEDIR})
+ endif (hints STREQUAL STATIC)
+ 
+Index: modules/dcc/CMakeLists.txt
+===================================================================
+--- modules/dcc/CMakeLists.txt	(wersja 6640)
++++ modules/dcc/CMakeLists.txt	(wersja 6641)
+@@ -59,6 +59,6 @@
+ 	if (APPLE)
+ 		set_target_properties(dcc PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS dcc DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS dcc DESTINATION ${MODULEDIR})
+ endif (dcc STREQUAL STATIC)
+ 
+Index: modules/window_notify/CMakeLists.txt
+===================================================================
+--- modules/window_notify/CMakeLists.txt	(wersja 6640)
++++ modules/window_notify/CMakeLists.txt	(wersja 6641)
+@@ -42,6 +42,6 @@
+ 	if (APPLE)
+ 		set_target_properties(pcspeaker PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS window_notify DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS window_notify DESTINATION ${MODULEDIR})
+ endif (window_notify STREQUAL STATIC)
+ 
+Index: modules/vlc_mediaplayer/CMakeLists.txt
+===================================================================
+--- modules/vlc_mediaplayer/CMakeLists.txt	(wersja 6640)
++++ modules/vlc_mediaplayer/CMakeLists.txt	(wersja 6641)
+@@ -18,5 +18,5 @@
+ if (vlc_mediaplayer STREQUAL STATIC)
+ 	set_target_properties(vlc_mediaplayer PROPERTIES COMPILE_FLAGS "-DKADULIB" )
+ else (vlc_mediaplayer STREQUAL STATIC)
+-	install (TARGETS vlc_mediaplayer DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS vlc_mediaplayer DESTINATION ${MODULEDIR})
+ endif (vlc_mediaplayer STREQUAL STATIC)
+Index: modules/cenzor/CMakeLists.txt
+===================================================================
+--- modules/cenzor/CMakeLists.txt	(wersja 6640)
++++ modules/cenzor/CMakeLists.txt	(wersja 6641)
+@@ -47,6 +47,6 @@
+ 	if (APPLE)
+ 		set_target_properties(cenzor PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS cenzor DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS cenzor DESTINATION ${MODULEDIR})
+ endif (cenzor STREQUAL STATIC)
+ 
+Index: modules/phonon_sound/CMakeLists.txt
+===================================================================
+--- modules/phonon_sound/CMakeLists.txt	(wersja 6640)
++++ modules/phonon_sound/CMakeLists.txt	(wersja 6641)
+@@ -29,6 +29,6 @@
+ 	if (APPLE)
+ 		set_target_properties(phonon_sound PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS phonon_sound DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS phonon_sound DESTINATION ${MODULEDIR})
+ endif (phonon_sound STREQUAL STATIC)
+ 
+Index: modules/autostatus/CMakeLists.txt
+===================================================================
+--- modules/autostatus/CMakeLists.txt	(wersja 6640)
++++ modules/autostatus/CMakeLists.txt	(wersja 6641)
+@@ -44,6 +44,6 @@
+ 	if (APPLE)
+ 		set_target_properties(autostatus PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS autostatus DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS autostatus DESTINATION ${MODULEDIR})
+ endif (autostatus STREQUAL STATIC)
+ 
+Index: modules/gg_avatars/CMakeLists.txt
+===================================================================
+--- modules/gg_avatars/CMakeLists.txt	(wersja 6640)
++++ modules/gg_avatars/CMakeLists.txt	(wersja 6641)
+@@ -51,6 +51,6 @@
+ 	if (APPLE)
+ 		set_target_properties(gg_avatars PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS gg_avatars DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS gg_avatars DESTINATION ${MODULEDIR})
+ endif (gg_avatars STREQUAL STATIC)
+ 
+Index: modules/qt4_sound/CMakeLists.txt
+===================================================================
+--- modules/qt4_sound/CMakeLists.txt	(wersja 6640)
++++ modules/qt4_sound/CMakeLists.txt	(wersja 6641)
+@@ -26,6 +26,6 @@
+ 	if (APPLE)
+ 		set_target_properties(qt4_sound PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS qt4_sound DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS qt4_sound DESTINATION ${MODULEDIR})
+ endif (qt4_sound STREQUAL STATIC)
+ 
+Index: modules/growl_notify/CMakeLists.txt
+===================================================================
+--- modules/growl_notify/CMakeLists.txt	(wersja 6640)
++++ modules/growl_notify/CMakeLists.txt	(wersja 6641)
+@@ -34,6 +34,6 @@
+ 	if (APPLE)
+ 		set_target_properties(growl_notify PROPERTIES LINK_FLAGS "-undefined dynamic_lookup -framework Growl -framework CoreFoundation")
+ 	endif (APPLE)
+-	install (TARGETS growl_notify DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS growl_notify DESTINATION ${MODULEDIR})
+ endif (growl_notify STREQUAL STATIC)
+ 
+Index: modules/alsa_sound/CMakeLists.txt
+===================================================================
+--- modules/alsa_sound/CMakeLists.txt	(wersja 6640)
++++ modules/alsa_sound/CMakeLists.txt	(wersja 6641)
+@@ -41,6 +41,6 @@
+ if (alsa_sound STREQUAL STATIC)
+ 	set_target_properties(alsa_sound PROPERTIES COMPILE_FLAGS "-DKADULIB" )
+ else (alsa_sound STREQUAL STATIC)
+-	install (TARGETS alsa_sound DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS alsa_sound DESTINATION ${MODULEDIR})
+ endif (alsa_sound STREQUAL STATIC)
+ 
+Index: modules/account_management/CMakeLists.txt
+===================================================================
+--- modules/account_management/CMakeLists.txt	(wersja 6640)
++++ modules/account_management/CMakeLists.txt	(wersja 6641)
+@@ -50,6 +50,6 @@
+ 	if (APPLE)
+ 		set_target_properties(account_management PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS account_management DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS account_management DESTINATION ${MODULEDIR})
+ endif (account_management STREQUAL STATIC)
+ 
+Index: modules/osd_hints/CMakeLists.txt
+===================================================================
+--- modules/osd_hints/CMakeLists.txt	(wersja 6640)
++++ modules/osd_hints/CMakeLists.txt	(wersja 6641)
+@@ -108,5 +108,5 @@
+ 	if (APPLE)
+ 		set_target_properties(osd_hints PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS osd_hints DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS osd_hints DESTINATION ${MODULEDIR})
+ endif (osd_hints STREQUAL STATIC)
+Index: modules/agent/CMakeLists.txt
+===================================================================
+--- modules/agent/CMakeLists.txt	(wersja 6640)
++++ modules/agent/CMakeLists.txt	(wersja 6641)
+@@ -41,6 +41,6 @@
+ 	if (APPLE)
+ 		set_target_properties(agent PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS agent DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS agent DESTINATION ${MODULEDIR})
+ endif (agent STREQUAL STATIC)
+ 
+Index: modules/powerkadu/CMakeLists.txt
+===================================================================
+--- modules/powerkadu/CMakeLists.txt	(wersja 6640)
++++ modules/powerkadu/CMakeLists.txt	(wersja 6641)
+@@ -53,4 +53,4 @@
+ endif (powerkadu STREQUAL STATIC)
+ add_dependencies (powerkadu powerkadu-translations)
+ 
+-install (TARGETS powerkadu DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++install (TARGETS powerkadu DESTINATION ${MODULEDIR})
+Index: modules/history/CMakeLists.txt
+===================================================================
+--- modules/history/CMakeLists.txt	(wersja 6640)
++++ modules/history/CMakeLists.txt	(wersja 6641)
+@@ -53,6 +53,6 @@
+ 	if (APPLE)
+ 		set_target_properties(history PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS history DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS history DESTINATION ${MODULEDIR})
+ endif (history STREQUAL STATIC)
+ 
+Index: modules/auto_hide/CMakeLists.txt
+===================================================================
+--- modules/auto_hide/CMakeLists.txt	(wersja 6640)
++++ modules/auto_hide/CMakeLists.txt	(wersja 6641)
+@@ -40,6 +40,6 @@
+ 	if (APPLE)
+ 		set_target_properties(auto_hide PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS auto_hide DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS auto_hide DESTINATION ${MODULEDIR})
+ endif (auto_hide STREQUAL STATIC)
+ 
+Index: modules/sms/CMakeLists.txt
+===================================================================
+--- modules/sms/CMakeLists.txt	(wersja 6640)
++++ modules/sms/CMakeLists.txt	(wersja 6641)
+@@ -47,6 +47,6 @@
+ 	if (APPLE)
+ 		set_target_properties(sms PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS sms DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS sms DESTINATION ${MODULEDIR})
+ endif (sms STREQUAL STATIC)
+ 
+Index: modules/qt4_docking/CMakeLists.txt
+===================================================================
+--- modules/qt4_docking/CMakeLists.txt	(wersja 6640)
++++ modules/qt4_docking/CMakeLists.txt	(wersja 6641)
+@@ -33,7 +33,7 @@
+ 	if (APPLE)
+ 		set_target_properties(qt4_docking PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS qt4_docking DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS qt4_docking DESTINATION ${MODULEDIR})
+ endif (qt4_docking STREQUAL STATIC)
+ 
+ 
+Index: modules/amarok1_mediaplayer/CMakeLists.txt
+===================================================================
+--- modules/amarok1_mediaplayer/CMakeLists.txt	(wersja 6640)
++++ modules/amarok1_mediaplayer/CMakeLists.txt	(wersja 6641)
+@@ -18,5 +18,5 @@
+ if (amarok1_mediaplayer STREQUAL STATIC)
+ 	set_target_properties(amarok1_mediaplayer PROPERTIES COMPILE_FLAGS "-DKADULIB" )
+ else (amarok1_mediaplayer STREQUAL STATIC)
+-	install (TARGETS amarok1_mediaplayer DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS amarok1_mediaplayer DESTINATION ${MODULEDIR})
+ endif (amarok1_mediaplayer STREQUAL STATIC)
+Index: modules/amarok2_mediaplayer/CMakeLists.txt
+===================================================================
+--- modules/amarok2_mediaplayer/CMakeLists.txt	(wersja 6640)
++++ modules/amarok2_mediaplayer/CMakeLists.txt	(wersja 6641)
+@@ -20,5 +20,5 @@
+ if (amarok2_mediaplayer STREQUAL STATIC)
+ 	set_target_properties(amarok2_mediaplayer PROPERTIES COMPILE_FLAGS "-DKADULIB" )
+ else (amarok2_mediaplayer STREQUAL STATIC)
+-	install (TARGETS amarok2_mediaplayer DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS amarok2_mediaplayer DESTINATION ${MODULEDIR})
+ endif (amarok2_mediaplayer STREQUAL STATIC)
+Index: modules/win32_sound/CMakeLists.txt
+===================================================================
+--- modules/win32_sound/CMakeLists.txt	(wersja 6640)
++++ modules/win32_sound/CMakeLists.txt	(wersja 6641)
+@@ -48,4 +48,4 @@
+ endif (win32_sound STREQUAL STATIC)
+ add_dependencies (win32_sound win32_sound-translations)
+ 
+-install (TARGETS win32_sound DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++install (TARGETS win32_sound DESTINATION ${MODULEDIR})
+Index: modules/screenshot/CMakeLists.txt
+===================================================================
+--- modules/screenshot/CMakeLists.txt	(wersja 6640)
++++ modules/screenshot/CMakeLists.txt	(wersja 6641)
+@@ -44,6 +44,6 @@
+ 	if (APPLE)
+ 		set_target_properties(screenshot PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS screenshot DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS screenshot DESTINATION ${MODULEDIR})
+ endif (screenshot STREQUAL STATIC)
+ 
+Index: modules/echo/CMakeLists.txt
+===================================================================
+--- modules/echo/CMakeLists.txt	(wersja 6640)
++++ modules/echo/CMakeLists.txt	(wersja 6641)
+@@ -26,7 +26,7 @@
+ 	if (WIN32)
+ 		target_link_libraries(echo kadu_core)
+ 	endif (WIN32)
+-	install (TARGETS echo DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS echo DESTINATION ${MODULEDIR})
+ endif (echo STREQUAL STATIC)
+ 
+ 
+Index: modules/word_fix/CMakeLists.txt
+===================================================================
+--- modules/word_fix/CMakeLists.txt	(wersja 6640)
++++ modules/word_fix/CMakeLists.txt	(wersja 6641)
+@@ -46,6 +46,6 @@
+ 	if (APPLE)
+ 		set_target_properties(word_fix PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS word_fix DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS word_fix DESTINATION ${MODULEDIR})
+ endif (word_fix STREQUAL STATIC)
+ 
+Index: modules/xmms2_mediaplayer/CMakeLists.txt
+===================================================================
+--- modules/xmms2_mediaplayer/CMakeLists.txt	(wersja 6640)
++++ modules/xmms2_mediaplayer/CMakeLists.txt	(wersja 6641)
+@@ -18,5 +18,5 @@
+ if (xmms2_mediaplayer STREQUAL STATIC)
+ 	set_target_properties(xmms2_mediaplayer PROPERTIES COMPILE_FLAGS "-DKADULIB" )
+ else (xmms2_mediaplayer STREQUAL STATIC)
+-	install (TARGETS xmms2_mediaplayer DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS xmms2_mediaplayer DESTINATION ${MODULEDIR})
+ endif (xmms2_mediaplayer STREQUAL STATIC)
+Index: modules/split_messages/CMakeLists.txt
+===================================================================
+--- modules/split_messages/CMakeLists.txt	(wersja 6640)
++++ modules/split_messages/CMakeLists.txt	(wersja 6641)
+@@ -43,4 +43,4 @@
+ endif (split_messages STREQUAL STATIC)
+ add_dependencies (split_messages split_messages-translations)
+ 
+-install (TARGETS split_messages DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++install (TARGETS split_messages DESTINATION ${MODULEDIR})
+Index: modules/antistring/CMakeLists.txt
+===================================================================
+--- modules/antistring/CMakeLists.txt	(wersja 6640)
++++ modules/antistring/CMakeLists.txt	(wersja 6641)
+@@ -46,6 +46,6 @@
+ 	if (APPLE)
+ 		set_target_properties(antistring PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS antistring DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS antistring DESTINATION ${MODULEDIR})
+ endif (antistring STREQUAL STATIC)
+ 
+Index: modules/profiles/CMakeLists.txt
+===================================================================
+--- modules/profiles/CMakeLists.txt	(wersja 6640)
++++ modules/profiles/CMakeLists.txt	(wersja 6641)
+@@ -36,6 +36,6 @@
+ 	if (APPLE)
+ 		set_target_properties(profiles PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS profiles DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS profiles DESTINATION ${MODULEDIR})
+ endif (profiles STREQUAL STATIC)
+ 
+Index: modules/config_wizard/CMakeLists.txt
+===================================================================
+--- modules/config_wizard/CMakeLists.txt	(wersja 6640)
++++ modules/config_wizard/CMakeLists.txt	(wersja 6641)
+@@ -55,6 +55,6 @@
+ 	if (APPLE)
+ 		set_target_properties(config_wizard PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS config_wizard DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS config_wizard DESTINATION ${MODULEDIR})
+ endif (config_wizard STREQUAL STATIC)
+ 
+Index: modules/dragon_mediaplayer/CMakeLists.txt
+===================================================================
+--- modules/dragon_mediaplayer/CMakeLists.txt	(wersja 6640)
++++ modules/dragon_mediaplayer/CMakeLists.txt	(wersja 6641)
+@@ -20,5 +20,5 @@
+ if (dragon_mediaplayer STREQUAL STATIC)
+ 	set_target_properties(dragon_mediaplayer PROPERTIES COMPILE_FLAGS "-DKADULIB" )
+ else (dragon_mediaplayer STREQUAL STATIC)
+-	install (TARGETS dragon_mediaplayer DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS dragon_mediaplayer DESTINATION ${MODULEDIR})
+ endif (dragon_mediaplayer STREQUAL STATIC)
+Index: modules/sound/CMakeLists.txt
+===================================================================
+--- modules/sound/CMakeLists.txt	(wersja 6640)
++++ modules/sound/CMakeLists.txt	(wersja 6641)
+@@ -59,7 +59,7 @@
+ 	if (APPLE)
+ 		set_target_properties(sound PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS sound DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS sound DESTINATION ${MODULEDIR})
+ endif (sound STREQUAL STATIC)
+ 
+ 
+Index: modules/macosx_docking/CMakeLists.txt
+===================================================================
+--- modules/macosx_docking/CMakeLists.txt	(wersja 6640)
++++ modules/macosx_docking/CMakeLists.txt	(wersja 6641)
+@@ -38,6 +38,6 @@
+ 	if (APPLE)
+ 		set_target_properties(macosx_docking PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS macosx_docking DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS macosx_docking DESTINATION ${MODULEDIR})
+ endif (macosx_docking STREQUAL STATIC)
+ 
+Index: modules/audacious_mediaplayer/CMakeLists.txt
+===================================================================
+--- modules/audacious_mediaplayer/CMakeLists.txt	(wersja 6640)
++++ modules/audacious_mediaplayer/CMakeLists.txt	(wersja 6641)
+@@ -20,5 +20,5 @@
+ if (audacious_mediaplayer STREQUAL STATIC)
+ 	set_target_properties(audacious_mediaplayer PROPERTIES COMPILE_FLAGS "-DKADULIB" )
+ else (audacious_mediaplayer STREQUAL STATIC)
+-	install (TARGETS audacious_mediaplayer DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS audacious_mediaplayer DESTINATION ${MODULEDIR})
+ endif (audacious_mediaplayer STREQUAL STATIC)
+Index: modules/encryption/CMakeLists.txt
+===================================================================
+--- modules/encryption/CMakeLists.txt	(wersja 6640)
++++ modules/encryption/CMakeLists.txt	(wersja 6641)
+@@ -61,6 +61,6 @@
+ 	if (APPLE)
+ 		set_target_properties(encryption PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS encryption DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS encryption DESTINATION ${MODULEDIR})
+ endif (encryption STREQUAL STATIC)
+ 
+Index: modules/autoaway/CMakeLists.txt
+===================================================================
+--- modules/autoaway/CMakeLists.txt	(wersja 6640)
++++ modules/autoaway/CMakeLists.txt	(wersja 6641)
+@@ -46,6 +46,6 @@
+ 	if (APPLE)
+ 		set_target_properties(autoaway PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS autoaway DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS autoaway DESTINATION ${MODULEDIR})
+ endif (autoaway STREQUAL STATIC)
+ 
+Index: modules/autoresponder/CMakeLists.txt
+===================================================================
+--- modules/autoresponder/CMakeLists.txt	(wersja 6640)
++++ modules/autoresponder/CMakeLists.txt	(wersja 6641)
+@@ -46,6 +46,6 @@
+ 	if (APPLE)
+ 		set_target_properties(autoresponder PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS autoresponder DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS autoresponder DESTINATION ${MODULEDIR})
+ endif (autoresponder STREQUAL STATIC)
+ 
+Index: modules/parser_extender/CMakeLists.txt
+===================================================================
+--- modules/parser_extender/CMakeLists.txt	(wersja 6640)
++++ modules/parser_extender/CMakeLists.txt	(wersja 6641)
+@@ -40,6 +40,6 @@
+ 	if (APPLE)
+ 		set_target_properties(parser_extender PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS parser_extender DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS parser_extender DESTINATION ${MODULEDIR})
+ endif (parser_extender STREQUAL STATIC)
+ 
+Index: modules/mediaplayer/CMakeLists.txt
+===================================================================
+--- modules/mediaplayer/CMakeLists.txt	(wersja 6640)
++++ modules/mediaplayer/CMakeLists.txt	(wersja 6641)
+@@ -76,6 +76,6 @@
+ 	if (APPLE)
+ 		set_target_properties(mediaplayer PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS mediaplayer DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS mediaplayer DESTINATION ${MODULEDIR})
+ endif (mediaplayer STREQUAL STATIC)
+ 
+Index: modules/voice/CMakeLists.txt
+===================================================================
+--- modules/voice/CMakeLists.txt	(wersja 6640)
++++ modules/voice/CMakeLists.txt	(wersja 6641)
+@@ -50,6 +50,6 @@
+ 	else (WIN32)
+ 		target_link_libraries(voice gsm)
+ 	endif (WIN32)
+-	install (TARGETS voice DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS voice DESTINATION ${MODULEDIR})
+ endif (voice STREQUAL STATIC)
+ 
+Index: modules/default_sms/CMakeLists.txt
+===================================================================
+--- modules/default_sms/CMakeLists.txt	(wersja 6640)
++++ modules/default_sms/CMakeLists.txt	(wersja 6641)
+@@ -46,6 +46,6 @@
+ 	if (APPLE)
+ 		set_target_properties(default_sms PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS default_sms DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS default_sms DESTINATION ${MODULEDIR})
+ endif (default_sms STREQUAL STATIC)
+ 
+Index: modules/ext_sound/CMakeLists.txt
+===================================================================
+--- modules/ext_sound/CMakeLists.txt	(wersja 6640)
++++ modules/ext_sound/CMakeLists.txt	(wersja 6641)
+@@ -49,6 +49,6 @@
+ 	if (APPLE)
+ 		set_target_properties(ext_sound PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS ext_sound DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS ext_sound DESTINATION ${MODULEDIR})
+ endif (ext_sound STREQUAL STATIC)
+ 
+Index: modules/notify/CMakeLists.txt
+===================================================================
+--- modules/notify/CMakeLists.txt	(wersja 6640)
++++ modules/notify/CMakeLists.txt	(wersja 6641)
+@@ -57,6 +57,6 @@
+ 	if (APPLE)
+ 		set_target_properties(notify PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS notify DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS notify DESTINATION ${MODULEDIR})
+ endif (notify STREQUAL STATIC)
+ 
+Index: modules/last_seen/CMakeLists.txt
+===================================================================
+--- modules/last_seen/CMakeLists.txt	(wersja 6640)
++++ modules/last_seen/CMakeLists.txt	(wersja 6641)
+@@ -38,6 +38,6 @@
+ 	if (APPLE)
+ 		set_target_properties(last_seen PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS last_seen DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS last_seen DESTINATION ${MODULEDIR})
+ endif (last_seen STREQUAL STATIC)
+ 
+Index: modules/pcspeaker/CMakeLists.txt
+===================================================================
+--- modules/pcspeaker/CMakeLists.txt	(wersja 6640)
++++ modules/pcspeaker/CMakeLists.txt	(wersja 6641)
+@@ -47,6 +47,6 @@
+ 	if (APPLE)
+ 		set_target_properties(pcspeaker PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS pcspeaker DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS pcspeaker DESTINATION ${MODULEDIR})
+ endif (pcspeaker STREQUAL STATIC)
+ 
+Index: modules/docking/CMakeLists.txt
+===================================================================
+--- modules/docking/CMakeLists.txt	(wersja 6640)
++++ modules/docking/CMakeLists.txt	(wersja 6641)
+@@ -47,6 +47,6 @@
+ 	if (APPLE)
+ 		set_target_properties(docking PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS docking DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS docking DESTINATION ${MODULEDIR})
+ endif (docking STREQUAL STATIC)
+ 
+Index: modules/filedesc/CMakeLists.txt
+===================================================================
+--- modules/filedesc/CMakeLists.txt	(wersja 6640)
++++ modules/filedesc/CMakeLists.txt	(wersja 6641)
+@@ -43,6 +43,6 @@
+ 	if (APPLE)
+ 		set_target_properties(filedesc PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS filedesc DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS filedesc DESTINATION ${MODULEDIR})
+ endif (filedesc STREQUAL STATIC)
+ 
+Index: modules/filtering/CMakeLists.txt
+===================================================================
+--- modules/filtering/CMakeLists.txt	(wersja 6640)
++++ modules/filtering/CMakeLists.txt	(wersja 6641)
+@@ -59,7 +59,7 @@
+ 	if (APPLE)
+ 		set_target_properties(filtering PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS filtering DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS filtering DESTINATION ${MODULEDIR})
+ endif (filtering STREQUAL STATIC)
+ 
+ install (FILES "data/clear.png" "data/filtering.png" DESTINATION "share/kadu/modules/data/filtering")
+Index: modules/falf_mediaplayer/CMakeLists.txt
+===================================================================
+--- modules/falf_mediaplayer/CMakeLists.txt	(wersja 6640)
++++ modules/falf_mediaplayer/CMakeLists.txt	(wersja 6641)
+@@ -23,6 +23,6 @@
+ if (falf_mediaplayer STREQUAL STATIC)
+ 	set_target_properties(falf_mediaplayer PROPERTIES COMPILE_FLAGS "-DKADULIB" )
+ else (falf_mediaplayer STREQUAL STATIC)
+-	install (TARGETS falf_mediaplayer DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS falf_mediaplayer DESTINATION ${MODULEDIR})
+ endif (falf_mediaplayer STREQUAL STATIC)
+ 
+Index: modules/dshow_sound/CMakeLists.txt
+===================================================================
+--- modules/dshow_sound/CMakeLists.txt	(wersja 6640)
++++ modules/dshow_sound/CMakeLists.txt	(wersja 6641)
+@@ -39,7 +39,7 @@
+ 	set_target_properties(dshow_sound PROPERTIES COMPILE_FLAGS "-DKADULIB" )
+ else (dshow_sound STREQUAL STATIC)
+ 	target_link_libraries(dshow_sound kadu_core sound)
+-	install (TARGETS dshow_sound DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS dshow_sound DESTINATION ${MODULEDIR})
+ endif (dshow_sound STREQUAL STATIC)
+ #add_dependencies (dshow_sound dshow_sound-translations)
+ 
+Index: modules/dsp_sound/CMakeLists.txt
+===================================================================
+--- modules/dsp_sound/CMakeLists.txt	(wersja 6640)
++++ modules/dsp_sound/CMakeLists.txt	(wersja 6641)
+@@ -36,6 +36,6 @@
+ if (dsp_sound STREQUAL STATIC)
+ 	set_target_properties(dsp_sound PROPERTIES COMPILE_FLAGS "-DKADULIB" )
+ else (dsp_sound STREQUAL STATIC)
+-	install (TARGETS dsp_sound DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS dsp_sound DESTINATION ${MODULEDIR})
+ endif (dsp_sound STREQUAL STATIC)
+ 
+Index: modules/advanced_userlist/CMakeLists.txt
+===================================================================
+--- modules/advanced_userlist/CMakeLists.txt	(wersja 6640)
++++ modules/advanced_userlist/CMakeLists.txt	(wersja 6641)
+@@ -47,7 +47,7 @@
+ 	if (APPLE)
+ 		set_target_properties(advanced_userlist PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS advanced_userlist DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS advanced_userlist DESTINATION ${MODULEDIR})
+ endif (advanced_userlist STREQUAL STATIC)
+ 
+ 
+Index: modules/xmms_mediaplayer/CMakeLists.txt
+===================================================================
+--- modules/xmms_mediaplayer/CMakeLists.txt	(wersja 6640)
++++ modules/xmms_mediaplayer/CMakeLists.txt	(wersja 6641)
+@@ -31,6 +31,6 @@
+ if (xmms_mediaplayer STREQUAL STATIC)
+ 	set_target_properties(xmms_mediaplayer PROPERTIES COMPILE_FLAGS "-DKADULIB" )
+ else (xmms_mediaplayer STREQUAL STATIC)
+-	install (TARGETS xmms_mediaplayer DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS xmms_mediaplayer DESTINATION ${MODULEDIR})
+ endif (xmms_mediaplayer STREQUAL STATIC)
+ 
+Index: modules/spellchecker/CMakeLists.txt
+===================================================================
+--- modules/spellchecker/CMakeLists.txt	(wersja 6640)
++++ modules/spellchecker/CMakeLists.txt	(wersja 6641)
+@@ -55,6 +55,6 @@
+ 	if (APPLE)
+ 		set_target_properties(spellchecker PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS spellchecker DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS spellchecker DESTINATION ${MODULEDIR})
+ endif (spellchecker STREQUAL STATIC)
+ 
+Index: modules/firewall/CMakeLists.txt
+===================================================================
+--- modules/firewall/CMakeLists.txt	(wersja 6640)
++++ modules/firewall/CMakeLists.txt	(wersja 6641)
+@@ -40,6 +40,6 @@
+ 	if (APPLE)
+ 		set_target_properties(firewall PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS firewall DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS firewall DESTINATION ${MODULEDIR})
+ endif (firewall STREQUAL STATIC)
+ 
+Index: modules/ao_sound/CMakeLists.txt
+===================================================================
+--- modules/ao_sound/CMakeLists.txt	(wersja 6640)
++++ modules/ao_sound/CMakeLists.txt	(wersja 6641)
+@@ -32,6 +32,6 @@
+ 	if (APPLE)
+ 		set_target_properties(ao_sound PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS ao_sound DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS ao_sound DESTINATION ${MODULEDIR})
+ endif (ao_sound STREQUAL STATIC)
+ 
+Index: modules/desktop_docking/CMakeLists.txt
+===================================================================
+--- modules/desktop_docking/CMakeLists.txt	(wersja 6640)
++++ modules/desktop_docking/CMakeLists.txt	(wersja 6641)
+@@ -46,6 +46,6 @@
+ 	if (APPLE)
+ 		set_target_properties(desktop_docking PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS desktop_docking DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS desktop_docking DESTINATION ${MODULEDIR})
+ endif (desktop_docking STREQUAL STATIC)
+ 
+Index: modules/exec_notify/CMakeLists.txt
+===================================================================
+--- modules/exec_notify/CMakeLists.txt	(wersja 6640)
++++ modules/exec_notify/CMakeLists.txt	(wersja 6641)
+@@ -42,6 +42,6 @@
+ 	if (APPLE)
+ 		set_target_properties(encryption PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS exec_notify DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS exec_notify DESTINATION ${MODULEDIR})
+ endif (exec_notify STREQUAL STATIC)
+ 
+Index: modules/idle/CMakeLists.txt
+===================================================================
+--- modules/idle/CMakeLists.txt	(wersja 6640)
++++ modules/idle/CMakeLists.txt	(wersja 6641)
+@@ -56,5 +56,5 @@
+ 	if (APPLE)
+ 		set_target_properties(idle PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
+ 	endif (APPLE)
+-	install (TARGETS idle DESTINATION lib${LIB_SUFFIX}/kadu/modules)
++	install (TARGETS idle DESTINATION ${MODULEDIR})
+ endif (idle STREQUAL STATIC)
+Index: kadu-core/misc.cpp
+===================================================================
+--- kadu-core/misc.cpp	(wersja 6640)
++++ kadu-core/misc.cpp	(wersja 6641)
+@@ -384,9 +384,10 @@
+ 
+ 		//je�eli �cie�ki nie ko�cz� si� na /share i /bin oraz gdy bez tych ko�c�wek
+ 		//�cie�ki si� nie pokrywaj�, to znaczy �e kto� ustawi� r�cznie DATADIR lub BINDIR
+-		if (!datadir.endsWith("/share") || !bindir.endsWith("/bin") || !libdir.endsWith("/lib") ||
++		if (!datadir.endsWith("/share") || !bindir.endsWith("/bin") || !libdir.endsWith("/lib") || !libdir.endsWith("/lib64") ||
+ 			datadir.left(datadir.length() - 6) != bindir.left(bindir.length() - 4) ||
+-			bindir.left(bindir.length() - 4) != libdir.left(libdir.length() - 4))
++			(bindir.left(bindir.length() - 4) != libdir.left(libdir.length() - 4) && 
++			bindir.left(bindir.length() - 4) != libdir.left(libdir.length() - 6)))
+ 		{
+ 			data_path = datadir + '/';
+ 			lib_path = libdir + '/';
+Index: CMakeLists.txt
+===================================================================
+--- CMakeLists.txt	(wersja 6640)
++++ CMakeLists.txt	(wersja 6641)
+@@ -73,6 +73,7 @@
+ set (DATADIR ${CMAKE_INSTALL_PREFIX}/share)
+ set (LIBDIR ${CMAKE_INSTALL_PREFIX}/lib${LIB_SUFFIX})
+ set (BINDIR ${CMAKE_INSTALL_PREFIX}/bin)
++set (MODULEDIR lib${LIB_SUFFIX}/kadu/modules)
+ 
+ message (STATUS "DATADIR: ${DATADIR}")
+ message (STATUS "LIBDIR: ${LIBDIR}")
