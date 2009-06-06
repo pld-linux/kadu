@@ -1,9 +1,3 @@
-#
-# TODO:
-# - Some modules with bcond_with will not work for now, we need to wait for next releases
-# - better descriptions/summaries for all modules (maybe also information in each package that it is a kadu module/theme)
-# - Qt4 Req and BReq
-#
 # Conditional build:
 %bcond_with	debug			# build with debug
 %bcond_without	advanced_userlist	# without Advanced Userlist support
@@ -107,7 +101,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
 Version:	0.6.5.2
-Release:	4
+Release:	5
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -247,6 +241,12 @@ Obsoletes:	kadu-theme-icons-crystal16
 Obsoletes:	kadu-theme-icons-crystal22
 Obsoletes:	kadu-theme-icons-nuvola16
 Obsoletes:	kadu-theme-icons-nuvola22
+%{!?with_mediaplayer:Obsoletes:	kadu-module-mediaplayer}
+%{!?with_split_messages:Obsoletes:	kadu-module-split_messages}
+%if %{without notify_osdhints} && %{without notify_xosd}
+Obsoletes:	kadu-module-notify-osdhints
+Obsoletes:	kadu-module-notify-xosd
+%endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		modules_lib_dir		%{_libdir}/%{name}/modules
@@ -648,6 +648,9 @@ Summary:	Notification by OSD-like hints
 Summary(pl.UTF-8):	Powiadamianie o zdarzeniach przy pomocy dymków typu OSD
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
+%if %{without notify_xosd}
+Obsoletes:	kadu-module-notify-xosd
+%endif
 
 %description module-notify-osdhints
 Notification by OSD-like hints.
@@ -698,6 +701,9 @@ Summary:	Notification by XOSD module
 Summary(pl.UTF-8):	Moduł powiadamiania o zdarzeniach przy pomocy XOSD
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
+%if %{without notify_osdhints}
+Obsoletes:	kadu-module-notify-osdhints
+%endif
 
 %description module-notify-xosd
 Notification by XOSD module.
@@ -740,7 +746,7 @@ Requires:	%{name}-module-auto_hide = %{version}-%{release}
 Requires:	%{name}-module-autostatus = %{version}-%{release}
 Requires:	%{name}-module-cenzor = %{version}-%{release}
 Requires:	%{name}-module-parser_extender = %{version}-%{release}
-Requires:	%{name}-module-split_messages = %{version}-%{release}
+%{!?with_split_messages:Requires:	%{name}-module-split_messages = %{version}-%{release}}
 Requires:	%{name}-module-word_fix = %{version}-%{release}
 
 %description module-powerkadu
