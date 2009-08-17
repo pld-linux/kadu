@@ -1070,7 +1070,7 @@ tar xjf %{SOURCE10} -C modules
 tar xzf %{SOURCE11} -C modules
 %endif
 %if %{with notify_qt4_docking}
-tar xzf %{SOURCE22} -C modules
+tar xjf %{SOURCE22} -C modules
 %endif
 %if %{with senthistory}
 tar xzf %{SOURCE12} -C modules
