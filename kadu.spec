@@ -101,7 +101,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
 Version:	0.6.5.2
-Release:	6
+Release:	7
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -198,6 +198,7 @@ Source47:	http://myslenice.one.pl/~boogie/desc_history/desc_history-%{desc_histo
 Patch0:		%{name}-weather-duplicated-translation-fix.patch
 Patch1:		%{name}-gcc44.patch
 Patch2:		%{name}-libsuffix.patch
+Patch3:		%{name}-choose_desc_crash_fix.patch
 URL:		http://kadu.net/
 BuildRequires:	Qt3Support-devel >= 4.4
 BuildRequires:	QtScript-devel >= 4.4
@@ -1035,6 +1036,7 @@ Zestaw ikon Tango16.
 %setup -q -T -b 0 -n %{name}
 %patch1 -p1
 %patch2 -p0
+%patch3 -p2
 
 %if %{with agent}
 tar xzf %{SOURCE17} -C modules
