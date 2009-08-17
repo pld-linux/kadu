@@ -9,6 +9,7 @@
 %bcond_without	anonymous_check		# without anonymous_check module support
 %bcond_without	antistring		# without antistring module support
 %bcond_without	auto_hide		# without auto_hide module support
+%bcond_without	autoaway		# without autoaway module support
 %bcond_without	autoresponder		# without autoresponder module support
 %bcond_without	autostatus		# without autostatus module support
 %bcond_without	cenzor			# without cenzor module support
@@ -43,6 +44,7 @@
 %bcond_without	notify_qt4_docking	# without qt4_docking_notify module support
 #% bcond_with	notify_speech		# without Speech synthesis support
 %bcond_without	notify_water		# without water_notify module support
+%bcond_without	notify_window		# without window_notify module support
 %bcond_without	panelkadu		# without panelkadu module support
 %bcond_without	parser_extender		# without parser_extender extensions
 %bcond_without	powerkadu		# without PowerKadu extensions
