@@ -1,55 +1,60 @@
+#
 # Conditional build:
 %bcond_with	debug			# build with debug
 %bcond_without	advanced_userlist	# without Advanced Userlist support
-%bcond_with	agent			# without agent module support
+%bcond_without	agent			# without agent module support
+%bcond_without	anonymous_check		# without anonymous_check module support
 %bcond_without	antistring		# without antistring module support
 %bcond_without	auto_hide		# without auto_hide module support
 %bcond_without	autoresponder		# without autoresponder module support
 %bcond_without	autostatus		# without autostatus module support
-%bcond_without	anonymous_check		# without anonymous_check module support
 %bcond_without	cenzor			# without cenzor module support
-%bcond_with	desc_history		# with dcopexport module support (disabled becouse not in autodownload/not well tested)
-%bcond_with	dcopexport		# without dcopexport module support
+#% bcond_with	dcopexport		# with dcopexport module support -> dbus
+%bcond_with	desc_history		# without dcopexport module support
 %bcond_without	docking_desktop		# without desktop_docking module support
-%bcond_with	docking_wmaker		# without wmaker_docking module support
 %bcond_without	encryption		# without encryption module support
 %bcond_without	filedesc		# without filedesc module support
 %bcond_without	filtering		# without filtering module support
 %bcond_without	firewall		# without firewall module support
 %bcond_without	gg_avatars		# without gg_avatars module support
 %bcond_without	globalhotkeys		# without globalhotkeys module support
-%bcond_with	last_seen		# without last_seen module support
-%bcond_with	mail			# without mail module support
-%bcond_with	mediaplayer		# without media player modules support
-%bcond_with	mediaplayer_amarok	# without amarok player support module
-%bcond_with	mediaplayer_audacious	# without audacious player support module
-%bcond_with	mediaplayer_falf	# without falf player support module
-%bcond_with	mediaplayer_xmms	# without xmms player support module
+%bcond_without	last_seen		# without last_seen module support
+%bcond_without	mail			# without mail module support
+%bcond_without	mediaplayer		# without media player modules support
+%bcond_without	mediaplayer_amarok	# without amarok player support module
+%bcond_without	mediaplayer_amarok2	# without amarok2 player support module
+%bcond_without	mediaplayer_audacious	# without audacious player support module
+%bcond_without	mediaplayer_bmpx	# without bmpx player support module
+%bcond_without	mediaplayer_dragon	# without dragon player support module
+%bcond_without	mediaplayer_falf	# without falf player support module
+%bcond_without	mediaplayer_vlc		# without vlc player support module
+%bcond_without	mediaplayer_xmms	# without xmms player support module
+%bcond_without	mediaplayer_xmms2	# without xmms2 player support module
 %bcond_without	mime_tex		# without mime_tex module support
-%bcond_with	nextinfo		# without nextinfo module support
+%bcond_without	nextinfo		# without nextinfo module support
 %bcond_without	notify_exec		# without exec_notify module support
 %bcond_without	notify_led		# without led_notify module support
-%bcond_without	notify_mx610		# without led_notify module support
-%bcond_with	notify_osdhints		# without osdhints_notify module
+%bcond_without	notify_mx610		# without mc610_notify module support
+%bcond_without	notify_osdhints		# without osdhints_notify module
 %bcond_without	notify_pcspeaker	# without pcspeaker_notify module support
-%bcond_with	notify_speech		# without Speech synthesis support
-%bcond_with	notify_water		# without water_notify module support
-%bcond_with	notify_xosd		# without xosd_notify module support
+%bcond_without	notify_qt4_docking	# without qt4_docking_notify module support
+#% bcond_with	notify_speech		# without Speech synthesis support
+%bcond_without	notify_water		# without water_notify module support
 %bcond_without	panelkadu		# without panelkadu module support
 %bcond_without	parser_extender		# without parser_extender extensions
 %bcond_without	powerkadu		# without PowerKadu extensions
 %bcond_without	profiles		# without profiles module support
+%bcond_without	screenshot		# without screenshot module support
 %bcond_without	senthistory		# without senthistory module support
+%bcond_without	sms_plus_pl		# without plus_pl_sms module support
 %bcond_without	sound_alsa		# without ALSA support
-%bcond_with	sound_ao		# without ao support
-%bcond_with	sound_arts		# without arts sound server support
-%bcond_without	sound_dsp		# without DSP sound module support
-%bcond_with	sound_esd		# without ESD sound server support
+%bcond_without	sound_ao		# without ao support
+%bcond_without	sound_dsp		# without DSP support
 %bcond_without	sound_ext		# without external application sound module support
-%bcond_with	screenshot		# without screenshot module support
-%bcond_with	sms_miastoplusa		# without miastoplusa_sms module support
+%bcond_without	sound_phonon		# without phonon sound module support
+%bcond_without	sound_qt4		# without qt4 sound module support
 %bcond_without	spellchecker		# without spellchecker (Aspell support) invisible
-%bcond_with	split_messages		# without split_messages module support
+%bcond_without	split_messages		# without split_messages module support
 %bcond_without	tabs			# without tabs support module
 %bcond_without	voice			# without voice support module
 %bcond_without	weather			# without weather check module support
@@ -57,45 +62,21 @@
 
 %define		libgadu_ver		4:1.8.2
 
-%define		agent_mod_ver		0.4.4
-%define		amarok_mod_ver		20071220
 %define		anonymous_check_ver	0.6.5.1
-%define		antistring_ver		0.3
-%define		auto_hide_ver		0.3
-%define		autostatus_ver		0.2
-%define		cenzor_ver		0.3
-%define		desc_history_ver	1.1
 %define		dcopexport_ver		0.11.3-20071129
-%define		falf_mod_ver		20071225
-%define		filedesc_ver		20080906
-%define		filtering_ver		20080821
-%define		firewall_ver		0.8
-%define		globalhotkeys_ver	0.6.5-8
-%define		last_seen_ver		0.1.1
+%define		desc_history_ver	1.1
+%define		globalhotkeys_ver	0.6.5-11
 %define		mail_ver		0.3.3
-%define		mediaplayer_mod_ver	20080224
-%define		mediaplayer_audacious_ver	20080423
-%define		mime_tex_ver		0.6.5.1
-%define		nextinfo_ver		0.6.0-1
+%define		mime_tex_ver		0.6.5.3
+%define		nextinfo_ver		0.6.5-1
 %define		notify_led_ver		0.21
 %define		notify_mx610_ver	0.4
-%define		notify_osdhints_ver	0.4.3
-%define		notify_pcspeaker_ver	0.6.1
-%define		notify_water_ver	0.1.1-try2
+%define		notify_water_ver	0.2
 %define		panelkadu_ver		0.6.5-3
-%define		parser_extender_ver	0.2
-%define		powerkadu_ver		2.1.2
-%define		profiles_ver		0.4
-%define		senthistory_ver		0.6.5-3
-%define		screenshot_ver		20080104
-%define		sms_miastoplusa_ver	1.3.10
-%define		sound_ao_ver		20060424
-%define		spellchecker_mod_ver	20080821
-%define		split_messages_ver	0.3.1
-%define		tabs_ver		1.2.3
+%define		senthistory_ver		0.6.5-4
+%define		sms_plus_pl_ver		0.6.5.1
+%define		tabs_ver		1.2.4
 %define		weather_ver		3.15
-%define		word_fix_ver		0.4
-%define		xmms_mod_ver		20080116
 
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
@@ -107,98 +88,52 @@ Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
 # Source0-md5:	9cc1e59e538ff1aa416d162834ce43bb
 Source1:	%{name}.desktop
-Source2:	http://www.kadu.net/download/modules_extra/mediaplayer/mediaplayer-%{mediaplayer_mod_ver}.tar.bz2
-# Source2-md5:	8a27d4873e6896d63f7c8193029b24ca
-Source3:	http://www.kadu.net/download/modules_extra/amarok_mediaplayer/amarok_mediaplayer-%{amarok_mod_ver}.tar.bz2
-# Source3-md5:	51d304e335e814f3d8c0f1654007a7d7
-Source4:	http://alan.umcs.lublin.pl/~pinkworm/dcopexport/dcopexport-%{dcopexport_ver}-0.6.0.tar.bz2
-# Source4-md5:	b36fcfcf4756285f30cbb6c2b6c2a2da
-Source5:	http://www.kadu.net/download/modules_extra/filedesc/filedesc-%{filedesc_ver}-qt4.tar.bz2
-# Source5-md5:	97918c14332980f99527a0bc9c6d8e66
-Source6:	http://www.kadu.net/download/modules_extra/filtering/filtering-%{filtering_ver}.tar.bz2
-# Source6-md5:	19b236057bd1c1e8a502cf5aee05cd66
-Source8:	http://www.kadu.net/download/modules_extra/falf_mediaplayer/falf_mediaplayer-%{falf_mod_ver}.tar.bz2
-# Source8-md5:	927db40f7136ff86b3e83307b5cec2d9
-Source9:	http://kadu.net/~blysk/led_notify-%{notify_led_ver}.tar.bz2
-# Source9-md5:	e857f0fb213700eb366915eca9c1e454
-Source10:	http://www.kadu.net/~dorr/moduly/%{name}-osdhints_notify-%{notify_osdhints_ver}.tar.bz2
-# Source10-md5:	5913203482de8ef9d596e94afcbff147
-Source11:	http://www.kadu.net/~dorr/moduly/%{name}-pcspeaker-%{notify_pcspeaker_ver}.tar.bz2
-# Source11-md5:	106630ab621c1567a94742fec046b5ce
-Source12:	http://www.kadu.net/~dorr/moduly/%{name}-powerkadu-%{powerkadu_ver}.tar.bz2
-# Source12-md5:	cba771287dce1894d4bfbaae57e15bae
-Source13:	http://www.kadu.net/~dorr/moduly/%{name}-profiles-%{profiles_ver}.tar.bz2
-# Source13-md5:	41c911e3d89db74414a002aefdefe445
-Source14:	http://www.kadu.net/download/modules_extra/screenshot/screenshot-%{screenshot_ver}.tar.bz2
-# Source14-md5:	47d3d5564b272a186667c1507e19844f
-Source15:	http://kadu.net/~patryk/miastoplusa_sms/miastoplusa_sms-0.6-%{sms_miastoplusa_ver}.tar.bz2
-# Source15-md5:	e2431d3f7c2fa658c889172bef9988ed
-Source16:	http://www.kadu.net/download/modules_extra/spellchecker/spellchecker-%{spellchecker_mod_ver}.tar.bz2
-# Source16-md5:	61c3b8e64758b44dae1996f972f9312e
-Source17:	http://misiek.jah.pl/assets/2008/2/8/agent-%{agent_mod_ver}.tar.gz
-# Source17-md5:	4401e0e3c509af347cb14a89236301ea
-Source18:	http://kadu.net/~arvenil/tabs/download/0.6.5/%{tabs_ver}/%{name}-tabs-%{tabs_ver}.tar.bz2
-# Source18-md5:	b0dc5d909d9b7094bafd24a18b9b3b80
-Source19:	http://kadu.net/~blysk/weather-%{weather_ver}.tar.bz2
-# Source19-md5:	d96a1222764b23c00e82fffc650d748e
-Source20:	http://www.kadu.net/download/modules_extra/xmms_mediaplayer/xmms_mediaplayer-%{xmms_mod_ver}.tar.bz2
-# Source20-md5:	97dd4c9cd19b69b9ab6d38a20cd37a2e
-Source21:	http://kadu.jarzebski.pl/water_notify-%{notify_water_ver}.tar.bz2
-# Source21-md5:	10320f9b96366422bbcd7ec76d4e85a1
-Source22:	http://www.ultr.pl/kadu/panelkadu-%{panelkadu_ver}.tar.gz
-# Source22-md5:	4f8d84727e721dcfd569ab1100f7be4c
-Source23:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-16.tar.gz
-# Source23-md5:	74712871bc3edc4a9e612e18138c49b0
-Source24:	http://www.kadu.net/download/additions/%{name}-0.6-theme-glass-22.tar.gz
-# Source24-md5:	c3f43652254f877dc991747b2d70f70a
-Source25:	http://www.kadu.net/~dorr/moduly/%{name}-word_fix-%{word_fix_ver}.tar.bz2
-# Source25-md5:	32f3be9b0b1cb74cfe0400727b06a2c0
-Source27:	http://www.kadu.net/~dorr/moduly/%{name}-firewall-%{firewall_ver}.tar.bz2
-# Source27-md5:	5ef5313ae4889c04b06ca34eb30d7575
-Source28:	http://kadu.net/~patryk/mime_tex/mime_tex-%{mime_tex_ver}.tar.bz2
-# Source28-md5:	0197d1da8143629933677c5ac56356de
-Source29:	http://www.kadu.net/~dorr/moduly/kadu-mx610_notify-%{notify_mx610_ver}.tar.bz2
-# Source29-md5:	e1834b40402a6ea827f6c06108339726
-Source30:	http://www.kadu.net/~joi/ao_sound/packages/ao_sound-%{sound_ao_ver}.tar.bz2
-# Source30-md5:	95809d330e48e61f58ec961ddbf0b529
-Source31:	http://www.kadu.net/download/modules_extra/audacious_mediaplayer/audacious_mediaplayer-%{mediaplayer_audacious_ver}.tar.bz2
-# Source31-md5:	76611a2d47203465224b329bfa1eea7e
-Source32:	http://www.kadu.net/~weagle/mail/mail-%{mail_ver}.tar.bz2
-# Source32-md5:	898561b215ac10a99be62fa4e3a50a55
-Source33:	http://www.kadu.net/download/additions/%{name}-0.6-theme-oxygen-16.tar.gz
-# Source33-md5:	fb13f2624dec27632c42a6bc2c1a252f
-Source34:	http://www.kadu.net/download/additions/%{name}-0.6-theme-tango-16.tar.gz
-# Source34-md5:	52fe12765b600b9aa44cfc6489dce8eb
-Source35:	http://www.kadu.net/~dorr/moduly/%{name}-split_messages-%{split_messages_ver}.tar.bz2
-# Source35-md5:	0098f4ca00c3348bed95d8fc7d7cf964
-Source36:	http://kadu.net/~patryk/anonymous_check/anonymous_check-%{anonymous_check_ver}.tar.bz2
-# Source36-md5:	c44b443ce63945acb3f13540d8564060
-Source37:	http://www.kadu.net/~dorr/moduly/%{name}-antistring-%{antistring_ver}.tar.bz2
-# Source37-md5:	520c9985465eb4194e9410dfc9255a55
-Source38:	http://www.kadu.net/~dorr/moduly/%{name}-auto_hide-%{auto_hide_ver}.tar.bz2
-# Source38-md5:	fb1501c49b0166b5e651af2c47b7c78f
-Source39:	http://www.kadu.net/~dorr/moduly/%{name}-cenzor-%{cenzor_ver}.tar.bz2
-# Source39-md5:	e91e5dda04124e5b37b3b77d314a1496
-Source40:	http://www.kadu.net/~dorr/moduly/%{name}-parser_extender-%{parser_extender_ver}.tar.bz2
-# Source40-md5:	dd9088b6d94a067ec2581f0c300e0c41
-Source41:	http://www.kadu.net/download/additions/%{name}-theme-kadu05.tar.gz
-# Source41-md5:	8576eef06700e8a9b7335452423a37a2
-Source42:	http://www.kadu.net/~dorr/moduly/%{name}-last_seen-%{last_seen_ver}.tar.bz2
-# Source42-md5:	b0b36bef5d8ff28b5fb6de0d1e1e8cc7
-Source43:	http://www.kadu.net/~dorr/moduly/%{name}-autostatus-%{autostatus_ver}.tar.bz2
-# Source43-md5:	6540edd7bf6b2a7c8eb953fae9c19977
-Source44:	http://www.ultr.pl/kadu/globalhotkeys-%{globalhotkeys_ver}.tar.gz
-# Source44-md5:	db1811bfc7fe7aef26abc908a4c40cc8
-Source45:	http://www.ultr.pl/kadu/senthistory-%{senthistory_ver}.tar.gz
-# Source45-md5:	07d829f54c1e727ded0f0732bed66dc1
-Source46:	http://www.ultr.pl/kadu/nextinfo-%{nextinfo_ver}.tar.gz
-# Source46-md5:	b763f1d1fe8eef651f399d4d3fdf590f
-Source47:	http://myslenice.one.pl/~boogie/desc_history/desc_history-%{desc_history_ver}.tar.bz2
-# Source47-md5:	cf7d7c8f86d9cfe4b5a0ab52b5deff34
+Source2:	http://kadu.net/~patryk/anonymous_check/anonymous_check-%{anonymous_check_ver}.tar.bz2
+# Source2-md5:	c44b443ce63945acb3f13540d8564060
+Source3:	http://alan.umcs.lublin.pl/~pinkworm/dcopexport/dcopexport-%{dcopexport_ver}-0.6.0.tar.bz2
+# Source3-md5:	b36fcfcf4756285f30cbb6c2b6c2a2da
+Source4:	http://www.ultr.pl/kadu/globalhotkeys-%{globalhotkeys_ver}.tar.gz
+# Source4-md5:	a951bd23ffa8fd7c224734dc514ca6b7
+Source5:	http://www.kadu.net/~weagle/mail/mail-%{mail_ver}.tar.bz2
+# Source5-md5:	898561b215ac10a99be62fa4e3a50a55
+Source6:	http://kadu.net/~patryk/mime_tex/mime_tex-%{mime_tex_ver}.tar.bz2
+# Source6-md5:	f15b1c1e8933c9ba5a81cc8e19aeadc7
+Source7:	http://www.ultr.pl/kadu/nextinfo-%{nextinfo_ver}.tar.gz
+# Source7-md5:	8bd1566103e7c66bea6c5a82e52cd40e
+Source8:	http://kadu.net/~blysk/led_notify-%{notify_led_ver}.tar.bz2
+# Source8-md5:	e857f0fb213700eb366915eca9c1e454
+Source9:	http://www.kadu.net/~dorr/moduly/kadu-mx610_notify-%{notify_mx610_ver}.tar.bz2
+# Source9-md5:	e1834b40402a6ea827f6c06108339726
+Source10:	http://www.kadu.net/~dorr/moduly/kadu-water_notify-%{notify_water_ver}.tar.bz2
+# Source10-md5:	cc9449bdb55fb7a8bb251ab22c0bca99
+Source11:	http://www.ultr.pl/kadu/panelkadu-%{panelkadu_ver}.tar.gz
+# Source11-md5:	4f8d84727e721dcfd569ab1100f7be4c
+Source12:	http://www.ultr.pl/kadu/senthistory-%{senthistory_ver}.tar.gz
+# Source12-md5:	7d3b4eb3c6c74687905a963f558330ee
+Source13:	http://kadu.net/~patryk/plus_pl_sms/plus_pl_sms-%{sms_plus_pl_ver}.tar.bz2
+# Source13-md5:	e8757b4a45766e251a5200af21366b73
+Source14:	http://www.kadu.net/~weagle/tabs/%{name}-tabs-%{tabs_ver}.tar.bz2
+# Source14-md5:	7be5a2dad81f086a9f20cf2ede38e952
+Source15:	http://kadu.net/~blysk/weather-%{weather_ver}.tar.bz2
+# Source15-md5:	d96a1222764b23c00e82fffc650d748e
+Source16:	http://www.kadu.net/download/additions/%{name}-0.6.5-theme-glass-16.tar.gz
+# Source16-md5:	94b2568075a5ae224df371a0dac6bd23
+Source17:	http://www.kadu.net/download/additions/%{name}-0.6.5-theme-glass-22.tar.gz
+# Source17-md5:	24acf266956d0535e7e384c6c925e261
+Source18:	http://www.kadu.net/download/additions/%{name}-0.6.5-theme-oxygen-16.tar.gz
+# Source18-md5:	4622cf2873672ef828c1916fdf320ffb
+Source19:	http://www.kadu.net/download/additions/%{name}-0.6.5-theme-tango-16.tar.gz
+# Source19-md5:	332aa307a92829888dccd880b262f130
+Source20:	http://www.kadu.net/download/additions/%{name}-0.6.5-theme-kadu05.tar.gz
+# Source20-md5:	9174f621138b6fc28127cc4396cb59ed
+Source21:	http://myslenice.one.pl/~boogie/desc_history/desc_history-%{desc_history_ver}.tar.bz2
+# Source21-md5:	cf7d7c8f86d9cfe4b5a0ab52b5deff34
+
 Patch0:		%{name}-weather-duplicated-translation-fix.patch
 Patch1:		%{name}-gcc44.patch
 Patch2:		%{name}-libsuffix.patch
 Patch3:		%{name}-choose_desc_crash_fix.patch
+Patch4:		%{name}-profiles_fix.patch
 URL:		http://kadu.net/
 BuildRequires:	Qt3Support-devel >= 4.4
 BuildRequires:	QtScript-devel >= 4.4
@@ -206,37 +141,34 @@ BuildRequires:	QtWebKit-devel >= 4.4
 %{?with_sound_alsa:BuildRequires:	alsa-lib-devel}
 %{?with_sound_arts:BuildRequires:	artsc-devel}
 %{?with_spellchecker:BuildRequires:	aspell-devel}
-%{?with_mediaplayer_audacious:BuildRequires:	audacious-devel >= 1.4.0}
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cmake
-%{?with_sms_miastoplusa:BuildRequires:	curl-devel}
+%{?with_sms_plus_pl:BuildRequires:	curl-devel}
 %{?with_notify_water:BuildRequires:	dbus-devel}
-%{?with_sound_esd:BuildRequires:	esound-devel}
-%if %{with mediaplayer_amarok} || %{with dcopexport}
-#BuildRequires:	kdelibs-devel
-%endif
 %{?with_sound_ao:BuildRequires:	libao-devel}
 BuildRequires:	libgadu-devel >= %{libgadu_ver}
 %{?with_voice:BuildRequires:	libgsm-devel}
 BuildRequires:	libsndfile-devel >= 1.0
 BuildRequires:	libstdc++-devel
 %{?with_encryption:BuildRequires:	openssl-devel >= 0.9.7d}
-%{?with_mediaplayer_audacious:BuildRequires:	pkgconfig}
+BuildRequires:	pkgconfig
 %{?with_encryption:BuildRequires:	qca-devel}
-#BuildRequires:	qt-devel
-#BuildRequires:	qt-linguist
+BuildRequires:	qt4-build
+BuildRequires:	qt4-linguist
 BuildRequires:	sed >= 4.0
 %{?with_desc_history:BuildRequires:     sqlite3-devel}
-%{?with_mediaplayer_audacious:BuildRequires:	which}
 %{?with_mediaplayer_xmms:BuildRequires:	xmms-devel}
 %{?with_panelkadu:BuildRequires:	xorg-lib-libXtst-devel}
 BuildRequires:	xorg-lib-libXScrnSaver-devel
-%{?with_notify_xosd:BuildRequires:	xosd-devel}
 Requires:	libgadu >= %{libgadu_ver}
+Obsoletes:	kadu-module-docking-wmaker <= 0.6.5
 Obsoletes:	kadu-module-imiface <= 0.4.3
 Obsoletes:	kadu-module-iwait4u <= 0.5.0
+Obsoletes:	kadu-module-notify-xosd <= 0.6.5
 Obsoletes:	kadu-module-speech <= 0.4.3
+Obsoletes:	kadu-module-sound_arts <= 0.6.5
+Obsoletes:	kadu-module-sound_esd <= 0.6.5
 Obsoletes:	kadu-module-tcl_scripting <= 0.4.3
 Obsoletes:	kadu-theme-icons-crystal16
 Obsoletes:	kadu-theme-icons-crystal22
@@ -337,6 +269,18 @@ Antistring module.
 %description module-antistring -l pl.UTF-8
 Moduł chroniący przed łańcuszkami.
 
+%package module-autoaway
+Summary:	Auto away module
+Summary(pl.UTF-8):	Moduł automatycznej zajętości
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-autoaway
+Auto away module.
+
+%description module-autoaway -l pl.UTF-8
+Moduł automatycznej zajętości.
+
 %package module-auto_hide
 Summary:	Auto hide Kadu window
 Summary(pl.UTF-8):	Automatyczne ukrywanie okna Kadu
@@ -396,18 +340,6 @@ Desktop docking module.
 
 %description module-docking-desktop -l pl.UTF-8
 Moduł dokowania w dowolnym punkcie ekranu.
-
-%package module-docking-wmaker
-Summary:	WindowMaker docking module for Kadu
-Summary(pl.UTF-8):	Moduł dokujący ikonę Kadu w WindowMakerze
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description module-docking-wmaker
-WindowMaker docking module for Kadu.
-
-%description module-docking-wmaker -l pl.UTF-8
-Moduł dokujący ikonę Kadu w WindowMakerze.
 
 %package module-encryption
 Summary:	Chat encryption module
@@ -524,7 +456,7 @@ Summary:	Support amarok status
 Summary(pl.UTF-8):	Moduł statusu dla odtwarzacza amarok
 Group:		Applications/Communications
 Requires:	%{name}-module-mediaplayer = %{version}-%{release}
-Requires:	amarok
+Requires:	amarok < 2.0.0
 Provides:	kadu-module-amarok = %{version}
 Obsoletes:	kadu-module-amarok <= 0.5.0
 
@@ -535,6 +467,22 @@ the song currently played in amarok.
 %description module-mediaplayer-amarok -l pl.UTF-8
 Moduł umożliwiający w opisie statusu pokazywanie informacji o
 odgrywanym utworze z odtwarzacza amarok.
+
+%package module-mediaplayer-amarok2
+Summary:	Support amarok 2 status
+Summary(pl.UTF-8):	Moduł statusu dla odtwarzacza amarok 2
+Group:		Applications/Communications
+Requires:	%{name}-module-mediaplayer = %{version}-%{release}
+Requires:	amarok > 2.0.0
+Provides:	kadu-module-amarok2 = %{version}
+
+%description module-mediaplayer-amarok2
+Module which allows showing in status description information about
+the song currently played in amarok 2.
+
+%description module-mediaplayer-amarok2 -l pl.UTF-8
+Moduł umożliwiający w opisie statusu pokazywanie informacji o
+odgrywanym utworze z odtwarzacza amarok 2.
 
 %package module-mediaplayer-audacious
 Summary:	Support audacious status
@@ -551,6 +499,38 @@ the song currently played in audacious.
 Moduł umożliwiający w opisie statusu pokazywanie informacji o
 odgrywanym utworze z odtwarzacza audacious.
 
+%package module-mediaplayer-bmpx
+Summary:	Support BMPX status
+Summary(pl.UTF-8):	Moduł statusu dla odtwarzacza BMPX
+Group:		Applications/Communications
+Requires:	%{name}-module-mediaplayer = %{version}-%{release}
+Requires:	bmpx
+Provides:	kadu-module-bmpx = %{version}
+
+%description module-mediaplayer-bmpx
+Module which allows showing in status description information about
+the song currently played in BMPX.
+
+%description module-mediaplayer-bmpx -l pl.UTF-8
+Moduł umożliwiający w opisie statusu pokazywanie informacji o
+odgrywanym utworze z odtwarzacza BMPX.
+
+%package module-mediaplayer-dragon
+Summary:	Support dragon status
+Summary(pl.UTF-8):	Moduł statusu dla odtwarzacza dragon
+Group:		Applications/Communications
+Requires:	%{name}-module-mediaplayer = %{version}-%{release}
+Requires:	kde4-kdemultimedia-dragon
+Provides:	kadu-module-dragon = %{version}
+
+%description module-mediaplayer-dragon
+Module which allows showing in status description information about
+the song currently played in dragon.
+
+%description module-mediaplayer-dragon -l pl.UTF-8
+Moduł umożliwiający w opisie statusu pokazywanie informacji o
+odgrywanym utworze z odtwarzacza dragon.
+
 %package module-mediaplayer-falf
 Summary:	Support falf status
 Summary(pl.UTF-8):	Moduł statusu dla falf
@@ -565,6 +545,22 @@ the song currently played in falf.
 %description module-mediaplayer-falf -l pl.UTF-8
 Moduł umożliwiający w opisie statusu pokazywanie informacji o
 odgrywanym utworze z odtwarzacza falf.
+
+%package module-mediaplayer-vlc
+Summary:	Support VLC status
+Summary(pl.UTF-8):	Moduł statusu dla VLC
+Group:		Applications/Communications
+Requires:	%{name}-module-mediaplayer = %{version}-%{release}
+Requires:	vlc
+Provides:	kadu-module-vlc` = %{version}
+
+%description module-mediaplayer-vlc
+Module which allows showing in status description information about
+the song currently played in VLC.
+
+%description module-mediaplayer-vlc -l pl.UTF-8
+Moduł umożliwiający pokazywanie w opisie statusu informacji o
+odgrywanym utworze z odtwarzacza VLC.
 
 %package module-mediaplayer-xmms
 Summary:	Support XMMS status
@@ -582,6 +578,22 @@ the song currently played in XMMS.
 %description module-mediaplayer-xmms -l pl.UTF-8
 Moduł umożliwiający pokazywanie w opisie statusu informacji o
 odgrywanym utworze z odtwarzacza XMMS.
+
+%package module-mediaplayer-xmms2
+Summary:	Support XMMS2 status
+Summary(pl.UTF-8):	Moduł statusu dla XMMS-a 2
+Group:		Applications/Communications
+Requires:	%{name}-module-mediaplayer = %{version}-%{release}
+Requires:	xmms
+Provides:	kadu-module-xmms2 = %{version}
+
+%description module-mediaplayer-xmms2
+Module which allows showing in status description information about
+the song currently played in XMMS2.
+
+%description module-mediaplayer-xmms2 -l pl.UTF-8
+Moduł umożliwiający pokazywanie w opisie statusu informacji o
+odgrywanym utworze z odtwarzacza XMMS2.
 
 %package module-mime_tex
 Summary:	Mathematical TeX formulas in chat windows
@@ -671,6 +683,18 @@ Notification by PC Speaker.
 %description module-notify-pcspeaker -l pl.UTF-8
 Powiadamianie o zdarzeniach przy pomocy PC Speakera.
 
+%package module-notify-qt4_docking
+Summary:	Notification by qt4_docking
+Summary(pl.UTF-8):	Powiadamianie o zdarzeniach przy pomocy qt4_docking
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-notify-qt4_docking
+Notification by qt4_docking.
+
+%description module-notify-qt4_docking -l pl.UTF-8
+Powiadamianie o zdarzeniach przy pomocy modulu qt4_docking.
+
 %package module-notify-speech
 Summary:	Speech synthesis support
 Summary(pl.UTF-8):	Moduł obsługi "Głośnego czytania"
@@ -696,21 +720,6 @@ Notification by Water Plugin in Compiz.
 
 %description module-notify-water -l pl.UTF-8
 Moduł powiadamiania wtyczką Water w Compizie.
-
-%package module-notify-xosd
-Summary:	Notification by XOSD module
-Summary(pl.UTF-8):	Moduł powiadamiania o zdarzeniach przy pomocy XOSD
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-%if %{without notify_osdhints}
-Obsoletes:	kadu-module-notify-osdhints
-%endif
-
-%description module-notify-xosd
-Notification by XOSD module.
-
-%description module-notify-xosd -l pl.UTF-8
-Moduł powiadamiania o zdarzeniach przy pomocy XOSD.
 
 %package module-panelkadu
 Summary:	Module which makes Kadu look and behave like a panel
@@ -798,17 +807,18 @@ Simple ScreenShots module.
 %description module-screenshot -l pl.UTF-8
 Moduł prostych zrzutów ekranu.
 
-%package module-sms-miastoplusa
-Summary:	SMS Gateway on Miasto Plusa module
-Summary(pl.UTF-8):	Moduł obsługi bramki SMS w Mieście Plusa
+%package module-sms-plus_pl
+Summary:	SMS Plus.pl module
+Summary(pl.UTF-8):	Moduł obsługi bramki SMS w Plus.pl
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
+Obsoletes:	module-sms-miastoplusa
 
-%description module-sms-miastoplusa
-SMS Gateway on Miasto Plusa module.
+%description module-sms-plus_pl
+SMS Gateway on Plus.pl module.
 
-%description module-sms-miastoplusa -l pl.UTF-8
-Moduł obsługi bramki SMS w Mieście Plusa.
+%description module-sms-plus_pl -l pl.UTF-8
+Moduł obsługi bramki SMS Plus.pl.
 
 %package module-sound-alsa
 Summary:	ALSA sound support module
@@ -835,19 +845,6 @@ Libao sound module.
 %description module-sound-ao -l pl.UTF-8
 Moduł obsługi dźwięku poprzez bibliotekę libao.
 
-%package module-sound-arts
-Summary:	aRts sound server support module
-Summary(pl.UTF-8):	Moduł obsługi serwera dźwięku aRts
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-Requires:	arts
-
-%description module-sound-arts
-aRts sound server support module.
-
-%description module-sound-arts -l pl.UTF-8
-Moduł do obsługi serwera dźwięku aRts.
-
 %package module-sound-dsp
 Summary:	DSP sound module
 Summary(pl.UTF-8):	Moduł obsługi dźwięku przez DSP
@@ -859,19 +856,6 @@ DSP sound module.
 
 %description module-sound-dsp -l pl.UTF-8
 Moduł obsługi dźwięku przez DSP.
-
-%package module-sound-esd
-Summary:	ESD sound server support module
-Summary(pl.UTF-8):	Moduł obsługi serwera dźwięku ESD
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-Requires:	esound
-
-%description module-sound-esd
-ESD sound module.
-
-%description module-sound-esd -l pl.UTF-8
-Moduł obsługi dźwięku przez ESD.
 
 %package module-sound-ext
 Summary:	External application sound module
@@ -885,18 +869,29 @@ External application sound module.
 %description module-sound-ext -l pl.UTF-8
 Moduł obsługi dźwięku przez zewnętrzną aplikację.
 
-%package module-sound-nas
-Summary:	Network Audio System support module
-Summary(pl.UTF-8):	Moduł obsługi sieciowego systemu dźwięku NAS
+%package module-sound-phonon
+Summary:	Phonon sound module
+Summary(pl.UTF-8):	Moduł obsługi dźwięku przez phonon
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
-Requires:	nas
 
-%description module-sound-nas
-Network Audio System sound module.
+%description module-sound-phonon
+Phonon sound module.
 
-%description module-sound-nas -l pl.UTF-8
-Moduł obsługi dźwięku przez NAS.
+%description module-sound-phonon -l pl.UTF-8
+Moduł obsługi dźwięku przez phonon.
+
+%package module-sound-qt4
+Summary:	Qt4 sound module
+Summary(pl.UTF-8):	Moduł obsługi dźwięku przez qt4
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-sound-qt4
+Qt4 sound module.
+
+%description module-sound-qt4 -l pl.UTF-8
+Moduł obsługi dźwięku przez qt4.
 
 %package module-spellchecker
 Summary:	Checker of spelling mistakes
@@ -1037,131 +1032,61 @@ Zestaw ikon Tango16.
 %patch1 -p1
 %patch2 -p0
 %patch3 -p2
+%patch4 -p2
 
-%if %{with agent}
-tar xzf %{SOURCE17} -C modules
-%endif
 %if %{with anonymous_check}
-tar xjf %{SOURCE36} -C modules
-%endif
-%if %{with antistring}
-tar xjf %{SOURCE37} -C modules
-%endif
-%if %{with auto_hide}
-tar xjf %{SOURCE38} -C modules
-%endif
-%if %{with autostatus}
-tar xjf %{SOURCE43} -C modules
-%endif
-%if %{with cenzor}
-tar xjf %{SOURCE39} -C modules
-%endif
-%if %{with desc_history}
-tar xjf %{SOURCE47} -C modules
-%endif
-%if %{with dcopexport}
-tar xjf %{SOURCE4} -C modules
-%endif
-%if %{with filedesc}
-tar xjf %{SOURCE5} -C modules
-%endif
-%if %{with filtering}
-tar xjf %{SOURCE6} -C modules
-%endif
-%if %{with firewall}
-tar xjf %{SOURCE27} -C modules
-%endif
-%if %{with globalhotkeys}
-tar xzf %{SOURCE44} -C modules
-%endif
-%if %{with last_seen}
-tar xjf %{SOURCE42} -C modules
-%endif
-%if %{with mail}
-tar xjf %{SOURCE32} -C modules
-%endif
-%if %{with mediaplayer}
 tar xjf %{SOURCE2} -C modules
 %endif
-%if %{with mediaplayer_amarok}
+%if %{with dcopexport}
 tar xjf %{SOURCE3} -C modules
 %endif
-%if %{with mediaplayer_audacious}
-tar xjf %{SOURCE31} -C modules
+%if %{with globalhotkeys}
+tar xzf %{SOURCE4} -C modules
 %endif
-%if %{with mediaplayer_falf}
-tar xjf %{SOURCE8} -C modules
-%endif
-%if %{with mediaplayer_xmms}
-tar xjf %{SOURCE20} -C modules
+%if %{with mail}
+tar xjf %{SOURCE5} -C modules
 %endif
 %if %{with mime_tex}
-tar xjf %{SOURCE28} -C modules
+tar xjf %{SOURCE6} -C modules
 %endif
 %if %{with nextinfo}
-tar xzf %{SOURCE46} -C modules
+tar xzf %{SOURCE7} -C modules
 %endif
 %if %{with notify_led}
-tar xjf %{SOURCE9} -C modules
+tar xjf %{SOURCE8} -C modules
 %endif
 %if %{with notify_mx610}
-tar xjf %{SOURCE29} -C modules
-%endif
-%if %{with notify_osdhints}
-tar xjf %{SOURCE10} -C modules
-%endif
-%if %{with notify_pcspeaker}
-tar xjf %{SOURCE11} -C modules
+tar xjf %{SOURCE9} -C modules
 %endif
 %if %{with notify_water}
-tar xjf %{SOURCE21} -C modules
+tar xjf %{SOURCE10} -C modules
 %endif
 %if %{with panelkadu}
-tar xzf %{SOURCE22} -C modules
-%endif
-%if %{with parser_extender}
-tar xjf %{SOURCE40} -C modules
-%endif
-%if %{with powerkadu}
-tar xjf %{SOURCE12} -C modules
-%endif
-%if %{with profiles}
-tar xjf %{SOURCE13} -C modules
+tar xzf %{SOURCE11} -C modules
 %endif
 %if %{with senthistory}
-tar xzf %{SOURCE45} -C modules
+tar xzf %{SOURCE12} -C modules
 %endif
-%if %{with screenshot}
-tar xjf %{SOURCE14} -C modules
-%endif
-%if %{with sms_miastoplusa}
-tar xjf %{SOURCE15} -C modules
-%endif
-%if %{with sound_ao}
-tar xjf %{SOURCE30} -C modules
-%endif
-%if %{with spellchecker}
-tar xjf %{SOURCE16} -C modules
-%endif
-%if %{with split_messages}
-tar xjf %{SOURCE35} -C modules
+%if %{with sms_plus_pl}
+tar xjf %{SOURCE13} -C modules
 %endif
 %if %{with tabs}
-tar xjf %{SOURCE18} -C modules
+tar xjf %{SOURCE14} -C modules
 %endif
 %if %{with weather}
-tar xjf %{SOURCE19} -C modules
+tar xjf %{SOURCE15} -C modules
 %patch0 -p1
 %endif
-%if %{with word_fix}
-tar xjf %{SOURCE25} -C modules
+%if %{with desc_history}
+tar xjf %{SOURCE21} -C modules
 %endif
+
 # themes-icons
-tar xzf %{SOURCE23} -C varia/themes/icons
-tar xzf %{SOURCE24} -C varia/themes/icons
-tar xzf %{SOURCE33} -C varia/themes/icons
-tar xzf %{SOURCE34} -C varia/themes/icons
-tar xzf %{SOURCE41} -C varia/themes/icons
+tar xzf %{SOURCE16} -C varia/themes/icons
+tar xzf %{SOURCE17} -C varia/themes/icons
+tar xzf %{SOURCE18} -C varia/themes/icons
+tar xzf %{SOURCE19} -C varia/themes/icons
+tar xzf %{SOURCE20} -C varia/themes/icons
 
 # Drop this in 0.6.6 - fix external modules installation on x86_64
 %if "%{_lib}" == "lib64"
@@ -1175,15 +1100,15 @@ tar xzf %{SOURCE41} -C varia/themes/icons
 %build
 install -d build
 
-%if %{with agent}
-%{__sed} -i 's/module_agent=n/module_agent=m/' .config
-%else
-%{__sed} -i 's/module_agent=m/module_agent=n/' .config
-%endif
 %if %{with advanced_userlist}
 %{__sed} -i 's/module_advanced_userlist=n/module_advanced_userlist=m/' .config
 %else
 %{__sed} -i 's/module_advanced_userlist=m/module_advanced_userlist=n/' .config
+%endif
+%if %{with agent}
+%{__sed} -i 's/module_agent=n/module_agent=m/' .config
+%else
+%{__sed} -i 's/module_agent=m/module_agent=n/' .config
 %endif
 %if %{with anonymous_check}
 %{__sed} -i 's/module_anonymous_check=n/module_anonymous_check=m/' .config
@@ -1195,6 +1120,16 @@ install -d build
 %else
 %{__sed} -i 's/module_antistring=m/module_antistring=n/' .config
 %endif
+%if %{with autoaway}
+%{__sed} -i 's/module_autoaway=n/module_autoaway=m/' .config
+%else
+%{__sed} -i 's/module_autoaway=m/module_autoaway=n/' .config
+%endif
+%if %{with auto_hide}
+%{__sed} -i 's/module_auto_hide=n/module_auto_hide=m/' .config
+%else
+%{__sed} -i 's/module_auto_hide=m/module_auto_hide=n/' .config
+%endif
 %if %{with autoresponder}
 %{__sed} -i 's/module_autoresponder=n/module_autoresponder=m/' .config
 %else
@@ -1205,35 +1140,25 @@ install -d build
 %else
 %{__sed} -i 's/module_autostatus=m/module_autostatus=n/' .config
 %endif
-%if %{with auto_hide}
-%{__sed} -i 's/module_auto_hide=n/module_auto_hide=m/' .config
-%else
-%{__sed} -i 's/module_auto_hide=m/module_auto_hide=n/' .config
-%endif
 %if %{with cenzor}
 %{__sed} -i 's/module_cenzor=n/module_cenzor=m/' .config
 %else
 %{__sed} -i 's/module_cenzor=m/module_cenzor=n/' .config
-%endif
-%if %{with desc_history}
-%{__sed} -i 's/module_desc_history=n/module_desc_history=m/' .config
-%else
-%{__sed} -i 's/module_desc_history=m/module_desc_history=n/' .config
 %endif
 %if %{with dcopexport}
 %{__sed} -i 's/module_dcopexport=n/module_dcopexport=m/' .config
 %else
 %{__sed} -i 's/module_dcopexport=m/module_dcopexport=n/' .config
 %endif
+%if %{with desc_history}
+%{__sed} -i 's/module_desc_history=n/module_desc_history=m/' .config
+%else
+%{__sed} -i 's/module_desc_history=m/module_desc_history=n/' .config
+%endif
 %if %{with docking_desktop}
 %{__sed} -i 's/module_desktop_docking=n/module_desktop_docking=m/' .config
 %else
 %{__sed} -i 's/module_desktop_docking=m/module_desktop_docking=n/' .config
-%endif
-%if %{with docking_wmaker}
-%{__sed} -i 's/module_wmaker_docking=n/module_wmaker_docking=m/' .config
-%else
-%{__sed} -i 's/module_wmaker_docking=m/module_wmaker_docking=n/' .config
 %endif
 %if %{with encryption}
 %{__sed} -i 's/module_encryption=n/module_encryption=m/' .config
@@ -1281,26 +1206,53 @@ install -d build
 %{__sed} -i 's/module_mediaplayer=m/module_mediaplayer=n/' .config
 %endif
 %if %{with mediaplayer_amarok}
-%{__sed} -i 's/module_amarok_mediaplayer=n/module_amarok_mediaplayer=m/' .config
-echo 'MODULE_INCLUDES_PATH="%{_includedir}"' >> modules/amarok_mediaplayer/spec
-echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok_mediaplayer/spec
+%{__sed} -i 's/module_amarok1_mediaplayer=n/module_amarok1_mediaplayer=m/' .config
+echo 'MODULE_INCLUDES_PATH="%{_includedir}"' >> modules/amarok1_mediaplayer/spec
+echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok1_mediaplayer/spec
 %else
-%{__sed} -i 's/module_amarok_mediaplayer=m/module_amarok_mediaplayer=n/' .config
+%{__sed} -i 's/module_amarok1_mediaplayer=m/module_amarok1_mediaplayer=n/' .config
+%endif
+%if %{with mediaplayer_amarok2}
+%{__sed} -i 's/module_amarok2_mediaplayer=n/module_amarok2_mediaplayer=m/' .config
+echo 'MODULE_INCLUDES_PATH="%{_includedir}"' >> modules/amarok2_mediaplayer/spec
+echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok2_mediaplayer/spec
+%else
+%{__sed} -i 's/module_amarok2_mediaplayer=m/module_amarok2_mediaplayer=n/' .config
 %endif
 %if %{with mediaplayer_audacious}
 %{__sed} -i 's/module_audacious_mediaplayer=n/module_audacious_mediaplayer=m/' .config
 %else
 %{__sed} -i 's/module_audacious_mediaplayer=m/module_audacious_mediaplayer=n/' .config
 %endif
+%if %{with mediaplayer_bmpx}
+%{__sed} -i 's/module_bmpx_mediaplayer=n/module_bmpx_mediaplayer=m/' .config
+%else
+%{__sed} -i 's/module_bmpx_mediaplayer=m/module_bmpx_mediaplayer=n/' .config
+%endif
+%if %{with mediaplayer_dragon}
+%{__sed} -i 's/module_dragon_mediaplayer=n/module_dragon_mediaplayer=m/' .config
+%else
+%{__sed} -i 's/module_dragon_mediaplayer=m/module_dragon_mediaplayer=n/' .config
+%endif
 %if %{with mediaplayer_falf}
 %{__sed} -i 's/module_falf_mediaplayer=n/module_falf_mediaplayer=m/' .config
 %else
 %{__sed} -i 's/module_falf_mediaplayer=m/module_falf_mediaplayer=n/' .config
 %endif
+%if %{with mediaplayer_vlc}
+%{__sed} -i 's/module_vlc_mediaplayer=n/module_vlc_mediaplayer=m/' .config
+%else
+%{__sed} -i 's/module_vlc_mediaplayer=m/module_vlc_mediaplayer=n/' .config
+%endif
 %if %{with mediaplayer_xmms}
 %{__sed} -i 's/module_xmms_mediaplayer=n/module_xmms_mediaplayer=m/' .config
 %else
 %{__sed} -i 's/module_xmms_mediaplayer=m/module_xmms_mediaplayer=n/' .config
+%endif
+%if %{with mediaplayer_xmms2}
+%{__sed} -i 's/module_xmms2_mediaplayer=n/module_xmms2_mediaplayer=m/' .config
+%else
+%{__sed} -i 's/module_xmms2_mediaplayer=m/module_xmms2_mediaplayer=n/' .config
 %endif
 %if %{with mime_tex}
 %{__sed} -i 's/module_mime_tex=n/module_mime_tex=m/' .config
@@ -1328,14 +1280,24 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok_mediaplayer/spec
 %{__sed} -i 's/module_mx610_notify=m/module_mx610_notify=n/' .config
 %endif
 %if %{with notify_osdhints}
-%{__sed} -i 's/module_osdhints_notify=n/module_osdhints_notify=m/' .config
+%{__sed} -i 's/module_osd_hints=n/module_osd_hints=m/' .config
 %else
-%{__sed} -i 's/module_osdhints_notify=m/module_osdhints_notify=n/' .config
+%{__sed} -i 's/module_osd_hints=m/module_osd_hints=n/' .config
 %endif
 %if %{with notify_pcspeaker}
 %{__sed} -i 's/module_pcspeaker=n/module_pcspeaker=m/' .config
 %else
 %{__sed} -i 's/module_pcspeaker=m/module_pcspeaker=n/' .config
+%endif
+%if %{with notify_qt4_docking}
+%{__sed} -i 's/module_qt4_docking_notify=n/module_qt4_docking_notify=m/' .config
+%else
+%{__sed} -i 's/module_qt4_docking_notify=m/module_qt4_docking_notify=n/' .config
+%endif
+%if %{with notify_window}
+%{__sed} -i 's/module_window_notify=n/module_window_notify=m/' .config
+%else
+%{__sed} -i 's/module_window_notify=m/module_window_notify=n/' .config
 %endif
 %if %{with notify_speech}
 %{__sed} -i 's/module_speech=n/module_speech=m/' .config
@@ -1372,20 +1334,20 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok_mediaplayer/spec
 %else
 %{__sed} -i 's/module_profiles=m/module_profiles=n/' .config
 %endif
-%if %{with senthistory}
-%{__sed} -i 's/module_senthistory=n/module_senthistory=m/' .config
-%else
-%{__sed} -i 's/module_senthistory=m/module_senthistory=n/' .config
-%endif
 %if %{with screenshot}
 %{__sed} -i 's/module_screenshot=n/module_screenshot=m/' .config
 %else
 %{__sed} -i 's/module_screenshot=m/module_screenshot=n/' .config
 %endif
-%if %{with sms_miastoplusa}
-%{__sed} -i 's/module_miastoplusa_sms=n/module_miastoplusa_sms=m/' .config
+%if %{with senthistory}
+%{__sed} -i 's/module_senthistory=n/module_senthistory=m/' .config
 %else
-%{__sed} -i 's/module_miastoplusa_sms=m/module_miastoplusa_sms=n/' .config
+%{__sed} -i 's/module_senthistory=m/module_senthistory=n/' .config
+%endif
+%if %{with sms_plus_pl}
+%{__sed} -i 's/module_plus_pl_sms=n/module_plus_pl_sms=m/' .config
+%else
+%{__sed} -i 's/module_plus_pl_sms=m/module_plus_pl_sms=n/' .config
 %endif
 %if %{with sound_alsa}
 %{__sed} -i 's/module_alsa_sound=n/module_alsa_sound=m/' .config
@@ -1397,25 +1359,25 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok_mediaplayer/spec
 %else
 %{__sed} -i 's/module_ao_sound=m/module_ao_sound=n/' .config
 %endif
-%if %{with sound_arts}
-%{__sed} -i 's/module_arts_sound=n/module_arts_sound=m/' .config
-%else
-%{__sed} -i 's/module_arts_sound=m/module_arts_sound=n/' .config
-%endif
 %if %{with sound_dsp}
 %{__sed} -i 's/module_dsp_sound=n/module_dsp_sound=m/' .config
 %else
 %{__sed} -i 's/module_dsp_sound=m/module_dsp_sound=n/' .config
 %endif
-%if %{with sound_esd}
-%{__sed} -i 's/module_esd_sound=n/module_esd_sound=m/' .config
-%else
-%{__sed} -i 's/module_esd_sound=m/module_esd_sound=n/' .config
-%endif
 %if %{with sound_ext}
 %{__sed} -i 's/module_ext_sound=n/module_ext_sound=m/' .config
 %else
 %{__sed} -i 's/module_ext_sound=m/module_ext_sound=n/' .config
+%endif
+%if %{with sound_phonon}
+%{__sed} -i 's/module_phonon_sound=n/module_phonon_sound=m/' .config
+%else
+%{__sed} -i 's/module_phonon_sound=m/module_phonon_sound=n/' .config
+%endif
+%if %{with sound_qt4}
+%{__sed} -i 's/module_qt4_sound=n/module_qt4_sound=m/' .config
+%else
+%{__sed} -i 's/module_qt4_sound=m/module_qt4_sound=n/' .config
 %endif
 %if %{with spellchecker}
 %{__sed} -i 's/module_spellchecker=n/module_spellchecker=m/' .config
@@ -1632,7 +1594,7 @@ rm -rf $RPM_BUILD_ROOT
 %files module-agent
 %defattr(644,root,root,755)
 %{modules_data_dir}/agent.desc
-%attr(755,root,root) %{modules_lib_dir}/agent.so
+%attr(755,root,root) %{modules_lib_dir}/libagent.so
 %lang(pl) %{modules_data_dir}/translations/agent_pl.qm
 %endif
 
@@ -1698,14 +1660,14 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/data/cenzor/cenzor_words_ok.conf
 %endif
 
-%if %{with desc_history}
-%files module-desc_history
-%defattr(644,root,root,755)
-%{modules_data_dir}/desc_history.desc
-%{modules_data_dir}/configuration/desc_history.ui
-%attr(755,root,root) %{modules_lib_dir}/desc_history.so
-%lang(pl) %{modules_data_dir}/translations/desc_history_pl.qm
-%endif
+#%if %{with desc_history}
+#%files module-desc_history
+#%defattr(644,root,root,755)
+#%{modules_data_dir}/desc_history.desc
+#%{modules_data_dir}/configuration/desc_history.ui
+#%attr(755,root,root) %{modules_lib_dir}/desc_history.so
+#%lang(pl) %{modules_data_dir}/translations/desc_history_pl.qm
+#%endif
 
 %if %{with encryption}
 %files module-encryption
@@ -1745,13 +1707,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{modules_data_dir}/translations/desktop_docking_fr.qm
 %lang(it) %{modules_data_dir}/translations/desktop_docking_it.qm
 %lang(pl) %{modules_data_dir}/translations/desktop_docking_pl.qm
-%endif
-
-%if %{with docking_wmaker}
-%files module-docking-wmaker
-%defattr(644,root,root,755)
-%{modules_data_dir}/wmaker_docking.desc
-%attr(755,root,root) %{modules_lib_dir}/wmaker_docking.so
 %endif
 
 %if %{with filedesc}
@@ -1806,7 +1761,7 @@ rm -rf $RPM_BUILD_ROOT
 %files module-last_seen
 %defattr(644,root,root,755)
 %{modules_data_dir}/last_seen.desc
-%attr(755,root,root) %{modules_lib_dir}/last_seen.so
+%attr(755,root,root) %{modules_lib_dir}/liblast_seen.so
 %lang(pl) %{modules_data_dir}/translations/last_seen_pl.qm
 %endif
 
@@ -1815,7 +1770,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{modules_data_dir}/mail.desc
 %{modules_data_dir}/configuration/mail.ui
-%attr(755,root,root) %{modules_lib_dir}/mail.so
+%attr(755,root,root) %{modules_lib_dir}/libmail.so
 %lang(pl) %{modules_data_dir}/translations/mail_pl.qm
 %endif
 
@@ -1824,7 +1779,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{modules_data_dir}/mediaplayer.desc
 %{modules_data_dir}/configuration/mediaplayer.ui
-%attr(755,root,root) %{modules_lib_dir}/mediaplayer.so
+%attr(755,root,root) %{modules_lib_dir}/libmediaplayer.so
 %{modules_data_dir}/data/mediaplayer
 %lang(pl) %{modules_data_dir}/translations/mediaplayer_pl.qm
 %endif
@@ -1832,29 +1787,64 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with mediaplayer_amarok}
 %files module-mediaplayer-amarok
 %defattr(644,root,root,755)
-%{modules_data_dir}/amarok_mediaplayer.desc
-%attr(755,root,root) %{modules_lib_dir}/amarok_mediaplayer.so
+%{modules_data_dir}/amarok1_mediaplayer.desc
+%attr(755,root,root) %{modules_lib_dir}/libamarok1_mediaplayer.so
+%endif
+
+%if %{with mediaplayer_amarok2}
+%files module-mediaplayer-amarok2
+%defattr(644,root,root,755)
+%{modules_data_dir}/amarok2_mediaplayer.desc
+%attr(755,root,root) %{modules_lib_dir}/libamarok2_mediaplayer.so
 %endif
 
 %if %{with mediaplayer_audacious}
 %files module-mediaplayer-audacious
 %defattr(644,root,root,755)
 %{modules_data_dir}/audacious_mediaplayer.desc
-%attr(755,root,root) %{modules_lib_dir}/audacious_mediaplayer.so
+%attr(755,root,root) %{modules_lib_dir}/libaudacious_mediaplayer.so
+%endif
+
+%if %{with mediaplayer_bmpx}
+%files module-mediaplayer-bmpx
+%defattr(644,root,root,755)
+%{modules_data_dir}/bmpx_mediaplayer.desc
+%attr(755,root,root) %{modules_lib_dir}/libbmpx_mediaplayer.so
+%endif
+
+%if %{with mediaplayer_dragon}
+%files module-mediaplayer-dragon
+%defattr(644,root,root,755)
+%{modules_data_dir}/dragon_mediaplayer.desc
+%attr(755,root,root) %{modules_lib_dir}/libdragon_mediaplayer.so
 %endif
 
 %if %{with mediaplayer_falf}
 %files module-mediaplayer-falf
 %defattr(644,root,root,755)
 %{modules_data_dir}/falf_mediaplayer.desc
-%attr(755,root,root) %{modules_lib_dir}/falf_mediaplayer.so
+%attr(755,root,root) %{modules_lib_dir}/libfalf_mediaplayer.so
+%endif
+
+%if %{with mediaplayer_vlc}
+%files module-mediaplayer-vlc
+%defattr(644,root,root,755)
+%{modules_data_dir}/vlc_mediaplayer.desc
+%attr(755,root,root) %{modules_lib_dir}/libvlc_mediaplayer.so
 %endif
 
 %if %{with mediaplayer_xmms}
 %files module-mediaplayer-xmms
 %defattr(644,root,root,755)
 %{modules_data_dir}/xmms_mediaplayer.desc
-%attr(755,root,root) %{modules_lib_dir}/xmms_mediaplayer.so
+%attr(755,root,root) %{modules_lib_dir}/libxmms_mediaplayer.so
+%endif
+
+%if %{with mediaplayer_xmms2}
+%files module-mediaplayer-xmms2
+%defattr(644,root,root,755)
+%{modules_data_dir}/xmms2_mediaplayer.desc
+%attr(755,root,root) %{modules_lib_dir}/libxmms2_mediaplayer.so
 %endif
 
 %if %{with mime_tex}
@@ -1879,7 +1869,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{modules_data_dir}/nextinfo.desc
 %{modules_data_dir}/configuration/nextinfo.ui
-%attr(755,root,root) %{modules_lib_dir}/nextinfo.so
+%attr(755,root,root) %{modules_lib_dir}/libnextinfo.so
 %lang(pl) %{modules_data_dir}/translations/nextinfo_pl.qm
 %endif
 
@@ -1915,13 +1905,13 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with notify_osdhints}
 %files module-notify-osdhints
 %defattr(644,root,root,755)
-%{modules_data_dir}/osdhints_notify.desc
-%{modules_data_dir}/configuration/osdhints_notify.ui
-%attr(755,root,root) %{modules_lib_dir}/osdhints_notify.so
-%lang(pl) %{modules_data_dir}/translations/osdhints_notify_pl.qm
-%dir %{modules_data_dir}/data/osdhints_notify
-%{modules_data_dir}/data/osdhints_notify/License
-%{modules_data_dir}/data/osdhints_notify/*.png
+%{modules_data_dir}/osd_hints.desc
+%{modules_data_dir}/configuration/osd_hints.ui
+%attr(755,root,root) %{modules_lib_dir}/libosd_hints.so
+%lang(pl) %{modules_data_dir}/translations/osd_hints_pl.qm
+%dir %{modules_data_dir}/data/osd_hints
+%{modules_data_dir}/data/osd_hints/License
+%{modules_data_dir}/data/osd_hints/*.png
 %endif
 
 %if %{with notify_pcspeaker}
@@ -1933,6 +1923,14 @@ rm -rf $RPM_BUILD_ROOT
 %lang(de) %{modules_data_dir}/translations/pcspeaker_de.qm
 %lang(it) %{modules_data_dir}/translations/pcspeaker_it.qm
 %lang(pl) %{modules_data_dir}/translations/pcspeaker_pl.qm
+%endif
+
+%if %{with notify_qt4_docking}
+%files module-notify-qt4_docking
+%defattr(644,root,root,755)
+%{modules_data_dir}/qt4_docking_notify.desc
+%attr(755,root,root) %{modules_lib_dir}/libqt4_docking_notify.so
+%lang(pl) %{modules_data_dir}/translations/qt4_docking_notify_pl.qm
 %endif
 
 %if %{with notify_speech}
@@ -1952,22 +1950,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{modules_data_dir}/water_notify.desc
 %{modules_data_dir}/configuration/water_notify.ui
-%attr(755,root,root) %{modules_lib_dir}/water_notify.so
+%attr(755,root,root) %{modules_lib_dir}/libwater_notify.so
 %lang(pl) %{modules_data_dir}/translations/water_notify_pl.qm
-%endif
-
-%if %{with notify_xosd}
-%files module-notify-xosd
-%defattr(644,root,root,755)
-%{modules_data_dir}/xosd_notify.desc
-%{modules_data_dir}/configuration/xosd_notify.ui
-%attr(755,root,root) %{modules_lib_dir}/xosd_notify.so
-%dir %{modules_bin_dir}/xosd_notify
-%attr(755,root,root) %{modules_bin_dir}/xosd_notify/gtkfontdialog
-%lang(de) %{modules_data_dir}/translations/xosd_notify_de.qm
-%lang(fr) %{modules_data_dir}/translations/xosd_notify_fr.qm
-%lang(it) %{modules_data_dir}/translations/xosd_notify_it.qm
-%lang(pl) %{modules_data_dir}/translations/xosd_notify_pl.qm
 %endif
 
 %if %{with panelkadu}
@@ -2025,21 +2009,21 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{modules_data_dir}/screenshot.desc
 %{modules_data_dir}/configuration/screenshot.ui
-%attr(755,root,root) %{modules_lib_dir}/screenshot.so
+%attr(755,root,root) %{modules_lib_dir}/libscreenshot.so
 %lang(pl) %{modules_data_dir}/translations/screenshot_pl.qm
-%dir %{modules_data_dir}/data/screenshot
-%{modules_data_dir}/data/screenshot/*.png
+#%dir %{modules_data_dir}/data/screenshot
+#%{modules_data_dir}/data/screenshot/*.png
 %endif
 
-%if %{with sms_miastoplusa}
-%files module-sms-miastoplusa
+%if %{with sms_plus_pl}
+%files module-sms-plus_pl
 %defattr(644,root,root,755)
-%{modules_data_dir}/miastoplusa_sms.desc
-%{modules_data_dir}/configuration/miastoplusa_sms.ui
-%attr(755,root,root) %{modules_lib_dir}/miastoplusa_sms.so
-%lang(pl) %{modules_data_dir}/translations/miastoplusa_sms_pl.qm
-%dir %{modules_data_dir}/data/miastoplusa_sms
-%{modules_data_dir}/data/miastoplusa_sms/curl-ca-bundle.crt
+%{modules_data_dir}/plus_pl_sms.desc
+%{modules_data_dir}/configuration/plus_pl_sms.ui
+%attr(755,root,root) %{modules_lib_dir}/libplus_pl_sms.so
+%lang(pl) %{modules_data_dir}/translations/plus_pl_sms_pl.qm
+%dir %{modules_data_dir}/data/plus_pl_sms
+%{modules_data_dir}/data/plus_pl_sms/curl-ca-bundle.crt
 %endif
 
 %if %{with sound_alsa}
@@ -2058,16 +2042,7 @@ rm -rf $RPM_BUILD_ROOT
 %files module-sound-ao
 %defattr(644,root,root,755)
 %{modules_data_dir}/ao_sound.desc
-%attr(755,root,root) %{modules_lib_dir}/ao_sound.so
-%endif
-
-%if %{with sound_arts}
-%files module-sound-arts
-%defattr(644,root,root,755)
-%{modules_data_dir}/arts_sound.desc
-%attr(755,root,root) %{modules_lib_dir}/arts_sound.so
-%dir %{modules_bin_dir}/arts_sound
-%attr(755,root,root) %{modules_bin_dir}/arts_sound/arts_connector
+%attr(755,root,root) %{modules_lib_dir}/libao_sound.so
 %endif
 
 %if %{with sound_dsp}
@@ -2082,13 +2057,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{modules_data_dir}/translations/dsp_sound_pl.qm
 %endif
 
-%if %{with sound_esd}
-%files module-sound-esd
-%defattr(644,root,root,755)
-%{modules_data_dir}/esd_sound.desc
-%attr(755,root,root) %{modules_lib_dir}/esd_sound.so
-%endif
-
 %if %{with sound_ext}
 %files module-sound-ext
 %defattr(644,root,root,755)
@@ -2099,6 +2067,20 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{modules_data_dir}/translations/ext_sound_fr.qm
 %lang(it) %{modules_data_dir}/translations/ext_sound_it.qm
 %lang(pl) %{modules_data_dir}/translations/ext_sound_pl.qm
+%endif
+
+%if %{with sound_phonon}
+%files module-sound-phonon
+%defattr(644,root,root,755)
+%{modules_data_dir}/phonon_sound.desc
+%attr(755,root,root) %{modules_lib_dir}/libphonon_sound.so
+%endif
+
+%if %{with sound_qt4}
+%files module-sound-qt4
+%defattr(644,root,root,755)
+%{modules_data_dir}/qt4_sound.desc
+%attr(755,root,root) %{modules_lib_dir}/libqt4_sound.so
 %endif
 
 %if %{with spellchecker}
@@ -2117,7 +2099,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{modules_data_dir}/split_messages.desc
 %{modules_data_dir}/configuration/split_messages.ui
-%attr(755,root,root) %{modules_lib_dir}/split_messages.so
+%attr(755,root,root) %{modules_lib_dir}/libsplit_messages.so
 %lang(pl) %{modules_data_dir}/translations/split_messages_pl.qm
 %endif
 

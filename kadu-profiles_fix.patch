@@ -1,0 +1,11 @@
+--- branches/0.6.5/modules/profiles/profiles.cpp	2009/05/11 18:58:06	6625
++++ branches/0.6.5/modules/profiles/profiles.cpp	2009/05/11 18:59:14	6626
+@@ -670,8 +670,6 @@
+ 
+ 	Profile p = profileManager->getProfile(item->text());
+ 
+-	if (index == 0) return;
+-
+ 	profileName->setText(p.name);
+ 	profileDir->setText(p.directory);
+ 	profileUIN->setText(p.uin);
