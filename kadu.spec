@@ -1670,14 +1670,14 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/data/cenzor/cenzor_words_ok.conf
 %endif
 
-#%if %{with desc_history}
-#%files module-desc_history
-#%defattr(644,root,root,755)
-#%{modules_data_dir}/desc_history.desc
-#%{modules_data_dir}/configuration/desc_history.ui
-#%attr(755,root,root) %{modules_lib_dir}/desc_history.so
-#%lang(pl) %{modules_data_dir}/translations/desc_history_pl.qm
-#%endif
+%if %{with desc_history}
+%files module-desc_history
+%defattr(644,root,root,755)
+%{modules_data_dir}/desc_history.desc
+%{modules_data_dir}/configuration/desc_history.ui
+%attr(755,root,root) %{modules_lib_dir}/desc_history.so
+%lang(pl) %{modules_data_dir}/translations/desc_history_pl.qm
+%endif
 
 %if %{with encryption}
 %files module-encryption
