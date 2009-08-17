@@ -1,4 +1,7 @@
 #
+# TODO:
+# - desc_history, mail - create CMakeFiles.txt
+#
 # Conditional build:
 %bcond_with	debug			# build with debug
 %bcond_without	advanced_userlist	# without Advanced Userlist support
@@ -19,7 +22,7 @@
 %bcond_without	gg_avatars		# without gg_avatars module support
 %bcond_without	globalhotkeys		# without globalhotkeys module support
 %bcond_without	last_seen		# without last_seen module support
-%bcond_without	mail			# without mail module support
+%bcond_with	mail			# without mail module support
 %bcond_without	mediaplayer		# without media player modules support
 %bcond_without	mediaplayer_amarok	# without amarok player support module
 %bcond_without	mediaplayer_amarok2	# without amarok2 player support module
@@ -73,6 +76,7 @@
 %define		notify_mx610_ver	0.4
 %define		notify_water_ver	0.2
 %define		panelkadu_ver		0.6.5-3
+%define		qt4_docking_notify_ver	0.1
 %define		senthistory_ver		0.6.5-4
 %define		sms_plus_pl_ver		0.6.5.1
 %define		tabs_ver		1.2.4
@@ -90,7 +94,7 @@ Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
 Source1:	%{name}.desktop
 Source2:	http://kadu.net/~patryk/anonymous_check/anonymous_check-%{anonymous_check_ver}.tar.bz2
 # Source2-md5:	c44b443ce63945acb3f13540d8564060
-Source3:	http://alan.umcs.lublin.pl/~pinkworm/dcopexport/dcopexport-%{dcopexport_ver}-0.6.0.tar.bz2
+Source3:	dcopexport-%{dcopexport_ver}-0.6.0.tar.bz2
 # Source3-md5:	b36fcfcf4756285f30cbb6c2b6c2a2da
 Source4:	http://www.ultr.pl/kadu/globalhotkeys-%{globalhotkeys_ver}.tar.gz
 # Source4-md5:	a951bd23ffa8fd7c224734dc514ca6b7
@@ -126,9 +130,10 @@ Source19:	http://www.kadu.net/download/additions/%{name}-0.6.5-theme-tango-16.ta
 # Source19-md5:	332aa307a92829888dccd880b262f130
 Source20:	http://www.kadu.net/download/additions/%{name}-0.6.5-theme-kadu05.tar.gz
 # Source20-md5:	9174f621138b6fc28127cc4396cb59ed
-Source21:	http://myslenice.one.pl/~boogie/desc_history/desc_history-%{desc_history_ver}.tar.bz2
+Source21:	desc_history-%{desc_history_ver}.tar.bz2
 # Source21-md5:	cf7d7c8f86d9cfe4b5a0ab52b5deff34
-
+Source22:	http://www.kadu.net/~dorr/moduly/kadu-qt4_docking_notify-%{qt4_docking_notify_ver}.tar.bz2
+# Source22-md5:	6aebc70661385053ce76af4c6290c82b
 Patch0:		%{name}-weather-duplicated-translation-fix.patch
 Patch1:		%{name}-gcc44.patch
 Patch2:		%{name}-libsuffix.patch
@@ -1063,6 +1068,9 @@ tar xjf %{SOURCE10} -C modules
 %endif
 %if %{with panelkadu}
 tar xzf %{SOURCE11} -C modules
+%endif
+%if %{with notify_qt4_docking}
+tar xzf %{SOURCE22} -C modules
 %endif
 %if %{with senthistory}
 tar xzf %{SOURCE12} -C modules
