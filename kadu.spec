@@ -1,6 +1,6 @@
 #
 # TODO:
-# - desc_history, mail - create CMakeFiles.txt
+# - desc_history - create CMakeFiles.txt, port module to kadu 0.6.5.x
 #
 # Conditional build:
 %bcond_with	debug			# build with debug
@@ -23,7 +23,7 @@
 %bcond_without	gg_avatars		# without gg_avatars module support
 %bcond_without	globalhotkeys		# without globalhotkeys module support
 %bcond_without	last_seen		# without last_seen module support
-%bcond_with	mail			# without mail module support
+%bcond_without	mail			# without mail module support
 %bcond_without	mediaplayer		# without media player modules support
 %bcond_without	mediaplayer_amarok	# without amarok player support module
 %bcond_without	mediaplayer_amarok2	# without amarok2 player support module
@@ -71,7 +71,7 @@
 %define		dcopexport_ver		0.11.3-20071129
 %define		desc_history_ver	1.1
 %define		globalhotkeys_ver	0.6.5-11
-%define		mail_ver		0.3.3
+%define		mail_ver		current
 %define		mime_tex_ver		0.6.5.3
 %define		nextinfo_ver		0.6.5-1
 %define		notify_led_ver		0.21
@@ -88,7 +88,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
 Version:	0.6.5.2
-Release:	7
+Release:	8
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -100,8 +100,8 @@ Source3:	dcopexport-%{dcopexport_ver}-0.6.0.tar.bz2
 # Source3-md5:	b36fcfcf4756285f30cbb6c2b6c2a2da
 Source4:	http://www.ultr.pl/kadu/globalhotkeys-%{globalhotkeys_ver}.tar.gz
 # Source4-md5:	a951bd23ffa8fd7c224734dc514ca6b7
-Source5:	http://www.kadu.net/~weagle/mail/mail-%{mail_ver}.tar.bz2
-# Source5-md5:	898561b215ac10a99be62fa4e3a50a55
+Source5:	http://kadu.net/~michal/mail/mail-%{mail_ver}.tar.bz2
+# Source5-md5:	8509cb081936e487d884ea4622991b9d
 Source6:	http://kadu.net/~patryk/mime_tex/mime_tex-%{mime_tex_ver}.tar.bz2
 # Source6-md5:	f15b1c1e8933c9ba5a81cc8e19aeadc7
 Source7:	http://www.ultr.pl/kadu/nextinfo-%{nextinfo_ver}.tar.gz
@@ -1106,6 +1106,8 @@ tar xzf %{SOURCE20} -C varia/themes/icons
 
 # Change hard coded path to modules data files
 %{__sed} -i 's,dataPath("kadu/modules/*,("%{modules_data_dir}/,g' kadu-core/modules.cpp
+
+echo "module_desc_history=n" >>.config
 
 %build
 install -d build
