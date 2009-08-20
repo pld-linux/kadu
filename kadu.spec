@@ -88,7 +88,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
 Version:	0.6.5.2
-Release:	9
+Release:	10
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -1511,6 +1511,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libwindow_notify.so
 %attr(755,root,root) %{modules_lib_dir}/libsound.so
 %attr(755,root,root) %{modules_lib_dir}/libnotify.so
+%attr(755,root,root) %{modules_lib_dir}/libqt4_docking.so
 %{modules_data_dir}/qt4_docking.desc
 
 #default modules translation:
