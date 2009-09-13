@@ -89,7 +89,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
 Version:	0.6.5.3
-Release:	0.5
+Release:	1
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -138,10 +138,6 @@ Source21:	desc_history-%{desc_history_ver}.tar.bz2
 Source22:	http://www.kadu.net/~dorr/moduly/kde_notify-%{notify_kde_ver}.tar.gz
 # Source22-md5:	10a0f009e45593b2f3a79b3db0e9a00c
 Patch0:		%{name}-weather-duplicated-translation-fix.patch
-Patch1:		%{name}-gcc44.patch
-Patch2:		%{name}-libsuffix.patch
-Patch3:		%{name}-choose_desc_crash_fix.patch
-Patch4:		%{name}-profiles_fix.patch
 URL:		http://kadu.net/
 BuildRequires:	Qt3Support-devel >= 4.4
 BuildRequires:	QtScript-devel >= 4.4
@@ -1048,10 +1044,6 @@ Zestaw ikon Tango16.
 
 %prep
 %setup -q -T -b 0 -n %{name}
-%patch1 -p1
-%patch2 -p0
-%patch3 -p2
-%patch4 -p2
 
 %if %{with anonymous_check}
 tar xjf %{SOURCE2} -C modules
@@ -1083,9 +1075,6 @@ tar xjf %{SOURCE10} -C modules
 %if %{with panelkadu}
 tar xzf %{SOURCE11} -C modules
 %endif
-%if %{with notify_qt4_docking}
-tar xjf %{SOURCE22} -C modules
-%endif
 %if %{with senthistory}
 tar xzf %{SOURCE12} -C modules
 %endif
@@ -1102,7 +1091,7 @@ tar xjf %{SOURCE15} -C modules
 %if %{with desc_history}
 tar xjf %{SOURCE21} -C modules
 %endif
-%if %{with desc_history}
+%if %{with notify_kde}
 tar xzf %{SOURCE22} -C modules
 %endif
 
@@ -1918,6 +1907,15 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{modules_data_dir}/translations/exec_notify_pl.qm
 %endif
 
+%if %{with notify_kde}
+%files module-notify-kde4
+%defattr(644,root,root,755)
+%{modules_data_dir}/kde_notify.desc
+%{modules_data_dir}/configuration/kde_notify.ui
+%attr(755,root,root) %{modules_lib_dir}/libkde_notify.so
+%lang(pl) %{modules_data_dir}/translations/kde_notify_pl.qm
+%endif
+
 %if %{with notify_led}
 %files module-notify-led
 %defattr(644,root,root,755)
@@ -2012,6 +2010,7 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/powerkadu.desc
 %attr(755,root,root) %{modules_lib_dir}/libpowerkadu.so
 %lang(pl) %{modules_data_dir}/translations/powerkadu_pl.qm
+%{modules_data_dir}/configuration/powerkadu.ui
 %dir %{modules_data_dir}/data/powerkadu
 %{modules_data_dir}/data/powerkadu/ChangeLog
 %{modules_data_dir}/data/powerkadu/powerkadu_32x32.png
