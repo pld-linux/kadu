@@ -37,6 +37,7 @@
 %bcond_without	mime_tex		# without mime_tex module support
 %bcond_without	nextinfo		# without nextinfo module support
 %bcond_without	notify_exec		# without exec_notify module support
+%bcond_without	notify_kde		# without kde_notify module support
 %bcond_without	notify_led		# without led_notify module support
 %bcond_without	notify_mx610		# without mc610_notify module support
 %bcond_without	notify_osdhints		# without osdhints_notify module
@@ -67,59 +68,59 @@
 
 %define		libgadu_ver		4:1.8.2
 
-%define		anonymous_check_ver	0.6.5.1
+%define		anonymous_check_ver	0.6.5.3-1
 %define		dcopexport_ver		0.11.3-20071129
 %define		desc_history_ver	1.1
-%define		globalhotkeys_ver	0.6.5-11
-%define		mail_ver		current
+%define		globalhotkeys_ver	0.6.5-12
+%define		mail_ver		0.3.6
 %define		mime_tex_ver		0.6.5.3
-%define		nextinfo_ver		0.6.5-1
-%define		notify_led_ver		0.21
-%define		notify_mx610_ver	0.4
-%define		notify_water_ver	0.2
-%define		panelkadu_ver		0.6.5-3
-%define		qt4_docking_notify_ver	0.1
-%define		senthistory_ver		0.6.5-4
-%define		sms_plus_pl_ver		0.6.5.1
-%define		tabs_ver		1.2.4
+%define		nextinfo_ver		0.6.5-2
+%define		notify_kde_ver		0.3.1
+%define		notify_led_ver		0.23
+%define		notify_mx610_ver	0.4.1
+%define		notify_water_ver	0.2.1
+%define		panelkadu_ver		0.6.5-5
+%define		senthistory_ver		0.6.5-5
+%define		sms_plus_pl_ver		0.6.5.3-3
+%define		tabs_ver		1.2.5
 %define		weather_ver		3.15
 
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
-Version:	0.6.5.2
-Release:	10
+Version:	0.6.5.3
+Release:	0.5
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
-# Source0-md5:	9cc1e59e538ff1aa416d162834ce43bb
+# Source0-md5:	7914d941020b0fa092748ffe0295174f
 Source1:	%{name}.desktop
 Source2:	http://kadu.net/~patryk/anonymous_check/anonymous_check-%{anonymous_check_ver}.tar.bz2
-# Source2-md5:	c44b443ce63945acb3f13540d8564060
+# Source2-md5:	f6290d67c0f45b3f43ff3f35e780615f
 Source3:	dcopexport-%{dcopexport_ver}-0.6.0.tar.bz2
 # Source3-md5:	b36fcfcf4756285f30cbb6c2b6c2a2da
 Source4:	http://www.ultr.pl/kadu/globalhotkeys-%{globalhotkeys_ver}.tar.gz
-# Source4-md5:	a951bd23ffa8fd7c224734dc514ca6b7
+# Source4-md5:	0d795d2c4f2192515b1aca4db86d0e6c
 Source5:	http://kadu.net/~michal/mail/mail-%{mail_ver}.tar.bz2
-# Source5-md5:	8509cb081936e487d884ea4622991b9d
+# Source5-md5:	85fdf695c7fbc58e607dc15278391ab3
 Source6:	http://kadu.net/~patryk/mime_tex/mime_tex-%{mime_tex_ver}.tar.bz2
 # Source6-md5:	f15b1c1e8933c9ba5a81cc8e19aeadc7
 Source7:	http://www.ultr.pl/kadu/nextinfo-%{nextinfo_ver}.tar.gz
-# Source7-md5:	8bd1566103e7c66bea6c5a82e52cd40e
+# Source7-md5:	ad23febe3c891dcf41f3c4eabd310ff9
 Source8:	http://kadu.net/~blysk/led_notify-%{notify_led_ver}.tar.bz2
-# Source8-md5:	e857f0fb213700eb366915eca9c1e454
+# Source8-md5:	6abcc3ab992daeb9820f9156d8d76020
 Source9:	http://www.kadu.net/~dorr/moduly/kadu-mx610_notify-%{notify_mx610_ver}.tar.bz2
-# Source9-md5:	e1834b40402a6ea827f6c06108339726
+# Source9-md5:	4b2a47068928b9687c61816abeed86fe
 Source10:	http://www.kadu.net/~dorr/moduly/kadu-water_notify-%{notify_water_ver}.tar.bz2
-# Source10-md5:	cc9449bdb55fb7a8bb251ab22c0bca99
+# Source10-md5:	4196e85fc4be93bd662f5148ebc18235
 Source11:	http://www.ultr.pl/kadu/panelkadu-%{panelkadu_ver}.tar.gz
-# Source11-md5:	4f8d84727e721dcfd569ab1100f7be4c
+# Source11-md5:	139948fe1197ff8f2a2e0dd52bc2bfc8
 Source12:	http://www.ultr.pl/kadu/senthistory-%{senthistory_ver}.tar.gz
-# Source12-md5:	7d3b4eb3c6c74687905a963f558330ee
-Source13:	http://kadu.net/~patryk/plus_pl_sms/plus_pl_sms-%{sms_plus_pl_ver}.tar.bz2
-# Source13-md5:	e8757b4a45766e251a5200af21366b73
+# Source12-md5:	a58b2be2ee7e4489dc80f629b7e6f8f3
+Source13:	http://kadu.net/~patryk/plus_pl_sms/plus_pl_sms-plus_pl_sms-%{sms_plus_pl_ver}.tar.bz2
+# Source13-md5:	69bbd956e3a15bce91e61476bd59b379
 Source14:	http://www.kadu.net/~weagle/tabs/%{name}-tabs-%{tabs_ver}.tar.bz2
-# Source14-md5:	7be5a2dad81f086a9f20cf2ede38e952
+# Source14-md5:	515ee7b9627dc4b8b3f5a502d15493af
 Source15:	http://kadu.net/~blysk/weather-%{weather_ver}.tar.bz2
 # Source15-md5:	d96a1222764b23c00e82fffc650d748e
 Source16:	http://www.kadu.net/download/additions/%{name}-0.6.5-theme-glass-16.tar.gz
@@ -134,8 +135,8 @@ Source20:	http://www.kadu.net/download/additions/%{name}-0.6.5-theme-kadu05.tar.
 # Source20-md5:	9174f621138b6fc28127cc4396cb59ed
 Source21:	desc_history-%{desc_history_ver}.tar.bz2
 # Source21-md5:	cf7d7c8f86d9cfe4b5a0ab52b5deff34
-Source22:	http://www.kadu.net/~dorr/moduly/kadu-qt4_docking_notify-%{qt4_docking_notify_ver}.tar.bz2
-# Source22-md5:	6aebc70661385053ce76af4c6290c82b
+Source22:	http://www.kadu.net/~dorr/moduly/kde_notify-%{notify_kde_ver}.tar.gz
+# Source22-md5:	10a0f009e45593b2f3a79b3db0e9a00c
 Patch0:		%{name}-weather-duplicated-translation-fix.patch
 Patch1:		%{name}-gcc44.patch
 Patch2:		%{name}-libsuffix.patch
@@ -195,13 +196,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Kadu is client of Gadu-Gadu protocol. It's an IM for Linux and UN*X.
-It's written with use of Qt and KDE libraries.
+It's written with use of Qt.
 
 %description -l pl.UTF-8
 Kadu jest klientem protokołu Gadu-Gadu. Inaczej mówiąc, jest
 komunikatorem dla Linuksa (oraz, przy niewielkim wysiłku, innych
-systemów uniksowych). Napisano go w oparciu o bibliotekę Qt i KDE,
-przeznaczony jest więc dla tego środowiska.
+systemów uniksowych). Napisano go w oparciu o bibliotekę Qt.
 
 %package module-advanced_userlist
 Summary:	Advanced Userlist module
@@ -638,6 +638,18 @@ Notification by external commands module.
 %description module-notify-exec -l pl.UTF-8
 Moduł powiadamiania użytkownika o zdarzeniach za pomocą zewnętrznych
 poleceń.
+
+%package module-notify-kde4
+Summary:	Notification for KDE4
+Summary(pl.UTF-8):	Moduł powiadamiania dla KDE4
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-notify-kde4
+Notification for KDE4.
+
+%description module-notify-kde4 -l pl.UTF-8
+Moduł powiadamiania dla KDE4.
 
 %package module-notify-led
 Summary:	Notification by Scroll Lock LED
@@ -1090,6 +1102,9 @@ tar xjf %{SOURCE15} -C modules
 %if %{with desc_history}
 tar xjf %{SOURCE21} -C modules
 %endif
+%if %{with desc_history}
+tar xzf %{SOURCE22} -C modules
+%endif
 
 # themes-icons
 tar xzf %{SOURCE16} -C varia/themes/icons
@@ -1281,6 +1296,11 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok2_mediaplayer/spec
 %{__sed} -i 's/module_exec_notify=n/module_exec_notify=m/' .config
 %else
 %{__sed} -i 's/module_exec_notify=m/module_exec_notify=n/' .config
+%endif
+%if %{with notify_kde}
+%{__sed} -i 's/module_kde_notify=n/module_kde_notify=m/' .config
+%else
+%{__sed} -i 's/module_kde_notify=m/module_kde_notify=n/' .config
 %endif
 %if %{with notify_led}
 %{__sed} -i 's/module_led_notify=n/module_led_notify=m/' .config
