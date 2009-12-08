@@ -14,7 +14,7 @@
 %bcond_without	autostatus		# without autostatus module support
 %bcond_without	cenzor			# without cenzor module support
 #% bcond_with	dcopexport		# with dcopexport module support -> dbus
-%bcond_with	desc_history		# without dcopexport module support
+%bcond_with	desc_history		# without description history module support
 %bcond_without	docking_desktop		# without desktop_docking module support
 %bcond_without	encryption		# without encryption module support
 %bcond_without	filedesc		# without filedesc module support
@@ -31,6 +31,7 @@
 %bcond_without	mediaplayer_bmpx	# without bmpx player support module
 %bcond_without	mediaplayer_dragon	# without dragon player support module
 %bcond_without	mediaplayer_falf	# without falf player support module
+%bcond_without	mediaplayer_mpris	# without generic mpris interface support module
 %bcond_without	mediaplayer_vlc		# without vlc player support module
 %bcond_without	mediaplayer_xmms	# without xmms player support module
 %bcond_without	mediaplayer_xmms2	# without xmms2 player support module
@@ -43,7 +44,7 @@
 %bcond_without	notify_osdhints		# without osdhints_notify module
 %bcond_without	notify_pcspeaker	# without pcspeaker_notify module support
 %bcond_without	notify_qt4_docking	# without qt4_docking_notify module support
-#% bcond_with	notify_speech		# without Speech synthesis support
+%bcond_without	notify_speech		# without Speech synthesis support
 %bcond_without	notify_water		# without water_notify module support
 %bcond_without	notify_window		# without window_notify module support
 %bcond_without	panelkadu		# without panelkadu module support
@@ -66,16 +67,16 @@
 %bcond_without	weather			# without weather check module support
 %bcond_without	word_fix		# without word_fix module support
 
-%define		libgadu_ver		4:1.8.2
+%define		libgadu_ver		4:1.9.0-0.rc2.1
 
 %define		anonymous_check_ver	0.6.5.3-1
 %define		dcopexport_ver		0.11.3-20071129
 %define		desc_history_ver	1.1
-%define		globalhotkeys_ver	0.6.5-12
+%define		globalhotkeys_ver	0.6.5-13
 %define		mail_ver		0.3.6
-%define		mime_tex_ver		0.6.5.3
+%define		mime_tex_ver		0.6.5.3-1
 %define		nextinfo_ver		0.6.5-2
-%define		notify_kde_ver		0.3.1
+%define		notify_kde_ver		0.3.3
 %define		notify_led_ver		0.23
 %define		notify_mx610_ver	0.4.1
 %define		notify_water_ver	0.2.1
@@ -85,14 +86,15 @@
 %define		tabs_ver		1.2.5
 %define		weather_ver		3.15
 
+%define		rel	rc1
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
-Version:	0.6.5.3
-Release:	1
+Version:	0.6.5.4
+Release:	0.%{rel}.1
 License:	GPL v2
 Group:		Applications/Communications
-Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
+Source0:	http://kadu.net/download/stable/%{name}-%{version}-%{rel}.tar.bz2
 # Source0-md5:	7914d941020b0fa092748ffe0295174f
 Source1:	%{name}.desktop
 Source2:	http://kadu.net/~patryk/anonymous_check/anonymous_check-%{anonymous_check_ver}.tar.bz2
@@ -103,7 +105,7 @@ Source4:	http://www.ultr.pl/kadu/globalhotkeys-%{globalhotkeys_ver}.tar.gz
 # Source4-md5:	0d795d2c4f2192515b1aca4db86d0e6c
 Source5:	http://kadu.net/~michal/mail/mail-%{mail_ver}.tar.bz2
 # Source5-md5:	85fdf695c7fbc58e607dc15278391ab3
-Source6:	http://kadu.net/~patryk/mime_tex/mime_tex-%{mime_tex_ver}.tar.bz2
+Source6:	http://kadu.net/~patryk/mime_tex/mime_tex-mime_tex-%{mime_tex_ver}.tar.bz2
 # Source6-md5:	f15b1c1e8933c9ba5a81cc8e19aeadc7
 Source7:	http://www.ultr.pl/kadu/nextinfo-%{nextinfo_ver}.tar.gz
 # Source7-md5:	ad23febe3c891dcf41f3c4eabd310ff9
@@ -170,7 +172,7 @@ Obsoletes:	kadu-module-docking-wmaker <= 0.6.5
 Obsoletes:	kadu-module-imiface <= 0.4.3
 Obsoletes:	kadu-module-iwait4u <= 0.5.0
 Obsoletes:	kadu-module-notify-xosd <= 0.6.5
-Obsoletes:	kadu-module-speech <= 0.4.3
+%{!?with_speech:Obsoletes:	kadu-module-speech <= 0.4.3}
 Obsoletes:	kadu-module-sound_arts <= 0.6.5
 Obsoletes:	kadu-module-sound_esd <= 0.6.5
 Obsoletes:	kadu-module-tcl_scripting <= 0.4.3
@@ -475,7 +477,7 @@ odgrywanym utworze z odtwarzacza amarok.
 Summary:	Support amarok 2 status
 Summary(pl.UTF-8):	Moduł statusu dla odtwarzacza amarok 2
 Group:		Applications/Communications
-Requires:	%{name}-module-mediaplayer = %{version}-%{release}
+Requires:	%{name}-module-mediaplayer-mrpis = %{version}-%{release}
 Requires:	amarok > 2.0.0
 Provides:	kadu-module-amarok2 = %{version}
 
@@ -491,7 +493,7 @@ odgrywanym utworze z odtwarzacza amarok 2.
 Summary:	Support audacious status
 Summary(pl.UTF-8):	Moduł statusu dla odtwarzacza audacious
 Group:		Applications/Communications
-Requires:	%{name}-module-mediaplayer = %{version}-%{release}
+Requires:	%{name}-module-mediaplayer-mrpis = %{version}-%{release}
 Requires:	audacious
 
 %description module-mediaplayer-audacious
@@ -506,7 +508,7 @@ odgrywanym utworze z odtwarzacza audacious.
 Summary:	Support BMPX status
 Summary(pl.UTF-8):	Moduł statusu dla odtwarzacza BMPX
 Group:		Applications/Communications
-Requires:	%{name}-module-mediaplayer = %{version}-%{release}
+Requires:	%{name}-module-mediaplayer-mrpis = %{version}-%{release}
 Requires:	bmpx
 Provides:	kadu-module-bmpx = %{version}
 
@@ -522,7 +524,7 @@ odgrywanym utworze z odtwarzacza BMPX.
 Summary:	Support dragon status
 Summary(pl.UTF-8):	Moduł statusu dla odtwarzacza dragon
 Group:		Applications/Communications
-Requires:	%{name}-module-mediaplayer = %{version}-%{release}
+Requires:	%{name}-module-mediaplayer-mrpis = %{version}-%{release}
 Requires:	kde4-kdemultimedia-dragon
 Provides:	kadu-module-dragon = %{version}
 
@@ -549,11 +551,27 @@ the song currently played in falf.
 Moduł umożliwiający w opisie statusu pokazywanie informacji o
 odgrywanym utworze z odtwarzacza falf.
 
+%package module-mediaplayer-mpris
+Summary:	Generic mpris interface support
+Summary(pl.UTF-8):	Moduł ogólnego interfejsu do mpris
+Group:		Applications/Communications
+Requires:	%{name}-module-mediaplayer = %{version}-%{release}
+
+%description module-mediaplayer-mpris
+Module which allows showing in status description information about
+the song currently played in mpris compatible player.
+It is used by other modules.
+
+%description module-mediaplayer-mpris -l pl.UTF-8
+Moduł umożliwiający w opisie statusu pokazywanie informacji o
+odgrywanym utworze z odtwarzacza zgodnego z mpris.
+Jest wykorzystywany przez inne moduły.
+
 %package module-mediaplayer-vlc
 Summary:	Support VLC status
 Summary(pl.UTF-8):	Moduł statusu dla VLC
 Group:		Applications/Communications
-Requires:	%{name}-module-mediaplayer = %{version}-%{release}
+Requires:	%{name}-module-mediaplayer-mrpis = %{version}-%{release}
 Requires:	vlc
 Provides:	kadu-module-vlc` = %{version}
 
@@ -586,7 +604,7 @@ odgrywanym utworze z odtwarzacza XMMS.
 Summary:	Support XMMS2 status
 Summary(pl.UTF-8):	Moduł statusu dla XMMS-a 2
 Group:		Applications/Communications
-Requires:	%{name}-module-mediaplayer = %{version}-%{release}
+Requires:	%{name}-module-mediaplayer-mrpis = %{version}-%{release}
 Requires:	xmms
 Provides:	kadu-module-xmms2 = %{version}
 
@@ -1256,6 +1274,11 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok2_mediaplayer/spec
 %else
 %{__sed} -i 's/module_falf_mediaplayer=m/module_falf_mediaplayer=n/' .config
 %endif
+%if %{with mediaplayer_mpris}
+%{__sed} -i 's/module_mpris_mediaplayer=n/module_mpris_mediaplayer=m/' .config
+%else
+%{__sed} -i 's/module_mpris_mediaplayer=m/module_mpris_mediaplayer=n/' .config
+%endif
 %if %{with mediaplayer_vlc}
 %{__sed} -i 's/module_vlc_mediaplayer=n/module_vlc_mediaplayer=m/' .config
 %else
@@ -1476,6 +1499,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/%{name}
 %{_desktopdir}/%{name}.desktop
 %{_pixmapsdir}/%{name}.png
+%{_iconsdir}/*/*x*/apps/%{name}.png
 %dir %{_datadir}/%{name}
 %dir %{modules_data_dir}
 %dir %{modules_data_dir}/data
@@ -1849,6 +1873,15 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libfalf_mediaplayer.so
 %endif
 
+%if %{with mediaplayer_mpris}
+%files module-mediaplayer-mpris
+%defattr(644,root,root,755)
+%{modules_data_dir}/mpris_mediaplayer.desc
+%{modules_data_dir}/configuration/mpris_mediaplayer.ui
+%attr(755,root,root) %{modules_lib_dir}/libmpris_mediaplayer.so
+%lang(pl) %{modules_data_dir}/translations/mpris_mediaplayer_pl.qm
+%endif
+
 %if %{with mediaplayer_vlc}
 %files module-mediaplayer-vlc
 %defattr(644,root,root,755)
@@ -1970,7 +2003,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{modules_data_dir}/speech.desc
 %{modules_data_dir}/configuration/speech.ui
-%attr(755,root,root) %{modules_lib_dir}/speech.so
+%attr(755,root,root) %{modules_lib_dir}/libspeech.so
 %lang(de) %{modules_data_dir}/translations/speech_de.qm
 %lang(fr) %{modules_data_dir}/translations/speech_fr.qm
 %lang(it) %{modules_data_dir}/translations/speech_it.qm
