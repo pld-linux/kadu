@@ -95,18 +95,18 @@ Release:	0.%{rel}.1
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}-%{rel}.tar.bz2
-# Source0-md5:	7914d941020b0fa092748ffe0295174f
+# Source0-md5:	0443647e86f59861b7b67c1ba9e64c7c
 Source1:	%{name}.desktop
 Source2:	http://kadu.net/~patryk/anonymous_check/anonymous_check-%{anonymous_check_ver}.tar.bz2
 # Source2-md5:	f6290d67c0f45b3f43ff3f35e780615f
 Source3:	dcopexport-%{dcopexport_ver}-0.6.0.tar.bz2
 # Source3-md5:	b36fcfcf4756285f30cbb6c2b6c2a2da
 Source4:	http://www.ultr.pl/kadu/globalhotkeys-%{globalhotkeys_ver}.tar.gz
-# Source4-md5:	0d795d2c4f2192515b1aca4db86d0e6c
+# Source4-md5:	cc243181278cc7e8e1931e9201a9a84e
 Source5:	http://kadu.net/~michal/mail/mail-%{mail_ver}.tar.bz2
 # Source5-md5:	85fdf695c7fbc58e607dc15278391ab3
 Source6:	http://kadu.net/~patryk/mime_tex/mime_tex-mime_tex-%{mime_tex_ver}.tar.bz2
-# Source6-md5:	f15b1c1e8933c9ba5a81cc8e19aeadc7
+# Source6-md5:	d48fe247514ee187037bf7829457865e
 Source7:	http://www.ultr.pl/kadu/nextinfo-%{nextinfo_ver}.tar.gz
 # Source7-md5:	ad23febe3c891dcf41f3c4eabd310ff9
 Source8:	http://kadu.net/~blysk/led_notify-%{notify_led_ver}.tar.bz2
@@ -138,7 +138,7 @@ Source20:	http://www.kadu.net/download/additions/%{name}-0.6.5-theme-kadu05.tar.
 Source21:	desc_history-%{desc_history_ver}.tar.bz2
 # Source21-md5:	cf7d7c8f86d9cfe4b5a0ab52b5deff34
 Source22:	http://www.kadu.net/~dorr/moduly/kde_notify-%{notify_kde_ver}.tar.gz
-# Source22-md5:	10a0f009e45593b2f3a79b3db0e9a00c
+# Source22-md5:	5fb975affffb243e1c5e2037f4dd1732
 Patch0:		%{name}-weather-duplicated-translation-fix.patch
 URL:		http://kadu.net/
 BuildRequires:	Qt3Support-devel >= 4.4
