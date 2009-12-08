@@ -477,7 +477,7 @@ odgrywanym utworze z odtwarzacza amarok.
 Summary:	Support amarok 2 status
 Summary(pl.UTF-8):	Moduł statusu dla odtwarzacza amarok 2
 Group:		Applications/Communications
-Requires:	%{name}-module-mediaplayer-mrpis = %{version}-%{release}
+Requires:	%{name}-module-mediaplayer-mpris = %{version}-%{release}
 Requires:	amarok > 2.0.0
 Provides:	kadu-module-amarok2 = %{version}
 
@@ -493,7 +493,7 @@ odgrywanym utworze z odtwarzacza amarok 2.
 Summary:	Support audacious status
 Summary(pl.UTF-8):	Moduł statusu dla odtwarzacza audacious
 Group:		Applications/Communications
-Requires:	%{name}-module-mediaplayer-mrpis = %{version}-%{release}
+Requires:	%{name}-module-mediaplayer-mpris = %{version}-%{release}
 Requires:	audacious
 
 %description module-mediaplayer-audacious
@@ -508,7 +508,7 @@ odgrywanym utworze z odtwarzacza audacious.
 Summary:	Support BMPX status
 Summary(pl.UTF-8):	Moduł statusu dla odtwarzacza BMPX
 Group:		Applications/Communications
-Requires:	%{name}-module-mediaplayer-mrpis = %{version}-%{release}
+Requires:	%{name}-module-mediaplayer-mpris = %{version}-%{release}
 Requires:	bmpx
 Provides:	kadu-module-bmpx = %{version}
 
@@ -524,7 +524,7 @@ odgrywanym utworze z odtwarzacza BMPX.
 Summary:	Support dragon status
 Summary(pl.UTF-8):	Moduł statusu dla odtwarzacza dragon
 Group:		Applications/Communications
-Requires:	%{name}-module-mediaplayer-mrpis = %{version}-%{release}
+Requires:	%{name}-module-mediaplayer-mpris = %{version}-%{release}
 Requires:	kde4-kdemultimedia-dragon
 Provides:	kadu-module-dragon = %{version}
 
@@ -571,7 +571,7 @@ Jest wykorzystywany przez inne moduły.
 Summary:	Support VLC status
 Summary(pl.UTF-8):	Moduł statusu dla VLC
 Group:		Applications/Communications
-Requires:	%{name}-module-mediaplayer-mrpis = %{version}-%{release}
+Requires:	%{name}-module-mediaplayer-mpris = %{version}-%{release}
 Requires:	vlc
 Provides:	kadu-module-vlc` = %{version}
 
@@ -604,7 +604,7 @@ odgrywanym utworze z odtwarzacza XMMS.
 Summary:	Support XMMS2 status
 Summary(pl.UTF-8):	Moduł statusu dla XMMS-a 2
 Group:		Applications/Communications
-Requires:	%{name}-module-mediaplayer-mrpis = %{version}-%{release}
+Requires:	%{name}-module-mediaplayer-mpris = %{version}-%{release}
 Requires:	xmms
 Provides:	kadu-module-xmms2 = %{version}
 
