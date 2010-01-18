@@ -1199,6 +1199,9 @@ tar xzf %{SOURCE23} -C varia/themes/emoticons
 echo "module_desc_history=n" >>.config
 %{__sed} -i 's/module_qt4_docking=y/module_qt4_docking=m/' .config
 
+# packages are not allowed to download any content while building
+chmod -x varia/scripts/autodownload
+
 %build
 install -d build
 
