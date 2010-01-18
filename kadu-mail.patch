@@ -1,0 +1,44 @@
+diff -ur modules/mail.orig/mail.cpp modules/mail/mail.cpp
+--- modules/mail.orig/mail.cpp	2008-08-31 17:02:10.000000000 +0200
++++ modules/mail/mail.cpp	2010-01-15 08:27:40.000000000 +0100
+@@ -43,8 +43,8 @@
+ 	qRegisterMetaType<QAbstractSocket::SocketError>("QAbstractSocket::SocketError");
+ 
+ 	MainConfigurationWindow::registerUiFile(dataPath("kadu/modules/configuration/mail.ui"), mail);
+-	notification_manager->registerEvent("Mail", "New mail", CallbackNotRequired);
+-	notification_manager->registerEvent("MailError", "Connection error", CallbackNotRequired);
++	notification_manager->registerEvent("Mail", QT_TRANSLATE_NOOP("@default", "New mail"), CallbackNotRequired);
++	notification_manager->registerEvent("MailError", QT_TRANSLATE_NOOP("@default", "Mail connection error"), CallbackNotRequired);
+ 	return 0;
+ }
+ 
+diff -ur modules/mail.orig/mail.h modules/mail/mail.h
+--- modules/mail.orig/mail.h	2008-08-31 16:42:22.000000000 +0200
++++ modules/mail/mail.h	2010-01-15 08:27:40.000000000 +0100
+@@ -13,6 +13,7 @@
+ 
+ #include <QTimer>
+ #include <QString>
++#include <QLinkedList>
+ 
+ #include "main_configuration_window.h"
+ #include "../notify/notify.h"
+diff -ur modules/mail.orig/translations/mail_pl.ts modules/mail/translations/mail_pl.ts
+--- modules/mail.orig/translations/mail_pl.ts	2008-08-31 17:17:44.000000000 +0200
++++ modules/mail/translations/mail_pl.ts	2010-01-15 08:26:37.000000000 +0100
+@@ -244,4 +244,15 @@
+         <translation>Jesteś pewny że chcesz kontynuować połączenie?</translation>
+     </message>
+ </context>
++<context>
++    <name>@default</name>
++    <message>
++        <source>New mail</source>
++        <translation>Nowa poczta</translation>
++    </message>
++    <message>
++        <source>Mail connection error</source>
++        <translation>Błąd połączenia z pocztą</translation>
++    </message>
++</context>
+ </TS>

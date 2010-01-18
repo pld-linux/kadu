@@ -13,7 +13,7 @@
 %bcond_without	autoresponder		# without autoresponder module support
 %bcond_without	autostatus		# without autostatus module support
 %bcond_without	cenzor			# without cenzor module support
-#% bcond_with	dcopexport		# with dcopexport module support -> dbus
+%bcond_without	dbus			# without dbus module support
 %bcond_with	desc_history		# without description history module support
 %bcond_without	docking_desktop		# without desktop_docking module support
 %bcond_without	encryption		# without encryption module support
@@ -47,12 +47,14 @@
 %bcond_without	notify_speech		# without Speech synthesis support
 %bcond_without	notify_water		# without water_notify module support
 %bcond_without	notify_window		# without window_notify module support
+%bcond_without	pajacyk			# without pajacyk module support
 %bcond_without	panelkadu		# without panelkadu module support
 %bcond_without	parser_extender		# without parser_extender extensions
 %bcond_without	powerkadu		# without PowerKadu extensions
 %bcond_without	profiles		# without profiles module support
 %bcond_without	screenshot		# without screenshot module support
 %bcond_without	senthistory		# without senthistory module support
+%bcond_without	single_window		# without single_window module support
 %bcond_without	sms_plus_pl		# without plus_pl_sms module support
 %bcond_without	sound_alsa		# without ALSA support
 %bcond_without	sound_ao		# without ao support
@@ -60,7 +62,7 @@
 %bcond_without	sound_ext		# without external application sound module support
 %bcond_without	sound_phonon		# without phonon sound module support
 %bcond_without	sound_qt4		# without qt4 sound module support
-%bcond_without	spellchecker		# without spellchecker (Aspell support) invisible
+%bcond_without	spellchecker		# without spellchecker (enchant support) invisible
 %bcond_without	split_messages		# without split_messages module support
 %bcond_without	tabs			# without tabs support module
 %bcond_without	voice			# without voice support module
@@ -72,21 +74,22 @@
 %define		anonymous_check_ver	0.6.5.3-1
 %define		dcopexport_ver		0.11.3-20071129
 %define		desc_history_ver	1.1
-%define		globalhotkeys_ver	0.6.5-13
+%define		globalhotkeys_ver	0.6.5-15
 %define		mail_ver		0.3.6
 %define		mime_tex_ver		0.6.5.3-1
 %define		nextinfo_ver		0.6.5-2
-%define		notify_kde_ver		0.3.3
+%define		notify_kde_ver		0.3.4
 %define		notify_led_ver		0.23
 %define		notify_mx610_ver	0.4.1
 %define		notify_water_ver	0.2.1
+%define		pajacyk_ver		0.2
 %define		panelkadu_ver		0.6.5-5
 %define		senthistory_ver		0.6.5-5
-%define		sms_plus_pl_ver		0.6.5.3-3
-%define		tabs_ver		1.2.5
+%define		sms_plus_pl_ver		0.6.5.4-1
+%define		tabs_ver		1.2.6
 %define		weather_ver		3.15
 
-%define		rel	rc1
+%define		rel	rc3
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
@@ -95,14 +98,14 @@ Release:	0.%{rel}.1
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}-%{rel}.tar.bz2
-# Source0-md5:	0443647e86f59861b7b67c1ba9e64c7c
+# Source0-md5:	acd79b3cdff716f4981f26e3f0ccc2db
 Source1:	%{name}.desktop
 Source2:	http://kadu.net/~patryk/anonymous_check/anonymous_check-%{anonymous_check_ver}.tar.bz2
 # Source2-md5:	f6290d67c0f45b3f43ff3f35e780615f
 Source3:	dcopexport-%{dcopexport_ver}-0.6.0.tar.bz2
 # Source3-md5:	b36fcfcf4756285f30cbb6c2b6c2a2da
 Source4:	http://www.ultr.pl/kadu/globalhotkeys-%{globalhotkeys_ver}.tar.gz
-# Source4-md5:	cc243181278cc7e8e1931e9201a9a84e
+# Source4-md5:	2b28612576276fc2b87120093428965b
 Source5:	http://kadu.net/~michal/mail/mail-%{mail_ver}.tar.bz2
 # Source5-md5:	85fdf695c7fbc58e607dc15278391ab3
 Source6:	http://kadu.net/~patryk/mime_tex/mime_tex-mime_tex-%{mime_tex_ver}.tar.bz2
@@ -120,33 +123,38 @@ Source11:	http://www.ultr.pl/kadu/panelkadu-%{panelkadu_ver}.tar.gz
 Source12:	http://www.ultr.pl/kadu/senthistory-%{senthistory_ver}.tar.gz
 # Source12-md5:	a58b2be2ee7e4489dc80f629b7e6f8f3
 Source13:	http://kadu.net/~patryk/plus_pl_sms/plus_pl_sms-plus_pl_sms-%{sms_plus_pl_ver}.tar.bz2
-# Source13-md5:	69bbd956e3a15bce91e61476bd59b379
+# Source13-md5:	59f7ba01a63464818acaa5ff6fd176d5
 Source14:	http://www.kadu.net/~weagle/tabs/%{name}-tabs-%{tabs_ver}.tar.bz2
-# Source14-md5:	515ee7b9627dc4b8b3f5a502d15493af
+# Source14-md5:	52d74572979838aa55b9fb76c0283a18
 Source15:	http://kadu.net/~blysk/weather-%{weather_ver}.tar.bz2
 # Source15-md5:	d96a1222764b23c00e82fffc650d748e
-Source16:	http://www.kadu.net/download/additions/%{name}-0.6.5-theme-glass-16.tar.gz
-# Source16-md5:	94b2568075a5ae224df371a0dac6bd23
-Source17:	http://www.kadu.net/download/additions/%{name}-0.6.5-theme-glass-22.tar.gz
-# Source17-md5:	24acf266956d0535e7e384c6c925e261
-Source18:	http://www.kadu.net/download/additions/%{name}-0.6.5-theme-oxygen-16.tar.gz
-# Source18-md5:	4622cf2873672ef828c1916fdf320ffb
-Source19:	http://www.kadu.net/download/additions/%{name}-0.6.5-theme-tango-16.tar.gz
-# Source19-md5:	332aa307a92829888dccd880b262f130
+Source16:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-theme-glass-16.tar.gz
+# Source16-md5:	25374d4b876037de6d00eedca76eae0f
+Source17:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-theme-glass-22.tar.gz
+# Source17-md5:	d9df73a452cf190abd5605112c53c21f
+Source18:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-theme-oxygen-16.tar.gz
+# Source18-md5:	9c789d2aa146eb54426834a11ad56b13
+Source19:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-theme-tango-16.tar.gz
+# Source19-md5:	9710fd37c6fd8c24e2bae8fa377ee465
 Source20:	http://www.kadu.net/download/additions/%{name}-0.6.5-theme-kadu05.tar.gz
 # Source20-md5:	9174f621138b6fc28127cc4396cb59ed
 Source21:	desc_history-%{desc_history_ver}.tar.bz2
 # Source21-md5:	cf7d7c8f86d9cfe4b5a0ab52b5deff34
 Source22:	http://www.kadu.net/~dorr/moduly/kde_notify-%{notify_kde_ver}.tar.gz
-# Source22-md5:	5fb975affffb243e1c5e2037f4dd1732
+# Source22-md5:	2da919d6359049a6e4827e795ba46b1a
+Source23:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-emots-tango.tar.gz
+# Source23-md5:	436f12011f209c4427a9e411091ecb0a
+Source24:	http://www.kadu.net/~dorr/moduly/kadu-pajacyk-%{pajacyk_ver}.tar.bz2
+# Source24-md5:	e50246fb13612882eadae5e75fe1d3d0
 Patch0:		%{name}-weather-duplicated-translation-fix.patch
+Patch1:		%{name}-mail.patch
 URL:		http://kadu.net/
 BuildRequires:	Qt3Support-devel >= 4.4
 BuildRequires:	QtScript-devel >= 4.4
 BuildRequires:	QtWebKit-devel >= 4.4
 %{?with_sound_alsa:BuildRequires:	alsa-lib-devel}
 %{?with_sound_arts:BuildRequires:	artsc-devel}
-%{?with_spellchecker:BuildRequires:	aspell-devel}
+%{?with_spellchecker:BuildRequires:	enchant-devel}
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cmake
@@ -309,6 +317,18 @@ Censor module.
 
 %description module-cenzor -l pl.UTF-8
 Moduł cenzora.
+
+%package module-dbus
+Summary:	DBus interface support
+Summary(pl.UTF-8):	Interfejs DBus
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-dbus
+DBus Interface for Kadu.
+
+%description module-dbus -l pl.UTF-8
+Interfejs DBus dla Kadu.
 
 %package module-desc_history
 Summary:	Status descriptions history
@@ -754,6 +774,18 @@ Notification by Water Plugin in Compiz.
 %description module-notify-water -l pl.UTF-8
 Moduł powiadamiania wtyczką Water w Compizie.
 
+%package module-pajacyk
+Summary:	Pajacyk - feed polish childrens
+Summary(pl.UTF-8):	Pajacyk - nakarm polskie dzieci
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-pajacyk
+Click on Puppet and feed polish children.
+
+%description module-pajacyk -l pl.UTF-8
+Kliknij w Pajacyka i nakarm polskie dzieci.
+
 %package module-panelkadu
 Summary:	Module which makes Kadu look and behave like a panel
 Summary(pl.UTF-8):	Moduł sprawiający, że Kadu wygląda i zachowuje się jak panel
@@ -931,7 +963,8 @@ Summary:	Checker of spelling mistakes
 Summary(pl.UTF-8):	Moduł sprawdzający pisownię
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
-Requires:	aspell
+Requires:	enchant
+Suggests:	enchant-aspell
 
 %description module-spellchecker
 Checker of spelling mistakes.
@@ -939,12 +972,25 @@ Checker of spelling mistakes.
 %description module-spellchecker -l pl.UTF-8
 Moduł sprawdzający pisownię.
 
+%package module-single_window
+Summary:	Joins contacts and chats in one window
+Summary(pl.UTF-8):	Łączy listę kontaktów i rozmowy w jednym oknie
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-single_window
+Joins contacts and chats in one window.
+This module is especialy for small devices in mind.
+
+%description module-single_window -l pl.UTF-8
+Łączy listę kontaktów i rozmowy w jednym oknie.
+Moduł przygotowany z myślą o małych urządzeniach.
+
 %package module-split_messages
 Summary:	Automaticaly split too long messages in Kadu
 Summary(pl.UTF-8):	Automatyczne dzielenie zbyt długich wiadomości w Kadu
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
-Requires:	aspell
 
 %description module-split_messages
 Automaticaly split too long messages in Kadu.
@@ -1074,6 +1120,7 @@ tar xzf %{SOURCE4} -C modules
 %endif
 %if %{with mail}
 tar xjf %{SOURCE5} -C modules
+%patch1 -p0
 %endif
 %if %{with mime_tex}
 tar xjf %{SOURCE6} -C modules
@@ -1112,6 +1159,9 @@ tar xjf %{SOURCE21} -C modules
 %if %{with notify_kde}
 tar xzf %{SOURCE22} -C modules
 %endif
+%if %{with pajacyk}
+tar xjf %{SOURCE24} -C modules
+%endif
 
 # themes-icons
 tar xzf %{SOURCE16} -C varia/themes/icons
@@ -1119,6 +1169,9 @@ tar xzf %{SOURCE17} -C varia/themes/icons
 tar xzf %{SOURCE18} -C varia/themes/icons
 tar xzf %{SOURCE19} -C varia/themes/icons
 tar xzf %{SOURCE20} -C varia/themes/icons
+
+# themes- emoticons
+tar xzf %{SOURCE23} -C varia/themes/emoticons
 
 # Drop this in 0.6.6 - fix external modules installation on x86_64
 %if "%{_lib}" == "lib64"
@@ -1180,10 +1233,10 @@ install -d build
 %else
 %{__sed} -i 's/module_cenzor=m/module_cenzor=n/' .config
 %endif
-%if %{with dcopexport}
-%{__sed} -i 's/module_dcopexport=n/module_dcopexport=m/' .config
+%if %{with dbus}
+%{__sed} -i 's/module_dbus=n/module_dbus=m/' .config
 %else
-%{__sed} -i 's/module_dcopexport=m/module_dcopexport=n/' .config
+%{__sed} -i 's/module_dbus=m/module_dbus=n/' .config
 %endif
 %if %{with desc_history}
 %{__sed} -i 's/module_desc_history=n/module_desc_history=m/' .config
@@ -1359,6 +1412,11 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok2_mediaplayer/spec
 %else
 %{__sed} -i 's/module_xosd_notify=m/module_xosd_notify=n/' .config
 %endif
+%if %{with pajacyk}
+%{__sed} -i 's/module_pajacyk=n/module_pajacyk=m/' .config
+%else
+%{__sed} -i 's/module_pajacyk=m/module_pajacyk=n/' .config
+%endif
 %if %{with panelkadu}
 %{__sed} -i 's/module_panelkadu=n/module_panelkadu=m/' .config
 %else
@@ -1388,6 +1446,11 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok2_mediaplayer/spec
 %{__sed} -i 's/module_senthistory=n/module_senthistory=m/' .config
 %else
 %{__sed} -i 's/module_senthistory=m/module_senthistory=n/' .config
+%endif
+%if %{with single_window}
+%{__sed} -i 's/module_single_window=n/module_single_window=m/' .config
+%else
+%{__sed} -i 's/module_single_window=m/module_single_window=n/' .config
 %endif
 %if %{with sms_plus_pl}
 %{__sed} -i 's/module_plus_pl_sms=n/module_plus_pl_sms=m/' .config
@@ -1461,6 +1524,8 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok2_mediaplayer/spec
 %{__sed} -i 's/icons_oxygen16=n/icons_oxygen16=y/' .config
 %{__sed} -i 's/icons_tango16=n/icons_tango16=y/' .config
 
+%{__sed} -i 's/emoticons_tango=n/emoticons_tango=y/' .config
+
 cd build
 %cmake \
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
@@ -1506,6 +1571,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/%{name}/themes
 %dir %{_datadir}/%{name}/themes/emoticons
 %{_datadir}/%{name}/themes/emoticons/penguins
+%{_datadir}/%{name}/themes/emoticons/tango
 %dir %{_datadir}/%{name}/themes/icons
 %{_datadir}/%{name}/themes/icons/default
 %dir %{_datadir}/%{name}/themes/sounds
@@ -1728,20 +1794,11 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{modules_data_dir}/translations/encryption_pl.qm
 %endif
 
-%if %{with dcopexport}
-%files module-dcopexport
+%if %{with dbus}
+%files module-dbus
 %defattr(644,root,root,755)
-%{modules_data_dir}/dcopexport.desc
-%attr(755,root,root) %{modules_lib_dir}/dcopexport.so
-%lang(pl) %{modules_data_dir}/translations/dcopexport_pl.qm
-%dir %{modules_bin_dir}/dcopexport
-%attr(755,root,root) %{modules_bin_dir}/dcopexport/install-firefox-gg.sh
-%attr(755,root,root) %{modules_bin_dir}/dcopexport/install-konqueror-gg.sh
-%attr(755,root,root) %{modules_bin_dir}/dcopexport/install-konqueror-setAsKaduDesc.sh
-%attr(755,root,root) %{modules_bin_dir}/dcopexport/install-opera-gg.sh
-%attr(755,root,root) %{modules_bin_dir}/dcopexport/kadu-gg-handler.sh
-%dir %{modules_data_dir}/data/dcopexport
-%{modules_data_dir}/data/dcopexport/dcopexport.png
+%{modules_data_dir}/dbus.desc
+%attr(755,root,root) %{modules_lib_dir}/libdbus.so
 %endif
 
 %if %{with docking_desktop}
@@ -2019,6 +2076,16 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{modules_data_dir}/translations/water_notify_pl.qm
 %endif
 
+%if %{with pajacyk}
+%files module-pajacyk
+%defattr(644,root,root,755)
+%{modules_data_dir}/pajacyk.desc
+%{modules_data_dir}/configuration/pajacyk.ui
+%attr(755,root,root) %{modules_lib_dir}/libpajacyk.so
+%lang(pl) %{modules_data_dir}/translations/pajacyk_pl.qm
+%endif
+
+
 %if %{with panelkadu}
 %files module-panelkadu
 %defattr(644,root,root,755)
@@ -2060,6 +2127,16 @@ rm -rf $RPM_BUILD_ROOT
 #%lang(it) %{modules_data_dir}/translations/profiles_it.qm
 %lang(pl) %{modules_data_dir}/translations/profiles_pl.qm
 %endif
+
+%if %{with single_window}
+%files module-single_window
+%defattr(644,root,root,755)
+%{modules_data_dir}/single_window.desc
+%{modules_data_dir}/configuration/single_window.ui
+%attr(755,root,root) %{modules_lib_dir}/libsingle_window.so
+%lang(pl) %{modules_data_dir}/translations/single_window_pl.qm
+%endif
+
 
 %if %{with senthistory}
 %files module-senthistory
