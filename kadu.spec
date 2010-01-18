@@ -133,7 +133,7 @@ Source16:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-theme-glass-16.
 Source17:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-theme-glass-22.tar.gz
 # Source17-md5:	d9df73a452cf190abd5605112c53c21f
 Source18:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-theme-oxygen-16.tar.gz
-# Source18-md5:	9c789d2aa146eb54426834a11ad56b13
+# Source18-md5:	1dd08c856ec86f55dccf88ab19be6f5a
 Source19:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-theme-tango-16.tar.gz
 # Source19-md5:	9710fd37c6fd8c24e2bae8fa377ee465
 Source20:	http://www.kadu.net/download/additions/%{name}-0.6.5-theme-kadu05.tar.gz
