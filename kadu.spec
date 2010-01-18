@@ -1106,6 +1106,18 @@ Tango16 icon theme.
 %description theme-icons-tango16 -l pl.UTF-8
 Zestaw ikon Tango16.
 
+%package theme-emoticons-tango
+Summary:	Tango emoticons theme
+Summary(pl.UTF-8):	Zestaw emotikon Tango
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description theme-emoticons-tango
+Tango emoticons theme.
+
+%description theme-emoticons-tango -l pl.UTF-8
+Zestaw emotikon Tango.
+
 %prep
 %setup -q -T -b 0 -n %{name}
 
@@ -1571,7 +1583,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/%{name}/themes
 %dir %{_datadir}/%{name}/themes/emoticons
 %{_datadir}/%{name}/themes/emoticons/penguins
-%{_datadir}/%{name}/themes/emoticons/tango
 %dir %{_datadir}/%{name}/themes/icons
 %{_datadir}/%{name}/themes/icons/default
 %dir %{_datadir}/%{name}/themes/sounds
@@ -2310,3 +2321,7 @@ rm -rf $RPM_BUILD_ROOT
 %files theme-icons-tango16
 %defattr(644,root,root,755)
 %{_datadir}/%{name}/themes/icons/tango16
+
+%files theme-emoticons-tango
+%defattr(644,root,root,755)
+%{_datadir}/%{name}/themes/emoticons/tango
