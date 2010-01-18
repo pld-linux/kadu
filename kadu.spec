@@ -159,6 +159,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cmake
 %{?with_sms_plus_pl:BuildRequires:	curl-devel}
+BuildRequires:	dos2unix
 %{?with_notify_water:BuildRequires:	dbus-devel}
 %{?with_sound_ao:BuildRequires:	libao-devel}
 BuildRequires:	libgadu-devel >= %{libgadu_ver}
@@ -1132,6 +1133,7 @@ tar xzf %{SOURCE4} -C modules
 %endif
 %if %{with mail}
 tar xjf %{SOURCE5} -C modules
+dos2unix modules/mail/translations/mail_pl.ts
 %patch1 -p0
 %endif
 %if %{with mime_tex}
