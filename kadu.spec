@@ -82,23 +82,22 @@
 %define		notify_led_ver		0.23
 %define		notify_mx610_ver	0.4.1
 %define		notify_water_ver	0.2.1
-%define		pajacyk_ver		0.2
+%define		pajacyk_ver		0.2.1
 %define		panelkadu_ver		0.6.5-5
 %define		senthistory_ver		0.6.5-5
 %define		sms_plus_pl_ver		0.6.5.4-1
-%define		tabs_ver		1.2.6
+%define		tabs_ver		1.2.7
 %define		weather_ver		3.15
 
-%define		rel	rc3
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
 Version:	0.6.5.4
-Release:	0.%{rel}.1
+Release:	1
 License:	GPL v2
 Group:		Applications/Communications
-Source0:	http://kadu.net/download/stable/%{name}-%{version}-%{rel}.tar.bz2
-# Source0-md5:	acd79b3cdff716f4981f26e3f0ccc2db
+Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
+# Source0-md5:	97cb72c0ab4b5cf897bfbfc3b5ac0379
 Source1:	%{name}.desktop
 Source2:	http://kadu.net/~patryk/anonymous_check/anonymous_check-%{anonymous_check_ver}.tar.bz2
 # Source2-md5:	f6290d67c0f45b3f43ff3f35e780615f
@@ -125,7 +124,7 @@ Source12:	http://www.ultr.pl/kadu/senthistory-%{senthistory_ver}.tar.gz
 Source13:	http://kadu.net/~patryk/plus_pl_sms/plus_pl_sms-plus_pl_sms-%{sms_plus_pl_ver}.tar.bz2
 # Source13-md5:	59f7ba01a63464818acaa5ff6fd176d5
 Source14:	http://www.kadu.net/~weagle/tabs/%{name}-tabs-%{tabs_ver}.tar.bz2
-# Source14-md5:	52d74572979838aa55b9fb76c0283a18
+# Source14-md5:	f6eba5d0d75b79331101bf8ea438dc7e
 Source15:	http://kadu.net/~blysk/weather-%{weather_ver}.tar.bz2
 # Source15-md5:	d96a1222764b23c00e82fffc650d748e
 Source16:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-theme-glass-16.tar.gz
@@ -145,7 +144,7 @@ Source22:	http://www.kadu.net/~dorr/moduly/kde_notify-%{notify_kde_ver}.tar.gz
 Source23:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-emots-tango.tar.gz
 # Source23-md5:	436f12011f209c4427a9e411091ecb0a
 Source24:	http://www.kadu.net/~dorr/moduly/kadu-pajacyk-%{pajacyk_ver}.tar.bz2
-# Source24-md5:	e50246fb13612882eadae5e75fe1d3d0
+# Source24-md5:	c87d4b68d65c923118b6ac3e9396ff13
 Patch0:		%{name}-weather-duplicated-translation-fix.patch
 Patch1:		%{name}-mail.patch
 URL:		http://kadu.net/
