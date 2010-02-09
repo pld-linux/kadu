@@ -154,8 +154,6 @@ BuildRequires:	QtWebKit-devel >= 4.4
 %{?with_sound_alsa:BuildRequires:	alsa-lib-devel}
 %{?with_sound_arts:BuildRequires:	artsc-devel}
 %{?with_spellchecker:BuildRequires:	enchant-devel}
-BuildRequires:	autoconf
-BuildRequires:	automake
 BuildRequires:	cmake
 %{?with_sms_plus_pl:BuildRequires:	curl-devel}
 BuildRequires:	dos2unix
