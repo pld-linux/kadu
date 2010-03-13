@@ -69,7 +69,7 @@
 %bcond_without	weather			# without weather check module support
 %bcond_without	word_fix		# without word_fix module support
 
-%define		libgadu_ver		4:1.9.0-0.rc2.1
+%define		libgadu_ver		4:1.9.0-0.rc3.1
 
 %define		anonymous_check_ver	0.6.5.3-1
 %define		dcopexport_ver		0.11.3-20071129
@@ -93,7 +93,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
 Version:	0.6.5.4
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -152,7 +152,6 @@ BuildRequires:	Qt3Support-devel >= 4.4
 BuildRequires:	QtScript-devel >= 4.4
 BuildRequires:	QtWebKit-devel >= 4.4
 %{?with_sound_alsa:BuildRequires:	alsa-lib-devel}
-%{?with_sound_arts:BuildRequires:	artsc-devel}
 %{?with_spellchecker:BuildRequires:	enchant-devel}
 BuildRequires:	cmake
 %{?with_sms_plus_pl:BuildRequires:	curl-devel}
@@ -179,8 +178,8 @@ Obsoletes:	kadu-module-imiface <= 0.4.3
 Obsoletes:	kadu-module-iwait4u <= 0.5.0
 Obsoletes:	kadu-module-notify-xosd <= 0.6.5
 %{!?with_speech:Obsoletes:	kadu-module-speech <= 0.4.3}
-Obsoletes:	kadu-module-sound_arts <= 0.6.5
-Obsoletes:	kadu-module-sound_esd <= 0.6.5
+Obsoletes:	kadu-module-sound-arts <= 0.6.5
+Obsoletes:	kadu-module-sound-esd <= 0.6.5
 Obsoletes:	kadu-module-tcl_scripting <= 0.4.3
 Obsoletes:	kadu-theme-icons-crystal16
 Obsoletes:	kadu-theme-icons-crystal22
@@ -875,7 +874,8 @@ Summary:	SMS Plus.pl module
 Summary(pl.UTF-8):	Moduł obsługi bramki SMS w Plus.pl
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
-Obsoletes:	module-sms-miastoplusa
+Provides:	kadu-module-sms-miastoplusa = %{name}
+Obsoletes:	kadu-module-sms-miastoplusa <= 0.6.5
 
 %description module-sms-plus_pl
 SMS Gateway on Plus.pl module.
