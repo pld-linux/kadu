@@ -25,10 +25,10 @@
 %bcond_without	last_seen		# without last_seen module support
 %bcond_without	mail			# without mail module support
 %bcond_without	mediaplayer		# without media player modules support
-%bcond_without	mediaplayer_amarok	# without amarok player support module
+%bcond_with	mediaplayer_amarok	# without amarok player support module
 %bcond_without	mediaplayer_amarok2	# without amarok2 player support module
 %bcond_without	mediaplayer_audacious	# without audacious player support module
-%bcond_without	mediaplayer_bmpx	# without bmpx player support module
+%bcond_with	mediaplayer_bmpx	# without bmpx player support module
 %bcond_without	mediaplayer_dragon	# without dragon player support module
 %bcond_without	mediaplayer_falf	# without falf player support module
 %bcond_without	mediaplayer_mpris	# without generic mpris interface support module
@@ -93,7 +93,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
 Version:	0.6.5.4
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
