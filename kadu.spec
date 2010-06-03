@@ -93,7 +93,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
 Version:	0.6.5.4
-Release:	4
+Release:	5
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -147,6 +147,7 @@ Source24:	http://www.kadu.net/~dorr/moduly/kadu-pajacyk-%{pajacyk_ver}.tar.bz2
 # Source24-md5:	c87d4b68d65c923118b6ac3e9396ff13
 Patch0:		%{name}-weather-duplicated-translation-fix.patch
 Patch1:		%{name}-mail.patch
+Patch2:		%{name}-gcc4.patch
 URL:		http://kadu.net/
 BuildRequires:	Qt3Support-devel >= 4.4
 BuildRequires:	QtScript-devel >= 4.4
@@ -1198,6 +1199,8 @@ echo "module_desc_history=n" >>.config
 
 # packages are not allowed to download any content while building
 chmod -x varia/scripts/autodownload
+
+%patch2 -p1
 
 %build
 install -d build
