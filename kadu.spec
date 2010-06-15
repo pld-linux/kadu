@@ -30,7 +30,7 @@
 %bcond_without	mediaplayer_audacious	# without audacious player support module
 %bcond_with	mediaplayer_bmpx	# without bmpx player support module
 %bcond_without	mediaplayer_dragon	# without dragon player support module
-%bcond_without	mediaplayer_falf	# without falf player support module
+%bcond_with	mediaplayer_falf	# without falf player support module
 %bcond_without	mediaplayer_mpris	# without generic mpris interface support module
 %bcond_without	mediaplayer_vlc		# without vlc player support module
 %bcond_without	mediaplayer_xmms	# without xmms player support module
@@ -93,7 +93,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
 Version:	0.6.5.4
-Release:	5
+Release:	6
 License:	GPL v2
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
