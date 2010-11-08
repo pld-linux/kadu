@@ -154,7 +154,7 @@ BuildRequires:	Qt3Support-devel >= 4.4
 BuildRequires:	QtScript-devel >= 4.4
 BuildRequires:	QtWebKit-devel >= 4.4
 %{?with_sound_alsa:BuildRequires:	alsa-lib-devel}
-BuildRequires:	cmake
+BuildRequires:	cmake >= 2.6.0
 %{?with_sms_plus_pl:BuildRequires:	curl-devel}
 %{?with_notify_water:BuildRequires:	dbus-devel}
 %{?with_spellchecker:BuildRequires:	enchant-devel}
