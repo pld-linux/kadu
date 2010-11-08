@@ -94,7 +94,7 @@ Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
 Version:	0.6.5.4
 Release:	7
-License:	GPL v2
+License:	GPL v2+
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
 # Source0-md5:	97cb72c0ab4b5cf897bfbfc3b5ac0379
@@ -148,16 +148,16 @@ Source24:	http://www.kadu.net/~dorr/moduly/kadu-pajacyk-%{pajacyk_ver}.tar.bz2
 Patch0:		%{name}-weather-duplicated-translation-fix.patch
 Patch1:		%{name}-mail.patch
 Patch2:		%{name}-gcc4.patch
+Patch3:		%{name}-link.patch
 URL:		http://kadu.net/
 BuildRequires:	Qt3Support-devel >= 4.4
 BuildRequires:	QtScript-devel >= 4.4
 BuildRequires:	QtWebKit-devel >= 4.4
 %{?with_sound_alsa:BuildRequires:	alsa-lib-devel}
-%{?with_spellchecker:BuildRequires:	enchant-devel}
 BuildRequires:	cmake
 %{?with_sms_plus_pl:BuildRequires:	curl-devel}
-BuildRequires:	dos2unix
 %{?with_notify_water:BuildRequires:	dbus-devel}
+%{?with_spellchecker:BuildRequires:	enchant-devel}
 %{?with_sound_ao:BuildRequires:	libao-devel}
 BuildRequires:	libgadu-devel >= %{libgadu_ver}
 %{?with_voice:BuildRequires:	libgsm-devel}
@@ -168,26 +168,27 @@ BuildRequires:	pkgconfig
 %{?with_encryption:BuildRequires:	qca-devel}
 BuildRequires:	qt4-build
 BuildRequires:	qt4-linguist
+BuildRequires:	rpmbuild(macros) >= 1.566
 BuildRequires:	sed >= 4.0
 %{?with_desc_history:BuildRequires:     sqlite3-devel}
 %{?with_mediaplayer_xmms:BuildRequires:	xmms-devel}
-%{?with_panelkadu:BuildRequires:	xorg-lib-libXtst-devel}
 BuildRequires:	xorg-lib-libXScrnSaver-devel
+%{?with_panelkadu:BuildRequires:	xorg-lib-libXtst-devel}
 Requires:	libgadu >= %{libgadu_ver}
 Obsoletes:	kadu-module-docking-wmaker <= 0.6.5
 Obsoletes:	kadu-module-imiface <= 0.4.3
 Obsoletes:	kadu-module-iwait4u <= 0.5.0
+%{!?with_mediaplayer:Obsoletes:	kadu-module-mediaplayer}
 Obsoletes:	kadu-module-notify-xosd <= 0.6.5
-%{!?with_speech:Obsoletes:	kadu-module-speech <= 0.4.3}
 Obsoletes:	kadu-module-sound-arts <= 0.6.5
 Obsoletes:	kadu-module-sound-esd <= 0.6.5
+%{!?with_speech:Obsoletes:	kadu-module-speech <= 0.4.3}
+%{!?with_split_messages:Obsoletes:	kadu-module-split_messages}
 Obsoletes:	kadu-module-tcl_scripting <= 0.4.3
 Obsoletes:	kadu-theme-icons-crystal16
 Obsoletes:	kadu-theme-icons-crystal22
 Obsoletes:	kadu-theme-icons-nuvola16
 Obsoletes:	kadu-theme-icons-nuvola22
-%{!?with_mediaplayer:Obsoletes:	kadu-module-mediaplayer}
-%{!?with_split_messages:Obsoletes:	kadu-module-split_messages}
 %if %{without notify_osdhints} && %{without notify_xosd}
 Obsoletes:	kadu-module-notify-osdhints
 Obsoletes:	kadu-module-notify-xosd
@@ -577,13 +578,13 @@ Requires:	%{name}-module-mediaplayer = %{version}-%{release}
 
 %description module-mediaplayer-mpris
 Module which allows showing in status description information about
-the song currently played in mpris compatible player.
-It is used by other modules.
+the song currently played in mpris compatible player. It is used by
+other modules.
 
 %description module-mediaplayer-mpris -l pl.UTF-8
 Moduł umożliwiający w opisie statusu pokazywanie informacji o
-odgrywanym utworze z odtwarzacza zgodnego z mpris.
-Jest wykorzystywany przez inne moduły.
+odgrywanym utworze z odtwarzacza zgodnego z mpris. Jest wykorzystywany
+przez inne moduły.
 
 %package module-mediaplayer-vlc
 Summary:	Support VLC status
@@ -817,8 +818,8 @@ Requires:	%{name}-module-anonymous_check = %{version}-%{release}
 Requires:	%{name}-module-antistring = %{version}-%{release}
 Requires:	%{name}-module-auto_hide = %{version}-%{release}
 Requires:	%{name}-module-autostatus = %{version}-%{release}
-Requires:	%{name}-module-gg_avatars = %{version}-%{release}
 Requires:	%{name}-module-cenzor = %{version}-%{release}
+Requires:	%{name}-module-gg_avatars = %{version}-%{release}
 Requires:	%{name}-module-parser_extender = %{version}-%{release}
 %if %{with split_messages}
 Requires:	%{name}-module-split_messages = %{version}-%{release}
@@ -979,12 +980,12 @@ Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-single_window
-Joins contacts and chats in one window.
-This module is especialy for small devices in mind.
+Joins contacts and chats in one window. This module is especialy for
+small devices in mind.
 
 %description module-single_window -l pl.UTF-8
-Łączy listę kontaktów i rozmowy w jednym oknie.
-Moduł przygotowany z myślą o małych urządzeniach.
+Łączy listę kontaktów i rozmowy w jednym oknie. Moduł przygotowany z
+myślą o małych urządzeniach.
 
 %package module-split_messages
 Summary:	Automaticaly split too long messages in Kadu
@@ -1132,7 +1133,7 @@ tar xzf %{SOURCE4} -C modules
 %endif
 %if %{with mail}
 tar xjf %{SOURCE5} -C modules
-dos2unix modules/mail/translations/mail_pl.ts
+%undos modules/mail/translations/mail_pl.ts
 %patch1 -p0
 %endif
 %if %{with mime_tex}
@@ -1202,6 +1203,7 @@ echo "module_desc_history=n" >>.config
 chmod -x varia/scripts/autodownload
 
 %patch2 -p1
+%patch3 -p1
 
 %build
 install -d build
@@ -1545,14 +1547,10 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok2_mediaplayer/spec
 %{__sed} -i 's/emoticons_tango=n/emoticons_tango=y/' .config
 
 cd build
-%cmake \
-	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
+%cmake .. \
 	-DSYSCONF_INSTALL_DIR=%{_sysconfdir} \
-	-DENABLE_AUTDOWNLOAD=OFF \
-%if "%{_lib}" == "lib64"
-	-DLIB_SUFFIX=64 \
-%endif
-	..
+	-DENABLE_AUTDOWNLOAD=OFF
+
 %{__make}
 
 %install
