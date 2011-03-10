@@ -74,10 +74,10 @@
 %define		anonymous_check_ver	0.6.5.3-1
 %define		dcopexport_ver		0.11.3-20071129
 %define		desc_history_ver	1.1
-%define		globalhotkeys_ver	0.6.5-15
+%define		globalhotkeys_ver	0.6.5-18
 %define		mail_ver		0.3.6
 %define		mime_tex_ver		0.6.5.3-1
-%define		nextinfo_ver		0.6.5-2
+%define		nextinfo_ver		0.6.5-3
 %define		notify_kde_ver		0.3.4
 %define		notify_led_ver		0.23
 %define		notify_mx610_ver	0.4.1
@@ -104,13 +104,13 @@ Source2:	http://kadu.net/~patryk/anonymous_check/anonymous_check-%{anonymous_che
 Source3:	dcopexport-%{dcopexport_ver}-0.6.0.tar.bz2
 # Source3-md5:	b36fcfcf4756285f30cbb6c2b6c2a2da
 Source4:	http://www.ultr.pl/kadu/globalhotkeys-%{globalhotkeys_ver}.tar.gz
-# Source4-md5:	2b28612576276fc2b87120093428965b
+# Source4-md5:	cb44fdbd3dc1fe0dad50f946f24610b5
 Source5:	http://kadu.net/~michal/mail/mail-%{mail_ver}.tar.bz2
 # Source5-md5:	85fdf695c7fbc58e607dc15278391ab3
 Source6:	http://kadu.net/~patryk/mime_tex/mime_tex-mime_tex-%{mime_tex_ver}.tar.bz2
 # Source6-md5:	d48fe247514ee187037bf7829457865e
 Source7:	http://www.ultr.pl/kadu/nextinfo-%{nextinfo_ver}.tar.gz
-# Source7-md5:	ad23febe3c891dcf41f3c4eabd310ff9
+# Source7-md5:	72a545ecf810d6ef68524da7a53fdf7f
 Source8:	http://kadu.net/~blysk/led_notify-%{notify_led_ver}.tar.bz2
 # Source8-md5:	6abcc3ab992daeb9820f9156d8d76020
 Source9:	http://www.kadu.net/~dorr/moduly/%{name}-mx610_notify-%{notify_mx610_ver}.tar.bz2
@@ -1162,10 +1162,6 @@ tar xjf %{SOURCE13} -C modules
 %endif
 %if %{with tabs}
 tar xjf %{SOURCE14} -C modules
-%endif
-%if %{with weather}
-tar xjf %{SOURCE15} -C modules
-%patch0 -p1
 %endif
 %if %{with desc_history}
 tar xjf %{SOURCE21} -C modules
