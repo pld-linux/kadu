@@ -20,6 +20,7 @@
 %bcond_without	filedesc		# without filedesc module support
 %bcond_without	filtering		# without filtering module support
 %bcond_without	firewall		# without firewall module support
+%bcond_without	geoip			# without geoip module support
 %bcond_without	gg_avatars		# without gg_avatars module support
 %bcond_without	globalhotkeys		# without globalhotkeys module support
 %bcond_without	last_seen		# without last_seen module support
@@ -74,6 +75,7 @@
 %define		anonymous_check_ver	0.6.5.3-1
 %define		dcopexport_ver		0.11.3-20071129
 %define		desc_history_ver	1.1
+%define		geoip_ver		0.2
 %define		globalhotkeys_ver	0.6.5-18
 %define		mail_ver		0.3.6
 %define		mime_tex_ver		0.6.5.3-1
@@ -87,7 +89,6 @@
 %define		senthistory_ver		0.6.5-5
 %define		sms_plus_pl_ver		0.6.5.4-1
 %define		tabs_ver		1.2.7
-%define		weather_ver		3.15
 
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
@@ -125,8 +126,8 @@ Source13:	http://kadu.net/~patryk/plus_pl_sms/plus_pl_sms-plus_pl_sms-%{sms_plus
 # Source13-md5:	59f7ba01a63464818acaa5ff6fd176d5
 Source14:	http://www.kadu.net/~weagle/tabs/%{name}-tabs-%{tabs_ver}.tar.bz2
 # Source14-md5:	f6eba5d0d75b79331101bf8ea438dc7e
-Source15:	http://kadu.net/~blysk/weather-%{weather_ver}.tar.bz2
-# Source15-md5:	d96a1222764b23c00e82fffc650d748e
+Source15:	http://kadu.net/~neeo/kadu/geoip/geoip_lookup-%{geoip_ver}.tar.bz2
+# Source15-md5:	83d9672c7f88b803510e7757dd36ea92
 Source16:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-theme-glass-16.tar.gz
 # Source16-md5:	25374d4b876037de6d00eedca76eae0f
 Source17:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-theme-glass-22.tar.gz
@@ -169,6 +170,7 @@ BuildRequires:	QtXmlPatterns-devel
 BuildRequires:	cmake >= 2.6.0
 %{?with_sms_plus_pl:BuildRequires:	curl-devel}
 %{?with_notify_water:BuildRequires:	dbus-devel}
+%{?with_geoip:BuildRequires:	GeoIP-devel}
 %{?with_spellchecker:BuildRequires:	enchant-devel}
 %{?with_sound_ao:BuildRequires:	libao-devel}
 BuildRequires:	libgadu-devel >= %{libgadu_ver}
@@ -424,6 +426,18 @@ Module to block unknown persons, who wants to start chat.
 
 %description module-firewall -l pl.UTF-8
 Moduł blokuje nieznane osoby, chcące zacząć rozmowę.
+
+%package module-geoip
+Summary:	Geoip module
+Summary(pl.UTF-8):	Modul geoip
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-geoip
+Geoip module.
+
+%description module-geoip -l pl.UTF-8
+Modul geoip.
 
 %package module-gg_avatars
 Summary:	Adds gadu avatars support to Kadu
@@ -1188,6 +1202,9 @@ tar xjf %{SOURCE13} -C modules
 %if %{with tabs}
 tar xjf %{SOURCE14} -C modules
 %endif
+%if %{with geoip}
+tar xjf %{SOURCE15} -C modules
+%endif
 %if %{with desc_history}
 tar xjf %{SOURCE21} -C modules
 %endif
@@ -1315,6 +1332,11 @@ mkdir -p build
 %{__sed} -i 's/module_firewall=n/module_firewall=m/' .config
 %else
 %{__sed} -i 's/module_firewall=m/module_firewall=n/' .config
+%endif
+%if %{with geoip}
+%{__sed} -i 's/module_geoip_lookup=n/module_geoip_lookup=m/' .config
+%else
+%{__sed} -i 's/module_geoip_lookup=m/module_geoip_lookup=n/' .config
 %endif
 %if %{with gg_avatars}
 %{__sed} -i 's/module_gg_avatars=n/module_gg_avatars=m/' .config
@@ -1887,6 +1909,13 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/configuration/firewall.ui
 %attr(755,root,root) %{modules_lib_dir}/libfirewall.so
 %lang(pl) %{modules_data_dir}/translations/firewall_pl.qm
+%endif
+
+%if %{with geoip}
+%files module-geoip
+%defattr(644,root,root,755)
+%{modules_data_dir}/geoip_lookup.desc
+%attr(755,root,root) %{modules_lib_dir}/libgeoip_lookup.so
 %endif
 
 %if %{with gg_avatars}
