@@ -113,9 +113,9 @@ Source7:	http://www.ultr.pl/kadu/nextinfo-%{nextinfo_ver}.tar.gz
 # Source7-md5:	ad23febe3c891dcf41f3c4eabd310ff9
 Source8:	http://kadu.net/~blysk/led_notify-%{notify_led_ver}.tar.bz2
 # Source8-md5:	6abcc3ab992daeb9820f9156d8d76020
-Source9:	http://www.kadu.net/~dorr/moduly/kadu-mx610_notify-%{notify_mx610_ver}.tar.bz2
+Source9:	http://www.kadu.net/~dorr/moduly/%{name}-mx610_notify-%{notify_mx610_ver}.tar.bz2
 # Source9-md5:	4b2a47068928b9687c61816abeed86fe
-Source10:	http://www.kadu.net/~dorr/moduly/kadu-water_notify-%{notify_water_ver}.tar.bz2
+Source10:	http://www.kadu.net/~dorr/moduly/%{name}-water_notify-%{notify_water_ver}.tar.bz2
 # Source10-md5:	4196e85fc4be93bd662f5148ebc18235
 Source11:	http://www.ultr.pl/kadu/panelkadu-%{panelkadu_ver}.tar.gz
 # Source11-md5:	139948fe1197ff8f2a2e0dd52bc2bfc8
@@ -143,7 +143,7 @@ Source22:	http://www.kadu.net/~dorr/moduly/kde_notify-%{notify_kde_ver}.tar.gz
 # Source22-md5:	2da919d6359049a6e4827e795ba46b1a
 Source23:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-emots-tango.tar.gz
 # Source23-md5:	436f12011f209c4427a9e411091ecb0a
-Source24:	http://www.kadu.net/~dorr/moduly/kadu-pajacyk-%{pajacyk_ver}.tar.bz2
+Source24:	http://www.kadu.net/~dorr/moduly/%{name}-pajacyk-%{pajacyk_ver}.tar.bz2
 # Source24-md5:	c87d4b68d65c923118b6ac3e9396ff13
 Patch0:		%{name}-weather-duplicated-translation-fix.patch
 Patch1:		%{name}-mail.patch
