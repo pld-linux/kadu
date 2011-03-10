@@ -92,12 +92,12 @@
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
-Version:	0.6.5.4
-Release:	7
+Version:	0.6.5.5
+Release:	1
 License:	GPL v2+
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
-# Source0-md5:	97cb72c0ab4b5cf897bfbfc3b5ac0379
+# Source0-md5:	60791263225b197c5d3148234fc6d8f6
 Source1:	%{name}.desktop
 Source2:	http://kadu.net/~patryk/anonymous_check/anonymous_check-%{anonymous_check_ver}.tar.bz2
 # Source2-md5:	f6290d67c0f45b3f43ff3f35e780615f
@@ -147,8 +147,7 @@ Source24:	http://www.kadu.net/~dorr/moduly/kadu-pajacyk-%{pajacyk_ver}.tar.bz2
 # Source24-md5:	c87d4b68d65c923118b6ac3e9396ff13
 Patch0:		%{name}-weather-duplicated-translation-fix.patch
 Patch1:		%{name}-mail.patch
-Patch2:		%{name}-gcc4.patch
-Patch3:		%{name}-link.patch
+Patch2:		%{name}-link.patch
 URL:		http://kadu.net/
 BuildRequires:	Qt3Support-devel >= 4.4
 BuildRequires:	QtScript-devel >= 4.4
@@ -169,7 +168,7 @@ BuildRequires:	pkgconfig
 %{?with_encryption:BuildRequires:	qca-devel}
 BuildRequires:	qt4-build
 BuildRequires:	qt4-linguist
-BuildRequires:	rpmbuild(macros) >= 1.566
+BuildRequires:	rpmbuild(macros) >= 1.600
 BuildRequires:	sed >= 4.0
 %{?with_desc_history:BuildRequires:     sqlite3-devel}
 %{?with_mediaplayer_xmms:BuildRequires:	xmms-devel}
@@ -1204,10 +1203,9 @@ echo "module_desc_history=n" >>.config
 chmod -x varia/scripts/autodownload
 
 %patch2 -p1
-%patch3 -p1
 
 %build
-install -d build
+mkdir -p build
 
 %if %{with advanced_userlist}
 %{__sed} -i 's/module_advanced_userlist=n/module_advanced_userlist=m/' .config
@@ -1566,11 +1564,6 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 # We dont need 8 same icons with just diffrent size - one is enough
 rm -f  $RPM_BUILD_ROOT%{_pixmapsdir}/*.png
 install kadu-core/hi64-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/kadu.png
-
-# Remove useless scripts
-rm -f $RPM_BUILD_ROOT%{_bindir}/kadu-{mozilla,config}
-
-rm -rf $RPM_BUILD_ROOT%{_includedir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
