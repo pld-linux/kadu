@@ -145,7 +145,19 @@ Source23:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-emots-tango.tar
 # Source23-md5:	436f12011f209c4427a9e411091ecb0a
 Source24:	http://www.kadu.net/~dorr/moduly/%{name}-pajacyk-%{pajacyk_ver}.tar.bz2
 # Source24-md5:	c87d4b68d65c923118b6ac3e9396ff13
-Patch0:		%{name}-weather-duplicated-translation-fix.patch
+Source25:	http://www.kadu.net/download/additions/%{name}-sound-bns.tar.bz2
+# Source25-md5:	fcf829d687df27d2ac296a077dc2814e
+Source26:	http://www.kadu.net/download/additions/%{name}-sound-drums.tar.bz2
+# Source26-md5:	0f29ac64019d841b38eefadad2a49e4f
+Source27:	http://www.kadu.net/download/additions/%{name}-sound-florkus.tar.bz2
+# Source27-md5:	d90070390134c2809a2b53df07563712
+Source28:	http://www.kadu.net/download/additions/%{name}-sound-michalsrodek.tar.bz2
+# Source28-md5:	5951d828833ea0e452654dbc80c02787
+Source29:	http://www.kadu.net/download/additions/%{name}-sound-percussion.tar.bz2
+# Source29-md5:	124175025038cd1fedb3d0caa3a0d478
+Source30:	http://www.kadu.net/download/additions/%{name}-sound-ultr.tar.bz2
+# Source30-md5:	1caec2ba480a2f47430d12ec681aa871
+Patch0:		%{name}-sounds.patch
 Patch1:		%{name}-mail.patch
 Patch2:		%{name}-link.patch
 URL:		http://kadu.net/
@@ -1119,6 +1131,18 @@ Tango emoticons theme.
 %description theme-emoticons-tango -l pl.UTF-8
 Zestaw emotikon Tango.
 
+%package theme-sounds
+Summary:	Sounds theme
+Summary(pl.UTF-8):	Zestaw dzwiekow
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description theme-sounds
+Sounds theme.
+
+%description theme-sounds -l pl.UTF-8
+Zestaw dzwiekow.
+
 %prep
 %setup -q -T -b 0 -n %{name}
 
@@ -1134,6 +1158,7 @@ tar xzf %{SOURCE4} -C modules
 %if %{with mail}
 tar xjf %{SOURCE5} -C modules
 %undos modules/mail/translations/mail_pl.ts
+%patch0 -p1
 %patch1 -p0
 %endif
 %if %{with mime_tex}
@@ -1180,8 +1205,16 @@ tar xzf %{SOURCE18} -C varia/themes/icons
 tar xzf %{SOURCE19} -C varia/themes/icons
 tar xzf %{SOURCE20} -C varia/themes/icons
 
-# themes- emoticons
+# themes-emoticons
 tar xzf %{SOURCE23} -C varia/themes/emoticons
+
+# themes-sounds
+tar xjf %{SOURCE25} -C varia/themes/sounds
+tar xjf %{SOURCE26} -C varia/themes/sounds
+tar xjf %{SOURCE27} -C varia/themes/sounds
+tar xjf %{SOURCE28} -C varia/themes/sounds
+tar xjf %{SOURCE29} -C varia/themes/sounds
+tar xjf %{SOURCE30} -C varia/themes/sounds
 
 # Drop this in 0.6.6 - fix external modules installation on x86_64
 %if "%{_lib}" == "lib64"
@@ -1540,6 +1573,13 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok2_mediaplayer/spec
 %{__sed} -i 's/icons_tango16=n/icons_tango16=y/' .config
 
 %{__sed} -i 's/emoticons_tango=n/emoticons_tango=y/' .config
+
+%{__sed} -i 's/sound_bns=n/sound_bns=y/' .config
+%{__sed} -i 's/sound_drums=n/sound_drums=y/' .config
+%{__sed} -i 's/sound_florkus=n/sound_florkus=y/' .config
+%{__sed} -i 's/sound_michalsrodek=n/sound_michalsrodek=y/' .config
+%{__sed} -i 's/sound_percussion=n/sound_percussion=y/' .config
+%{__sed} -i 's/sound_ultr=n/sound_ultr=y/' .config
 
 cd build
 %cmake .. \
@@ -2319,3 +2359,12 @@ rm -rf $RPM_BUILD_ROOT
 %files theme-emoticons-tango
 %defattr(644,root,root,755)
 %{_datadir}/%{name}/themes/emoticons/tango
+
+%files theme-sounds
+%defattr(644,root,root,755)
+%{_datadir}/%{name}/themes/sounds/bns
+%{_datadir}/%{name}/themes/sounds/drums
+%{_datadir}/%{name}/themes/sounds/florkus
+%{_datadir}/%{name}/themes/sounds/michalsrodek
+%{_datadir}/%{name}/themes/sounds/percussion
+%{_datadir}/%{name}/themes/sounds/ultr
