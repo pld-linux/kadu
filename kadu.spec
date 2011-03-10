@@ -429,7 +429,7 @@ Moduł blokuje nieznane osoby, chcące zacząć rozmowę.
 
 %package module-geoip
 Summary:	Geoip module
-Summary(pl.UTF-8):	Modul geoip
+Summary(pl.UTF-8):	Moduł geoip
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
@@ -437,7 +437,7 @@ Requires:	%{name} = %{version}-%{release}
 Geoip module.
 
 %description module-geoip -l pl.UTF-8
-Modul geoip.
+Moduł geoip.
 
 %package module-gg_avatars
 Summary:	Adds gadu avatars support to Kadu
@@ -1146,16 +1146,16 @@ Tango emoticons theme.
 Zestaw emotikon Tango.
 
 %package theme-sounds
-Summary:	Sounds theme
-Summary(pl.UTF-8):	Zestaw dzwiekow
+Summary:	Sounds themes
+Summary(pl.UTF-8):	Zestaw dźwięków
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description theme-sounds
-Sounds theme.
+Additional sounds theme.
 
 %description theme-sounds -l pl.UTF-8
-Zestaw dzwiekow.
+Zestaw dodatkowych dźwięków.
 
 %prep
 %setup -q -T -b 0 -n %{name}
