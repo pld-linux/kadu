@@ -1146,6 +1146,7 @@ Zestaw dzwiekow.
 %prep
 %setup -q -T -b 0 -n %{name}
 
+%patch0 -p1
 %if %{with anonymous_check}
 tar xjf %{SOURCE2} -C modules
 %endif
@@ -1158,7 +1159,6 @@ tar xzf %{SOURCE4} -C modules
 %if %{with mail}
 tar xjf %{SOURCE5} -C modules
 %undos modules/mail/translations/mail_pl.ts
-%patch0 -p1
 %patch1 -p0
 %endif
 %if %{with mime_tex}
