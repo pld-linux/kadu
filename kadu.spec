@@ -1,6 +1,7 @@
 #
 # TODO:
 # - desc_history - create CMakeFiles.txt, port module to kadu 0.6.5.x
+# - make voice module link with system libgsm
 #
 # Conditional build:
 %bcond_with	debug			# build with debug
