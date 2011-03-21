@@ -5,8 +5,8 @@
 #
 # Conditional build:
 %bcond_with	debug			# build with debug
-%bcond_without	advanced_userlist	# without Advanced Userlist support
-%bcond_without	agent			# without agent module support
+%bcond_with	advanced_userlist	# without Advanced Userlist support
+%bcond_with	agent			# without agent module support
 %bcond_without	anonymous_check		# without anonymous_check module support
 %bcond_without	antistring		# without antistring module support
 %bcond_without	auto_hide		# without auto_hide module support
@@ -14,18 +14,18 @@
 %bcond_without	autoresponder		# without autoresponder module support
 %bcond_without	autostatus		# without autostatus module support
 %bcond_without	cenzor			# without cenzor module support
-%bcond_without	dbus			# without dbus module support
+%bcond_with	dbus			# without dbus module support
 %bcond_with	desc_history		# without description history module support
 %bcond_without	docking_desktop		# without desktop_docking module support
 %bcond_without	encryption		# without encryption module support
 %bcond_without	filedesc		# without filedesc module support
-%bcond_without	filtering		# without filtering module support
+%bcond_with	filtering		# without filtering module support
 %bcond_without	firewall		# without firewall module support
 %bcond_without	geoip			# without geoip module support
-%bcond_without	gg_avatars		# without gg_avatars module support
+%bcond_with	gg_avatars		# without gg_avatars module support
 %bcond_without	globalhotkeys		# without globalhotkeys module support
 %bcond_without	last_seen		# without last_seen module support
-%bcond_without	mail			# without mail module support
+%bcond_with	mail			# without mail module support
 %bcond_without	mediaplayer		# without media player modules support
 %bcond_with	mediaplayer_amarok	# without amarok player support module
 %bcond_without	mediaplayer_amarok2	# without amarok2 player support module
@@ -33,6 +33,7 @@
 %bcond_with	mediaplayer_bmpx	# without bmpx player support module
 %bcond_without	mediaplayer_dragon	# without dragon player support module
 %bcond_with	mediaplayer_falf	# without falf player support module
+%bcond_without	mediaplayer_mpd		# without mpd player support module
 %bcond_without	mediaplayer_mpris	# without generic mpris interface support module
 %bcond_without	mediaplayer_vlc		# without vlc player support module
 %bcond_without	mediaplayer_xmms	# without xmms player support module
@@ -42,22 +43,22 @@
 %bcond_without	notify_exec		# without exec_notify module support
 %bcond_without	notify_kde		# without kde_notify module support
 %bcond_without	notify_led		# without led_notify module support
-%bcond_without	notify_mx610		# without mc610_notify module support
-%bcond_without	notify_osdhints		# without osdhints_notify module
+%bcond_with	notify_mx610		# without mc610_notify module support
+%bcond_with	notify_osdhints		# without osdhints_notify module
 %bcond_without	notify_pcspeaker	# without pcspeaker_notify module support
 %bcond_without	notify_qt4_docking	# without qt4_docking_notify module support
 %bcond_without	notify_speech		# without Speech synthesis support
-%bcond_without	notify_water		# without water_notify module support
-%bcond_without	notify_window		# without window_notify module support
-%bcond_without	pajacyk			# without pajacyk module support
-%bcond_without	panelkadu		# without panelkadu module support
-%bcond_without	parser_extender		# without parser_extender extensions
-%bcond_without	powerkadu		# without PowerKadu extensions
-%bcond_without	profiles		# without profiles module support
+%bcond_with	notify_water		# without water_notify module support
+%bcond_with	notify_window		# without window_notify module support
+%bcond_with	pajacyk			# without pajacyk module support
+%bcond_with	panelkadu		# without panelkadu module support
+%bcond_with	parser_extender		# without parser_extender extensions
+%bcond_with	powerkadu		# without PowerKadu extensions
+%bcond_with	profiles		# without profiles module support
 %bcond_without	screenshot		# without screenshot module support
 %bcond_without	senthistory		# without senthistory module support
 %bcond_without	single_window		# without single_window module support
-%bcond_without	sms_plus_pl		# without plus_pl_sms module support
+%bcond_with	sms_plus_pl		# without plus_pl_sms module support
 %bcond_without	sound_alsa		# without ALSA support
 %bcond_without	sound_ao		# without ao support
 %bcond_without	sound_dsp		# without DSP support
@@ -67,62 +68,62 @@
 %bcond_without	spellchecker		# without spellchecker (enchant support) invisible
 %bcond_without	split_messages		# without split_messages module support
 %bcond_without	tabs			# without tabs support module
-%bcond_without	voice			# without voice support module
-%bcond_without	weather			# without weather check module support
+%bcond_with	voice			# without voice support module
+%bcond_with	weather			# without weather check module support
 %bcond_without	word_fix		# without word_fix module support
 
 %define		libgadu_ver		4:1.9.0-0.rc3.1
 
-%define		anonymous_check_ver	0.6.5.3-1
+%define		anonymous_check_ver	0.6.6.1
 %define		dcopexport_ver		0.11.3-20071129
 %define		desc_history_ver	1.1
 %define		geoip_ver		0.2
-%define		globalhotkeys_ver	0.6.5-18
+%define		globalhotkeys_ver	0.9.0-23
 %define		mail_ver		0.3.6
-%define		mime_tex_ver		0.6.5.3-1
-%define		nextinfo_ver		0.6.5-3
+%define		mime_tex_ver		0.6.6.6
+%define		nextinfo_ver		0.9.0-5
 %define		notify_kde_ver		0.3.4
-%define		notify_led_ver		0.23
+%define		notify_led_ver		0.9.0-28
 %define		notify_mx610_ver	0.4.1
 %define		notify_water_ver	0.2.1
 %define		pajacyk_ver		0.2.1
-%define		panelkadu_ver		0.6.5-5
-%define		senthistory_ver		0.6.5-5
+%define		panelkadu_ver		0.9.0-7
+%define		senthistory_ver		0.9.0-7
 %define		sms_plus_pl_ver		0.6.5.4-1
 %define		tabs_ver		1.2.7
 
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
-Version:	0.6.5.5
-Release:	4
+Version:	0.9.0
+Release:	0.1
 License:	GPL v2+
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
-# Source0-md5:	60791263225b197c5d3148234fc6d8f6
+# Source0-md5:	9bd6f39235acea4287664a0bff40b10a
 Source1:	%{name}.desktop
 Source2:	http://kadu.net/~patryk/anonymous_check/anonymous_check-%{anonymous_check_ver}.tar.bz2
-# Source2-md5:	f6290d67c0f45b3f43ff3f35e780615f
+# Source2-md5:	a1c49155f1cbfc4236e13b63cf97cbba
 Source3:	dcopexport-%{dcopexport_ver}-0.6.0.tar.bz2
 # Source3-md5:	b36fcfcf4756285f30cbb6c2b6c2a2da
 Source4:	http://www.ultr.pl/kadu/globalhotkeys-%{globalhotkeys_ver}.tar.gz
-# Source4-md5:	cb44fdbd3dc1fe0dad50f946f24610b5
+# Source4-md5:	3e6ae8580d26dafc439f773ee99134c6
 Source5:	http://kadu.net/~michal/mail/mail-%{mail_ver}.tar.bz2
 # Source5-md5:	85fdf695c7fbc58e607dc15278391ab3
-Source6:	http://kadu.net/~patryk/mime_tex/mime_tex-mime_tex-%{mime_tex_ver}.tar.bz2
-# Source6-md5:	d48fe247514ee187037bf7829457865e
+Source6:	http://kadu.net/~patryk/mime_tex/mime_tex-%{mime_tex_ver}.tar.bz2
+# Source6-md5:	cb14e23bf664ea67bdd5431735b1bf8d
 Source7:	http://www.ultr.pl/kadu/nextinfo-%{nextinfo_ver}.tar.gz
-# Source7-md5:	72a545ecf810d6ef68524da7a53fdf7f
-Source8:	http://kadu.net/~blysk/led_notify-%{notify_led_ver}.tar.bz2
-# Source8-md5:	6abcc3ab992daeb9820f9156d8d76020
+# Source7-md5:	3cc7c2da2666d2ff56c42cefdf6519be
+Source8:	http://www.ultr.pl/kadu/lednotify-%{notify_led_ver}.tar.gz
+# Source8-md5:	32d5e433a6e362095d434c64aaa818a6
 Source9:	http://www.kadu.net/~dorr/moduly/%{name}-mx610_notify-%{notify_mx610_ver}.tar.bz2
 # Source9-md5:	4b2a47068928b9687c61816abeed86fe
 Source10:	http://www.kadu.net/~dorr/moduly/%{name}-water_notify-%{notify_water_ver}.tar.bz2
 # Source10-md5:	4196e85fc4be93bd662f5148ebc18235
 Source11:	http://www.ultr.pl/kadu/panelkadu-%{panelkadu_ver}.tar.gz
-# Source11-md5:	139948fe1197ff8f2a2e0dd52bc2bfc8
+# Source11-md5:	19d9670d7def5e738a578a64a3bf15d2
 Source12:	http://www.ultr.pl/kadu/senthistory-%{senthistory_ver}.tar.gz
-# Source12-md5:	a58b2be2ee7e4489dc80f629b7e6f8f3
+# Source12-md5:	fc6b8b1912adad6c5a21c47fb0c44265
 Source13:	http://kadu.net/~patryk/plus_pl_sms/plus_pl_sms-plus_pl_sms-%{sms_plus_pl_ver}.tar.bz2
 # Source13-md5:	59f7ba01a63464818acaa5ff6fd176d5
 Source14:	http://www.kadu.net/~weagle/tabs/%{name}-tabs-%{tabs_ver}.tar.bz2
@@ -1159,9 +1160,9 @@ Additional sounds theme.
 Zestaw dodatkowych dźwięków.
 
 %prep
-%setup -q -T -b 0 -n %{name}
+%setup -q -T -b 0
 
-%patch0 -p1
+#% patch0 -p1
 %if %{with anonymous_check}
 tar xjf %{SOURCE2} -C modules
 %endif
@@ -1183,7 +1184,7 @@ tar xjf %{SOURCE6} -C modules
 tar xzf %{SOURCE7} -C modules
 %endif
 %if %{with notify_led}
-tar xjf %{SOURCE8} -C modules
+tar xzf %{SOURCE8} -C modules
 %endif
 %if %{with notify_mx610}
 tar xjf %{SOURCE9} -C modules
@@ -1201,7 +1202,7 @@ tar xzf %{SOURCE12} -C modules
 tar xjf %{SOURCE13} -C modules
 %endif
 %if %{with tabs}
-tar xjf %{SOURCE14} -C modules
+#tar xjf %{SOURCE14} -C modules
 %endif
 %if %{with geoip}
 tar xjf %{SOURCE15} -C modules
@@ -1210,7 +1211,7 @@ tar xjf %{SOURCE15} -C modules
 tar xjf %{SOURCE21} -C modules
 %endif
 %if %{with notify_kde}
-tar xzf %{SOURCE22} -C modules
+#tar xzf %{SOURCE22} -C modules
 %endif
 %if %{with pajacyk}
 tar xjf %{SOURCE24} -C modules
@@ -1249,7 +1250,7 @@ echo "module_desc_history=n" >>.config
 # packages are not allowed to download any content while building
 chmod -x varia/scripts/autodownload
 
-%patch2 -p1
+#% patch2 -p1
 
 %build
 mkdir -p build
