@@ -21,7 +21,7 @@
 %bcond_without	filedesc		# without filedesc module support
 %bcond_with	filtering		# without filtering module support
 %bcond_without	firewall		# without firewall module support
-%bcond_without	geoip			# without geoip module support
+%bcond_with	geoip			# without geoip module support
 %bcond_with	gg_avatars		# without gg_avatars module support
 %bcond_without	globalhotkeys		# without globalhotkeys module support
 %bcond_without	last_seen		# without last_seen module support
@@ -61,12 +61,12 @@
 %bcond_with	sms_plus_pl		# without plus_pl_sms module support
 %bcond_without	sound_alsa		# without ALSA support
 %bcond_without	sound_ao		# without ao support
-%bcond_without	sound_dsp		# without DSP support
+%bcond_with	sound_dsp		# without DSP support
 %bcond_without	sound_ext		# without external application sound module support
 %bcond_without	sound_phonon		# without phonon sound module support
 %bcond_without	sound_qt4		# without qt4 sound module support
 %bcond_without	spellchecker		# without spellchecker (enchant support) invisible
-%bcond_without	split_messages		# without split_messages module support
+%bcond_with	split_messages		# without split_messages module support
 %bcond_without	tabs			# without tabs support module
 %bcond_with	voice			# without voice support module
 %bcond_with	weather			# without weather check module support
@@ -96,7 +96,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
 Version:	0.9.0
-Release:	0.1
+Release:	0.2
 License:	GPL v2+
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
@@ -1316,9 +1316,11 @@ mkdir -p build
 %{__sed} -i 's/module_desktop_docking=m/module_desktop_docking=n/' .config
 %endif
 %if %{with encryption}
-%{__sed} -i 's/module_encryption=n/module_encryption=m/' .config
+%{__sed} -i 's/module_encryption_ng=n/module_encryption_ng=m/' .config
+%{__sed} -i 's/module_encryption_ng_simlite=n/module_encryption_ng_simlite=m/' .config
 %else
-%{__sed} -i 's/module_encryption=m/module_encryption=n/' .config
+%{__sed} -i 's/module_encryption_ng=m/module_encryption_ng=n/' .config
+%{__sed} -i 's/module_encryption_ng_simlite=m/module_encryption_ng_simlite=n/' .config
 %endif
 %if %{with filedesc}
 %{__sed} -i 's/module_filedesc=n/module_filedesc=m/' .config
@@ -1440,9 +1442,9 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok2_mediaplayer/spec
 %{__sed} -i 's/module_kde_notify=m/module_kde_notify=n/' .config
 %endif
 %if %{with notify_led}
-%{__sed} -i 's/module_led_notify=n/module_led_notify=m/' .config
+%{__sed} -i 's/module_lednotify=n/module_lednotify=m/' .config
 %else
-%{__sed} -i 's/module_led_notify=m/module_led_notify=n/' .config
+%{__sed} -i 's/module_lednotify=m/module_lednotify=n/' .config
 %endif
 %if %{with notify_mx610}
 %{__sed} -i 's/module_mx610_notify=n/module_mx610_notify=m/' .config
@@ -1641,53 +1643,60 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/%{name}/themes
 %dir %{_datadir}/%{name}/themes/emoticons
 %{_datadir}/%{name}/themes/emoticons/penguins
+%{_datadir}/%{name}/themes/emoticons/tango
 %dir %{_datadir}/%{name}/themes/icons
 %{_datadir}/%{name}/themes/icons/default
+%{_datadir}/%{name}/themes/icons/glass
+%{_datadir}/%{name}/themes/icons/oxygen
 %dir %{_datadir}/%{name}/themes/sounds
 %{_datadir}/%{name}/themes/sounds/default
 #About... files
 %{_datadir}/%{name}/AUTHORS
 %{_datadir}/%{name}/ChangeLog
+%{_datadir}/%{name}/ChangeLog.OLD-PL
 %{_datadir}/%{name}/COPYING
 %{_datadir}/%{name}/THANKS
 #default modules:
 %dir %{_libdir}/%{name}
 %dir %{modules_lib_dir}
 %dir %{modules_bin_dir}
-%{modules_data_dir}/account_management.desc
-%attr(755,root,root) %{modules_lib_dir}/libaccount_management.so
 %{modules_data_dir}/autoaway.desc
 %attr(755,root,root) %{modules_lib_dir}/libautoaway.so
 %{modules_data_dir}/config_wizard.desc
 %attr(755,root,root) %{modules_lib_dir}/libconfig_wizard.so
-%{modules_data_dir}/dcc.desc
-%attr(755,root,root) %{modules_lib_dir}/libdcc.so
-%{modules_data_dir}/default_sms.desc
-%attr(755,root,root) %{modules_lib_dir}/libdefault_sms.so
 %{modules_data_dir}/docking.desc
+%attr(755,root,root) %{modules_lib_dir}/libdocking.so
+%{modules_data_dir}/gadu_protocol.desc
+%attr(755,root,root) %{modules_lib_dir}/libgadu_protocol.so
 %{modules_data_dir}/hints.desc
 %attr(755,root,root) %{modules_lib_dir}/libhints.so
-%{modules_data_dir}/idle.desc
-%attr(755,root,root) %{modules_lib_dir}/libidle.so
-%{modules_data_dir}/notify.desc
-%{modules_data_dir}/sms.desc
-%attr(755,root,root) %{modules_lib_dir}/libsms.so
 %{modules_data_dir}/history.desc
 %attr(755,root,root) %{modules_lib_dir}/libhistory.so
+%{modules_data_dir}/history_migration.desc
+%attr(755,root,root) %{modules_lib_dir}/libhistory_migration.so
+%{modules_data_dir}/idle.desc
+%attr(755,root,root) %{modules_lib_dir}/libidle.so
+%{modules_data_dir}/imagelink.desc
+%attr(755,root,root) %{modules_lib_dir}/libimagelink.so
+%{modules_data_dir}/jabber_protocol.desc
+%attr(755,root,root) %{modules_lib_dir}/libjabber_protocol.so
+%{modules_data_dir}/profiles_import.desc
+%attr(755,root,root) %{modules_lib_dir}/libprofiles_import.so
+%{modules_data_dir}/server_monitor.desc
+%attr(755,root,root) %{modules_lib_dir}/libserver_monitor.so
+%{modules_data_dir}/simpleview.desc
+%attr(755,root,root) %{modules_lib_dir}/libsimpleview.so
+%{modules_data_dir}/sms.desc
+%attr(755,root,root) %{modules_lib_dir}/libsms.so
 %{modules_data_dir}/sound.desc
-%{modules_data_dir}/window_notify.desc
-%attr(755,root,root) %{modules_lib_dir}/libwindow_notify.so
 %attr(755,root,root) %{modules_lib_dir}/libsound.so
-%attr(755,root,root) %{modules_lib_dir}/libnotify.so
+%{modules_data_dir}/sql_history.desc
+%attr(755,root,root) %{modules_lib_dir}/libsql_history.so
 %attr(755,root,root) %{modules_lib_dir}/libqt4_docking.so
 %{modules_data_dir}/qt4_docking.desc
 
 #default modules translation:
 %dir %{modules_data_dir}/translations
-%lang(de) %{modules_data_dir}/translations/account_management_de.qm
-%lang(fr) %{modules_data_dir}/translations/account_management_fr.qm
-%lang(it) %{modules_data_dir}/translations/account_management_it.qm
-%lang(pl) %{modules_data_dir}/translations/account_management_pl.qm
 %lang(de) %{modules_data_dir}/translations/autoaway_de.qm
 %lang(fr) %{modules_data_dir}/translations/autoaway_fr.qm
 %lang(it) %{modules_data_dir}/translations/autoaway_it.qm
@@ -1696,18 +1705,14 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{modules_data_dir}/translations/config_wizard_fr.qm
 %lang(it) %{modules_data_dir}/translations/config_wizard_it.qm
 %lang(pl) %{modules_data_dir}/translations/config_wizard_pl.qm
-%lang(de) %{modules_data_dir}/translations/dcc_de.qm
-%lang(fr) %{modules_data_dir}/translations/dcc_fr.qm
-%lang(it) %{modules_data_dir}/translations/dcc_it.qm
-%lang(pl) %{modules_data_dir}/translations/dcc_pl.qm
-%lang(de) %{modules_data_dir}/translations/default_sms_de.qm
-%lang(fr) %{modules_data_dir}/translations/default_sms_fr.qm
-%lang(it) %{modules_data_dir}/translations/default_sms_it.qm
-%lang(pl) %{modules_data_dir}/translations/default_sms_pl.qm
 %lang(de) %{modules_data_dir}/translations/docking_de.qm
 %lang(fr) %{modules_data_dir}/translations/docking_fr.qm
 %lang(it) %{modules_data_dir}/translations/docking_it.qm
 %lang(pl) %{modules_data_dir}/translations/docking_pl.qm
+%lang(de) %{modules_data_dir}/translations/gadu_protocol_de.qm
+%lang(fr) %{modules_data_dir}/translations/gadu_protocol_fr.qm
+%lang(it) %{modules_data_dir}/translations/gadu_protocol_it.qm
+%lang(pl) %{modules_data_dir}/translations/gadu_protocol_pl.qm
 %lang(de) %{modules_data_dir}/translations/hints_de.qm
 %lang(fr) %{modules_data_dir}/translations/hints_fr.qm
 %lang(it) %{modules_data_dir}/translations/hints_it.qm
@@ -1716,10 +1721,33 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{modules_data_dir}/translations/history_fr.qm
 %lang(it) %{modules_data_dir}/translations/history_it.qm
 %lang(pl) %{modules_data_dir}/translations/history_pl.qm
-%lang(de) %{modules_data_dir}/translations/notify_de.qm
-%lang(fr) %{modules_data_dir}/translations/notify_fr.qm
-%lang(it) %{modules_data_dir}/translations/notify_it.qm
-%lang(pl) %{modules_data_dir}/translations/notify_pl.qm
+%lang(de) %{modules_data_dir}/translations/history_migration_de.qm
+%lang(fr) %{modules_data_dir}/translations/history_migration_fr.qm
+%lang(it) %{modules_data_dir}/translations/history_migration_it.qm
+%lang(pl) %{modules_data_dir}/translations/history_migration_pl.qm
+%lang(de) %{modules_data_dir}/translations/imagelink_de.qm
+%lang(fr) %{modules_data_dir}/translations/imagelink_fr.qm
+%lang(it) %{modules_data_dir}/translations/imagelink_it.qm
+%lang(pl) %{modules_data_dir}/translations/imagelink_pl.qm
+%lang(de) %{modules_data_dir}/translations/jabber_protocol_de.qm
+%lang(fr) %{modules_data_dir}/translations/jabber_protocol_fr.qm
+%lang(it) %{modules_data_dir}/translations/jabber_protocol_it.qm
+%lang(pl) %{modules_data_dir}/translations/jabber_protocol_pl.qm
+%lang(de) %{modules_data_dir}/translations/profiles_import_de.qm
+%lang(fr) %{modules_data_dir}/translations/profiles_import_fr.qm
+%lang(it) %{modules_data_dir}/translations/profiles_import_it.qm
+%lang(pl) %{modules_data_dir}/translations/profiles_import_pl.qm
+%lang(de) %{modules_data_dir}/translations/server_monitor_de.qm
+%lang(fr) %{modules_data_dir}/translations/server_monitor_fr.qm
+%lang(it) %{modules_data_dir}/translations/server_monitor_it.qm
+%lang(pl) %{modules_data_dir}/translations/server_monitor_pl.qm
+%lang(de) %{modules_data_dir}/translations/simpleview_de.qm
+%lang(fr) %{modules_data_dir}/translations/simpleview_fr.qm
+%lang(it) %{modules_data_dir}/translations/simpleview_it.qm
+%lang(pl) %{modules_data_dir}/translations/simpleview_pl.qm
+%lang(de) %{modules_data_dir}/translations/single_window_de.qm
+%lang(fr) %{modules_data_dir}/translations/single_window_fr.qm
+%lang(it) %{modules_data_dir}/translations/single_window_it.qm
 %lang(de) %{modules_data_dir}/translations/sms_de.qm
 %lang(fr) %{modules_data_dir}/translations/sms_fr.qm
 %lang(it) %{modules_data_dir}/translations/sms_it.qm
@@ -1728,37 +1756,47 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{modules_data_dir}/translations/sound_fr.qm
 %lang(it) %{modules_data_dir}/translations/sound_it.qm
 %lang(pl) %{modules_data_dir}/translations/sound_pl.qm
-%lang(de) %{modules_data_dir}/translations/window_notify_de.qm
-%lang(fr) %{modules_data_dir}/translations/window_notify_fr.qm
-%lang(it) %{modules_data_dir}/translations/window_notify_it.qm
-%lang(pl) %{modules_data_dir}/translations/window_notify_pl.qm
+%lang(de) %{modules_data_dir}/translations/sql_history_de.qm
+%lang(fr) %{modules_data_dir}/translations/sql_history_fr.qm
+%lang(it) %{modules_data_dir}/translations/sql_history_it.qm
+%lang(pl) %{modules_data_dir}/translations/sql_history_pl.qm
 #global translation:
 %dir %{_datadir}/%{name}/translations
 %lang(de) %{_datadir}/%{name}/translations/kadu_de.qm
-%lang(en) %{_datadir}/%{name}/translations/kadu_en.qm
+#%lang(en) %{_datadir}/%{name}/translations/kadu_en.qm
 %lang(fr) %{_datadir}/%{name}/translations/kadu_fr.qm
 %lang(it) %{_datadir}/%{name}/translations/kadu_it.qm
 %lang(pl) %{_datadir}/%{name}/translations/kadu_pl.qm
-%lang(de) %{_datadir}/%{name}/translations/qt_de.qm
-%lang(en) %{_datadir}/%{name}/translations/qt_en.qm
-%lang(en) %{_datadir}/%{name}/translations/qt_fr.qm
-%lang(it) %{_datadir}/%{name}/translations/qt_it.qm
-%lang(pl) %{_datadir}/%{name}/translations/qt_pl.qm
+%lang(cs) %{_datadir}/%{name}/translations/kadu_cs.qm
 #wizard
-%{modules_data_dir}/data/config_wizard
 %{_datadir}/%{name}/configuration
 %{_datadir}/%{name}/syntax
+%{_datadir}/%{name}/scripts
 
 %dir %{modules_data_dir}/configuration
 %{modules_data_dir}/configuration/autoaway.ui
-%{modules_data_dir}/configuration/dcc.ui
-%{modules_data_dir}/configuration/default_sms.ui
 %{modules_data_dir}/configuration/docking.ui
 %{modules_data_dir}/configuration/hints.ui
+%{modules_data_dir}/configuration/hint-over-user.ui
+%{modules_data_dir}/configuration/hints-advanced.ui
+%{modules_data_dir}/configuration/hints-notifier.ui
 %{modules_data_dir}/configuration/history.ui
-%{modules_data_dir}/configuration/notify.ui
+%{modules_data_dir}/configuration/image-link.ui
+%{modules_data_dir}/configuration/qt4-docking-notify.ui
+%{modules_data_dir}/configuration/server-monitor.ui
+%{modules_data_dir}/configuration/serverslist.txt
+%{modules_data_dir}/configuration/simpleview.ui
 %{modules_data_dir}/configuration/sms.ui
 %{modules_data_dir}/configuration/sound.ui
+
+%dir %{modules_data_dir}/data
+%dir %{modules_data_dir}/data/gadu_protocol
+%{modules_data_dir}/data/gadu_protocol/servers.txt
+%dir %{modules_data_dir}/data/jabber_protocol
+%{modules_data_dir}/data/jabber_protocol/*.png
+%dir %{modules_data_dir}/data/sms
+%dir %{modules_data_dir}/data/sms/scripts
+%{modules_data_dir}/data/sms/scripts/*.js
 
 %if %{with advanced_userlist}
 %files module-advanced_userlist
@@ -1786,6 +1824,9 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/antistring.desc
 %{modules_data_dir}/configuration/antistring.ui
 %attr(755,root,root) %{modules_lib_dir}/libantistring.so
+%lang(de) %{modules_data_dir}/translations/antistring_de.qm
+%lang(fr) %{modules_data_dir}/translations/antistring_fr.qm
+%lang(it) %{modules_data_dir}/translations/antistring_it.qm
 %lang(pl) %{modules_data_dir}/translations/antistring_pl.qm
 %dir %{modules_data_dir}/data/antistring
 %{modules_data_dir}/data/antistring/ant_conditions.conf
@@ -1797,6 +1838,9 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/auto_hide.desc
 %{modules_data_dir}/configuration/auto_hide.ui
 %attr(755,root,root) %{modules_lib_dir}/libauto_hide.so
+%lang(de) %{modules_data_dir}/translations/auto_hide_de.qm
+%lang(fr) %{modules_data_dir}/translations/auto_hide_fr.qm
+%lang(it) %{modules_data_dir}/translations/auto_hide_it.qm
 %lang(pl) %{modules_data_dir}/translations/auto_hide_pl.qm
 %endif
 
@@ -1804,7 +1848,7 @@ rm -rf $RPM_BUILD_ROOT
 %files module-anonymous_check
 %defattr(644,root,root,755)
 %{modules_data_dir}/anonymous_check.desc
-%{modules_data_dir}/configuration/anonymous_check.ui
+#%{modules_data_dir}/configuration/anonymous_check.ui
 %attr(755,root,root) %{modules_lib_dir}/libanonymous_check.so
 %lang(pl) %{modules_data_dir}/translations/anonymous_check.qm
 %endif
@@ -1827,6 +1871,9 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/autostatus.desc
 %{modules_data_dir}/configuration/autostatus.ui
 %attr(755,root,root) %{modules_lib_dir}/libautostatus.so
+%lang(de) %{modules_data_dir}/translations/autostatus_de.qm
+%lang(fr) %{modules_data_dir}/translations/autostatus_fr.qm
+%lang(it) %{modules_data_dir}/translations/autostatus_it.qm
 %lang(pl) %{modules_data_dir}/translations/autostatus_pl.qm
 %endif
 
@@ -1836,6 +1883,9 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/cenzor.desc
 %{modules_data_dir}/configuration/cenzor.ui
 %attr(755,root,root) %{modules_lib_dir}/libcenzor.so
+%lang(de) %{modules_data_dir}/translations/cenzor_de.qm
+%lang(fr) %{modules_data_dir}/translations/cenzor_fr.qm
+%lang(it) %{modules_data_dir}/translations/cenzor_it.qm
 %lang(pl) %{modules_data_dir}/translations/cenzor_pl.qm
 %dir %{modules_data_dir}/data/cenzor
 %{modules_data_dir}/data/cenzor/cenzor_words.conf
@@ -1854,13 +1904,19 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with encryption}
 %files module-encryption
 %defattr(644,root,root,755)
-%{modules_data_dir}/encryption.desc
-%{modules_data_dir}/configuration/encryption.ui
-%attr(755,root,root) %{modules_lib_dir}/libencryption.so
-%lang(de) %{modules_data_dir}/translations/encryption_de.qm
-%lang(fr) %{modules_data_dir}/translations/encryption_fr.qm
-%lang(it) %{modules_data_dir}/translations/encryption_it.qm
-%lang(pl) %{modules_data_dir}/translations/encryption_pl.qm
+%{modules_data_dir}/encryption_ng.desc
+%{modules_data_dir}/encryption_ng_simlite.desc
+%{modules_data_dir}/configuration/encryption-ng.ui
+%attr(755,root,root) %{modules_lib_dir}/libencryption_ng.so
+%attr(755,root,root) %{modules_lib_dir}/libencryption_ng_simlite.so
+%lang(de) %{modules_data_dir}/translations/encryption_ng_de.qm
+%lang(fr) %{modules_data_dir}/translations/encryption_ng_fr.qm
+%lang(it) %{modules_data_dir}/translations/encryption_ng_it.qm
+%lang(pl) %{modules_data_dir}/translations/encryption_ng_pl.qm
+%lang(de) %{modules_data_dir}/translations/encryption_ng_simlite_de.qm
+%lang(fr) %{modules_data_dir}/translations/encryption_ng_simlite_fr.qm
+%lang(it) %{modules_data_dir}/translations/encryption_ng_simlite_it.qm
+%lang(pl) %{modules_data_dir}/translations/encryption_ng_simlite_pl.qm
 %endif
 
 %if %{with dbus}
@@ -1876,6 +1932,7 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/desktop_docking.desc
 %{modules_data_dir}/configuration/desktop_docking.ui
 %attr(755,root,root) %{modules_lib_dir}/libdesktop_docking.so
+%lang(cs) %{modules_data_dir}/translations/desktop_docking_cs.qm
 %lang(de) %{modules_data_dir}/translations/desktop_docking_de.qm
 %lang(fr) %{modules_data_dir}/translations/desktop_docking_fr.qm
 %lang(it) %{modules_data_dir}/translations/desktop_docking_it.qm
@@ -1888,6 +1945,9 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/filedesc.desc
 %{modules_data_dir}/configuration/filedesc.ui
 %attr(755,root,root) %{modules_lib_dir}/libfiledesc.so
+%lang(de) %{modules_data_dir}/translations/filedesc_de.qm
+%lang(fr) %{modules_data_dir}/translations/filedesc_fr.qm
+%lang(it) %{modules_data_dir}/translations/filedesc_it.qm
 %lang(pl) %{modules_data_dir}/translations/filedesc_pl.qm
 #%dir %{modules_data_dir}/data/filedesc
 #%{modules_data_dir}/data/filedesc/*.png
@@ -1910,6 +1970,9 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/firewall.desc
 %{modules_data_dir}/configuration/firewall.ui
 %attr(755,root,root) %{modules_lib_dir}/libfirewall.so
+%lang(de) %{modules_data_dir}/translations/firewall_de.qm
+%lang(fr) %{modules_data_dir}/translations/firewall_fr.qm
+%lang(it) %{modules_data_dir}/translations/firewall_it.qm
 %lang(pl) %{modules_data_dir}/translations/firewall_pl.qm
 %endif
 
@@ -1934,6 +1997,7 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/globalhotkeys.desc
 %{modules_data_dir}/configuration/globalhotkeys.ui
 %attr(755,root,root) %{modules_lib_dir}/libglobalhotkeys.so
+%lang(en) %{modules_data_dir}/translations/globalhotkeys_en.qm
 %lang(pl) %{modules_data_dir}/translations/globalhotkeys_pl.qm
 %endif
 
@@ -1942,6 +2006,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{modules_data_dir}/last_seen.desc
 %attr(755,root,root) %{modules_lib_dir}/liblast_seen.so
+%lang(de) %{modules_data_dir}/translations/last_seen_de.qm
+%lang(fr) %{modules_data_dir}/translations/last_seen_fr.qm
+%lang(it) %{modules_data_dir}/translations/last_seen_it.qm
 %lang(pl) %{modules_data_dir}/translations/last_seen_pl.qm
 %endif
 
@@ -1961,6 +2028,9 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/configuration/mediaplayer.ui
 %attr(755,root,root) %{modules_lib_dir}/libmediaplayer.so
 %{modules_data_dir}/data/mediaplayer
+%lang(de) %{modules_data_dir}/translations/mediaplayer_de.qm
+%lang(fr) %{modules_data_dir}/translations/mediaplayer_fr.qm
+%lang(it) %{modules_data_dir}/translations/mediaplayer_it.qm
 %lang(pl) %{modules_data_dir}/translations/mediaplayer_pl.qm
 %endif
 
@@ -2059,6 +2129,7 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/nextinfo.desc
 %{modules_data_dir}/configuration/nextinfo.ui
 %attr(755,root,root) %{modules_lib_dir}/libnextinfo.so
+%lang(en) %{modules_data_dir}/translations/nextinfo_en.qm
 %lang(pl) %{modules_data_dir}/translations/nextinfo_pl.qm
 %endif
 
@@ -2079,16 +2150,20 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/kde_notify.desc
 %{modules_data_dir}/configuration/kde_notify.ui
 %attr(755,root,root) %{modules_lib_dir}/libkde_notify.so
+%lang(de) %{modules_data_dir}/translations/kde_notify_de.qm
+%lang(fr) %{modules_data_dir}/translations/kde_notify_fr.qm
+%lang(it) %{modules_data_dir}/translations/kde_notify_it.qm
 %lang(pl) %{modules_data_dir}/translations/kde_notify_pl.qm
 %endif
 
 %if %{with notify_led}
 %files module-notify-led
 %defattr(644,root,root,755)
-%{modules_data_dir}/led_notify.desc
-%{modules_data_dir}/configuration/led_notify.ui
-%attr(755,root,root) %{modules_lib_dir}/libled_notify.so
-%lang(pl) %{modules_data_dir}/translations/led_notify_pl.qm
+%{modules_data_dir}/lednotify.desc
+%{modules_data_dir}/configuration/lednotify.ui
+%attr(755,root,root) %{modules_lib_dir}/liblednotify.so
+%lang(en) %{modules_data_dir}/translations/lednotify_en.qm
+%lang(pl) %{modules_data_dir}/translations/lednotify_pl.qm
 %endif
 
 %if %{with notify_mx610}
@@ -2116,7 +2191,6 @@ rm -rf $RPM_BUILD_ROOT
 %files module-notify-pcspeaker
 %defattr(644,root,root,755)
 %{modules_data_dir}/pcspeaker.desc
-%{modules_data_dir}/configuration/pcspeaker.ui
 %attr(755,root,root) %{modules_lib_dir}/libpcspeaker.so
 %lang(de) %{modules_data_dir}/translations/pcspeaker_de.qm
 %lang(it) %{modules_data_dir}/translations/pcspeaker_it.qm
@@ -2128,6 +2202,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{modules_data_dir}/qt4_docking_notify.desc
 %attr(755,root,root) %{modules_lib_dir}/libqt4_docking_notify.so
+%lang(de) %{modules_data_dir}/translations/qt4_docking_notify_de.qm
+%lang(fr) %{modules_data_dir}/translations/qt4_docking_notify_fr.qm
+%lang(it) %{modules_data_dir}/translations/qt4_docking_notify_it.qm
 %lang(pl) %{modules_data_dir}/translations/qt4_docking_notify_pl.qm
 %endif
 
@@ -2220,6 +2297,7 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/senthistory.desc
 %{modules_data_dir}/configuration/senthistory.ui
 %attr(755,root,root) %{modules_lib_dir}/libsenthistory.so
+%lang(en) %{modules_data_dir}/translations/senthistory_en.qm
 %lang(pl) %{modules_data_dir}/translations/senthistory_pl.qm
 %endif
 
@@ -2229,6 +2307,9 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/screenshot.desc
 %{modules_data_dir}/configuration/screenshot.ui
 %attr(755,root,root) %{modules_lib_dir}/libscreenshot.so
+%lang(de) %{modules_data_dir}/translations/screenshot_de.qm
+%lang(fr) %{modules_data_dir}/translations/screenshot_fr.qm
+%lang(it) %{modules_data_dir}/translations/screenshot_it.qm
 %lang(pl) %{modules_data_dir}/translations/screenshot_pl.qm
 #%dir %{modules_data_dir}/data/screenshot
 #%{modules_data_dir}/data/screenshot/*.png
@@ -2308,6 +2389,9 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/spellchecker.desc
 %{modules_data_dir}/configuration/spellchecker.ui
 %attr(755,root,root) %{modules_lib_dir}/libspellchecker.so
+%lang(de) %{modules_data_dir}/translations/spellchecker_de.qm
+%lang(fr) %{modules_data_dir}/translations/spellchecker_fr.qm
+%lang(it) %{modules_data_dir}/translations/spellchecker_it.qm
 %lang(pl) %{modules_data_dir}/translations/spellchecker_pl.qm
 #%dir %{modules_data_dir}/data/spellchecker
 #%{modules_data_dir}/data/spellchecker/config.png
@@ -2328,6 +2412,9 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/tabs.desc
 %{modules_data_dir}/configuration/tabs.ui
 %attr(755,root,root) %{modules_lib_dir}/libtabs.so
+%lang(de) %{modules_data_dir}/translations/tabs_de.qm
+%lang(fr) %{modules_data_dir}/translations/tabs_fr.qm
+%lang(it) %{modules_data_dir}/translations/tabs_it.qm
 %lang(pl) %{modules_data_dir}/translations/tabs_pl.qm
 %endif
 
@@ -2367,29 +2454,29 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/data/word_fix/wf_default_list.data
 %endif
 
-%files theme-icons-glass16
-%defattr(644,root,root,755)
-%{_datadir}/%{name}/themes/icons/glass16
+#%files theme-icons-glass16
+#%defattr(644,root,root,755)
+#%{_datadir}/%{name}/themes/icons/glass16
 
-%files theme-icons-glass22
-%defattr(644,root,root,755)
-%{_datadir}/%{name}/themes/icons/glass22
+#%files theme-icons-glass22
+#%defattr(644,root,root,755)
+#%{_datadir}/%{name}/themes/icons/glass22
 
-%files theme-icons-kadu05
-%defattr(644,root,root,755)
-%{_datadir}/%{name}/themes/icons/kadu05
+#%files theme-icons-kadu05
+#%defattr(644,root,root,755)
+#%{_datadir}/%{name}/themes/icons/kadu05
 
-%files theme-icons-oxygen16
-%defattr(644,root,root,755)
-%{_datadir}/%{name}/themes/icons/oxygen16
+#%files theme-icons-oxygen16
+#%defattr(644,root,root,755)
+#%{_datadir}/%{name}/themes/icons/oxygen16
 
-%files theme-icons-tango16
-%defattr(644,root,root,755)
-%{_datadir}/%{name}/themes/icons/tango16
+#%files theme-icons-tango16
+#%defattr(644,root,root,755)
+#%{_datadir}/%{name}/themes/icons/tango16
 
-%files theme-emoticons-tango
-%defattr(644,root,root,755)
-%{_datadir}/%{name}/themes/emoticons/tango
+#%files theme-emoticons-tango
+#%defattr(644,root,root,755)
+#%{_datadir}/%{name}/themes/emoticons/tango
 
 %files theme-sounds
 %defattr(644,root,root,755)
