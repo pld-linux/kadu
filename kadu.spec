@@ -166,6 +166,7 @@ Patch2:		%{name}-link.patch
 URL:		http://kadu.net/
 BuildRequires:	Qt3Support-devel >= 4.4
 BuildRequires:	QtScript-devel >= 4.4
+BuildRequires:	QtScriptTools-devel >= 4.4
 BuildRequires:	QtWebKit-devel >= 4.4
 BuildRequires:	QtXmlPatterns-devel
 %{?with_sound_alsa:BuildRequires:	alsa-lib-devel}
