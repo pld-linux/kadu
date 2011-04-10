@@ -95,12 +95,12 @@
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
-Version:	0.9.0
-Release:	0.2
+Version:	0.9.1
+Release:	0.3
 License:	GPL v2+
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
-# Source0-md5:	9bd6f39235acea4287664a0bff40b10a
+# Source0-md5:	99cb6e9d4acea6dbb15ff98dfe44dff9
 Source1:	%{name}.desktop
 Source2:	http://kadu.net/~patryk/anonymous_check/anonymous_check-%{anonymous_check_ver}.tar.bz2
 # Source2-md5:	a1c49155f1cbfc4236e13b63cf97cbba
@@ -167,6 +167,7 @@ URL:		http://kadu.net/
 BuildRequires:	Qt3Support-devel >= 4.4
 BuildRequires:	QtScript-devel >= 4.4
 BuildRequires:	QtScriptTools-devel >= 4.4
+BuildRequires:	QtSvg-devel >= 4.4
 BuildRequires:	QtWebKit-devel >= 4.4
 BuildRequires:	QtXmlPatterns-devel
 %{?with_sound_alsa:BuildRequires:	alsa-lib-devel}
@@ -191,6 +192,7 @@ BuildRequires:	sed >= 4.0
 %{?with_mediaplayer_xmms:BuildRequires:	xmms-devel}
 BuildRequires:	xorg-lib-libXScrnSaver-devel
 %{?with_panelkadu:BuildRequires:	xorg-lib-libXtst-devel}
+Requires:	QtSql-sqlite3
 Requires:	libgadu >= %{libgadu_ver}
 Obsoletes:	kadu-module-docking-wmaker <= 0.6.5
 Obsoletes:	kadu-module-imiface <= 0.4.3
