@@ -212,6 +212,8 @@ Obsoletes:	kadu-theme-icons-nuvola22
 Obsoletes:	kadu-module-notify-osdhints
 Obsoletes:	kadu-module-notify-xosd
 %endif
+# for encryption module and TLS in jabber module
+Suggests:	qt4-plugin-qca-ossl
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		modules_lib_dir		%{_libdir}/%{name}/modules
