@@ -95,12 +95,12 @@
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
-Version:	0.9.1
-Release:	0.3
+Version:	0.9.2
+Release:	0.5
 License:	GPL v2+
 Group:		Applications/Communications
 Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
-# Source0-md5:	99cb6e9d4acea6dbb15ff98dfe44dff9
+# Source0-md5:	e23d39a2233a0585febe5a8ab50274dc
 Source1:	%{name}.desktop
 Source2:	http://kadu.net/~patryk/anonymous_check/anonymous_check-%{anonymous_check_ver}.tar.bz2
 # Source2-md5:	a1c49155f1cbfc4236e13b63cf97cbba
@@ -1687,8 +1687,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libjabber_protocol.so
 %{modules_data_dir}/profiles_import.desc
 %attr(755,root,root) %{modules_lib_dir}/libprofiles_import.so
-%{modules_data_dir}/server_monitor.desc
-%attr(755,root,root) %{modules_lib_dir}/libserver_monitor.so
+#%{modules_data_dir}/server_monitor.desc
+#%attr(755,root,root) %{modules_lib_dir}/libserver_monitor.so
 %{modules_data_dir}/simpleview.desc
 %attr(755,root,root) %{modules_lib_dir}/libsimpleview.so
 %{modules_data_dir}/sms.desc
@@ -1742,10 +1742,10 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{modules_data_dir}/translations/profiles_import_fr.qm
 %lang(it) %{modules_data_dir}/translations/profiles_import_it.qm
 %lang(pl) %{modules_data_dir}/translations/profiles_import_pl.qm
-%lang(de) %{modules_data_dir}/translations/server_monitor_de.qm
-%lang(fr) %{modules_data_dir}/translations/server_monitor_fr.qm
-%lang(it) %{modules_data_dir}/translations/server_monitor_it.qm
-%lang(pl) %{modules_data_dir}/translations/server_monitor_pl.qm
+#%lang(de) %{modules_data_dir}/translations/server_monitor_de.qm
+#%lang(fr) %{modules_data_dir}/translations/server_monitor_fr.qm
+#%lang(it) %{modules_data_dir}/translations/server_monitor_it.qm
+#%lang(pl) %{modules_data_dir}/translations/server_monitor_pl.qm
 %lang(de) %{modules_data_dir}/translations/simpleview_de.qm
 %lang(fr) %{modules_data_dir}/translations/simpleview_fr.qm
 %lang(it) %{modules_data_dir}/translations/simpleview_it.qm
@@ -1788,8 +1788,8 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/configuration/history.ui
 %{modules_data_dir}/configuration/image-link.ui
 %{modules_data_dir}/configuration/qt4-docking-notify.ui
-%{modules_data_dir}/configuration/server-monitor.ui
-%{modules_data_dir}/configuration/serverslist.txt
+#%{modules_data_dir}/configuration/server-monitor.ui
+#%{modules_data_dir}/configuration/serverslist.txt
 %{modules_data_dir}/configuration/simpleview.ui
 %{modules_data_dir}/configuration/sms.ui
 %{modules_data_dir}/configuration/sound.ui
