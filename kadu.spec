@@ -1517,6 +1517,9 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 # we don't need headers
 %{__rm} -r $RPM_BUILD_ROOT%{_includedir}/%{name}
 
+# docs are packaged in %%docs
+%{__rm} $RPM_BUILD_ROOT%{_datadir}/%{name}/{AUTHORS,COPYING,ChangeLog*,HISTORY,README,THANKS}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
