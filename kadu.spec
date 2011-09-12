@@ -1243,7 +1243,7 @@ tar xjf %{SOURCE30} -C varia/themes/sounds
 # Drop this in 0.6.6 - fix external modules installation on x86_64
 %if "%{_lib}" == "lib64"
 %{__sed} -i 's/lib\/kadu\/modules/lib64\/kadu\/modules/' plugins/*/CMakeLists.txt
-%{__sed} -i 's/lib\/kadu\/modules/lib64\/kadu\/modules/' plugins/mime_tex/mimetex/CMakeLists.txt
+%{?with_mime_tex:%{__sed} -i 's/lib\/kadu\/modules/lib64\/kadu\/modules/' plugins/mime_tex/mimetex/CMakeLists.txt}
 %endif
 
 # Change hard coded path to modules data files
