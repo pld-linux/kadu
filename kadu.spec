@@ -1641,7 +1641,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/syntax
 %{_datadir}/%{name}/scripts
 
-%if 0
+#default modules configurations
 %dir %{modules_data_dir}/configuration
 %{modules_data_dir}/configuration/docking.ui
 %{modules_data_dir}/configuration/hints.ui
@@ -1651,12 +1651,12 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/configuration/history.ui
 %{modules_data_dir}/configuration/image-link.ui
 %{modules_data_dir}/configuration/qt4-docking-notify.ui
-#%{modules_data_dir}/configuration/server-monitor.ui
-#%{modules_data_dir}/configuration/serverslist.txt
 %{modules_data_dir}/configuration/simpleview.ui
 %{modules_data_dir}/configuration/sms.ui
 %{modules_data_dir}/configuration/sound.ui
 
+%if 0
+# default modules datas
 %dir %{modules_data_dir}/data
 %dir %{modules_data_dir}/data/gadu_protocol
 %{modules_data_dir}/data/gadu_protocol/servers.txt
