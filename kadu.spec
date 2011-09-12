@@ -1630,16 +1630,19 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%if 0
 %doc HISTORY README TODO
 %attr(755,root,root) %{_bindir}/%{name}
 %{_desktopdir}/%{name}.desktop
+%if 0
 %{_pixmapsdir}/%{name}.png
+%endif
 %{_iconsdir}/*/*x*/apps/%{name}.png
+%if 0
 %dir %{_datadir}/%{name}
 %dir %{modules_data_dir}
 %dir %{modules_data_dir}/data
 %dir %{_datadir}/%{name}/themes
+%endif
 %dir %{_datadir}/%{name}/themes/emoticons
 %{_datadir}/%{name}/themes/emoticons/penguins
 %{_datadir}/%{name}/themes/emoticons/tango
@@ -1649,6 +1652,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/themes/icons/oxygen
 %dir %{_datadir}/%{name}/themes/sounds
 %{_datadir}/%{name}/themes/sounds/default
+%if 0
 #About... files
 %{_datadir}/%{name}/AUTHORS
 %{_datadir}/%{name}/ChangeLog
@@ -1770,12 +1774,12 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{_datadir}/%{name}/translations/kadu_pl.qm
 %lang(ru) %{_datadir}/%{name}/translations/kadu_ru.qm
 %lang(sk) %{_datadir}/%{name}/translations/kadu_sk.qm
-%if 0
 #wizard
 %{_datadir}/%{name}/configuration
 %{_datadir}/%{name}/syntax
 %{_datadir}/%{name}/scripts
 
+%if 0
 %dir %{modules_data_dir}/configuration
 %{modules_data_dir}/configuration/autoaway.ui
 %{modules_data_dir}/configuration/docking.ui
