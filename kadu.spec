@@ -1603,12 +1603,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_pixmapsdir}/%{name}.png
 %endif
 %{_iconsdir}/*/*x*/apps/%{name}.png
-%if 0
 %dir %{_datadir}/%{name}
 %dir %{modules_data_dir}
 %dir %{modules_data_dir}/data
 %dir %{_datadir}/%{name}/themes
-%endif
 %dir %{_datadir}/%{name}/themes/emoticons
 %{_datadir}/%{name}/themes/emoticons/penguins
 %{_datadir}/%{name}/themes/emoticons/tango
