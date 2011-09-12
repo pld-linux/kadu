@@ -1272,12 +1272,12 @@ mkdir -p build
 %else
 %{__sed} -i 's/module_anonymous_check=m/module_anonymous_check=n/' .config
 %endif
-%{!?with_antistring:%{__sed} -i 's/antistring/#antistring/' Plugins.cmake}
-%{!?with_autoaway:%{__sed} -i 's/autoaway/#autoaway/' Plugins.cmake}
-%{!?with_auto_hide:%{__sed} -i 's/auto_hide/#auto_hide/' Plugins.cmake}
-%{!?with_autoresponder:%{__sed} -i 's/autoresponder/#autoresponder/' Plugins.cmake}
-%{!?with_autostatus:%{__sed} -i 's/autostatus/#autostatus/' Plugins.cmake}
-%{!?with_cenzor:%{__sed} -i 's/cenzor/#cenzor/' Plugins.cmake}
+%{!?with_antistring:%{__sed} -i 's/\tantistring$/\t#antistring/' Plugins.cmake}
+%{!?with_autoaway:%{__sed} -i 's/\tautoaway$/\t#autoaway/' Plugins.cmake}
+%{!?with_auto_hide:%{__sed} -i 's/\tauto_hide$/\t#auto_hide/' Plugins.cmake}
+%{!?with_autoresponder:%{__sed} -i 's/\tautoresponder$/\t#autoresponder/' Plugins.cmake}
+%{!?with_autostatus:%{__sed} -i 's/\tautostatus$/\t#autostatus/' Plugins.cmake}
+%{!?with_cenzor:%{__sed} -i 's/\tcenzor$/\t#cenzor/' Plugins.cmake}
 %if %{with dbus}
 %{__sed} -i 's/module_dbus=n/module_dbus=m/' .config
 %else
@@ -1288,7 +1288,7 @@ mkdir -p build
 %else
 %{__sed} -i 's/module_desc_history=m/module_desc_history=n/' .config
 %endif
-%{!?with_docking_desktop:%{__sed} -i 's/desktop_docking/#desktop_docking/' Plugins.cmake}
+%{!?with_docking_desktop:%{__sed} -i 's/\tdesktop_docking$/\t#desktop_docking/' Plugins.cmake}
 %if %{with encryption}
 %{__sed} -i 's/module_encryption_ng=n/module_encryption_ng=m/' .config
 %{__sed} -i 's/module_encryption_ng_simlite=n/module_encryption_ng_simlite=m/' .config
@@ -1341,7 +1341,7 @@ mkdir -p build
 %else
 %{__sed} -i 's/module_mediaplayer=m/module_mediaplayer=n/' .config
 %endif
-%{!?with_mediaplayer_amarok:%{__sed} -i 's/amarok1_mediaplayer/#amarok1_mediaplayer/' Plugins.cmake}
+%{!?with_mediaplayer_amarok:%{__sed} -i 's/\tamarok1_mediaplayer$/\t#amarok1_mediaplayer/' Plugins.cmake}
 %if %{with mediaplayer_amarok2}
 %{__sed} -i 's/module_amarok2_mediaplayer=n/module_amarok2_mediaplayer=m/' .config
 echo 'MODULE_INCLUDES_PATH="%{_includedir}"' >> plugins/amarok2_mediaplayer/spec
