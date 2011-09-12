@@ -35,7 +35,7 @@
 %bcond_without	mediaplayer_falf	# without falf player support module
 %bcond_with	mediaplayer_mpd		# without mpd player support module
 %bcond_without	mediaplayer_mpris	# without generic mpris interface support module
-%bcond_without	mediaplayer_vlc		# without vlc player support module
+%bcond_with	mediaplayer_vlc		# without vlc player support module
 %bcond_with	mediaplayer_xmms	# without xmms player support module
 %bcond_with	mediaplayer_xmms2	# without xmms2 player support module
 %bcond_with	mime_tex		# without mime_tex module support
