@@ -1865,7 +1865,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{modules_data_dir}/encryption_ng.desc
 %{modules_data_dir}/encryption_ng_simlite.desc
-%{modules_data_dir}/configuration/encryption_ng.ui
+%{modules_data_dir}/configuration/encryption-ng.ui
 %attr(755,root,root) %{modules_lib_dir}/libencryption_ng.so
 %attr(755,root,root) %{modules_lib_dir}/libencryption_ng_simlite.so
 %lang(cs) %{modules_data_dir}/translations/encryption_ng_cs.qm
