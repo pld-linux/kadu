@@ -1850,8 +1850,7 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/autostatus.desc
 %{modules_data_dir}/configuration/autostatus.ui
 %attr(755,root,root) %{modules_lib_dir}/libautostatus.so
-%lang(cs) %{modules_data_dir}/translations/autostatus_de.qm
-%lang(de) %{modules_data_dir}/translations/autostatus_de.qm
+%lang(cs) %{modules_data_dir}/translations/autostatus_cs.qm
 %lang(it) %{modules_data_dir}/translations/autostatus_it.qm
 %lang(pl) %{modules_data_dir}/translations/autostatus_pl.qm
 %endif
