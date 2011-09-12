@@ -1522,7 +1522,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc HISTORY README TODO
+%doc ChnageLog ChangeLog.OLD-PL HISTORY README THANKS
 %attr(755,root,root) %{_bindir}/%{name}
 %{_desktopdir}/%{name}.desktop
 %if 0
@@ -1543,16 +1543,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/%{name}/themes/sounds
 %{_datadir}/%{name}/themes/sounds/default
 
-%if 0
-#About... files
-%{_datadir}/%{name}/AUTHORS
-%{_datadir}/%{name}/ChangeLog
-%{_datadir}/%{name}/ChangeLog.OLD-PL
-%{_datadir}/%{name}/COPYING
-%{_datadir}/%{name}/THANKS
-%endif
-
-#default modules:
+# default modules:
 %dir %{_libdir}/%{name}
 %dir %{modules_lib_dir}
 #%%dir %{modules_bin_dir}
@@ -1587,7 +1578,7 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/qt4_docking.desc
 %attr(755,root,root) %{modules_lib_dir}/libqt4_docking.so
 
-#default modules translation:
+# default modules translation:
 %dir %{modules_data_dir}/translations
 %lang(cs) %{modules_data_dir}/translations/config_wizard_cs.qm
 %lang(it) %{modules_data_dir}/translations/config_wizard_it.qm
@@ -1629,7 +1620,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(de) %{modules_data_dir}/translations/sql_history_de.qm
 %lang(pl) %{modules_data_dir}/translations/sql_history_pl.qm
 
-#global translation:
+# global translation:
 %dir %{_datadir}/%{name}/translations
 %lang(cs) %{_datadir}/%{name}/translations/kadu_cs.qm
 %lang(cs) %{_datadir}/%{name}/translations/cs.language
@@ -1642,12 +1633,12 @@ rm -rf $RPM_BUILD_ROOT
 %lang(ru) %{_datadir}/%{name}/translations/kadu_ru.qm
 %lang(sk) %{_datadir}/%{name}/translations/kadu_sk.qm
 
-#wizard
+# wizard
 %{_datadir}/%{name}/configuration
 %{_datadir}/%{name}/syntax
 %{_datadir}/%{name}/scripts
 
-#default modules configurations
+# default modules configurations
 %dir %{modules_data_dir}/configuration
 %{modules_data_dir}/configuration/docking.ui
 %{modules_data_dir}/configuration/hints.ui
