@@ -1539,6 +1539,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/themes/icons/oxygen
 %dir %{_datadir}/%{name}/themes/sounds
 %{_datadir}/%{name}/themes/sounds/default
+
 %if 0
 #About... files
 %{_datadir}/%{name}/AUTHORS
@@ -1551,7 +1552,7 @@ rm -rf $RPM_BUILD_ROOT
 #default modules:
 %dir %{_libdir}/%{name}
 %dir %{modules_lib_dir}
-%dir %{modules_bin_dir}
+#%%dir %{modules_bin_dir}
 %{modules_data_dir}/config_wizard.desc
 %attr(755,root,root) %{modules_lib_dir}/libconfig_wizard.so
 %{modules_data_dir}/docking.desc
