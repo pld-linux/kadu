@@ -72,7 +72,7 @@
 %bcond_with	weather			# without weather check module support
 %bcond_without	word_fix		# without word_fix module support
 
-%define		libgadu_ver		4:1.9.0-0.rc3.1
+%define		libgadu_ver		4:1.11.0
 
 %define		anonymous_check_ver	0.6.6.1
 %define		dcopexport_ver		0.11.3-20071129
