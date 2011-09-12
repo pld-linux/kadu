@@ -1758,7 +1758,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/%{name}/translations
 %lang(cs) %{_datadir}/%{name}/translations/kadu_cs.qm
 %lang(de) %{_datadir}/%{name}/translations/kadu_de.qm
-%lang(en) %{_datadir}/%{name}/translations/kadu_en.qm
 %lang(fr) %{_datadir}/%{name}/translations/kadu_fr.qm
 %lang(it) %{_datadir}/%{name}/translations/kadu_it.qm
 %lang(pl) %{_datadir}/%{name}/translations/kadu_pl.qm
@@ -1815,19 +1814,20 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{modules_data_dir}/translations/agent_pl.qm
 %endif
 
+%endif
 %if %{with antistring}
 %files module-antistring
 %defattr(644,root,root,755)
 %{modules_data_dir}/antistring.desc
 %{modules_data_dir}/configuration/antistring.ui
 %attr(755,root,root) %{modules_lib_dir}/libantistring.so
+%lang(cs) %{modules_data_dir}/translations/antistring_cs.qm
 %lang(de) %{modules_data_dir}/translations/antistring_de.qm
-%lang(fr) %{modules_data_dir}/translations/antistring_fr.qm
-%lang(it) %{modules_data_dir}/translations/antistring_it.qm
 %lang(pl) %{modules_data_dir}/translations/antistring_pl.qm
 %dir %{modules_data_dir}/data/antistring
 %{modules_data_dir}/data/antistring/ant_conditions.conf
 %endif
+%if 0
 
 %if %{with auto_hide}
 %files module-auto_hide
@@ -2031,12 +2031,14 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{modules_data_dir}/translations/mediaplayer_pl.qm
 %endif
 
+%endif
 %if %{with mediaplayer_amarok}
 %files module-mediaplayer-amarok
 %defattr(644,root,root,755)
 %{modules_data_dir}/amarok1_mediaplayer.desc
 %attr(755,root,root) %{modules_lib_dir}/libamarok1_mediaplayer.so
 %endif
+%if 0
 
 %if %{with mediaplayer_amarok2}
 %files module-mediaplayer-amarok2
