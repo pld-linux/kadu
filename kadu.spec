@@ -7,7 +7,7 @@
 %bcond_with	debug			# build with debug
 %bcond_with	advanced_userlist	# without Advanced Userlist support
 %bcond_with	agent			# without agent module support
-%bcond_without	anonymous_check		# without anonymous_check module support
+%bcond_with	anonymous_check		# without anonymous_check module support
 %bcond_without	antistring		# without antistring module support
 %bcond_without	auto_hide		# without auto_hide module support
 %bcond_without	autoaway		# without autoaway module support
@@ -1273,16 +1273,8 @@ mkdir -p build
 %{__sed} -i 's/module_anonymous_check=m/module_anonymous_check=n/' .config
 %endif
 %{!?with_antistring:%{__sed} -i 's/antistring/#antistring/' Plugins.cmake}
-%if %{with autoaway}
-%{__sed} -i 's/module_autoaway=n/module_autoaway=m/' .config
-%else
-%{__sed} -i 's/module_autoaway=m/module_autoaway=n/' .config
-%endif
-%if %{with auto_hide}
-%{__sed} -i 's/module_auto_hide=n/module_auto_hide=m/' .config
-%else
-%{__sed} -i 's/module_auto_hide=m/module_auto_hide=n/' .config
-%endif
+%{!?with_autoaway:%{__sed} -i 's/autoaway/#autoaway/' Plugins.cmake}
+%{!?with_auto_hide:%{__sed} -i 's/auto_hide/#auto_hide/' Plugins.cmake}
 %if %{with autoresponder}
 %{__sed} -i 's/module_autoresponder=n/module_autoresponder=m/' .config
 %else
@@ -1653,8 +1645,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/%{name}
 %dir %{modules_lib_dir}
 %dir %{modules_bin_dir}
-%{modules_data_dir}/autoaway.desc
-%attr(755,root,root) %{modules_lib_dir}/libautoaway.so
 %{modules_data_dir}/config_wizard.desc
 %attr(755,root,root) %{modules_lib_dir}/libconfig_wizard.so
 %{modules_data_dir}/docking.desc
@@ -1690,10 +1680,6 @@ rm -rf $RPM_BUILD_ROOT
 
 #default modules translation:
 %dir %{modules_data_dir}/translations
-%lang(de) %{modules_data_dir}/translations/autoaway_de.qm
-%lang(fr) %{modules_data_dir}/translations/autoaway_fr.qm
-%lang(it) %{modules_data_dir}/translations/autoaway_it.qm
-%lang(pl) %{modules_data_dir}/translations/autoaway_pl.qm
 %lang(de) %{modules_data_dir}/translations/config_wizard_de.qm
 %lang(fr) %{modules_data_dir}/translations/config_wizard_fr.qm
 %lang(it) %{modules_data_dir}/translations/config_wizard_it.qm
@@ -1770,7 +1756,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %if 0
 %dir %{modules_data_dir}/configuration
-%{modules_data_dir}/configuration/autoaway.ui
 %{modules_data_dir}/configuration/docking.ui
 %{modules_data_dir}/configuration/hints.ui
 %{modules_data_dir}/configuration/hint-over-user.ui
@@ -1827,7 +1812,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{modules_data_dir}/data/antistring
 %{modules_data_dir}/data/antistring/ant_conditions.conf
 %endif
-%if 0
 
 %if %{with auto_hide}
 %files module-auto_hide
@@ -1835,12 +1819,25 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/auto_hide.desc
 %{modules_data_dir}/configuration/auto_hide.ui
 %attr(755,root,root) %{modules_lib_dir}/libauto_hide.so
+%lang(cs) %{modules_data_dir}/translations/auto_hide_cs.qm
 %lang(de) %{modules_data_dir}/translations/auto_hide_de.qm
-%lang(fr) %{modules_data_dir}/translations/auto_hide_fr.qm
 %lang(it) %{modules_data_dir}/translations/auto_hide_it.qm
 %lang(pl) %{modules_data_dir}/translations/auto_hide_pl.qm
 %endif
 
+%if %{with autoaway}
+%files module-autoaway
+%defattr(644,root,root,755)
+%{modules_data_dir}/autoaway.desc
+%{modules_data_dir}/configuration/autoaway.ui
+%attr(755,root,root) %{modules_lib_dir}/libautoaway.so
+%lang(cs) %{modules_data_dir}/translations/autoaway_cs.qm
+%lang(de) %{modules_data_dir}/translations/autoaway_de.qm
+%lang(it) %{modules_data_dir}/translations/autoaway_it.qm
+%lang(pl) %{modules_data_dir}/translations/autoaway_pl.qm
+%endif
+
+%if 0
 %if %{with anonymous_check}
 %files module-anonymous_check
 %defattr(644,root,root,755)
