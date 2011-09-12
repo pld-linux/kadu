@@ -1546,6 +1546,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/ChangeLog.OLD-PL
 %{_datadir}/%{name}/COPYING
 %{_datadir}/%{name}/THANKS
+%endif
+
 #default modules:
 %dir %{_libdir}/%{name}
 %dir %{modules_lib_dir}
@@ -1570,8 +1572,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libjabber_protocol.so
 %{modules_data_dir}/profiles_import.desc
 %attr(755,root,root) %{modules_lib_dir}/libprofiles_import.so
-#%{modules_data_dir}/server_monitor.desc
-#%attr(755,root,root) %{modules_lib_dir}/libserver_monitor.so
 %{modules_data_dir}/simpleview.desc
 %attr(755,root,root) %{modules_lib_dir}/libsimpleview.so
 %{modules_data_dir}/sms.desc
@@ -1580,9 +1580,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libsound.so
 %{modules_data_dir}/sql_history.desc
 %attr(755,root,root) %{modules_lib_dir}/libsql_history.so
-%attr(755,root,root) %{modules_lib_dir}/libqt4_docking.so
 %{modules_data_dir}/qt4_docking.desc
+%attr(755,root,root) %{modules_lib_dir}/libqt4_docking.so
 
+%if 0
 #default modules translation:
 %dir %{modules_data_dir}/translations
 %lang(de) %{modules_data_dir}/translations/config_wizard_de.qm
