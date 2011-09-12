@@ -45,6 +45,7 @@
 %bcond_with	notify_led		# without led_notify module support
 %bcond_with	notify_mx610		# without mc610_notify module support
 %bcond_with	notify_osdhints		# without osdhints_notify module
+%bcond_without	notify_chat	        # without chat_notify module support
 %bcond_without	notify_pcspeaker	# without pcspeaker_notify module support
 %bcond_without	notify_qt4_docking	# without qt4_docking_notify module support
 %bcond_without	notify_speech		# without Speech synthesis support
@@ -753,6 +754,19 @@ Notification by OSD-like hints.
 %description module-notify-osdhints -l pl.UTF-8
 Powiadamianie o zdarzeniach przy pomocy dymków typu OSD.
 
+%package module-notify-chat
+Summary:	Notifications in chat windows
+Summary(pl.UTF-8):	Powiadomienia w oknach rozmowy
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-notify-chat
+Notifications about buddies presence and other in chat windows.
+
+%description module-notify-chat -l pl.UTF-8
+Powiadomienia o aktywności znajomych i innych zdarzeniach w oknach
+rozmowy.
+
 %package module-notify-pcspeaker
 Summary:	Notification by PC Speaker
 Summary(pl.UTF-8):	Powiadamianie o zdarzeniach przy pomocy PC Speakera
@@ -1387,6 +1401,7 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok2_mediaplayer/spec
 %else
 %{__sed} -i 's/module_osd_hints=m/module_osd_hints=n/' .config
 %endif
+%{!?with_notify_chat:%{__sed} -i 's/\tchat_notify$/\t#chat_notify/' Plugins.cmake}
 %{!?with_notify_pcspeaker:%{__sed} -i 's/\tpcspeaker$/\t#pcspeaker/' Plugins.cmake}
 %{!?with_notify_qt4_docking:%{__sed} -i 's/\tqt4_docking_notify$/\t#qt4_docking_notify/' Plugins.cmake}
 %if %{with notify_window}
@@ -2071,6 +2086,15 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/data/osd_hints/License
 %{modules_data_dir}/data/osd_hints/*.png
 %endif
+%endif
+
+%if %{with notify_chat}
+%files module-notify-chat
+%defattr(644,root,root,755)
+%{modules_data_dir}/chat_notify.desc
+%attr(755,root,root) %{modules_lib_dir}/libchat_notify.so
+%lang(de) %{modules_data_dir}/translations/chat_notify_de.qm
+%lang(pl) %{modules_data_dir}/translations/chat_notify_pl.qm
 %endif
 
 %if %{with notify_pcspeaker}
