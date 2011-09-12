@@ -126,37 +126,37 @@ Source12:	http://www.ultr.pl/kadu/senthistory-%{senthistory_ver}.tar.gz
 Source13:	http://kadu.net/~patryk/plus_pl_sms/plus_pl_sms-plus_pl_sms-%{sms_plus_pl_ver}.tar.bz2
 # Source13-md5:	59f7ba01a63464818acaa5ff6fd176d5
 Source14:	http://kadu.net/~neeo/kadu/geoip/geoip_lookup-%{geoip_ver}.tar.bz2
-# Source15-md5:	83d9672c7f88b803510e7757dd36ea92
+# Source14-md5:	83d9672c7f88b803510e7757dd36ea92
 Source15:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-theme-glass-16.tar.gz
-# Source16-md5:	25374d4b876037de6d00eedca76eae0f
+# Source15-md5:	25374d4b876037de6d00eedca76eae0f
 Source16:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-theme-glass-22.tar.gz
-# Source17-md5:	d9df73a452cf190abd5605112c53c21f
+# Source16-md5:	d9df73a452cf190abd5605112c53c21f
 Source17:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-theme-oxygen-16.tar.gz
-# Source18-md5:	1dd08c856ec86f55dccf88ab19be6f5a
+# Source17-md5:	1dd08c856ec86f55dccf88ab19be6f5a
 Source18:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-theme-tango-16.tar.gz
-# Source19-md5:	9710fd37c6fd8c24e2bae8fa377ee465
+# Source18-md5:	9710fd37c6fd8c24e2bae8fa377ee465
 Source19:	http://www.kadu.net/download/additions/%{name}-0.6.5-theme-kadu05.tar.gz
-# Source20-md5:	9174f621138b6fc28127cc4396cb59ed
+# Source19-md5:	9174f621138b6fc28127cc4396cb59ed
 Source20:	desc_history-%{desc_history_ver}.tar.bz2
-# Source21-md5:	cf7d7c8f86d9cfe4b5a0ab52b5deff34
+# Source20-md5:	cf7d7c8f86d9cfe4b5a0ab52b5deff34
 Source21:	http://www.kadu.net/~dorr/moduly/kde_notify-%{notify_kde_ver}.tar.gz
-# Source22-md5:	2da919d6359049a6e4827e795ba46b1a
+# Source21-md5:	2da919d6359049a6e4827e795ba46b1a
 Source22:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-emots-tango.tar.gz
-# Source23-md5:	436f12011f209c4427a9e411091ecb0a
+# Source22-md5:	436f12011f209c4427a9e411091ecb0a
 Source23:	http://www.kadu.net/~dorr/moduly/%{name}-pajacyk-%{pajacyk_ver}.tar.bz2
-# Source24-md5:	c87d4b68d65c923118b6ac3e9396ff13
+# Source23-md5:	c87d4b68d65c923118b6ac3e9396ff13
 Source24:	http://www.kadu.net/download/additions/%{name}-sound-bns.tar.bz2
-# Source25-md5:	fcf829d687df27d2ac296a077dc2814e
+# Source24-md5:	fcf829d687df27d2ac296a077dc2814e
 Source25:	http://www.kadu.net/download/additions/%{name}-sound-drums.tar.bz2
-# Source26-md5:	0f29ac64019d841b38eefadad2a49e4f
+# Source25-md5:	0f29ac64019d841b38eefadad2a49e4f
 Source26:	http://www.kadu.net/download/additions/%{name}-sound-florkus.tar.bz2
-# Source27-md5:	d90070390134c2809a2b53df07563712
+# Source26-md5:	d90070390134c2809a2b53df07563712
 Source27:	http://www.kadu.net/download/additions/%{name}-sound-michalsrodek.tar.bz2
-# Source28-md5:	5951d828833ea0e452654dbc80c02787
+# Source27-md5:	5951d828833ea0e452654dbc80c02787
 Source28:	http://www.kadu.net/download/additions/%{name}-sound-percussion.tar.bz2
-# Source29-md5:	124175025038cd1fedb3d0caa3a0d478
+# Source28-md5:	124175025038cd1fedb3d0caa3a0d478
 Source29:	http://www.kadu.net/download/additions/%{name}-sound-ultr.tar.bz2
-# Source30-md5:	1caec2ba480a2f47430d12ec681aa871
+# Source29-md5:	1caec2ba480a2f47430d12ec681aa871
 Patch0:		%{name}-sounds.patch
 Patch1:		%{name}-mail.patch
 Patch2:		%{name}-link.patch
