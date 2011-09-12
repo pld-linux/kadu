@@ -1293,17 +1293,13 @@ mkdir -p build
 %{__sed} -i 's/\tencryption_ng$/\t#encryption_ng/' Plugins.cmake
 %{__sed} -i 's/\tencryption_ng_simlite$/\t#encryption_ng_simlite/' Plugins.cmake
 %endif
-%{!?with_filedesc:%{__sed} -i 's/\filedesc$/\t#filedesc/' Plugins.cmake}
+%{!?with_filedesc:%{__sed} -i 's/\tfiledesc$/\t#filedesc/' Plugins.cmake}
 %if %{with filtering}
 %{__sed} -i 's/module_filtering=n/module_filtering=m/' .config
 %else
 %{__sed} -i 's/module_filtering=m/module_filtering=n/' .config
 %endif
-%if %{with firewall}
-%{__sed} -i 's/module_firewall=n/module_firewall=m/' .config
-%else
-%{__sed} -i 's/module_firewall=m/module_firewall=n/' .config
-%endif
+%{!?with_firewall:%{__sed} -i 's/\tfirewall$/\t#firewall/' Plugins.cmake}
 %if %{with geoip}
 %{__sed} -i 's/module_geoip_lookup=n/module_geoip_lookup=m/' .config
 %else
@@ -1319,21 +1315,13 @@ mkdir -p build
 %else
 %{__sed} -i 's/module_globalhotkeys=m/module_globalhotkeys=n/' .config
 %endif
-%if %{with last_seen}
-%{__sed} -i 's/last_seen=n/last_seen=m/' .config
-%else
-%{__sed} -i 's/last_seen=m/last_seen=n/' .config
-%endif
+%{!?with_last_seen:%{__sed} -i 's/\tlast_seen$/\t#last_seen/' Plugins.cmake}
 %if %{with mail}
 %{__sed} -i 's/module_mail=n/module_mail=m/' .config
 %else
 %{__sed} -i 's/module_mail=m/module_mail=n/' .config
 %endif
-%if %{with mediaplayer}
-%{__sed} -i 's/module_mediaplayer=n/module_mediaplayer=m/' .config
-%else
-%{__sed} -i 's/module_mediaplayer=m/module_mediaplayer=n/' .config
-%endif
+%{!?with_mediaplayer:%{__sed} -i 's/\tmediaplayer$/\t#mediaplayer/' Plugins.cmake}
 %{!?with_mediaplayer_amarok:%{__sed} -i 's/\tamarok1_mediaplayer$/\t#amarok1_mediaplayer/' Plugins.cmake}
 %if %{with mediaplayer_amarok2}
 %{__sed} -i 's/module_amarok2_mediaplayer=n/module_amarok2_mediaplayer=m/' .config
@@ -1932,6 +1920,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{modules_data_dir}/data/filtering
 %{modules_data_dir}/data/filtering/*.png
 %endif
+%endif
 
 %if %{with firewall}
 %files module-firewall
@@ -1939,12 +1928,12 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/firewall.desc
 %{modules_data_dir}/configuration/firewall.ui
 %attr(755,root,root) %{modules_lib_dir}/libfirewall.so
+%lang(cs) %{modules_data_dir}/translations/firewall_cs.qm
 %lang(de) %{modules_data_dir}/translations/firewall_de.qm
-%lang(fr) %{modules_data_dir}/translations/firewall_fr.qm
-%lang(it) %{modules_data_dir}/translations/firewall_it.qm
 %lang(pl) %{modules_data_dir}/translations/firewall_pl.qm
 %endif
 
+%if 0
 %if %{with geoip}
 %files module-geoip
 %defattr(644,root,root,755)
@@ -1969,18 +1958,20 @@ rm -rf $RPM_BUILD_ROOT
 %lang(en) %{modules_data_dir}/translations/globalhotkeys_en.qm
 %lang(pl) %{modules_data_dir}/translations/globalhotkeys_pl.qm
 %endif
+%endif
 
 %if %{with last_seen}
 %files module-last_seen
 %defattr(644,root,root,755)
 %{modules_data_dir}/last_seen.desc
 %attr(755,root,root) %{modules_lib_dir}/liblast_seen.so
+%lang(cs) %{modules_data_dir}/translations/last_seen_cs.qm
 %lang(de) %{modules_data_dir}/translations/last_seen_de.qm
-%lang(fr) %{modules_data_dir}/translations/last_seen_fr.qm
-%lang(it) %{modules_data_dir}/translations/last_seen_it.qm
 %lang(pl) %{modules_data_dir}/translations/last_seen_pl.qm
+%lang(tr) %{modules_data_dir}/translations/last_seen_tr.qm
 %endif
 
+%if 0
 %if %{with mail}
 %files module-mail
 %defattr(644,root,root,755)
@@ -1988,6 +1979,7 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/configuration/mail.ui
 %attr(755,root,root) %{modules_lib_dir}/libmail.so
 %lang(pl) %{modules_data_dir}/translations/mail_pl.qm
+%endif
 %endif
 
 %if %{with mediaplayer}
@@ -1997,13 +1989,11 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/configuration/mediaplayer.ui
 %attr(755,root,root) %{modules_lib_dir}/libmediaplayer.so
 %{modules_data_dir}/data/mediaplayer
+%lang(cs) %{modules_data_dir}/translations/mediaplayer_cs.qm
 %lang(de) %{modules_data_dir}/translations/mediaplayer_de.qm
-%lang(fr) %{modules_data_dir}/translations/mediaplayer_fr.qm
-%lang(it) %{modules_data_dir}/translations/mediaplayer_it.qm
 %lang(pl) %{modules_data_dir}/translations/mediaplayer_pl.qm
 %endif
 
-%endif
 %if %{with mediaplayer_amarok}
 %files module-mediaplayer-amarok
 %defattr(644,root,root,755)
