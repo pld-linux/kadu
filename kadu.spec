@@ -1632,10 +1632,13 @@ rm -rf $RPM_BUILD_ROOT
 #global translation:
 %dir %{_datadir}/%{name}/translations
 %lang(cs) %{_datadir}/%{name}/translations/kadu_cs.qm
+%lang(cs) %{_datadir}/%{name}/translations/cs.language
 %lang(de) %{_datadir}/%{name}/translations/kadu_de.qm
+%lang(de) %{_datadir}/%{name}/translations/de.language
 %lang(fr) %{_datadir}/%{name}/translations/kadu_fr.qm
 %lang(it) %{_datadir}/%{name}/translations/kadu_it.qm
 %lang(pl) %{_datadir}/%{name}/translations/kadu_pl.qm
+%lang(pl) %{_datadir}/%{name}/translations/pl.language
 %lang(ru) %{_datadir}/%{name}/translations/kadu_ru.qm
 %lang(sk) %{_datadir}/%{name}/translations/kadu_sk.qm
 
