@@ -23,26 +23,26 @@
 %bcond_without	firewall		# without firewall module support
 %bcond_with	geoip			# without geoip module support
 %bcond_with	gg_avatars		# without gg_avatars module support
-%bcond_without	globalhotkeys		# without globalhotkeys module support
+%bcond_with	globalhotkeys		# without globalhotkeys module support
 %bcond_without	last_seen		# without last_seen module support
 %bcond_with	mail			# without mail module support
 %bcond_without	mediaplayer		# without media player modules support
-%bcond_with	mediaplayer_amarok	# without amarok player support module
+%bcond_without	mediaplayer_amarok	# without amarok player support module
 %bcond_with	mediaplayer_amarok2	# without amarok2 player support module
-%bcond_without	mediaplayer_audacious	# without audacious player support module
+%bcond_with	mediaplayer_audacious	# without audacious player support module
 %bcond_with	mediaplayer_bmpx	# without bmpx player support module
-%bcond_without	mediaplayer_dragon	# without dragon player support module
-%bcond_with	mediaplayer_falf	# without falf player support module
+%bcond_with	mediaplayer_dragon	# without dragon player support module
+%bcond_without	mediaplayer_falf	# without falf player support module
 %bcond_without	mediaplayer_mpd		# without mpd player support module
 %bcond_without	mediaplayer_mpris	# without generic mpris interface support module
 %bcond_without	mediaplayer_vlc		# without vlc player support module
-%bcond_without	mediaplayer_xmms	# without xmms player support module
-%bcond_without	mediaplayer_xmms2	# without xmms2 player support module
-%bcond_without	mime_tex		# without mime_tex module support
-%bcond_without	nextinfo		# without nextinfo module support
+%bcond_with	mediaplayer_xmms	# without xmms player support module
+%bcond_with	mediaplayer_xmms2	# without xmms2 player support module
+%bcond_with	mime_tex		# without mime_tex module support
+%bcond_with	nextinfo		# without nextinfo module support
 %bcond_without	notify_exec		# without exec_notify module support
-%bcond_without	notify_kde		# without kde_notify module support
-%bcond_without	notify_led		# without led_notify module support
+%bcond_with	notify_kde		# without kde_notify module support
+%bcond_with	notify_led		# without led_notify module support
 %bcond_with	notify_mx610		# without mc610_notify module support
 %bcond_with	notify_osdhints		# without osdhints_notify module
 %bcond_without	notify_pcspeaker	# without pcspeaker_notify module support
@@ -54,13 +54,13 @@
 %bcond_with	panelkadu		# without panelkadu module support
 %bcond_with	parser_extender		# without parser_extender extensions
 %bcond_with	powerkadu		# without PowerKadu extensions
-%bcond_with	profiles		# without profiles module support
+%bcond_without	profiles		# without profiles module support
 %bcond_without	screenshot		# without screenshot module support
-%bcond_without	senthistory		# without senthistory module support
+%bcond_with	senthistory		# without senthistory module support
 %bcond_without	single_window		# without single_window module support
 %bcond_with	sms_plus_pl		# without plus_pl_sms module support
-%bcond_without	sound_alsa		# without ALSA support
-%bcond_without	sound_ao		# without ao support
+%bcond_with	sound_alsa		# without ALSA support
+%bcond_with	sound_ao		# without ao support
 %bcond_with	sound_dsp		# without DSP support
 %bcond_without	sound_ext		# without external application sound module support
 %bcond_without	sound_phonon		# without phonon sound module support
