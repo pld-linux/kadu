@@ -1481,11 +1481,7 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok2_mediaplayer/spec
 %else
 %{__sed} -i 's/module_weather=m/module_weather=n/' .config
 %endif
-%if %{with word_fix}
-%{__sed} -i 's/module_word_fix=n/module_word_fix=m/' .config
-%else
-%{__sed} -i 's/module_word_fix=m/module_word_fix=n/' .config
-%endif
+%{!?with_word_fix:%{__sed} -i 's/\tword_fix$/\t#word_fix/' Plugins.cmake}
 
 %{__sed} -i 's/icons_glass16=n/icons_glass16=y/' .config
 %{__sed} -i 's/icons_glass22=n/icons_glass22=y/' .config
@@ -2351,6 +2347,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{modules_data_dir}/data/weather/icons
 %{modules_data_dir}/data/weather/icons/*.gif
 %endif
+%endif
 
 %if %{with word_fix}
 %files module-word_fix
@@ -2358,11 +2355,15 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/word_fix.desc
 %{modules_data_dir}/configuration/word_fix.ui
 %attr(755,root,root) %{modules_lib_dir}/libword_fix.so
+%lang(cs) %{modules_data_dir}/translations/word_fix_cs.qm
+%lang(de) %{modules_data_dir}/translations/word_fix_de.qm
 %lang(pl) %{modules_data_dir}/translations/word_fix_pl.qm
+%lang(ru) %{modules_data_dir}/translations/word_fix_ru.qm
 %dir %{modules_data_dir}/data/word_fix
 %{modules_data_dir}/data/word_fix/wf_default_list.data
 %endif
 
+%if 0
 #%files theme-icons-glass16
 #%defattr(644,root,root,755)
 #%{_datadir}/%{name}/themes/icons/glass16
