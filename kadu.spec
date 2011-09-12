@@ -1293,11 +1293,7 @@ mkdir -p build
 %{__sed} -i 's/\tencryption_ng$/\t#encryption_ng/' Plugins.cmake
 %{__sed} -i 's/\tencryption_ng_simlite$/\t#encryption_ng_simlite/' Plugins.cmake
 %endif
-%if %{with filedesc}
-%{__sed} -i 's/module_filedesc=n/module_filedesc=m/' .config
-%else
-%{__sed} -i 's/module_filedesc=m/module_filedesc=n/' .config
-%endif
+%{!?with_filedesc:%{__sed} -i 's/\filedesc$/\t#filedesc/' Plugins.cmake}
 %if %{with filtering}
 %{__sed} -i 's/module_filtering=n/module_filtering=m/' .config
 %else
@@ -1881,6 +1877,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{modules_data_dir}/encryption_ng.desc
 %{modules_data_dir}/encryption_ng_simlite.desc
+%{modules_data_dir}/configuration/encryption_ng.ui
 %attr(755,root,root) %{modules_lib_dir}/libencryption_ng.so
 %attr(755,root,root) %{modules_lib_dir}/libencryption_ng_simlite.so
 %lang(cs) %{modules_data_dir}/translations/encryption_ng_cs.qm
@@ -1913,21 +1910,18 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{modules_data_dir}/translations/desktop_docking_pl.qm
 %endif
 
-%if 0
 %if %{with filedesc}
 %files module-filedesc
 %defattr(644,root,root,755)
 %{modules_data_dir}/filedesc.desc
 %{modules_data_dir}/configuration/filedesc.ui
 %attr(755,root,root) %{modules_lib_dir}/libfiledesc.so
+%lang(cs) %{modules_data_dir}/translations/filedesc_cs.qm
 %lang(de) %{modules_data_dir}/translations/filedesc_de.qm
-%lang(fr) %{modules_data_dir}/translations/filedesc_fr.qm
-%lang(it) %{modules_data_dir}/translations/filedesc_it.qm
 %lang(pl) %{modules_data_dir}/translations/filedesc_pl.qm
-#%dir %{modules_data_dir}/data/filedesc
-#%{modules_data_dir}/data/filedesc/*.png
 %endif
 
+%if 0
 %if %{with filtering}
 %files module-filtering
 %defattr(644,root,root,755)
