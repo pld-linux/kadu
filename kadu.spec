@@ -1630,6 +1630,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%if 0
 %doc HISTORY README TODO
 %attr(755,root,root) %{_bindir}/%{name}
 %{_desktopdir}/%{name}.desktop
@@ -2484,3 +2485,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}/themes/sounds/michalsrodek
 %{_datadir}/%{name}/themes/sounds/percussion
 %{_datadir}/%{name}/themes/sounds/ultr
+%endif
