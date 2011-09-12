@@ -54,7 +54,7 @@
 %bcond_with	panelkadu		# without panelkadu module support
 %bcond_with	parser_extender		# without parser_extender extensions
 %bcond_with	powerkadu		# without PowerKadu extensions
-%bcond_without	profiles		# without profiles module support
+%bcond_with	profiles		# without profiles module support
 %bcond_without	screenshot		# without screenshot module support
 %bcond_with	senthistory		# without senthistory module support
 %bcond_without	single_window		# without single_window module support
@@ -1400,11 +1400,7 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok2_mediaplayer/spec
 %else
 %{__sed} -i 's/module_window_notify=m/module_window_notify=n/' .config
 %endif
-%if %{with notify_speech}
-%{__sed} -i 's/module_speech=n/module_speech=m/' .config
-%else
-%{__sed} -i 's/module_speech=m/module_speech=n/' .config
-%endif
+%{!?with_notify_speech:%{__sed} -i 's/\tspeech$/\t#speech/' Plugins.cmake}
 %if %{with notify_water}
 %{__sed} -i 's/module_water_notify=n/module_water_notify=m/' .config
 %else
@@ -1440,11 +1436,7 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok2_mediaplayer/spec
 %else
 %{__sed} -i 's/module_profiles=m/module_profiles=n/' .config
 %endif
-%if %{with screenshot}
-%{__sed} -i 's/module_screenshot=n/module_screenshot=m/' .config
-%else
-%{__sed} -i 's/module_screenshot=m/module_screenshot=n/' .config
-%endif
+%{!?with_screenshot:%{__sed} -i 's/\tscreenshot$/\t#screenshot/' Plugins.cmake}
 %if %{with senthistory}
 %{__sed} -i 's/module_senthistory=n/module_senthistory=m/' .config
 %else
@@ -2152,19 +2144,19 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{modules_data_dir}/translations/qt4_docking_notify_pl.qm
 %endif
 
-%if 0
 %if %{with notify_speech}
 %files module-notify-speech
 %defattr(644,root,root,755)
 %{modules_data_dir}/speech.desc
 %{modules_data_dir}/configuration/speech.ui
 %attr(755,root,root) %{modules_lib_dir}/libspeech.so
+%lang(cs) %{modules_data_dir}/translations/speech_cs.qm
 %lang(de) %{modules_data_dir}/translations/speech_de.qm
-%lang(fr) %{modules_data_dir}/translations/speech_fr.qm
 %lang(it) %{modules_data_dir}/translations/speech_it.qm
 %lang(pl) %{modules_data_dir}/translations/speech_pl.qm
 %endif
 
+%if 0
 %if %{with notify_water}
 %files module-notify-water
 %defattr(644,root,root,755)
@@ -2245,6 +2237,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(en) %{modules_data_dir}/translations/senthistory_en.qm
 %lang(pl) %{modules_data_dir}/translations/senthistory_pl.qm
 %endif
+%endif
 
 %if %{with screenshot}
 %files module-screenshot
@@ -2252,14 +2245,11 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/screenshot.desc
 %{modules_data_dir}/configuration/screenshot.ui
 %attr(755,root,root) %{modules_lib_dir}/libscreenshot.so
-%lang(de) %{modules_data_dir}/translations/screenshot_de.qm
-%lang(fr) %{modules_data_dir}/translations/screenshot_fr.qm
-%lang(it) %{modules_data_dir}/translations/screenshot_it.qm
+%lang(cd) %{modules_data_dir}/translations/screenshot_de.qm
 %lang(pl) %{modules_data_dir}/translations/screenshot_pl.qm
-#%dir %{modules_data_dir}/data/screenshot
-#%{modules_data_dir}/data/screenshot/*.png
 %endif
 
+%if 0
 %if %{with sms_plus_pl}
 %files module-sms-plus_pl
 %defattr(644,root,root,755)
