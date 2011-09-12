@@ -1514,6 +1514,9 @@ install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 
+# we don't need headers
+%{__rm} -r $RPM_BUILD_ROOT%{_includedir}/%{name}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
