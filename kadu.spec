@@ -1290,11 +1290,8 @@ mkdir -p build
 %endif
 %{!?with_docking_desktop:%{__sed} -i 's/\tdesktop_docking$/\t#desktop_docking/' Plugins.cmake}
 %if %{with encryption}
-%{__sed} -i 's/module_encryption_ng=n/module_encryption_ng=m/' .config
-%{__sed} -i 's/module_encryption_ng_simlite=n/module_encryption_ng_simlite=m/' .config
-%else
-%{__sed} -i 's/module_encryption_ng=m/module_encryption_ng=n/' .config
-%{__sed} -i 's/module_encryption_ng_simlite=m/module_encryption_ng_simlite=n/' .config
+%{__sed} -i 's/\tencryption_ng$/\t#encryption_ng/' Plugins.cmake
+%{__sed} -i 's/\tencryption_ng_simlite$/\t#encryption_ng_simlite/' Plugins.cmake
 %endif
 %if %{with filedesc}
 %{__sed} -i 's/module_filedesc=n/module_filedesc=m/' .config
@@ -1878,24 +1875,24 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{modules_data_dir}/translations/desc_history_pl.qm
 %endif
 
+%endif
 %if %{with encryption}
 %files module-encryption
 %defattr(644,root,root,755)
 %{modules_data_dir}/encryption_ng.desc
 %{modules_data_dir}/encryption_ng_simlite.desc
-%{modules_data_dir}/configuration/encryption-ng.ui
 %attr(755,root,root) %{modules_lib_dir}/libencryption_ng.so
 %attr(755,root,root) %{modules_lib_dir}/libencryption_ng_simlite.so
-%lang(de) %{modules_data_dir}/translations/encryption_ng_de.qm
-%lang(fr) %{modules_data_dir}/translations/encryption_ng_fr.qm
+%lang(cs) %{modules_data_dir}/translations/encryption_ng_cs.qm
 %lang(it) %{modules_data_dir}/translations/encryption_ng_it.qm
 %lang(pl) %{modules_data_dir}/translations/encryption_ng_pl.qm
+%lang(cs) %{modules_data_dir}/translations/encryption_ng_simlite_cs.qm
 %lang(de) %{modules_data_dir}/translations/encryption_ng_simlite_de.qm
-%lang(fr) %{modules_data_dir}/translations/encryption_ng_simlite_fr.qm
 %lang(it) %{modules_data_dir}/translations/encryption_ng_simlite_it.qm
 %lang(pl) %{modules_data_dir}/translations/encryption_ng_simlite_pl.qm
 %endif
 
+%if 0
 %if %{with dbus}
 %files module-dbus
 %defattr(644,root,root,755)
