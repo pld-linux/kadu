@@ -33,7 +33,7 @@
 %bcond_with	mediaplayer_bmpx	# without bmpx player support module
 %bcond_with	mediaplayer_dragon	# without dragon player support module
 %bcond_without	mediaplayer_falf	# without falf player support module
-%bcond_without	mediaplayer_mpd		# without mpd player support module
+%bcond_with	mediaplayer_mpd		# without mpd player support module
 %bcond_without	mediaplayer_mpris	# without generic mpris interface support module
 %bcond_without	mediaplayer_vlc		# without vlc player support module
 %bcond_with	mediaplayer_xmms	# without xmms player support module
@@ -1275,16 +1275,8 @@ mkdir -p build
 %{!?with_antistring:%{__sed} -i 's/antistring/#antistring/' Plugins.cmake}
 %{!?with_autoaway:%{__sed} -i 's/autoaway/#autoaway/' Plugins.cmake}
 %{!?with_auto_hide:%{__sed} -i 's/auto_hide/#auto_hide/' Plugins.cmake}
-%if %{with autoresponder}
-%{__sed} -i 's/module_autoresponder=n/module_autoresponder=m/' .config
-%else
-%{__sed} -i 's/module_autoresponder=m/module_autoresponder=n/' .config
-%endif
-%if %{with autostatus}
-%{__sed} -i 's/module_autostatus=n/module_autostatus=m/' .config
-%else
-%{__sed} -i 's/module_autostatus=m/module_autostatus=n/' .config
-%endif
+%{!?with_autoresponder:%{__sed} -i 's/autoresponder/#autoresponder/' Plugins.cmake}
+%{!?with_autostatus:%{__sed} -i 's/autostatus/#autostatus/' Plugins.cmake}
 %if %{with cenzor}
 %{__sed} -i 's/module_cenzor=n/module_cenzor=m/' .config
 %else
@@ -1847,14 +1839,15 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{modules_data_dir}/translations/anonymous_check.qm
 %endif
 
+%endif
 %if %{with autoresponder}
 %files module-autoresponder
 %defattr(644,root,root,755)
 %{modules_data_dir}/autoresponder.desc
 %{modules_data_dir}/configuration/autoresponder.ui
 %attr(755,root,root) %{modules_lib_dir}/libautoresponder.so
+%lang(cs) %{modules_data_dir}/translations/autoresponder_cs.qm
 %lang(de) %{modules_data_dir}/translations/autoresponder_de.qm
-%lang(fr) %{modules_data_dir}/translations/autoresponder_fr.qm
 %lang(it) %{modules_data_dir}/translations/autoresponder_it.qm
 %lang(pl) %{modules_data_dir}/translations/autoresponder_pl.qm
 %endif
@@ -1865,12 +1858,13 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/autostatus.desc
 %{modules_data_dir}/configuration/autostatus.ui
 %attr(755,root,root) %{modules_lib_dir}/libautostatus.so
+%lang(cs) %{modules_data_dir}/translations/autostatus_de.qm
 %lang(de) %{modules_data_dir}/translations/autostatus_de.qm
-%lang(fr) %{modules_data_dir}/translations/autostatus_fr.qm
 %lang(it) %{modules_data_dir}/translations/autostatus_it.qm
 %lang(pl) %{modules_data_dir}/translations/autostatus_pl.qm
 %endif
 
+%if 0
 %if %{with cenzor}
 %files module-cenzor
 %defattr(644,root,root,755)
