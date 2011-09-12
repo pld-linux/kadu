@@ -1759,14 +1759,18 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{modules_data_dir}/translations/sql_history_fr.qm
 %lang(it) %{modules_data_dir}/translations/sql_history_it.qm
 %lang(pl) %{modules_data_dir}/translations/sql_history_pl.qm
+%endif
 #global translation:
 %dir %{_datadir}/%{name}/translations
+%lang(cs) %{_datadir}/%{name}/translations/kadu_cs.qm
 %lang(de) %{_datadir}/%{name}/translations/kadu_de.qm
-#%lang(en) %{_datadir}/%{name}/translations/kadu_en.qm
+%lang(en) %{_datadir}/%{name}/translations/kadu_en.qm
 %lang(fr) %{_datadir}/%{name}/translations/kadu_fr.qm
 %lang(it) %{_datadir}/%{name}/translations/kadu_it.qm
 %lang(pl) %{_datadir}/%{name}/translations/kadu_pl.qm
-%lang(cs) %{_datadir}/%{name}/translations/kadu_cs.qm
+%lang(ru) %{_datadir}/%{name}/translations/kadu_ru.qm
+%lang(sk) %{_datadir}/%{name}/translations/kadu_sk.qm
+%if 0
 #wizard
 %{_datadir}/%{name}/configuration
 %{_datadir}/%{name}/syntax
