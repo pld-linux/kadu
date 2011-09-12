@@ -1289,7 +1289,7 @@ mkdir -p build
 %{__sed} -i 's/module_desc_history=m/module_desc_history=n/' .config
 %endif
 %{!?with_docking_desktop:%{__sed} -i 's/\tdesktop_docking$/\t#desktop_docking/' Plugins.cmake}
-%if %{with encryption}
+%if %{without encryption}
 %{__sed} -i 's/\tencryption_ng$/\t#encryption_ng/' Plugins.cmake
 %{__sed} -i 's/\tencryption_ng_simlite$/\t#encryption_ng_simlite/' Plugins.cmake
 %endif
