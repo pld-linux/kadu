@@ -1863,8 +1863,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libcenzor.so
 %lang(cs) %{modules_data_dir}/translations/cenzor_cs.qm
 %lang(de) %{modules_data_dir}/translations/cenzor_de.qm
-%lang(it) %{modules_data_dir}/translations/cenzor_it.qm
 %lang(pl) %{modules_data_dir}/translations/cenzor_pl.qm
+%lang(tr) %{modules_data_dir}/translations/cenzor_tr.qm
 %dir %{modules_data_dir}/data/cenzor
 %{modules_data_dir}/data/cenzor/cenzor_words.conf
 %{modules_data_dir}/data/cenzor/cenzor_words_ok.conf
