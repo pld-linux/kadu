@@ -1217,7 +1217,7 @@ tar xjf %{SOURCE23} -C plugins
 %endif
 
 # themes-icons
-tar xzf %{SOURCE14} -C varia/themes/icons
+tar xzf %{SOURCE15} -C varia/themes/icons
 tar xzf %{SOURCE16} -C varia/themes/icons
 tar xzf %{SOURCE17} -C varia/themes/icons
 tar xzf %{SOURCE18} -C varia/themes/icons
