@@ -1272,11 +1272,7 @@ mkdir -p build
 %else
 %{__sed} -i 's/module_anonymous_check=m/module_anonymous_check=n/' .config
 %endif
-%if %{with antistring}
-%{__sed} -i 's/module_antistring=n/module_antistring=m/' .config
-%else
-%{__sed} -i 's/module_antistring=m/module_antistring=n/' .config
-%endif
+%{!?with_antistring:%{__sed} -i 's/antistring/#antistring/' Plugins.cmake}
 %if %{with autoaway}
 %{__sed} -i 's/module_autoaway=n/module_autoaway=m/' .config
 %else
@@ -1369,13 +1365,7 @@ mkdir -p build
 %else
 %{__sed} -i 's/module_mediaplayer=m/module_mediaplayer=n/' .config
 %endif
-%if %{with mediaplayer_amarok}
-%{__sed} -i 's/module_amarok1_mediaplayer=n/module_amarok1_mediaplayer=m/' .config
-echo 'MODULE_INCLUDES_PATH="%{_includedir}"' >> plugins/amarok1_mediaplayer/spec
-echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok1_mediaplayer/spec
-%else
-%{__sed} -i 's/module_amarok1_mediaplayer=m/module_amarok1_mediaplayer=n/' .config
-%endif
+%{!?with_mediaplayer_amarok:%{__sed} -i 's/amarok1_mediaplayer/#amarok1_mediaplayer/' Plugins.cmake}
 %if %{with mediaplayer_amarok2}
 %{__sed} -i 's/module_amarok2_mediaplayer=n/module_amarok2_mediaplayer=m/' .config
 echo 'MODULE_INCLUDES_PATH="%{_includedir}"' >> plugins/amarok2_mediaplayer/spec
