@@ -1277,11 +1277,7 @@ mkdir -p build
 %{!?with_auto_hide:%{__sed} -i 's/auto_hide/#auto_hide/' Plugins.cmake}
 %{!?with_autoresponder:%{__sed} -i 's/autoresponder/#autoresponder/' Plugins.cmake}
 %{!?with_autostatus:%{__sed} -i 's/autostatus/#autostatus/' Plugins.cmake}
-%if %{with cenzor}
-%{__sed} -i 's/module_cenzor=n/module_cenzor=m/' .config
-%else
-%{__sed} -i 's/module_cenzor=m/module_cenzor=n/' .config
-%endif
+%{!?with_cenzor:%{__sed} -i 's/cenzor/#cenzor/' Plugins.cmake}
 %if %{with dbus}
 %{__sed} -i 's/module_dbus=n/module_dbus=m/' .config
 %else
@@ -1292,11 +1288,7 @@ mkdir -p build
 %else
 %{__sed} -i 's/module_desc_history=m/module_desc_history=n/' .config
 %endif
-%if %{with docking_desktop}
-%{__sed} -i 's/module_desktop_docking=n/module_desktop_docking=m/' .config
-%else
-%{__sed} -i 's/module_desktop_docking=m/module_desktop_docking=n/' .config
-%endif
+%{!?with_docking_desktop:%{__sed} -i 's/desktop_docking/#desktop_docking/' Plugins.cmake}
 %if %{with encryption}
 %{__sed} -i 's/module_encryption_ng=n/module_encryption_ng=m/' .config
 %{__sed} -i 's/module_encryption_ng_simlite=n/module_encryption_ng_simlite=m/' .config
@@ -1864,15 +1856,14 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{modules_data_dir}/translations/autostatus_pl.qm
 %endif
 
-%if 0
 %if %{with cenzor}
 %files module-cenzor
 %defattr(644,root,root,755)
 %{modules_data_dir}/cenzor.desc
 %{modules_data_dir}/configuration/cenzor.ui
 %attr(755,root,root) %{modules_lib_dir}/libcenzor.so
+%lang(cs) %{modules_data_dir}/translations/cenzor_cs.qm
 %lang(de) %{modules_data_dir}/translations/cenzor_de.qm
-%lang(fr) %{modules_data_dir}/translations/cenzor_fr.qm
 %lang(it) %{modules_data_dir}/translations/cenzor_it.qm
 %lang(pl) %{modules_data_dir}/translations/cenzor_pl.qm
 %dir %{modules_data_dir}/data/cenzor
@@ -1880,6 +1871,7 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/data/cenzor/cenzor_words_ok.conf
 %endif
 
+%if 0
 %if %{with desc_history}
 %files module-desc_history
 %defattr(644,root,root,755)
@@ -1914,6 +1906,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libdbus.so
 %endif
 
+%endif
 %if %{with docking_desktop}
 %files module-docking-desktop
 %defattr(644,root,root,755)
@@ -1922,11 +1915,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libdesktop_docking.so
 %lang(cs) %{modules_data_dir}/translations/desktop_docking_cs.qm
 %lang(de) %{modules_data_dir}/translations/desktop_docking_de.qm
-%lang(fr) %{modules_data_dir}/translations/desktop_docking_fr.qm
 %lang(it) %{modules_data_dir}/translations/desktop_docking_it.qm
 %lang(pl) %{modules_data_dir}/translations/desktop_docking_pl.qm
 %endif
 
+%if 0
 %if %{with filedesc}
 %files module-filedesc
 %defattr(644,root,root,755)
