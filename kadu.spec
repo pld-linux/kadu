@@ -1393,16 +1393,8 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok2_mediaplayer/spec
 %else
 %{__sed} -i 's/module_osd_hints=m/module_osd_hints=n/' .config
 %endif
-%if %{with notify_pcspeaker}
-%{__sed} -i 's/module_pcspeaker=n/module_pcspeaker=m/' .config
-%else
-%{__sed} -i 's/module_pcspeaker=m/module_pcspeaker=n/' .config
-%endif
-%if %{with notify_qt4_docking}
-%{__sed} -i 's/module_qt4_docking_notify=n/module_qt4_docking_notify=m/' .config
-%else
-%{__sed} -i 's/module_qt4_docking_notify=m/module_qt4_docking_notify=n/' .config
-%endif
+%{!?with_notify_pcspeaker:%{__sed} -i 's/\tpcspeaker$/\t#pcspeaker/' Plugins.cmake}
+%{!?with_notify_qt4_docking:%{__sed} -i 's/\tqt4_docking_notify$/\t#qt4_docking_notify/' Plugins.cmake}
 %if %{with notify_window}
 %{__sed} -i 's/module_window_notify=n/module_window_notify=m/' .config
 %else
@@ -2137,12 +2129,14 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/data/osd_hints/License
 %{modules_data_dir}/data/osd_hints/*.png
 %endif
+%endif
 
 %if %{with notify_pcspeaker}
 %files module-notify-pcspeaker
 %defattr(644,root,root,755)
 %{modules_data_dir}/pcspeaker.desc
 %attr(755,root,root) %{modules_lib_dir}/libpcspeaker.so
+%lang(cs) %{modules_data_dir}/translations/pcspeaker_cs.qm
 %lang(de) %{modules_data_dir}/translations/pcspeaker_de.qm
 %lang(it) %{modules_data_dir}/translations/pcspeaker_it.qm
 %lang(pl) %{modules_data_dir}/translations/pcspeaker_pl.qm
@@ -2153,12 +2147,12 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{modules_data_dir}/qt4_docking_notify.desc
 %attr(755,root,root) %{modules_lib_dir}/libqt4_docking_notify.so
+%lang(cs) %{modules_data_dir}/translations/qt4_docking_notify_cs.qm
 %lang(de) %{modules_data_dir}/translations/qt4_docking_notify_de.qm
-%lang(fr) %{modules_data_dir}/translations/qt4_docking_notify_fr.qm
-%lang(it) %{modules_data_dir}/translations/qt4_docking_notify_it.qm
 %lang(pl) %{modules_data_dir}/translations/qt4_docking_notify_pl.qm
 %endif
 
+%if 0
 %if %{with notify_speech}
 %files module-notify-speech
 %defattr(644,root,root,755)
