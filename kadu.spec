@@ -1625,10 +1625,6 @@ install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 
-# We dont need 8 same icons with just diffrent size - one is enough
-%{__rm} $RPM_BUILD_ROOT%{_pixmapsdir}/*.png
-install kadu-core/hi64-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/kadu.png
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
