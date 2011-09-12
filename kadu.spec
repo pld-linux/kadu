@@ -2229,7 +2229,7 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/screenshot.desc
 %{modules_data_dir}/configuration/screenshot.ui
 %attr(755,root,root) %{modules_lib_dir}/libscreenshot.so
-%lang(cd) %{modules_data_dir}/translations/screenshot_de.qm
+%lang(cs) %{modules_data_dir}/translations/screenshot_cs.qm
 %lang(pl) %{modules_data_dir}/translations/screenshot_pl.qm
 %endif
 
