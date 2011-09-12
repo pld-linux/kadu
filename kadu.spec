@@ -1694,7 +1694,6 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/qt4_docking.desc
 
 #default modules translation:
-%if 0
 %dir %{modules_data_dir}/translations
 %lang(de) %{modules_data_dir}/translations/autoaway_de.qm
 %lang(fr) %{modules_data_dir}/translations/autoaway_fr.qm
@@ -1759,7 +1758,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{modules_data_dir}/translations/sql_history_fr.qm
 %lang(it) %{modules_data_dir}/translations/sql_history_it.qm
 %lang(pl) %{modules_data_dir}/translations/sql_history_pl.qm
-%endif
 #global translation:
 %dir %{_datadir}/%{name}/translations
 %lang(de) %{_datadir}/%{name}/translations/kadu_de.qm
