@@ -1658,17 +1658,15 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/configuration/sms.ui
 %{modules_data_dir}/configuration/sound.ui
 
-%if 0
 # default modules datas
 %dir %{modules_data_dir}/data
 %dir %{modules_data_dir}/data/gadu_protocol
 %{modules_data_dir}/data/gadu_protocol/servers.txt
-%dir %{modules_data_dir}/data/jabber_protocol
-%{modules_data_dir}/data/jabber_protocol/*.png
 %dir %{modules_data_dir}/data/sms
 %dir %{modules_data_dir}/data/sms/scripts
 %{modules_data_dir}/data/sms/scripts/*.js
 
+%if 0
 %if %{with advanced_userlist}
 %files module-advanced_userlist
 %defattr(644,root,root,755)
