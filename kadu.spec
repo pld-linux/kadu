@@ -216,8 +216,8 @@ Obsoletes:	kadu-module-notify-xosd
 Suggests:	qt4-plugin-qca-ossl
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		modules_lib_dir		%{_libdir}/%{name}/modules
-%define		modules_data_dir	%{_datadir}/%{name}/modules
+%define		modules_lib_dir		%{_libdir}/%{name}/plugins
+%define		modules_data_dir	%{_datadir}/%{name}/plugins
 %define		modules_bin_dir		%{modules_lib_dir}/bin
 
 %description
