@@ -1372,11 +1372,7 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok2_mediaplayer/spec
 %else
 %{__sed} -i 's/module_nextinfo=m/module_nextinfo=n/' .config
 %endif
-%if %{with notify_exec}
-%{__sed} -i 's/module_exec_notify=n/module_exec_notify=m/' .config
-%else
-%{__sed} -i 's/module_exec_notify=m/module_exec_notify=n/' .config
-%endif
+%{!?with_notify_exec:%{__sed} -i 's/\texec_notify$/\t#exec_notify/' Plugins.cmake}
 %if %{with notify_kde}
 %{__sed} -i 's/module_kde_notify=n/module_kde_notify=m/' .config
 %else
@@ -2088,18 +2084,17 @@ rm -rf $RPM_BUILD_ROOT
 %lang(en) %{modules_data_dir}/translations/nextinfo_en.qm
 %lang(pl) %{modules_data_dir}/translations/nextinfo_pl.qm
 %endif
+%endif
 
 %if %{with notify_exec}
 %files module-notify-exec
 %defattr(644,root,root,755)
 %{modules_data_dir}/exec_notify.desc
 %attr(755,root,root) %{modules_lib_dir}/libexec_notify.so
-%lang(de) %{modules_data_dir}/translations/exec_notify_de.qm
-%lang(fr) %{modules_data_dir}/translations/exec_notify_fr.qm
-%lang(it) %{modules_data_dir}/translations/exec_notify_it.qm
 %lang(pl) %{modules_data_dir}/translations/exec_notify_pl.qm
 %endif
 
+%if 0
 %if %{with notify_kde}
 %files module-notify-kde4
 %defattr(644,root,root,755)
