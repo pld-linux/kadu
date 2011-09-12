@@ -95,12 +95,12 @@
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
-Version:	0.9.2
-Release:	0.5
+Version:	0.10.0
+Release:	0.1
 License:	GPL v2+
 Group:		Applications/Communications
-Source0:	http://kadu.net/download/stable/%{name}-%{version}.tar.bz2
-# Source0-md5:	e23d39a2233a0585febe5a8ab50274dc
+Source0:	http://download.kadu.im/stable/%{name}-%{version}.tar.bz2
+# Source0-md5:	6d3e9889f53cf10c2cd9499aabbff67a
 Source1:	%{name}.desktop
 Source2:	http://kadu.net/~patryk/anonymous_check/anonymous_check-%{anonymous_check_ver}.tar.bz2
 # Source2-md5:	a1c49155f1cbfc4236e13b63cf97cbba
@@ -1169,57 +1169,57 @@ Zestaw dodatkowych dźwięków.
 
 #% patch0 -p1
 %if %{with anonymous_check}
-tar xjf %{SOURCE2} -C modules
+tar xjf %{SOURCE2} -C plugins
 %endif
 %if %{with dcopexport}
-tar xjf %{SOURCE3} -C modules
+tar xjf %{SOURCE3} -C plugins
 %endif
 %if %{with globalhotkeys}
-tar xzf %{SOURCE4} -C modules
+tar xzf %{SOURCE4} -C plugins
 %endif
 %if %{with mail}
-tar xjf %{SOURCE5} -C modules
-%undos modules/mail/translations/mail_pl.ts
+tar xjf %{SOURCE5} -C plugins
+%undos plugins/mail/translations/mail_pl.ts
 %patch1 -p0
 %endif
 %if %{with mime_tex}
-tar xjf %{SOURCE6} -C modules
+tar xjf %{SOURCE6} -C plugins
 %endif
 %if %{with nextinfo}
-tar xzf %{SOURCE7} -C modules
+tar xzf %{SOURCE7} -C plugins
 %endif
 %if %{with notify_led}
-tar xzf %{SOURCE8} -C modules
+tar xzf %{SOURCE8} -C plugins
 %endif
 %if %{with notify_mx610}
-tar xjf %{SOURCE9} -C modules
+tar xjf %{SOURCE9} -C plugins
 %endif
 %if %{with notify_water}
-tar xjf %{SOURCE10} -C modules
+tar xjf %{SOURCE10} -C plugins
 %endif
 %if %{with panelkadu}
-tar xzf %{SOURCE11} -C modules
+tar xzf %{SOURCE11} -C plugins
 %endif
 %if %{with senthistory}
-tar xzf %{SOURCE12} -C modules
+tar xzf %{SOURCE12} -C plugins
 %endif
 %if %{with sms_plus_pl}
-tar xjf %{SOURCE13} -C modules
+tar xjf %{SOURCE13} -C plugins
 %endif
 %if %{with tabs}
-#tar xjf %{SOURCE14} -C modules
+#tar xjf %{SOURCE14} -C plugins
 %endif
 %if %{with geoip}
-tar xjf %{SOURCE15} -C modules
+tar xjf %{SOURCE15} -C plugins
 %endif
 %if %{with desc_history}
-tar xjf %{SOURCE21} -C modules
+tar xjf %{SOURCE21} -C plugins
 %endif
 %if %{with notify_kde}
-#tar xzf %{SOURCE22} -C modules
+#tar xzf %{SOURCE22} -C plugins
 %endif
 %if %{with pajacyk}
-tar xjf %{SOURCE24} -C modules
+tar xjf %{SOURCE24} -C plugins
 %endif
 
 # themes-icons
@@ -1242,18 +1242,15 @@ tar xjf %{SOURCE30} -C varia/themes/sounds
 
 # Drop this in 0.6.6 - fix external modules installation on x86_64
 %if "%{_lib}" == "lib64"
-%{__sed} -i 's/lib\/kadu\/modules/lib64\/kadu\/modules/' modules/*/CMakeLists.txt
-%{__sed} -i 's/lib\/kadu\/modules/lib64\/kadu\/modules/' modules/mime_tex/mimetex/CMakeLists.txt
+%{__sed} -i 's/lib\/kadu\/modules/lib64\/kadu\/modules/' plugins/*/CMakeLists.txt
+%{__sed} -i 's/lib\/kadu\/modules/lib64\/kadu\/modules/' plugins/mime_tex/mimetex/CMakeLists.txt
 %endif
 
 # Change hard coded path to modules data files
-%{__sed} -i 's,dataPath("kadu/modules/*,("%{modules_data_dir}/,g' kadu-core/modules.cpp
+%{__sed} -i 's,dataPath("kadu/plugins/*,("%{modules_data_dir}/,g' kadu-core/plugins/plugin.cpp
 
 echo "module_desc_history=n" >>.config
 %{__sed} -i 's/module_qt4_docking=y/module_qt4_docking=m/' .config
-
-# packages are not allowed to download any content while building
-chmod -x varia/scripts/autodownload
 
 #% patch2 -p1
 
@@ -1374,15 +1371,15 @@ mkdir -p build
 %endif
 %if %{with mediaplayer_amarok}
 %{__sed} -i 's/module_amarok1_mediaplayer=n/module_amarok1_mediaplayer=m/' .config
-echo 'MODULE_INCLUDES_PATH="%{_includedir}"' >> modules/amarok1_mediaplayer/spec
-echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok1_mediaplayer/spec
+echo 'MODULE_INCLUDES_PATH="%{_includedir}"' >> plugins/amarok1_mediaplayer/spec
+echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok1_mediaplayer/spec
 %else
 %{__sed} -i 's/module_amarok1_mediaplayer=m/module_amarok1_mediaplayer=n/' .config
 %endif
 %if %{with mediaplayer_amarok2}
 %{__sed} -i 's/module_amarok2_mediaplayer=n/module_amarok2_mediaplayer=m/' .config
-echo 'MODULE_INCLUDES_PATH="%{_includedir}"' >> modules/amarok2_mediaplayer/spec
-echo 'MODULE_LIBS_PATH="%{_libdir}"' >> modules/amarok2_mediaplayer/spec
+echo 'MODULE_INCLUDES_PATH="%{_includedir}"' >> plugins/amarok2_mediaplayer/spec
+echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok2_mediaplayer/spec
 %else
 %{__sed} -i 's/module_amarok2_mediaplayer=m/module_amarok2_mediaplayer=n/' .config
 %endif
@@ -1629,7 +1626,7 @@ install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 
 # We dont need 8 same icons with just diffrent size - one is enough
-rm -f  $RPM_BUILD_ROOT%{_pixmapsdir}/*.png
+%{__rm} $RPM_BUILD_ROOT%{_pixmapsdir}/*.png
 install kadu-core/hi64-app-kadu.png $RPM_BUILD_ROOT%{_pixmapsdir}/kadu.png
 
 %clean
