@@ -1467,26 +1467,10 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok2_mediaplayer/spec
 %else
 %{__sed} -i 's/module_dsp_sound=m/module_dsp_sound=n/' .config
 %endif
-%if %{with sound_ext}
-%{__sed} -i 's/module_ext_sound=n/module_ext_sound=m/' .config
-%else
-%{__sed} -i 's/module_ext_sound=m/module_ext_sound=n/' .config
-%endif
-%if %{with sound_phonon}
-%{__sed} -i 's/module_phonon_sound=n/module_phonon_sound=m/' .config
-%else
-%{__sed} -i 's/module_phonon_sound=m/module_phonon_sound=n/' .config
-%endif
-%if %{with sound_qt4}
-%{__sed} -i 's/module_qt4_sound=n/module_qt4_sound=m/' .config
-%else
-%{__sed} -i 's/module_qt4_sound=m/module_qt4_sound=n/' .config
-%endif
-%if %{with spellchecker}
-%{__sed} -i 's/module_spellchecker=n/module_spellchecker=m/' .config
-%else
-%{__sed} -i 's/module_spellchecker=m/module_spellchecker=n/' .config
-%endif
+%{!?with_sound_ext:%{__sed} -i 's/\text_sound$/\t#ext_sound/' Plugins.cmake}
+%{!?with_sound_phonon:%{__sed} -i 's/\tphonon_sound$/\t#phonon_sound/' Plugins.cmake}
+%{!?with_sound_qt4:%{__sed} -i 's/\tqt4_sound$/\t#qt4_sound/' Plugins.cmake}
+%{!?with_spellchecker:%{__sed} -i 's/\tspellchecker$/\t#spellchecker/' Plugins.cmake}
 %if %{with split_messages}
 %{__sed} -i 's/module_split_messages=n/module_split_messages=m/' .config
 %else
@@ -2291,6 +2275,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(it) %{modules_data_dir}/translations/dsp_sound_it.qm
 %lang(pl) %{modules_data_dir}/translations/dsp_sound_pl.qm
 %endif
+%endif
 
 %if %{with sound_ext}
 %files module-sound-ext
@@ -2298,8 +2283,8 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/ext_sound.desc
 %{modules_data_dir}/configuration/ext_sound.ui
 %attr(755,root,root) %{modules_lib_dir}/libext_sound.so
+%lang(cs) %{modules_data_dir}/translations/ext_sound_cs.qm
 %lang(de) %{modules_data_dir}/translations/ext_sound_de.qm
-%lang(fr) %{modules_data_dir}/translations/ext_sound_fr.qm
 %lang(it) %{modules_data_dir}/translations/ext_sound_it.qm
 %lang(pl) %{modules_data_dir}/translations/ext_sound_pl.qm
 %endif
@@ -2324,14 +2309,12 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/spellchecker.desc
 %{modules_data_dir}/configuration/spellchecker.ui
 %attr(755,root,root) %{modules_lib_dir}/libspellchecker.so
+%lang(cs) %{modules_data_dir}/translations/spellchecker_cs.qm
 %lang(de) %{modules_data_dir}/translations/spellchecker_de.qm
-%lang(fr) %{modules_data_dir}/translations/spellchecker_fr.qm
-%lang(it) %{modules_data_dir}/translations/spellchecker_it.qm
 %lang(pl) %{modules_data_dir}/translations/spellchecker_pl.qm
-#%dir %{modules_data_dir}/data/spellchecker
-#%{modules_data_dir}/data/spellchecker/config.png
 %endif
 
+%if 0
 %if %{with split_messages}
 %files module-split_messages
 %defattr(644,root,root,755)
