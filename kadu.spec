@@ -1345,16 +1345,8 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok2_mediaplayer/spec
 %else
 %{__sed} -i 's/module_dragon_mediaplayer=m/module_dragon_mediaplayer=n/' .config
 %endif
-%if %{with mediaplayer_falf}
-%{__sed} -i 's/module_falf_mediaplayer=n/module_falf_mediaplayer=m/' .config
-%else
-%{__sed} -i 's/module_falf_mediaplayer=m/module_falf_mediaplayer=n/' .config
-%endif
-%if %{with mediaplayer_mpris}
-%{__sed} -i 's/module_mpris_mediaplayer=n/module_mpris_mediaplayer=m/' .config
-%else
-%{__sed} -i 's/module_mpris_mediaplayer=m/module_mpris_mediaplayer=n/' .config
-%endif
+%{!?with_mediaplayer_falf:%{__sed} -i 's/\tfalf_mediaplayer$/\t#falf_mediaplayer/' Plugins.cmake}
+%{!?with_mediaplayer_mpris:%{__sed} -i 's/\tmprisplayer_mediaplayer$/\t#mprisplayer_mediaplayer/' Plugins.cmake}
 %if %{with mediaplayer_vlc}
 %{__sed} -i 's/module_vlc_mediaplayer=n/module_vlc_mediaplayer=m/' .config
 %else
@@ -2000,8 +1992,8 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/amarok1_mediaplayer.desc
 %attr(755,root,root) %{modules_lib_dir}/libamarok1_mediaplayer.so
 %endif
-%if 0
 
+%if 0
 %if %{with mediaplayer_amarok2}
 %files module-mediaplayer-amarok2
 %defattr(644,root,root,755)
@@ -2029,6 +2021,7 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/dragon_mediaplayer.desc
 %attr(755,root,root) %{modules_lib_dir}/libdragon_mediaplayer.so
 %endif
+%endif
 
 %if %{with mediaplayer_falf}
 %files module-mediaplayer-falf
@@ -2040,12 +2033,14 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with mediaplayer_mpris}
 %files module-mediaplayer-mpris
 %defattr(644,root,root,755)
-%{modules_data_dir}/mpris_mediaplayer.desc
-%{modules_data_dir}/configuration/mpris_mediaplayer.ui
-%attr(755,root,root) %{modules_lib_dir}/libmpris_mediaplayer.so
-%lang(pl) %{modules_data_dir}/translations/mpris_mediaplayer_pl.qm
+%{modules_data_dir}/mprisplayer_mediaplayer.desc
+%{modules_data_dir}/configuration/mprisplayer_mediaplayer.ui
+%attr(755,root,root) %{modules_lib_dir}/libmprisplayer_mediaplayer.so
+%lang(pl) %{modules_data_dir}/translations/mprisplayer_mediaplayer_pl.qm
+%{modules_data_dir}/data/mprisplayer_mediaplayer/mprisplayer-players.data
 %endif
 
+%if 0
 %if %{with mediaplayer_vlc}
 %files module-mediaplayer-vlc
 %defattr(644,root,root,755)
