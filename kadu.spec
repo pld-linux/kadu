@@ -1599,43 +1599,57 @@ rm -rf $RPM_BUILD_ROOT
 # default modules translation:
 %dir %{modules_data_dir}/translations
 %lang(cs) %{modules_data_dir}/translations/config_wizard_cs.qm
+%lang(en) %{modules_data_dir}/translations/config_wizard_en.qm
 %lang(it) %{modules_data_dir}/translations/config_wizard_it.qm
 %lang(pl) %{modules_data_dir}/translations/config_wizard_pl.qm
 %lang(de) %{modules_data_dir}/translations/docking_de.qm
+%lang(en) %{modules_data_dir}/translations/docking_en.qm
 %lang(it) %{modules_data_dir}/translations/docking_it.qm
 %lang(pl) %{modules_data_dir}/translations/docking_pl.qm
 %lang(cs) %{modules_data_dir}/translations/gadu_protocol_cs.qm
+%lang(en) %{modules_data_dir}/translations/gadu_protocol_en.qm
 %lang(pl) %{modules_data_dir}/translations/gadu_protocol_pl.qm
 %lang(cs) %{modules_data_dir}/translations/hints_cs.qm
 %lang(de) %{modules_data_dir}/translations/hints_de.qm
+%lang(en) %{modules_data_dir}/translations/hints_en.qm
 %lang(it) %{modules_data_dir}/translations/hints_it.qm
 %lang(pl) %{modules_data_dir}/translations/hints_pl.qm
 %lang(cs) %{modules_data_dir}/translations/history_cs.qm
 %lang(de) %{modules_data_dir}/translations/history_de.qm
+%lang(en) %{modules_data_dir}/translations/history_en.qm
 %lang(cs) %{modules_data_dir}/translations/history_migration_cs.qm
+%lang(en) %{modules_data_dir}/translations/history_migration_en.qm
 %lang(pl) %{modules_data_dir}/translations/history_migration_pl.qm
 %lang(cs) %{modules_data_dir}/translations/imagelink_cs.qm
+%lang(en) %{modules_data_dir}/translations/imagelink_en.qm
 %lang(it) %{modules_data_dir}/translations/imagelink_it.qm
 %lang(pl) %{modules_data_dir}/translations/imagelink_pl.qm
 %lang(cs) %{modules_data_dir}/translations/jabber_protocol_cs.qm
 %lang(de) %{modules_data_dir}/translations/jabber_protocol_de.qm
+%lang(en) %{modules_data_dir}/translations/jabber_protocol_en.qm
 %lang(pl) %{modules_data_dir}/translations/jabber_protocol_pl.qm
 %lang(cs) %{modules_data_dir}/translations/profiles_import_cs.qm
+%lang(en) %{modules_data_dir}/translations/profiles_import_en.qm
 %lang(pl) %{modules_data_dir}/translations/profiles_import_pl.qm
 %lang(cs) %{modules_data_dir}/translations/simpleview_cs.qm
+%lang(en) %{modules_data_dir}/translations/simpleview_en.qm
 %lang(pl) %{modules_data_dir}/translations/simpleview_pl.qm
 %lang(cs) %{modules_data_dir}/translations/single_window_cs.qm
+%lang(en) %{modules_data_dir}/translations/single_window_en.qm
 %lang(pl) %{modules_data_dir}/translations/single_window_pl.qm
 %lang(cs) %{modules_data_dir}/translations/sms_cs.qm
 %lang(de) %{modules_data_dir}/translations/sms_de.qm
+%lang(en) %{modules_data_dir}/translations/sms_en.qm
 %lang(it) %{modules_data_dir}/translations/sms_it.qm
 %lang(pl) %{modules_data_dir}/translations/sms_pl.qm
 %lang(cs) %{modules_data_dir}/translations/sound_cs.qm
 %lang(de) %{modules_data_dir}/translations/sound_de.qm
+%lang(en) %{modules_data_dir}/translations/sound_en.qm
 %lang(it) %{modules_data_dir}/translations/sound_it.qm
 %lang(pl) %{modules_data_dir}/translations/sound_pl.qm
 %lang(cs) %{modules_data_dir}/translations/sql_history_cs.qm
 %lang(de) %{modules_data_dir}/translations/sql_history_de.qm
+%lang(en) %{modules_data_dir}/translations/sql_history_en.qm
 %lang(pl) %{modules_data_dir}/translations/sql_history_pl.qm
 
 # global translation:
@@ -1644,6 +1658,8 @@ rm -rf $RPM_BUILD_ROOT
 %lang(cs) %{_datadir}/%{name}/translations/cs.language
 %lang(de) %{_datadir}/%{name}/translations/kadu_de.qm
 %lang(de) %{_datadir}/%{name}/translations/de.language
+%lang(de) %{_datadir}/%{name}/translations/kadu_en.qm
+%lang(en) %{_datadir}/%{name}/translations/en.language
 %lang(fr) %{_datadir}/%{name}/translations/kadu_fr.qm
 %lang(it) %{_datadir}/%{name}/translations/kadu_it.qm
 %lang(pl) %{_datadir}/%{name}/translations/kadu_pl.qm
@@ -1708,6 +1724,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libantistring.so
 %lang(cs) %{modules_data_dir}/translations/antistring_cs.qm
 %lang(de) %{modules_data_dir}/translations/antistring_de.qm
+%lang(en) %{modules_data_dir}/translations/antistring_en.qm
 %lang(pl) %{modules_data_dir}/translations/antistring_pl.qm
 %dir %{modules_data_dir}/data/antistring
 %{modules_data_dir}/data/antistring/ant_conditions.conf
@@ -1721,6 +1738,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libauto_hide.so
 %lang(cs) %{modules_data_dir}/translations/auto_hide_cs.qm
 %lang(de) %{modules_data_dir}/translations/auto_hide_de.qm
+%lang(en) %{modules_data_dir}/translations/auto_hide_en.qm
 %lang(it) %{modules_data_dir}/translations/auto_hide_it.qm
 %lang(pl) %{modules_data_dir}/translations/auto_hide_pl.qm
 %endif
@@ -1733,6 +1751,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libautoaway.so
 %lang(cs) %{modules_data_dir}/translations/autoaway_cs.qm
 %lang(de) %{modules_data_dir}/translations/autoaway_de.qm
+%lang(en) %{modules_data_dir}/translations/autoaway_en.qm
 %lang(it) %{modules_data_dir}/translations/autoaway_it.qm
 %lang(pl) %{modules_data_dir}/translations/autoaway_pl.qm
 %endif
@@ -1756,6 +1775,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libautoresponder.so
 %lang(cs) %{modules_data_dir}/translations/autoresponder_cs.qm
 %lang(de) %{modules_data_dir}/translations/autoresponder_de.qm
+%lang(en) %{modules_data_dir}/translations/autoresponder_en.qm
 %lang(it) %{modules_data_dir}/translations/autoresponder_it.qm
 %lang(pl) %{modules_data_dir}/translations/autoresponder_pl.qm
 %endif
@@ -1767,6 +1787,7 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/configuration/autostatus.ui
 %attr(755,root,root) %{modules_lib_dir}/libautostatus.so
 %lang(cs) %{modules_data_dir}/translations/autostatus_cs.qm
+%lang(en) %{modules_data_dir}/translations/autostatus_en.qm
 %lang(it) %{modules_data_dir}/translations/autostatus_it.qm
 %lang(pl) %{modules_data_dir}/translations/autostatus_pl.qm
 %endif
@@ -1779,6 +1800,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libcenzor.so
 %lang(cs) %{modules_data_dir}/translations/cenzor_cs.qm
 %lang(de) %{modules_data_dir}/translations/cenzor_de.qm
+%lang(en) %{modules_data_dir}/translations/cenzor_en.qm
 %lang(pl) %{modules_data_dir}/translations/cenzor_pl.qm
 %lang(tr) %{modules_data_dir}/translations/cenzor_tr.qm
 %dir %{modules_data_dir}/data/cenzor
@@ -1806,10 +1828,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libencryption_ng.so
 %attr(755,root,root) %{modules_lib_dir}/libencryption_ng_simlite.so
 %lang(cs) %{modules_data_dir}/translations/encryption_ng_cs.qm
+%lang(en) %{modules_data_dir}/translations/encryption_ng_en.qm
 %lang(it) %{modules_data_dir}/translations/encryption_ng_it.qm
 %lang(pl) %{modules_data_dir}/translations/encryption_ng_pl.qm
 %lang(cs) %{modules_data_dir}/translations/encryption_ng_simlite_cs.qm
 %lang(de) %{modules_data_dir}/translations/encryption_ng_simlite_de.qm
+%lang(en) %{modules_data_dir}/translations/encryption_ng_simlite_en.qm
 %lang(it) %{modules_data_dir}/translations/encryption_ng_simlite_it.qm
 %lang(pl) %{modules_data_dir}/translations/encryption_ng_simlite_pl.qm
 %endif
@@ -1831,6 +1855,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libdesktop_docking.so
 %lang(cs) %{modules_data_dir}/translations/desktop_docking_cs.qm
 %lang(de) %{modules_data_dir}/translations/desktop_docking_de.qm
+%lang(en) %{modules_data_dir}/translations/desktop_docking_en.qm
 %lang(it) %{modules_data_dir}/translations/desktop_docking_it.qm
 %lang(pl) %{modules_data_dir}/translations/desktop_docking_pl.qm
 %endif
@@ -1843,6 +1868,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libfiledesc.so
 %lang(cs) %{modules_data_dir}/translations/filedesc_cs.qm
 %lang(de) %{modules_data_dir}/translations/filedesc_de.qm
+%lang(en) %{modules_data_dir}/translations/filedesc_en.qm
 %lang(pl) %{modules_data_dir}/translations/filedesc_pl.qm
 %endif
 
@@ -1867,6 +1893,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libfirewall.so
 %lang(cs) %{modules_data_dir}/translations/firewall_cs.qm
 %lang(de) %{modules_data_dir}/translations/firewall_de.qm
+%lang(en) %{modules_data_dir}/translations/firewall_en.qm
 %lang(pl) %{modules_data_dir}/translations/firewall_pl.qm
 %endif
 
@@ -1904,6 +1931,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/liblast_seen.so
 %lang(cs) %{modules_data_dir}/translations/last_seen_cs.qm
 %lang(de) %{modules_data_dir}/translations/last_seen_de.qm
+%lang(en) %{modules_data_dir}/translations/last_seen_en.qm
 %lang(pl) %{modules_data_dir}/translations/last_seen_pl.qm
 %lang(tr) %{modules_data_dir}/translations/last_seen_tr.qm
 %endif
@@ -1928,6 +1956,7 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/data/mediaplayer
 %lang(cs) %{modules_data_dir}/translations/mediaplayer_cs.qm
 %lang(de) %{modules_data_dir}/translations/mediaplayer_de.qm
+%lang(en) %{modules_data_dir}/translations/mediaplayer_en.qm
 %lang(pl) %{modules_data_dir}/translations/mediaplayer_pl.qm
 %endif
 
@@ -1981,6 +2010,7 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/mprisplayer_mediaplayer.desc
 %{modules_data_dir}/configuration/mprisplayer_mediaplayer.ui
 %attr(755,root,root) %{modules_lib_dir}/libmprisplayer_mediaplayer.so
+%lang(en) %{modules_data_dir}/translations/mprisplayer_mediaplayer_en.qm
 %lang(pl) %{modules_data_dir}/translations/mprisplayer_mediaplayer_pl.qm
 %{modules_data_dir}/data/mprisplayer_mediaplayer/mprisplayer-players.data
 %endif
@@ -2040,6 +2070,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{modules_data_dir}/exec_notify.desc
 %attr(755,root,root) %{modules_lib_dir}/libexec_notify.so
+%lang(en) %{modules_data_dir}/translations/exec_notify_en.qm
 %lang(pl) %{modules_data_dir}/translations/exec_notify_pl.qm
 %endif
 
@@ -2094,6 +2125,7 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/chat_notify.desc
 %attr(755,root,root) %{modules_lib_dir}/libchat_notify.so
 %lang(de) %{modules_data_dir}/translations/chat_notify_de.qm
+%lang(en) %{modules_data_dir}/translations/chat_notify_en.qm
 %lang(pl) %{modules_data_dir}/translations/chat_notify_pl.qm
 %endif
 
@@ -2104,6 +2136,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libpcspeaker.so
 %lang(cs) %{modules_data_dir}/translations/pcspeaker_cs.qm
 %lang(de) %{modules_data_dir}/translations/pcspeaker_de.qm
+%lang(en) %{modules_data_dir}/translations/pcspeaker_en.qm
 %lang(it) %{modules_data_dir}/translations/pcspeaker_it.qm
 %lang(pl) %{modules_data_dir}/translations/pcspeaker_pl.qm
 %endif
@@ -2115,6 +2148,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libqt4_docking_notify.so
 %lang(cs) %{modules_data_dir}/translations/qt4_docking_notify_cs.qm
 %lang(de) %{modules_data_dir}/translations/qt4_docking_notify_de.qm
+%lang(en) %{modules_data_dir}/translations/qt4_docking_notify_en.qm
 %lang(pl) %{modules_data_dir}/translations/qt4_docking_notify_pl.qm
 %endif
 
@@ -2126,6 +2160,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libspeech.so
 %lang(cs) %{modules_data_dir}/translations/speech_cs.qm
 %lang(de) %{modules_data_dir}/translations/speech_de.qm
+%lang(en) %{modules_data_dir}/translations/speech_en.qm
 %lang(it) %{modules_data_dir}/translations/speech_it.qm
 %lang(pl) %{modules_data_dir}/translations/speech_pl.qm
 %endif
@@ -2220,6 +2255,7 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/configuration/screenshot.ui
 %attr(755,root,root) %{modules_lib_dir}/libscreenshot.so
 %lang(cs) %{modules_data_dir}/translations/screenshot_cs.qm
+%lang(en) %{modules_data_dir}/translations/screenshot_en.qm
 %lang(pl) %{modules_data_dir}/translations/screenshot_pl.qm
 %endif
 
@@ -2275,6 +2311,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libext_sound.so
 %lang(cs) %{modules_data_dir}/translations/ext_sound_cs.qm
 %lang(de) %{modules_data_dir}/translations/ext_sound_de.qm
+%lang(en) %{modules_data_dir}/translations/ext_sound_en.qm
 %lang(it) %{modules_data_dir}/translations/ext_sound_it.qm
 %lang(pl) %{modules_data_dir}/translations/ext_sound_pl.qm
 %endif
@@ -2291,6 +2328,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{modules_data_dir}/qt4_sound.desc
 %attr(755,root,root) %{modules_lib_dir}/libqt4_sound.so
+%lang(en) %{modules_data_dir}/translations/qt4_sound_en.qm
 %endif
 
 %if %{with spellchecker}
@@ -2301,6 +2339,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libspellchecker.so
 %lang(cs) %{modules_data_dir}/translations/spellchecker_cs.qm
 %lang(de) %{modules_data_dir}/translations/spellchecker_de.qm
+%lang(en) %{modules_data_dir}/translations/spellchecker_en.qm
 %lang(pl) %{modules_data_dir}/translations/spellchecker_pl.qm
 %endif
 
@@ -2323,6 +2362,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libtabs.so
 %lang(cs) %{modules_data_dir}/translations/tabs_cs.qm
 %lang(de) %{modules_data_dir}/translations/tabs_de.qm
+%lang(en) %{modules_data_dir}/translations/tabs_en.qm
 %lang(pl) %{modules_data_dir}/translations/tabs_pl.qm
 %endif
 
@@ -2361,6 +2401,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libword_fix.so
 %lang(cs) %{modules_data_dir}/translations/word_fix_cs.qm
 %lang(de) %{modules_data_dir}/translations/word_fix_de.qm
+%lang(en) %{modules_data_dir}/translations/word_fix_en.qm
 %lang(pl) %{modules_data_dir}/translations/word_fix_pl.qm
 %lang(ru) %{modules_data_dir}/translations/word_fix_ru.qm
 %dir %{modules_data_dir}/data/word_fix
