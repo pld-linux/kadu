@@ -23,7 +23,6 @@
 %bcond_without	mediaplayer		# without media player modules support
 %bcond_with	mediaplayer_amarok	# without amarok player support module
 %bcond_with	mediaplayer_amarok2	# without amarok2 player support module
-%bcond_with	mediaplayer_dragon	# without dragon player support module
 %bcond_without	mediaplayer_falf	# without falf player support module
 %bcond_with	mediaplayer_mpd		# without mpd player support module
 %bcond_without	mediaplayer_mpris	# without generic mpris interface support module
@@ -194,8 +193,9 @@ Obsoletes:	kadu-module-gg_avatars
 Obsoletes:	kadu-module-imiface <= 0.4.3
 Obsoletes:	kadu-module-iwait4u <= 0.5.0
 %{!?with_mediaplayer:Obsoletes:	kadu-module-mediaplayer}
-Obsoletes:	kadu-module-mediaplayer_audacious
-Obsoletes:	kadu-module-mediaplayer_bmpx
+Obsoletes:	kadu-module-mediaplayer-audacious
+Obsoletes:	kadu-module-mediaplayer-bmpx
+Obsoletes:	kadu-module-mediaplayer-dragon
 Obsoletes:	kadu-module-notify-xosd <= 0.6.5
 Obsoletes:	kadu-module-sound-arts <= 0.6.5
 Obsoletes:	kadu-module-sound-esd <= 0.6.5
@@ -478,22 +478,6 @@ the song currently played in amarok 2.
 %description module-mediaplayer-amarok2 -l pl.UTF-8
 Moduł umożliwiający w opisie statusu pokazywanie informacji o
 odgrywanym utworze z odtwarzacza amarok 2.
-
-%package module-mediaplayer-dragon
-Summary:	Support dragon status
-Summary(pl.UTF-8):	Moduł statusu dla odtwarzacza dragon
-Group:		Applications/Communications
-Requires:	%{name}-module-mediaplayer-mpris = %{version}-%{release}
-Requires:	kde4-kdemultimedia-dragon
-Provides:	kadu-module-dragon = %{version}
-
-%description module-mediaplayer-dragon
-Module which allows showing in status description information about
-the song currently played in dragon.
-
-%description module-mediaplayer-dragon -l pl.UTF-8
-Moduł umożliwiający w opisie statusu pokazywanie informacji o
-odgrywanym utworze z odtwarzacza dragon.
 
 %package module-mediaplayer-falf
 Summary:	Support falf status
@@ -1225,11 +1209,6 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok2_mediaplayer/spec
 %else
 %{__sed} -i 's/module_amarok2_mediaplayer=m/module_amarok2_mediaplayer=n/' .config
 %endif
-%if %{with mediaplayer_dragon}
-%{__sed} -i 's/module_dragon_mediaplayer=n/module_dragon_mediaplayer=m/' .config
-%else
-%{__sed} -i 's/module_dragon_mediaplayer=m/module_dragon_mediaplayer=n/' .config
-%endif
 %{!?with_mediaplayer_falf:%{__sed} -i 's/\tfalf_mediaplayer$/\t#falf_mediaplayer/' Plugins.cmake}
 %{!?with_mediaplayer_mpris:%{__sed} -i 's/\tmprisplayer_mediaplayer$/\t#mprisplayer_mediaplayer/' Plugins.cmake}
 %if %{with mediaplayer_vlc}
@@ -1728,6 +1707,7 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/geoip_lookup.desc
 %attr(755,root,root) %{modules_lib_dir}/libgeoip_lookup.so
 %endif
+%endif
 
 %if %{with globalhotkeys}
 %files module-globalhotkeys
@@ -1735,9 +1715,10 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/globalhotkeys.desc
 %{modules_data_dir}/configuration/globalhotkeys.ui
 %attr(755,root,root) %{modules_lib_dir}/libglobalhotkeys.so
+%lang(cs) %{modules_data_dir}/translations/globalhotkeys_cs.qm
 %lang(en) %{modules_data_dir}/translations/globalhotkeys_en.qm
+%lang(it) %{modules_data_dir}/translations/globalhotkeys_it.qm
 %lang(pl) %{modules_data_dir}/translations/globalhotkeys_pl.qm
-%endif
 %endif
 
 %if %{with last_seen}
@@ -1789,13 +1770,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{modules_data_dir}/amarok2_mediaplayer.desc
 %attr(755,root,root) %{modules_lib_dir}/libamarok2_mediaplayer.so
-%endif
-
-%if %{with mediaplayer_dragon}
-%files module-mediaplayer-dragon
-%defattr(644,root,root,755)
-%{modules_data_dir}/dragon_mediaplayer.desc
-%attr(755,root,root) %{modules_lib_dir}/libdragon_mediaplayer.so
 %endif
 %endif
 
