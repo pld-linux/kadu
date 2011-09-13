@@ -4,7 +4,6 @@
 # - make voice module link with system libgsm
 #
 # Conditional build:
-%bcond_with	agent			# without agent module support
 %bcond_with	anonymous_check		# without anonymous_check module support
 %bcond_without	antistring		# without antistring module support
 %bcond_without	auto_hide		# without auto_hide module support
@@ -226,18 +225,6 @@ It's written with use of Qt.
 Kadu jest klientem protokołu Gadu-Gadu. Inaczej mówiąc, jest
 komunikatorem dla Linuksa (oraz, przy niewielkim wysiłku, innych
 systemów uniksowych). Napisano go w oparciu o bibliotekę Qt.
-
-%package module-agent
-Summary:	Spying module that shows who has you on list
-Summary(pl.UTF-8):	Moduł szpiegowski pokazujący osoby które mają użytkownika na liście
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description module-agent
-Spying module that shows who has you on list.
-
-%description module-agent -l pl.UTF-8
-Moduł szpiegowski pokazujący osoby które mają użytkownika na liście.
 
 %package module-autoresponder
 Summary:	Autoresponder module
@@ -1265,11 +1252,6 @@ echo "module_desc_history=n" >>.config
 %build
 mkdir -p build
 
-%if %{with agent}
-%{__sed} -i 's/module_agent=n/module_agent=m/' .config
-%else
-%{__sed} -i 's/module_agent=m/module_agent=n/' .config
-%endif
 %if %{with anonymous_check}
 %{__sed} -i 's/module_anonymous_check=n/module_anonymous_check=m/' .config
 %else
@@ -1683,15 +1665,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{modules_data_dir}/data/sms/scripts
 %{modules_data_dir}/data/sms/scripts/*.js
 
-%if %{with agent}
-%files module-agent
-%defattr(644,root,root,755)
-%{modules_data_dir}/agent.desc
-%attr(755,root,root) %{modules_lib_dir}/libagent.so
-%lang(pl) %{modules_data_dir}/translations/agent_pl.qm
-%endif
-
-%endif
 %if %{with antistring}
 %files module-antistring
 %defattr(644,root,root,755)
