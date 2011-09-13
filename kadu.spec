@@ -1717,7 +1717,6 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/data/mprisplayer_mediaplayer/mprisplayer-players.data
 %endif
 
-%if 0
 %if %{with mime_tex}
 %files module-mime_tex
 %defattr(644,root,root,755)
@@ -1735,6 +1734,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{modules_data_dir}/translations/mime_tex_pl.qm
 %endif
 
+%if 0
 %if %{with nextinfo}
 %files module-nextinfo
 %defattr(644,root,root,755)
