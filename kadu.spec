@@ -1524,9 +1524,7 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok2_mediaplayer/spec
 %{__sed} -i 's/sound_ultr=n/sound_ultr=y/' .config
 
 cd build
-%cmake .. \
-	-DSYSCONF_INSTALL_DIR=%{_sysconfdir} \
-	-DENABLE_AUTDOWNLOAD=OFF
+%cmake ..
 
 %{__make}
 
