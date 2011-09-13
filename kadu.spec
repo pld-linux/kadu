@@ -4,8 +4,6 @@
 # - make voice module link with system libgsm
 #
 # Conditional build:
-%bcond_with	debug			# build with debug
-%bcond_with	advanced_userlist	# without Advanced Userlist support
 %bcond_with	agent			# without agent module support
 %bcond_with	anonymous_check		# without anonymous_check module support
 %bcond_without	antistring		# without antistring module support
@@ -193,6 +191,7 @@ BuildRequires:	xorg-lib-libXScrnSaver-devel
 %{?with_panelkadu:BuildRequires:	xorg-lib-libXtst-devel}
 Requires:	QtSql-sqlite3
 Requires:	libgadu >= %{libgadu_ver}
+Obsoletes:	kadu-module-advanced_userlist
 Obsoletes:	kadu-module-docking-wmaker <= 0.6.5
 Obsoletes:	kadu-module-imiface <= 0.4.3
 Obsoletes:	kadu-module-iwait4u <= 0.5.0
@@ -227,18 +226,6 @@ It's written with use of Qt.
 Kadu jest klientem protokołu Gadu-Gadu. Inaczej mówiąc, jest
 komunikatorem dla Linuksa (oraz, przy niewielkim wysiłku, innych
 systemów uniksowych). Napisano go w oparciu o bibliotekę Qt.
-
-%package module-advanced_userlist
-Summary:	Advanced Userlist module
-Summary(pl.UTF-8):	Moduł zaawansowanej konfiguracji sortowania listy kontaktów
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description module-advanced_userlist
-Advanced Userlist module.
-
-%description module-advanced_userlist -l pl.UTF-8
-Moduł zaawansowanej konfiguracji sortowania listy kontaktów.
 
 %package module-agent
 Summary:	Spying module that shows who has you on list
@@ -1278,11 +1265,6 @@ echo "module_desc_history=n" >>.config
 %build
 mkdir -p build
 
-%if %{with advanced_userlist}
-%{__sed} -i 's/module_advanced_userlist=n/module_advanced_userlist=m/' .config
-%else
-%{__sed} -i 's/module_advanced_userlist=m/module_advanced_userlist=n/' .config
-%endif
 %if %{with agent}
 %{__sed} -i 's/module_agent=n/module_agent=m/' .config
 %else
@@ -1700,19 +1682,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{modules_data_dir}/data/sms
 %dir %{modules_data_dir}/data/sms/scripts
 %{modules_data_dir}/data/sms/scripts/*.js
-
-%if 0
-%if %{with advanced_userlist}
-%files module-advanced_userlist
-%defattr(644,root,root,755)
-%{modules_data_dir}/advanced_userlist.desc
-%{modules_data_dir}/configuration/advanced_userlist.ui
-%attr(755,root,root) %{modules_lib_dir}/libadvanced_userlist.so
-%lang(de) %{modules_data_dir}/translations/advanced_userlist_de.qm
-%lang(fr) %{modules_data_dir}/translations/advanced_userlist_fr.qm
-%lang(it) %{modules_data_dir}/translations/advanced_userlist_it.qm
-%lang(pl) %{modules_data_dir}/translations/advanced_userlist_pl.qm
-%endif
 
 %if %{with agent}
 %files module-agent
