@@ -65,6 +65,7 @@
 %bcond_without	word_fix		# without word_fix module support
 
 %define		libgadu_ver		4:1.11.0
+%define		qt_ver			4.7.0
 
 %define		anonymous_check_ver	0.10.1
 %define		dcopexport_ver		0.11.3-20071129
@@ -154,14 +155,14 @@ Patch1:		%{name}-mail.patch
 Patch2:		%{name}-link.patch
 URL:		http://kadu.im/
 %{?with_geoip:BuildRequires:	GeoIP-devel}
-BuildRequires:	Qt3Support-devel >= 4.4
-BuildRequires:	QtScript-devel >= 4.4
-BuildRequires:	QtScriptTools-devel >= 4.4
-BuildRequires:	QtSvg-devel >= 4.4
-BuildRequires:	QtWebKit-devel >= 4.4
-BuildRequires:	QtXmlPatterns-devel
+BuildRequires:	Qt3Support-devel >= %{qt_ver}
+BuildRequires:	QtScript-devel >= %{qt_ver}
+BuildRequires:	QtScriptTools-devel >= %{qt_ver}
+BuildRequires:	QtSvg-devel >= %{qt_ver}
+BuildRequires:	QtWebKit-devel >= %{qt_ver}
+BuildRequires:	QtXmlPatterns-devel >= %{qt_ver}
 %{?with_sound_alsa:BuildRequires:	alsa-lib-devel}
-BuildRequires:	cmake >= 2.6.0
+BuildRequires:	cmake >= 2.8.0
 %{?with_sms_plus_pl:BuildRequires:	curl-devel}
 %{?with_notify_water:BuildRequires:	dbus-devel}
 %{?with_spellchecker:BuildRequires:	enchant-devel}
@@ -173,15 +174,15 @@ BuildRequires:	libstdc++-devel
 %{?with_encryption:BuildRequires:	openssl-devel >= 0.9.7d}
 BuildRequires:	pkgconfig
 %{?with_encryption:BuildRequires:	qca-devel}
-BuildRequires:	qt4-build
-BuildRequires:	qt4-linguist
+BuildRequires:	qt4-build >= %{qt_ver}
+BuildRequires:	qt4-linguist >= %{qt_ver}
 BuildRequires:	rpmbuild(macros) >= 1.600
 BuildRequires:	sed >= 4.0
 %{?with_desc_history:BuildRequires:     sqlite3-devel}
 %{?with_mediaplayer_xmms:BuildRequires:	xmms-devel}
 BuildRequires:	xorg-lib-libXScrnSaver-devel
 %{?with_panelkadu:BuildRequires:	xorg-lib-libXtst-devel}
-Requires:	QtSql-sqlite3
+Requires:	QtSql-sqlite3 >= %{qt_ver}
 Requires:	libgadu >= %{libgadu_ver}
 Obsoletes:	kadu-module-advanced_userlist
 Obsoletes:	kadu-module-agent
