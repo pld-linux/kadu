@@ -27,7 +27,7 @@
 %bcond_without	last_seen		# without last_seen module support
 %bcond_with	mail			# without mail module support
 %bcond_without	mediaplayer		# without media player modules support
-%bcond_without	mediaplayer_amarok	# without amarok player support module
+%bcond_with	mediaplayer_amarok	# without amarok player support module
 %bcond_with	mediaplayer_amarok2	# without amarok2 player support module
 %bcond_with	mediaplayer_audacious	# without audacious player support module
 %bcond_with	mediaplayer_bmpx	# without bmpx player support module
