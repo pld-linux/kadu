@@ -26,7 +26,6 @@
 %bcond_without	mediaplayer_falf	# without falf player support module
 %bcond_with	mediaplayer_mpd		# without mpd player support module
 %bcond_without	mediaplayer_mpris	# without generic mpris interface support module
-%bcond_with	mediaplayer_vlc		# without vlc player support module
 %bcond_with	mediaplayer_xmms	# without xmms player support module
 %bcond_with	mediaplayer_xmms2	# without xmms2 player support module
 %bcond_with	mime_tex		# without mime_tex module support
@@ -154,6 +153,7 @@ Patch0:		%{name}-sounds.patch
 Patch1:		%{name}-mail.patch
 Patch2:		%{name}-link.patch
 URL:		http://kadu.im/
+%{?with_geoip:BuildRequires:	GeoIP-devel}
 BuildRequires:	Qt3Support-devel >= 4.4
 BuildRequires:	QtScript-devel >= 4.4
 BuildRequires:	QtScriptTools-devel >= 4.4
@@ -164,7 +164,6 @@ BuildRequires:	QtXmlPatterns-devel
 BuildRequires:	cmake >= 2.6.0
 %{?with_sms_plus_pl:BuildRequires:	curl-devel}
 %{?with_notify_water:BuildRequires:	dbus-devel}
-%{?with_geoip:BuildRequires:	GeoIP-devel}
 %{?with_spellchecker:BuildRequires:	enchant-devel}
 %{?with_sound_ao:BuildRequires:	libao-devel}
 BuildRequires:	libgadu-devel >= %{libgadu_ver}
@@ -192,10 +191,11 @@ Obsoletes:	kadu-module-filtering
 Obsoletes:	kadu-module-gg_avatars
 Obsoletes:	kadu-module-imiface <= 0.4.3
 Obsoletes:	kadu-module-iwait4u <= 0.5.0
-%{!?with_mediaplayer:Obsoletes:	kadu-module-mediaplayer}
 Obsoletes:	kadu-module-mediaplayer-audacious
 Obsoletes:	kadu-module-mediaplayer-bmpx
 Obsoletes:	kadu-module-mediaplayer-dragon
+Obsoletes:	kadu-module-mediaplayer-vlc
+%{!?with_mediaplayer:Obsoletes:	kadu-module-mediaplayer}
 Obsoletes:	kadu-module-notify-xosd <= 0.6.5
 Obsoletes:	kadu-module-sound-arts <= 0.6.5
 Obsoletes:	kadu-module-sound-esd <= 0.6.5
@@ -509,22 +509,6 @@ other modules.
 Moduł umożliwiający w opisie statusu pokazywanie informacji o
 odgrywanym utworze z odtwarzacza zgodnego z mpris. Jest wykorzystywany
 przez inne moduły.
-
-%package module-mediaplayer-vlc
-Summary:	Support VLC status
-Summary(pl.UTF-8):	Moduł statusu dla VLC
-Group:		Applications/Communications
-Requires:	%{name}-module-mediaplayer-mpris = %{version}-%{release}
-Requires:	vlc
-Provides:	kadu-module-vlc` = %{version}
-
-%description module-mediaplayer-vlc
-Module which allows showing in status description information about
-the song currently played in VLC.
-
-%description module-mediaplayer-vlc -l pl.UTF-8
-Moduł umożliwiający pokazywanie w opisie statusu informacji o
-odgrywanym utworze z odtwarzacza VLC.
 
 %package module-mediaplayer-xmms
 Summary:	Support XMMS status
@@ -1211,11 +1195,6 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok2_mediaplayer/spec
 %endif
 %{!?with_mediaplayer_falf:%{__sed} -i 's/\tfalf_mediaplayer$/\t#falf_mediaplayer/' Plugins.cmake}
 %{!?with_mediaplayer_mpris:%{__sed} -i 's/\tmprisplayer_mediaplayer$/\t#mprisplayer_mediaplayer/' Plugins.cmake}
-%if %{with mediaplayer_vlc}
-%{__sed} -i 's/module_vlc_mediaplayer=n/module_vlc_mediaplayer=m/' .config
-%else
-%{__sed} -i 's/module_vlc_mediaplayer=m/module_vlc_mediaplayer=n/' .config
-%endif
 %if %{with mediaplayer_xmms}
 %{__sed} -i 's/module_xmms_mediaplayer=n/module_xmms_mediaplayer=m/' .config
 %else
@@ -1792,13 +1771,6 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 
 %if 0
-%if %{with mediaplayer_vlc}
-%files module-mediaplayer-vlc
-%defattr(644,root,root,755)
-%{modules_data_dir}/vlc_mediaplayer.desc
-%attr(755,root,root) %{modules_lib_dir}/libvlc_mediaplayer.so
-%endif
-
 %if %{with mediaplayer_xmms}
 %files module-mediaplayer-xmms
 %defattr(644,root,root,755)
