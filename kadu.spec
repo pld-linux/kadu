@@ -195,6 +195,7 @@ Obsoletes:	kadu-module-mediaplayer-vlc
 Obsoletes:	kadu-module-mediaplayer-xmms
 Obsoletes:	kadu-module-mediaplayer-xmms2
 %{!?with_mediaplayer:Obsoletes:	kadu-module-mediaplayer}
+Obsoletes:	kadu-module-notify-osdhints
 Obsoletes:	kadu-module-notify-xosd <= 0.6.5
 Obsoletes:	kadu-module-sound-arts <= 0.6.5
 Obsoletes:	kadu-module-sound-esd <= 0.6.5
@@ -205,8 +206,6 @@ Obsoletes:	kadu-theme-icons-crystal16
 Obsoletes:	kadu-theme-icons-crystal22
 Obsoletes:	kadu-theme-icons-nuvola16
 Obsoletes:	kadu-theme-icons-nuvola22
-Obsoletes:	kadu-module-notify-osdhints
-Obsoletes:	kadu-module-notify-xosd
 # for encryption module and TLS in jabber module
 Suggests:	qt4-plugin-qca-ossl
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
