@@ -1,6 +1,6 @@
 #
 # TODO:
-# - modules update/remove: desc_history, geoip
+# - modules update/remove: desc_history, geoip, mail, mediaplayer_amarok2
 # - make voice module link with system libgsm
 #
 # Conditional build:
@@ -17,14 +17,12 @@
 %bcond_without	filedesc		# without filedesc module support
 %bcond_without	firewall		# without firewall module support
 %bcond_with	geoip			# without geoip module support
-%bcond_with	globalhotkeys		# without globalhotkeys module support
+%bcond_without	globalhotkeys		# without globalhotkeys module support
 %bcond_without	last_seen		# without last_seen module support
 %bcond_with	mail			# without mail module support
 %bcond_without	mediaplayer		# without media player modules support
 %bcond_with	mediaplayer_amarok	# without amarok player support module
 %bcond_with	mediaplayer_amarok2	# without amarok2 player support module
-%bcond_with	mediaplayer_audacious	# without audacious player support module
-%bcond_with	mediaplayer_bmpx	# without bmpx player support module
 %bcond_with	mediaplayer_dragon	# without dragon player support module
 %bcond_without	mediaplayer_falf	# without falf player support module
 %bcond_with	mediaplayer_mpd		# without mpd player support module
@@ -74,7 +72,7 @@
 %define		dcopexport_ver		0.11.3-20071129
 %define		desc_history_ver	1.1
 %define		geoip_ver		0.2
-%define		globalhotkeys_ver	0.9.0-23
+%define		globalhotkeys_ver	0.10-25
 %define		mail_ver		0.3.6
 %define		mime_tex_ver		0.6.6.6
 %define		nextinfo_ver		0.9.0-5
@@ -102,7 +100,7 @@ Source2:	http://kadu.net/~weagle/anonymous_check-%{anonymous_check_ver}.tar.bz2
 Source3:	dcopexport-%{dcopexport_ver}-0.6.0.tar.bz2
 # Source3-md5:	b36fcfcf4756285f30cbb6c2b6c2a2da
 Source4:	http://www.ultr.pl/kadu/globalhotkeys-%{globalhotkeys_ver}.tar.gz
-# Source4-md5:	3e6ae8580d26dafc439f773ee99134c6
+# Source4-md5:	b7eecb5a889cbb59b0c146357f689630
 Source5:	http://kadu.net/~michal/mail/mail-%{mail_ver}.tar.bz2
 # Source5-md5:	85fdf695c7fbc58e607dc15278391ab3
 Source6:	http://kadu.net/~patryk/mime_tex/mime_tex-%{mime_tex_ver}.tar.bz2
@@ -188,11 +186,16 @@ BuildRequires:	xorg-lib-libXScrnSaver-devel
 Requires:	QtSql-sqlite3
 Requires:	libgadu >= %{libgadu_ver}
 Obsoletes:	kadu-module-advanced_userlist
+Obsoletes:	kadu-module-agent
 Obsoletes:	kadu-module-dbus
 Obsoletes:	kadu-module-docking-wmaker <= 0.6.5
+Obsoletes:	kadu-module-filtering
+Obsoletes:	kadu-module-gg_avatars
 Obsoletes:	kadu-module-imiface <= 0.4.3
 Obsoletes:	kadu-module-iwait4u <= 0.5.0
 %{!?with_mediaplayer:Obsoletes:	kadu-module-mediaplayer}
+Obsoletes:	kadu-module-mediaplayer_audacious
+Obsoletes:	kadu-module-mediaplayer_bmpx
 Obsoletes:	kadu-module-notify-xosd <= 0.6.5
 Obsoletes:	kadu-module-sound-arts <= 0.6.5
 Obsoletes:	kadu-module-sound-esd <= 0.6.5
@@ -475,37 +478,6 @@ the song currently played in amarok 2.
 %description module-mediaplayer-amarok2 -l pl.UTF-8
 Moduł umożliwiający w opisie statusu pokazywanie informacji o
 odgrywanym utworze z odtwarzacza amarok 2.
-
-%package module-mediaplayer-audacious
-Summary:	Support audacious status
-Summary(pl.UTF-8):	Moduł statusu dla odtwarzacza audacious
-Group:		Applications/Communications
-Requires:	%{name}-module-mediaplayer-mpris = %{version}-%{release}
-Requires:	audacious
-
-%description module-mediaplayer-audacious
-Module which allows showing in status description information about
-the song currently played in audacious.
-
-%description module-mediaplayer-audacious -l pl.UTF-8
-Moduł umożliwiający w opisie statusu pokazywanie informacji o
-odgrywanym utworze z odtwarzacza audacious.
-
-%package module-mediaplayer-bmpx
-Summary:	Support BMPX status
-Summary(pl.UTF-8):	Moduł statusu dla odtwarzacza BMPX
-Group:		Applications/Communications
-Requires:	%{name}-module-mediaplayer-mpris = %{version}-%{release}
-Requires:	bmpx
-Provides:	kadu-module-bmpx = %{version}
-
-%description module-mediaplayer-bmpx
-Module which allows showing in status description information about
-the song currently played in BMPX.
-
-%description module-mediaplayer-bmpx -l pl.UTF-8
-Moduł umożliwiający w opisie statusu pokazywanie informacji o
-odgrywanym utworze z odtwarzacza BMPX.
 
 %package module-mediaplayer-dragon
 Summary:	Support dragon status
@@ -1237,11 +1209,7 @@ mkdir -p build
 %else
 %{__sed} -i 's/module_geoip_lookup=m/module_geoip_lookup=n/' .config
 %endif
-%if %{with globalhotkeys}
-%{__sed} -i 's/module_globalhotkeys=n/module_globalhotkeys=m/' .config
-%else
-%{__sed} -i 's/module_globalhotkeys=m/module_globalhotkeys=n/' .config
-%endif
+%{?with_globalhotkeys:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tglobalhotkeys' Plugins.cmake}
 %{!?with_last_seen:%{__sed} -i 's/\tlast_seen$/\t#last_seen/' Plugins.cmake}
 %if %{with mail}
 %{__sed} -i 's/module_mail=n/module_mail=m/' .config
@@ -1256,16 +1224,6 @@ echo 'MODULE_INCLUDES_PATH="%{_includedir}"' >> plugins/amarok2_mediaplayer/spec
 echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok2_mediaplayer/spec
 %else
 %{__sed} -i 's/module_amarok2_mediaplayer=m/module_amarok2_mediaplayer=n/' .config
-%endif
-%if %{with mediaplayer_audacious}
-%{__sed} -i 's/module_audacious_mediaplayer=n/module_audacious_mediaplayer=m/' .config
-%else
-%{__sed} -i 's/module_audacious_mediaplayer=m/module_audacious_mediaplayer=n/' .config
-%endif
-%if %{with mediaplayer_bmpx}
-%{__sed} -i 's/module_bmpx_mediaplayer=n/module_bmpx_mediaplayer=m/' .config
-%else
-%{__sed} -i 's/module_bmpx_mediaplayer=m/module_bmpx_mediaplayer=n/' .config
 %endif
 %if %{with mediaplayer_dragon}
 %{__sed} -i 's/module_dragon_mediaplayer=n/module_dragon_mediaplayer=m/' .config
@@ -1831,20 +1789,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{modules_data_dir}/amarok2_mediaplayer.desc
 %attr(755,root,root) %{modules_lib_dir}/libamarok2_mediaplayer.so
-%endif
-
-%if %{with mediaplayer_audacious}
-%files module-mediaplayer-audacious
-%defattr(644,root,root,755)
-%{modules_data_dir}/audacious_mediaplayer.desc
-%attr(755,root,root) %{modules_lib_dir}/libaudacious_mediaplayer.so
-%endif
-
-%if %{with mediaplayer_bmpx}
-%files module-mediaplayer-bmpx
-%defattr(644,root,root,755)
-%{modules_data_dir}/bmpx_mediaplayer.desc
-%attr(755,root,root) %{modules_lib_dir}/libbmpx_mediaplayer.so
 %endif
 
 %if %{with mediaplayer_dragon}
