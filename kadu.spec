@@ -1,6 +1,7 @@
 #
 # TODO:
-# - modules update/remove: desc_history, geoip, mail, mediaplayer_amarok2, notify_kde, notify_mx610
+# - modules update/remove: desc_history, geoip, mail, mediaplayer_amarok2, notify_kde, notify_mx610,
+#   notify_water, pajacyk
 # - make voice module link with system libgsm
 #
 # Conditional build:
@@ -38,7 +39,6 @@
 %bcond_without	notify_qt4_docking	# without qt4_docking_notify module support
 %bcond_without	notify_speech		# without Speech synthesis support
 %bcond_with	notify_water		# without water_notify module support
-%bcond_with	notify_window		# without window_notify module support
 %bcond_with	pajacyk			# without pajacyk module support
 %bcond_with	panelkadu		# without panelkadu module support
 %bcond_with	parser_extender		# without parser_extender extensions
@@ -1155,11 +1155,6 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok2_mediaplayer/spec
 %{!?with_notify_chat:%{__sed} -i 's/\tchat_notify$/\t#chat_notify/' Plugins.cmake}
 %{!?with_notify_pcspeaker:%{__sed} -i 's/\tpcspeaker$/\t#pcspeaker/' Plugins.cmake}
 %{!?with_notify_qt4_docking:%{__sed} -i 's/\tqt4_docking_notify$/\t#qt4_docking_notify/' Plugins.cmake}
-%if %{with notify_window}
-%{__sed} -i 's/module_window_notify=n/module_window_notify=m/' .config
-%else
-%{__sed} -i 's/module_window_notify=m/module_window_notify=n/' .config
-%endif
 %{!?with_notify_speech:%{__sed} -i 's/\tspeech$/\t#speech/' Plugins.cmake}
 %if %{with notify_water}
 %{__sed} -i 's/module_water_notify=n/module_water_notify=m/' .config
