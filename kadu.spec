@@ -1662,7 +1662,6 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 %endif
 
-%endif
 %if %{with autoresponder}
 %files module-autoresponder
 %defattr(644,root,root,755)
