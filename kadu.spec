@@ -41,6 +41,7 @@
 %bcond_with	mime_tex		# without mime_tex module support
 %bcond_with	nextinfo		# without nextinfo module support
 %bcond_without	notify_exec		# without exec_notify module support
+%bcond_without	notify_freedesktop	# without freedesktop_notify module support
 %bcond_with	notify_kde		# without kde_notify module support
 %bcond_with	notify_led		# without led_notify module support
 %bcond_with	notify_mx610		# without mc610_notify module support
@@ -702,6 +703,18 @@ Notification by external commands module.
 %description module-notify-exec -l pl.UTF-8
 Moduł powiadamiania użytkownika o zdarzeniach za pomocą zewnętrznych
 poleceń.
+
+%package module-notify-freedesktop
+Summary:	Freedesktop notification support
+Summary(pl.UTF-8):	Wsparcie dla powiadamiania freedesktop
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-notify-freedesktop
+Freedesktop notification support
+
+%description module-notify-freedesktop -l pl.UTF-8
+Wsparcie dla powiadamiania freedesktop
 
 %package module-notify-kde4
 Summary:	Notification for KDE4
@@ -1381,6 +1394,7 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok2_mediaplayer/spec
 %{__sed} -i 's/module_nextinfo=m/module_nextinfo=n/' .config
 %endif
 %{!?with_notify_exec:%{__sed} -i 's/\texec_notify$/\t#exec_notify/' Plugins.cmake}
+%{!?with_notify_freedesktop:%{__sed} -i 's/\tfreedesktop_notify$/\t#freedesktop_notify/' Plugins.cmake}
 %if %{with notify_kde}
 %{__sed} -i 's/module_kde_notify=n/module_kde_notify=m/' .config
 %else
@@ -1451,11 +1465,7 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok2_mediaplayer/spec
 %else
 %{__sed} -i 's/module_senthistory=m/module_senthistory=n/' .config
 %endif
-%if %{with single_window}
-%{__sed} -i 's/module_single_window=n/module_single_window=m/' .config
-%else
-%{__sed} -i 's/module_single_window=m/module_single_window=n/' .config
-%endif
+%{!?with_single_window:%{__sed} -i 's/\tsingle_window$/\t#single_window/' Plugins.cmake}
 %if %{with sms_plus_pl}
 %{__sed} -i 's/module_plus_pl_sms=n/module_plus_pl_sms=m/' .config
 %else
@@ -1634,9 +1644,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(cs) %{modules_data_dir}/translations/simpleview_cs.qm
 %lang(en) %{modules_data_dir}/translations/simpleview_en.qm
 %lang(pl) %{modules_data_dir}/translations/simpleview_pl.qm
-%lang(cs) %{modules_data_dir}/translations/single_window_cs.qm
-%lang(en) %{modules_data_dir}/translations/single_window_en.qm
-%lang(pl) %{modules_data_dir}/translations/single_window_pl.qm
 %lang(cs) %{modules_data_dir}/translations/sms_cs.qm
 %lang(de) %{modules_data_dir}/translations/sms_de.qm
 %lang(en) %{modules_data_dir}/translations/sms_en.qm
@@ -2074,6 +2081,17 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{modules_data_dir}/translations/exec_notify_pl.qm
 %endif
 
+%if %{with notify_freedesktop}
+%files module-notify-freedesktop
+%defattr(644,root,root,755)
+%{modules_data_dir}/freedesktop_notify.desc
+%attr(755,root,root) %{modules_lib_dir}/libfreedesktop_notify.so
+%lang(cs) %{modules_data_dir}/translations/freedesktop_notify_cs.qm
+%lang(de) %{modules_data_dir}/translations/freedesktop_notify_de.qm
+%lang(en) %{modules_data_dir}/translations/freedesktop_notify_en.qm
+%lang(pl) %{modules_data_dir}/translations/freedesktop_notify_pl.qm
+%endif
+
 %if 0
 %if %{with notify_kde}
 %files module-notify-kde4
@@ -2226,6 +2244,7 @@ rm -rf $RPM_BUILD_ROOT
 #%lang(it) %{modules_data_dir}/translations/profiles_it.qm
 %lang(pl) %{modules_data_dir}/translations/profiles_pl.qm
 %endif
+%endif
 
 %if %{with single_window}
 %files module-single_window
@@ -2236,7 +2255,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{modules_data_dir}/translations/single_window_pl.qm
 %endif
 
-
+%if 0
 %if %{with senthistory}
 %files module-senthistory
 %defattr(644,root,root,755)
