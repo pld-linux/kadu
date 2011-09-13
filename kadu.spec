@@ -156,7 +156,7 @@ Source29:	http://www.kadu.net/download/additions/%{name}-sound-ultr.tar.bz2
 Patch0:		%{name}-sounds.patch
 Patch1:		%{name}-mail.patch
 Patch2:		%{name}-link.patch
-URL:		http://kadu.net/
+URL:		http://kadu.im/
 BuildRequires:	Qt3Support-devel >= 4.4
 BuildRequires:	QtScript-devel >= 4.4
 BuildRequires:	QtScriptTools-devel >= 4.4
