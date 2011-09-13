@@ -1,6 +1,6 @@
 #
 # TODO:
-# - desc_history - create CMakeFiles.txt, port module to kadu 0.6.5.x
+# - modules update/remove: anonymous_check, desc_history, geoip
 # - make voice module link with system libgsm
 #
 # Conditional build:
@@ -11,15 +11,12 @@
 %bcond_without	autoresponder		# without autoresponder module support
 %bcond_without	autostatus		# without autostatus module support
 %bcond_without	cenzor			# without cenzor module support
-%bcond_with	dbus			# without dbus module support
 %bcond_with	desc_history		# without description history module support
 %bcond_without	docking_desktop		# without desktop_docking module support
 %bcond_without	encryption		# without encryption module support
 %bcond_without	filedesc		# without filedesc module support
-%bcond_with	filtering		# without filtering module support
 %bcond_without	firewall		# without firewall module support
 %bcond_with	geoip			# without geoip module support
-%bcond_with	gg_avatars		# without gg_avatars module support
 %bcond_with	globalhotkeys		# without globalhotkeys module support
 %bcond_without	last_seen		# without last_seen module support
 %bcond_with	mail			# without mail module support
@@ -191,6 +188,7 @@ BuildRequires:	xorg-lib-libXScrnSaver-devel
 Requires:	QtSql-sqlite3
 Requires:	libgadu >= %{libgadu_ver}
 Obsoletes:	kadu-module-advanced_userlist
+Obsoletes:	kadu-module-dbus
 Obsoletes:	kadu-module-docking-wmaker <= 0.6.5
 Obsoletes:	kadu-module-imiface <= 0.4.3
 Obsoletes:	kadu-module-iwait4u <= 0.5.0
@@ -311,18 +309,6 @@ Censor module.
 %description module-cenzor -l pl.UTF-8
 Moduł cenzora.
 
-%package module-dbus
-Summary:	DBus interface support
-Summary(pl.UTF-8):	Interfejs DBus
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description module-dbus
-DBus Interface for Kadu.
-
-%description module-dbus -l pl.UTF-8
-Interfejs DBus dla Kadu.
-
 %package module-desc_history
 Summary:	Status descriptions history
 Summary(pl.UTF-8):	Historia opisów statusów
@@ -383,18 +369,6 @@ Descriptions from file module.
 %description module-filedesc -l pl.UTF-8
 Moduł obsługi opisów z pliku.
 
-%package module-filtering
-Summary:	User list filtering
-Summary(pl.UTF-8):	Filtrowanie listy kontaktów
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description module-filtering
-User list filtering.
-
-%description module-filtering -l pl.UTF-8
-Filtrowanie listy kontaktów.
-
 %package module-firewall
 Summary:	Module to block unknown persons, who wants to start chat
 Summary(pl.UTF-8):	Moduł blokuje nieznane osoby, chcące zacząć rozmowę
@@ -418,18 +392,6 @@ Geoip module.
 
 %description module-geoip -l pl.UTF-8
 Moduł geoip.
-
-%package module-gg_avatars
-Summary:	Adds gadu avatars support to Kadu
-Summary(pl.UTF-8):	Moduł dodający do Kadu obsługę avatarów gg
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description module-gg_avatars
-Adds global hotkeys support to Kadu.
-
-%description module-gg_avatars -l pl.UTF-8
-Moduł dodający do Kadu obsługę awatarów gg.
 
 %package module-globalhotkeys
 Summary:	Adds global hotkeys support to Kadu
@@ -850,7 +812,6 @@ Requires:	%{name}-module-antistring = %{version}-%{release}
 Requires:	%{name}-module-auto_hide = %{version}-%{release}
 Requires:	%{name}-module-autostatus = %{version}-%{release}
 Requires:	%{name}-module-cenzor = %{version}-%{release}
-Requires:	%{name}-module-gg_avatars = %{version}-%{release}
 Requires:	%{name}-module-parser_extender = %{version}-%{release}
 %if %{with split_messages}
 Requires:	%{name}-module-split_messages = %{version}-%{release}
@@ -1263,11 +1224,6 @@ mkdir -p build
 %{!?with_autoresponder:%{__sed} -i 's/\tautoresponder$/\t#autoresponder/' Plugins.cmake}
 %{!?with_autostatus:%{__sed} -i 's/\tautostatus$/\t#autostatus/' Plugins.cmake}
 %{!?with_cenzor:%{__sed} -i 's/\tcenzor$/\t#cenzor/' Plugins.cmake}
-%if %{with dbus}
-%{__sed} -i 's/module_dbus=n/module_dbus=m/' .config
-%else
-%{__sed} -i 's/module_dbus=m/module_dbus=n/' .config
-%endif
 %if %{with desc_history}
 %{__sed} -i 's/module_desc_history=n/module_desc_history=m/' .config
 %else
@@ -1279,21 +1235,11 @@ mkdir -p build
 %{__sed} -i 's/\tencryption_ng_simlite$/\t#encryption_ng_simlite/' Plugins.cmake
 %endif
 %{!?with_filedesc:%{__sed} -i 's/\tfiledesc$/\t#filedesc/' Plugins.cmake}
-%if %{with filtering}
-%{__sed} -i 's/module_filtering=n/module_filtering=m/' .config
-%else
-%{__sed} -i 's/module_filtering=m/module_filtering=n/' .config
-%endif
 %{!?with_firewall:%{__sed} -i 's/\tfirewall$/\t#firewall/' Plugins.cmake}
 %if %{with geoip}
 %{__sed} -i 's/module_geoip_lookup=n/module_geoip_lookup=m/' .config
 %else
 %{__sed} -i 's/module_geoip_lookup=m/module_geoip_lookup=n/' .config
-%endif
-%if %{with gg_avatars}
-%{__sed} -i 's/module_gg_avatars=n/module_gg_avatars=m/' .config
-%else
-%{__sed} -i 's/module_gg_avatars=m/module_gg_avatars=n/' .config
 %endif
 %if %{with globalhotkeys}
 %{__sed} -i 's/module_globalhotkeys=n/module_globalhotkeys=m/' .config
@@ -1787,14 +1733,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{modules_data_dir}/translations/encryption_ng_simlite_pl.qm
 %endif
 
-%if 0
-%if %{with dbus}
-%files module-dbus
-%defattr(644,root,root,755)
-%{modules_data_dir}/dbus.desc
-%attr(755,root,root) %{modules_lib_dir}/libdbus.so
-%endif
-
 %endif
 %if %{with docking_desktop}
 %files module-docking-desktop
@@ -1821,19 +1759,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{modules_data_dir}/translations/filedesc_pl.qm
 %endif
 
-%if 0
-%if %{with filtering}
-%files module-filtering
-%defattr(644,root,root,755)
-%{modules_data_dir}/filtering.desc
-%{modules_data_dir}/configuration/filtering.ui
-%attr(755,root,root) %{modules_lib_dir}/libfiltering.so
-%lang(pl) %{modules_data_dir}/translations/filtering_pl.qm
-%dir %{modules_data_dir}/data/filtering
-%{modules_data_dir}/data/filtering/*.png
-%endif
-%endif
-
 %if %{with firewall}
 %files module-firewall
 %defattr(644,root,root,755)
@@ -1852,14 +1777,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{modules_data_dir}/geoip_lookup.desc
 %attr(755,root,root) %{modules_lib_dir}/libgeoip_lookup.so
-%endif
-
-%if %{with gg_avatars}
-%files module-gg_avatars
-%defattr(644,root,root,755)
-%{modules_data_dir}/gg_avatars.desc
-%attr(755,root,root) %{modules_lib_dir}/libgg_avatars.so
-%lang(pl) %{modules_data_dir}/translations/gg_avatars_pl.qm
 %endif
 
 %if %{with globalhotkeys}
