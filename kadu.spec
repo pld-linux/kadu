@@ -1,6 +1,6 @@
 #
 # TODO:
-# - modules update/remove: desc_history, geoip, mail, mediaplayer_amarok2
+# - modules update/remove: desc_history, geoip, mail, mediaplayer_amarok2, notify_kde, notify_mx610
 # - make voice module link with system libgsm
 #
 # Conditional build:
@@ -27,13 +27,12 @@
 %bcond_with	mediaplayer_mpd		# without mpd player support module
 %bcond_without	mediaplayer_mpris	# without generic mpris interface support module
 %bcond_without	mime_tex		# without mime_tex module support
-%bcond_with	nextinfo		# without nextinfo module support
+%bcond_without	nextinfo		# without nextinfo module support
 %bcond_without	notify_exec		# without exec_notify module support
 %bcond_without	notify_freedesktop	# without freedesktop_notify module support
 %bcond_with	notify_kde		# without kde_notify module support
-%bcond_with	notify_led		# without led_notify module support
+%bcond_without	notify_led		# without led_notify module support
 %bcond_with	notify_mx610		# without mc610_notify module support
-%bcond_with	notify_osdhints		# without osdhints_notify module
 %bcond_without	notify_chat	        # without chat_notify module support
 %bcond_without	notify_pcspeaker	# without pcspeaker_notify module support
 %bcond_without	notify_qt4_docking	# without qt4_docking_notify module support
@@ -72,9 +71,9 @@
 %define		globalhotkeys_ver	0.10-25
 %define		mail_ver		0.3.6
 %define		mime_tex_ver		0.10.1
-%define		nextinfo_ver		0.9.0-5
+%define		nextinfo_ver		0.10-6
 %define		notify_kde_ver		0.3.4
-%define		notify_led_ver		0.9.0-28
+%define		notify_led_ver		0.10-29
 %define		notify_mx610_ver	0.4.1
 %define		notify_water_ver	0.2.1
 %define		pajacyk_ver		0.2.1
@@ -103,9 +102,9 @@ Source5:	http://kadu.net/~michal/mail/mail-%{mail_ver}.tar.bz2
 Source6:	http://kadu.net/~weagle/mime_tex-%{mime_tex_ver}.tar.bz2
 # Source6-md5:	aa5a34784f4044c425fcc1b11f0ede3f
 Source7:	http://www.ultr.pl/kadu/nextinfo-%{nextinfo_ver}.tar.gz
-# Source7-md5:	3cc7c2da2666d2ff56c42cefdf6519be
+# Source7-md5:	b7645a7ce571dc3549249863bf783020
 Source8:	http://www.ultr.pl/kadu/lednotify-%{notify_led_ver}.tar.gz
-# Source8-md5:	32d5e433a6e362095d434c64aaa818a6
+# Source8-md5:	e6f54571976c422d07154a66482fd343
 Source9:	http://www.kadu.net/~dorr/moduly/%{name}-mx610_notify-%{notify_mx610_ver}.tar.bz2
 # Source9-md5:	4b2a47068928b9687c61816abeed86fe
 Source10:	http://www.kadu.net/~dorr/moduly/%{name}-water_notify-%{notify_water_ver}.tar.bz2
@@ -206,10 +205,8 @@ Obsoletes:	kadu-theme-icons-crystal16
 Obsoletes:	kadu-theme-icons-crystal22
 Obsoletes:	kadu-theme-icons-nuvola16
 Obsoletes:	kadu-theme-icons-nuvola22
-%if %{without notify_osdhints} && %{without notify_xosd}
 Obsoletes:	kadu-module-notify-osdhints
 Obsoletes:	kadu-module-notify-xosd
-%endif
 # for encryption module and TLS in jabber module
 Suggests:	qt4-plugin-qca-ossl
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -529,10 +526,10 @@ Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
 %description module-nextinfo
-Extended contact information
+Extended contact information.
 
 %description module-nextinfo -l pl.UTF-8
-Rozszerzone informacje o kontakcie
+Rozszerzone informacje o kontakcie.
 
 %package module-notify-exec
 Summary:	Notification by external commands module
@@ -594,21 +591,6 @@ Notification by IM-LED in Logitech MX610 mouse.
 
 %description module-notify-mx610 -l pl.UTF-8
 Moduł powiadamiania diodą IM w myszcze Logitech MX610.
-
-%package module-notify-osdhints
-Summary:	Notification by OSD-like hints
-Summary(pl.UTF-8):	Powiadamianie o zdarzeniach przy pomocy dymków typu OSD
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-%if %{without notify_xosd}
-Obsoletes:	kadu-module-notify-xosd
-%endif
-
-%description module-notify-osdhints
-Notification by OSD-like hints.
-
-%description module-notify-osdhints -l pl.UTF-8
-Powiadamianie o zdarzeniach przy pomocy dymków typu OSD.
 
 %package module-notify-chat
 Summary:	Notifications in chat windows
@@ -1157,11 +1139,7 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok2_mediaplayer/spec
 %{!?with_mediaplayer_falf:%{__sed} -i 's/\tfalf_mediaplayer$/\t#falf_mediaplayer/' Plugins.cmake}
 %{!?with_mediaplayer_mpris:%{__sed} -i 's/\tmprisplayer_mediaplayer$/\t#mprisplayer_mediaplayer/' Plugins.cmake}
 %{?with_mime_tex:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tmime_tex' Plugins.cmake}
-%if %{with nextinfo}
-%{__sed} -i 's/module_nextinfo=n/module_nextinfo=m/' .config
-%else
-%{__sed} -i 's/module_nextinfo=m/module_nextinfo=n/' .config
-%endif
+%{?with_nextinfo:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tnextinfo' Plugins.cmake}
 %{!?with_notify_exec:%{__sed} -i 's/\texec_notify$/\t#exec_notify/' Plugins.cmake}
 %{!?with_notify_freedesktop:%{__sed} -i 's/\tfreedesktop_notify$/\t#freedesktop_notify/' Plugins.cmake}
 %if %{with notify_kde}
@@ -1169,20 +1147,11 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok2_mediaplayer/spec
 %else
 %{__sed} -i 's/module_kde_notify=m/module_kde_notify=n/' .config
 %endif
-%if %{with notify_led}
-%{__sed} -i 's/module_lednotify=n/module_lednotify=m/' .config
-%else
-%{__sed} -i 's/module_lednotify=m/module_lednotify=n/' .config
-%endif
+%{?with_notify_led:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tlednotify' Plugins.cmake}
 %if %{with notify_mx610}
 %{__sed} -i 's/module_mx610_notify=n/module_mx610_notify=m/' .config
 %else
 %{__sed} -i 's/module_mx610_notify=m/module_mx610_notify=n/' .config
-%endif
-%if %{with notify_osdhints}
-%{__sed} -i 's/module_osd_hints=n/module_osd_hints=m/' .config
-%else
-%{__sed} -i 's/module_osd_hints=m/module_osd_hints=n/' .config
 %endif
 %{!?with_notify_chat:%{__sed} -i 's/\tchat_notify$/\t#chat_notify/' Plugins.cmake}
 %{!?with_notify_pcspeaker:%{__sed} -i 's/\tpcspeaker$/\t#pcspeaker/' Plugins.cmake}
@@ -1797,18 +1766,6 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/configuration/mx610_notify.ui
 %attr(755,root,root) %{modules_lib_dir}/libmx610_notify.so
 %lang(pl) %{modules_data_dir}/translations/mx610_notify_pl.qm
-%endif
-
-%if %{with notify_osdhints}
-%files module-notify-osdhints
-%defattr(644,root,root,755)
-%{modules_data_dir}/osd_hints.desc
-%{modules_data_dir}/configuration/osd_hints.ui
-%attr(755,root,root) %{modules_lib_dir}/libosd_hints.so
-%lang(pl) %{modules_data_dir}/translations/osd_hints_pl.qm
-%dir %{modules_data_dir}/data/osd_hints
-%{modules_data_dir}/data/osd_hints/License
-%{modules_data_dir}/data/osd_hints/*.png
 %endif
 %endif
 
