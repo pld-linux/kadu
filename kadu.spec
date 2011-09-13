@@ -1660,6 +1660,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libanonymous_check.so
 %lang(pl) %{modules_data_dir}/translations/anonymous_check.qm
 %endif
+%endif
 
 %endif
 %if %{with autoresponder}
@@ -1712,8 +1713,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/desc_history.so
 %lang(pl) %{modules_data_dir}/translations/desc_history_pl.qm
 %endif
-
 %endif
+
 %if %{with encryption}
 %files module-encryption
 %defattr(644,root,root,755)
@@ -2061,7 +2062,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libpajacyk.so
 %lang(pl) %{modules_data_dir}/translations/pajacyk_pl.qm
 %endif
-
 
 %if %{with panelkadu}
 %files module-panelkadu
