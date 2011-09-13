@@ -1702,16 +1702,15 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{modules_data_dir}/translations/mime_tex_pl.qm
 %endif
 
-%if 0
 %if %{with nextinfo}
 %files module-nextinfo
 %defattr(644,root,root,755)
 %{modules_data_dir}/nextinfo.desc
 %{modules_data_dir}/configuration/nextinfo.ui
 %attr(755,root,root) %{modules_lib_dir}/libnextinfo.so
+%lang(cs) %{modules_data_dir}/translations/nextinfo_cs.qm
 %lang(en) %{modules_data_dir}/translations/nextinfo_en.qm
 %lang(pl) %{modules_data_dir}/translations/nextinfo_pl.qm
-%endif
 %endif
 
 %if %{with notify_exec}
@@ -1747,6 +1746,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(it) %{modules_data_dir}/translations/kde_notify_it.qm
 %lang(pl) %{modules_data_dir}/translations/kde_notify_pl.qm
 %endif
+%endif
 
 %if %{with notify_led}
 %files module-notify-led
@@ -1754,10 +1754,12 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/lednotify.desc
 %{modules_data_dir}/configuration/lednotify.ui
 %attr(755,root,root) %{modules_lib_dir}/liblednotify.so
+%lang(cs) %{modules_data_dir}/translations/lednotify_cs.qm
 %lang(en) %{modules_data_dir}/translations/lednotify_en.qm
 %lang(pl) %{modules_data_dir}/translations/lednotify_pl.qm
 %endif
 
+%if 0
 %if %{with notify_mx610}
 %files module-notify-mx610
 %defattr(644,root,root,755)
