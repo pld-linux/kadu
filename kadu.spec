@@ -1,10 +1,10 @@
 #
 # TODO:
-# - modules update/remove: anonymous_check, desc_history, geoip
+# - modules update/remove: desc_history, geoip
 # - make voice module link with system libgsm
 #
 # Conditional build:
-%bcond_with	anonymous_check		# without anonymous_check module support
+%bcond_without	anonymous_check		# without anonymous_check module support
 %bcond_without	antistring		# without antistring module support
 %bcond_without	auto_hide		# without auto_hide module support
 %bcond_without	autoaway		# without autoaway module support
@@ -70,7 +70,7 @@
 
 %define		libgadu_ver		4:1.11.0
 
-%define		anonymous_check_ver	0.6.6.1
+%define		anonymous_check_ver	0.10.1
 %define		dcopexport_ver		0.11.3-20071129
 %define		desc_history_ver	1.1
 %define		geoip_ver		0.2
@@ -97,8 +97,8 @@ Group:		Applications/Communications
 Source0:	http://download.kadu.im/stable/%{name}-%{version}.tar.bz2
 # Source0-md5:	6d3e9889f53cf10c2cd9499aabbff67a
 Source1:	%{name}.desktop
-Source2:	http://kadu.net/~patryk/anonymous_check/anonymous_check-%{anonymous_check_ver}.tar.bz2
-# Source2-md5:	a1c49155f1cbfc4236e13b63cf97cbba
+Source2:	http://kadu.net/~weagle/anonymous_check-%{anonymous_check_ver}.tar.bz2
+# Source2-md5:	2dc4f69cf71d5ed9c7a94e5ff1719c5b
 Source3:	dcopexport-%{dcopexport_ver}-0.6.0.tar.bz2
 # Source3-md5:	b36fcfcf4756285f30cbb6c2b6c2a2da
 Source4:	http://www.ultr.pl/kadu/globalhotkeys-%{globalhotkeys_ver}.tar.gz
@@ -1213,11 +1213,7 @@ echo "module_desc_history=n" >>.config
 %build
 mkdir -p build
 
-%if %{with anonymous_check}
-%{__sed} -i 's/module_anonymous_check=n/module_anonymous_check=m/' .config
-%else
-%{__sed} -i 's/module_anonymous_check=m/module_anonymous_check=n/' .config
-%endif
+%{?with_anonymous_check:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tanonymous_check' Plugins.cmake}
 %{!?with_antistring:%{__sed} -i 's/\tantistring$/\t#antistring/' Plugins.cmake}
 %{!?with_autoaway:%{__sed} -i 's/\tautoaway$/\t#autoaway/' Plugins.cmake}
 %{!?with_auto_hide:%{__sed} -i 's/\tauto_hide$/\t#auto_hide/' Plugins.cmake}
@@ -1651,15 +1647,12 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{modules_data_dir}/translations/autoaway_pl.qm
 %endif
 
-%if 0
 %if %{with anonymous_check}
 %files module-anonymous_check
 %defattr(644,root,root,755)
 %{modules_data_dir}/anonymous_check.desc
-#%{modules_data_dir}/configuration/anonymous_check.ui
 %attr(755,root,root) %{modules_lib_dir}/libanonymous_check.so
-%lang(pl) %{modules_data_dir}/translations/anonymous_check.qm
-%endif
+%lang(pl) %{modules_data_dir}/translations/anonymous_check_pl.qm
 %endif
 
 %if %{with autoresponder}
