@@ -1625,6 +1625,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(cs) %{modules_data_dir}/translations/history_cs.qm
 %lang(de) %{modules_data_dir}/translations/history_de.qm
 %lang(en) %{modules_data_dir}/translations/history_en.qm
+%lang(pl) %{modules_data_dir}/translations/history_pl.qm
 %lang(cs) %{modules_data_dir}/translations/history_migration_cs.qm
 %lang(en) %{modules_data_dir}/translations/history_migration_en.qm
 %lang(pl) %{modules_data_dir}/translations/history_migration_pl.qm
@@ -1686,6 +1687,7 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/configuration/hints-notifier.ui
 %{modules_data_dir}/configuration/history.ui
 %{modules_data_dir}/configuration/image-link.ui
+%{modules_data_dir}/configuration/jabber_protocol.ui
 %{modules_data_dir}/configuration/qt4-docking-notify.ui
 %{modules_data_dir}/configuration/simpleview.ui
 %{modules_data_dir}/configuration/sms.ui
@@ -2083,6 +2085,7 @@ rm -rf $RPM_BUILD_ROOT
 %files module-notify-freedesktop
 %defattr(644,root,root,755)
 %{modules_data_dir}/freedesktop_notify.desc
+%{modules_data_dir}/configuration/freedesktop_notify.ui
 %attr(755,root,root) %{modules_lib_dir}/libfreedesktop_notify.so
 %lang(cs) %{modules_data_dir}/translations/freedesktop_notify_cs.qm
 %lang(de) %{modules_data_dir}/translations/freedesktop_notify_de.qm
@@ -2250,6 +2253,8 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/single_window.desc
 %{modules_data_dir}/configuration/single_window.ui
 %attr(755,root,root) %{modules_lib_dir}/libsingle_window.so
+%lang(cs) %{modules_data_dir}/translations/single_window_cs.qm
+%lang(en) %{modules_data_dir}/translations/single_window_en.qm
 %lang(pl) %{modules_data_dir}/translations/single_window_pl.qm
 %endif
 
@@ -2345,7 +2350,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{modules_data_dir}/qt4_sound.desc
 %attr(755,root,root) %{modules_lib_dir}/libqt4_sound.so
+%lang(cs) %{modules_data_dir}/translations/qt4_sound_cs.qm
 %lang(en) %{modules_data_dir}/translations/qt4_sound_en.qm
+%lang(pl) %{modules_data_dir}/translations/qt4_sound_pl.qm
 %endif
 
 %if %{with spellchecker}
