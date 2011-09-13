@@ -26,9 +26,7 @@
 %bcond_without	mediaplayer_falf	# without falf player support module
 %bcond_with	mediaplayer_mpd		# without mpd player support module
 %bcond_without	mediaplayer_mpris	# without generic mpris interface support module
-%bcond_with	mediaplayer_xmms	# without xmms player support module
-%bcond_with	mediaplayer_xmms2	# without xmms2 player support module
-%bcond_with	mime_tex		# without mime_tex module support
+%bcond_without	mime_tex		# without mime_tex module support
 %bcond_with	nextinfo		# without nextinfo module support
 %bcond_without	notify_exec		# without exec_notify module support
 %bcond_without	notify_freedesktop	# without freedesktop_notify module support
@@ -73,7 +71,7 @@
 %define		geoip_ver		0.2
 %define		globalhotkeys_ver	0.10-25
 %define		mail_ver		0.3.6
-%define		mime_tex_ver		0.6.6.6
+%define		mime_tex_ver		0.10.1
 %define		nextinfo_ver		0.9.0-5
 %define		notify_kde_ver		0.3.4
 %define		notify_led_ver		0.9.0-28
@@ -102,8 +100,8 @@ Source4:	http://www.ultr.pl/kadu/globalhotkeys-%{globalhotkeys_ver}.tar.gz
 # Source4-md5:	b7eecb5a889cbb59b0c146357f689630
 Source5:	http://kadu.net/~michal/mail/mail-%{mail_ver}.tar.bz2
 # Source5-md5:	85fdf695c7fbc58e607dc15278391ab3
-Source6:	http://kadu.net/~patryk/mime_tex/mime_tex-%{mime_tex_ver}.tar.bz2
-# Source6-md5:	cb14e23bf664ea67bdd5431735b1bf8d
+Source6:	http://kadu.net/~weagle/mime_tex-%{mime_tex_ver}.tar.bz2
+# Source6-md5:	aa5a34784f4044c425fcc1b11f0ede3f
 Source7:	http://www.ultr.pl/kadu/nextinfo-%{nextinfo_ver}.tar.gz
 # Source7-md5:	3cc7c2da2666d2ff56c42cefdf6519be
 Source8:	http://www.ultr.pl/kadu/lednotify-%{notify_led_ver}.tar.gz
@@ -179,7 +177,6 @@ BuildRequires:	qt4-linguist >= %{qt_ver}
 BuildRequires:	rpmbuild(macros) >= 1.600
 BuildRequires:	sed >= 4.0
 %{?with_desc_history:BuildRequires:     sqlite3-devel}
-%{?with_mediaplayer_xmms:BuildRequires:	xmms-devel}
 BuildRequires:	xorg-lib-libXScrnSaver-devel
 %{?with_panelkadu:BuildRequires:	xorg-lib-libXtst-devel}
 Requires:	QtSql-sqlite3 >= %{qt_ver}
@@ -196,6 +193,8 @@ Obsoletes:	kadu-module-mediaplayer-audacious
 Obsoletes:	kadu-module-mediaplayer-bmpx
 Obsoletes:	kadu-module-mediaplayer-dragon
 Obsoletes:	kadu-module-mediaplayer-vlc
+Obsoletes:	kadu-module-mediaplayer-xmms
+Obsoletes:	kadu-module-mediaplayer-xmms2
 %{!?with_mediaplayer:Obsoletes:	kadu-module-mediaplayer}
 Obsoletes:	kadu-module-notify-xosd <= 0.6.5
 Obsoletes:	kadu-module-sound-arts <= 0.6.5
@@ -510,39 +509,6 @@ other modules.
 Moduł umożliwiający w opisie statusu pokazywanie informacji o
 odgrywanym utworze z odtwarzacza zgodnego z mpris. Jest wykorzystywany
 przez inne moduły.
-
-%package module-mediaplayer-xmms
-Summary:	Support XMMS status
-Summary(pl.UTF-8):	Moduł statusu dla XMMS-a
-Group:		Applications/Communications
-Requires:	%{name}-module-mediaplayer = %{version}-%{release}
-Requires:	xmms
-Provides:	kadu-module-xmms = %{version}
-Obsoletes:	kadu-module-xmms <= 0.5.0
-
-%description module-mediaplayer-xmms
-Module which allows showing in status description information about
-the song currently played in XMMS.
-
-%description module-mediaplayer-xmms -l pl.UTF-8
-Moduł umożliwiający pokazywanie w opisie statusu informacji o
-odgrywanym utworze z odtwarzacza XMMS.
-
-%package module-mediaplayer-xmms2
-Summary:	Support XMMS2 status
-Summary(pl.UTF-8):	Moduł statusu dla XMMS-a 2
-Group:		Applications/Communications
-Requires:	%{name}-module-mediaplayer-mpris = %{version}-%{release}
-Requires:	xmms
-Provides:	kadu-module-xmms2 = %{version}
-
-%description module-mediaplayer-xmms2
-Module which allows showing in status description information about
-the song currently played in XMMS2.
-
-%description module-mediaplayer-xmms2 -l pl.UTF-8
-Moduł umożliwiający pokazywanie w opisie statusu informacji o
-odgrywanym utworze z odtwarzacza XMMS2.
 
 %package module-mime_tex
 Summary:	Mathematical TeX formulas in chat windows
@@ -1137,12 +1103,6 @@ tar xjf %{SOURCE27} -C varia/themes/sounds
 tar xjf %{SOURCE28} -C varia/themes/sounds
 tar xjf %{SOURCE29} -C varia/themes/sounds
 
-# Drop this in 0.6.6 - fix external modules installation on x86_64
-%if "%{_lib}" == "lib64"
-%{__sed} -i 's/lib\/kadu\/modules/lib64\/kadu\/modules/' plugins/*/CMakeLists.txt
-%{?with_mime_tex:%{__sed} -i 's/lib\/kadu\/modules/lib64\/kadu\/modules/' plugins/mime_tex/mimetex/CMakeLists.txt}
-%endif
-
 # Change hard coded path to modules data files
 %{__sed} -i 's,dataPath("kadu/plugins/*,("%{modules_data_dir}/,g' kadu-core/plugins/plugin.cpp
 
@@ -1196,21 +1156,7 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok2_mediaplayer/spec
 %endif
 %{!?with_mediaplayer_falf:%{__sed} -i 's/\tfalf_mediaplayer$/\t#falf_mediaplayer/' Plugins.cmake}
 %{!?with_mediaplayer_mpris:%{__sed} -i 's/\tmprisplayer_mediaplayer$/\t#mprisplayer_mediaplayer/' Plugins.cmake}
-%if %{with mediaplayer_xmms}
-%{__sed} -i 's/module_xmms_mediaplayer=n/module_xmms_mediaplayer=m/' .config
-%else
-%{__sed} -i 's/module_xmms_mediaplayer=m/module_xmms_mediaplayer=n/' .config
-%endif
-%if %{with mediaplayer_xmms2}
-%{__sed} -i 's/module_xmms2_mediaplayer=n/module_xmms2_mediaplayer=m/' .config
-%else
-%{__sed} -i 's/module_xmms2_mediaplayer=m/module_xmms2_mediaplayer=n/' .config
-%endif
-%if %{with mime_tex}
-%{__sed} -i 's/module_mime_tex=n/module_mime_tex=m/' .config
-%else
-%{__sed} -i 's/module_mime_tex=m/module_mime_tex=n/' .config
-%endif
+%{?with_mime_tex:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tmime_tex' Plugins.cmake}
 %if %{with nextinfo}
 %{__sed} -i 's/module_nextinfo=n/module_nextinfo=m/' .config
 %else
@@ -1772,20 +1718,6 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 
 %if 0
-%if %{with mediaplayer_xmms}
-%files module-mediaplayer-xmms
-%defattr(644,root,root,755)
-%{modules_data_dir}/xmms_mediaplayer.desc
-%attr(755,root,root) %{modules_lib_dir}/libxmms_mediaplayer.so
-%endif
-
-%if %{with mediaplayer_xmms2}
-%files module-mediaplayer-xmms2
-%defattr(644,root,root,755)
-%{modules_data_dir}/xmms2_mediaplayer.desc
-%attr(755,root,root) %{modules_lib_dir}/libxmms2_mediaplayer.so
-%endif
-
 %if %{with mime_tex}
 %files module-mime_tex
 %defattr(644,root,root,755)
