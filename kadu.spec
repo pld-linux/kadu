@@ -1733,7 +1733,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{modules_data_dir}/translations/encryption_ng_simlite_pl.qm
 %endif
 
-%endif
 %if %{with docking_desktop}
 %files module-docking-desktop
 %defattr(644,root,root,755)
