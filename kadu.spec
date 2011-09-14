@@ -1019,7 +1019,6 @@ mkdir -p build
 %{!?with_notify_pcspeaker:%{__sed} -i 's/\tpcspeaker$/\t#pcspeaker/' Plugins.cmake}
 %{!?with_notify_qt4_docking:%{__sed} -i 's/\tqt4_docking_notify$/\t#qt4_docking_notify/' Plugins.cmake}
 %{!?with_notify_speech:%{__sed} -i 's/\tspeech$/\t#speech/' Plugins.cmake}
-%if %{with notify_xosd}
 %{?with_panelkadu:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tpanelkadu' Plugins.cmake}
 %{!?with_screenshot:%{__sed} -i 's/\tscreenshot$/\t#screenshot/' Plugins.cmake}
 %{?with_senthistory:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tsenthistory' Plugins.cmake}
