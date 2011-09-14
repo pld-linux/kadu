@@ -2,7 +2,6 @@
 # TODO:
 # - modules update/remove: desc_history, geoip, mail, mediaplayer_amarok2, notify_kde, notify_mx610,
 #   notify_water, pajacyk, plus_pl_sms
-# - make voice module link with system libgsm
 #
 # Conditional build:
 %bcond_without	anonymous_check		# without anonymous_check module support
@@ -52,8 +51,6 @@
 %bcond_without	sound_qt4		# without qt4 sound module support
 %bcond_without	spellchecker		# without spellchecker (enchant support) invisible
 %bcond_without	tabs			# without tabs support module
-%bcond_with	voice			# without voice support module
-%bcond_with	weather			# without weather check module support
 %bcond_without	word_fix		# without word_fix module support
 
 %define		libgadu_ver		4:1.11.0
@@ -162,7 +159,6 @@ BuildRequires:	cmake >= 2.8.0
 %{?with_spellchecker:BuildRequires:	enchant-devel}
 %{?with_sound_ao:BuildRequires:	libao-devel}
 BuildRequires:	libgadu-devel >= %{libgadu_ver}
-%{?with_voice:BuildRequires:	libgsm-devel}
 BuildRequires:	libsndfile-devel >= 1.0
 BuildRequires:	libstdc++-devel
 %{?with_encryption:BuildRequires:	openssl-devel >= 0.9.7d}
@@ -204,6 +200,8 @@ Obsoletes:	kadu-module-sound-dsp
 Obsoletes:	kadu-module-sound-esd <= 0.6.5
 %{!?with_speech:Obsoletes:	kadu-module-speech <= 0.4.3}
 Obsoletes:	kadu-module-tcl_scripting <= 0.4.3
+Obsoletes:	kadu-module-voice
+Obsoletes:	kadu-module-weather
 Obsoletes:	kadu-theme-icons-crystal16
 Obsoletes:	kadu-theme-icons-crystal22
 Obsoletes:	kadu-theme-icons-nuvola16
@@ -831,30 +829,6 @@ Tabbed chat dialog module.
 %description module-tabs -l pl.UTF-8
 Moduł okna rozmowy z kartami.
 
-%package module-voice
-Summary:	Voice chat support module
-Summary(pl.UTF-8):	Moduł obsługi rozmów głosowych
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description module-voice
-Voice chat support module.
-
-%description module-voice -l pl.UTF-8
-Moduł obsługi rozmów głosowych.
-
-%package module-weather
-Summary:	Weather module
-Summary(pl.UTF-8):	Moduł pogodowy
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description module-weather
-Informations of weather in locality of contact.
-
-%description module-weather -l pl.UTF-8
-Informacje o pogodzie w miejscowości danego kontaktu.
-
 %package module-word_fix
 Summary:	Automatic word replacement module for Kadu
 Summary(pl.UTF-8):	Moduł automatycznej zamiany słów dla Kadu
@@ -1134,16 +1108,6 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok2_mediaplayer/spec
 %{!?with_spellchecker:%{__sed} -i 's/\tspellchecker$/\t#spellchecker/' Plugins.cmake}
 %{?with_messagessplitter:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tmessagessplitter' Plugins.cmake}
 %{!?with_tabs:%{__sed} -i 's/\ttabs$/\t#tabs/' Plugins.cmake}
-%if %{with voice}
-%{__sed} -i 's/module_voice=n/module_voice=m/' .config
-%else
-%{__sed} -i 's/module_voice=m/module_voice=n/' .config
-%endif
-%if %{with weather}
-%{__sed} -i 's/module_weather=n/module_weather=m/' .config
-%else
-%{__sed} -i 's/module_weather=m/module_weather=n/' .config
-%endif
 %{!?with_word_fix:%{__sed} -i 's/\tword_fix$/\t#word_fix/' Plugins.cmake}
 
 %{__sed} -i 's/icons_glass16=n/icons_glass16=y/' .config
@@ -1875,33 +1839,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(de) %{modules_data_dir}/translations/tabs_de.qm
 %lang(en) %{modules_data_dir}/translations/tabs_en.qm
 %lang(pl) %{modules_data_dir}/translations/tabs_pl.qm
-%endif
-
-%if 0
-%if %{with voice}
-%files module-voice
-%defattr(644,root,root,755)
-%{modules_data_dir}/voice.desc
-%{modules_data_dir}/configuration/voice.ui
-%attr(755,root,root) %{modules_lib_dir}/libvoice.so
-%lang(de) %{modules_data_dir}/translations/voice_de.qm
-%lang(fr) %{modules_data_dir}/translations/voice_fr.qm
-%lang(it) %{modules_data_dir}/translations/voice_it.qm
-%lang(pl) %{modules_data_dir}/translations/voice_pl.qm
-%endif
-
-%if %{with weather}
-%files module-weather
-%defattr(644,root,root,755)
-%{modules_data_dir}/weather.desc
-%{modules_data_dir}/configuration/weather.ui
-%attr(755,root,root) %{modules_lib_dir}/libweather.so
-%lang(pl) %{modules_data_dir}/translations/weather_pl.qm
-%dir %{modules_data_dir}/data/weather
-%{modules_data_dir}/data/weather/*.ini
-%dir %{modules_data_dir}/data/weather/icons
-%{modules_data_dir}/data/weather/icons/*.gif
-%endif
 %endif
 
 %if %{with word_fix}
