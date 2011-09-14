@@ -200,30 +200,6 @@ Kadu jest klientem protokołu Gadu-Gadu. Inaczej mówiąc, jest
 komunikatorem dla Linuksa (oraz, przy niewielkim wysiłku, innych
 systemów uniksowych). Napisano go w oparciu o bibliotekę Qt.
 
-%package module-autoresponder
-Summary:	Autoresponder module
-Summary(pl.UTF-8):	Moduł autoodpowiedzi
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description module-autoresponder
-Autoresponder module.
-
-%description module-autoresponder -l pl.UTF-8
-Moduł autoodpowiedzi.
-
-%package module-autostatus
-Summary:	Automatic status change module
-Summary(pl.UTF-8):	Moduł automatycznych zmian statusu
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description module-autostatus
-Automatic status change module.
-
-%description module-autostatus -l pl.UTF-8
-Moduł automatycznych zmian statusu.
-
 %package module-anonymous_check
 Summary:	Automatic lookup of an interlocutor in public directory
 Summary(pl.UTF-8):	Automatyczne wyszukiwanie nieznajomych rozmówców w katalogu publicznym
@@ -260,6 +236,30 @@ Auto away module.
 
 %description module-autoaway -l pl.UTF-8
 Moduł automatycznej zajętości.
+
+%package module-autoresponder
+Summary:	Autoresponder module
+Summary(pl.UTF-8):	Moduł autoodpowiedzi
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-autoresponder
+Autoresponder module.
+
+%description module-autoresponder -l pl.UTF-8
+Moduł autoodpowiedzi.
+
+%package module-autostatus
+Summary:	Automatic status change module
+Summary(pl.UTF-8):	Moduł automatycznych zmian statusu
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-autostatus
+Automatic status change module.
+
+%description module-autostatus -l pl.UTF-8
+Moduł automatycznych zmian statusu.
 
 %package module-auto_hide
 Summary:	Auto hide Kadu window
@@ -511,6 +511,19 @@ Extended contact information.
 %description module-nextinfo -l pl.UTF-8
 Rozszerzone informacje o kontakcie.
 
+%package module-notify-chat
+Summary:	Notifications in chat windows
+Summary(pl.UTF-8):	Powiadomienia w oknach rozmowy
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-notify-chat
+Notifications about buddies presence and other in chat windows.
+
+%description module-notify-chat -l pl.UTF-8
+Powiadomienia o aktywności znajomych i innych zdarzeniach w oknach
+rozmowy.
+
 %package module-notify-exec
 Summary:	Notification by external commands module
 Summary(pl.UTF-8):	Moduł powiadamiania użytkownika o zdarzeniach za pomocą zewnętrznych poleceń
@@ -571,19 +584,6 @@ Notification by IM-LED in Logitech MX610 mouse.
 
 %description module-notify-mx610 -l pl.UTF-8
 Moduł powiadamiania diodą IM w myszcze Logitech MX610.
-
-%package module-notify-chat
-Summary:	Notifications in chat windows
-Summary(pl.UTF-8):	Powiadomienia w oknach rozmowy
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description module-notify-chat
-Notifications about buddies presence and other in chat windows.
-
-%description module-notify-chat -l pl.UTF-8
-Powiadomienia o aktywności znajomych i innych zdarzeniach w oknach
-rozmowy.
 
 %package module-notify-pcspeaker
 Summary:	Notification by PC Speaker
@@ -659,6 +659,18 @@ Module which makes Kadu look and behave like a panel.
 %description module-panelkadu -l pl.UTF-8
 Moduł sprawiający, że Kadu wygląda i zachowuje się jak panel.
 
+%package module-screenshot
+Summary:	Simple ScreenShots module
+Summary(pl.UTF-8):	Moduł prostych zrzutów ekranu
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-screenshot
+Simple ScreenShots module.
+
+%description module-screenshot -l pl.UTF-8
+Moduł prostych zrzutów ekranu.
+
 %package module-senthistory
 Summary:	Kadu module which adds history of sent messages to chat windows
 Summary(pl.UTF-8):	Moduł kadu który dodaje historię wysłanych wiadomości do okien rozmowy
@@ -672,17 +684,19 @@ Kadu module which adds history of sent messages to chat windows.
 Moduł kadu który dodaje historię wysłanych wiadomości do okien
 rozmowy.
 
-%package module-screenshot
-Summary:	Simple ScreenShots module
-Summary(pl.UTF-8):	Moduł prostych zrzutów ekranu
+%package module-single_window
+Summary:	Joins contacts and chats in one window
+Summary(pl.UTF-8):	Łączy listę kontaktów i rozmowy w jednym oknie
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
 
-%description module-screenshot
-Simple ScreenShots module.
+%description module-single_window
+Joins contacts and chats in one window. This module is especialy for
+small devices in mind.
 
-%description module-screenshot -l pl.UTF-8
-Moduł prostych zrzutów ekranu.
+%description module-single_window -l pl.UTF-8
+Łączy listę kontaktów i rozmowy w jednym oknie. Moduł przygotowany z
+myślą o małych urządzeniach.
 
 %package module-sms-plus_pl
 Summary:	SMS Plus.pl module
@@ -747,20 +761,6 @@ Checker of spelling mistakes.
 
 %description module-spellchecker -l pl.UTF-8
 Moduł sprawdzający pisownię.
-
-%package module-single_window
-Summary:	Joins contacts and chats in one window
-Summary(pl.UTF-8):	Łączy listę kontaktów i rozmowy w jednym oknie
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description module-single_window
-Joins contacts and chats in one window. This module is especialy for
-small devices in mind.
-
-%description module-single_window -l pl.UTF-8
-Łączy listę kontaktów i rozmowy w jednym oknie. Moduł przygotowany z
-myślą o małych urządzeniach.
 
 %package module-tabs
 Summary:	Tabbed chat dialog module
@@ -1063,6 +1063,14 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{modules_data_dir}/data/sms/scripts
 %{modules_data_dir}/data/sms/scripts/*.js
 
+%if %{with anonymous_check}
+%files module-anonymous_check
+%defattr(644,root,root,755)
+%{modules_data_dir}/anonymous_check.desc
+%attr(755,root,root) %{modules_lib_dir}/libanonymous_check.so
+%lang(pl) %{modules_data_dir}/translations/anonymous_check_pl.qm
+%endif
+
 %if %{with antistring}
 %files module-antistring
 %defattr(644,root,root,755)
@@ -1077,19 +1085,6 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/data/antistring/ant_conditions.conf
 %endif
 
-%if %{with auto_hide}
-%files module-auto_hide
-%defattr(644,root,root,755)
-%{modules_data_dir}/auto_hide.desc
-%{modules_data_dir}/configuration/auto_hide.ui
-%attr(755,root,root) %{modules_lib_dir}/libauto_hide.so
-%lang(cs) %{modules_data_dir}/translations/auto_hide_cs.qm
-%lang(de) %{modules_data_dir}/translations/auto_hide_de.qm
-%lang(en) %{modules_data_dir}/translations/auto_hide_en.qm
-%lang(it) %{modules_data_dir}/translations/auto_hide_it.qm
-%lang(pl) %{modules_data_dir}/translations/auto_hide_pl.qm
-%endif
-
 %if %{with autoaway}
 %files module-autoaway
 %defattr(644,root,root,755)
@@ -1101,14 +1096,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(en) %{modules_data_dir}/translations/autoaway_en.qm
 %lang(it) %{modules_data_dir}/translations/autoaway_it.qm
 %lang(pl) %{modules_data_dir}/translations/autoaway_pl.qm
-%endif
-
-%if %{with anonymous_check}
-%files module-anonymous_check
-%defattr(644,root,root,755)
-%{modules_data_dir}/anonymous_check.desc
-%attr(755,root,root) %{modules_lib_dir}/libanonymous_check.so
-%lang(pl) %{modules_data_dir}/translations/anonymous_check_pl.qm
 %endif
 
 %if %{with autoresponder}
@@ -1134,6 +1121,19 @@ rm -rf $RPM_BUILD_ROOT
 %lang(en) %{modules_data_dir}/translations/autostatus_en.qm
 %lang(it) %{modules_data_dir}/translations/autostatus_it.qm
 %lang(pl) %{modules_data_dir}/translations/autostatus_pl.qm
+%endif
+
+%if %{with auto_hide}
+%files module-auto_hide
+%defattr(644,root,root,755)
+%{modules_data_dir}/auto_hide.desc
+%{modules_data_dir}/configuration/auto_hide.ui
+%attr(755,root,root) %{modules_lib_dir}/libauto_hide.so
+%lang(cs) %{modules_data_dir}/translations/auto_hide_cs.qm
+%lang(de) %{modules_data_dir}/translations/auto_hide_de.qm
+%lang(en) %{modules_data_dir}/translations/auto_hide_en.qm
+%lang(it) %{modules_data_dir}/translations/auto_hide_it.qm
+%lang(pl) %{modules_data_dir}/translations/auto_hide_pl.qm
 %endif
 
 %if %{with cenzor}
@@ -1349,6 +1349,16 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{modules_data_dir}/translations/nextinfo_pl.qm
 %endif
 
+%if %{with notify_chat}
+%files module-notify-chat
+%defattr(644,root,root,755)
+%{modules_data_dir}/chat_notify.desc
+%attr(755,root,root) %{modules_lib_dir}/libchat_notify.so
+%lang(de) %{modules_data_dir}/translations/chat_notify_de.qm
+%lang(en) %{modules_data_dir}/translations/chat_notify_en.qm
+%lang(pl) %{modules_data_dir}/translations/chat_notify_pl.qm
+%endif
+
 %if %{with notify_exec}
 %files module-notify-exec
 %defattr(644,root,root,755)
@@ -1404,16 +1414,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libmx610_notify.so
 %lang(pl) %{modules_data_dir}/translations/mx610_notify_pl.qm
 %endif
-%endif
-
-%if %{with notify_chat}
-%files module-notify-chat
-%defattr(644,root,root,755)
-%{modules_data_dir}/chat_notify.desc
-%attr(755,root,root) %{modules_lib_dir}/libchat_notify.so
-%lang(de) %{modules_data_dir}/translations/chat_notify_de.qm
-%lang(en) %{modules_data_dir}/translations/chat_notify_en.qm
-%lang(pl) %{modules_data_dir}/translations/chat_notify_pl.qm
 %endif
 
 %if %{with notify_pcspeaker}
@@ -1483,15 +1483,15 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{modules_data_dir}/translations/panelkadu_pl.qm
 %endif
 
-%if %{with single_window}
-%files module-single_window
+%if %{with screenshot}
+%files module-screenshot
 %defattr(644,root,root,755)
-%{modules_data_dir}/single_window.desc
-%{modules_data_dir}/configuration/single_window.ui
-%attr(755,root,root) %{modules_lib_dir}/libsingle_window.so
-%lang(cs) %{modules_data_dir}/translations/single_window_cs.qm
-%lang(en) %{modules_data_dir}/translations/single_window_en.qm
-%lang(pl) %{modules_data_dir}/translations/single_window_pl.qm
+%{modules_data_dir}/screenshot.desc
+%{modules_data_dir}/configuration/screenshot.ui
+%attr(755,root,root) %{modules_lib_dir}/libscreenshot.so
+%lang(cs) %{modules_data_dir}/translations/screenshot_cs.qm
+%lang(en) %{modules_data_dir}/translations/screenshot_en.qm
+%lang(pl) %{modules_data_dir}/translations/screenshot_pl.qm
 %endif
 
 %if %{with senthistory}
@@ -1506,15 +1506,15 @@ rm -rf $RPM_BUILD_ROOT
 %lang(tr) %{modules_data_dir}/translations/senthistory_tr.qm
 %endif
 
-%if %{with screenshot}
-%files module-screenshot
+%if %{with single_window}
+%files module-single_window
 %defattr(644,root,root,755)
-%{modules_data_dir}/screenshot.desc
-%{modules_data_dir}/configuration/screenshot.ui
-%attr(755,root,root) %{modules_lib_dir}/libscreenshot.so
-%lang(cs) %{modules_data_dir}/translations/screenshot_cs.qm
-%lang(en) %{modules_data_dir}/translations/screenshot_en.qm
-%lang(pl) %{modules_data_dir}/translations/screenshot_pl.qm
+%{modules_data_dir}/single_window.desc
+%{modules_data_dir}/configuration/single_window.ui
+%attr(755,root,root) %{modules_lib_dir}/libsingle_window.so
+%lang(cs) %{modules_data_dir}/translations/single_window_cs.qm
+%lang(en) %{modules_data_dir}/translations/single_window_en.qm
+%lang(pl) %{modules_data_dir}/translations/single_window_pl.qm
 %endif
 
 %if 0
