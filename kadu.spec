@@ -1,6 +1,6 @@
 #
 # TODO:
-# - modules update/remove: desc_history, geoip, mail, mediaplayer_amarok2, notify_kde, notify_mx610,
+# - modules to update/remove: geoip, mail, mediaplayer_amarok2, notify_kde, notify_mx610,
 #   notify_water, pajacyk, plus_pl_sms
 #
 # Conditional build:
@@ -11,7 +11,6 @@
 %bcond_without	autoresponder		# without autoresponder module support
 %bcond_without	autostatus		# without autostatus module support
 %bcond_without	cenzor			# without cenzor module support
-%bcond_with	desc_history		# without description history module support
 %bcond_without	docking_desktop		# without desktop_docking module support
 %bcond_without	encryption		# without encryption module support
 %bcond_without	filedesc		# without filedesc module support
@@ -58,7 +57,6 @@
 
 %define		anonymous_check_ver	0.10.1
 %define		dcopexport_ver		0.11.3-20071129
-%define		desc_history_ver	1.1
 %define		geoip_ver		0.2
 %define		globalhotkeys_ver	0.10-25
 %define		mail_ver		0.3.6
@@ -120,28 +118,26 @@ Source18:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-theme-tango-16.
 # Source18-md5:	9710fd37c6fd8c24e2bae8fa377ee465
 Source19:	http://www.kadu.net/download/additions/%{name}-0.6.5-theme-kadu05.tar.gz
 # Source19-md5:	9174f621138b6fc28127cc4396cb59ed
-Source20:	desc_history-%{desc_history_ver}.tar.bz2
-# Source20-md5:	cf7d7c8f86d9cfe4b5a0ab52b5deff34
-Source21:	http://www.kadu.net/~dorr/moduly/kde_notify-%{notify_kde_ver}.tar.gz
-# Source21-md5:	2da919d6359049a6e4827e795ba46b1a
-Source22:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-emots-tango.tar.gz
-# Source22-md5:	436f12011f209c4427a9e411091ecb0a
-Source23:	http://www.kadu.net/~dorr/moduly/%{name}-pajacyk-%{pajacyk_ver}.tar.bz2
-# Source23-md5:	c87d4b68d65c923118b6ac3e9396ff13
-Source24:	http://www.kadu.net/download/additions/%{name}-sound-bns.tar.bz2
-# Source24-md5:	fcf829d687df27d2ac296a077dc2814e
-Source25:	http://www.kadu.net/download/additions/%{name}-sound-drums.tar.bz2
-# Source25-md5:	0f29ac64019d841b38eefadad2a49e4f
-Source26:	http://www.kadu.net/download/additions/%{name}-sound-florkus.tar.bz2
-# Source26-md5:	d90070390134c2809a2b53df07563712
-Source27:	http://www.kadu.net/download/additions/%{name}-sound-michalsrodek.tar.bz2
-# Source27-md5:	5951d828833ea0e452654dbc80c02787
-Source28:	http://www.kadu.net/download/additions/%{name}-sound-percussion.tar.bz2
-# Source28-md5:	124175025038cd1fedb3d0caa3a0d478
-Source29:	http://www.kadu.net/download/additions/%{name}-sound-ultr.tar.bz2
-# Source29-md5:	1caec2ba480a2f47430d12ec681aa871
-Source30:	http://www.ultr.pl/kadu/messagessplitter-%{messagessplitter_ver}.tar.gz
-# Source30-md5:	14de43361e3bc149478a076874e024f2
+Source20:	http://www.kadu.net/~dorr/moduly/kde_notify-%{notify_kde_ver}.tar.gz
+# Source20-md5:	2da919d6359049a6e4827e795ba46b1a
+Source21:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-emots-tango.tar.gz
+# Source21-md5:	436f12011f209c4427a9e411091ecb0a
+Source22:	http://www.kadu.net/~dorr/moduly/%{name}-pajacyk-%{pajacyk_ver}.tar.bz2
+# Source22-md5:	c87d4b68d65c923118b6ac3e9396ff13
+Source23:	http://www.kadu.net/download/additions/%{name}-sound-bns.tar.bz2
+# Source23-md5:	fcf829d687df27d2ac296a077dc2814e
+Source24:	http://www.kadu.net/download/additions/%{name}-sound-drums.tar.bz2
+# Source24-md5:	0f29ac64019d841b38eefadad2a49e4f
+Source25:	http://www.kadu.net/download/additions/%{name}-sound-florkus.tar.bz2
+# Source25-md5:	d90070390134c2809a2b53df07563712
+Source26:	http://www.kadu.net/download/additions/%{name}-sound-michalsrodek.tar.bz2
+# Source26-md5:	5951d828833ea0e452654dbc80c02787
+Source27:	http://www.kadu.net/download/additions/%{name}-sound-percussion.tar.bz2
+# Source27-md5:	124175025038cd1fedb3d0caa3a0d478
+Source28:	http://www.kadu.net/download/additions/%{name}-sound-ultr.tar.bz2
+# Source28-md5:	1caec2ba480a2f47430d12ec681aa871
+Source29:	http://www.ultr.pl/kadu/messagessplitter-%{messagessplitter_ver}.tar.gz
+# Source29-md5:	14de43361e3bc149478a076874e024f2
 Patch0:		%{name}-sounds.patch
 Patch1:		%{name}-mail.patch
 Patch2:		%{name}-link.patch
@@ -168,7 +164,6 @@ BuildRequires:	qt4-build >= %{qt_ver}
 BuildRequires:	qt4-linguist >= %{qt_ver}
 BuildRequires:	rpmbuild(macros) >= 1.600
 BuildRequires:	sed >= 4.0
-%{?with_desc_history:BuildRequires:     sqlite3-devel}
 BuildRequires:	xorg-lib-libXScrnSaver-devel
 %{?with_panelkadu:BuildRequires:	xorg-lib-libXtst-devel}
 Requires:	QtSql-sqlite3 >= %{qt_ver}
@@ -176,6 +171,7 @@ Requires:	libgadu >= %{libgadu_ver}
 Obsoletes:	kadu-module-advanced_userlist
 Obsoletes:	kadu-module-agent
 Obsoletes:	kadu-module-dbus
+Obsoletes:	kadu-module-desc_history
 Obsoletes:	kadu-module-docking-wmaker <= 0.6.5
 Obsoletes:	kadu-module-filtering
 Obsoletes:	kadu-module-gg_avatars
@@ -307,18 +303,6 @@ Censor module.
 
 %description module-cenzor -l pl.UTF-8
 Moduł cenzora.
-
-%package module-desc_history
-Summary:	Status descriptions history
-Summary(pl.UTF-8):	Historia opisów statusów
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description module-desc_history
-Status descriptions history.
-
-%description module-desc_history -l pl.UTF-8
-Historia opisów statusów.
 
 %package module-dcopexport
 Summary:	Kadu DCOP interface
@@ -970,17 +954,14 @@ tar xjf %{SOURCE13} -C plugins
 %if %{with geoip}
 tar xjf %{SOURCE14} -C plugins
 %endif
-%if %{with desc_history}
-tar xjf %{SOURCE20} -C plugins
-%endif
 %if %{with notify_kde}
-#tar xzf %{SOURCE21} -C plugins
+#tar xzf %{SOURCE20} -C plugins
 %endif
 %if %{with pajacyk}
-tar xjf %{SOURCE23} -C plugins
+tar xjf %{SOURCE22} -C plugins
 %endif
 %if %{with messagessplitter}
-tar xzf %{SOURCE30} -C plugins
+tar xzf %{SOURCE29} -C plugins
 %endif
 
 # themes-icons
@@ -991,21 +972,18 @@ tar xzf %{SOURCE18} -C varia/themes/icons
 tar xzf %{SOURCE19} -C varia/themes/icons
 
 # themes-emoticons
-tar xzf %{SOURCE22} -C varia/themes/emoticons
+tar xzf %{SOURCE21} -C varia/themes/emoticons
 
 # themes-sounds
+tar xjf %{SOURCE23} -C varia/themes/sounds
 tar xjf %{SOURCE24} -C varia/themes/sounds
 tar xjf %{SOURCE25} -C varia/themes/sounds
 tar xjf %{SOURCE26} -C varia/themes/sounds
 tar xjf %{SOURCE27} -C varia/themes/sounds
 tar xjf %{SOURCE28} -C varia/themes/sounds
-tar xjf %{SOURCE29} -C varia/themes/sounds
 
 # Change hard coded path to modules data files
 %{__sed} -i 's,dataPath("kadu/plugins/*,("%{modules_data_dir}/,g' kadu-core/plugins/plugin.cpp
-
-echo "module_desc_history=n" >>.config
-%{__sed} -i 's/module_qt4_docking=y/module_qt4_docking=m/' .config
 
 #% patch2 -p1
 
@@ -1019,11 +997,6 @@ mkdir -p build
 %{!?with_autoresponder:%{__sed} -i 's/\tautoresponder$/\t#autoresponder/' Plugins.cmake}
 %{!?with_autostatus:%{__sed} -i 's/\tautostatus$/\t#autostatus/' Plugins.cmake}
 %{!?with_cenzor:%{__sed} -i 's/\tcenzor$/\t#cenzor/' Plugins.cmake}
-%if %{with desc_history}
-%{__sed} -i 's/module_desc_history=n/module_desc_history=m/' .config
-%else
-%{__sed} -i 's/module_desc_history=m/module_desc_history=n/' .config
-%endif
 %{!?with_docking_desktop:%{__sed} -i 's/\tdesktop_docking$/\t#desktop_docking/' Plugins.cmake}
 %if %{without encryption}
 %{__sed} -i 's/\tencryption_ng$/\t#encryption_ng/' Plugins.cmake
@@ -1390,17 +1363,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{modules_data_dir}/data/cenzor
 %{modules_data_dir}/data/cenzor/cenzor_words.conf
 %{modules_data_dir}/data/cenzor/cenzor_words_ok.conf
-%endif
-
-%if 0
-%if %{with desc_history}
-%files module-desc_history
-%defattr(644,root,root,755)
-%{modules_data_dir}/desc_history.desc
-%{modules_data_dir}/configuration/desc_history.ui
-%attr(755,root,root) %{modules_lib_dir}/desc_history.so
-%lang(pl) %{modules_data_dir}/translations/desc_history_pl.qm
-%endif
 %endif
 
 %if %{with encryption}
