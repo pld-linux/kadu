@@ -1291,6 +1291,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libmprisplayer_mediaplayer.so
 %lang(en) %{modules_data_dir}/translations/mprisplayer_mediaplayer_en.qm
 %lang(pl) %{modules_data_dir}/translations/mprisplayer_mediaplayer_pl.qm
+%dir %{modules_data_dir}/data/mprisplayer_mediaplayer
 %{modules_data_dir}/data/mprisplayer_mediaplayer/mprisplayer-players.data
 %endif
 
