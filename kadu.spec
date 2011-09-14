@@ -113,9 +113,7 @@ Source16:	http://www.kadu.net/~dorr/moduly/%{name}-pajacyk-%{pajacyk_ver}.tar.bz
 # Source16-md5:	c87d4b68d65c923118b6ac3e9396ff13
 Source17:	http://www.ultr.pl/kadu/messagessplitter-%{messagessplitter_ver}.tar.gz
 # Source17-md5:	14de43361e3bc149478a076874e024f2
-Patch0:		%{name}-sounds.patch
-Patch1:		%{name}-mail.patch
-Patch2:		%{name}-link.patch
+#Patch0:		%{name}-mail.patch
 URL:		http://kadu.im/
 %{?with_geoip:BuildRequires:	GeoIP-devel}
 BuildRequires:	Qt3Support-devel >= %{qt_ver}
@@ -158,7 +156,6 @@ Obsoletes:	kadu-module-mediaplayer-dragon
 Obsoletes:	kadu-module-mediaplayer-vlc
 Obsoletes:	kadu-module-mediaplayer-xmms
 Obsoletes:	kadu-module-mediaplayer-xmms2
-%{!?with_mediaplayer:Obsoletes:	kadu-module-mediaplayer}
 Obsoletes:	kadu-module-notify-osdhints
 Obsoletes:	kadu-module-notify-window
 Obsoletes:	kadu-module-notify-xosd <= 0.6.5
@@ -170,10 +167,10 @@ Obsoletes:	kadu-module-sound-ao
 Obsoletes:	kadu-module-sound-arts <= 0.6.5
 Obsoletes:	kadu-module-sound-dsp
 Obsoletes:	kadu-module-sound-esd <= 0.6.5
-%{!?with_speech:Obsoletes:	kadu-module-speech <= 0.4.3}
 Obsoletes:	kadu-module-tcl_scripting <= 0.4.3
 Obsoletes:	kadu-module-voice
 Obsoletes:	kadu-module-weather
+Obsoletes:	kadu-theme-emoticons-tango
 Obsoletes:	kadu-theme-icons-crystal16
 Obsoletes:	kadu-theme-icons-crystal22
 Obsoletes:	kadu-theme-icons-glass16
@@ -183,7 +180,6 @@ Obsoletes:	kadu-theme-icons-nuvola16
 Obsoletes:	kadu-theme-icons-nuvola22
 Obsoletes:	kadu-theme-icons-oxygen16
 Obsoletes:	kadu-theme-icons-tango16
-Obsoletes:	kadu-theme-emoticons-tango
 Obsoletes:	kadu-theme-sounds
 # for encryption module and TLS in jabber module
 Suggests:	qt4-plugin-qca-ossl
@@ -789,7 +785,6 @@ Moduł automatycznej zamiany słów dla Kadu.
 %prep
 %setup -q -T -b 0
 
-#% patch0 -p1
 %if %{with anonymous_check}
 tar xjf %{SOURCE2} -C plugins
 %endif
@@ -843,8 +838,6 @@ tar xzf %{SOURCE17} -C plugins
 
 # Change hard coded path to modules data files
 %{__sed} -i 's,dataPath("kadu/plugins/*,("%{modules_data_dir}/,g' kadu-core/plugins/plugin.cpp
-
-#% patch2 -p1
 
 %build
 mkdir -p build
