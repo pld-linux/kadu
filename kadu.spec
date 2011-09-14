@@ -27,6 +27,7 @@
 %bcond_without	mediaplayer_mpris	# without generic mpris interface support module
 %bcond_without	messagessplitter	# without messagessplitter module support
 %bcond_without	mime_tex		# without mime_tex module support
+%bcond_without	networkping		# without networkping module support
 %bcond_without	nextinfo		# without nextinfo module support
 %bcond_without	notify_exec		# without exec_notify module support
 %bcond_without	notify_freedesktop	# without freedesktop_notify module support
@@ -61,6 +62,7 @@
 %define		mail_ver		0.3.6
 %define		messagessplitter_ver	0.10-2
 %define		mime_tex_ver		0.10.1
+%define		networkping_ver		0.10-1
 %define		nextinfo_ver		0.10-6
 %define		notify_kde_ver		0.3.4
 %define		notify_led_ver		0.10-29
@@ -113,6 +115,8 @@ Source16:	http://www.kadu.net/~dorr/moduly/%{name}-pajacyk-%{pajacyk_ver}.tar.bz
 # Source16-md5:	c87d4b68d65c923118b6ac3e9396ff13
 Source17:	http://www.ultr.pl/kadu/messagessplitter-%{messagessplitter_ver}.tar.gz
 # Source17-md5:	14de43361e3bc149478a076874e024f2
+Source18:	http://www.ultr.pl/kadu/networkping-%{networkping_ver}.tar.gz
+# Source18-md5:	f518f6f2e458857c92cbe40c2062abe4
 #Patch0:		%{name}-mail.patch
 URL:		http://kadu.im/
 %{?with_geoip:BuildRequires:	GeoIP-devel}
@@ -495,6 +499,20 @@ Mathematical TeX formulas for chat windows.
 %description module-mime_tex -l pl.UTF-8
 Matematyczne formuły TeX w oknach czat.
 
+%package module-networkping
+Summary:	Periodic check for network availability
+Summary(pl.UTF-8):	Okresowe sprawdzanie dostępności sieci
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+
+%description module-networkping
+This plugin periodically checks network availability and automatically
+disconnects and resumes the connection with server protocols.
+
+%description module-networkping -l pl.UTF-8
+Wtyczka sprawdza okresowo dostępność sieci i automatycznie rozłącza i
+wznawia połączenia z serwerami protokołów.
+
 %package module-nextinfo
 Summary:	Extended contact informations
 Summary(pl.UTF-8):	Rozszerzone informacje o kontakcie
@@ -835,6 +853,9 @@ tar xjf %{SOURCE16} -C plugins
 %if %{with messagessplitter}
 tar xzf %{SOURCE17} -C plugins
 %endif
+%if %{with networkping}
+tar xzf %{SOURCE18} -C plugins
+%endif
 
 # Change hard coded path to modules data files
 %{__sed} -i 's,dataPath("kadu/plugins/*,("%{modules_data_dir}/,g' kadu-core/plugins/plugin.cpp
@@ -863,6 +884,7 @@ mkdir -p build
 %{!?with_mediaplayer_falf:%{__sed} -i 's/\tfalf_mediaplayer$/\t#falf_mediaplayer/' Plugins.cmake}
 %{!?with_mediaplayer_mpris:%{__sed} -i 's/\tmprisplayer_mediaplayer$/\t#mprisplayer_mediaplayer/' Plugins.cmake}
 %{?with_mime_tex:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tmime_tex' Plugins.cmake}
+%{?with_networkping:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tnetworkping' Plugins.cmake}
 %{?with_nextinfo:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tnextinfo' Plugins.cmake}
 %{!?with_notify_exec:%{__sed} -i 's/\texec_notify$/\t#exec_notify/' Plugins.cmake}
 %{!?with_notify_freedesktop:%{__sed} -i 's/\tfreedesktop_notify$/\t#freedesktop_notify/' Plugins.cmake}
@@ -1321,6 +1343,16 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/data/mime_tex/editor_icons/*.png
 %{modules_data_dir}/data/mime_tex/mime_tex_icons/*.png
 %lang(pl) %{modules_data_dir}/translations/mime_tex_pl.qm
+%endif
+
+%if %{with networkping}
+%files module-networkping
+%defattr(644,root,root,755)
+%{modules_data_dir}/networkping.desc
+%{modules_data_dir}/configuration/networkping.ui
+%attr(755,root,root) %{modules_lib_dir}/libnetworkping.so
+%lang(en) %{modules_data_dir}/translations/messagessplitter_en.qm
+%lang(pl) %{modules_data_dir}/translations/messagessplitter_pl.qm
 %endif
 
 %if %{with nextinfo}
