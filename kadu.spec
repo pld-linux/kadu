@@ -40,7 +40,6 @@
 %bcond_with	notify_water		# without water_notify module support
 %bcond_with	pajacyk			# without pajacyk module support
 %bcond_without	panelkadu		# without panelkadu module support
-%bcond_with	powerkadu		# without PowerKadu extensions
 %bcond_without	screenshot		# without screenshot module support
 %bcond_without	senthistory		# without senthistory module support
 %bcond_without	single_window		# without single_window module support
@@ -188,6 +187,7 @@ Obsoletes:	kadu-module-notify-osdhints
 Obsoletes:	kadu-module-notify-window
 Obsoletes:	kadu-module-notify-xosd <= 0.6.5
 Obsoletes:	kadu-module-parser_extender
+Obsoletes:	kadu-module-powerkadu
 Obsoletes:	kadu-module-profiles
 Obsoletes:	kadu-module-sound-alsa
 Obsoletes:	kadu-module-sound-ao
@@ -675,28 +675,6 @@ Module which makes Kadu look and behave like a panel.
 
 %description module-panelkadu -l pl.UTF-8
 Moduł sprawiający, że Kadu wygląda i zachowuje się jak panel.
-
-%package module-powerkadu
-Summary:	PowerKadu extensions
-Summary(pl.UTF-8):	Rozszerzenia PowerKadu
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-Requires:	%{name}-module-anonymous_check = %{version}-%{release}
-Requires:	%{name}-module-antistring = %{version}-%{release}
-Requires:	%{name}-module-auto_hide = %{version}-%{release}
-Requires:	%{name}-module-autostatus = %{version}-%{release}
-Requires:	%{name}-module-cenzor = %{version}-%{release}
-Requires:	%{name}-module-messagessplitter = %{version}-%{release}
-Requires:	%{name}-module-word_fix = %{version}-%{release}
-
-%description module-powerkadu
-PowerKadu is an add-on to Kadu. It extends Kadu functionality by
-useful functions, like: autostatus, antistring, cenzor, words fix...
-
-%description module-powerkadu -l pl.UTF-8
-PowerKadu jest dodatkiem do Kadu. Poszerza on możliwości Kadu o
-przydatne funkcje, takie jak: autostatus, antyłańcuszek, cenzor,
-korekta słów...
 
 %package module-senthistory
 Summary:	Kadu module which adds history of sent messages to chat windows
@@ -1633,23 +1611,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(cs) %{modules_data_dir}/translations/panelkadu_cs.qm
 %lang(en) %{modules_data_dir}/translations/panelkadu_en.qm
 %lang(pl) %{modules_data_dir}/translations/panelkadu_pl.qm
-%endif
-
-%if 0
-%if %{with powerkadu}
-%files module-powerkadu
-%defattr(644,root,root,755)
-%{modules_data_dir}/powerkadu.desc
-%attr(755,root,root) %{modules_lib_dir}/libpowerkadu.so
-%lang(pl) %{modules_data_dir}/translations/powerkadu_pl.qm
-%{modules_data_dir}/configuration/powerkadu.ui
-%dir %{modules_data_dir}/data/powerkadu
-%{modules_data_dir}/data/powerkadu/ChangeLog
-%{modules_data_dir}/data/powerkadu/powerkadu_32x32.png
-%{modules_data_dir}/data/powerkadu/powerkadu_big.png
-%lang(en) %{modules_data_dir}/data/powerkadu/AUTHORS
-%lang(pl) %{modules_data_dir}/data/powerkadu/AUTHORS.pl
-%endif
 %endif
 
 %if %{with single_window}
