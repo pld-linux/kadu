@@ -56,7 +56,6 @@
 %define		qt_ver			4.7.0
 
 %define		anonymous_check_ver	0.10.1
-%define		dcopexport_ver		0.11.3-20071129
 %define		geoip_ver		0.2
 %define		globalhotkeys_ver	0.10-25
 %define		mail_ver		0.3.6
@@ -85,38 +84,36 @@ Source0:	http://download.kadu.im/stable/%{name}-%{version}.tar.bz2
 Source1:	%{name}.desktop
 Source2:	http://kadu.net/~weagle/anonymous_check-%{anonymous_check_ver}.tar.bz2
 # Source2-md5:	2dc4f69cf71d5ed9c7a94e5ff1719c5b
-Source3:	dcopexport-%{dcopexport_ver}-0.6.0.tar.bz2
-# Source3-md5:	b36fcfcf4756285f30cbb6c2b6c2a2da
-Source4:	http://www.ultr.pl/kadu/globalhotkeys-%{globalhotkeys_ver}.tar.gz
-# Source4-md5:	b7eecb5a889cbb59b0c146357f689630
-Source5:	http://kadu.net/~michal/mail/mail-%{mail_ver}.tar.bz2
-# Source5-md5:	85fdf695c7fbc58e607dc15278391ab3
-Source6:	http://kadu.net/~weagle/mime_tex-%{mime_tex_ver}.tar.bz2
-# Source6-md5:	aa5a34784f4044c425fcc1b11f0ede3f
-Source7:	http://www.ultr.pl/kadu/nextinfo-%{nextinfo_ver}.tar.gz
-# Source7-md5:	b7645a7ce571dc3549249863bf783020
-Source8:	http://www.ultr.pl/kadu/lednotify-%{notify_led_ver}.tar.gz
-# Source8-md5:	e6f54571976c422d07154a66482fd343
-Source9:	http://www.kadu.net/~dorr/moduly/%{name}-mx610_notify-%{notify_mx610_ver}.tar.bz2
-# Source9-md5:	4b2a47068928b9687c61816abeed86fe
-Source10:	http://www.kadu.net/~dorr/moduly/%{name}-water_notify-%{notify_water_ver}.tar.bz2
-# Source10-md5:	4196e85fc4be93bd662f5148ebc18235
-Source11:	http://www.ultr.pl/kadu/panelkadu-%{panelkadu_ver}.tar.gz
-# Source11-md5:	26772365e6aa794bc6e8155a60c9d01d
-Source12:	http://www.ultr.pl/kadu/senthistory-%{senthistory_ver}.tar.gz
-# Source12-md5:	0ec2a68a636f2428be1f20967fa23baf
-Source13:	http://kadu.net/~patryk/plus_pl_sms/plus_pl_sms-plus_pl_sms-%{sms_plus_pl_ver}.tar.bz2
-# Source13-md5:	59f7ba01a63464818acaa5ff6fd176d5
-Source14:	http://kadu.net/~neeo/kadu/geoip/geoip_lookup-%{geoip_ver}.tar.bz2
-# Source14-md5:	83d9672c7f88b803510e7757dd36ea92
-Source15:	http://www.kadu.net/~dorr/moduly/kde_notify-%{notify_kde_ver}.tar.gz
-# Source15-md5:	2da919d6359049a6e4827e795ba46b1a
-Source16:	http://www.kadu.net/~dorr/moduly/%{name}-pajacyk-%{pajacyk_ver}.tar.bz2
-# Source16-md5:	c87d4b68d65c923118b6ac3e9396ff13
-Source17:	http://www.ultr.pl/kadu/messagessplitter-%{messagessplitter_ver}.tar.gz
-# Source17-md5:	14de43361e3bc149478a076874e024f2
-Source18:	http://www.ultr.pl/kadu/networkping-%{networkping_ver}.tar.gz
-# Source18-md5:	f518f6f2e458857c92cbe40c2062abe4
+Source3:	http://www.ultr.pl/kadu/globalhotkeys-%{globalhotkeys_ver}.tar.gz
+# Source3-md5:	b7eecb5a889cbb59b0c146357f689630
+Source4:	http://kadu.net/~michal/mail/mail-%{mail_ver}.tar.bz2
+# Source4-md5:	85fdf695c7fbc58e607dc15278391ab3
+Source5:	http://kadu.net/~weagle/mime_tex-%{mime_tex_ver}.tar.bz2
+# Source5-md5:	aa5a34784f4044c425fcc1b11f0ede3f
+Source6:	http://www.ultr.pl/kadu/nextinfo-%{nextinfo_ver}.tar.gz
+# Source6-md5:	b7645a7ce571dc3549249863bf783020
+Source7:	http://www.ultr.pl/kadu/lednotify-%{notify_led_ver}.tar.gz
+# Source7-md5:	e6f54571976c422d07154a66482fd343
+Source8:	http://www.kadu.net/~dorr/moduly/%{name}-mx610_notify-%{notify_mx610_ver}.tar.bz2
+# Source8-md5:	4b2a47068928b9687c61816abeed86fe
+Source9:	http://www.kadu.net/~dorr/moduly/%{name}-water_notify-%{notify_water_ver}.tar.bz2
+# Source9-md5:	4196e85fc4be93bd662f5148ebc18235
+Source10:	http://www.ultr.pl/kadu/panelkadu-%{panelkadu_ver}.tar.gz
+# Source10-md5:	26772365e6aa794bc6e8155a60c9d01d
+Source11:	http://www.ultr.pl/kadu/senthistory-%{senthistory_ver}.tar.gz
+# Source11-md5:	0ec2a68a636f2428be1f20967fa23baf
+Source12:	http://kadu.net/~patryk/plus_pl_sms/plus_pl_sms-plus_pl_sms-%{sms_plus_pl_ver}.tar.bz2
+# Source12-md5:	59f7ba01a63464818acaa5ff6fd176d5
+Source13:	http://kadu.net/~neeo/kadu/geoip/geoip_lookup-%{geoip_ver}.tar.bz2
+# Source13-md5:	83d9672c7f88b803510e7757dd36ea92
+Source14:	http://www.kadu.net/~dorr/moduly/kde_notify-%{notify_kde_ver}.tar.gz
+# Source14-md5:	2da919d6359049a6e4827e795ba46b1a
+Source15:	http://www.kadu.net/~dorr/moduly/%{name}-pajacyk-%{pajacyk_ver}.tar.bz2
+# Source15-md5:	c87d4b68d65c923118b6ac3e9396ff13
+Source16:	http://www.ultr.pl/kadu/messagessplitter-%{messagessplitter_ver}.tar.gz
+# Source16-md5:	14de43361e3bc149478a076874e024f2
+Source17:	http://www.ultr.pl/kadu/networkping-%{networkping_ver}.tar.gz
+# Source17-md5:	f518f6f2e458857c92cbe40c2062abe4
 #Patch0:		%{name}-mail.patch
 URL:		http://kadu.im/
 %{?with_geoip:BuildRequires:	GeoIP-devel}
@@ -148,6 +145,7 @@ Requires:	libgadu >= %{libgadu_ver}
 Obsoletes:	kadu-module-advanced_userlist
 Obsoletes:	kadu-module-agent
 Obsoletes:	kadu-module-dbus
+Obsoletes:	kadu-module-dcopexport
 Obsoletes:	kadu-module-desc_history
 Obsoletes:	kadu-module-docking-wmaker <= 0.6.5
 Obsoletes:	kadu-module-filtering
@@ -286,18 +284,6 @@ Censor module.
 
 %description module-cenzor -l pl.UTF-8
 Moduł cenzora.
-
-%package module-dcopexport
-Summary:	Kadu DCOP interface
-Summary(pl.UTF-8):	Interfejs niektórych funkcji Kadu do DCOP
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description module-dcopexport
-Kadu DCOP interface.
-
-%description module-dcopexport -l pl.UTF-8
-Interfejs niektórych funkcji Kadu do DCOP.
 
 %package module-docking-desktop
 Summary:	Desktop docking module
@@ -806,55 +792,52 @@ Moduł automatycznej zamiany słów dla Kadu.
 %if %{with anonymous_check}
 tar xjf %{SOURCE2} -C plugins
 %endif
-%if %{with dcopexport}
-tar xjf %{SOURCE3} -C plugins
-%endif
 %if %{with globalhotkeys}
-tar xzf %{SOURCE4} -C plugins
+tar xzf %{SOURCE3} -C plugins
 %endif
 %if %{with mail}
-tar xjf %{SOURCE5} -C plugins
+tar xjf %{SOURCE4} -C plugins
 %undos plugins/mail/translations/mail_pl.ts
 %patch1 -p0
 %endif
 %if %{with mime_tex}
-tar xjf %{SOURCE6} -C plugins
+tar xjf %{SOURCE5} -C plugins
 %endif
 %if %{with nextinfo}
-tar xzf %{SOURCE7} -C plugins
+tar xzf %{SOURCE6} -C plugins
 %endif
 %if %{with notify_led}
-tar xzf %{SOURCE8} -C plugins
+tar xzf %{SOURCE7} -C plugins
 %endif
 %if %{with notify_mx610}
-tar xjf %{SOURCE9} -C plugins
+tar xjf %{SOURCE8} -C plugins
 %endif
 %if %{with notify_water}
-tar xjf %{SOURCE10} -C plugins
+tar xjf %{SOURCE9} -C plugins
 %endif
 %if %{with panelkadu}
-tar xzf %{SOURCE11} -C plugins
+tar xzf %{SOURCE10} -C plugins
 %endif
 %if %{with senthistory}
-tar xzf %{SOURCE12} -C plugins
+tar xzf %{SOURCE11} -C plugins
 %endif
 %if %{with sms_plus_pl}
-tar xjf %{SOURCE13} -C plugins
+tar xjf %{SOURCE12} -C plugins
 %endif
 %if %{with geoip}
-tar xjf %{SOURCE14} -C plugins
+tar xjf %{SOURCE13} -C plugins
 %endif
 %if %{with notify_kde}
-#tar xzf %{SOURCE15} -C plugins
+#tar xzf %{SOURCE14} -C plugins
 %endif
 %if %{with pajacyk}
-tar xjf %{SOURCE16} -C plugins
+tar xjf %{SOURCE15} -C plugins
 %endif
 %if %{with messagessplitter}
-tar xzf %{SOURCE17} -C plugins
+tar xzf %{SOURCE16} -C plugins
 %endif
 %if %{with networkping}
-tar xzf %{SOURCE18} -C plugins
+tar xzf %{SOURCE17} -C plugins
 %endif
 
 # Change hard coded path to modules data files
