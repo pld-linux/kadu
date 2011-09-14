@@ -107,34 +107,10 @@ Source13:	http://kadu.net/~patryk/plus_pl_sms/plus_pl_sms-plus_pl_sms-%{sms_plus
 # Source13-md5:	59f7ba01a63464818acaa5ff6fd176d5
 Source14:	http://kadu.net/~neeo/kadu/geoip/geoip_lookup-%{geoip_ver}.tar.bz2
 # Source14-md5:	83d9672c7f88b803510e7757dd36ea92
-Source15:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-theme-glass-16.tar.gz
-# Source15-md5:	25374d4b876037de6d00eedca76eae0f
-Source16:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-theme-glass-22.tar.gz
-# Source16-md5:	d9df73a452cf190abd5605112c53c21f
-Source17:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-theme-oxygen-16.tar.gz
-# Source17-md5:	1dd08c856ec86f55dccf88ab19be6f5a
-Source18:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-theme-tango-16.tar.gz
-# Source18-md5:	9710fd37c6fd8c24e2bae8fa377ee465
-Source19:	http://www.kadu.net/download/additions/%{name}-0.6.5-theme-kadu05.tar.gz
-# Source19-md5:	9174f621138b6fc28127cc4396cb59ed
 Source20:	http://www.kadu.net/~dorr/moduly/kde_notify-%{notify_kde_ver}.tar.gz
 # Source20-md5:	2da919d6359049a6e4827e795ba46b1a
-Source21:	http://www.kadu.net/download/additions/%{name}-0.6.5.4-emots-tango.tar.gz
-# Source21-md5:	436f12011f209c4427a9e411091ecb0a
 Source22:	http://www.kadu.net/~dorr/moduly/%{name}-pajacyk-%{pajacyk_ver}.tar.bz2
 # Source22-md5:	c87d4b68d65c923118b6ac3e9396ff13
-Source23:	http://www.kadu.net/download/additions/%{name}-sound-bns.tar.bz2
-# Source23-md5:	fcf829d687df27d2ac296a077dc2814e
-Source24:	http://www.kadu.net/download/additions/%{name}-sound-drums.tar.bz2
-# Source24-md5:	0f29ac64019d841b38eefadad2a49e4f
-Source25:	http://www.kadu.net/download/additions/%{name}-sound-florkus.tar.bz2
-# Source25-md5:	d90070390134c2809a2b53df07563712
-Source26:	http://www.kadu.net/download/additions/%{name}-sound-michalsrodek.tar.bz2
-# Source26-md5:	5951d828833ea0e452654dbc80c02787
-Source27:	http://www.kadu.net/download/additions/%{name}-sound-percussion.tar.bz2
-# Source27-md5:	124175025038cd1fedb3d0caa3a0d478
-Source28:	http://www.kadu.net/download/additions/%{name}-sound-ultr.tar.bz2
-# Source28-md5:	1caec2ba480a2f47430d12ec681aa871
 Source29:	http://www.ultr.pl/kadu/messagessplitter-%{messagessplitter_ver}.tar.gz
 # Source29-md5:	14de43361e3bc149478a076874e024f2
 Patch0:		%{name}-sounds.patch
@@ -200,8 +176,15 @@ Obsoletes:	kadu-module-voice
 Obsoletes:	kadu-module-weather
 Obsoletes:	kadu-theme-icons-crystal16
 Obsoletes:	kadu-theme-icons-crystal22
+Obsoletes:	kadu-theme-icons-glass16
+Obsoletes:	kadu-theme-icons-glass22
+Obsoletes:	kadu-theme-icons-kadu05
 Obsoletes:	kadu-theme-icons-nuvola16
 Obsoletes:	kadu-theme-icons-nuvola22
+Obsoletes:	kadu-theme-icons-oxygen16
+Obsoletes:	kadu-theme-icons-tango16
+Obsoletes:	kadu-theme-emoticons-tango
+Obsoletes:	kadu-theme-sounds
 # for encryption module and TLS in jabber module
 Suggests:	qt4-plugin-qca-ossl
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -803,90 +786,6 @@ Automatic word replacement module for Kadu.
 %description module-word_fix -l pl.UTF-8
 Moduł automatycznej zamiany słów dla Kadu.
 
-%package theme-icons-glass16
-Summary:	Glass16 icon theme
-Summary(pl.UTF-8):	Zestaw ikon glass16
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description theme-icons-glass16
-Glass16 icon theme.
-
-%description theme-icons-glass16 -l pl.UTF-8
-Zestaw ikon glass16.
-
-%package theme-icons-glass22
-Summary:	Glass22 icon theme
-Summary(pl.UTF-8):	Zestaw ikon glass22
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description theme-icons-glass22
-Glass22 icon theme.
-
-%description theme-icons-glass22 -l pl.UTF-8
-Zestaw ikon glass22.
-
-%package theme-icons-kadu05
-Summary:	Kadu05 icon theme
-Summary(pl.UTF-8):	Zestaw ikon Kadu05
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description theme-icons-kadu05
-Kadu05 icon theme.
-
-%description theme-icons-kadu05 -l pl.UTF-8
-Zestaw ikon Kadu05.
-
-%package theme-icons-oxygen16
-Summary:	Oxygen16 icon theme
-Summary(pl.UTF-8):	Zestaw ikon Oxygen16
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description theme-icons-oxygen16
-Oxygen16 icon theme.
-
-%description theme-icons-oxygen16 -l pl.UTF-8
-Zestaw ikon Oxygen16.
-
-%package theme-icons-tango16
-Summary:	Tango16 icon theme
-Summary(pl.UTF-8):	Zestaw ikon Tango16
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description theme-icons-tango16
-Tango16 icon theme.
-
-%description theme-icons-tango16 -l pl.UTF-8
-Zestaw ikon Tango16.
-
-%package theme-emoticons-tango
-Summary:	Tango emoticons theme
-Summary(pl.UTF-8):	Zestaw emotikon Tango
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description theme-emoticons-tango
-Tango emoticons theme.
-
-%description theme-emoticons-tango -l pl.UTF-8
-Zestaw emotikon Tango.
-
-%package theme-sounds
-Summary:	Sounds themes
-Summary(pl.UTF-8):	Zestaw dźwięków
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description theme-sounds
-Additional sounds theme.
-
-%description theme-sounds -l pl.UTF-8
-Zestaw dodatkowych dźwięków.
-
 %prep
 %setup -q -T -b 0
 
@@ -941,24 +840,6 @@ tar xjf %{SOURCE22} -C plugins
 %if %{with messagessplitter}
 tar xzf %{SOURCE29} -C plugins
 %endif
-
-# themes-icons
-tar xzf %{SOURCE15} -C varia/themes/icons
-tar xzf %{SOURCE16} -C varia/themes/icons
-tar xzf %{SOURCE17} -C varia/themes/icons
-tar xzf %{SOURCE18} -C varia/themes/icons
-tar xzf %{SOURCE19} -C varia/themes/icons
-
-# themes-emoticons
-tar xzf %{SOURCE21} -C varia/themes/emoticons
-
-# themes-sounds
-tar xjf %{SOURCE23} -C varia/themes/sounds
-tar xjf %{SOURCE24} -C varia/themes/sounds
-tar xjf %{SOURCE25} -C varia/themes/sounds
-tar xjf %{SOURCE26} -C varia/themes/sounds
-tar xjf %{SOURCE27} -C varia/themes/sounds
-tar xjf %{SOURCE28} -C varia/themes/sounds
 
 # Change hard coded path to modules data files
 %{__sed} -i 's,dataPath("kadu/plugins/*,("%{modules_data_dir}/,g' kadu-core/plugins/plugin.cpp
@@ -1727,39 +1608,4 @@ rm -rf $RPM_BUILD_ROOT
 %lang(ru) %{modules_data_dir}/translations/word_fix_ru.qm
 %dir %{modules_data_dir}/data/word_fix
 %{modules_data_dir}/data/word_fix/wf_default_list.data
-%endif
-
-%if 0
-#%files theme-icons-glass16
-#%defattr(644,root,root,755)
-#%{_datadir}/%{name}/themes/icons/glass16
-
-#%files theme-icons-glass22
-#%defattr(644,root,root,755)
-#%{_datadir}/%{name}/themes/icons/glass22
-
-#%files theme-icons-kadu05
-#%defattr(644,root,root,755)
-#%{_datadir}/%{name}/themes/icons/kadu05
-
-#%files theme-icons-oxygen16
-#%defattr(644,root,root,755)
-#%{_datadir}/%{name}/themes/icons/oxygen16
-
-#%files theme-icons-tango16
-#%defattr(644,root,root,755)
-#%{_datadir}/%{name}/themes/icons/tango16
-
-#%files theme-emoticons-tango
-#%defattr(644,root,root,755)
-#%{_datadir}/%{name}/themes/emoticons/tango
-
-%files theme-sounds
-%defattr(644,root,root,755)
-%{_datadir}/%{name}/themes/sounds/bns
-%{_datadir}/%{name}/themes/sounds/drums
-%{_datadir}/%{name}/themes/sounds/florkus
-%{_datadir}/%{name}/themes/sounds/michalsrodek
-%{_datadir}/%{name}/themes/sounds/percussion
-%{_datadir}/%{name}/themes/sounds/ultr
 %endif
