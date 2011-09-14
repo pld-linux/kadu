@@ -883,23 +883,6 @@ mkdir -p build
 %{!?with_tabs:%{__sed} -i 's/\ttabs$/\t#tabs/' Plugins.cmake}
 %{!?with_word_fix:%{__sed} -i 's/\tword_fix$/\t#word_fix/' Plugins.cmake}
 
-%if 0
-%{__sed} -i 's/icons_glass16=n/icons_glass16=y/' .config
-%{__sed} -i 's/icons_glass22=n/icons_glass22=y/' .config
-%{__sed} -i 's/icons_kadu05=n/icons_kadu05=y/' .config
-%{__sed} -i 's/icons_oxygen16=n/icons_oxygen16=y/' .config
-%{__sed} -i 's/icons_tango16=n/icons_tango16=y/' .config
-
-%{__sed} -i 's/emoticons_tango=n/emoticons_tango=y/' .config
-
-%{__sed} -i 's/sound_bns=n/sound_bns=y/' .config
-%{__sed} -i 's/sound_drums=n/sound_drums=y/' .config
-%{__sed} -i 's/sound_florkus=n/sound_florkus=y/' .config
-%{__sed} -i 's/sound_michalsrodek=n/sound_michalsrodek=y/' .config
-%{__sed} -i 's/sound_percussion=n/sound_percussion=y/' .config
-%{__sed} -i 's/sound_ultr=n/sound_ultr=y/' .config
-%endif
-
 cd build
 %cmake ..
 
