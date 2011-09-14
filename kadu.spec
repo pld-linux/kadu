@@ -107,12 +107,12 @@ Source13:	http://kadu.net/~patryk/plus_pl_sms/plus_pl_sms-plus_pl_sms-%{sms_plus
 # Source13-md5:	59f7ba01a63464818acaa5ff6fd176d5
 Source14:	http://kadu.net/~neeo/kadu/geoip/geoip_lookup-%{geoip_ver}.tar.bz2
 # Source14-md5:	83d9672c7f88b803510e7757dd36ea92
-Source20:	http://www.kadu.net/~dorr/moduly/kde_notify-%{notify_kde_ver}.tar.gz
-# Source20-md5:	2da919d6359049a6e4827e795ba46b1a
-Source22:	http://www.kadu.net/~dorr/moduly/%{name}-pajacyk-%{pajacyk_ver}.tar.bz2
-# Source22-md5:	c87d4b68d65c923118b6ac3e9396ff13
-Source29:	http://www.ultr.pl/kadu/messagessplitter-%{messagessplitter_ver}.tar.gz
-# Source29-md5:	14de43361e3bc149478a076874e024f2
+Source15:	http://www.kadu.net/~dorr/moduly/kde_notify-%{notify_kde_ver}.tar.gz
+# Source15-md5:	2da919d6359049a6e4827e795ba46b1a
+Source16:	http://www.kadu.net/~dorr/moduly/%{name}-pajacyk-%{pajacyk_ver}.tar.bz2
+# Source16-md5:	c87d4b68d65c923118b6ac3e9396ff13
+Source17:	http://www.ultr.pl/kadu/messagessplitter-%{messagessplitter_ver}.tar.gz
+# Source17-md5:	14de43361e3bc149478a076874e024f2
 Patch0:		%{name}-sounds.patch
 Patch1:		%{name}-mail.patch
 Patch2:		%{name}-link.patch
@@ -832,13 +832,13 @@ tar xjf %{SOURCE13} -C plugins
 tar xjf %{SOURCE14} -C plugins
 %endif
 %if %{with notify_kde}
-#tar xzf %{SOURCE20} -C plugins
+#tar xzf %{SOURCE15} -C plugins
 %endif
 %if %{with pajacyk}
-tar xjf %{SOURCE22} -C plugins
+tar xjf %{SOURCE16} -C plugins
 %endif
 %if %{with messagessplitter}
-tar xzf %{SOURCE29} -C plugins
+tar xzf %{SOURCE17} -C plugins
 %endif
 
 # Change hard coded path to modules data files
