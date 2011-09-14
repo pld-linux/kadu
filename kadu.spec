@@ -1006,7 +1006,7 @@ tar xjf %{SOURCE20} -C plugins
 tar xjf %{SOURCE23} -C plugins
 %endif
 %if %{with messagessplitter}
-tar xjf %{SOURCE30} -C plugins
+tar xzf %{SOURCE30} -C plugins
 %endif
 
 # themes-icons
