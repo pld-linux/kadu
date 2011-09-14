@@ -1004,77 +1004,26 @@ mkdir -p build
 %endif
 %{!?with_filedesc:%{__sed} -i 's/\tfiledesc$/\t#filedesc/' Plugins.cmake}
 %{!?with_firewall:%{__sed} -i 's/\tfirewall$/\t#firewall/' Plugins.cmake}
-%if %{with geoip}
-%{__sed} -i 's/module_geoip_lookup=n/module_geoip_lookup=m/' .config
-%else
-%{__sed} -i 's/module_geoip_lookup=m/module_geoip_lookup=n/' .config
-%endif
 %{?with_globalhotkeys:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tglobalhotkeys' Plugins.cmake}
 %{!?with_last_seen:%{__sed} -i 's/\tlast_seen$/\t#last_seen/' Plugins.cmake}
-%if %{with mail}
-%{__sed} -i 's/module_mail=n/module_mail=m/' .config
-%else
-%{__sed} -i 's/module_mail=m/module_mail=n/' .config
-%endif
 %{!?with_mediaplayer:%{__sed} -i 's/\tmediaplayer$/\t#mediaplayer/' Plugins.cmake}
 %{!?with_mediaplayer_amarok:%{__sed} -i 's/\tamarok1_mediaplayer$/\t#amarok1_mediaplayer/' Plugins.cmake}
-%if %{with mediaplayer_amarok2}
-%{__sed} -i 's/module_amarok2_mediaplayer=n/module_amarok2_mediaplayer=m/' .config
-echo 'MODULE_INCLUDES_PATH="%{_includedir}"' >> plugins/amarok2_mediaplayer/spec
-echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok2_mediaplayer/spec
-%else
-%{__sed} -i 's/module_amarok2_mediaplayer=m/module_amarok2_mediaplayer=n/' .config
-%endif
 %{!?with_mediaplayer_falf:%{__sed} -i 's/\tfalf_mediaplayer$/\t#falf_mediaplayer/' Plugins.cmake}
 %{!?with_mediaplayer_mpris:%{__sed} -i 's/\tmprisplayer_mediaplayer$/\t#mprisplayer_mediaplayer/' Plugins.cmake}
 %{?with_mime_tex:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tmime_tex' Plugins.cmake}
 %{?with_nextinfo:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tnextinfo' Plugins.cmake}
 %{!?with_notify_exec:%{__sed} -i 's/\texec_notify$/\t#exec_notify/' Plugins.cmake}
 %{!?with_notify_freedesktop:%{__sed} -i 's/\tfreedesktop_notify$/\t#freedesktop_notify/' Plugins.cmake}
-%if %{with notify_kde}
-%{__sed} -i 's/module_kde_notify=n/module_kde_notify=m/' .config
-%else
-%{__sed} -i 's/module_kde_notify=m/module_kde_notify=n/' .config
-%endif
 %{?with_notify_led:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tlednotify' Plugins.cmake}
-%if %{with notify_mx610}
-%{__sed} -i 's/module_mx610_notify=n/module_mx610_notify=m/' .config
-%else
-%{__sed} -i 's/module_mx610_notify=m/module_mx610_notify=n/' .config
-%endif
 %{!?with_notify_chat:%{__sed} -i 's/\tchat_notify$/\t#chat_notify/' Plugins.cmake}
 %{!?with_notify_pcspeaker:%{__sed} -i 's/\tpcspeaker$/\t#pcspeaker/' Plugins.cmake}
 %{!?with_notify_qt4_docking:%{__sed} -i 's/\tqt4_docking_notify$/\t#qt4_docking_notify/' Plugins.cmake}
 %{!?with_notify_speech:%{__sed} -i 's/\tspeech$/\t#speech/' Plugins.cmake}
-%if %{with notify_water}
-%{__sed} -i 's/module_water_notify=n/module_water_notify=m/' .config
-%else
-%{__sed} -i 's/module_water_notify=m/module_water_notify=n/' .config
-%endif
 %if %{with notify_xosd}
-%{__sed} -i 's/module_xosd_notify=n/module_xosd_notify=m/' .config
-%else
-%{__sed} -i 's/module_xosd_notify=m/module_xosd_notify=n/' .config
-%endif
-%if %{with pajacyk}
-%{__sed} -i 's/module_pajacyk=n/module_pajacyk=m/' .config
-%else
-%{__sed} -i 's/module_pajacyk=m/module_pajacyk=n/' .config
-%endif
 %{?with_panelkadu:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tpanelkadu' Plugins.cmake}
-%if %{with powerkadu}
-%{__sed} -i 's/module_powerkadu=n/module_powerkadu=m/' .config
-%else
-%{__sed} -i 's/module_powerkadu=m/module_powerkadu=n/' .config
-%endif
 %{!?with_screenshot:%{__sed} -i 's/\tscreenshot$/\t#screenshot/' Plugins.cmake}
 %{?with_senthistory:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tsenthistory' Plugins.cmake}
 %{!?with_single_window:%{__sed} -i 's/\tsingle_window$/\t#single_window/' Plugins.cmake}
-%if %{with sms_plus_pl}
-%{__sed} -i 's/module_plus_pl_sms=n/module_plus_pl_sms=m/' .config
-%else
-%{__sed} -i 's/module_plus_pl_sms=m/module_plus_pl_sms=n/' .config
-%endif
 %{!?with_sound_ext:%{__sed} -i 's/\text_sound$/\t#ext_sound/' Plugins.cmake}
 %{!?with_sound_phonon:%{__sed} -i 's/\tphonon_sound$/\t#phonon_sound/' Plugins.cmake}
 %{!?with_sound_qt4:%{__sed} -i 's/\tqt4_sound$/\t#qt4_sound/' Plugins.cmake}
@@ -1083,6 +1032,7 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok2_mediaplayer/spec
 %{!?with_tabs:%{__sed} -i 's/\ttabs$/\t#tabs/' Plugins.cmake}
 %{!?with_word_fix:%{__sed} -i 's/\tword_fix$/\t#word_fix/' Plugins.cmake}
 
+%if 0
 %{__sed} -i 's/icons_glass16=n/icons_glass16=y/' .config
 %{__sed} -i 's/icons_glass22=n/icons_glass22=y/' .config
 %{__sed} -i 's/icons_kadu05=n/icons_kadu05=y/' .config
@@ -1097,6 +1047,7 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok2_mediaplayer/spec
 %{__sed} -i 's/sound_michalsrodek=n/sound_michalsrodek=y/' .config
 %{__sed} -i 's/sound_percussion=n/sound_percussion=y/' .config
 %{__sed} -i 's/sound_ultr=n/sound_ultr=y/' .config
+%endif
 
 cd build
 %cmake ..
