@@ -1586,6 +1586,17 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/data/mprisplayer_mediaplayer/mprisplayer-players.data
 %endif
 
+%if %{with messagessplitter}
+%files module-messagessplitter
+%defattr(644,root,root,755)
+%{modules_data_dir}/messagessplitter.desc
+%{modules_data_dir}/configuration/messagessplitter.ui
+%attr(755,root,root) %{modules_lib_dir}/libmessagessplitter.so
+%lang(cs) %{modules_data_dir}/translations/messagessplitter_cs.qm
+%lang(en) %{modules_data_dir}/translations/messagessplitter_en.qm
+%lang(pl) %{modules_data_dir}/translations/messagessplitter_pl.qm
+%endif
+
 %if %{with mime_tex}
 %files module-mime_tex
 %defattr(644,root,root,755)
@@ -1852,17 +1863,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(de) %{modules_data_dir}/translations/spellchecker_de.qm
 %lang(en) %{modules_data_dir}/translations/spellchecker_en.qm
 %lang(pl) %{modules_data_dir}/translations/spellchecker_pl.qm
-%endif
-
-%if 0
-%if %{with split_messages}
-%files module-split_messages
-%defattr(644,root,root,755)
-%{modules_data_dir}/split_messages.desc
-%{modules_data_dir}/configuration/split_messages.ui
-%attr(755,root,root) %{modules_lib_dir}/libsplit_messages.so
-%lang(pl) %{modules_data_dir}/translations/split_messages_pl.qm
-%endif
 %endif
 
 %if %{with tabs}
