@@ -27,6 +27,7 @@
 %bcond_without	mediaplayer_falf	# without falf player support module
 %bcond_with	mediaplayer_mpd		# without mpd player support module
 %bcond_without	mediaplayer_mpris	# without generic mpris interface support module
+%bcond_without	messagessplitter	# without messagessplitter module support
 %bcond_without	mime_tex		# without mime_tex module support
 %bcond_without	nextinfo		# without nextinfo module support
 %bcond_without	notify_exec		# without exec_notify module support
@@ -50,7 +51,6 @@
 %bcond_without	sound_phonon		# without phonon sound module support
 %bcond_without	sound_qt4		# without qt4 sound module support
 %bcond_without	spellchecker		# without spellchecker (enchant support) invisible
-%bcond_with	split_messages		# without split_messages module support
 %bcond_without	tabs			# without tabs support module
 %bcond_with	voice			# without voice support module
 %bcond_with	weather			# without weather check module support
@@ -65,6 +65,7 @@
 %define		geoip_ver		0.2
 %define		globalhotkeys_ver	0.10-25
 %define		mail_ver		0.3.6
+%define		messagessplitter_ver	0.10-2
 %define		mime_tex_ver		0.10.1
 %define		nextinfo_ver		0.10-6
 %define		notify_kde_ver		0.3.4
@@ -142,6 +143,8 @@ Source28:	http://www.kadu.net/download/additions/%{name}-sound-percussion.tar.bz
 # Source28-md5:	124175025038cd1fedb3d0caa3a0d478
 Source29:	http://www.kadu.net/download/additions/%{name}-sound-ultr.tar.bz2
 # Source29-md5:	1caec2ba480a2f47430d12ec681aa871
+Source30:	http://www.ultr.pl/kadu/messagessplitter-%{messagessplitter_ver}.tar.gz
+# Source30-md5:	14de43361e3bc149478a076874e024f2
 Patch0:		%{name}-sounds.patch
 Patch1:		%{name}-mail.patch
 Patch2:		%{name}-link.patch
@@ -200,7 +203,6 @@ Obsoletes:	kadu-module-sound-arts <= 0.6.5
 Obsoletes:	kadu-module-sound-dsp
 Obsoletes:	kadu-module-sound-esd <= 0.6.5
 %{!?with_speech:Obsoletes:	kadu-module-speech <= 0.4.3}
-%{!?with_split_messages:Obsoletes:	kadu-module-split_messages}
 Obsoletes:	kadu-module-tcl_scripting <= 0.4.3
 Obsoletes:	kadu-theme-icons-crystal16
 Obsoletes:	kadu-theme-icons-crystal22
@@ -506,6 +508,20 @@ Moduł umożliwiający w opisie statusu pokazywanie informacji o
 odgrywanym utworze z odtwarzacza zgodnego z mpris. Jest wykorzystywany
 przez inne moduły.
 
+%package module-messagessplitter
+Summary:	Automaticaly split too long messages in Kadu
+Summary(pl.UTF-8):	Automatyczne dzielenie zbyt długich wiadomości w Kadu
+Group:		Applications/Communications
+Requires:	%{name} = %{version}-%{release}
+Provides:	kadu-module-split_messages
+Obsoletes:	kadu-module-split_messages
+
+%description module-messagessplitter
+Automaticaly split too long messages in Kadu.
+
+%description module-messagessplitter -l pl.UTF-8
+Automatyczne dzielenie zbyt długich wiadomości w Kadu.
+
 %package module-mime_tex
 Summary:	Mathematical TeX formulas in chat windows
 Summary(pl.UTF-8):	Matematyczne formuły TeX w oknach czat
@@ -688,9 +704,7 @@ Requires:	%{name}-module-antistring = %{version}-%{release}
 Requires:	%{name}-module-auto_hide = %{version}-%{release}
 Requires:	%{name}-module-autostatus = %{version}-%{release}
 Requires:	%{name}-module-cenzor = %{version}-%{release}
-%if %{with split_messages}
-Requires:	%{name}-module-split_messages = %{version}-%{release}
-%endif
+Requires:	%{name}-module-messagessplitter = %{version}-%{release}
 Requires:	%{name}-module-word_fix = %{version}-%{release}
 
 %description module-powerkadu
@@ -804,18 +818,6 @@ small devices in mind.
 %description module-single_window -l pl.UTF-8
 Łączy listę kontaktów i rozmowy w jednym oknie. Moduł przygotowany z
 myślą o małych urządzeniach.
-
-%package module-split_messages
-Summary:	Automaticaly split too long messages in Kadu
-Summary(pl.UTF-8):	Automatyczne dzielenie zbyt długich wiadomości w Kadu
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description module-split_messages
-Automaticaly split too long messages in Kadu.
-
-%description module-split_messages -l pl.UTF-8
-Automatyczne dzielenie zbyt długich wiadomości w Kadu.
 
 %package module-tabs
 Summary:	Tabbed chat dialog module
@@ -1003,6 +1005,9 @@ tar xjf %{SOURCE20} -C plugins
 %if %{with pajacyk}
 tar xjf %{SOURCE23} -C plugins
 %endif
+%if %{with messagessplitter}
+tar xjf %{SOURCE30} -C plugins
+%endif
 
 # themes-icons
 tar xzf %{SOURCE15} -C varia/themes/icons
@@ -1127,11 +1132,7 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok2_mediaplayer/spec
 %{!?with_sound_phonon:%{__sed} -i 's/\tphonon_sound$/\t#phonon_sound/' Plugins.cmake}
 %{!?with_sound_qt4:%{__sed} -i 's/\tqt4_sound$/\t#qt4_sound/' Plugins.cmake}
 %{!?with_spellchecker:%{__sed} -i 's/\tspellchecker$/\t#spellchecker/' Plugins.cmake}
-%if %{with split_messages}
-%{__sed} -i 's/module_split_messages=n/module_split_messages=m/' .config
-%else
-%{__sed} -i 's/module_split_messages=m/module_split_messages=n/' .config
-%endif
+%{?with_messagessplitter:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tmessagessplitter' Plugins.cmake}
 %{!?with_tabs:%{__sed} -i 's/\ttabs$/\t#tabs/' Plugins.cmake}
 %if %{with voice}
 %{__sed} -i 's/module_voice=n/module_voice=m/' .config
@@ -1734,6 +1735,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{modules_lib_dir}/libpajacyk.so
 %lang(pl) %{modules_data_dir}/translations/pajacyk_pl.qm
 %endif
+%endif
 
 %if %{with panelkadu}
 %files module-panelkadu
@@ -1741,9 +1743,12 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/panelkadu.desc
 %{modules_data_dir}/configuration/panelkadu.ui
 %attr(755,root,root) %{modules_lib_dir}/libpanelkadu.so
+%lang(cs) %{modules_data_dir}/translations/panelkadu_cs.qm
+%lang(en) %{modules_data_dir}/translations/panelkadu_en.qm
 %lang(pl) %{modules_data_dir}/translations/panelkadu_pl.qm
 %endif
 
+%if 0
 %if %{with powerkadu}
 %files module-powerkadu
 %defattr(644,root,root,755)
@@ -1771,16 +1776,16 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{modules_data_dir}/translations/single_window_pl.qm
 %endif
 
-%if 0
 %if %{with senthistory}
 %files module-senthistory
 %defattr(644,root,root,755)
 %{modules_data_dir}/senthistory.desc
 %{modules_data_dir}/configuration/senthistory.ui
 %attr(755,root,root) %{modules_lib_dir}/libsenthistory.so
+%lang(cs) %{modules_data_dir}/translations/senthistory_cs.qm
 %lang(en) %{modules_data_dir}/translations/senthistory_en.qm
 %lang(pl) %{modules_data_dir}/translations/senthistory_pl.qm
-%endif
+%lang(tr) %{modules_data_dir}/translations/senthistory_tr.qm
 %endif
 
 %if %{with screenshot}
