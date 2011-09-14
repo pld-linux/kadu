@@ -1334,8 +1334,8 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/networkping.desc
 %{modules_data_dir}/configuration/networkping.ui
 %attr(755,root,root) %{modules_lib_dir}/libnetworkping.so
-%lang(en) %{modules_data_dir}/translations/messagessplitter_en.qm
-%lang(pl) %{modules_data_dir}/translations/messagessplitter_pl.qm
+%lang(en) %{modules_data_dir}/translations/networkping_en.qm
+%lang(pl) %{modules_data_dir}/translations/networkping_pl.qm
 %endif
 
 %if %{with nextinfo}
