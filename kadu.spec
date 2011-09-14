@@ -1,7 +1,7 @@
 #
 # TODO:
 # - modules update/remove: desc_history, geoip, mail, mediaplayer_amarok2, notify_kde, notify_mx610,
-#   notify_water, pajacyk
+#   notify_water, pajacyk, plus_pl_sms
 # - make voice module link with system libgsm
 #
 # Conditional build:
@@ -40,17 +40,12 @@
 %bcond_without	notify_speech		# without Speech synthesis support
 %bcond_with	notify_water		# without water_notify module support
 %bcond_with	pajacyk			# without pajacyk module support
-%bcond_with	panelkadu		# without panelkadu module support
-%bcond_with	parser_extender		# without parser_extender extensions
+%bcond_without	panelkadu		# without panelkadu module support
 %bcond_with	powerkadu		# without PowerKadu extensions
-%bcond_with	profiles		# without profiles module support
 %bcond_without	screenshot		# without screenshot module support
-%bcond_with	senthistory		# without senthistory module support
+%bcond_without	senthistory		# without senthistory module support
 %bcond_without	single_window		# without single_window module support
 %bcond_with	sms_plus_pl		# without plus_pl_sms module support
-%bcond_with	sound_alsa		# without ALSA support
-%bcond_with	sound_ao		# without ao support
-%bcond_with	sound_dsp		# without DSP support
 %bcond_without	sound_ext		# without external application sound module support
 %bcond_without	sound_phonon		# without phonon sound module support
 %bcond_without	sound_qt4		# without qt4 sound module support
@@ -77,8 +72,8 @@
 %define		notify_mx610_ver	0.4.1
 %define		notify_water_ver	0.2.1
 %define		pajacyk_ver		0.2.1
-%define		panelkadu_ver		0.9.0-7
-%define		senthistory_ver		0.9.0-7
+%define		panelkadu_ver		0.10-8
+%define		senthistory_ver		0.10-9
 %define		sms_plus_pl_ver		0.6.5.4-1
 
 Summary:	A Gadu-Gadu client for online messaging
@@ -110,9 +105,9 @@ Source9:	http://www.kadu.net/~dorr/moduly/%{name}-mx610_notify-%{notify_mx610_ve
 Source10:	http://www.kadu.net/~dorr/moduly/%{name}-water_notify-%{notify_water_ver}.tar.bz2
 # Source10-md5:	4196e85fc4be93bd662f5148ebc18235
 Source11:	http://www.ultr.pl/kadu/panelkadu-%{panelkadu_ver}.tar.gz
-# Source11-md5:	19d9670d7def5e738a578a64a3bf15d2
+# Source11-md5:	26772365e6aa794bc6e8155a60c9d01d
 Source12:	http://www.ultr.pl/kadu/senthistory-%{senthistory_ver}.tar.gz
-# Source12-md5:	fc6b8b1912adad6c5a21c47fb0c44265
+# Source12-md5:	0ec2a68a636f2428be1f20967fa23baf
 Source13:	http://kadu.net/~patryk/plus_pl_sms/plus_pl_sms-plus_pl_sms-%{sms_plus_pl_ver}.tar.bz2
 # Source13-md5:	59f7ba01a63464818acaa5ff6fd176d5
 Source14:	http://kadu.net/~neeo/kadu/geoip/geoip_lookup-%{geoip_ver}.tar.bz2
@@ -158,7 +153,6 @@ BuildRequires:	QtScriptTools-devel >= %{qt_ver}
 BuildRequires:	QtSvg-devel >= %{qt_ver}
 BuildRequires:	QtWebKit-devel >= %{qt_ver}
 BuildRequires:	QtXmlPatterns-devel >= %{qt_ver}
-%{?with_sound_alsa:BuildRequires:	alsa-lib-devel}
 BuildRequires:	cmake >= 2.8.0
 %{?with_sms_plus_pl:BuildRequires:	curl-devel}
 %{?with_notify_water:BuildRequires:	dbus-devel}
@@ -196,8 +190,14 @@ Obsoletes:	kadu-module-mediaplayer-xmms
 Obsoletes:	kadu-module-mediaplayer-xmms2
 %{!?with_mediaplayer:Obsoletes:	kadu-module-mediaplayer}
 Obsoletes:	kadu-module-notify-osdhints
+Obsoletes:	kadu-module-notify-window
 Obsoletes:	kadu-module-notify-xosd <= 0.6.5
+Obsoletes:	kadu-module-parser_extender
+Obsoletes:	kadu-module-profiles
+Obsoletes:	kadu-module-sound-alsa
+Obsoletes:	kadu-module-sound-ao
 Obsoletes:	kadu-module-sound-arts <= 0.6.5
+Obsoletes:	kadu-module-sound-dsp
 Obsoletes:	kadu-module-sound-esd <= 0.6.5
 %{!?with_speech:Obsoletes:	kadu-module-speech <= 0.4.3}
 %{!?with_split_messages:Obsoletes:	kadu-module-split_messages}
@@ -678,18 +678,6 @@ Module which makes Kadu look and behave like a panel.
 %description module-panelkadu -l pl.UTF-8
 Moduł sprawiający, że Kadu wygląda i zachowuje się jak panel.
 
-%package module-parser_extender
-Summary:	Module to extend Kadu Parser
-Summary(pl.UTF-8):	Moduł rozszerzający możliwości Parsera Kadu
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description module-parser_extender
-Module to extend Kadu Parser.
-
-%description module-parser_extender -l pl.UTF-8
-Moduł rozszerzający możliwości Parsera Kadu.
-
 %package module-powerkadu
 Summary:	PowerKadu extensions
 Summary(pl.UTF-8):	Rozszerzenia PowerKadu
@@ -700,7 +688,6 @@ Requires:	%{name}-module-antistring = %{version}-%{release}
 Requires:	%{name}-module-auto_hide = %{version}-%{release}
 Requires:	%{name}-module-autostatus = %{version}-%{release}
 Requires:	%{name}-module-cenzor = %{version}-%{release}
-Requires:	%{name}-module-parser_extender = %{version}-%{release}
 %if %{with split_messages}
 Requires:	%{name}-module-split_messages = %{version}-%{release}
 %endif
@@ -714,18 +701,6 @@ useful functions, like: autostatus, antistring, cenzor, words fix...
 PowerKadu jest dodatkiem do Kadu. Poszerza on możliwości Kadu o
 przydatne funkcje, takie jak: autostatus, antyłańcuszek, cenzor,
 korekta słów...
-
-%package module-profiles
-Summary:	Kadu Profiles
-Summary(pl.UTF-8):	Profile w Kadu
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description module-profiles
-Kadu Profiles.
-
-%description module-profiles -l pl.UTF-8
-Profile w Kadu.
 
 %package module-senthistory
 Summary:	Kadu module which adds history of sent messages to chat windows
@@ -765,43 +740,6 @@ SMS Gateway on Plus.pl module.
 
 %description module-sms-plus_pl -l pl.UTF-8
 Moduł obsługi bramki SMS Plus.pl.
-
-%package module-sound-alsa
-Summary:	ALSA sound support module
-Summary(pl.UTF-8):	Moduł obsługi dźwięku przez ALSA
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-Requires:	alsa-lib
-
-%description module-sound-alsa
-ALSA sound support module.
-
-%description module-sound-alsa -l pl.UTF-8
-Moduł obsługi dźwięku przez ALSA.
-
-%package module-sound-ao
-Summary:	Libao sound module
-Summary(pl.UTF-8):	Moduł obsługi dźwięku poprzez bibliotekę libao
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description module-sound-ao
-Libao sound module.
-
-%description module-sound-ao -l pl.UTF-8
-Moduł obsługi dźwięku poprzez bibliotekę libao.
-
-%package module-sound-dsp
-Summary:	DSP sound module
-Summary(pl.UTF-8):	Moduł obsługi dźwięku przez DSP
-Group:		Applications/Communications
-Requires:	%{name} = %{version}-%{release}
-
-%description module-sound-dsp
-DSP sound module.
-
-%description module-sound-dsp -l pl.UTF-8
-Moduł obsługi dźwięku przez DSP.
 
 %package module-sound-ext
 Summary:	External application sound module
@@ -1171,52 +1109,19 @@ echo 'MODULE_LIBS_PATH="%{_libdir}"' >> plugins/amarok2_mediaplayer/spec
 %else
 %{__sed} -i 's/module_pajacyk=m/module_pajacyk=n/' .config
 %endif
-%if %{with panelkadu}
-%{__sed} -i 's/module_panelkadu=n/module_panelkadu=m/' .config
-%else
-%{__sed} -i 's/module_panelkadu=m/module_panelkadu=n/' .config
-%endif
-%if %{with parser_extender}
-%{__sed} -i 's/module_parser_extender=n/module_parser_extender=m/' .config
-%else
-%{__sed} -i 's/module_parser_extender=m/module_parser_extender=n/' .config
-%endif
+%{?with_panelkadu:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tpanelkadu' Plugins.cmake}
 %if %{with powerkadu}
 %{__sed} -i 's/module_powerkadu=n/module_powerkadu=m/' .config
 %else
 %{__sed} -i 's/module_powerkadu=m/module_powerkadu=n/' .config
 %endif
-%if %{with profiles}
-%{__sed} -i 's/module_profiles=n/module_profiles=m/' .config
-%else
-%{__sed} -i 's/module_profiles=m/module_profiles=n/' .config
-%endif
 %{!?with_screenshot:%{__sed} -i 's/\tscreenshot$/\t#screenshot/' Plugins.cmake}
-%if %{with senthistory}
-%{__sed} -i 's/module_senthistory=n/module_senthistory=m/' .config
-%else
-%{__sed} -i 's/module_senthistory=m/module_senthistory=n/' .config
-%endif
+%{?with_senthistory:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tsenthistory' Plugins.cmake}
 %{!?with_single_window:%{__sed} -i 's/\tsingle_window$/\t#single_window/' Plugins.cmake}
 %if %{with sms_plus_pl}
 %{__sed} -i 's/module_plus_pl_sms=n/module_plus_pl_sms=m/' .config
 %else
 %{__sed} -i 's/module_plus_pl_sms=m/module_plus_pl_sms=n/' .config
-%endif
-%if %{with sound_alsa}
-%{__sed} -i 's/module_alsa_sound=n/module_alsa_sound=m/' .config
-%else
-%{__sed} -i 's/module_alsa_sound=m/module_alsa_sound=n/' .config
-%endif
-%if %{with sound_ao}
-%{__sed} -i 's/module_ao_sound=n/module_ao_sound=m/' .config
-%else
-%{__sed} -i 's/module_ao_sound=m/module_ao_sound=n/' .config
-%endif
-%if %{with sound_dsp}
-%{__sed} -i 's/module_dsp_sound=n/module_dsp_sound=m/' .config
-%else
-%{__sed} -i 's/module_dsp_sound=m/module_dsp_sound=n/' .config
 %endif
 %{!?with_sound_ext:%{__sed} -i 's/\text_sound$/\t#ext_sound/' Plugins.cmake}
 %{!?with_sound_phonon:%{__sed} -i 's/\tphonon_sound$/\t#phonon_sound/' Plugins.cmake}
@@ -1839,15 +1744,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{modules_data_dir}/translations/panelkadu_pl.qm
 %endif
 
-%if %{with parser_extender}
-%files module-parser_extender
-%defattr(644,root,root,755)
-%{modules_data_dir}/parser_extender.desc
-%{modules_data_dir}/configuration/parser_extender.ui
-%attr(755,root,root) %{modules_lib_dir}/libparser_extender.so
-%lang(pl) %{modules_data_dir}/translations/parser_extender_pl.qm
-%endif
-
 %if %{with powerkadu}
 %files module-powerkadu
 %defattr(644,root,root,755)
@@ -1861,15 +1757,6 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/data/powerkadu/powerkadu_big.png
 %lang(en) %{modules_data_dir}/data/powerkadu/AUTHORS
 %lang(pl) %{modules_data_dir}/data/powerkadu/AUTHORS.pl
-%endif
-
-%if %{with profiles}
-%files module-profiles
-%defattr(644,root,root,755)
-%{modules_data_dir}/profiles.desc
-%attr(755,root,root) %{modules_lib_dir}/libprofiles.so
-#%lang(it) %{modules_data_dir}/translations/profiles_it.qm
-%lang(pl) %{modules_data_dir}/translations/profiles_pl.qm
 %endif
 %endif
 
@@ -1917,37 +1804,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{modules_data_dir}/translations/plus_pl_sms_pl.qm
 %dir %{modules_data_dir}/data/plus_pl_sms
 %{modules_data_dir}/data/plus_pl_sms/curl-ca-bundle.crt
-%endif
-
-%if %{with sound_alsa}
-%files module-sound-alsa
-%defattr(644,root,root,755)
-%{modules_data_dir}/alsa_sound.desc
-%{modules_data_dir}/configuration/alsa_sound.ui
-%attr(755,root,root) %{modules_lib_dir}/libalsa_sound.so
-%lang(de) %{modules_data_dir}/translations/alsa_sound_de.qm
-%lang(fr) %{modules_data_dir}/translations/alsa_sound_fr.qm
-%lang(it) %{modules_data_dir}/translations/alsa_sound_it.qm
-%lang(pl) %{modules_data_dir}/translations/alsa_sound_pl.qm
-%endif
-
-%if %{with sound_ao}
-%files module-sound-ao
-%defattr(644,root,root,755)
-%{modules_data_dir}/ao_sound.desc
-%attr(755,root,root) %{modules_lib_dir}/libao_sound.so
-%endif
-
-%if %{with sound_dsp}
-%files module-sound-dsp
-%defattr(644,root,root,755)
-%{modules_data_dir}/dsp_sound.desc
-%{modules_data_dir}/configuration/dsp_sound.ui
-%attr(755,root,root) %{modules_lib_dir}/libdsp_sound.so
-%lang(de) %{modules_data_dir}/translations/dsp_sound_de.qm
-%lang(fr) %{modules_data_dir}/translations/dsp_sound_fr.qm
-%lang(it) %{modules_data_dir}/translations/dsp_sound_it.qm
-%lang(pl) %{modules_data_dir}/translations/dsp_sound_pl.qm
 %endif
 %endif
 
