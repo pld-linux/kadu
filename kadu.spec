@@ -890,7 +890,7 @@ cd build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
+install -d $RPM_BUILD_ROOT%{_desktopdir}
 
 %{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
