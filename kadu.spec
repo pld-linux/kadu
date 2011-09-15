@@ -1,6 +1,6 @@
 #
 # TODO:
-# - modules to update/remove: geoip, mail, mediaplayer_amarok2, notify_kde, notify_mx610,
+# - modules to update/remove: geoip, mail, notify_kde, notify_mx610,
 #   notify_water, pajacyk, plus_pl_sms
 #
 # Conditional build:
@@ -21,7 +21,6 @@
 %bcond_with	mail			# without mail module support
 %bcond_without	mediaplayer		# without media player modules support
 %bcond_with	mediaplayer_amarok	# without amarok player support module
-%bcond_with	mediaplayer_amarok2	# without amarok2 player support module
 %bcond_without	mediaplayer_falf	# without falf player support module
 %bcond_with	mediaplayer_mpd		# without mpd player support module
 %bcond_without	mediaplayer_mpris	# without generic mpris interface support module
@@ -152,6 +151,7 @@ Obsoletes:	kadu-module-filtering
 Obsoletes:	kadu-module-gg_avatars
 Obsoletes:	kadu-module-imiface <= 0.4.3
 Obsoletes:	kadu-module-iwait4u <= 0.5.0
+Obsoletes:	kadu-module-mediaplayer-amarok2
 Obsoletes:	kadu-module-mediaplayer-audacious
 Obsoletes:	kadu-module-mediaplayer-bmpx
 Obsoletes:	kadu-module-mediaplayer-dragon
@@ -411,22 +411,6 @@ the song currently played in amarok.
 %description module-mediaplayer-amarok -l pl.UTF-8
 Moduł umożliwiający w opisie statusu pokazywanie informacji o
 odgrywanym utworze z odtwarzacza amarok.
-
-%package module-mediaplayer-amarok2
-Summary:	Support amarok 2 status
-Summary(pl.UTF-8):	Moduł statusu dla odtwarzacza amarok 2
-Group:		Applications/Communications
-Requires:	%{name}-module-mediaplayer-mpris = %{version}-%{release}
-Requires:	amarok > 2.0.0
-Provides:	kadu-module-amarok2 = %{version}
-
-%description module-mediaplayer-amarok2
-Module which allows showing in status description information about
-the song currently played in amarok 2.
-
-%description module-mediaplayer-amarok2 -l pl.UTF-8
-Moduł umożliwiający w opisie statusu pokazywanie informacji o
-odgrywanym utworze z odtwarzacza amarok 2.
 
 %package module-mediaplayer-falf
 Summary:	Support falf status
@@ -1270,15 +1254,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{modules_data_dir}/amarok1_mediaplayer.desc
 %attr(755,root,root) %{modules_lib_dir}/libamarok1_mediaplayer.so
-%endif
-
-%if 0
-%if %{with mediaplayer_amarok2}
-%files module-mediaplayer-amarok2
-%defattr(644,root,root,755)
-%{modules_data_dir}/amarok2_mediaplayer.desc
-%attr(755,root,root) %{modules_lib_dir}/libamarok2_mediaplayer.so
-%endif
 %endif
 
 %if %{with mediaplayer_falf}
