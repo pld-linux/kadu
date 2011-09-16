@@ -75,7 +75,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
 Version:	0.10.0
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Applications/Communications
 Source0:	http://download.kadu.im/stable/%{name}-%{version}.tar.bz2
@@ -151,13 +151,7 @@ Obsoletes:	kadu-module-filtering
 Obsoletes:	kadu-module-gg_avatars
 Obsoletes:	kadu-module-imiface <= 0.4.3
 Obsoletes:	kadu-module-iwait4u <= 0.5.0
-Obsoletes:	kadu-module-mediaplayer-amarok2
-Obsoletes:	kadu-module-mediaplayer-audacious
-Obsoletes:	kadu-module-mediaplayer-bmpx
-Obsoletes:	kadu-module-mediaplayer-dragon
-Obsoletes:	kadu-module-mediaplayer-vlc
 Obsoletes:	kadu-module-mediaplayer-xmms
-Obsoletes:	kadu-module-mediaplayer-xmms2
 Obsoletes:	kadu-module-notify-osdhints
 Obsoletes:	kadu-module-notify-window
 Obsoletes:	kadu-module-notify-xosd <= 0.6.5
@@ -432,6 +426,18 @@ Summary:	Generic mpris interface support
 Summary(pl.UTF-8):	Moduł ogólnego interfejsu do mpris
 Group:		Applications/Communications
 Requires:	%{name}-module-mediaplayer = %{version}-%{release}
+Provides:	kadu-module-mediaplayer-amarok2
+Provides:	kadu-module-mediaplayer-audacious
+Provides:	kadu-module-mediaplayer-bmpx
+Provides:	kadu-module-mediaplayer-dragon
+Provides:	kadu-module-mediaplayer-vlc
+Provides:	kadu-module-mediaplayer-xmms2
+Obsoletes:	kadu-module-mediaplayer-amarok2
+Obsoletes:	kadu-module-mediaplayer-audacious
+Obsoletes:	kadu-module-mediaplayer-bmpx
+Obsoletes:	kadu-module-mediaplayer-dragon
+Obsoletes:	kadu-module-mediaplayer-vlc
+Obsoletes:	kadu-module-mediaplayer-xmms2
 
 %description module-mediaplayer-mpris
 Module which allows showing in status description information about
