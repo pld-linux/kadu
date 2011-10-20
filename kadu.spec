@@ -130,7 +130,7 @@ BuildRequires:	cmake >= 2.8.0
 %{?with_sound_ao:BuildRequires:	libao-devel}
 BuildRequires:	libgadu-devel >= %{libgadu_ver}
 BuildRequires:	libidn-devel
-%{?with_mediaplayer_mpd:BuildRequires:	libmpd-devel}
+%{?with_mediaplayer_mpd:BuildRequires:	libmpdclient-devel}
 BuildRequires:	libsndfile-devel >= 1.0
 BuildRequires:	libstdc++-devel
 %{?with_encryption:BuildRequires:	openssl-devel >= 0.9.7d}
@@ -781,9 +781,6 @@ Moduł automatycznej zamiany słów dla Kadu.
 
 %prep
 %setup -q -T -b 0
-
-# fix mpd library finding
-%{__sed} -i 's,libmpdclient,libmpd,' plugins/mpd_mediaplayer/CMakeLists.txt
 
 %if %{with anonymous_check}
 tar xjf %{SOURCE2} -C plugins
