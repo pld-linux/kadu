@@ -22,7 +22,7 @@
 %bcond_without	mediaplayer		# without media player modules support
 %bcond_with	mediaplayer_amarok	# without amarok player support module
 %bcond_without	mediaplayer_falf	# without falf player support module
-%bcond_with	mediaplayer_mpd		# without mpd player support module
+%bcond_without	mediaplayer_mpd		# without mpd player support module
 %bcond_without	mediaplayer_mpris	# without generic mpris interface support module
 %bcond_without	messagessplitter	# without messagessplitter module support
 %bcond_without	mime_tex		# without mime_tex module support
@@ -56,16 +56,16 @@
 
 %define		anonymous_check_ver	0.10.1
 %define		geoip_ver		0.2
-%define		globalhotkeys_ver	0.10-25
+%define		globalhotkeys_ver	0.10-26
 %define		mail_ver		0.3.6
 %define		messagessplitter_ver	0.10-2
 %define		mime_tex_ver		0.10.1
 %define		networkping_ver		0.10-1
-%define		nextinfo_ver		0.10-6
+%define		nextinfo_ver		0.10-7
 %define		notify_kde_ver		0.3.4
-%define		notify_led_ver		0.10-29
+%define		notify_led_ver		0.10-30
 %define		notify_mx610_ver	0.4.1
-%define		notify_water_ver	0.2.1
+%define		notify_water_ver	0.3
 %define		pajacyk_ver		0.2.1
 %define		panelkadu_ver		0.10-8
 %define		senthistory_ver		0.10-9
@@ -74,29 +74,29 @@
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
-Version:	0.10.0
-Release:	2
+Version:	0.10.1
+Release:	0.1
 License:	GPL v2+
 Group:		Applications/Communications
 Source0:	http://download.kadu.im/stable/%{name}-%{version}.tar.bz2
-# Source0-md5:	6d3e9889f53cf10c2cd9499aabbff67a
+# Source0-md5:	6211a9a9e02d645268cbf055892601a0
 Source1:	%{name}.desktop
 Source2:	http://kadu.net/~weagle/anonymous_check-%{anonymous_check_ver}.tar.bz2
 # Source2-md5:	2dc4f69cf71d5ed9c7a94e5ff1719c5b
 Source3:	http://www.ultr.pl/kadu/globalhotkeys-%{globalhotkeys_ver}.tar.gz
-# Source3-md5:	b7eecb5a889cbb59b0c146357f689630
+# Source3-md5:	ad30b56240a9a56ae6970750e0e5de44
 Source4:	http://kadu.net/~michal/mail/mail-%{mail_ver}.tar.bz2
 # Source4-md5:	85fdf695c7fbc58e607dc15278391ab3
 Source5:	http://kadu.net/~weagle/mime_tex-%{mime_tex_ver}.tar.bz2
 # Source5-md5:	aa5a34784f4044c425fcc1b11f0ede3f
 Source6:	http://www.ultr.pl/kadu/nextinfo-%{nextinfo_ver}.tar.gz
-# Source6-md5:	b7645a7ce571dc3549249863bf783020
+# Source6-md5:	96005faf7c9eb88d578bb2f50c9e81c3
 Source7:	http://www.ultr.pl/kadu/lednotify-%{notify_led_ver}.tar.gz
-# Source7-md5:	e6f54571976c422d07154a66482fd343
+# Source7-md5:	da3239d3789f304b0304f2ac394456f3
 Source8:	http://www.kadu.net/~dorr/moduly/%{name}-mx610_notify-%{notify_mx610_ver}.tar.bz2
 # Source8-md5:	4b2a47068928b9687c61816abeed86fe
 Source9:	http://www.kadu.net/~dorr/moduly/%{name}-water_notify-%{notify_water_ver}.tar.bz2
-# Source9-md5:	4196e85fc4be93bd662f5148ebc18235
+# Source9-md5:	301db8606fbf82d516b024ea3773d95a
 Source10:	http://www.ultr.pl/kadu/panelkadu-%{panelkadu_ver}.tar.gz
 # Source10-md5:	26772365e6aa794bc6e8155a60c9d01d
 Source11:	http://www.ultr.pl/kadu/senthistory-%{senthistory_ver}.tar.gz
@@ -122,12 +122,15 @@ BuildRequires:	QtScriptTools-devel >= %{qt_ver}
 BuildRequires:	QtSvg-devel >= %{qt_ver}
 BuildRequires:	QtWebKit-devel >= %{qt_ver}
 BuildRequires:	QtXmlPatterns-devel >= %{qt_ver}
+%{?with_spellchecker:BuildRequires:	aspell-devel}
 BuildRequires:	cmake >= 2.8.0
 %{?with_sms_plus_pl:BuildRequires:	curl-devel}
 %{?with_notify_water:BuildRequires:	dbus-devel}
 %{?with_spellchecker:BuildRequires:	enchant-devel}
 %{?with_sound_ao:BuildRequires:	libao-devel}
 BuildRequires:	libgadu-devel >= %{libgadu_ver}
+BuildRequires:	libidn-devel
+%{?with_mediaplayer_mpd:BuildRequires:	libmpd-devel}
 BuildRequires:	libsndfile-devel >= 1.0
 BuildRequires:	libstdc++-devel
 %{?with_encryption:BuildRequires:	openssl-devel >= 0.9.7d}
@@ -779,6 +782,9 @@ Moduł automatycznej zamiany słów dla Kadu.
 %prep
 %setup -q -T -b 0
 
+# fix mpd library finding
+%{__sed} -i 's,libmpdclient,libmpd,' plugins/mpd_mediaplayer/CMakeLists.txt
+
 %if %{with anonymous_check}
 tar xjf %{SOURCE2} -C plugins
 %endif
@@ -855,6 +861,7 @@ mkdir -p build
 %{!?with_mediaplayer:%{__sed} -i 's/\tmediaplayer$/\t#mediaplayer/' Plugins.cmake}
 %{!?with_mediaplayer_amarok:%{__sed} -i 's/\tamarok1_mediaplayer$/\t#amarok1_mediaplayer/' Plugins.cmake}
 %{!?with_mediaplayer_falf:%{__sed} -i 's/\tfalf_mediaplayer$/\t#falf_mediaplayer/' Plugins.cmake}
+%{!?with_mediaplayer_mpd:%{__sed} -i 's/\tmpd_mediaplayer$/\t#mpd_mediaplayer/' Plugins.cmake}
 %{!?with_mediaplayer_mpris:%{__sed} -i 's/\tmprisplayer_mediaplayer$/\t#mprisplayer_mediaplayer/' Plugins.cmake}
 %{?with_mime_tex:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tmime_tex' Plugins.cmake}
 %{?with_networkping:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tnetworkping' Plugins.cmake}
@@ -866,6 +873,7 @@ mkdir -p build
 %{!?with_notify_pcspeaker:%{__sed} -i 's/\tpcspeaker$/\t#pcspeaker/' Plugins.cmake}
 %{!?with_notify_qt4_docking:%{__sed} -i 's/\tqt4_docking_notify$/\t#qt4_docking_notify/' Plugins.cmake}
 %{!?with_notify_speech:%{__sed} -i 's/\tspeech$/\t#speech/' Plugins.cmake}
+%{?with_notify_water:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\twater_notify' Plugins.cmake}
 %{?with_panelkadu:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tpanelkadu' Plugins.cmake}
 %{!?with_screenshot:%{__sed} -i 's/\tscreenshot$/\t#screenshot/' Plugins.cmake}
 %{?with_senthistory:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tsenthistory' Plugins.cmake}
