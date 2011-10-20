@@ -424,6 +424,20 @@ the song currently played in falf.
 Moduł umożliwiający w opisie statusu pokazywanie informacji o
 odgrywanym utworze z odtwarzacza falf.
 
+%package module-mediaplayer-mpd
+Summary:        Support mpd status
+Summary(pl.UTF-8):      Moduł statusu dla mpd
+Group:          Applications/Communications
+Requires:       %{name}-module-mediaplayer = %{version}-%{release}
+
+%description module-mediaplayer-mpd
+Module which allows showing in status description information about
+the song currently played in mpd.
+
+%description module-mediaplayer-mpd -l pl.UTF-8
+Moduł umożliwiający w opisie statusu pokazywanie informacji o
+odgrywanym utworze z odtwarzacza mpd.
+
 %package module-mediaplayer-mpris
 Summary:	Generic mpris interface support
 Summary(pl.UTF-8):	Moduł ogólnego interfejsu do mpris
@@ -1272,6 +1286,14 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{modules_data_dir}/falf_mediaplayer.desc
 %attr(755,root,root) %{modules_lib_dir}/libfalf_mediaplayer.so
+%endif
+
+%if %{with mediaplayer_mpd}
+%files module-mediaplayer-mpd
+%defattr(644,root,root,755)
+%{modules_data_dir}/mpd_mediaplayer.desc
+%{modules_data_dir}/configuration/mpd_config.ui
+%attr(755,root,root) %{modules_lib_dir}/libmpd_mediaplayer.so
 %endif
 
 %if %{with mediaplayer_mpris}
