@@ -2,6 +2,7 @@
 # TODO:
 # - modules to update/remove: geoip, mail, notify_kde, notify_mx610,
 #   notify_water, pajacyk, plus_pl_sms
+# - es_ES -> es
 #
 # Conditional build:
 %bcond_without	anonymous_check		# without anonymous_check module support
