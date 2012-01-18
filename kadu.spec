@@ -472,6 +472,7 @@ Summary:	Automaticaly split too long messages in Kadu
 Summary(pl.UTF-8):	Automatyczne dzielenie zbyt długich wiadomości w Kadu
 Group:		Applications/Communications
 Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-module-encryption
 Provides:	kadu-module-split_messages
 Obsoletes:	kadu-module-split_messages
 
