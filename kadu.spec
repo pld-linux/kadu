@@ -52,8 +52,8 @@
 %bcond_without	tabs			# without tabs support module
 %bcond_without	word_fix		# without word_fix module support
 
-%define		libgadu_ver		4:1.11.0
-%define		qt_ver			4.7.0
+%define		libgadu_ver		4:1.11.1
+%define		qt_ver			4.8.0
 
 %define		anonymous_check_ver	0.11.0-1
 %define		geoip_ver		0.2
