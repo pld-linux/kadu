@@ -856,7 +856,7 @@ tar xzf %{SOURCE17} -C plugins
 mkdir -p build
 
 # default plugins
-plugins_list="docking gadu_protocol history idle jabber_protocol qt4_docking sound"
+plugins_list="config_wizard docking gadu_protocol hints history history_migration idle imagelink jabber_protocol profiles_import qt4_docking simpleview sms sound sql_history"
 
 %{?with_anonymous_check:plugins_list="$plugins_list anonymous_check"}
 %{?with_antistring:plugins_list="$plugins_list antistring"}
