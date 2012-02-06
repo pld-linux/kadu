@@ -55,53 +55,53 @@
 %define		libgadu_ver		4:1.11.0
 %define		qt_ver			4.7.0
 
-%define		anonymous_check_ver	0.10.1
+%define		anonymous_check_ver	0.11.0-1
 %define		geoip_ver		0.2
-%define		globalhotkeys_ver	0.10-26
+%define		globalhotkeys_ver	0.11-31
 %define		mail_ver		0.3.6
-%define		messagessplitter_ver	0.10-2
-%define		mime_tex_ver		0.10.1
-%define		networkping_ver		0.10-1
-%define		nextinfo_ver		0.10-7
+%define		messagessplitter_ver	0.11-4
+%define		mime_tex_ver		0.11.0-1
+%define		networkping_ver		0.11-3
+%define		nextinfo_ver		0.11-8
 %define		notify_kde_ver		0.3.4
-%define		notify_led_ver		0.10-30
+%define		notify_led_ver		0.11-32
 %define		notify_mx610_ver	0.4.1
 %define		notify_water_ver	0.3
 %define		pajacyk_ver		0.2.1
-%define		panelkadu_ver		0.10-8
-%define		senthistory_ver		0.10-9
+%define		panelkadu_ver		0.11-9
+%define		senthistory_ver		0.11-10
 %define		sms_plus_pl_ver		0.6.5.4-1
 
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
-Version:	0.10.1
+Version:	0.11.0
 Release:	1
 License:	GPL v2+
 Group:		Applications/Communications
 Source0:	http://download.kadu.im/stable/%{name}-%{version}.tar.bz2
-# Source0-md5:	6211a9a9e02d645268cbf055892601a0
+# Source0-md5:	480377508522fe088dd78452d06c5972
 Source1:	%{name}.desktop
-Source2:	http://kadu.net/~weagle/anonymous_check-%{anonymous_check_ver}.tar.bz2
-# Source2-md5:	2dc4f69cf71d5ed9c7a94e5ff1719c5b
+Source2:	http://www.kadu.im/~patryk/plugins/anonymous_check/%{anonymous_check_ver}/anonymous_check-%{anonymous_check_ver}.tar.bz2
+# Source2-md5:	1069753f336ea9cd9beaa451ca340980
 Source3:	http://www.ultr.pl/kadu/globalhotkeys-%{globalhotkeys_ver}.tar.gz
-# Source3-md5:	ad30b56240a9a56ae6970750e0e5de44
+# Source3-md5:	f7991c813e65adc5a369c429f47b15ff
 Source4:	http://kadu.net/~michal/mail/mail-%{mail_ver}.tar.bz2
 # Source4-md5:	85fdf695c7fbc58e607dc15278391ab3
-Source5:	http://kadu.net/~weagle/mime_tex-%{mime_tex_ver}.tar.bz2
-# Source5-md5:	aa5a34784f4044c425fcc1b11f0ede3f
+Source5:	http://www.kadu.im/~patryk/plugins/mime_tex/%{mime_tex_ver}/mime_tex-%{mime_tex_ver}.tar.bz2
+# Source5-md5:	ea3d7015a66dcb7ee15d2c8ba1eaf3ef
 Source6:	http://www.ultr.pl/kadu/nextinfo-%{nextinfo_ver}.tar.gz
-# Source6-md5:	96005faf7c9eb88d578bb2f50c9e81c3
+# Source6-md5:	0228b9055b99d89061858d305ebadaec
 Source7:	http://www.ultr.pl/kadu/lednotify-%{notify_led_ver}.tar.gz
-# Source7-md5:	da3239d3789f304b0304f2ac394456f3
+# Source7-md5:	2b12944661d09001c37c4d747191b122
 Source8:	http://www.kadu.net/~dorr/moduly/%{name}-mx610_notify-%{notify_mx610_ver}.tar.bz2
 # Source8-md5:	4b2a47068928b9687c61816abeed86fe
 Source9:	http://www.kadu.net/~dorr/moduly/%{name}-water_notify-%{notify_water_ver}.tar.bz2
 # Source9-md5:	301db8606fbf82d516b024ea3773d95a
 Source10:	http://www.ultr.pl/kadu/panelkadu-%{panelkadu_ver}.tar.gz
-# Source10-md5:	26772365e6aa794bc6e8155a60c9d01d
+# Source10-md5:	eb9c318ed7c1f6dae92475291d03dd62
 Source11:	http://www.ultr.pl/kadu/senthistory-%{senthistory_ver}.tar.gz
-# Source11-md5:	0ec2a68a636f2428be1f20967fa23baf
+# Source11-md5:	975055ba7aa5fbc5446fb6f4c603030b
 Source12:	http://kadu.net/~patryk/plus_pl_sms/plus_pl_sms-plus_pl_sms-%{sms_plus_pl_ver}.tar.bz2
 # Source12-md5:	59f7ba01a63464818acaa5ff6fd176d5
 Source13:	http://kadu.net/~neeo/kadu/geoip/geoip_lookup-%{geoip_ver}.tar.bz2
@@ -111,9 +111,9 @@ Source14:	http://www.kadu.net/~dorr/moduly/kde_notify-%{notify_kde_ver}.tar.gz
 Source15:	http://www.kadu.net/~dorr/moduly/%{name}-pajacyk-%{pajacyk_ver}.tar.bz2
 # Source15-md5:	c87d4b68d65c923118b6ac3e9396ff13
 Source16:	http://www.ultr.pl/kadu/messagessplitter-%{messagessplitter_ver}.tar.gz
-# Source16-md5:	14de43361e3bc149478a076874e024f2
+# Source16-md5:	85a1545b7f008c5b5d35ae7f2b998128
 Source17:	http://www.ultr.pl/kadu/networkping-%{networkping_ver}.tar.gz
-# Source17-md5:	f518f6f2e458857c92cbe40c2062abe4
+# Source17-md5:	1be9d003bbdce1f91074d15bb2877d9c
 #Patch0:		%{name}-mail.patch
 URL:		http://kadu.im/
 %{?with_geoip:BuildRequires:	GeoIP-devel}
@@ -426,10 +426,10 @@ Moduł umożliwiający w opisie statusu pokazywanie informacji o
 odgrywanym utworze z odtwarzacza falf.
 
 %package module-mediaplayer-mpd
-Summary:        Support mpd status
-Summary(pl.UTF-8):      Moduł statusu dla mpd
-Group:          Applications/Communications
-Requires:       %{name}-module-mediaplayer = %{version}-%{release}
+Summary:	Support mpd status
+Summary(pl.UTF-8):	Moduł statusu dla mpd
+Group:		Applications/Communications
+Requires:	%{name}-module-mediaplayer = %{version}-%{release}
 
 %description module-mediaplayer-mpd
 Module which allows showing in status description information about
