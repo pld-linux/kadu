@@ -855,52 +855,53 @@ tar xzf %{SOURCE17} -C plugins
 %build
 mkdir -p build
 
-%{?with_anonymous_check:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tanonymous_check' Plugins.cmake}
-%{!?with_antistring:%{__sed} -i 's/\tantistring$/\t#antistring/' Plugins.cmake}
-%{!?with_autoaway:%{__sed} -i 's/\tautoaway$/\t#autoaway/' Plugins.cmake}
-%{!?with_auto_hide:%{__sed} -i 's/\tauto_hide$/\t#auto_hide/' Plugins.cmake}
-%{!?with_autoresponder:%{__sed} -i 's/\tautoresponder$/\t#autoresponder/' Plugins.cmake}
-%{!?with_autostatus:%{__sed} -i 's/\tautostatus$/\t#autostatus/' Plugins.cmake}
-%{!?with_cenzor:%{__sed} -i 's/\tcenzor$/\t#cenzor/' Plugins.cmake}
-%{!?with_docking_desktop:%{__sed} -i 's/\tdesktop_docking$/\t#desktop_docking/' Plugins.cmake}
-%if %{without encryption}
-%{__sed} -i 's/\tencryption_ng$/\t#encryption_ng/' Plugins.cmake
-%{__sed} -i 's/\tencryption_ng_simlite$/\t#encryption_ng_simlite/' Plugins.cmake
-%endif
-%{!?with_filedesc:%{__sed} -i 's/\tfiledesc$/\t#filedesc/' Plugins.cmake}
-%{!?with_firewall:%{__sed} -i 's/\tfirewall$/\t#firewall/' Plugins.cmake}
-%{?with_globalhotkeys:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tglobalhotkeys' Plugins.cmake}
-%{!?with_last_seen:%{__sed} -i 's/\tlast_seen$/\t#last_seen/' Plugins.cmake}
-%{!?with_mediaplayer:%{__sed} -i 's/\tmediaplayer$/\t#mediaplayer/' Plugins.cmake}
-%{!?with_mediaplayer_amarok:%{__sed} -i 's/\tamarok1_mediaplayer$/\t#amarok1_mediaplayer/' Plugins.cmake}
-%{!?with_mediaplayer_falf:%{__sed} -i 's/\tfalf_mediaplayer$/\t#falf_mediaplayer/' Plugins.cmake}
-%{!?with_mediaplayer_mpd:%{__sed} -i 's/\tmpd_mediaplayer$/\t#mpd_mediaplayer/' Plugins.cmake}
-%{!?with_mediaplayer_mpris:%{__sed} -i 's/\tmprisplayer_mediaplayer$/\t#mprisplayer_mediaplayer/' Plugins.cmake}
-%{?with_mime_tex:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tmime_tex' Plugins.cmake}
-%{?with_networkping:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tnetworkping' Plugins.cmake}
-%{?with_nextinfo:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tnextinfo' Plugins.cmake}
-%{!?with_notify_exec:%{__sed} -i 's/\texec_notify$/\t#exec_notify/' Plugins.cmake}
-%{!?with_notify_freedesktop:%{__sed} -i 's/\tfreedesktop_notify$/\t#freedesktop_notify/' Plugins.cmake}
-%{?with_notify_led:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tlednotify' Plugins.cmake}
-%{!?with_notify_chat:%{__sed} -i 's/\tchat_notify$/\t#chat_notify/' Plugins.cmake}
-%{!?with_notify_pcspeaker:%{__sed} -i 's/\tpcspeaker$/\t#pcspeaker/' Plugins.cmake}
-%{!?with_notify_qt4_docking:%{__sed} -i 's/\tqt4_docking_notify$/\t#qt4_docking_notify/' Plugins.cmake}
-%{!?with_notify_speech:%{__sed} -i 's/\tspeech$/\t#speech/' Plugins.cmake}
-%{?with_notify_water:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\twater_notify' Plugins.cmake}
-%{?with_panelkadu:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tpanelkadu' Plugins.cmake}
-%{!?with_screenshot:%{__sed} -i 's/\tscreenshot$/\t#screenshot/' Plugins.cmake}
-%{?with_senthistory:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tsenthistory' Plugins.cmake}
-%{!?with_single_window:%{__sed} -i 's/\tsingle_window$/\t#single_window/' Plugins.cmake}
-%{!?with_sound_ext:%{__sed} -i 's/\text_sound$/\t#ext_sound/' Plugins.cmake}
-%{!?with_sound_phonon:%{__sed} -i 's/\tphonon_sound$/\t#phonon_sound/' Plugins.cmake}
-%{!?with_sound_qt4:%{__sed} -i 's/\tqt4_sound$/\t#qt4_sound/' Plugins.cmake}
-%{!?with_spellchecker:%{__sed} -i 's/\tspellchecker$/\t#spellchecker/' Plugins.cmake}
-%{?with_messagessplitter:%{__sed} -i '/^set (COMPILE_PLUGINS$/a\\tmessagessplitter' Plugins.cmake}
-%{!?with_tabs:%{__sed} -i 's/\ttabs$/\t#tabs/' Plugins.cmake}
-%{!?with_word_fix:%{__sed} -i 's/\tword_fix$/\t#word_fix/' Plugins.cmake}
+# default plugins
+plugins_list="docking gadu_protocol history idle jabber_protocol qt4_docking sound"
+
+%{?with_anonymous_check:plugins_list="$plugins_list anonymous_check"}
+%{?with_antistring:plugins_list="$plugins_list antistring"}
+%{?with_autoaway:plugins_list="$plugins_list autoaway"}
+%{?with_auto_hide:plugins_list="$plugins_list auto_hide"}
+%{?with_autoresponder:plugins_list="$plugins_list autoresponder"}
+%{?with_autostatus:plugins_list="$plugins_list autostatus"}
+%{?with_cenzor:plugins_list="$plugins_list cenzor"}
+%{?with_docking_desktop:plugins_list="$plugins_list desktop_docking"}
+%{?with_encryption:plugins_list="$plugins_list encryption_ng encryption_ng_simlite"}
+%{?with_filedesc:plugins_list="$plugins_list filedesc"}
+%{?with_firewall:plugins_list="$plugins_list firewall"}
+%{?with_globalhotkeys:plugins_list="$plugins_list globalhotkeys"}
+%{?with_last_seen:plugins_list="$plugins_list last_seen"}
+%{?with_mediaplayer:plugins_list="$plugins_list mediaplayer"}
+%{?with_mediaplayer_amarok:plugins_list="$plugins_list amarok1_mediaplayer"}
+%{?with_mediaplayer_falf:plugins_list="$plugins_list falf_mediaplayer"}
+%{?with_mediaplayer_mpd:plugins_list="$plugins_list mpd_mediaplayer"}
+%{?with_mediaplayer_mpris:plugins_list="$plugins_list mprisplayer_mediaplayer"}
+%{?with_mime_tex:plugins_list="$plugins_list mime_tex"}
+%{?with_networkping:plugins_list="$plugins_list networkping"}
+%{?with_nextinfo:plugins_list="$plugins_list nextinfo"}
+%{?with_notify_exec:plugins_list="$plugins_list exec_notify"}
+%{?with_notify_freedesktop:plugins_list="$plugins_list freedesktop_notify"}
+%{?with_notify_led:plugins_list="$plugins_list lednotify"}
+%{?with_notify_chat:plugins_list="$plugins_list chat_notify"}
+%{?with_notify_pcspeaker:plugins_list="$plugins_list pcspeaker"}
+%{?with_notify_qt4_docking:plugins_list="$plugins_list qt4_docking_notify"}
+%{?with_notify_speech:plugins_list="$plugins_list speech"}
+%{?with_notify_water:plugins_list="$plugins_list water_notify"}
+%{?with_panelkadu:plugins_list="$plugins_list panelkadu"}
+%{?with_screenshot:plugins_list="$plugins_list screenshot"}
+%{?with_senthistory:plugins_list="$plugins_list senthistory"}
+%{?with_single_window:plugins_list="$plugins_list single_window"}
+%{?with_sound_ext:plugins_list="$plugins_list ext_sound"}
+%{?with_sound_phonon:plugins_list="$plugins_list phonon_sound"}
+%{?with_sound_qt4:plugins_list="$plugins_list qt4_sound"}
+%{?with_spellchecker:plugins_list="$plugins_list spellchecker"}
+%{?with_messagessplitter:plugins_list="$plugins_list messagessplitter"}
+%{?with_tabs:plugins_list="$plugins_list tabs"}
+%{?with_word_fix:plugins_list="$plugins_list word_fix"}
 
 cd build
-%cmake ..
+%cmake .. \
+	-DCOMPILE_PLUGINS="$plugins_list"
 
 %{__make}
 
