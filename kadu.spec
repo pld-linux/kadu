@@ -3,6 +3,7 @@
 # - modules to update/remove: geoip, mail, notify_kde, notify_mx610,
 #   notify_water, pajacyk, plus_pl_sms
 # - es_ES -> es
+# - disable autoupdate
 #
 # Conditional build:
 %bcond_without	anonymous_check		# without anonymous_check module support
@@ -76,7 +77,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
 Version:	0.11.0
-Release:	0.1
+Release:	1
 License:	GPL v2+
 Group:		Applications/Communications
 Source0:	http://download.kadu.im/stable/%{name}-%{version}.tar.bz2
