@@ -856,8 +856,10 @@ tar xzf %{SOURCE17} -C plugins
 mkdir -p build
 
 # default plugins
-plugins_list="config_wizard docking gadu_protocol hints history history_migration idle imagelink jabber_protocol profiles_import qt4_docking simpleview sms sound sql_history"
+plugins_list="config_wizard docking gadu_protocol hints history history_migration idle \
+	imagelink jabber_protocol profiles_import qt4_docking simpleview sms sound sql_history"
 
+# additional plugins
 %{?with_anonymous_check:plugins_list="$plugins_list anonymous_check"}
 %{?with_antistring:plugins_list="$plugins_list antistring"}
 %{?with_autoaway:plugins_list="$plugins_list autoaway"}
@@ -1045,6 +1047,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{_datadir}/%{name}/translations/kadu_pl.qm
 %lang(pl) %{_datadir}/%{name}/translations/pl.language
 %lang(ru) %{_datadir}/%{name}/translations/kadu_ru.qm
+%lang(ru) %{_datadir}/%{name}/translations/ru.language
 %lang(sk) %{_datadir}/%{name}/translations/kadu_sk.qm
 
 # wizard
