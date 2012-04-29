@@ -76,12 +76,12 @@
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
-Version:	0.11.2
+Version:	0.11.3
 Release:	1
 License:	GPL v2+
 Group:		Applications/Communications
 Source0:	http://download.kadu.im/stable/%{name}-%{version}.tar.bz2
-# Source0-md5:	ddfe05f1c947e9ff897f37804ecbd7d4
+# Source0-md5:	fc70882b86bdb04cb0835b2cf014b8aa
 Source1:	%{name}.desktop
 Source2:	http://www.kadu.im/~patryk/plugins/anonymous_check/%{anonymous_check_ver}/anonymous_check-%{anonymous_check_ver}.tar.bz2
 # Source2-md5:	1069753f336ea9cd9beaa451ca340980
