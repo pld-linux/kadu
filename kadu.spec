@@ -58,51 +58,51 @@
 
 %define		anonymous_check_ver	0.11.0-1
 %define		geoip_ver		0.2
-%define		globalhotkeys_ver	0.11-31
+%define		globalhotkeys_ver	0.12-32
 %define		mail_ver		0.3.6
-%define		messagessplitter_ver	0.11-4
-%define		mime_tex_ver		0.11.0-1
-%define		networkping_ver		0.11-3
-%define		nextinfo_ver		0.11-8
+%define		messagessplitter_ver	0.12-5
+%define		mime_tex_ver		0.12.0-2
+%define		networkping_ver		0.12-4
+%define		nextinfo_ver		0.12-9
 %define		notify_kde_ver		0.3.4
-%define		notify_led_ver		0.11-32
+%define		notify_led_ver		0.12-33
 %define		notify_mx610_ver	0.4.1
 %define		notify_water_ver	0.3
 %define		pajacyk_ver		0.2.1
-%define		panelkadu_ver		0.11-9
-%define		senthistory_ver		0.11-10
+%define		panelkadu_ver		0.12-10
+%define		senthistory_ver		0.12-11
 %define		sms_plus_pl_ver		0.6.5.4-1
 
 Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
-Version:	0.11.3
-Release:	1
+Version:	0.12.2
+Release:	0.1
 License:	GPL v2+
 Group:		Applications/Communications
 Source0:	http://download.kadu.im/stable/%{name}-%{version}.tar.bz2
-# Source0-md5:	fc70882b86bdb04cb0835b2cf014b8aa
+# Source0-md5:	e546834f85bed14279691998545d203c
 Source1:	%{name}.desktop
 Source2:	http://www.kadu.im/~patryk/plugins/anonymous_check/%{anonymous_check_ver}/anonymous_check-%{anonymous_check_ver}.tar.bz2
 # Source2-md5:	1069753f336ea9cd9beaa451ca340980
 Source3:	http://www.ultr.pl/kadu/globalhotkeys-%{globalhotkeys_ver}.tar.gz
-# Source3-md5:	f7991c813e65adc5a369c429f47b15ff
+# Source3-md5:	55a909dd623549ff4be8c43c10b8eb2c
 Source4:	http://kadu.net/~michal/mail/mail-%{mail_ver}.tar.bz2
 # Source4-md5:	85fdf695c7fbc58e607dc15278391ab3
-Source5:	http://www.kadu.im/~patryk/plugins/mime_tex/%{mime_tex_ver}/mime_tex-%{mime_tex_ver}.tar.bz2
-# Source5-md5:	ea3d7015a66dcb7ee15d2c8ba1eaf3ef
+Source5:	http://download.kadu.im/external-plugins/mime_tex/mime_tex-%{mime_tex_ver}.tar.bz2
+# Source5-md5:	ebef572c9fe1da450cafdfc080a082aa
 Source6:	http://www.ultr.pl/kadu/nextinfo-%{nextinfo_ver}.tar.gz
-# Source6-md5:	0228b9055b99d89061858d305ebadaec
+# Source6-md5:	095db82e5a79b39d4b8b32cfb91b6ae1
 Source7:	http://www.ultr.pl/kadu/lednotify-%{notify_led_ver}.tar.gz
-# Source7-md5:	2b12944661d09001c37c4d747191b122
+# Source7-md5:	a8756ae48fb8ece092308913fecef7f5
 Source8:	http://www.kadu.net/~dorr/moduly/%{name}-mx610_notify-%{notify_mx610_ver}.tar.bz2
 # Source8-md5:	4b2a47068928b9687c61816abeed86fe
 Source9:	http://www.kadu.net/~dorr/moduly/%{name}-water_notify-%{notify_water_ver}.tar.bz2
 # Source9-md5:	301db8606fbf82d516b024ea3773d95a
 Source10:	http://www.ultr.pl/kadu/panelkadu-%{panelkadu_ver}.tar.gz
-# Source10-md5:	eb9c318ed7c1f6dae92475291d03dd62
+# Source10-md5:	443d7300c8e2a99f70b52a24dab9b563
 Source11:	http://www.ultr.pl/kadu/senthistory-%{senthistory_ver}.tar.gz
-# Source11-md5:	975055ba7aa5fbc5446fb6f4c603030b
+# Source11-md5:	3e2abb98133ca730edd5aee8ca189cac
 Source12:	http://kadu.net/~patryk/plus_pl_sms/plus_pl_sms-plus_pl_sms-%{sms_plus_pl_ver}.tar.bz2
 # Source12-md5:	59f7ba01a63464818acaa5ff6fd176d5
 Source13:	http://kadu.net/~neeo/kadu/geoip/geoip_lookup-%{geoip_ver}.tar.bz2
@@ -112,9 +112,9 @@ Source14:	http://www.kadu.net/~dorr/moduly/kde_notify-%{notify_kde_ver}.tar.gz
 Source15:	http://www.kadu.net/~dorr/moduly/%{name}-pajacyk-%{pajacyk_ver}.tar.bz2
 # Source15-md5:	c87d4b68d65c923118b6ac3e9396ff13
 Source16:	http://www.ultr.pl/kadu/messagessplitter-%{messagessplitter_ver}.tar.gz
-# Source16-md5:	85a1545b7f008c5b5d35ae7f2b998128
+# Source16-md5:	d57cc78d5fd0f2321a2c4029c0c1df0b
 Source17:	http://www.ultr.pl/kadu/networkping-%{networkping_ver}.tar.gz
-# Source17-md5:	1be9d003bbdce1f91074d15bb2877d9c
+# Source17-md5:	811aaee22156d92bad558e09eb6dc5a7
 #Patch0:		%{name}-mail.patch
 URL:		http://kadu.im/
 %{?with_geoip:BuildRequires:	GeoIP-devel}
@@ -1072,7 +1072,7 @@ rm -rf $RPM_BUILD_ROOT
 %{modules_data_dir}/configuration/sound.ui
 
 # default modules datas
-%dir %{modules_data_dir}/data
+#%dir %{modules_data_dir}/data
 %dir %{modules_data_dir}/data/gadu_protocol
 %{modules_data_dir}/data/gadu_protocol/servers.txt
 %dir %{modules_data_dir}/data/sms
