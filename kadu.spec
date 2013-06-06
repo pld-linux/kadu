@@ -131,6 +131,7 @@ BuildRequires:	cmake >= 2.8.0
 %{?with_spellchecker:BuildRequires:	enchant-devel}
 BuildRequires:	libgadu-devel >= %{libgadu_ver}
 BuildRequires:	libidn-devel
+BuildRequires:	libindicate-qt-devel
 %{?with_mediaplayer_mpd:BuildRequires:	libmpdclient-devel}
 BuildRequires:	libsndfile-devel >= 1.0
 BuildRequires:	libstdc++-devel
