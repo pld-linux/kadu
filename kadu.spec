@@ -115,7 +115,7 @@ Source16:	http://www.ultr.pl/kadu/messagessplitter-%{messagessplitter_ver}.tar.g
 # Source16-md5:	d57cc78d5fd0f2321a2c4029c0c1df0b
 Source17:	http://www.ultr.pl/kadu/networkping-%{networkping_ver}.tar.gz
 # Source17-md5:	811aaee22156d92bad558e09eb6dc5a7
-#Patch0:		%{name}-mail.patch
+Patch0:		jabber-plugin.patch
 URL:		http://kadu.im/
 %{?with_geoip:BuildRequires:	GeoIP-devel}
 BuildRequires:	Qt3Support-devel >= %{qt_ver}
@@ -799,6 +799,7 @@ Moduł automatycznej zamiany słów dla Kadu.
 
 %prep
 %setup -q -T -b 0
+%patch0 -p1
 
 %if %{with anonymous_check}
 tar xjf %{SOURCE2} -C plugins
@@ -809,7 +810,6 @@ tar xzf %{SOURCE3} -C plugins
 %if %{with mail}
 tar xjf %{SOURCE4} -C plugins
 %undos plugins/mail/translations/mail_pl.ts
-%patch1 -p0
 %endif
 %if %{with mime_tex}
 tar xjf %{SOURCE5} -C plugins
