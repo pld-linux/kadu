@@ -839,6 +839,9 @@ tar xzf %{SOURCE17} -C plugins
 # Change hard coded path to modules data files
 %{__sed} -i 's,dataPath("kadu/plugins/*,("%{modules_data_dir}/,g' kadu-core/plugins/plugin.cpp
 
+%{__sed} -E -i -e '1s,#!\s*/usr/bin/env\s+bash(\s|$),#!/bin/bash\1,' \
+      translations/plugintsupdate.sh
+
 %build
 mkdir -p build
 
