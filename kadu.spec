@@ -23,7 +23,6 @@
 %bcond_with	mail			# without mail module support
 %bcond_without	mediaplayer		# without media player modules support
 %bcond_with	mediaplayer_amarok	# without amarok player support module
-%bcond_without	mediaplayer_falf	# without falf player support module
 %bcond_without	mediaplayer_mpd		# without mpd player support module
 %bcond_without	mediaplayer_mpris	# without generic mpris interface support module
 %bcond_without	messagessplitter	# without messagessplitter module support
@@ -77,7 +76,7 @@ Summary:	A Gadu-Gadu client for online messaging
 Summary(pl.UTF-8):	Klient Gadu-Gadu do przesyłania wiadomości po sieci
 Name:		kadu
 Version:	0.12.2
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		Applications/Communications
 Source0:	http://download.kadu.im/stable/%{name}-%{version}.tar.bz2
@@ -158,6 +157,7 @@ Obsoletes:	kadu-module-gg_avatars
 Obsoletes:	kadu-module-imiface <= 0.4.3
 Obsoletes:	kadu-module-iwait4u <= 0.5.0
 Obsoletes:	kadu-module-mediaplayer-xmms
+Obsoletes:	kadu-module-mediaplayer-falf < 0.12.2-3
 Obsoletes:	kadu-module-notify-osdhints
 Obsoletes:	kadu-module-notify-window
 Obsoletes:	kadu-module-notify-xosd <= 0.6.5
@@ -411,21 +411,6 @@ the song currently played in amarok.
 %description module-mediaplayer-amarok -l pl.UTF-8
 Moduł umożliwiający w opisie statusu pokazywanie informacji o
 odgrywanym utworze z odtwarzacza amarok.
-
-%package module-mediaplayer-falf
-Summary:	Support falf status
-Summary(pl.UTF-8):	Moduł statusu dla falf
-Group:		Applications/Communications
-Requires:	%{name}-module-mediaplayer = %{version}-%{release}
-Requires:	falf
-
-%description module-mediaplayer-falf
-Module which allows showing in status description information about
-the song currently played in falf.
-
-%description module-mediaplayer-falf -l pl.UTF-8
-Moduł umożliwiający w opisie statusu pokazywanie informacji o
-odgrywanym utworze z odtwarzacza falf.
 
 %package module-mediaplayer-mpd
 Summary:	Support mpd status
@@ -877,7 +862,6 @@ plugins_list="config_wizard docking gadu_protocol hints history history_migratio
 %{?with_last_seen:plugins_list="$plugins_list last_seen"}
 %{?with_mediaplayer:plugins_list="$plugins_list mediaplayer"}
 %{?with_mediaplayer_amarok:plugins_list="$plugins_list amarok1_mediaplayer"}
-%{?with_mediaplayer_falf:plugins_list="$plugins_list falf_mediaplayer"}
 %{?with_mediaplayer_mpd:plugins_list="$plugins_list mpd_mediaplayer"}
 %{?with_mediaplayer_mpris:plugins_list="$plugins_list mprisplayer_mediaplayer"}
 %{?with_mime_tex:plugins_list="$plugins_list mime_tex"}
@@ -1326,13 +1310,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{modules_data_dir}/amarok1_mediaplayer.desc
 %attr(755,root,root) %{modules_lib_dir}/libamarok1_mediaplayer.so
-%endif
-
-%if %{with mediaplayer_falf}
-%files module-mediaplayer-falf
-%defattr(644,root,root,755)
-%{modules_data_dir}/falf_mediaplayer.desc
-%attr(755,root,root) %{modules_lib_dir}/libfalf_mediaplayer.so
 %endif
 
 %if %{with mediaplayer_mpd}
