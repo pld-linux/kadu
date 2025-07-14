@@ -784,7 +784,7 @@ Moduł automatycznej zamiany słów dla Kadu.
 
 %prep
 %setup -q -T -b 0
-%patch0 -p1
+%patch -P0 -p1
 
 %if %{with anonymous_check}
 tar xjf %{SOURCE2} -C plugins
